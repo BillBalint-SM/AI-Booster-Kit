@@ -82,7 +82,7 @@ Sources: [pricing and plan inclusion](https://learn.chatgpt.com/docs/pricing), [
 - **Recommendation:** Use managed worktrees or cloud containers for independent background coding, and Remote/SSH only to reach an explicitly administered host; treat Scheduled as an unattended runner with least privilege.
 - **Use when:** A task is independently testable, its checkout can be isolated, and its environment, secrets, network, and completion evidence are defined before dispatch.
 - **Do not use when:** Two tasks need to mutate the same checkout or external record, a run needs interactive approvals, the local host cannot remain available, or recovery from an unattended partial change is undefined.
-- **Primary evidence:** [OpenAI worktree isolation and handoff](https://learn.chatgpt.com/docs/environments/git-worktrees)
+- **Primary evidence:** [OpenAI worktree isolation and handoff](https://learn.chatgpt.com/docs/environments/git-worktrees), [OpenAI cloud background and parallel execution](https://learn.chatgpt.com/docs/cloud), [OpenAI-managed cloud environments](https://learn.chatgpt.com/docs/environments/cloud-environment), and [OpenAI Remote/SSH host execution](https://learn.chatgpt.com/docs/remote-connections)
 - **Cross-check:** [OpenAI Scheduled permissions and security model](https://learn.chatgpt.com/docs/automations#permissions-and-security-model)
 - **Verified:** 2026-07-22
 - **Product / plan / version:** ChatGPT desktop Codex worktrees and Scheduled, ChatGPT web Scheduled/cloud, and Remote on supported current desktop/mobile clients; availability is workspace- and rollout-dependent.
@@ -111,11 +111,11 @@ Sources: [pricing and plan inclusion](https://learn.chatgpt.com/docs/pricing), [
 ### Documented limitations, security boundaries, and freshness
 
 - Subscription inclusion does not mean identical limits or features: Free and Go target lighter use; Plus documents web/CLI/IDE/iOS and cloud integrations; Pro adds higher usage and preview access; Business/Enterprise/Edu add progressively stronger administration and data controls.
-- Business, Enterprise, and Edu data is not used for model training by default, but third-party plugins and connected services retain their own terms, scopes, retention, and residency boundaries. Consumer-plan data handling must be checked separately before confidential work. [OpenAI business-data controls](https://openai.com/business-data/)
+- Business, Enterprise, and Edu inputs and outputs are not used to improve OpenAI models by default. For Plus and Pro, Codex conversations may be used to improve models unless the user turns off training in ChatGPT data controls; the public Codex plan article does not state the corresponding Free/Go training default. Third-party plugins and connected services retain their own terms, scopes, retention, and residency boundaries. [OpenAI business-data controls](https://openai.com/business-data/), [OpenAI Codex plan data controls](https://help.openai.com/en/articles/11369540-using-codex-with-your-chatgpt-plan)
 - Project `.codex/` configuration, hooks, and rules load only for trusted projects. Some host-owned authentication, provider, telemetry, and profile keys are deliberately ignored in project config. [Advanced configuration](https://learn.chatgpt.com/docs/config-file/config-advanced#project-config-files-codexconfigtoml)
-- Rules are explicitly experimental. Hooks are enabled and documented, but only command handlers run today, asynchronous handlers are skipped, hosted tools bypass local tool hooks, and specialized paths may opt out; hooks are a guardrail, not a complete security boundary.
+- [Rules](https://learn.chatgpt.com/docs/agent-configuration/rules) are explicitly experimental and may change. Hooks are enabled and documented, but only command handlers run today, asynchronous handlers are skipped, hosted tools bypass local tool hooks, and specialized paths may opt out; hooks are a guardrail, not a complete security boundary.
 - Public OpenAI pages conflict on web naming: the current plan article lists "Codex web" as a client and the Codex cloud guide documents hosted tasks, while the newer Work-versus-Codex article says the distinct Codex experience is not selectable on web or mobile. Treat browser-accessible Codex cloud tasks as distinct from the desktop Codex view and require an authenticated availability check before writing rollout instructions. [Plan article](https://help.openai.com/en/articles/11369540-using-codex-with-your-chatgpt-plan), [Work-versus-Codex article](https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex), [Codex cloud](https://learn.chatgpt.com/docs/cloud)
-- The July 13-17 weekly digest is the newest dated product digest verified for this snapshot. It records the July 9 merge of Codex into the ChatGPT desktop app and flags ongoing rollout-dependent features; Task 12 should recheck both the [weekly digest](https://learn.chatgpt.com/docs/whats-new) and versioned Codex changelog.
+- The July 13-17 [weekly digest](https://learn.chatgpt.com/docs/whats-new) is the newest dated product digest verified for this snapshot. The versioned [Codex changelog](https://learn.chatgpt.com/docs/changelog) has a 2026-07-13 iOS 1.2026.188 entry and a 2026-07-09 desktop 26.707 entry for the Codex merge into ChatGPT desktop; Task 12 should recheck both sources because rollout and client releases continue independently.
 
 ## Cursor profile
 
@@ -140,10 +140,10 @@ Codex has separate native surfaces for durable repository guidance, runtime conf
 #### `AGENTS.md` plus layered `config.toml`
 
 - **Tier:** default
-- **Recommendation:** Put durable repository conventions, commands, acceptance criteria, and review expectations in scoped `AGENTS.md`; put trusted runtime settings in user or project `config.toml`, respecting documented precedence.
+- **Recommendation:** Put durable repository conventions, commands, acceptance criteria, and review expectations in scoped `AGENTS.md`; put trusted runtime settings in the appropriate `config.toml` layer. Codex resolves ordinary configuration from highest to lowest as CLI flags and `--config`, trusted project files from repository root to current directory with the closest file winning, the selected profile, user config, system config, then built-in defaults. Managed defaults are a separate startup layer that overrides the ordinary base, including CLI overrides, while managed requirements separately constrain permitted effective values.
 - **Use when:** Guidance must be version-controlled and apply predictably to a repository or subtree, while runtime defaults need a supported configuration layer.
 - **Do not use when:** The content is a one-off task instruction, a secret, or an organization-enforced security requirement; use the prompt, secret store, or managed requirements respectively.
-- **Primary evidence:** [OpenAI `AGENTS.md` discovery and precedence](https://learn.chatgpt.com/docs/agent-configuration/agents-md)
+- **Primary evidence:** [OpenAI `AGENTS.md` discovery and precedence](https://learn.chatgpt.com/docs/agent-configuration/agents-md), [OpenAI ordinary configuration precedence](https://learn.chatgpt.com/docs/config-file/config-basic#configuration-precedence), and [OpenAI managed-default and requirements precedence](https://learn.chatgpt.com/docs/enterprise/managed-configuration#managed-defaults-managed_configtoml)
 - **Cross-check:** [Codex open-source model-visible `AGENTS.md` contract](https://github.com/openai/codex/blob/main/codex-rs/protocol/src/prompts/base_instructions/default.md)
 - **Verified:** 2026-07-22
 - **Product / plan / version:** Codex CLI, IDE extension, desktop Codex, and cloud tasks that read repository guidance; project config is trusted-project-only.
@@ -151,7 +151,7 @@ Codex has separate native surfaces for durable repository guidance, runtime conf
 - **Maturity:** stable
 - **Alternatives and tradeoffs:** Prompts are better for temporary constraints. Skills are better for reusable task procedures. Managed `requirements.toml` is better for non-overridable policy. Large instruction files consume context and become stale.
 - **Subscription / licensing impact:** Native Codex behavior with no additional license.
-- **Data / permission / security impact:** Repository instructions and project config are untrusted project content. More specific `AGENTS.md` wins; CLI flags outrank ordinary config, but managed requirements can still constrain effective settings. Never store credentials in either file.
+- **Data / permission / security impact:** Repository instructions and project config are untrusted project content. More specific `AGENTS.md` wins; untrusted project `.codex/` layers, including config, hooks, and rules, are skipped. Managed defaults override ordinary config and local flags at process start; requirements reject disallowed effective values and have their own multi-source composition rules. Never store credentials in any configuration or instruction file.
 
 #### Focused skills for repeatable agent workflows
 
@@ -288,15 +288,15 @@ Codex supports one main thread, delegated subagent threads, independent app chat
 #### Parallel writers in one checkout
 
 - **Tier:** rejected
-- **Recommendation:** Do not use multiple Codex agents as concurrent writers in the same checkout for routine implementation.
+- **Recommendation:** Adopt a conservative workflow policy: do not assign multiple Codex agents as concurrent writers in the same checkout for routine implementation. OpenAI documents coordination risk and worktree isolation, but does not publish this as a product prohibition.
 - **Use when:** Not applicable as a default; only a controlled Gate 2 experiment with file-level isolation, deterministic locking, and recovery evidence could justify an exception.
 - **Do not use when:** Normal feature, bug-fix, refactor, or infrastructure work shares files, build outputs, Git state, or a local server.
 - **Primary evidence:** [OpenAI subagent caution for parallel write-heavy workflows](https://learn.chatgpt.com/docs/agent-configuration/subagents#why-subagent-workflows-help)
 - **Cross-check:** [OpenAI worktrees for independent chats](https://learn.chatgpt.com/docs/environments/git-worktrees#why-use-a-worktree)
 - **Verified:** 2026-07-22
 - **Product / plan / version:** All Codex surfaces that can spawn or run parallel work against a local repository.
-- **Confidence:** high
-- **Maturity:** stable
+- **Confidence:** medium
+- **Maturity:** experimental — only the possible Gate 2 exception is experimental; the rejection itself is a workflow policy, not an OpenAI product maturity designation.
 - **Alternatives and tradeoffs:** Use one strong agent, serialize dependent work, or isolate writers by worktree/cloud checkout. Isolation adds setup and merge cost but preserves reviewable state.
 - **Subscription / licensing impact:** Rejecting shared-checkout writers avoids duplicated usage and rework; isolated alternatives stay within existing subscriptions.
 - **Data / permission / security impact:** Concurrent shared writes can overwrite user or agent changes, corrupt intermediate state, invalidate tests, and obscure attribution and recovery.
@@ -453,9 +453,12 @@ To be researched.
 | SRC-027 | OpenAI | https://learn.chatgpt.com/docs/agent-configuration/subagents | Official product documentation | Current local Codex; eligible Work mode and Ultra behavior | 2026-07-22 | Single-agent and multi-agent pattern catalog | Extra-token and parallel-write coordination costs are explicit. |
 | SRC-028 | OpenAI | https://github.com/openai/codex/blob/main/codex-rs/features/src/lib.rs | Public first-party source | Open-source Codex CLI main branch | 2026-07-22 | Single-agent and multi-agent pattern catalog | Cross-checks active/evolving multi-agent feature definitions; main is moving. |
 | SRC-029 | Git project | https://git-scm.com/docs/git-worktree | Open specification/tool documentation | Git worktrees | 2026-07-22 | Single-agent and multi-agent pattern catalog | Independent mechanism cross-check for shared-repository worktree behavior. |
-| SRC-030 | OpenAI | https://help.openai.com/en/articles/11369540-using-codex-with-your-chatgpt-plan | Official Help Center | Codex across ChatGPT plans; updated 2026-07-18 | 2026-07-22 | Codex profile | Lists Codex web; conflicts with SRC-031's distinct-view wording. |
+| SRC-030 | OpenAI | https://help.openai.com/en/articles/11369540-using-codex-with-your-chatgpt-plan | Official Help Center | Codex across ChatGPT plans; updated 2026-07-18 | 2026-07-22 | Codex profile | Lists Codex web and states Plus/Pro training behavior; conflicts with SRC-031's distinct-view wording and is silent on the Free/Go training default. |
 | SRC-031 | OpenAI | https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex | Official Help Center | Work and desktop Codex; updated 2026-07-21 | 2026-07-22 | Codex profile | Says distinct Codex view is not selectable on web/mobile; evidence gap remains. |
 | SRC-032 | OpenAI | https://learn.chatgpt.com/docs/cloud | Official product documentation | Codex cloud task portal; current | 2026-07-22 | Codex profile | Confirms hosted cloud tasks but does not resolve distinct-view naming conflict. |
+| SRC-033 | OpenAI | https://learn.chatgpt.com/docs/config-file/config-basic | Official configuration documentation | Local Codex configuration layers; current | 2026-07-22 | Instructions, context, memory, skills, plugins, MCP, and hooks | Directly documents the six-level ordinary configuration order, trusted-project gating, and separate managed requirements. |
+| SRC-034 | OpenAI | https://learn.chatgpt.com/docs/agent-configuration/rules | Official product documentation | Local Codex command rules; current | 2026-07-22 | Codex profile; Instructions, context, memory, skills, plugins, MCP, and hooks | Directly labels Rules experimental and documents active-layer and trusted-project loading. |
+| SRC-035 | OpenAI | https://learn.chatgpt.com/docs/changelog | Official versioned product changelog | Codex clients through iOS 1.2026.188 and desktop 26.707 | 2026-07-22 | Codex profile | Dated client and product entries complement the weekly digest; newest visible entry verified is 2026-07-13. |
 
 ## Gate 1 audit and handoff
 
