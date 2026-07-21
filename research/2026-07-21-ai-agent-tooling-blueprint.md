@@ -140,11 +140,11 @@ Codex has separate native surfaces for durable repository guidance, runtime conf
 #### `AGENTS.md` plus layered `config.toml`
 
 - **Tier:** default
-- **Recommendation:** Put durable repository conventions, commands, acceptance criteria, and review expectations in scoped `AGENTS.md`; put trusted runtime settings in the appropriate `config.toml` layer. Codex resolves ordinary configuration from highest to lowest as CLI flags and `--config`, trusted project files from repository root to current directory with the closest file winning, the selected profile, user config, system config, then built-in defaults. Managed defaults are a separate startup layer that overrides the ordinary base, including CLI overrides, while managed requirements separately constrain permitted effective values.
+- **Recommendation:** Put durable repository conventions, commands, acceptance criteria, and review expectations in scoped `AGENTS.md`; put trusted runtime settings in the appropriate `config.toml` layer. On a client without managed layers, Codex resolves ordinary configuration from highest to lowest as CLI flags and `--config`, trusted project files from repository root to current directory with the closest file winning, the selected profile, user config, system config, then built-in defaults. Managed clients add separately composed policy layers: managed defaults override the ordinary startup base, including CLI overrides, while managed requirements constrain permitted effective values.
 - **Use when:** Guidance must be version-controlled and apply predictably to a repository or subtree, while runtime defaults need a supported configuration layer.
 - **Do not use when:** The content is a one-off task instruction, a secret, or an organization-enforced security requirement; use the prompt, secret store, or managed requirements respectively.
 - **Primary evidence:** [OpenAI `AGENTS.md` discovery and precedence](https://learn.chatgpt.com/docs/agent-configuration/agents-md), [OpenAI ordinary configuration precedence](https://learn.chatgpt.com/docs/config-file/config-basic#configuration-precedence), and [OpenAI managed-default and requirements precedence](https://learn.chatgpt.com/docs/enterprise/managed-configuration#managed-defaults-managed_configtoml)
-- **Cross-check:** [Codex open-source model-visible `AGENTS.md` contract](https://github.com/openai/codex/blob/main/codex-rs/protocol/src/prompts/base_instructions/default.md)
+- **Cross-check:** [Codex open-source model-visible `AGENTS.md` contract](https://github.com/openai/codex/blob/main/codex-rs/protocol/src/prompts/base_instructions/default.md), [immutable config-layer precedence implementation](https://github.com/openai/codex/blob/81de4f251cfdaf32ecb85e2160ebfc11a562d44b/codex-rs/config/src/config_layer_source.rs#L4-L55), and [managed-layer](https://github.com/openai/codex/blob/81de4f251cfdaf32ecb85e2160ebfc11a562d44b/codex-rs/core/src/config/config_loader_tests.rs#L750-L801) plus [managed-requirements precedence tests](https://github.com/openai/codex/blob/81de4f251cfdaf32ecb85e2160ebfc11a562d44b/codex-rs/core/src/config/config_loader_tests.rs#L1217-L1265)
 - **Verified:** 2026-07-22
 - **Product / plan / version:** Codex CLI, IDE extension, desktop Codex, and cloud tasks that read repository guidance; project config is trusted-project-only.
 - **Confidence:** high
@@ -296,8 +296,8 @@ Codex supports one main thread, delegated subagent threads, independent app chat
 - **Verified:** 2026-07-22
 - **Product / plan / version:** All Codex surfaces that can spawn or run parallel work against a local repository.
 - **Confidence:** medium
-- **Maturity:** experimental — only the possible Gate 2 exception is experimental; the rejection itself is a workflow policy, not an OpenAI product maturity designation.
-- **Alternatives and tradeoffs:** Use one strong agent, serialize dependent work, or isolate writers by worktree/cloud checkout. Isolation adds setup and merge cost but preserves reviewable state.
+- **Maturity:** experimental
+- **Alternatives and tradeoffs:** Use one strong agent, serialize dependent work, or isolate writers by worktree/cloud checkout. Isolation adds setup and merge cost but preserves reviewable state. The rejection is a conservative workflow policy, not an OpenAI maturity designation; only the possible Gate 2 exception is experimental.
 - **Subscription / licensing impact:** Rejecting shared-checkout writers avoids duplicated usage and rework; isolated alternatives stay within existing subscriptions.
 - **Data / permission / security impact:** Concurrent shared writes can overwrite user or agent changes, corrupt intermediate state, invalidate tests, and obscure attribution and recovery.
 
@@ -459,6 +459,8 @@ To be researched.
 | SRC-033 | OpenAI | https://learn.chatgpt.com/docs/config-file/config-basic | Official configuration documentation | Local Codex configuration layers; current | 2026-07-22 | Instructions, context, memory, skills, plugins, MCP, and hooks | Directly documents the six-level ordinary configuration order, trusted-project gating, and separate managed requirements. |
 | SRC-034 | OpenAI | https://learn.chatgpt.com/docs/agent-configuration/rules | Official product documentation | Local Codex command rules; current | 2026-07-22 | Codex profile; Instructions, context, memory, skills, plugins, MCP, and hooks | Directly labels Rules experimental and documents active-layer and trusted-project loading. |
 | SRC-035 | OpenAI | https://learn.chatgpt.com/docs/changelog | Official versioned product changelog | Codex clients through iOS 1.2026.188 and desktop 26.707 | 2026-07-22 | Codex profile | Dated client and product entries complement the weekly digest; newest visible entry verified is 2026-07-13. |
+| SRC-036 | OpenAI | https://github.com/openai/codex/blob/81de4f251cfdaf32ecb85e2160ebfc11a562d44b/codex-rs/config/src/config_layer_source.rs | Immutable public first-party implementation | Open-source Codex commit `81de4f251cfdaf32ecb85e2160ebfc11a562d44b` | 2026-07-22 | Instructions, context, memory, skills, plugins, MCP, and hooks | Defines config layer sources and numeric precedence, including system, enterprise cloud, user/profile, project, session, managed file, and MDM layers. |
+| SRC-037 | OpenAI | https://github.com/openai/codex/blob/81de4f251cfdaf32ecb85e2160ebfc11a562d44b/codex-rs/core/src/config/config_loader_tests.rs | Immutable public first-party tests | Open-source Codex commit `81de4f251cfdaf32ecb85e2160ebfc11a562d44b` | 2026-07-22 | Instructions, context, memory, skills, plugins, MCP, and hooks | Tests managed config merging on top, managed preferences at highest precedence, and requirements rejecting disallowed effective values. |
 
 ## Gate 1 audit and handoff
 
