@@ -119,7 +119,110 @@ Sources: [pricing and plan inclusion](https://learn.chatgpt.com/docs/pricing), [
 
 ## Cursor profile
 
-To be researched.
+This profile is a 2026-07-22 public-documentation snapshot. Cursor's latest visible changelog entry was dated July 17, 2026, and its Data Use & Privacy Overview was updated July 15, 2026. The CLI, cloud-agent, mobile, permission, customization, and team-marketplace surfaces changed repeatedly during the preceding six months, so any rollout must recheck current documentation and the team's authenticated entitlements.
+
+### Surface, plan, and execution map
+
+| Surface | Execution and availability | Plan / platform context | Material limitation |
+| --- | --- | --- | --- |
+| Cursor editor and Agents Window | Local Agent can search, edit, run commands, review diffs, preserve separate chat histories, and use planning or read-focused modes. The Agents Window also coordinates local, cloud, and remote-machine sessions. | Hobby includes limited Agent requests and Tab; paid Individual plans add extended Agent usage, frontier models, MCPs, skills, hooks, and cloud agents. | Tool and model availability is dynamic. Local commands inherit the host's files, credentials, extensions, permission mode, and sandbox settings. |
+| Cursor CLI | Interactive and headless Agent for terminal or CI-style use, with rules, MCP, hooks, session resume, model selection, and local-to-cloud handoff. | Cursor documents CLI access as part of the subscription; current raw documentation uses `agent` as the command. | Current permission configuration distinguishes interactive approval from headless writes; the public docs and changelog have changed command names and safeguards, so automation must pin and test the installed version. |
+| Cloud / background agents | Remote agents run asynchronously in isolated VMs and branches, can install dependencies, use the network, test changes, create review artifacts, and hand sessions between local and cloud. | Cloud agents are listed on paid Individual plans and above; Teams adds shared context and automations. Cursor-hosted and self-hosted cloud-agent options have separate infrastructure and administration requirements. | Hosted agents require repository access and auto-run terminal commands. Runtime workspaces, snapshots, transcripts/artifacts, and secrets each have different retention; internet access and Git write scopes create prompt-injection and exfiltration risk. |
+| Web, mobile, and connected launch surfaces | Cloud agents can be started or managed through web and supported integrations; the iOS app can launch cloud agents and remotely steer a local session. | The iOS app was public beta on paid plans in the June 29, 2026 changelog; Teams and Enterprise admins must enable Remote Control. | Mobile/remote control does not make local execution hosted: the computer must remain reachable. Integration-specific repository, channel, and source-system permissions remain separate. |
+| Team and Enterprise administration | Teams provides centralized billing, team-wide Privacy Mode, usage analytics, SAML/OIDC SSO, marketplaces, and shared cloud-agent context. Enterprise adds repository/model/MCP access controls, auto-run/browser/network controls, audit logs, service accounts, SCIM, and custom commercial terms. | Teams Standard is publicly priced; Premium-seat and Enterprise terms are plan- and contract-dependent. | The pricing page is a capability summary, not a complete policy or retention contract. Admin controls do not grant repository, MCP, cloud, or source-system authorization by themselves. |
+
+Sources: [Cursor pricing and plan boundaries](https://cursor.com/pricing), [current Agent overview](https://cursor.com/docs/agent/overview.md), [current Cursor CLI overview](https://cursor.com/docs/cli/overview.md), [CLI/cloud handoff changelog](https://cursor.com/changelog/cli-jan-16-2026), [current Cloud Agents documentation](https://cursor.com/docs/cloud-agent.md), and [latest Cursor changelog](https://cursor.com/changelog).
+
+#### Subscription-first local editor and CLI
+
+- **Tier:** default
+- **Recommendation:** Use the existing Cursor subscription for local editor and interactive CLI work, choosing a read-focused or planning mode before Agent for ambiguous tasks and keeping headless CLI automation as a separately reviewed path.
+- **Use when:** A developer needs repository-aware planning, implementation, review, or terminal work on a trusted laptop and can verify the active plan, model, permission mode, and installed client version.
+- **Do not use when:** The task needs an undocumented model entitlement, unattended writes without a tested permission policy, or a guaranteed cloud/mobile feature on Hobby; verify the exact plan and surface first.
+- **Primary evidence:** [Cursor pricing and included product capabilities](https://cursor.com/pricing)
+- **Cross-check:** [Cursor Agent overview](https://cursor.com/docs/agent/overview.md) and [Cursor CLI overview](https://cursor.com/docs/cli/overview.md)
+- **Verified:** 2026-07-22
+- **Product / plan / version:** Cursor Hobby, paid Individual, Teams, and Enterprise; editor and CLI documentation plus client changelog visible on 2026-07-22.
+- **Confidence:** high
+- **Maturity:** evolving
+- **Alternatives and tradeoffs:** A local read-only question or repository search has a smaller mutation surface. Cloud agents keep working without the laptop but add repository, environment, network, retention, and usage boundaries. API-key use still routes through Cursor's backend and is not a privacy or subscription bypass.
+- **Subscription / licensing impact:** Hobby is limited. Paid Individual plans include extended Agent usage and additional capabilities, while model usage and on-demand overage can add cost. Teams and Enterprise add administrative features rather than proving better task quality.
+- **Data / permission / security impact:** Local Agent can read, edit, and execute through the host. The selected run mode, sandbox, permission configuration, extensions, MCP servers, repository trust, and host credentials are separate controls; require human review before external or production writes.
+
+#### Auto-review plus sandboxed local execution
+
+- **Tier:** default
+- **Recommendation:** Use Auto-review with sandboxing as the routine local editor baseline, add explicit deny rules and narrow allowlists where deterministic policy is required, and never make unsandboxed Run Everything the routine default.
+- **Use when:** The repository is trusted, required commands and file paths can be bounded, and the developer can review escalation requests and final diffs.
+- **Do not use when:** The repository, extensions, hooks, MCP servers, or shell setup are untrusted, or the task requires broad host, network, secret, or production access.
+- **Primary evidence:** [Cursor Run Modes and sandbox behavior](https://cursor.com/docs/agent/security/run-modes.md)
+- **Cross-check:** [Cursor CLI permission tokens and precedence](https://cursor.com/docs/cli/reference/permissions.md) and [Cursor 2.5 sandbox access controls](https://cursor.com/changelog/2-5)
+- **Verified:** 2026-07-22
+- **Product / plan / version:** Current Cursor editor Run Modes and sandboxing plus current Cursor CLI permissions as documented on 2026-07-22.
+- **Confidence:** high
+- **Maturity:** evolving
+- **Alternatives and tradeoffs:** Ask/read-focused work reduces write risk but cannot complete implementation. Allowlist mode is predictable but requires maintenance. Auto-review reduces approval fatigue but adds a classifier decision layer and is explicitly not a security boundary. Unsandboxed execution is more compatible and materially less contained.
+- **Subscription / licensing impact:** Native client capability; no additional license. Enterprise is required for organization-enforced repository, model, MCP, browser, auto-run, and network controls listed on the pricing page.
+- **Data / permission / security impact:** CLI deny rules take precedence over allow rules. Sandboxed commands can still modify the workspace and may receive configured network access; MCP and Fetch calls have their own approval paths. Protect secrets with access controls rather than relying only on prompts or ignore files.
+
+#### Isolated cloud agents for long-running or parallel work
+
+- **Tier:** specialist
+- **Recommendation:** Use a cloud agent only for an independently testable task with its own VM and branch, a versioned environment definition, bounded repository and network access, and explicit review evidence before merge or external synchronization.
+- **Use when:** The task can run unattended, benefits from laptop-independent execution or parallel isolation, and has known setup, secrets, test, budget, completion, and recovery requirements.
+- **Do not use when:** Interactive approval is required, the task must share a mutable checkout, the repository or environment cannot be granted safely, or prompt-injection and egress controls are undefined.
+- **Primary evidence:** [Current Cursor Cloud Agents documentation](https://cursor.com/docs/cloud-agent.md)
+- **Cross-check:** [Cursor Cloud Agent security and retention matrix](https://cursor.com/docs/cloud-agent/security.md), [Secrets & Network controls](https://cursor.com/docs/cloud-agent/security-network.md), and [Cursor pricing](https://cursor.com/pricing)
+- **Verified:** 2026-07-22
+- **Product / plan / version:** Paid Individual, Teams, and Enterprise Cloud Agents; current cloud-agent, security, and network documentation plus the Cursor 3.7 handoff/environment surface.
+- **Confidence:** high
+- **Maturity:** evolving
+- **Alternatives and tradeoffs:** A foreground local agent is easier to observe and approve. Local subagents avoid hosted code retention but share host resources. [Self-hosted Cloud Agents](https://cursor.com/changelog/03-25-26) keep worker execution infrastructure inside the organization but add identity, network, patching, and capacity ownership; public evidence does not say the entire control plane is self-hosted.
+- **Subscription / licensing impact:** Paid plans include cloud-agent access, but model usage is metered and overage may apply. Hosted VM compute pricing can change; self-hosted workers add infrastructure cost.
+- **Data / permission / security impact:** Hosted agents clone authorized repositories, use isolated VMs, run with internet access by default, and auto-run commands. Runtime workspaces recycle after idle; encrypted snapshots retain cloned code for a rolling 90 days of inactivity; transcripts/artifacts are indefinite by default and deletable on demand; secrets remain until removed. Constrain Git-provider scope, egress, secret type, retention, branch protection, and merge authority.
+
+#### Privacy Mode as a required data control, not a zero-risk label
+
+- **Tier:** default
+- **Recommendation:** Enable Privacy Mode for internal or confidential work, enforce it at team level where available, and separately review indexing, cloud-agent retention, risk-classifier exceptions, non-ZDR models, connected tools, and source-system permissions.
+- **Use when:** Code or prompts may contain internal information and the organization can accept Cursor's documented processing path and provider/subprocessor boundaries.
+- **Do not use when:** Policy requires that no code leave the device or organization, exact zero-day deletion of all metadata and safety records, or an unqualified guarantee that no provider can retain abuse-triggering content.
+- **Primary evidence:** [Cursor Data Use & Privacy Overview](https://cursor.com/data-use)
+- **Cross-check:** [Cursor Security](https://cursor.com/security) and [plan-level Privacy Mode controls](https://cursor.com/pricing)
+- **Verified:** 2026-07-22
+- **Product / plan / version:** Privacy Mode on Cursor plans as documented July 15-22, 2026; Teams can enforce it, and Enterprise adds further access and audit controls.
+- **Confidence:** high
+- **Maturity:** stable
+- **Alternatives and tradeoffs:** Local tools without hosted inference keep more data on-device but may offer lower capability. Disabling indexing reduces stored embeddings and metadata but weakens semantic retrieval. Self-hosted cloud agents narrow execution-data location but do not eliminate Cursor inference and account boundaries.
+- **Subscription / licensing impact:** Privacy Mode is documented beyond Enterprise; Teams adds team-wide enforcement and Enterprise adds stronger administrative controls. Separate model, plugin, MCP, or source-system terms may still apply.
+- **Data / permission / security impact:** With Privacy Mode, Customer Data is not used for Cursor training and Cursor documents ZDR agreements with model providers, subject to risk-classifier and approved non-ZDR-model qualifications. Indexing can retain embeddings, hashes, and file-name metadata. Cloud Agents have an explicit four-part retention matrix, including indefinite transcripts by default and rolling 90-day snapshots; Enterprise 90-day conversation caps are early access. Ignore files are context controls, not access-control boundaries.
+
+#### Team controls matched to the boundary they govern
+
+- **Tier:** specialist
+- **Recommendation:** Use Teams for shared administration, SSO, usage visibility, marketplace distribution, and enforced Privacy Mode; require Enterprise only when repository/model/MCP restrictions, service accounts, audit logs, SCIM, or organization-enforced execution and network policy are needed.
+- **Use when:** A 1-5 person team has an identified administrator, reviewed shared assets, and a real need for centralized policy or auditability.
+- **Do not use when:** The team expects a plan upgrade to grant repository access, configure third-party authorization, validate marketplace content, or replace branch protection and CI.
+- **Primary evidence:** [Cursor pricing and team/Enterprise capability boundaries](https://cursor.com/pricing)
+- **Cross-check:** [Cursor team dashboard controls](https://cursor.com/docs/account/teams/dashboard.md) and [team MCP distribution changelog](https://cursor.com/changelog)
+- **Verified:** 2026-07-22
+- **Product / plan / version:** Cursor Teams Standard/Premium and Enterprise capability summary current on 2026-07-22; dashboard controls and team marketplaces are version-sensitive.
+- **Confidence:** high
+- **Maturity:** evolving
+- **Alternatives and tradeoffs:** Version-controlled repository rules are simpler and portable but cannot enforce organization policy. Device management can distribute local configuration but adds endpoint operations. Enterprise controls improve central governance at custom cost and implementation overhead.
+- **Subscription / licensing impact:** Teams is per active user with Standard/Premium seat options; Enterprise is custom-priced. Pooled usage, invoice billing, SCIM, advanced access controls, audit logs, and service accounts are Enterprise boundaries on the public pricing page.
+- **Data / permission / security impact:** Team membership and SSO do not equal repository, MCP, cloud-worker, or external-service authorization. Admin-distributed rules, skills, plugins, hooks, and MCP servers are executable or data-bearing supply-chain inputs that require ownership, review, versioning, least privilege, and removal procedures.
+
+### Documented limitations, contradictions, and freshness
+
+- Cursor's current raw Rules documentation resolves the stale indexed-page conflict: Team Rules exist on Teams and Enterprise, enforced Team Rules can be mandatory, and the published order is Team Rules, then Project Rules, then User Rules, with earlier sources taking precedence on conflict. `AGENTS.md` has documented parent-to-nested precedence, but the page does not specify where `AGENTS.md` sits relative to those three sources. Preserve that narrower precedence gap for Task 11. [Current Rules documentation](https://cursor.com/docs/rules.md), [official raw-doc index](https://cursor.com/llms.txt)
+- Current material uses Auto-review, Allowlist, and Run Everything under Approvals & Execution; older cached pages used Ask-Every-Time, auto-run, or beta-era terminology. Do not translate those names into one false common mode. Current docs recommend Auto-review for most users while explicitly stating that it is not a security boundary. [Current Run Modes](https://cursor.com/docs/agent/security/run-modes.md), [Cursor 3.6 changelog](https://cursor.com/changelog/auto-review), [current CLI permissions](https://cursor.com/docs/cli/reference/permissions.md)
+- The current Data Use page qualifies Privacy Mode ZDR with abuse/risk-classifier retention and non-ZDR-model opt-in. Current Cloud Agent security docs separately define runtime, snapshot, transcript/artifact, and secret retention, but do not define one portable memory, compaction, or handoff contract across editor, CLI, and cloud; keep accepted state in repository or work-system artifacts. [Data Use](https://cursor.com/data-use), [Cloud Agent security](https://cursor.com/docs/cloud-agent/security.md)
+- `.cursorrules` is documented as deprecated. New repository guidance should use project `.cursor/rules` or supported root/nested `AGENTS.md`; because current Rules docs do not place `AGENTS.md` in the Team/Project/User precedence chain, conflicting mixed formats require a pilot. [Current Rules documentation](https://cursor.com/docs/rules.md)
+- Current Help material maps “background agents” to Cursor Cloud Agents, and the Cloud Agent security reference supplies the current contract: rolling 90-day VM snapshots, indefinite conversation state by default, secrets retained until removed, and on-demand transcript/artifact deletion. Do not use old Background Agent terminology as a separate product or retention policy. [Background Agent terminology](https://cursor.com/help/ai-features/background-agents.md), [current Cloud Agent security](https://cursor.com/docs/cloud-agent/security.md)
+- Cursor's current models-and-pricing reference publishes a large dynamic model catalog, per-token pricing, three Auto modes, plan pools, and residency qualifications. This verifies current availability but does not prove a durable task-routing default; Task 5 must recheck the catalog rather than copy model names into a long-lived recommendation. [Models and pricing](https://cursor.com/docs/models-and-pricing.md)
+- The public [download page](https://cursor.com/download) labels desktop 3.12 latest while the newest numbered release visible in the changelog is 3.11; the changelog also contains newer July 17 product entries. Treat client version and product-post dates as separate freshness signals. Current CLI installation now documents native Windows PowerShell in addition to macOS, Linux, and WSL, superseding older WSL-only summaries. [CLI installation](https://cursor.com/docs/cli/installation.md)
+- The newest dated entry visible in the public [Cursor changelog](https://cursor.com/changelog) was July 17, 2026. Task 12 should recheck the latest entry and current canonical docs because redirects and client terminology moved during this research pass.
 
 ## Claude Code profile
 
@@ -233,6 +336,40 @@ Codex has separate native surfaces for durable repository guidance, runtime conf
 - **Subscription / licensing impact:** Native capability where available; background extraction can consume subscription rate-limit capacity.
 - **Data / permission / security impact:** Generated memories live under `CODEX_HOME`; secret redaction is documented but not a reason to store secrets. Review memory files before sharing and consider disabling memory generation for chats using MCP, web, or tool search.
 
+Cursor has corresponding but not identical instruction and extension layers. Project rules, `AGENTS.md`, Team Rules, user preferences, skills, subagents, hooks, and MCP each have separate scope and trust implications; shared terminology must preserve those differences.
+
+#### Cursor Project Rules with explicit team and user layering
+
+- **Tier:** default
+- **Recommendation:** Put scoped, version-controlled repository guidance in `.cursor/rules/*.mdc`; use `AGENTS.md` for simple readable root or nested instructions, Team Rules for reviewed organization policy, and User Rules only for personal cross-project preferences.
+- **Use when:** A convention or workflow must apply repeatedly and its scope can be expressed as always-on, intelligently selected, file-matched, manual, nested-directory, or team-managed guidance.
+- **Do not use when:** The content is a secret, a one-off request, executable enforcement, or a control that must remain effective even if the model fails to follow instructions.
+- **Primary evidence:** [Current Cursor Rules documentation and precedence](https://cursor.com/docs/rules.md)
+- **Cross-check:** [Cursor Customize scope changelog](https://cursor.com/changelog/customize)
+- **Verified:** 2026-07-22
+- **Product / plan / version:** Current Cursor editor, CLI, and cloud agents that read repository guidance; Team Rules require Teams or Enterprise.
+- **Confidence:** high
+- **Maturity:** evolving
+- **Alternatives and tradeoffs:** `AGENTS.md` is simpler and interoperable but has less metadata than `.mdc`. Skills are better for procedural on-demand workflows. Hooks and CI are deterministic execution points but add code and failure modes. Large always-on rules consume context and can conflict.
+- **Subscription / licensing impact:** Project, user, and `AGENTS.md` guidance is native. Team-managed rule distribution requires Teams or Enterprise; imported remote rules carry their source license and maintenance burden.
+- **Data / permission / security impact:** Current docs publish Team Rules, Project Rules, then User Rules as the conflict order, with earlier sources taking precedence, and parent-to-nested precedence for `AGENTS.md`. They do not place `AGENTS.md` in the three-source chain. Treat imported or repository rules as untrusted prompt content and never use model guidance as the only security control.
+
+#### Cursor MCP and hooks behind least privilege and independent gates
+
+- **Tier:** specialist
+- **Recommendation:** Add a Cursor MCP server only for a bounded live-data need with explicit tool approval and least-privilege credentials; pilot hooks for deterministic observation or blocking, but keep sandbox, source-system authorization, and CI as independent enforcement layers.
+- **Use when:** Static repository context is insufficient, the service/tool owner and authentication flow are known, and hook or MCP behavior can be tested across every required local, CLI, and cloud surface.
+- **Do not use when:** A repository file is sufficient, credentials cannot be scoped, writes lack idempotency and recovery, or complete fail-closed interception is required from hooks alone.
+- **Primary evidence:** [Current Cursor MCP documentation](https://cursor.com/docs/mcp.md) and [current Cursor Hooks documentation](https://cursor.com/docs/hooks.md)
+- **Cross-check:** [Cursor subagents, skills, MCP, and hook changelog](https://cursor.com/changelog/2-4)
+- **Verified:** 2026-07-22
+- **Product / plan / version:** Current Cursor editor, CLI, and Cloud Agents; project/global/team MCP distribution and project/user/plugin/team/managed hook sources vary by surface and plan.
+- **Confidence:** high
+- **Maturity:** evolving
+- **Alternatives and tradeoffs:** Checked-in artifacts are auditable and credential-free but can become stale. Direct APIs provide precise contracts but require integration code. Skills provide procedure without live authority. CI checks are later but independent of the agent loop.
+- **Subscription / licensing impact:** Paid Individual lists MCPs, skills, and hooks; Teams adds shared marketplace distribution, while Enterprise adds MCP access controls and managed hooks. Each external service, plugin, model, or server can add separate licensing, compute, and credential requirements.
+- **Data / permission / security impact:** MCP can execute local commands or call remote services and can receive OAuth/API credentials. Cursor asks before MCP tools by default unless auto-run policy changes that behavior. Command-hook exit code `2` blocks, but other hook errors proceed by default; cloud hook event/source coverage is narrower than local coverage. Redact hook inputs and logs, pin reviewed code, and require independent controls for sensitive writes.
+
 ## Single-agent and multi-agent pattern catalog
 
 Codex supports one main thread, delegated subagent threads, independent app chats, worktrees, and hosted work. Parallelism is a situational optimization, not the baseline definition of autonomy.
@@ -301,6 +438,24 @@ Codex supports one main thread, delegated subagent threads, independent app chat
 - **Subscription / licensing impact:** Rejecting shared-checkout writers avoids duplicated usage and rework; isolated alternatives stay within existing subscriptions.
 - **Data / permission / security impact:** Concurrent shared writes can overwrite user or agent changes, corrupt intermediate state, invalidate tests, and obscure attribution and recovery.
 
+Cursor supports foreground and background subagents in the editor, CLI, and Cloud Agents, plus separate VM/branch isolation in cloud. These are native Cursor mechanisms, not assumed equivalents of Codex thread delegation or worktrees.
+
+#### Cursor read-only subagents and isolated cloud writers
+
+- **Tier:** specialist
+- **Recommendation:** Use read-only Cursor subagents for bounded exploration or independent verification, and place any parallel writer in a separate cloud VM/branch or otherwise isolated checkout with explicit ownership and synthesis.
+- **Use when:** Subtasks have independent inputs and outputs, context isolation reduces noise, and the parent agent or developer can validate returned evidence and integrate non-overlapping changes.
+- **Do not use when:** Tasks require frequent shared decisions, mutate the same files or external state, depend on one serial discovery chain, or lack a merge and recovery plan.
+- **Primary evidence:** [Current Cursor subagent behavior and configuration](https://cursor.com/docs/subagents.md)
+- **Cross-check:** [Current Cloud Agent isolation](https://cursor.com/docs/cloud-agent.md) and [Cursor 2.5 asynchronous subagent changelog](https://cursor.com/changelog/2-5)
+- **Verified:** 2026-07-22
+- **Product / plan / version:** Current Cursor editor, CLI, and Cloud Agents; project/user custom subagents and built-in Explore, Bash, and Browser subagents.
+- **Confidence:** high
+- **Maturity:** evolving
+- **Alternatives and tradeoffs:** One strong agent avoids coordination and duplicated usage. Skills are cheaper for single-purpose repeatable actions. Local background subagents share host resources; Cloud Agents add stronger runtime isolation but introduce hosted retention, network, repository, and model-usage cost.
+- **Subscription / licensing impact:** Subagents consume model usage, and parallel/cloud runs can increase on-demand charges. Cloud Agents require a paid plan; selected models and team controls affect cost and availability.
+- **Data / permission / security impact:** Each subagent has a clean context and receives only the parent-provided prompt; read-only mode removes file edits and state-changing shell commands. Cloud writers auto-run commands and use hosted repositories, snapshots, transcripts, secrets, and network policy. Treat summaries as untrusted until cross-checked and protect merge authority independently.
+
 ## GitHub, Azure, Docker, and Atlassian integration analysis
 
 To be researched.
@@ -363,6 +518,18 @@ To be researched.
 | W1.C9 | What Codex data-training, connector, credential, retention, and external-service boundaries are public? | Task 2 | verified | Codex profile; Instructions, context, memory, skills, plugins, MCP, and hooks |
 | W1.C10 | How fresh are the Codex docs and changelog, and which limitations or rollout conditions are documented? | Task 2 | verified | Codex profile |
 | W1.C11 | Is the distinct Codex experience selectable on the web, or is only the cloud task portal browser-accessible? | Task 2 | evidence gap | Codex profile |
+| W1.CU1 | Which Cursor plans include editor Agent, CLI, MCP, skills, hooks, cloud agents, team administration, and Enterprise controls, and where can usage-based charges apply? | Task 3 | verified | Cursor profile |
+| W1.CU2 | Which Cursor editor, CLI, headless, cloud/background, web, mobile, remote, and connected launch surfaces are documented? | Task 3 | verified | Cursor profile |
+| W1.CU3 | What is the Cursor precedence across Team, Project, User, nested `AGENTS.md`, plugin, and managed guidance? | Task 3 | evidence gap | Cursor profile; Instructions, context, memory, skills, plugins, MCP, and hooks |
+| W1.CU4 | How do Cursor Plan, Ask, Agent, Auto-review, Allowlist, Run Everything, and version-specific mode names differ? | Task 3 | verified | Cursor profile |
+| W1.CU5 | Where are the Cursor sandbox, command, file, network, headless, cloud auto-run, and external-write permission boundaries? | Task 3 | verified | Cursor profile; Security, permission, audit, and recovery analysis |
+| W1.CU6 | How does Cursor configure and approve local, project, team, and cloud MCP servers? | Task 3 | verified | Instructions, context, memory, skills, plugins, MCP, and hooks |
+| W1.CU7 | Which Cursor hook events, scopes, execution types, cloud limitations, and failure behaviors are documented? | Task 3 | verified | Instructions, context, memory, skills, plugins, MCP, and hooks |
+| W1.CU8 | What do Cursor Privacy Mode, indexing, model-provider, cloud runtime, snapshot, transcript, artifact, secret, deletion, and Enterprise-retention controls guarantee or exclude? | Task 3 | verified | Cursor profile; Security, permission, audit, and recovery analysis |
+| W1.CU9 | How do Cursor chat history, compression, resume, side chats, subagent context, local/cloud handoff, and memory preserve or lose context across surfaces? | Task 3 | evidence gap | Cursor profile; Instructions, context, memory, skills, plugins, MCP, and hooks |
+| W1.CU10 | Which models and Auto modes are currently available in Cursor, how do plan pools, token pricing, residency, and model-specific retention affect selection, and which durable routing decision remains deferred to Task 5? | Tasks 3, 5 | verified | Cursor profile; Model and open-source routing matrix |
+| W1.CU11 | Which Cursor Team and Enterprise controls govern identity, repositories, models, MCP, rules, plugins, hooks, auto-run, network, cloud agents, service accounts, and audit? | Task 3 | verified | Cursor profile; Cross-layer tooling matrix |
+| W1.CU12 | How fresh are Cursor's canonical raw docs, download version, and changelog, and which terminology or publication lags remain? | Task 3 | evidence gap | Cursor profile |
 | W2.1 | Which models are included in existing subscriptions? | Task 5 | not researched | Model and open-source routing matrix |
 | W2.2 | What task-specific routing is appropriate? | Task 5 | not researched | Model and open-source routing matrix |
 | W2.3 | What are the quality, latency, context, and cost tradeoffs? | Task 5 | not researched | Model and open-source routing matrix |
@@ -461,6 +628,36 @@ To be researched.
 | SRC-035 | OpenAI | https://learn.chatgpt.com/docs/changelog | Official versioned product changelog | Codex clients through iOS 1.2026.188 and desktop 26.707 | 2026-07-22 | Codex profile | Dated client and product entries complement the weekly digest; newest visible entry verified is 2026-07-13. |
 | SRC-036 | OpenAI | https://github.com/openai/codex/blob/81de4f251cfdaf32ecb85e2160ebfc11a562d44b/codex-rs/config/src/config_layer_source.rs | Immutable public first-party implementation | Open-source Codex commit `81de4f251cfdaf32ecb85e2160ebfc11a562d44b` | 2026-07-22 | Instructions, context, memory, skills, plugins, MCP, and hooks | Defines config layer sources and numeric precedence, including system, enterprise cloud, user/profile, project, session, managed file, and MDM layers. |
 | SRC-037 | OpenAI | https://github.com/openai/codex/blob/81de4f251cfdaf32ecb85e2160ebfc11a562d44b/codex-rs/core/src/config/config_loader_tests.rs | Immutable public first-party tests | Open-source Codex commit `81de4f251cfdaf32ecb85e2160ebfc11a562d44b` | 2026-07-22 | Instructions, context, memory, skills, plugins, MCP, and hooks | Tests managed config merging on top, managed preferences at highest precedence, and requirements rejecting disallowed effective values. |
+| SRC-038 | Cursor | https://cursor.com/llms.txt | Official documentation index | Current public Cursor documentation and Help Center routes | 2026-07-22 | Cursor profile; source cross-check | Identifies current canonical raw Markdown; used to replace stale redirected `docs.cursor.com` pages. |
+| SRC-039 | Cursor | https://cursor.com/pricing | Official pricing page | Hobby, Individual, Teams Standard/Premium, and Enterprise | 2026-07-22 | Cursor profile | Plan inclusion and public list prices are current but dynamic; contract terms and usage remain account-dependent. |
+| SRC-040 | Cursor | https://cursor.com/docs/agent/overview.md | Official product documentation | Current Cursor editor Agent | 2026-07-22 | Cursor profile | Confirms local Agent tools, review, chat history, and planning/implementation surface. |
+| SRC-041 | Cursor | https://cursor.com/docs/cli/overview.md | Official product documentation | Current Cursor CLI | 2026-07-22 | Cursor profile | Current raw page documents interactive/headless use, sessions, sandbox controls, and cloud handoff without the stale beta wording. |
+| SRC-042 | Cursor | https://cursor.com/docs/cli/installation.md | Official installation documentation | Current Cursor CLI on macOS, Linux, WSL, and native Windows | 2026-07-22 | Cursor profile | Supersedes older public summaries that described Windows only through WSL. |
+| SRC-043 | Cursor | https://cursor.com/docs/cli/reference/permissions.md | Official configuration reference | Current Cursor CLI global/project permissions | 2026-07-22 | Cursor profile; Instructions, context, memory, skills, plugins, MCP, and hooks | Documents Shell, Read, Write, WebFetch, and MCP tokens; deny takes precedence over allow. |
+| SRC-044 | Cursor | https://cursor.com/docs/models-and-pricing.md | Official model and pricing reference | Current model catalog, plan pools, Auto modes, and residency pricing | 2026-07-22 | Cursor profile; Model and open-source routing matrix | Dynamic catalog verifies current availability only; Task 5 must recheck before routing recommendations. |
+| SRC-045 | Cursor | https://cursor.com/docs/agent/security/run-modes.md | Official security documentation | Current editor Auto-review, Allowlist, Run Everything, and sandboxing | 2026-07-22 | Cursor profile | Recommends Auto-review for most users, states it is not a security boundary, and documents team-over-local configuration precedence. |
+| SRC-046 | Cursor | https://cursor.com/docs/rules.md | Official configuration documentation | Current Project, User, Team, and `AGENTS.md` rules | 2026-07-22 | Cursor profile; Instructions, context, memory, skills, plugins, MCP, and hooks | Resolves stale team-sharing text and documents Team > Project > User plus nested `AGENTS.md`; relative precedence of `AGENTS.md` remains unspecified. |
+| SRC-047 | Cursor | https://cursor.com/docs/mcp.md | Official integration documentation | Current editor, CLI, Cloud Agent, project/global/team MCP | 2026-07-22 | Instructions, context, memory, skills, plugins, MCP, and hooks | Documents transports, OAuth, config locations, team distribution, and separate Enterprise MCP policy. |
+| SRC-048 | Cursor | https://cursor.com/docs/hooks.md | Official product and security documentation | Current local, CLI, plugin, team/managed, and cloud hooks | 2026-07-22 | Instructions, context, memory, skills, plugins, MCP, and hooks | Documents event/source gaps and fail-open behavior for command-hook errors other than explicit block exit code 2. |
+| SRC-049 | Cursor | https://cursor.com/docs/subagents.md | Official product documentation | Current editor, CLI, and Cloud Agent subagents | 2026-07-22 | Single-agent and multi-agent pattern catalog | Documents isolated contexts, foreground/background modes, read-only configuration, and location precedence. |
+| SRC-050 | Cursor | https://cursor.com/docs/cloud-agent.md | Official product documentation | Current Cursor Cloud Agents | 2026-07-22 | Cursor profile; Single-agent and multi-agent pattern catalog | Confirms isolated VMs, parallel execution, repository connections, environments, MCP, hooks, and artifacts. |
+| SRC-051 | Cursor | https://cursor.com/docs/cloud-agent/security.md | Official security documentation | Current Cursor-hosted Cloud Agents | 2026-07-22 | Cursor profile; Security, permission, audit, and recovery analysis | Owns the four-part retention matrix, deletion paths, auto-run/prompt-injection boundary, repository inheritance, and audit controls. |
+| SRC-052 | Cursor | https://cursor.com/docs/cloud-agent/security-network.md | Official security/configuration documentation | Current Cloud Agent secrets, network, retention, and signed commits | 2026-07-22 | Cursor profile | Conversation history is indefinite by default; snapshots expire after rolling 90-day inactivity; Enterprise 90-day conversation caps are early access. |
+| SRC-053 | Cursor | https://cursor.com/docs/cloud-agent/settings.md | Official administration documentation | Current Cloud Agent team/environment settings | 2026-07-22 | Cursor profile | Documents environment/network settings and lateral-movement risk when follow-ups can operate with another user's secrets. |
+| SRC-054 | Cursor | https://cursor.com/cloud | Official product page | Current cloud-agent launch and automation surfaces | 2026-07-22 | Cursor profile | Marketing-level source for web/mobile/integration and memory surfaces; not used alone for a security or retention recommendation. |
+| SRC-055 | Cursor | https://cursor.com/help/ai-features/background-agents.md | Official Help Center | Current Background Agent naming and Cloud Agent mapping | 2026-07-22 | Cursor profile | Explicitly says Cursor calls long-running remote background agents Cloud Agents; current security docs own retention details. |
+| SRC-056 | Cursor | https://cursor.com/data-use | Official data-use and privacy documentation | Privacy Mode and model-provider processing; updated 2026-07-15 | 2026-07-22 | Cursor profile | Qualifies ZDR with abuse/risk-classifier and approved non-ZDR-model behavior; documents BYOK routing and indexing metadata. |
+| SRC-057 | Cursor | https://cursor.com/security | Official security documentation | Cursor infrastructure, Privacy Mode, indexing, and subprocessors | 2026-07-22 | Cursor profile | Cross-check for hosted processing and indexing; detailed trust artifacts may require request or Trust Center access. |
+| SRC-058 | Cursor | https://cursor.com/docs/account/teams/dashboard.md | Official administration documentation | Current Teams and Enterprise dashboard | 2026-07-22 | Cursor profile | Separates team settings from Enterprise-only model, repository, MCP, auto-run, audit, and related controls. |
+| SRC-059 | Cursor | https://cursor.com/changelog | Official product changelog | Public Cursor product activity through 2026-07-17 | 2026-07-22 | Cursor profile | Newest visible dated post is July 17, 2026; numbered release and download-version publication can lag independently. |
+| SRC-060 | Cursor | https://cursor.com/changelog/auto-review | Official product changelog | Cursor 3.6, 2026-05-29 | 2026-07-22 | Cursor profile | Historical release cross-check for current Auto-review terminology and classifier/sandbox execution path. |
+| SRC-061 | Cursor | https://cursor.com/changelog/2-4 | Official product changelog | Cursor 2.4, 2026-01-22 | 2026-07-22 | Instructions, context, memory, skills, plugins, MCP, and hooks | Introduced current subagent/skill and expanded hook/MCP surface; later raw docs govern current behavior. |
+| SRC-062 | Cursor | https://cursor.com/changelog/2-5 | Official product changelog | Cursor 2.5, 2026-02-17 | 2026-07-22 | Cursor profile; Single-agent and multi-agent pattern catalog | Cross-checks granular sandbox network controls, plugins, and asynchronous subagents. |
+| SRC-063 | Cursor | https://cursor.com/changelog/customize | Official product changelog | Cursor 3.9, 2026-06-22 | 2026-07-22 | Cursor profile; Instructions, context, memory, skills, plugins, MCP, and hooks | Confirms user/team/workspace customization and team marketplace expansion. |
+| SRC-064 | Cursor | https://cursor.com/changelog/cloud-in-agents-window | Official product changelog | Cursor 3.7, 2026-06-17 | 2026-07-22 | Cursor profile | Confirms environment snapshots, VM/branch cloud subagents, local/cloud handoff, and parallel execution. |
+| SRC-065 | Cursor | https://cursor.com/changelog/cli-jan-16-2026 | Official product changelog | Cursor CLI, 2026-01-16 | 2026-07-22 | Cursor profile | Cross-checks Plan/Ask modes and local-to-cloud handoff; current raw CLI docs govern current commands. |
+| SRC-066 | Cursor | https://cursor.com/download | Official download page | Cursor desktop 3.12 labeled latest | 2026-07-22 | Cursor profile | Version label is newer than the newest numbered changelog release, a publication-lag freshness gap. |
+| SRC-067 | Cursor | https://cursor.com/changelog/03-25-26 | Official product changelog | Self-hosted Cloud Agents, 2026-03-25 | 2026-07-22 | Cursor profile | Confirms customer-infrastructure workers; public material does not establish that the whole Cursor control plane is self-hosted. |
 
 ## Gate 1 audit and handoff
 
