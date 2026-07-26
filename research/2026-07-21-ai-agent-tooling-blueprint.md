@@ -226,11 +226,79 @@ Sources: [Cursor pricing and plan boundaries](https://cursor.com/pricing), [curr
 
 ## Claude Code profile
 
-To be researched.
+Claude Code has materially different local, hosted, and remote-control execution paths. The CLI is the fullest surface; the VS Code and JetBrains integrations add editor context; Desktop runs local or cloud sessions; web and mobile use Anthropic-managed cloud environments; Remote Control only steers a session whose tools and files remain on the user's machine. “Available in Claude Code” therefore does not imply feature parity, identical settings, or the same data boundary across surfaces. [Overview](https://code.claude.com/docs/en/overview), [platform comparison](https://code.claude.com/docs/en/platforms), [web execution](https://code.claude.com/docs/en/claude-code-on-the-web), [Remote Control](https://code.claude.com/docs/en/remote-control)
+
+#### Subscription-first local Claude Code
+
+- **Tier:** default
+- **Recommendation:** Use the local Claude Code CLI or supported IDE integration under an existing Pro, Max, or Team entitlement for the normal subscription-only path. Keep Claude subscription authentication distinct from Anthropic Console/API credentials, and verify the actual Enterprise contract before calling that path subscription-included: current usage-based Enterprise access bills consumption at API rates from the first token.
+- **Use when:** A developer needs repository-aware terminal or IDE work, local tools and files should remain on the endpoint, and the subscribed plan has enough shared Claude/Claude Code usage.
+- **Do not use when:** The required capability is web-only, mobile-only, scheduled cloud execution, or a third-party model provider; or when predictable high-volume automation requires separately budgeted API usage.
+- **Primary evidence:** [Claude pricing and Claude Code inclusion](https://claude.com/pricing), [Pro and Max Claude Code billing](https://support.claude.com/en/articles/11145838-use-claude-code-with-your-pro-or-max-plan), and [Team and Enterprise Claude Code access](https://support.claude.com/en/articles/11845131-use-claude-code-with-your-team-or-enterprise-plan)
+- **Cross-check:** [Current Enterprise billing](https://support.claude.com/en/articles/11526368-how-am-i-billed-for-my-enterprise-plan) and [Anthropic API pricing](https://platform.claude.com/docs/en/about-claude/pricing)
+- **Verified:** 2026-07-26
+- **Product / plan / version:** Claude Code CLI and supported IDE integrations; paid Claude plans as documented on 2026-07-26. Current usage-based Enterprise differs from older seat-based Enterprise contracts.
+- **Confidence:** high
+- **Maturity:** stable
+- **Alternatives and tradeoffs:** Desktop provides visual review and parallel sessions; web continues after disconnect; Console/API authentication supports metered automation and third-party deployment providers. Those alternatives change feature availability, execution location, and billing.
+- **Subscription / licensing impact:** Pro and Max share one usage pool between Claude and Claude Code; Team seats include Claude Code with seat-specific allowances. `ANTHROPIC_API_KEY` takes precedence over subscription authentication and causes API billing. Current usage-based Enterprise includes access but no bundled token usage.
+- **Data / permission / security impact:** Local tools and filesystem access execute on the endpoint, but prompts and relevant code context are sent to Anthropic's API over TLS. Protect local OAuth/API credentials, do not put secrets in prompts or project instructions, and review the commercial or consumer data terms attached to the authenticated account.
+
+#### Explicit execution-boundary choice for local, web, and Remote Control
+
+- **Tier:** specialist
+- **Recommendation:** Select and document one execution boundary per workflow: local CLI/IDE/Desktop or Agent View for endpoint execution, Claude Code on the web for a fresh Anthropic-managed VM, or Remote Control for browser/mobile control of a still-local session. Treat local background, hosted web, and Remote Control as separate preview-era mechanisms rather than interchangeable “remote Claude Code.”
+- **Use when:** A team needs long-running hosted work, cross-device monitoring, or controlled movement between web and local sessions and can accept the surface's authentication, repository, retention, and compliance constraints.
+- **Do not use when:** Zero Data Retention is mandatory, cloud GitHub access is not approved, local endpoint execution cannot be trusted, or the required local configuration and secrets are assumed to transfer automatically to web.
+- **Primary evidence:** [Claude Code on the web](https://code.claude.com/docs/en/claude-code-on-the-web) and [Remote Control](https://code.claude.com/docs/en/remote-control)
+- **Cross-check:** [Platform comparison](https://code.claude.com/docs/en/platforms), [Desktop](https://code.claude.com/docs/en/desktop), [Agent View](https://code.claude.com/docs/en/agent-view), and [VS Code web-to-local continuation](https://code.claude.com/docs/en/ide-integrations)
+- **Verified:** 2026-07-26
+- **Product / plan / version:** Claude Code web and Agent View are research previews; Agent View requires Claude Code 2.1.139 or later. Remote Control requires Claude subscription authentication and is unavailable with API-key or third-party-provider authentication. Its page currently contradicts itself by saying both “all plans” and Pro/Max/Team/Enterprise in its requirements.
+- **Confidence:** medium
+- **Maturity:** experimental
+- **Alternatives and tradeoffs:** A local session avoids a hosted build VM but stops with the endpoint and retains state locally. Agent View lets full local sessions continue without a terminal under a supervisor, but host shutdown stops them and each session consumes quota independently. Web continues after disconnect and adds isolated VM controls, but does not inherit user-local settings, MCP servers, skills, or secrets. Remote Control preserves local execution but synchronizes the transcript through Anthropic while connected.
+- **Subscription / licensing impact:** Web and Remote Control require eligible Claude subscription access; Console API keys and major third-party providers do not unlock them. GitHub access and any external services retain separate licensing and authorization.
+- **Data / permission / security impact:** Web runs in a fresh Anthropic-managed VM with network controls, scoped Git credentials, audit events, and cleanup; committed repository configuration and server-managed settings apply, while user-local configuration does not. Remote Control uses outbound TLS with no inbound port, but execution and file access stay on the endpoint and its transcript is stored on Anthropic servers for synchronization. Both are incompatible with ZDR according to their current documentation.
+
+#### Managed controls with surface- and model-specific retention review
+
+- **Tier:** specialist
+- **Recommendation:** For Team or Enterprise deployment, pair endpoint-managed policy with organization administration and verify effective settings on every required surface. Record consumer, commercial, API/provider, local-transcript, cloud-session, and covered-model retention separately; do not summarize them as one Claude Code retention period.
+- **Use when:** An organization needs non-overridable local controls, controlled cloud/remote features, auditable administration, and a documented data-processing boundary before rollout.
+- **Do not use when:** Server-managed settings alone are expected to secure an unmanaged endpoint, to distribute MCP servers, or to guarantee fail-closed startup without `forceRemoteSettingsRefresh`; or when a blanket ZDR claim has not been checked against the selected model and provider.
+- **Primary evidence:** [Claude Code settings and managed-source precedence](https://code.claude.com/docs/en/settings), [server-managed settings](https://code.claude.com/docs/en/server-managed-settings), and [Claude Code data usage](https://code.claude.com/docs/en/data-usage)
+- **Cross-check:** [Organization-data retention](https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data), [Enterprise custom retention](https://support.claude.com/en/articles/10440198-configure-custom-data-retention-controls-for-enterprise-plans), and [covered-model retention effective 2026-06-09](https://privacy.claude.com/en/articles/15425996-data-retention-practices-for-covered-models)
+- **Verified:** 2026-07-26
+- **Product / plan / version:** Team, Enterprise, Anthropic API, and supported third-party-provider deployments; server-managed settings require the documented Claude Code minimum versions. Covered-model retention applies only to Anthropic's designated Mythos-class and future covered models on the listed platforms, not to every model.
+- **Confidence:** medium
+- **Maturity:** evolving
+- **Alternatives and tradeoffs:** Endpoint-managed MDM/OS or file policy is stronger on a managed device; server-managed settings are easier to distribute organization-wide but are client-side, not per-group, and can be bypassed through another organization or unsupported provider unless endpoint controls prevent it. Provider-native policy may change the contract and available features.
+- **Subscription / licensing impact:** Advanced administrative, analytics, and retention controls are plan- and contract-dependent. External providers, MCP services, and API consumption are billed and licensed independently.
+- **Data / permission / security impact:** Managed settings outrank CLI, local, project, and user settings, but different managed sources have their own precedence. Standard commercial Claude Code retention is documented as 30 days and local transcripts default to 30 days; consumer retention depends on the model-improvement choice. Eligible ZDR and custom Enterprise controls require separate enablement, and designated covered models still require 30-day prompt/output retention from 2026-06-09 even on listed ZDR platforms.
+
+Current freshness and limitations:
+
+- The official changelog, generated from Anthropic's public `CHANGELOG.md`, reports Claude Code `2.1.220` dated 2026-07-25. Unversioned documentation remains a moving contract and must be rechecked before Gate 2. [Changelog](https://code.claude.com/docs/en/changelog), [public repository changelog](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md)
+- No primary source in this pass establishes one universal subagent-concurrency limit, agent-team size, context-window size, or usage quota across models, plans, providers, and versions. Do not make those values strategic defaults without a versioned pilot.
+- The Remote Control page's plan statements conflict, and Enterprise chat/project retention documentation does not describe the same object as Claude Code/API retention. These remain explicit scope gaps rather than averaged claims.
 
 ## Cross-layer tooling matrix
 
-To be researched.
+The three products expose similarly named layers with different enforcement and execution contracts. Use native terminology and verify the required surface rather than assuming equivalence.
+
+| Layer | Codex | Cursor | Claude Code |
+| --- | --- | --- | --- |
+| Durable repository guidance | Scoped `AGENTS.md` | `.cursor/rules`, supported `AGENTS.md`, and plan-dependent Team Rules | Managed/user/project/local `CLAUDE.md`, `.claude/rules`, and optional `@AGENTS.md` import |
+| Runtime configuration | Layered `config.toml` plus managed defaults/requirements | User/project/team/managed configuration varies by feature | Managed > CLI > local > project > user settings; permission rules merge with deny/ask/allow semantics |
+| Tool authorization | Approval policy plus sandbox and managed requirements | Run mode, command/file/network/MCP policy, sandbox, and hook gates | Client permission rules/modes for all tools; OS sandbox only for Bash and child processes |
+| Reusable procedure | Skills; plugins can bundle skills and integrations | Skills and plugins | Skills; plugins package skills, subagents, hooks, MCP, LSP, and related components |
+| External capability | MCP and plugin-backed connectors | MCP with local/project/team/cloud scopes | MCP with local/project/user/plugin/connector scopes and separate managed allow/deny/fixed-server controls |
+| Deterministic lifecycle action | Local hooks with documented surface limits | Command/prompt/agent/MCP hooks with local/cloud event differences | Command, HTTP, MCP, prompt, and agent hooks; all hook sources merge and fire |
+| Remembered and resumed state | Session history, optional memory, compaction, resume/fork, worktrees | Chat history, compression, side chats, subagent state, cloud sessions | Local session transcripts, `CLAUDE.md`, auto memory, compaction, checkpoints, resume/branch, and surface-specific handoff |
+| Parallel execution | Subagents, independent chats, worktrees, cloud tasks | Foreground/background subagents and isolated Cloud Agent VM/branches | Stable subagents and worktrees; experimental agent teams; separate local, web, Remote Control, and agent-view mechanisms |
+| Organization control | Workspace RBAC plus managed local-runtime controls | Teams and Enterprise controls vary by rule, MCP, hook, cloud, network, and audit feature | Team/Enterprise administration plus endpoint- and server-managed settings; server-managed policy remains client-side |
+
+The Codex and Cursor terms above summarize the already verified profiles. Claude-specific boundaries are grounded in [features overview](https://code.claude.com/docs/en/features-overview), [settings](https://code.claude.com/docs/en/settings), [permissions](https://code.claude.com/docs/en/permissions), [sandboxing](https://code.claude.com/docs/en/sandboxing), [sessions](https://code.claude.com/docs/en/sessions), [subagents](https://code.claude.com/docs/en/sub-agents), and [agent teams](https://code.claude.com/docs/en/agent-teams).
 
 ## Model and open-source routing matrix
 
@@ -370,6 +438,56 @@ Cursor has corresponding but not identical instruction and extension layers. Pro
 - **Subscription / licensing impact:** Paid Individual lists MCPs, skills, and hooks; Teams adds shared marketplace distribution, while Enterprise adds MCP access controls and managed hooks. Each external service, plugin, model, or server can add separate licensing, compute, and credential requirements.
 - **Data / permission / security impact:** MCP can execute local commands or call remote services and can receive OAuth/API credentials. Cursor asks before MCP tools by default unless auto-run policy changes that behavior. A crashed or timed-out MCP server fails that tool call while other MCP servers continue. Command-hook exit code `2` blocks; crashes, timeouts, and invalid JSON otherwise fail open by default, while `failClosed: true` blocks the covered action. Hooks do not run during initial read-only Cloud Agent turns, and cloud support excludes several events, including MCP hooks. Redact hook inputs and logs, pin reviewed code, test each required surface, and require independent controls for sensitive writes.
 
+Claude Code also separates model guidance from enforced runtime policy. `CLAUDE.md`, rules, skills, and memory influence model behavior; settings, permission rules, sandboxing, managed policy, and blocking hooks provide distinct controls with different scope and failure behavior.
+
+#### Layered Claude Code settings and additive `CLAUDE.md`
+
+- **Tier:** default
+- **Recommendation:** Put enforceable runtime defaults in the narrowest appropriate Claude Code settings scope and durable repository guidance in checked-in `CLAUDE.md` or `.claude/rules`. Apply the documented settings order—managed, CLI, local, project, user—but treat discovered `CLAUDE.md` files as concatenated context from broad to specific, not as an override chain.
+- **Use when:** A repository needs reviewable instructions and a developer or organization needs predictable local runtime configuration without conflating guidance with enforcement.
+- **Do not use when:** The content is a secret, a one-time prompt, a security control that must not depend on model compliance, or a host-specific local instruction that should not be committed.
+- **Primary evidence:** [Claude Code settings](https://code.claude.com/docs/en/settings) and [Claude Code memory and `CLAUDE.md` loading](https://code.claude.com/docs/en/memory)
+- **Cross-check:** [Features overview and extension precedence](https://code.claude.com/docs/en/features-overview)
+- **Verified:** 2026-07-26
+- **Product / plan / version:** Current Claude Code local surfaces; committed project configuration also reaches web sessions, while user-local files do not.
+- **Confidence:** high
+- **Maturity:** stable
+- **Alternatives and tradeoffs:** A prompt is cheaper for one task. Skills are better for on-demand procedures. Managed policy is better for non-overridable controls. Large always-loaded instruction files consume context and can conflict; path-scoped rules reduce that cost.
+- **Subscription / licensing impact:** Native behavior with no additional license; managed distribution and administration are plan- and contract-dependent.
+- **Data / permission / security impact:** Repository instructions are untrusted prompt context and can be changed by contributors. Managed `CLAUDE.md` cannot be excluded, but model guidance still is not an enforcement boundary. Never store credentials in settings, `CLAUDE.md`, or rules.
+
+#### Claude Code skills, plugins, MCP, and hooks by responsibility
+
+- **Tier:** specialist
+- **Recommendation:** Use a skill for on-demand procedure, a plugin to distribute a reviewed bundle, MCP only for a bounded live-service need, and a hook for a deterministic lifecycle action. Keep source-system authorization, Claude Code permissions, sandboxing, and CI independent from these extension layers.
+- **Use when:** Static repository guidance is insufficient, the extension owner and exact permissions are known, and behavior can be validated on every required local or hosted surface.
+- **Do not use when:** A repository file or ordinary script is sufficient, credentials cannot be least-privileged, third-party code or MCP content is unreviewed, or a hook is expected to be the sole boundary for sensitive external writes.
+- **Primary evidence:** [Skills](https://code.claude.com/docs/en/skills), [plugins](https://code.claude.com/docs/en/plugins), [MCP](https://code.claude.com/docs/en/mcp), and [hooks](https://code.claude.com/docs/en/hooks)
+- **Cross-check:** [Feature selection and precedence](https://code.claude.com/docs/en/features-overview) and [plugin marketplace controls](https://code.claude.com/docs/en/plugin-marketplaces)
+- **Verified:** 2026-07-26
+- **Product / plan / version:** Current Claude Code CLI and local integrations; committed project extensions may reach web, while unsupported local configuration does not. Prompt and agent hooks have distinct maturity and blocking semantics.
+- **Confidence:** high
+- **Maturity:** evolving
+- **Alternatives and tradeoffs:** Checked-in documentation is simpler and auditable but lacks live data. Direct APIs provide explicit contracts but require integration code. CI runs later but is independent of the agent loop. Plugins improve distribution while expanding supply-chain and update risk.
+- **Subscription / licensing impact:** Native extension loading is part of Claude Code where supported. Each MCP service, marketplace, model, or external API has independent licensing, billing, and authentication.
+- **Data / permission / security impact:** Skill `allowed-tools` can grant tools without per-use approval during invocation; MCP tools expose external data and authority; command hooks run with the user's full permissions outside the agent sandbox. Review and pin extension code, scope OAuth, prefer read-only servers first, sanitize hook input, and account for non-blocking HTTP failures and asynchronous hooks.
+
+#### Repository artifacts over compaction and checkpoint assumptions
+
+- **Tier:** default
+- **Recommendation:** Keep requirements, decisions, and accepted state in version-controlled artifacts; use session resume, auto memory, compaction, and checkpoints only as convenience layers. Before handoff or compaction, write the authoritative state explicitly and name any surface-specific continuation step.
+- **Use when:** Work can span context limits, restarts, local/web movement, or multiple people and needs reviewable recovery independent of one transcript.
+- **Do not use when:** A lossy compacted summary, local auto memory, or checkpoint is being treated as a complete audit log, backup, cross-surface handoff, or replacement for Git.
+- **Primary evidence:** [Sessions and branching](https://code.claude.com/docs/en/sessions), [context-window and compaction behavior](https://code.claude.com/docs/en/context-window), and [checkpointing](https://code.claude.com/docs/en/checkpointing)
+- **Cross-check:** [Memory](https://code.claude.com/docs/en/memory), [web/local handoff](https://code.claude.com/docs/en/claude-code-on-the-web), and [IDE continuation](https://code.claude.com/docs/en/ide-integrations)
+- **Verified:** 2026-07-26
+- **Product / plan / version:** Current Claude Code local sessions, VS Code, Desktop, and eligible web sessions. Histories and handoff capabilities differ by surface.
+- **Confidence:** high
+- **Maturity:** evolving
+- **Alternatives and tradeoffs:** Git commits, issue records, and explicit handoff files cost more discipline but are portable and reviewable. `/resume`, `/branch`, `--fork-session`, `--cloud`, `--teleport`, and Remote Control reduce restart friction but preserve different subsets of state and have authentication or surface constraints.
+- **Subscription / licensing impact:** Local session management is native. Web handoff and Remote Control require eligible subscription authentication; external work systems can add licenses.
+- **Data / permission / security impact:** Local transcripts are plaintext and default to 30-day cleanup. Compaction is lossy: system context and selected root guidance are restored, while path-scoped/nested guidance may not return until matching files are read. Checkpoints cover direct Claude file-edit tools but not Bash changes, subagent edits, or external changes; local and web histories are not one universal store.
+
 ## Single-agent and multi-agent pattern catalog
 
 Codex supports one main thread, delegated subagent threads, independent app chats, worktrees, and hosted work. Parallelism is a situational optimization, not the baseline definition of autonomy.
@@ -456,6 +574,40 @@ Cursor supports foreground and background subagents in the editor, CLI, and Clou
 - **Subscription / licensing impact:** Subagents consume model usage, and parallel/cloud runs can increase on-demand charges. Cloud Agents require a paid plan; selected models and team controls affect cost and availability.
 - **Data / permission / security impact:** Each subagent has a clean context and receives only the parent-provided prompt; read-only mode removes file edits and state-changing shell commands. Local background subagents write state under `~/.cursor/subagents/` and can resume with preserved context. Treat that directory as retained host data: protect it with host file permissions, account for backups and endpoint access, and clean it under an explicit local-data policy when state is no longer needed; the current docs do not state an automatic cleanup or retention duration. Cloud writers auto-run commands and use hosted repositories, snapshots, transcripts, secrets, and network policy. Treat summaries as untrusted until cross-checked and protect merge authority independently.
 
+Claude Code distinguishes subagents within one orchestrated session from experimental agent teams whose members are independent sessions with peer communication.
+
+#### Bounded Claude Code subagents with optional worktree isolation
+
+- **Tier:** specialist
+- **Recommendation:** Use a named Claude Code subagent for independent exploration, planning, testing, or review; narrow its tools and permissions and require the parent to validate its returned summary. Give any parallel writer its own worktree and explicit file ownership.
+- **Use when:** A subtask has independent inputs and outputs, benefits from isolated context, and can be recombined through a concise evidence-backed result.
+- **Do not use when:** Work requires frequent shared decisions, multiple agents would edit the same files, the subtask depends on the full parent conversation, or duplicated model usage exceeds the elapsed-time benefit.
+- **Primary evidence:** [Claude Code subagents](https://code.claude.com/docs/en/sub-agents)
+- **Cross-check:** [Claude Code worktrees](https://code.claude.com/docs/en/worktrees)
+- **Verified:** 2026-07-26
+- **Product / plan / version:** Current Claude Code built-in and custom subagents; managed, CLI, project, user, and plugin definitions have documented precedence. Worktree isolation requires a Git repository.
+- **Confidence:** high
+- **Maturity:** stable
+- **Alternatives and tradeoffs:** One strong agent avoids coordination and extra tokens. A skill is cheaper for a repeatable single-agent procedure. Independent local or web sessions provide stronger isolation but require explicit handoff and integration.
+- **Subscription / licensing impact:** Native where Claude Code is available, but every subagent consumes model usage and concurrent work can exhaust subscription allowances or increase metered API cost.
+- **Data / permission / security impact:** Subagents have isolated context and configurable tool access but are not an independent trust boundary; they can inherit parent capabilities and access configured MCP servers. Explore and Plan agents omit some normal project context. Worktree isolation separates working files but shares repository metadata, and returned summaries remain untrusted until cross-checked.
+
+#### Experimental Claude Code agent teams
+
+- **Tier:** watchlist
+- **Recommendation:** Keep Claude Code agent teams out of the default workflow. Pilot them only for a bounded, parallel, high-value problem with independent ownership, a single lead, a shared task contract, explicit integration, and recovery that does not depend on restoring teammate sessions.
+- **Use when:** Teammates must communicate directly, tasks are genuinely parallel, duplicated usage is acceptable, and the work can be partitioned without same-file writes.
+- **Do not use when:** Sequential work, small tasks, nested teams, same-file editing, reliable resume/rewind of all teammates, or low coordination overhead is required.
+- **Primary evidence:** [Claude Code agent teams](https://code.claude.com/docs/en/agent-teams)
+- **Cross-check:** [Features overview maturity comparison](https://code.claude.com/docs/en/features-overview)
+- **Verified:** 2026-07-26
+- **Product / plan / version:** Current Claude Code agent teams are explicitly experimental, disabled by default, and enabled with `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`.
+- **Confidence:** high
+- **Maturity:** experimental
+- **Alternatives and tradeoffs:** Stable subagents are cheaper and simpler for focused delegation but report only to the parent. Independent sessions or worktrees isolate writers without team coordination. Agent teams add peer messaging and a shared task list at the cost of more tokens and coordination failure modes.
+- **Subscription / licensing impact:** No separate license is documented, but each teammate is a full Claude Code session and token usage can be substantially higher; plan/provider limits remain account-dependent.
+- **Data / permission / security impact:** Teammates receive the lead's permission mode at spawn, cannot be nested, and can race on shared files or tasks. In-process teammates do not return after resume or rewind; one team per session, fixed lead, shutdown/task-state lag, and documented pane limitations require an external recovery record.
+
 ## GitHub, Azure, Docker, and Atlassian integration analysis
 
 To be researched.
@@ -478,7 +630,21 @@ To be researched.
 
 ## Security, permission, audit, and recovery analysis
 
-To be researched.
+#### Claude Code permissions plus fail-closed sandboxing
+
+- **Tier:** default
+- **Recommendation:** Keep Claude Code in default/manual or Plan permission mode, define narrow deny/ask/allow rules, and enable Bash sandboxing with least-privilege filesystem and network policy on macOS, Linux, or WSL2. For a workflow that requires sandboxing, set `sandbox.failIfUnavailable: true`; place native Windows or untrusted-code execution inside an independently isolated VM or container.
+- **Use when:** Local coding needs routine read access and bounded commands while edits, network domains, external tools, and sensitive paths remain reviewable or explicitly denied.
+- **Do not use when:** Native Windows is being treated as a supported built-in sandbox host, `bypassPermissions` would run on a normal workstation, broad domains or privileged sockets are exposed, or the sandbox is expected to be complete isolation.
+- **Primary evidence:** [Claude Code permissions](https://code.claude.com/docs/en/permissions) and [sandboxed Bash](https://code.claude.com/docs/en/sandboxing)
+- **Cross-check:** [Claude Code security](https://code.claude.com/docs/en/security) and [managed security settings](https://code.claude.com/docs/en/settings)
+- **Verified:** 2026-07-26
+- **Product / plan / version:** Current local Claude Code; built-in sandbox support is documented for macOS, Linux, and WSL2, not native Windows. Permission rules apply to tools generally; the OS sandbox applies to Bash and child processes.
+- **Confidence:** high
+- **Maturity:** evolving
+- **Alternatives and tradeoffs:** Manual approvals provide visibility but add friction and are vulnerable to habituation. The sandbox can auto-allow contained commands but requires platform support and careful policy. A dedicated VM/container is operationally heavier but supplies a stronger host boundary for untrusted input.
+- **Subscription / licensing impact:** Native permission and sandbox controls do not require a separate Claude Code license; VM/container infrastructure and enterprise endpoint management can add cost.
+- **Data / permission / security impact:** Deny rules take precedence over ask and allow, and permissions are enforced by the client rather than the model. The sandbox is defense in depth, not complete isolation: broad domain allowlists, TLS/domain-fronting behavior, readable credential paths, Unix sockets such as Docker, and fallback when support is unavailable can weaken it. Pair it with source-system authorization, credential isolation, review, audit, and CI.
 
 ## Balanced scorecard and eval plan
 
@@ -500,13 +666,13 @@ To be researched.
 
 | ID | Question | Owner task | Status | Blueprint section |
 | --- | --- | --- | --- | --- |
-| W1.1 | How do Codex, Cursor, and Claude Code support CLI, IDE, app, web, background, and remote execution? | Tasks 2-4 | in research | Codex profile; Cursor profile; Claude Code profile |
-| W1.2 | How do Codex, Cursor, and Claude Code support instructions and configuration? | Tasks 2-4 | in research | Instructions, context, memory, skills, plugins, MCP, and hooks |
-| W1.3 | How do Codex, Cursor, and Claude Code provide permissions and sandboxing? | Tasks 2-4 | in research | Security, permission, audit, and recovery analysis |
-| W1.4 | How do Codex, Cursor, and Claude Code support skills, plugins, MCP, and hooks? | Tasks 2-4 | in research | Instructions, context, memory, skills, plugins, MCP, and hooks |
-| W1.5 | How do Codex, Cursor, and Claude Code handle context, memory, compaction, and handoff? | Tasks 2-4 | in research | Instructions, context, memory, skills, plugins, MCP, and hooks |
-| W1.6 | How do Codex, Cursor, and Claude Code support single-agent, subagent, and multi-agent behavior? | Tasks 2-4, 6 | in research | Single-agent and multi-agent pattern catalog |
-| W1.7 | How do Codex, Cursor, and Claude Code provide team and managed-policy options? | Tasks 2-4 | in research | Cross-layer tooling matrix |
+| W1.1 | How do Codex, Cursor, and Claude Code support CLI, IDE, app, web, background, and remote execution? | Tasks 2-4 | verified | Codex profile; Cursor profile; Claude Code profile |
+| W1.2 | How do Codex, Cursor, and Claude Code support instructions and configuration? | Tasks 2-4 | evidence gap | Instructions, context, memory, skills, plugins, MCP, and hooks |
+| W1.3 | How do Codex, Cursor, and Claude Code provide permissions and sandboxing? | Tasks 2-4 | verified | Security, permission, audit, and recovery analysis |
+| W1.4 | How do Codex, Cursor, and Claude Code support skills, plugins, MCP, and hooks? | Tasks 2-4 | verified | Instructions, context, memory, skills, plugins, MCP, and hooks |
+| W1.5 | How do Codex, Cursor, and Claude Code handle context, memory, compaction, and handoff? | Tasks 2-4 | evidence gap | Instructions, context, memory, skills, plugins, MCP, and hooks |
+| W1.6 | How do Codex, Cursor, and Claude Code support single-agent, subagent, and multi-agent behavior? | Tasks 2-4, 6 | verified | Single-agent and multi-agent pattern catalog |
+| W1.7 | How do Codex, Cursor, and Claude Code provide team and managed-policy options? | Tasks 2-4 | evidence gap | Cross-layer tooling matrix |
 | W1.C1 | Which ChatGPT plans include Codex, and which subscription, credit, or API boundaries change availability? | Task 2 | verified | Codex profile |
 | W1.C2 | Which Codex CLI, IDE, desktop, cloud, background, Scheduled, Remote, and platform surfaces are documented? | Task 2 | verified | Codex profile |
 | W1.C3 | What is the Codex instruction and configuration precedence, including trusted-project behavior? | Task 2 | verified | Instructions, context, memory, skills, plugins, MCP, and hooks |
@@ -530,6 +696,24 @@ To be researched.
 | W1.CU10 | Which models and Auto modes are currently available in Cursor, how do plan pools, token pricing, residency, and model-specific retention affect selection, and which durable routing decision remains deferred to Task 5? | Tasks 3, 5 | verified | Cursor profile; Model and open-source routing matrix |
 | W1.CU11 | Which Cursor Team and Enterprise controls govern identity, repositories, models, MCP, rules, plugins, hooks, auto-run, network, cloud agents, service accounts, and audit? | Task 3 | verified | Cursor profile; Cross-layer tooling matrix |
 | W1.CU12 | How fresh are Cursor's canonical raw docs, download version, and changelog, and which terminology or publication lags remain? | Task 3 | evidence gap | Cursor profile |
+| W1.CL1 | Which Claude plans include Claude Code, and where do shared subscription usage, extra usage, API credentials, provider credentials, or current Enterprise billing change the cost boundary? | Task 4 | evidence gap | Claude Code profile |
+| W1.CL2 | Which Claude Code CLI, VS Code, JetBrains, Desktop, web, mobile, background, and hosted execution surfaces are documented? | Task 4 | verified | Claude Code profile |
+| W1.CL3 | What is the Claude Code settings precedence across managed sources, CLI, local, project, and user scopes, including merged permission rules? | Task 4 | verified | Claude Code profile; Cross-layer tooling matrix |
+| W1.CL4 | How are managed, user, project, local, parent, and nested `CLAUDE.md` instructions discovered, ordered, imported, and excluded? | Task 4 | verified | Instructions, context, memory, skills, plugins, MCP, and hooks |
+| W1.CL5 | How do Claude Code permission rules and modes govern reads, edits, Bash, network, web, MCP, and bypass behavior? | Task 4 | verified | Security, permission, audit, and recovery analysis |
+| W1.CL6 | Which Claude Code sandbox platforms, filesystem and network boundaries, auto-allow behavior, failure modes, and fail-closed controls are documented? | Task 4 | verified | Security, permission, audit, and recovery analysis |
+| W1.CL7 | Which Claude Code hook types, lifecycle events, blocking semantics, merge behavior, and execution-security limits are documented? | Task 4 | verified | Instructions, context, memory, skills, plugins, MCP, and hooks |
+| W1.CL8 | How do Claude Code skills load, inherit tools, isolate context, and differ from durable instructions? | Task 4 | verified | Instructions, context, memory, skills, plugins, MCP, and hooks |
+| W1.CL9 | How do Claude Code plugins package and distribute skills, subagents, hooks, MCP, and related components, and which marketplace controls reduce supply-chain risk? | Task 4 | verified | Instructions, context, memory, skills, plugins, MCP, and hooks |
+| W1.CL10 | How do local, project, user, plugin, connector, and managed Claude Code MCP scopes, precedence, authentication, and policy differ? | Task 4 | verified | Instructions, context, memory, skills, plugins, MCP, and hooks |
+| W1.CL11 | How do `CLAUDE.md`, rules, auto memory, per-repository storage, worktree sharing, and startup load limits affect remembered context? | Task 4 | verified | Instructions, context, memory, skills, plugins, MCP, and hooks |
+| W1.CL12 | What do Claude Code sessions, compaction, resume/branch, checkpoints, web/local continuation, and surface-specific histories preserve or lose? | Task 4 | verified | Instructions, context, memory, skills, plugins, MCP, and hooks |
+| W1.CL13 | When do stable Claude Code subagents help, what context and tools do they receive, and when is worktree isolation required? | Task 4 | verified | Single-agent and multi-agent pattern catalog |
+| W1.CL14 | Which Claude Code agent-team behaviors and limitations are documented, and why must the pattern remain experimental? | Task 4 | verified | Single-agent and multi-agent pattern catalog |
+| W1.CL15 | How do Claude Code web, Remote Control, Agent View, and local/web handoff differ in execution location, eligibility, persistence, and compliance boundary? | Task 4 | evidence gap | Claude Code profile |
+| W1.CL16 | Which endpoint-managed and server-managed Claude Code controls exist, what is their precedence, and where can client-side or provider boundaries weaken them? | Task 4 | verified | Claude Code profile; Cross-layer tooling matrix |
+| W1.CL17 | What do consumer, commercial, API/provider, local-transcript, cloud-session, Enterprise, ZDR, and covered-model retention terms guarantee or exclude? | Task 4 | evidence gap | Claude Code profile |
+| W1.CL18 | What is the latest first-party Claude Code release, and which unversioned or fast-moving capabilities require a Gate 2 freshness check? | Task 4 | verified | Claude Code profile |
 | W2.1 | Which models are included in existing subscriptions? | Task 5 | not researched | Model and open-source routing matrix |
 | W2.2 | What task-specific routing is appropriate? | Task 5 | not researched | Model and open-source routing matrix |
 | W2.3 | What are the quality, latency, context, and cost tradeoffs? | Task 5 | not researched | Model and open-source routing matrix |
@@ -661,6 +845,42 @@ To be researched.
 | SRC-068 | Cursor | https://cursor.com/docs/cli/reference/parameters.md | Official CLI reference | Current Cursor CLI parameters | 2026-07-22 | Cursor profile | Documents that `--print` retains write and shell tools, `--force` allows commands unless explicitly denied, and `--trust` skips workspace prompting in headless mode. |
 | SRC-069 | Cursor | https://cursor.com/docs/cloud-agent/api/endpoints.md | Official Cloud Agent API reference | Current Cloud Agent archive and deletion endpoints | 2026-07-22 | Cursor profile | Distinguishes reversible Archive, which leaves agents readable, from irreversible permanent deletion; the security guide separately scopes deletion to transcripts and artifacts rather than snapshots. |
 | SRC-070 | Cursor | https://cursor.com/docs/cli/reference/authentication.md | Official CLI authentication reference | Current Cursor CLI browser and API-key authentication | 2026-07-22 | Cursor profile | Documents browser-based Cursor-account login, API-key authentication, local credential storage, authentication status, and explicit not-authenticated errors. |
+| SRC-071 | Anthropic | https://code.claude.com/docs/en/overview | Official product documentation | Current Claude Code surfaces | 2026-07-26 | Claude Code profile | Defines CLI, IDE, Desktop, web, and mobile availability at a high level; not evidence of feature parity. |
+| SRC-072 | Anthropic | https://code.claude.com/docs/en/platforms | Official product documentation | Current platform comparison | 2026-07-26 | Claude Code profile | Separates the fullest CLI surface from IDE, Desktop, web, and mobile capabilities. |
+| SRC-073 | Anthropic | https://code.claude.com/docs/en/claude-code-on-the-web | Official product and security documentation | Claude Code on the web research preview | 2026-07-26 | Claude Code profile; Instructions, context, memory, skills, plugins, MCP, and hooks | Documents Anthropic-managed VMs, GitHub access, configuration transfer limits, web/local handoff, and ZDR incompatibility. |
+| SRC-074 | Anthropic | https://code.claude.com/docs/en/remote-control | Official product and security documentation | Remote Control research preview | 2026-07-26 | Claude Code profile | Local execution with remote UI and transcript synchronization; the page conflicts on “all plans” versus named paid plans. |
+| SRC-075 | Anthropic | https://claude.com/pricing | Official pricing page | Current Claude paid plans and Claude Code inclusion | 2026-07-26 | Claude Code profile | Says Claude Code is included with paid plans and distinguishes current Enterprise usage-based consumption. |
+| SRC-076 | Anthropic | https://support.claude.com/en/articles/11145838-use-claude-code-with-your-pro-or-max-plan | Official Help Center | Pro and Max Claude Code access | 2026-07-26 | Claude Code profile | Subscription usage is shared with Claude; `ANTHROPIC_API_KEY` selects separately billed API usage. |
+| SRC-077 | Anthropic | https://support.claude.com/en/articles/11845131-use-claude-code-with-your-team-or-enterprise-plan | Official Help Center | Team and Enterprise Claude Code access | 2026-07-26 | Claude Code profile | Distinguishes Team seats and current versus legacy Enterprise access and usage models. |
+| SRC-078 | Anthropic | https://support.claude.com/en/articles/11526368-how-am-i-billed-for-my-enterprise-plan | Official Help Center | Current and legacy Enterprise billing | 2026-07-26 | Claude Code profile | Current usage-based Enterprise includes access but bills usage separately at API rates. |
+| SRC-079 | Anthropic | https://platform.claude.com/docs/en/about-claude/pricing | Official API documentation | Anthropic API pricing | 2026-07-26 | Claude Code profile | Cross-checks that API consumption is a separate metered billing path. |
+| SRC-080 | Anthropic | https://code.claude.com/docs/en/desktop | Official product documentation | Current Claude Code Desktop | 2026-07-26 | Claude Code profile | Separates local and cloud sessions, terminal availability, settings, environment, and execution boundaries. |
+| SRC-081 | Anthropic | https://code.claude.com/docs/en/ide-integrations | Official product documentation | Current VS Code integration | 2026-07-26 | Claude Code profile; Instructions, context, memory, skills, plugins, MCP, and hooks | Documents IDE capability and web-to-local continuation without reverse change synchronization. |
+| SRC-082 | Anthropic | https://code.claude.com/docs/en/settings | Official configuration and administration documentation | Current Claude Code local and managed settings | 2026-07-26 | Claude Code profile; Cross-layer tooling matrix; Security, permission, audit, and recovery analysis | Defines managed, CLI, local, project, and user precedence plus managed-source and permission-rule semantics. |
+| SRC-083 | Anthropic | https://code.claude.com/docs/en/server-managed-settings | Official administration documentation | Team and Enterprise server-managed settings | 2026-07-26 | Claude Code profile | Documents minimum versions, client-side limitations, policy refresh behavior, and inability to distribute MCP servers. |
+| SRC-084 | Anthropic | https://code.claude.com/docs/en/data-usage | Official data and privacy documentation | Consumer, commercial, API/provider, local, and web Claude Code data | 2026-07-26 | Claude Code profile | Separates training defaults and consumer, commercial, ZDR, feedback, local-transcript, and cloud-session retention. |
+| SRC-085 | Anthropic | https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data | Official Privacy Center | Commercial organization and API data | 2026-07-26 | Claude Code profile | Cross-checks commercial product/API retention and enumerated exceptions; contract scope remains controlling. |
+| SRC-086 | Anthropic | https://support.claude.com/en/articles/10440198-configure-custom-data-retention-controls-for-enterprise-plans | Official Help Center | Enterprise chat and project retention controls | 2026-07-26 | Claude Code profile | Applies to Enterprise product objects and must not be collapsed into Claude Code/API retention. |
+| SRC-087 | Anthropic | https://privacy.claude.com/en/articles/15425996-data-retention-practices-for-covered-models | Official Privacy Center | Designated covered models effective 2026-06-09 | 2026-07-26 | Claude Code profile | Requires 30-day prompt/output retention for listed Mythos-class and future covered models even on listed ZDR platforms; not applicable to every model. |
+| SRC-088 | Anthropic | https://code.claude.com/docs/en/changelog | Official versioned product changelog | Claude Code through 2.1.220 dated 2026-07-25 | 2026-07-26 | Claude Code profile | Current release and date verified; page is generated from the first-party repository changelog. |
+| SRC-089 | Anthropic | https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md | Public first-party changelog | Claude Code public repository main branch | 2026-07-26 | Claude Code profile | Repository cross-check for release freshness; main is moving. |
+| SRC-090 | Anthropic | https://code.claude.com/docs/en/features-overview | Official product documentation | Current Claude Code extension layers | 2026-07-26 | Cross-layer tooling matrix; Instructions, context, memory, skills, plugins, MCP, and hooks; Single-agent and multi-agent pattern catalog | Distinguishes instructions, skills, MCP, subagents, agent teams, hooks, and plugin packaging, including precedence and maturity. |
+| SRC-091 | Anthropic | https://code.claude.com/docs/en/permissions | Official permission documentation | Current Claude Code tool authorization | 2026-07-26 | Cross-layer tooling matrix; Security, permission, audit, and recovery analysis | Documents permission modes, merged rules, tool coverage, and separation from Bash sandboxing. |
+| SRC-092 | Anthropic | https://code.claude.com/docs/en/sandboxing | Official security documentation | Built-in sandbox on macOS, Linux, and WSL2 | 2026-07-26 | Cross-layer tooling matrix; Security, permission, audit, and recovery analysis | Documents supported platforms, fail-closed availability, filesystem/network policy, auto-allow behavior, and sandbox limitations. |
+| SRC-093 | Anthropic | https://code.claude.com/docs/en/memory | Official product documentation | Current `CLAUDE.md`, rules, and auto memory | 2026-07-26 | Instructions, context, memory, skills, plugins, MCP, and hooks | Defines instruction discovery, concatenation, lazy loading, exclusion, auto-memory storage, worktree sharing, and load limits. |
+| SRC-094 | Anthropic | https://code.claude.com/docs/en/skills | Official product and security documentation | Current Claude Code skills | 2026-07-26 | Instructions, context, memory, skills, plugins, MCP, and hooks | Documents progressive loading, scopes, tool grants, isolated context, and managed distribution. |
+| SRC-095 | Anthropic | https://code.claude.com/docs/en/plugins | Official product documentation | Current Claude Code plugins | 2026-07-26 | Instructions, context, memory, skills, plugins, MCP, and hooks | Documents packaging of skills, subagents, hooks, MCP, and related components. |
+| SRC-096 | Anthropic | https://code.claude.com/docs/en/mcp | Official integration and security documentation | Current Claude Code MCP | 2026-07-26 | Instructions, context, memory, skills, plugins, MCP, and hooks | Defines scope precedence, approval, authentication, managed controls, secrets, and untrusted-server risks. |
+| SRC-097 | Anthropic | https://code.claude.com/docs/en/hooks | Official product and security documentation | Current Claude Code hooks | 2026-07-26 | Instructions, context, memory, skills, plugins, MCP, and hooks | Documents command, HTTP, MCP, prompt, and agent hooks, merge behavior, blocking semantics, and execution risk. |
+| SRC-098 | Anthropic | https://code.claude.com/docs/en/plugin-marketplaces | Official administration and security documentation | Current plugin marketplace controls | 2026-07-26 | Instructions, context, memory, skills, plugins, MCP, and hooks | Documents known-marketplace restrictions, side-loading controls, allowlists, and external archive trust. |
+| SRC-099 | Anthropic | https://code.claude.com/docs/en/sessions | Official product documentation | Current local Claude Code sessions | 2026-07-26 | Cross-layer tooling matrix; Instructions, context, memory, skills, plugins, MCP, and hooks | Defines continue, resume, branch/fork, local transcript storage, cleanup, and settings reload boundaries. |
+| SRC-100 | Anthropic | https://code.claude.com/docs/en/context-window | Official product documentation | Current context and compaction behavior | 2026-07-26 | Instructions, context, memory, skills, plugins, MCP, and hooks | Documents automatic/manual compaction and which guidance is re-injected or lazy-reloaded afterward. |
+| SRC-101 | Anthropic | https://code.claude.com/docs/en/checkpointing | Official product documentation | Current Claude Code checkpoints | 2026-07-26 | Instructions, context, memory, skills, plugins, MCP, and hooks | Defines rewind scope and exclusions for Bash, subagent, and external changes; not a VCS replacement. |
+| SRC-102 | Anthropic | https://code.claude.com/docs/en/sub-agents | Official product documentation | Current built-in and custom subagents | 2026-07-26 | Cross-layer tooling matrix; Single-agent and multi-agent pattern catalog | Documents isolated context, definition precedence, permissions, background work, memory, hooks, MCP, skills, and worktree isolation. |
+| SRC-103 | Anthropic | https://code.claude.com/docs/en/agent-teams | Official experimental product documentation | Current Claude Code agent teams | 2026-07-26 | Cross-layer tooling matrix; Single-agent and multi-agent pattern catalog | Explicitly experimental and disabled by default; documents peer coordination, cost, resume, nesting, and ownership limitations. |
+| SRC-104 | Anthropic | https://code.claude.com/docs/en/worktrees | Official product documentation | Current Claude Code Git worktree isolation | 2026-07-26 | Single-agent and multi-agent pattern catalog | Documents CLI, Desktop, and subagent worktree isolation and cleanup behavior. |
+| SRC-105 | Anthropic | https://code.claude.com/docs/en/security | Official security documentation | Current Claude Code local and web threat boundaries | 2026-07-26 | Claude Code profile; Security, permission, audit, and recovery analysis | Cross-checks prompt-injection risk, review, permissions, sandboxing, hosted isolation, network, credentials, and audit controls. |
+| SRC-106 | Anthropic | https://code.claude.com/docs/en/agent-view | Official research-preview product documentation | Agent View in Claude Code 2.1.139+ | 2026-07-26 | Claude Code profile | Local supervisor runs full background sessions without an attached terminal; host shutdown stops them and each session consumes quota. |
 
 ## Gate 1 audit and handoff
 
