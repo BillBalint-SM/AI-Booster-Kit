@@ -2,17 +2,19 @@
 
 **Status:** Local synthetic validation contract; it does not authorize a remote operation.
 
+**Layering:** The behavior and coordination rules come from the [Common Agent Operating Model](agent-operating-model.md). Jira/Git/Confluence-specific source, artifact, permission, approval, and audit rules come from the [Jira–Git–Confluence Domain Adapter](jira-git-confluence-adapter.md).
+
 **Fixture:** Jira `G2AS-1`, Git commit `d0971f75c526250f9ee65b8b3b044a4788b31a46`, paths `docs/fixtures/G2AS-1.md` and `docs/fixtures/G2AS-1.json`, and the labelled Confluence projection recorded in the Gate 2 evidence.
 
 **Decision boundary:** Gate 2 is `remediate and repeat`. This runbook proves only local context handling and source-native evidence discipline. It does not prove Atlassian connector isolation, OAuth behavior, tenant permissions, latency, cost, Cursor behavior, Claude Code behavior, or Rovo safety.
 
-## Operating sequence
+## Domain-adapter sequence
 
 ```text
 read → validate → propose → approve → write → read back
 ```
 
-This runbook executes only the `read` and `validate` portions against the recorded synthetic fixture. The proposal and write sections define gates but are not executed by this local procedure.
+This runbook applies the domain adapter to the recorded synthetic fixture. It executes only the `observe/read` and `validate` portions; the proposal and write sections define domain gates but are not executed by this local procedure.
 
 ## 1. Research input contract
 

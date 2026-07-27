@@ -138,8 +138,11 @@ The next approval request must name the exact connector target-isolation change 
 
 ## Local operating-model implementation handoff
 
-- Canonical lifecycle contract: [`docs/operations/agent-operating-model.md`](../operations/agent-operating-model.md).
+- Domain-independent agent core: [`docs/operations/agent-operating-model.md`](../operations/agent-operating-model.md).
+- Jira/Git/Confluence domain adapter: [`docs/operations/jira-git-confluence-adapter.md`](../operations/jira-git-confluence-adapter.md).
 - Synthetic research/validation contract: [`docs/operations/g2as-research-validation-runbook.md`](../operations/g2as-research-validation-runbook.md).
-- The local contract implements the sequence `read → validate → propose → approve → write → read back`, but it does not grant authority or prove runtime behavior.
-- The strong single-agent pattern is the first operational model to validate against a measured baseline. Planner–implementer–reviewer, orchestrator–worker, parallel research/independent review, worktree-isolated parallel implementation, and experimental peer teams remain conditional patterns requiring separate comparable pilots.
+- Layer-separation plan: [`docs/superpowers/plans/2026-07-27-layer-separation-common-core.md`](../superpowers/plans/2026-07-27-layer-separation-common-core.md).
+- The core implements domain-independent coordination patterns and clean-context handoff; the adapter implements Jira/Git/Confluence source behavior. Neither grants authority or proves runtime behavior.
+- The strong single-agent pattern is the first operational model to validate against a measured baseline. Sequential, parallel, loop, router, aggregator, hierarchical, and network patterns remain selectable patterns requiring task-specific evidence; host adapters and domain workflows come later.
 - Current evidence still leaves Atlassian target isolation, direct REST/OAuth, Rovo, latency/freshness, cost, and Cursor/Claude Code host behavior unvalidated. The local contracts were implemented without changing source state.
+- The layer-separation correction is local documentation only; host-native adapters and team activation files remain the next separate slice.

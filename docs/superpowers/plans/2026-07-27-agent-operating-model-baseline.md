@@ -173,3 +173,7 @@ Plan executed inline after explicit user approval. Tasks 1–4 completed locally
 ## Execution note
 
 The original Task 4 verification snippet incorrectly required all operating-pattern and validation-classification strings in both runbooks. It was corrected to use file-specific required strings before the verification was rerun successfully.
+
+## Architecture correction note
+
+This plan's initial operating-model document mixed domain-independent agent behavior with Jira/Git/Confluence rules. That boundary was corrected in `docs/superpowers/plans/2026-07-27-layer-separation-common-core.md`. Treat this plan as the completed baseline milestone; treat the layer-separation plan and its resulting common core/domain adapter as the current architecture.

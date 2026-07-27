@@ -132,23 +132,27 @@ A design, plan, evidence, Task 8 report és ez az összefoglaló jelenleg uncomm
 - [Gate 2 plan](../superpowers/plans/2026-07-27-gate-2-jira-sandbox-pilot.md)
 - [Gate 2 design](../superpowers/specs/2026-07-27-gate-2-jira-sandbox-pilot-design.md)
 - [Agent operating model](../operations/agent-operating-model.md)
+- [Jira–Git–Confluence domain adapter](../operations/jira-git-confluence-adapter.md)
 - [G2AS research and validation runbook](../operations/g2as-research-validation-runbook.md)
 - [Task 8 report](../../.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-8-report.md)
 - [Task 8 brief](../../.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-8-brief.md)
 - [Gate 2 progress ledger](../../.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/progress.md)
 - [Agent operating model baseline plan](../superpowers/plans/2026-07-27-agent-operating-model-baseline.md)
+- [Common-core/domain-adapter separation plan](../superpowers/plans/2026-07-27-layer-separation-common-core.md)
 
 ## Context-switch handoff
 
 - Gate 1 research and audit are complete and already present in the branch history.
 - Gate 2 Tasks 1–9 are documented in the evidence, task reports, progress ledger, and this summary; the overall decision is `remediate and repeat`.
 - The local implementation plan at `docs/superpowers/plans/2026-07-27-agent-operating-model-baseline.md` was explicitly approved and executed in this worktree.
+- A focused correction then separated the domain-independent common core from the Jira/Git/Confluence adapter; the current slice is recorded in `docs/superpowers/plans/2026-07-27-layer-separation-common-core.md`.
 - The current worktree contains no application build/test manifest; this slice implemented documentation plus synthetic local validation, not a live Jira/Rovo/OAuth change.
 - No permission change, OAuth identity, Rovo retry, or additional external write occurred in this implementation slice.
 
 ## Implemented local operating contract
 
-- The canonical lifecycle is now documented as `read → validate → propose → approve → write → read back`.
-- The six operating patterns are named and gated in the operating-model runbook. Strong single-agent execution remains the first model to validate; the other five patterns require separate comparable pilots.
+- The domain-independent core now documents the `observe → validate → plan → coordinate → execute → verify → hand off` lifecycle and the eight control-flow patterns plus governance overlays.
+- Jira/Git/Confluence source truth, artifact, approval, write, read-back, audit, and recovery rules are isolated in the domain adapter. Strong single-agent execution remains the first model to validate; the other patterns require separate comparable pilots.
 - The G2AS research/validation runbook defines the accepted `G2AS-1` input contract, `MALFORMED_CONTEXT`, `STALE_CONTEXT`, `SCOPE_VIOLATION_STOP`, `BLOCKED / NOT EXECUTED`, `PASS`, and `UNKNOWN` classifications, and the no-write baseline.
-- These local implementation contracts do not prove Atlassian connector target isolation, OAuth behavior, tenant permissions, latency, cost, or Cursor/Claude Code runtime behavior.
+- These local implementation contracts do not prove Atlassian connector target isolation, OAuth behavior, tenant permissions, latency, cost, or Codex/Cursor/Claude Code runtime behavior.
+- The next slice is host-native adapters and a team activation package; no host configuration file is created by the current correction.
