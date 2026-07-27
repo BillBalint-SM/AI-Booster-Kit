@@ -42,7 +42,7 @@ Out of scope:
 | --- | --- | --- |
 | Codex | One local read-only run using the Codex adapter | `NOT EXECUTED` in this documentation slice |
 | Cursor | One local read-only run using the Cursor adapter | `EXECUTED`; behavior `PARTIAL`, security `NOT EVALUATED` |
-| Claude Code | One local read-only run using the Claude Code adapter | `EXECUTED`; independent behavior `FAIL`, security `NOT EVALUATED` |
+| Claude Code | One local read-only run using the Claude Code adapter | WSL `FAIL`; native Windows `PARTIAL`; security `NOT EVALUATED` |
 
 ## Risks and controls
 
