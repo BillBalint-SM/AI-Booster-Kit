@@ -149,10 +149,22 @@ A design, plan, evidence, Task 8 report és ez az összefoglaló jelenleg uncomm
 - The current worktree contains no application build/test manifest; this slice implemented documentation plus synthetic local validation, not a live Jira/Rovo/OAuth change.
 - No permission change, OAuth identity, Rovo retry, or additional external write occurred in this implementation slice.
 
+## Host activation milestone
+
+The host-native adapter and team activation slice is now documented:
+
+- [Host-native adapters and team activation plan](../superpowers/plans/2026-07-27-host-native-adapters-team-activation.md)
+- [Codex host adapter](../operations/host-adapters/codex.md)
+- [Cursor host adapter](../operations/host-adapters/cursor.md)
+- [Claude Code host adapter](../operations/host-adapters/claude-code.md)
+- [Team activation guide](../operations/team-activation-guide.md)
+
+These documents define how to express the common core in each host and how to activate it on a bounded task. They intentionally do not create host configuration, install or enable tools, grant permissions, or authorize external writes. Host runtime conformance remains unvalidated until each host is executed against the same bounded read-only cohort.
+
 ## Implemented local operating contract
 
 - The domain-independent core now documents the `observe → validate → plan → coordinate → execute → verify → hand off` lifecycle and the eight control-flow patterns plus governance overlays.
 - Jira/Git/Confluence source truth, artifact, approval, write, read-back, audit, and recovery rules are isolated in the domain adapter. Strong single-agent execution remains the first model to validate; the other patterns require separate comparable pilots.
 - The G2AS research/validation runbook defines the accepted `G2AS-1` input contract, `MALFORMED_CONTEXT`, `STALE_CONTEXT`, `SCOPE_VIOLATION_STOP`, `BLOCKED / NOT EXECUTED`, `PASS`, and `UNKNOWN` classifications, and the no-write baseline.
 - These local implementation contracts do not prove Atlassian connector target isolation, OAuth behavior, tenant permissions, latency, cost, or Codex/Cursor/Claude Code runtime behavior.
-- The next slice is host-native adapters and a team activation package; no host configuration file is created by the current correction.
+- The host-native adapter and team activation slice is complete as documentation; no host configuration file was created by this implementation.

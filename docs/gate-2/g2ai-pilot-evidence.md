@@ -145,4 +145,10 @@ The next approval request must name the exact connector target-isolation change 
 - The core implements domain-independent coordination patterns and clean-context handoff; the adapter implements Jira/Git/Confluence source behavior. Neither grants authority or proves runtime behavior.
 - The strong single-agent pattern is the first operational model to validate against a measured baseline. Sequential, parallel, loop, router, aggregator, hierarchical, and network patterns remain selectable patterns requiring task-specific evidence; host adapters and domain workflows come later.
 - Current evidence still leaves Atlassian target isolation, direct REST/OAuth, Rovo, latency/freshness, cost, and Cursor/Claude Code host behavior unvalidated. The local contracts were implemented without changing source state.
-- The layer-separation correction is local documentation only; host-native adapters and team activation files remain the next separate slice.
+- The layer-separation correction was local documentation only; at that milestone, host-native adapters and team activation files were the next separate slice.
+
+## Host-native activation handoff
+
+The next documentation milestone is complete and is recorded in the [host-native adapters and team activation plan](../superpowers/plans/2026-07-27-host-native-adapters-team-activation.md). It includes the [Codex adapter](../operations/host-adapters/codex.md), [Cursor adapter](../operations/host-adapters/cursor.md), [Claude Code adapter](../operations/host-adapters/claude-code.md), and [team activation guide](../operations/team-activation-guide.md).
+
+The adapters map the common core to native instruction, rules, memory, sub-agent, tool, and enforcement surfaces. They do not prove that a host loaded the guidance, do not install or enable a capability, and do not grant Jira, Git, Confluence, connector, or cloud authority. A comparable host run remains a future validation task.
