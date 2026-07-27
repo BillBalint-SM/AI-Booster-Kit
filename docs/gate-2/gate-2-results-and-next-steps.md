@@ -161,6 +161,10 @@ The host-native adapter and team activation slice is now documented:
 
 These documents define how to express the common core in each host and how to activate it on a bounded task. They intentionally do not create host configuration, install or enable tools, grant permissions, or authorize external writes. Host runtime conformance remains unvalidated until each host is executed against the same bounded read-only cohort.
 
+## Next bounded validation slice
+
+The approved next step is the [three-host read-only conformance pilot plan](../superpowers/plans/2026-07-27-host-conformance-pilot.md), using the [frozen pilot protocol](../operations/host-conformance-pilot.md) and one [evidence template per host](../operations/host-conformance-evidence-template.md). The pilot starts with strong single-agent execution and stops before any domain adapter or external write operation.
+
 ## Implemented local operating contract
 
 - The domain-independent core now documents the `observe → validate → plan → coordinate → execute → verify → hand off` lifecycle and the eight control-flow patterns plus governance overlays.

@@ -55,6 +55,8 @@ During the run, keep the host-native behavior visible: which instruction files l
 
 After the run, verify the artifacts independently. A successful response is not proof of source state. If the run is interrupted, stale, scope-mismatched, or ambiguous, preserve that result and classify it rather than retrying silently.
 
+For the first comparable Codex/Cursor/Claude Code activation, use the [three-host read-only conformance pilot](host-conformance-pilot.md) and its [evidence template](host-conformance-evidence-template.md). It is deliberately narrower than a domain workflow and stops before any external action.
+
 ## Clean-context handoff template
 
 Use this block in a plan, report, or review artifact:
