@@ -159,4 +159,6 @@ The first Codex CLI run is now recorded as [bounded conformance evidence](../ope
 
 The v2 remediation attempt is recorded in [Codex v2 bounded evidence](../operations/host-conformance-runs/codex-2026-07-27-v2.md). It correctly returned task status `BLOCKED` without retry/elevation, but the startup plugin-catalog network attempt and repeated Windows sandbox spawn failure make the full local-only conformance result `FAIL`. Further host execution remains blocked pending runtime-boundary remediation.
 
+The next operating-model activity is the [host-behavior diagnostic](../operations/host-behavior-diagnostic.md). It separates normal host behavior from security-boundary claims; the latter remains `NOT EVALUATED` until an independently verified restricted environment exists.
+
 The [Codex runtime-boundary diagnostic](../operations/host-conformance-runs/codex-runtime-boundary-diagnostic-2026-07-27.md) confirms that the operator's current local defaults are broader than the pilot boundary. This is machine-local evidence only; no global config, permission, plugin, hook, credential, or external source state was changed.

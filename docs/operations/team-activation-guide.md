@@ -57,6 +57,8 @@ After the run, verify the artifacts independently. A successful response is not 
 
 For the first comparable Codex/Cursor/Claude Code activation, use the [three-host read-only conformance pilot](host-conformance-pilot.md) and its [evidence template](host-conformance-evidence-template.md). It is deliberately narrower than a domain workflow and stops before any external action.
 
+Before interpreting that result, classify the run with the [host-behavior diagnostic](host-behavior-diagnostic.md). A behavior result and a security-boundary result are separate verdicts; do not use a normal host run as proof of effective sandbox or network isolation.
+
 ## Clean-context handoff template
 
 Use this block in a plan, report, or review artifact:
