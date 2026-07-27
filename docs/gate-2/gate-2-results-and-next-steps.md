@@ -169,6 +169,8 @@ The first Codex run is recorded in [Codex conformance evidence](../operations/ho
 
 The v2 remediation rerun is recorded in [Codex v2 conformance evidence](../operations/host-conformance-runs/codex-2026-07-27-v2.md). The task correctly stopped as `BLOCKED` without retry/elevation, but Codex startup attempted a remote plugin-catalog request and the Windows sandbox still could not spawn the required child process. The full local-only conformance result is therefore `FAIL`; no further rerun or domain pilot is authorized by this evidence.
 
+The supporting [Codex runtime-boundary diagnostic](../operations/host-conformance-runs/codex-runtime-boundary-diagnostic-2026-07-27.md) records the local defaults that explain why this machine is not a valid no-network/no-elevation proof environment. No setting was changed; the next decision must select a disposable restricted profile or explicitly reframe the test as host-behavior diagnostics.
+
 ## Implemented local operating contract
 
 - The domain-independent core now documents the `observe → validate → plan → coordinate → execute → verify → hand off` lifecycle and the eight control-flow patterns plus governance overlays.

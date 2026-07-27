@@ -60,3 +60,7 @@ Out of scope:
 ## Execution handoff
 
 The v2 protocol and remediation plan are committed separately from the v1 run evidence. Cursor and Claude Code remain unexecuted until the Codex remediation result is reviewed.
+
+## Runtime diagnostic result
+
+A read-only inspection of the operator's local Codex boundary settings is recorded in [Codex runtime-boundary diagnostic](../../operations/host-conformance-runs/codex-runtime-boundary-diagnostic-2026-07-27.md). The local defaults include live web access, network access, `danger-full-access`, elevated Windows sandboxing, plugin/marketplace sections, and hook state. No setting was changed. Further conformance rerun is deferred until a disposable no-network/no-elevation profile or a separately scoped host-behavior diagnostic is approved.
