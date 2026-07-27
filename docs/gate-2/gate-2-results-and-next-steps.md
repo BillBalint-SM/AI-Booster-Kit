@@ -165,6 +165,8 @@ These documents define how to express the common core in each host and how to ac
 
 The approved next step is the [three-host read-only conformance pilot plan](../superpowers/plans/2026-07-27-host-conformance-pilot.md), using the [frozen pilot protocol](../operations/host-conformance-pilot.md) and one [evidence template per host](../operations/host-conformance-evidence-template.md). The pilot starts with strong single-agent execution and stops before any domain adapter or external write operation.
 
+The first Codex run is recorded in [Codex conformance evidence](../operations/host-conformance-runs/codex-2026-07-27.md). It is `FAIL` with bounded evidence: the local read completed, but native instruction loading was `UNKNOWN`, the first read-only sandbox spawn failed before an elevated local retry, and the response omitted the complete layer mapping. No domain or external write pilot is promoted from this result.
+
 ## Implemented local operating contract
 
 - The domain-independent core now documents the `observe → validate → plan → coordinate → execute → verify → hand off` lifecycle and the eight control-flow patterns plus governance overlays.
