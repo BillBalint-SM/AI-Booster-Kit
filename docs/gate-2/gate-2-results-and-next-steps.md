@@ -171,7 +171,7 @@ The v2 remediation rerun is recorded in [Codex v2 conformance evidence](../opera
 
 The operating-model track now switches to the [host-behavior diagnostic](../operations/host-behavior-diagnostic.md). This permits documenting normal host behavior without treating it as security evidence. Security-boundary validation remains a separate future track requiring a disposable restricted environment.
 
-Cursor and Claude Code local execution remains `NOT EXECUTED`: Cursor Desktop `3.13.21` is installed but Cursor Agent CLI/WSL is unavailable, and Claude Code was not found in PATH or checked native locations. The separate [Cursor record](../operations/host-conformance-runs/cursor-2026-07-27.md) and [Claude Code record](../operations/host-conformance-runs/claude-code-2026-07-27.md) preserve this blocker and provide the team-run handoff.
+Cursor local execution is now recorded as behavior `PARTIAL` with security `NOT EVALUATED` in the separate [Cursor record](../operations/host-conformance-runs/cursor-2026-07-27.md); its [captured response](../operations/host-conformance-runs/cursor-2026-07-27-behavior-response.md) is preserved. Claude Code remains `NOT EXECUTED`, with its separate record providing the team-run handoff.
 
 The supporting [Codex runtime-boundary diagnostic](../operations/host-conformance-runs/codex-runtime-boundary-diagnostic-2026-07-27.md) records the local defaults that explain why this machine is not a valid no-network/no-elevation proof environment. No setting was changed; the next decision must select a disposable restricted profile or explicitly reframe the test as host-behavior diagnostics.
 

@@ -41,7 +41,7 @@ Out of scope:
 | Host | Required run | Current state |
 | --- | --- | --- |
 | Codex | One local read-only run using the Codex adapter | `NOT EXECUTED` in this documentation slice |
-| Cursor | One local read-only run using the Cursor adapter | `NOT EXECUTED`; host not connected here |
+| Cursor | One local read-only run using the Cursor adapter | `EXECUTED`; behavior `PARTIAL`, security `NOT EVALUATED` |
 | Claude Code | One local read-only run using the Claude Code adapter | `NOT EXECUTED`; host not connected here |
 
 ## Risks and controls

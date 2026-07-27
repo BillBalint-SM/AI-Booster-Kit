@@ -153,7 +153,7 @@ The next documentation milestone is complete and is recorded in the [host-native
 
 The adapters map the common core to native instruction, rules, memory, sub-agent, tool, and enforcement surfaces. They do not prove that a host loaded the guidance, do not install or enable a capability, and do not grant Jira, Git, Confluence, connector, or cloud authority. A comparable host run remains a future validation task.
 
-The approved follow-up is documented in the [three-host read-only conformance pilot plan](../superpowers/plans/2026-07-27-host-conformance-pilot.md), with the [frozen protocol](../operations/host-conformance-pilot.md) and [per-host evidence template](../operations/host-conformance-evidence-template.md). Until the actual runs are completed, Codex, Cursor, and Claude Code runtime behavior remains `NOT EXECUTED` rather than inferred.
+The approved follow-up is documented in the [three-host read-only conformance pilot plan](../superpowers/plans/2026-07-27-host-conformance-pilot.md), with the [frozen protocol](../operations/host-conformance-pilot.md) and [per-host evidence template](../operations/host-conformance-evidence-template.md). The Cursor behavior run is now completed with `PARTIAL` behavior and `NOT EVALUATED` security; Claude Code remains `NOT EXECUTED` rather than inferred.
 
 The first Codex CLI run is now recorded as [bounded conformance evidence](../operations/host-conformance-runs/codex-2026-07-27.md). Its result is `FAIL`, not a product-wide conclusion: the read-only local task completed, while native instruction loading stayed `UNKNOWN`, the initial Windows sandbox spawn failed before elevated retry, and the response did not explicitly map all four layers.
 
@@ -161,6 +161,6 @@ The v2 remediation attempt is recorded in [Codex v2 bounded evidence](../operati
 
 The next operating-model activity is the [host-behavior diagnostic](../operations/host-behavior-diagnostic.md). It separates normal host behavior from security-boundary claims; the latter remains `NOT EVALUATED` until an independently verified restricted environment exists.
 
-Cursor and Claude Code remain `NOT EXECUTED`: Cursor Desktop `3.13.21` is present, but the Cursor Agent CLI/WSL path is unavailable; Claude Code was not found in PATH or checked native locations. Their [Cursor availability record](../operations/host-conformance-runs/cursor-2026-07-27.md) and [Claude Code availability record](../operations/host-conformance-runs/claude-code-2026-07-27.md) preserve the evidence gap without inferring host behavior.
+Cursor behavior is now recorded as `PARTIAL` in the [Cursor behavior record](../operations/host-conformance-runs/cursor-2026-07-27.md), with the [captured response](../operations/host-conformance-runs/cursor-2026-07-27-behavior-response.md) preserved. Cursor security remains `NOT EVALUATED`. Claude Code remains `NOT EXECUTED`; its availability record preserves that evidence gap without inferring host behavior.
 
 The [Codex runtime-boundary diagnostic](../operations/host-conformance-runs/codex-runtime-boundary-diagnostic-2026-07-27.md) confirms that the operator's current local defaults are broader than the pilot boundary. This is machine-local evidence only; no global config, permission, plugin, hook, credential, or external source state was changed.
