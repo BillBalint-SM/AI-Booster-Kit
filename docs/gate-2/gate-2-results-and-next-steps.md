@@ -167,6 +167,8 @@ The approved next step is the [three-host read-only conformance pilot plan](../s
 
 The first Codex run is recorded in [Codex conformance evidence](../operations/host-conformance-runs/codex-2026-07-27.md). It is `FAIL` with bounded evidence: the local read completed, but native instruction loading was `UNKNOWN`, the first read-only sandbox spawn failed before an elevated local retry, and the response omitted the complete layer mapping. No domain or external write pilot is promoted from this result.
 
+The v2 remediation rerun is recorded in [Codex v2 conformance evidence](../operations/host-conformance-runs/codex-2026-07-27-v2.md). The task correctly stopped as `BLOCKED` without retry/elevation, but Codex startup attempted a remote plugin-catalog request and the Windows sandbox still could not spawn the required child process. The full local-only conformance result is therefore `FAIL`; no further rerun or domain pilot is authorized by this evidence.
+
 ## Implemented local operating contract
 
 - The domain-independent core now documents the `observe → validate → plan → coordinate → execute → verify → hand off` lifecycle and the eight control-flow patterns plus governance overlays.
