@@ -13,7 +13,7 @@
 - Version: `UNKNOWN`
 - Worktree: `C:\Users\littl\Documents\AI Booster Kit\.worktrees\gate-1-research`
 - Check performed: read-only `Get-Command claude` and `Get-Command claude-code`
-- Result: no Claude Code CLI was available in the current environment.
+- Result: no Claude Code binary was found in PATH or the checked native Windows installation locations. A Claude Desktop installation, if present under another path, would not itself prove Claude Code availability.
 
 ## Evidence boundary
 

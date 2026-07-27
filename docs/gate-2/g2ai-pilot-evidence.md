@@ -161,6 +161,6 @@ The v2 remediation attempt is recorded in [Codex v2 bounded evidence](../operati
 
 The next operating-model activity is the [host-behavior diagnostic](../operations/host-behavior-diagnostic.md). It separates normal host behavior from security-boundary claims; the latter remains `NOT EVALUATED` until an independently verified restricted environment exists.
 
-Cursor and Claude Code remain `NOT EXECUTED` in this environment because neither CLI was available. Their [Cursor availability record](../operations/host-conformance-runs/cursor-2026-07-27.md) and [Claude Code availability record](../operations/host-conformance-runs/claude-code-2026-07-27.md) preserve the evidence gap without inferring host behavior.
+Cursor and Claude Code remain `NOT EXECUTED`: Cursor Desktop `3.13.21` is present, but the Cursor Agent CLI/WSL path is unavailable; Claude Code was not found in PATH or checked native locations. Their [Cursor availability record](../operations/host-conformance-runs/cursor-2026-07-27.md) and [Claude Code availability record](../operations/host-conformance-runs/claude-code-2026-07-27.md) preserve the evidence gap without inferring host behavior.
 
 The [Codex runtime-boundary diagnostic](../operations/host-conformance-runs/codex-runtime-boundary-diagnostic-2026-07-27.md) confirms that the operator's current local defaults are broader than the pilot boundary. This is machine-local evidence only; no global config, permission, plugin, hook, credential, or external source state was changed.
