@@ -135,3 +135,11 @@
 **Overall decision: `remediate and repeat`.** Retain the manual source-native path for the current workflow. Do not promote Rovo or direct REST. A repeat is allowed only after target isolation is proven, the optional read-only OAuth diagnostic is repaired without widening scope, the Confluence permission review is closed, and a fixed read-only cohort is run across the available hosts with latency, freshness, interruption, audit, and actual usage evidence. No production integration, new identity, paid service, Rovo Write, or additional Jira write is authorized by this decision.
 
 The next approval request must name the exact connector target-isolation change and its owner. No Rovo rerun, OAuth scope expansion, permission expansion, or recovery write is permitted before that approval.
+
+## Local operating-model implementation handoff
+
+- Canonical lifecycle contract: [`docs/operations/agent-operating-model.md`](../operations/agent-operating-model.md).
+- Synthetic research/validation contract: [`docs/operations/g2as-research-validation-runbook.md`](../operations/g2as-research-validation-runbook.md).
+- The local contract implements the sequence `read → validate → propose → approve → write → read back`, but it does not grant authority or prove runtime behavior.
+- The strong single-agent pattern is the first operational model to validate against a measured baseline. Planner–implementer–reviewer, orchestrator–worker, parallel research/independent review, worktree-isolated parallel implementation, and experimental peer teams remain conditional patterns requiring separate comparable pilots.
+- Current evidence still leaves Atlassian target isolation, direct REST/OAuth, Rovo, latency/freshness, cost, and Cursor/Claude Code host behavior unvalidated. The local contracts were implemented without changing source state.

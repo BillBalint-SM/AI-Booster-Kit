@@ -131,6 +131,8 @@ A design, plan, evidence, Task 8 report és ez az összefoglaló jelenleg uncomm
 - [Gate 2 evidence](./g2ai-pilot-evidence.md)
 - [Gate 2 plan](../superpowers/plans/2026-07-27-gate-2-jira-sandbox-pilot.md)
 - [Gate 2 design](../superpowers/specs/2026-07-27-gate-2-jira-sandbox-pilot-design.md)
+- [Agent operating model](../operations/agent-operating-model.md)
+- [G2AS research and validation runbook](../operations/g2as-research-validation-runbook.md)
 - [Task 8 report](../../.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-8-report.md)
 - [Task 8 brief](../../.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-8-brief.md)
 - [Gate 2 progress ledger](../../.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/progress.md)
@@ -140,6 +142,13 @@ A design, plan, evidence, Task 8 report és ez az összefoglaló jelenleg uncomm
 
 - Gate 1 research and audit are complete and already present in the branch history.
 - Gate 2 Tasks 1–9 are documented in the evidence, task reports, progress ledger, and this summary; the overall decision is `remediate and repeat`.
-- The next local implementation plan is drafted at `docs/superpowers/plans/2026-07-27-agent-operating-model-baseline.md` and is awaiting explicit approval before execution.
-- The current worktree contains no application build/test manifest; the next approved slice is documentation plus synthetic local validation, not a live Jira/Rovo/OAuth change.
-- No commit, push, permission change, OAuth identity, Rovo retry, or additional external write is implied by the next plan until separately authorized.
+- The local implementation plan at `docs/superpowers/plans/2026-07-27-agent-operating-model-baseline.md` was explicitly approved and executed in this worktree.
+- The current worktree contains no application build/test manifest; this slice implemented documentation plus synthetic local validation, not a live Jira/Rovo/OAuth change.
+- No permission change, OAuth identity, Rovo retry, or additional external write occurred in this implementation slice.
+
+## Implemented local operating contract
+
+- The canonical lifecycle is now documented as `read → validate → propose → approve → write → read back`.
+- The six operating patterns are named and gated in the operating-model runbook. Strong single-agent execution remains the first model to validate; the other five patterns require separate comparable pilots.
+- The G2AS research/validation runbook defines the accepted `G2AS-1` input contract, `MALFORMED_CONTEXT`, `STALE_CONTEXT`, `SCOPE_VIOLATION_STOP`, `BLOCKED / NOT EXECUTED`, `PASS`, and `UNKNOWN` classifications, and the no-write baseline.
+- These local implementation contracts do not prove Atlassian connector target isolation, OAuth behavior, tenant permissions, latency, cost, or Cursor/Claude Code runtime behavior.
