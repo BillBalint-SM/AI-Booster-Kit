@@ -63,6 +63,8 @@ test("GitHub metadata: provides the approved read-only review contract", async (
 });
 
 test("documentation links: resolves local Markdown but skips anchors and URLs", () => {
+  const repositoryRoot = join(tmpdir(), "docs-links-root");
+
   assert.deepEqual(
     extractLocalMarkdownLinks(
       "[local](guide.md) [anchor](#rule) [web](https://example.test) `[inline](ignored-inline.md)`\n```md\n[fenced](ignored.md)\n```",
@@ -70,14 +72,14 @@ test("documentation links: resolves local Markdown but skips anchors and URLs", 
     ["guide.md"],
   );
   assert.equal(
-    resolveLocalMarkdownLink("docs/project/map.md", "../runbooks/example.md#run", "C:/repo"),
-    "C:/repo/docs/runbooks/example.md",
+    resolveLocalMarkdownLink("docs/project/map.md", "../runbooks/example.md#run", repositoryRoot),
+    join(repositoryRoot, "docs", "runbooks", "example.md").replaceAll("\\", "/"),
   );
   assert.equal(
-    resolveLocalMarkdownLink("docs/project/map.md", "../../runbooks/example.md", "C:/repo"),
-    "C:/repo/runbooks/example.md",
+    resolveLocalMarkdownLink("docs/project/map.md", "../../runbooks/example.md", repositoryRoot),
+    join(repositoryRoot, "runbooks", "example.md").replaceAll("\\", "/"),
   );
-  assert.equal(resolveLocalMarkdownLink("docs/project/map.md", "../../../outside.md", "C:/repo"), null);
+  assert.equal(resolveLocalMarkdownLink("docs/project/map.md", "../../../outside.md", repositoryRoot), null);
 });
 
 test("documentation links: requires a matching fence length before resuming extraction", () => {
