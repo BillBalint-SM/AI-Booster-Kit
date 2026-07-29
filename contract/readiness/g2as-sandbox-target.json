@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "tenantUrl": "https://pte-politechnika.atlassian.net",
+  "jira": { "projectKey": "G2AS", "issueKey": "G2AS-1", "expectedStatus": "To Do" },
+  "confluence": { "spaceKey": "G2AS", "pageId": "31752193" },
+  "github": {
+    "repository": "BillBalint-SM/ultimate-longshot-gate2-sandbox",
+    "branch": "main",
+    "commit": "d0971f75c526250f9ee65b8b3b044a4788b31a46",
+    "fixturePaths": ["docs/fixtures/G2AS-1.md", "docs/fixtures/G2AS-1.json"]
+  }
+}

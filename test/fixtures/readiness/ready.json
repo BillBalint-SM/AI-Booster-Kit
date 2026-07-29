@@ -1,0 +1,10 @@
+{
+  "correlationId": "g2as-readiness-ready-001",
+  "runAt": "2026-07-29T10:00:00.000Z",
+  "observations": [
+    { "source": "jira", "state": "verified", "readPath": "mcp", "capabilityState": "verified", "observedIds": { "tenantOrigin": "https://pte-politechnika.atlassian.net", "projectId": "10001", "projectKey": "G2AS", "issueId": "10002", "issueKey": "G2AS-1", "status": "To Do" }, "evidenceRefs": ["jira:issue:10002"], "diagnosticCode": "NONE", "observedAt": "2026-07-29T10:00:01.000Z" },
+    { "source": "confluence", "state": "verified", "readPath": "mcp", "capabilityState": "verified", "observedIds": { "tenantOrigin": "https://pte-politechnika.atlassian.net", "spaceId": "10003", "spaceKey": "G2AS", "pageId": "31752193" }, "evidenceRefs": ["confluence:page:31752193"], "diagnosticCode": "NONE", "observedAt": "2026-07-29T10:00:02.000Z" },
+    { "source": "github", "state": "verified", "readPath": "mcp", "capabilityState": "verified", "observedIds": { "repositoryId": "10004", "repository": "BillBalint-SM/ultimate-longshot-gate2-sandbox", "branch": "main", "commit": "d0971f75c526250f9ee65b8b3b044a4788b31a46", "fixturePathOne": "docs/fixtures/G2AS-1.md", "fixturePathTwo": "docs/fixtures/G2AS-1.json" }, "evidenceRefs": ["github:commit:d0971f75c526250f9ee65b8b3b044a4788b31a46"], "diagnosticCode": "NONE", "observedAt": "2026-07-29T10:00:03.000Z" },
+    { "source": "traceability", "state": "verified", "readPath": "tenant_aware_chrome", "capabilityState": "verified", "observedIds": { "jiraIssueKey": "G2AS-1", "githubCommit": "d0971f75c526250f9ee65b8b3b044a4788b31a46", "confluencePageId": "31752193", "jiraGitLinkId": "10005", "jiraGitLinkedCommit": "d0971f75c526250f9ee65b8b3b044a4788b31a46", "confluenceJiraRefId": "10006", "confluenceJiraReferencedKey": "G2AS-1", "confluenceGitRefId": "10007", "confluenceGitReferencedCommit": "d0971f75c526250f9ee65b8b3b044a4788b31a46" }, "evidenceRefs": ["traceability:chain:10005"], "diagnosticCode": "NONE", "observedAt": "2026-07-29T10:00:04.000Z" }
+  ]
+}

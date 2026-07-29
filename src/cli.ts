@@ -1,4 +1,4 @@
-import { readFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 
 import { claudeCodeAdapter } from "./adapters/claude-code.js";
 import { codexAdapter } from "./adapters/codex.js";
@@ -6,6 +6,10 @@ import { cursorAdapter } from "./adapters/cursor.js";
 import { parseMarkdownContract, validateContractPath } from "./contract/markdown.js";
 import { validateCanonicalEvent } from "./events/envelope.js";
 import { assertSafeEvidenceRefs, EvidenceValidationError } from "./orchestrator/evidence.js";
+import { loadG2asReadinessManifest } from "./readiness/manifest.js";
+import { type ReadinessAdapter, type ReadinessObservationBundle } from "./readiness/observations.js";
+import { renderCertificateJson, renderCertificateMarkdown } from "./readiness/render.js";
+import { runReadinessCertificate } from "./readiness/run.js";
 
 const helpText = `Usage: npm run cli -- <command>
 
@@ -14,6 +18,7 @@ Commands:
   finalize      Finalize an accepted work artifact
   sync          Validate local planned or local-result sync output
   conformance   Run cross-host conformance checks
+  readiness     Generate a local G2AS Sandbox Readiness Certificate
 `;
 
 export async function runCli(argv: readonly string[]): Promise<number> {
@@ -43,6 +48,7 @@ async function dispatchCli(argv: readonly string[]): Promise<number> {
   if (command === "finalize") return runFinalize(argv.slice(1));
   if (command === "sync") return runSync(argv.slice(1));
   if (command === "conformance") return runConformance(argv.slice(1));
+  if (command === "readiness") return runReadiness(argv.slice(1));
 
   throw new CliError("CONFIGURATION_ERROR", 4);
 }
@@ -100,6 +106,51 @@ async function runConformance(argv: readonly string[]): Promise<number> {
   });
   process.stdout.write(`${JSON.stringify({ comparable: true, adapters })}\n`);
   return 0;
+}
+
+async function runReadiness(argv: readonly string[]): Promise<number> {
+  if (
+    argv[0] !== "--manifest" ||
+    argv[1] === undefined ||
+    argv[2] !== "--observations" ||
+    argv[3] === undefined ||
+    argv[4] !== "--output-dir" ||
+    argv[5] === undefined ||
+    argv.length !== 6
+  ) {
+    throw new CliError("CONFIGURATION_ERROR", 4);
+  }
+
+  try {
+    const manifest = await loadG2asReadinessManifest(argv[1]);
+    const certificate = await runReadinessCertificate(manifest, createLocalObservationAdapter(argv[3]));
+    const json = renderCertificateJson(certificate);
+    const markdown = renderCertificateMarkdown(certificate);
+
+    await mkdir(argv[5], { recursive: true });
+    await writeFile(`${argv[5]}/g2as-sandbox-readiness-certificate.json`, json, "utf8");
+    await writeFile(`${argv[5]}/g2as-sandbox-readiness-certificate.md`, markdown, "utf8");
+
+    process.stdout.write(`${JSON.stringify({ decision: certificate.decision })}\n`);
+    return readinessExitCode(certificate.decision);
+  } catch (error) {
+    if (error instanceof CliError) throw error;
+    throw new CliError("CONFIGURATION_ERROR", 4);
+  }
+}
+
+function createLocalObservationAdapter(path: string): ReadinessAdapter {
+  return {
+    async read(): Promise<ReadinessObservationBundle> {
+      return JSON.parse(await readLocalFile(path)) as ReadinessObservationBundle;
+    },
+  };
+}
+
+function readinessExitCode(decision: "READY" | "NOT READY" | "STOPPED"): 0 | 2 | 3 {
+  if (decision === "READY") return 0;
+  if (decision === "NOT READY") return 2;
+  return 3;
 }
 
 function parseSafeEvent(source: string) {
