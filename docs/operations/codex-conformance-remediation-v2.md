@@ -4,7 +4,7 @@
 
 **Purpose:** Correct the first Codex pilot's missing layer mapping and prevent a sandbox failure from being hidden by retry or elevation.
 
-**Related v1 evidence:** [Codex run — 2026-07-27](host-conformance-runs/codex-2026-07-27.md)
+**Related v1 evidence:** [Codex run — 2026-07-27](../history/host-conformance/codex-2026-07-27.md)
 
 ## Invocation boundary
 

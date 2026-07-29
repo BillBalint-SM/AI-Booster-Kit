@@ -57,8 +57,8 @@ Require a measured strong single-agent baseline before any sub-agent or peer pat
 
 **Files:**
 - Create: `docs/operations/g2as-research-validation-runbook.md`
-- Read: `docs/gate-2/g2ai-pilot-evidence.md`
-- Read: `docs/gate-2/gate-2-results-and-next-steps.md`
+- Read: `docs/history/gate-2/g2ai-pilot-evidence.md`
+- Read: `docs/history/gate-2/gate-2-results-and-next-steps.md`
 
 **Interfaces:**
 - Consumes: G2AS-1 accepted Jira context, Git SHA `d0971f75c526250f9ee65b8b3b044a4788b31a46`, fixture paths, Confluence projection, and Task 9 decision.
@@ -83,8 +83,8 @@ Require fresh approval, exact target/action, duplicate rule, pre-read, post-read
 ### Task 3: Connect the runbooks to the Gate 2 decision record
 
 **Files:**
-- Modify: `docs/gate-2/gate-2-results-and-next-steps.md`
-- Modify: `docs/gate-2/g2ai-pilot-evidence.md`
+- Modify: `docs/history/gate-2/gate-2-results-and-next-steps.md`
+- Modify: `docs/history/gate-2/g2ai-pilot-evidence.md`
 
 **Interfaces:**
 - Consumes: Tasks 1–2 runbooks and current Task 9 scorecard.

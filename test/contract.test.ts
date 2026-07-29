@@ -90,6 +90,16 @@ test("contract: declares the approval-gated sandbox readiness certificate", asyn
     )?.state,
     "unsupported",
   );
+  assert.deepEqual(
+    contract.capabilities.find(
+      (capability) => capability.name === "Native GitHub MCP read-only capability standard",
+    ),
+    {
+      name: "Native GitHub MCP read-only capability standard",
+      state: "requires_approval",
+      limitation: "Provides declarative host templates and local validation only; external connector setup and authorization remain outside this contract.",
+    },
+  );
 });
 
 test("contract: rejects a document without frontmatter with its source path", () => {

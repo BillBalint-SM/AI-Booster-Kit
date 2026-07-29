@@ -5,6 +5,7 @@ import { test } from "node:test";
 import { evaluateReadiness, type ReadinessCertificate } from "../src/readiness/evaluate.js";
 import { parseG2asReadinessManifest } from "../src/readiness/manifest.js";
 import { parseReadinessObservationBundle, type ReadinessObservationBundle } from "../src/readiness/observations.js";
+import { readinessCapability } from "./readiness-capability.js";
 import { renderCertificateJson, renderCertificateMarkdown } from "../src/readiness/render.js";
 
 const manifest = parseG2asReadinessManifest({
@@ -22,7 +23,7 @@ const manifest = parseG2asReadinessManifest({
 
 test("readiness renderer: produces equivalent safe JSON and Markdown for every fixture", async () => {
   for (const fixtureName of ["ready.json", "not-ready.json", "stopped.json"]) {
-    const certificate = evaluateReadiness(manifest, await readBundle(fixtureName));
+    const certificate = evaluateReadiness(manifest, await readBundle(fixtureName), readinessCapability);
     const json = renderCertificateJson(certificate);
     const markdown = renderCertificateMarkdown(certificate);
     const rendered = JSON.parse(json) as Record<string, unknown>;
@@ -68,7 +69,7 @@ test("readiness renderer: produces equivalent safe JSON and Markdown for every f
 });
 
 test("readiness renderer: rejects unsafe caller-supplied certificate text", async () => {
-  const certificate = evaluateReadiness(manifest, await readBundle("ready.json"));
+  const certificate = evaluateReadiness(manifest, await readBundle("ready.json"), readinessCapability);
   const unsafeCertificate: ReadinessCertificate = {
     ...certificate,
     correlationId: "raw transcript fixture-secret",
@@ -79,7 +80,7 @@ test("readiness renderer: rejects unsafe caller-supplied certificate text", asyn
 });
 
 test("readiness renderer: rejects object values without coercion or toJSON", async () => {
-  const certificate = evaluateReadiness(manifest, await readBundle("ready.json"));
+  const certificate = evaluateReadiness(manifest, await readBundle("ready.json"), readinessCapability);
   const mutations: Array<(value: ReadinessCertificate, malicious: object) => ReadinessCertificate> = [
     (value, malicious) => ({ ...value, correlationId: malicious as never }),
     (value, malicious) => ({ ...value, runAt: malicious as never }),

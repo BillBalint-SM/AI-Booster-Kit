@@ -27,13 +27,22 @@ payloads, transcripts, credentials, authorization data, cookies, arbitrary
 URLs, and unrecognized fields. It also does not retry unknown external results
 or offer a bypass for a hard stop.
 
+The native GitHub MCP read-only capability standard is declared in
+`contract/mcp-capabilities/github-readonly.json`. Its Codex, Claude Code, and
+Cursor Markdown templates are generated projections under `templates/hosts/`.
+They describe the exact read-only evidence boundary; they do not install or
+configure an MCP server, request OAuth, or authorize a connector. A valid
+certificate requires capability evidence matching the manifest and a native
+GitHub Smart Link in the Confluence traceability observation. A text-only Git
+reference is a hard stop.
+
 ## Local command
 
 Choose one explicit local output directory. The command creates only the
 Markdown and JSON certificate files in that directory:
 
 ```powershell
-npm run cli -- readiness --manifest contract/readiness/g2as-sandbox-target.json --observations <approved-normalized-observations.json> --output-dir <certificate-output-directory>
+npm run cli -- readiness --manifest contract/readiness/g2as-sandbox-target.json --capability contract/mcp-capabilities/github-readonly.json --observations <approved-normalized-observations.json> --output-dir <certificate-output-directory>
 ```
 
 The output declares `externalWriteCount: 0`; local output files are the only
@@ -48,7 +57,7 @@ Confluence, GitHub, MCP, browser, OAuth, credential, or network operation.
 | --- | --- | --- |
 | Static analysis | `npm run lint` | Passed |
 | Build | `npm run build` | Passed |
-| Full local suite | `npm test` | 128 passed, 0 failed |
+| Full local suite | `npm test` | 144 passed, 0 failed |
 | CLI ready fixture | `test/fixtures/readiness/ready.json` | `READY`, exit `0`, exactly two local certificate files, `externalWriteCount: 0` |
 | CLI capability-stop fixture | `test/fixtures/readiness/not-ready.json` | `STOPPED`, exit `3`, exactly two local certificate files, `externalWriteCount: 0` |
 | CLI target-stop fixture | `test/fixtures/readiness/stopped.json` | `STOPPED`, exit `3`, exactly two local certificate files, `externalWriteCount: 0` |

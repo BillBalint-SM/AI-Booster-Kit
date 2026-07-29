@@ -50,6 +50,7 @@ test("readiness observations: accepts exact tenant origins and complete native t
     confluenceJiraReferencedKey: "G2AS-1",
     confluenceGitRefId: "10007",
     confluenceGitReferencedCommit: "d0971f75c526250f9ee65b8b3b044a4788b31a46",
+    confluenceGitReferenceKind: "smart_link",
   });
 });
 
@@ -67,6 +68,7 @@ test("readiness observations: requires tenant origins and every native trace ref
     ["traceability", "confluenceJiraReferencedKey"],
     ["traceability", "confluenceGitRefId"],
     ["traceability", "confluenceGitReferencedCommit"],
+    ["traceability", "confluenceGitReferenceKind"],
   ];
 
   for (const [source, field] of requiredFields) {
@@ -188,6 +190,23 @@ test("readiness observations: rejects calendar-overflow ISO timestamps", async (
 
 test("readiness observations: rejects the unsafe fixture", async () => {
   assertRejected(await readFixture("unsafe-observation.json"), "unsafe field");
+});
+
+test("readiness observations: requires strict GitHub capability evidence", async () => {
+  const fixture = await readFixture("ready.json");
+  const observations = fixture.observations as Array<Record<string, unknown>>;
+  const github = observations.find((observation) => observation.source === "github");
+  if (github === undefined || github.capabilityEvidence === undefined) throw new Error("ready fixture is incomplete");
+
+  const missing = structuredClone(fixture) as unknown as { observations: Array<Record<string, unknown>> };
+  delete missing.observations.find((observation) => observation.source === "github")?.capabilityEvidence;
+  assert.throws(() => parseReadinessObservationBundle(missing), /capability evidence/);
+
+  const unsupportedHost = structuredClone(fixture) as unknown as { observations: Array<Record<string, unknown>> };
+  const githubRecord = unsupportedHost.observations.find((observation) => observation.source === "github");
+  if (githubRecord === undefined) throw new Error("ready fixture is incomplete");
+  githubRecord.capabilityEvidence = { ...github.capabilityEvidence, host: "unknown" };
+  assert.throws(() => parseReadinessObservationBundle(unsupportedHost), /capability evidence/);
 });
 
 test("readiness observations: invokes the injected adapter once without network or credential behavior", async () => {

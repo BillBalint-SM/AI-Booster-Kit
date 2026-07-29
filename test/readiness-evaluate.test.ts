@@ -2,10 +2,15 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { test } from "node:test";
 
-import { evaluateReadiness } from "../src/readiness/evaluate.js";
+import { evaluateReadiness as evaluateReadinessWithCapability } from "../src/readiness/evaluate.js";
 import { parseG2asReadinessManifest } from "../src/readiness/manifest.js";
 import { parseReadinessObservationBundle } from "../src/readiness/observations.js";
 import type { ReadinessObservationBundle } from "../src/readiness/observations.js";
+import { readinessCapability } from "./readiness-capability.js";
+
+function evaluateReadiness(manifestValue: typeof manifest, bundle: ReadinessObservationBundle) {
+  return evaluateReadinessWithCapability(manifestValue, bundle, readinessCapability);
+}
 
 const manifest = parseG2asReadinessManifest({
   version: 1,
@@ -31,6 +36,27 @@ test("readiness evaluator: certifies all four exact checks as ready without writ
   assert.deepEqual(certificate.unchangedSystems, ["jira", "confluence", "github"]);
   assert.deepEqual(certificate.decisionOptions, ["Continue", "Stop"]);
   assert.equal(certificate.remediation.length, 0);
+});
+
+test("readiness evaluator: requires exact capability evidence and a native Confluence Git reference", async () => {
+  const ready = await readBundle("ready.json");
+  const github = ready.observations.find((observation) => observation.source === "github");
+  const traceability = ready.observations.find((observation) => observation.source === "traceability");
+  if (github === undefined || traceability === undefined || github.capabilityEvidence === undefined) throw new Error("ready fixture is incomplete");
+
+  const capabilityMismatch = replaceObservation(ready, "github", {
+    capabilityEvidence: { ...github.capabilityEvidence, scopeFingerprint: "0".repeat(64) },
+  });
+  assert.equal(evaluateReadiness(manifest, capabilityMismatch).decision, "STOPPED");
+  assert.equal(evaluateReadiness(manifest, capabilityMismatch).checks[2]?.diagnosticCode, "CAPABILITY_UNKNOWN");
+
+  const textOnly = replaceObservation(ready, "traceability", {
+    observedIds: { ...traceability.observedIds, confluenceGitReferenceKind: "text" },
+  });
+  const textCertificate = evaluateReadiness(manifest, textOnly);
+  assert.equal(textCertificate.decision, "STOPPED");
+  assert.equal(textCertificate.checks[3]?.diagnosticCode, "TRACEABILITY_MISMATCH");
+  assert.deepEqual(textCertificate.decisionOptions, ["Stop"]);
 });
 
 test("readiness evaluator: stops unknown capability and timeout observations", async () => {

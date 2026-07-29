@@ -22,7 +22,7 @@
 - Modify: `docs/operations/agent-operating-model.md` — domain-independent common core.
 - Create: `docs/operations/jira-git-confluence-adapter.md` — later integration/domain layer.
 - Modify: `docs/operations/g2as-research-validation-runbook.md` — point to core and adapter separately.
-- Modify: `docs/gate-2/g2ai-pilot-evidence.md` and `docs/gate-2/gate-2-results-and-next-steps.md` — update traceable handoff links and scope statements.
+- Modify: `docs/history/gate-2/g2ai-pilot-evidence.md` and `docs/history/gate-2/gate-2-results-and-next-steps.md` — update traceable handoff links and scope statements.
 
 ## Acceptance criteria
 

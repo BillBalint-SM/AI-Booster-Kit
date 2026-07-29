@@ -1,5 +1,7 @@
 import { createHash } from "node:crypto";
 
+import { githubScopeFingerprint } from "../capabilities/manifest.js";
+import type { GithubReadOnlyCapability } from "../capabilities/types.js";
 import type {
   ReadinessObservation,
   ReadinessObservationBundle,
@@ -43,8 +45,9 @@ const permittedReadPaths: readonly ReadPath[] = ["mcp", "tenant_aware_chrome"];
 export function evaluateReadiness(
   manifest: G2asReadinessManifest,
   bundle: ReadinessObservationBundle,
+  capability: GithubReadOnlyCapability,
 ): ReadinessCertificate {
-  const checks = sourceNames.map((source) => evaluateSource(manifest, bundle, source)) as ReadinessCertificate["checks"];
+  const checks = sourceNames.map((source) => evaluateSource(manifest, bundle, source, capability)) as ReadinessCertificate["checks"];
   const decision = decide(checks);
   const remediation = unique(checks.filter((check) => check.state !== "verified" || check.diagnosticCode !== "NONE").map((check) => check.nextAction));
 
@@ -66,6 +69,7 @@ function evaluateSource(
   manifest: G2asReadinessManifest,
   bundle: ReadinessObservationBundle,
   source: SourceName,
+  capability: GithubReadOnlyCapability,
 ): ReadinessCheck {
   const observation = bundle.observations.find((candidate) => candidate.source === source);
   const expected = expectedIds(manifest, source);
@@ -75,13 +79,13 @@ function evaluateSource(
   }
 
   const observed = allowedObservedIds(observation, source);
-  const evaluation = evaluateObservation(manifest, observation, expected, observed);
+  const evaluation = evaluateObservation(manifest, observation, expected, observed, capability);
 
   return createCheck(
     source,
     evaluation.state,
     observation.readPath,
-    observation.capabilityState,
+    evaluation.capabilityState,
     evaluation.diagnosticCode,
     observation.evidenceRefs,
     expected,
@@ -94,31 +98,37 @@ function evaluateObservation(
   observation: ReadinessObservation,
   expected: Record<string, string>,
   observed: Record<string, string>,
-): { state: CheckState; diagnosticCode: ReadinessObservation["diagnosticCode"] } {
+  capability: GithubReadOnlyCapability,
+): { state: CheckState; diagnosticCode: ReadinessObservation["diagnosticCode"]; capabilityState: "verified" | "unknown" } {
   if (!permittedReadPaths.includes(observation.readPath)) {
-    return { state: "unknown", diagnosticCode: "SCOPE_UNVERIFIED" };
+    return { state: "unknown", diagnosticCode: "SCOPE_UNVERIFIED", capabilityState: observation.capabilityState };
   }
 
   if (observation.capabilityState === "unknown") {
-    return { state: "unknown", diagnosticCode: "CAPABILITY_UNKNOWN" };
+    return { state: "unknown", diagnosticCode: "CAPABILITY_UNKNOWN", capabilityState: "unknown" };
+  }
+
+  if (observation.source === "github" && (observation.capabilityEvidence === undefined || observation.capabilityEvidence.state !== "verified" || observation.capabilityEvidence.capabilityId !== capability.capabilityId || observation.capabilityEvidence.capabilityVersion !== capability.version || observation.capabilityEvidence.scopeFingerprint !== githubScopeFingerprint(capability) || !capability.requiredHosts.includes(observation.capabilityEvidence.host))) {
+    return { state: "unknown", diagnosticCode: "CAPABILITY_UNKNOWN", capabilityState: "unknown" };
   }
 
   if (observation.diagnosticCode === "TIMEOUT_UNKNOWN" || observation.diagnosticCode === "SCOPE_UNVERIFIED") {
-    return { state: "unknown", diagnosticCode: observation.diagnosticCode };
+    return { state: "unknown", diagnosticCode: observation.diagnosticCode, capabilityState: observation.capabilityState };
   }
 
   if (!matchesExpected(manifest, observation.source, observed)) {
     return {
       state: "mismatch",
       diagnosticCode: observation.source === "traceability" ? "TRACEABILITY_MISMATCH" : "TARGET_MISMATCH",
+      capabilityState: observation.capabilityState,
     };
   }
 
   if (observation.state !== "verified" || observation.diagnosticCode !== "NONE") {
-    return { state: observation.state, diagnosticCode: observation.diagnosticCode };
+    return { state: observation.state, diagnosticCode: observation.diagnosticCode, capabilityState: observation.capabilityState };
   }
 
-  return { state: "verified", diagnosticCode: "NONE" };
+  return { state: "verified", diagnosticCode: "NONE", capabilityState: observation.capabilityState };
 }
 
 function createCheck(
@@ -164,6 +174,7 @@ function expectedIds(manifest: G2asReadinessManifest, source: SourceName): Recor
     jiraGitLinkedCommit: manifest.github.commit,
     confluenceJiraReferencedKey: manifest.jira.issueKey,
     confluenceGitReferencedCommit: manifest.github.commit,
+    confluenceGitReferenceKind: "smart_link",
   };
 }
 
@@ -178,7 +189,7 @@ function fieldsFor(source: SourceName): readonly string[] {
   if (source === "jira") return ["tenantOrigin", "projectKey", "issueKey", "status"];
   if (source === "confluence") return ["tenantOrigin", "spaceKey", "pageId"];
   if (source === "github") return ["repository", "branch", "commit", "fixturePathOne", "fixturePathTwo"];
-  return ["jiraIssueKey", "githubCommit", "confluencePageId", "jiraGitLinkId", "jiraGitLinkedCommit", "confluenceJiraRefId", "confluenceJiraReferencedKey", "confluenceGitRefId", "confluenceGitReferencedCommit"];
+  return ["jiraIssueKey", "githubCommit", "confluencePageId", "jiraGitLinkId", "jiraGitLinkedCommit", "confluenceJiraRefId", "confluenceJiraReferencedKey", "confluenceGitRefId", "confluenceGitReferencedCommit", "confluenceGitReferenceKind"];
 }
 
 function matchesExpected(manifest: G2asReadinessManifest, source: SourceName, observed: Record<string, string>): boolean {

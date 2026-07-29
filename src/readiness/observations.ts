@@ -8,6 +8,7 @@ import type {
   ReadPath,
   SourceName,
 } from "./types.js";
+import type { GithubCapabilityEvidence } from "../capabilities/types.js";
 
 export interface ReadinessObservation {
   source: SourceName;
@@ -16,6 +17,7 @@ export interface ReadinessObservation {
   capabilityState: "verified" | "unknown";
   observedIds: Record<string, string>;
   evidenceRefs: string[];
+  capabilityEvidence?: GithubCapabilityEvidence;
   diagnosticCode: "NONE" | "CAPABILITY_UNKNOWN" | "TARGET_MISMATCH" | "TRACEABILITY_MISMATCH" | "TIMEOUT_UNKNOWN" | "SCOPE_UNVERIFIED";
   observedAt: string;
 }
@@ -36,7 +38,7 @@ const readPaths = ["mcp", "tenant_aware_chrome"] as const;
 const capabilityStates = ["verified", "unknown"] as const;
 const diagnosticCodes = ["NONE", "CAPABILITY_UNKNOWN", "TARGET_MISMATCH", "TRACEABILITY_MISMATCH", "TIMEOUT_UNKNOWN", "SCOPE_UNVERIFIED"] as const;
 const bundleKeys = ["correlationId", "runAt", "observations"];
-const observationKeys = ["source", "state", "readPath", "capabilityState", "observedIds", "evidenceRefs", "diagnosticCode", "observedAt"];
+const observationKeys = ["source", "state", "readPath", "capabilityState", "observedIds", "evidenceRefs", "diagnosticCode", "observedAt", "capabilityEvidence"];
 const arrayIndexPattern = /^(0|[1-9]\d*)$/;
 const isoTimestampPattern = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/;
 const unsafeKeyPattern = /authorization|cookie|credential|password|token|raw[\s_-]*transcript/i;
@@ -49,13 +51,13 @@ const observedIdFields: Record<SourceName, readonly string[]> = {
   jira: ["tenantOrigin", "projectId", "projectKey", "issueId", "issueKey", "status"],
   confluence: ["tenantOrigin", "spaceId", "spaceKey", "pageId"],
   github: ["repositoryId", "repository", "branch", "commit", "fixturePathOne", "fixturePathTwo"],
-  traceability: ["jiraIssueKey", "githubCommit", "confluencePageId", "jiraGitLinkId", "jiraGitLinkedCommit", "confluenceJiraRefId", "confluenceJiraReferencedKey", "confluenceGitRefId", "confluenceGitReferencedCommit"],
+  traceability: ["jiraIssueKey", "githubCommit", "confluencePageId", "jiraGitLinkId", "jiraGitLinkedCommit", "confluenceJiraRefId", "confluenceJiraReferencedKey", "confluenceGitRefId", "confluenceGitReferencedCommit", "confluenceGitReferenceKind"],
 };
 const requiredObservedIdFields: Record<SourceName, readonly string[]> = {
   jira: ["tenantOrigin"],
   confluence: ["tenantOrigin"],
   github: [],
-  traceability: ["jiraIssueKey", "githubCommit", "confluencePageId", "jiraGitLinkId", "jiraGitLinkedCommit", "confluenceJiraRefId", "confluenceJiraReferencedKey", "confluenceGitRefId", "confluenceGitReferencedCommit"],
+  traceability: ["jiraIssueKey", "githubCommit", "confluencePageId", "jiraGitLinkId", "jiraGitLinkedCommit", "confluenceJiraRefId", "confluenceJiraReferencedKey", "confluenceGitRefId", "confluenceGitReferencedCommit", "confluenceGitReferenceKind"],
 };
 
 export function parseReadinessObservationBundle(value: unknown): ReadinessObservationBundle {
@@ -99,8 +101,10 @@ function parseObservations(value: unknown): ReadinessObservationBundle["observat
 
 function parseObservation(value: unknown): ReadinessObservation {
   const observation = requireRecord(value, "invalid observation structure");
-  requireExactKeys(observation, observationKeys);
   const source = requireOneOf(observation.source, sourceNames, "source");
+  if (source === "github" && !Object.hasOwn(observation, "capabilityEvidence")) reject("capability evidence");
+  const expectedKeys = source === "github" ? observationKeys : observationKeys.filter((key) => key !== "capabilityEvidence");
+  requireExactKeys(observation, expectedKeys);
 
   return {
     source,
@@ -109,8 +113,25 @@ function parseObservation(value: unknown): ReadinessObservation {
     capabilityState: requireOneOf(observation.capabilityState, capabilityStates, "capability state"),
     observedIds: parseObservedIds(observation.observedIds, source),
     evidenceRefs: parseEvidenceRefs(observation.evidenceRefs),
+    ...(source === "github" ? { capabilityEvidence: parseCapabilityEvidence(observation.capabilityEvidence) } : {}),
     diagnosticCode: requireOneOf(observation.diagnosticCode, diagnosticCodes, "diagnostic code"),
     observedAt: requireIsoTimestamp(observation.observedAt),
+  };
+}
+
+function parseCapabilityEvidence(value: unknown): GithubCapabilityEvidence {
+  const evidence = requireRecord(value, "capability evidence");
+  requireExactKeys(evidence, ["capabilityId", "capabilityVersion", "host", "scopeFingerprint", "state"]);
+  if (evidence.capabilityId !== "github-readonly-evidence-v1" || evidence.capabilityVersion !== 1) reject("capability evidence");
+  if (typeof evidence.host !== "string" || !["codex", "claude-code", "cursor"].includes(evidence.host)) reject("capability evidence");
+  if (typeof evidence.scopeFingerprint !== "string" || !/^[a-f0-9]{64}$/.test(evidence.scopeFingerprint)) reject("capability evidence");
+  if (evidence.state !== "verified" && evidence.state !== "unknown") reject("capability evidence");
+  return {
+    capabilityId: "github-readonly-evidence-v1",
+    capabilityVersion: 1,
+    host: evidence.host as "codex" | "claude-code" | "cursor",
+    scopeFingerprint: evidence.scopeFingerprint as string,
+    state: evidence.state,
   };
 }
 

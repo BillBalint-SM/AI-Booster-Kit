@@ -4,6 +4,11 @@ import { test } from "node:test";
 import { codexAdapter } from "../../src/adapters/codex.js";
 import { claudeCodeAdapter } from "../../src/adapters/claude-code.js";
 import { cursorAdapter } from "../../src/adapters/cursor.js";
+import { parseG2asReadinessManifest } from "../../src/readiness/manifest.js";
+import { parseReadinessObservationBundle } from "../../src/readiness/observations.js";
+import { evaluateReadiness } from "../../src/readiness/evaluate.js";
+import { readinessCapability } from "../readiness-capability.js";
+import { readFile } from "node:fs/promises";
 
 const adapters = [codexAdapter, claudeCodeAdapter, cursorAdapter];
 
@@ -33,6 +38,32 @@ test("conformance: hosts report declared local-only capability differences witho
   for (const adapter of adapters) {
     assert.equal(adapter.capabilityReport().capabilities.externalWrite, "unsupported");
   }
+});
+
+test("conformance: equivalent host capability evidence produces the same readiness decision", async () => {
+  const manifest = parseG2asReadinessManifest({
+    version: 1,
+    tenantUrl: "https://pte-politechnika.atlassian.net",
+    jira: { projectKey: "G2AS", issueKey: "G2AS-1", expectedStatus: "To Do" },
+    confluence: { spaceKey: "G2AS", pageId: "31752193" },
+    github: {
+      repository: "BillBalint-SM/ultimate-longshot-gate2-sandbox",
+      branch: "main",
+      commit: "d0971f75c526250f9ee65b8b3b044a4788b31a46",
+      fixturePaths: ["docs/fixtures/G2AS-1.md", "docs/fixtures/G2AS-1.json"],
+    },
+  });
+  const source = JSON.parse(await readFile("test/fixtures/readiness/ready.json", "utf8")) as { observations: Array<Record<string, unknown>> };
+  const certificates = ["codex", "claude-code", "cursor"].map((host) => {
+    const bundle = structuredClone(source) as typeof source;
+    const github = bundle.observations.find((observation) => observation.source === "github");
+    if (github === undefined) throw new Error("ready fixture is incomplete");
+    github.capabilityEvidence = { ...(github.capabilityEvidence as Record<string, unknown>), host };
+    return evaluateReadiness(manifest, parseReadinessObservationBundle(bundle), readinessCapability);
+  });
+
+  assert.deepEqual(certificates.map((certificate) => certificate.decision), ["READY", "READY", "READY"]);
+  assert.deepEqual(certificates.map((certificate) => certificate.checks.map((check) => check.expectedFingerprint)), [certificates[0]?.checks.map((check) => check.expectedFingerprint), certificates[0]?.checks.map((check) => check.expectedFingerprint), certificates[0]?.checks.map((check) => check.expectedFingerprint)]);
 });
 
 function fixtures() {

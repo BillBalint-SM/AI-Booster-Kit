@@ -7,6 +7,7 @@ import { parseMarkdownContract, validateContractPath } from "./contract/markdown
 import { validateCanonicalEvent } from "./events/envelope.js";
 import { assertSafeEvidenceRefs, EvidenceValidationError } from "./orchestrator/evidence.js";
 import { loadG2asReadinessManifest } from "./readiness/manifest.js";
+import { loadGithubReadOnlyCapability } from "./capabilities/manifest.js";
 import { type ReadinessAdapter, type ReadinessObservationBundle } from "./readiness/observations.js";
 import { renderCertificateJson, renderCertificateMarkdown } from "./readiness/render.js";
 import { runReadinessCertificate } from "./readiness/run.js";
@@ -112,24 +113,27 @@ async function runReadiness(argv: readonly string[]): Promise<number> {
   if (
     argv[0] !== "--manifest" ||
     argv[1] === undefined ||
-    argv[2] !== "--observations" ||
+    argv[2] !== "--capability" ||
     argv[3] === undefined ||
-    argv[4] !== "--output-dir" ||
+    argv[4] !== "--observations" ||
     argv[5] === undefined ||
-    argv.length !== 6
+    argv[6] !== "--output-dir" ||
+    argv[7] === undefined ||
+    argv.length !== 8
   ) {
     throw new CliError("CONFIGURATION_ERROR", 4);
   }
 
   try {
     const manifest = await loadG2asReadinessManifest(argv[1]);
-    const certificate = await runReadinessCertificate(manifest, createLocalObservationAdapter(argv[3]));
+    const capability = await loadGithubReadOnlyCapability(argv[3]);
+    const certificate = await runReadinessCertificate(manifest, createLocalObservationAdapter(argv[5]), capability);
     const json = renderCertificateJson(certificate);
     const markdown = renderCertificateMarkdown(certificate);
 
-    await mkdir(argv[5], { recursive: true });
-    await writeFile(`${argv[5]}/g2as-sandbox-readiness-certificate.json`, json, "utf8");
-    await writeFile(`${argv[5]}/g2as-sandbox-readiness-certificate.md`, markdown, "utf8");
+    await mkdir(argv[7], { recursive: true });
+    await writeFile(`${argv[7]}/g2as-sandbox-readiness-certificate.json`, json, "utf8");
+    await writeFile(`${argv[7]}/g2as-sandbox-readiness-certificate.md`, markdown, "utf8");
 
     process.stdout.write(`${JSON.stringify({ decision: certificate.decision })}\n`);
     return readinessExitCode(certificate.decision);

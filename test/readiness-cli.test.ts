@@ -8,8 +8,10 @@ import { test } from "node:test";
 import { parseG2asReadinessManifest } from "../src/readiness/manifest.js";
 import { parseReadinessObservationBundle, type ReadinessAdapter, type ReadinessObservationBundle } from "../src/readiness/observations.js";
 import { runReadinessCertificate } from "../src/readiness/run.js";
+import { readinessCapability } from "./readiness-capability.js";
 
 const manifestPath = resolve("contract/readiness/g2as-sandbox-target.json");
+const capabilityPath = resolve("contract/mcp-capabilities/github-readonly.json");
 const readinessManifest = parseG2asReadinessManifest({
   version: 1,
   tenantUrl: "https://pte-politechnika.atlassian.net",
@@ -33,7 +35,7 @@ test("readiness runner: reads the injected adapter exactly once before evaluatin
     },
   };
 
-  const certificate = await runReadinessCertificate(readinessManifest, adapter);
+  const certificate = await runReadinessCertificate(readinessManifest, adapter, readinessCapability);
 
   assert.equal(calls, 1);
   assert.equal(certificate.decision, "READY");
@@ -54,6 +56,7 @@ test("built readiness CLI: creates exactly the two local certificate files for e
       const result = await runBuiltCli([
         "readiness",
         "--manifest", manifestPath,
+        "--capability", capabilityPath,
         "--observations", resolve("test/fixtures/readiness", fixtureName),
         "--output-dir", outputDirectory,
       ]);
@@ -87,6 +90,7 @@ test("built readiness CLI: maps malformed args and unreadable local input to con
     const unreadable = await runBuiltCli([
       "readiness",
       "--manifest", manifestPath,
+      "--capability", capabilityPath,
       "--observations", join(root, "missing.json"),
       "--output-dir", join(root, "output"),
     ]);
@@ -115,6 +119,7 @@ test("built readiness CLI: maps a completed non-verification to exit code 2", as
     const result = await runBuiltCli([
       "readiness",
       "--manifest", manifestPath,
+      "--capability", capabilityPath,
       "--observations", observationPath,
       "--output-dir", join(root, "output"),
     ]);
