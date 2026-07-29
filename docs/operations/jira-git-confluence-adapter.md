@@ -50,8 +50,8 @@ Every external write in this adapter requires fresh, operation-specific approval
 The current synthetic domain fixture is documented in:
 
 - [G2AS research and validation runbook](g2as-research-validation-runbook.md);
-- [G2AS pilot evidence](../gate-2/g2ai-pilot-evidence.md);
-- [Gate 2 results and next steps](../gate-2/gate-2-results-and-next-steps.md).
+- [G2AS pilot evidence](../history/gate-2/g2ai-pilot-evidence.md);
+- [Gate 2 results and next steps](../history/gate-2/gate-2-results-and-next-steps.md).
 
 The fixture binds the adapter to Jira `G2AS-1`, the accepted synthetic Story, Git commit `d0971f75c526250f9ee65b8b3b044a4788b31a46`, the two recorded fixture paths, and the labelled Confluence projection. These are domain facts, not common-core requirements.
 

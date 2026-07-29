@@ -25,6 +25,12 @@ capabilities:
   - name: Jira/Confluence/GitHub synchronization
     state: unsupported
     limitation: No connector implementation or external authorization exists.
+  - name: Sandbox readiness certificate
+    state: requires_approval
+    limitation: Accepts read-only normalized evidence only and does not activate connector synchronization or external writes.
+  - name: Native GitHub MCP read-only capability standard
+    state: requires_approval
+    limitation: Provides declarative host templates and local validation only; external connector setup and authorization remain outside this contract.
   - name: External write allowlist enforcement
     state: unsupported
     limitation: No external write may occur before allowlist validation exists.

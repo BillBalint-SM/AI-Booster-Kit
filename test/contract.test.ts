@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdtemp, writeFile } from "node:fs/promises";
+import { mkdtemp, readFile, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { test } from "node:test";
@@ -68,6 +68,38 @@ test("contract: parses declarative frontmatter and retains its Markdown body", (
     "evidenceRefs",
   ]);
   assert.match(contract.body, /# Team Contract/);
+});
+
+test("contract: declares the approval-gated sandbox readiness certificate", async () => {
+  const sourcePath = join(process.cwd(), "contract", "team-contract.md");
+  const contract = parseMarkdownContract(await readFile(sourcePath, "utf8"), sourcePath);
+  const capabilities = contract.capabilities.filter(
+    (capability) => capability.name === "Sandbox readiness certificate",
+  );
+
+  assert.equal(capabilities.length, 1);
+  assert.deepEqual(capabilities[0], {
+    name: "Sandbox readiness certificate",
+    state: "requires_approval",
+    limitation:
+      "Accepts read-only normalized evidence only and does not activate connector synchronization or external writes.",
+  });
+  assert.equal(
+    contract.capabilities.find(
+      (capability) => capability.name === "Jira/Confluence/GitHub synchronization",
+    )?.state,
+    "unsupported",
+  );
+  assert.deepEqual(
+    contract.capabilities.find(
+      (capability) => capability.name === "Native GitHub MCP read-only capability standard",
+    ),
+    {
+      name: "Native GitHub MCP read-only capability standard",
+      state: "requires_approval",
+      limitation: "Provides declarative host templates and local validation only; external connector setup and authorization remain outside this contract.",
+    },
+  );
 });
 
 test("contract: rejects a document without frontmatter with its source path", () => {

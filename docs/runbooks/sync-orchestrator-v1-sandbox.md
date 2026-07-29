@@ -8,6 +8,11 @@ Keep credentials outside this repository and command output. Do not place tokens
 
 ## Local validation and target resolution
 
+Before any separately approved live evidence collection, complete the
+[G2AS Sandbox Readiness Certificate](g2as-sandbox-readiness-certificate.md)
+procedure. The certificate is a local, read-only prerequisite; it does not
+weaken this runbook's validation-only boundary or authorize connector activity.
+
 From the repository root, run:
 
 ```powershell

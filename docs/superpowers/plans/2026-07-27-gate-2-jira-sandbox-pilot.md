@@ -31,7 +31,7 @@ The direct REST candidate is existing named-user OAuth, approved only as a diagn
 
 - Read: `docs/superpowers/specs/2026-07-27-gate-2-jira-sandbox-pilot-design.md` — approved pilot design and authority boundary.
 - Read: `research/2026-07-21-ai-agent-tooling-blueprint.md` — Gate 1 evidence, pilot fixtures, recovery contracts, and scorecard definitions.
-- Create: `docs/gate-2/g2ai-pilot-evidence.md` — sanitized local pilot log containing target IDs, actors by role (not secrets), approvals, inputs, results, failures, audit references, and decisions.
+- Create: `docs/history/gate-2/g2ai-pilot-evidence.md` — sanitized local pilot log containing target IDs, actors by role (not secrets), approvals, inputs, results, failures, audit references, and decisions.
 - Create in sandbox GitHub repository: `README.md`, `docs/fixtures/<actual-jira-key>.md`, and `docs/fixtures/<actual-jira-key>.json` — synthetic, immutable technical context artifacts.
 - Do not create a new schema, plugin, MCP server, hook, dependency, CI workflow, or framework as part of this pilot.
 
@@ -40,7 +40,7 @@ The direct REST candidate is existing named-user OAuth, approved only as a diagn
 ### Task 1: Freeze the pilot contract and authorize the first external operation
 
 **Files:**
-- Create: `docs/gate-2/g2ai-pilot-evidence.md`
+- Create: `docs/history/gate-2/g2ai-pilot-evidence.md`
 - Read: approved design and Gate 1 blueprint
 
 **Interfaces:**
@@ -49,7 +49,7 @@ The direct REST candidate is existing named-user OAuth, approved only as a diagn
 
 - [ ] **Step 1: Create the local pilot evidence record**
 
-Create `docs/gate-2/g2ai-pilot-evidence.md` with this exact initial structure:
+Create `docs/history/gate-2/g2ai-pilot-evidence.md` with this exact initial structure:
 
 ```markdown
 # G2AS sandbox pilot evidence
@@ -83,7 +83,7 @@ Run:
 ```powershell
 git status -sb
 git diff --check
-Get-Content -Raw docs/gate-2/g2ai-pilot-evidence.md
+Get-Content -Raw docs/history/gate-2/g2ai-pilot-evidence.md
 ```
 
 Expected: only the new evidence record is uncommitted; no secret-like value appears; no external state has changed.
@@ -102,7 +102,7 @@ Expected: a fresh affirmative user response naming this target. Do not treat the
 
 **Files:**
 - Create externally: private `BillBalint-SM/ultimate-longshot-gate2-sandbox`
-- Modify: `docs/gate-2/g2ai-pilot-evidence.md`
+- Modify: `docs/history/gate-2/g2ai-pilot-evidence.md`
 
 **Interfaces:**
 - Consumes: Task 1’s exact creation authorization.
@@ -148,7 +148,7 @@ Append one primary final-verification row containing the repository URL, `GitHub
 **Files:**
 - Create externally: company-managed Jira Software project `G2AS`
 - Create externally: private Confluence space `Gate 2 AI Sandbox`
-- Modify: `docs/gate-2/g2ai-pilot-evidence.md`
+- Modify: `docs/history/gate-2/g2ai-pilot-evidence.md`
 
 **Interfaces:**
 - Consumes: Jira/Confluence administrator session and a fresh authorization naming the site and target names.
@@ -199,7 +199,7 @@ Document the exact UI owner who can remove pilot access, archive the Jira projec
 ### Task 4: Establish pilot identities, endpoint allowlists, and audit visibility
 
 **Files:**
-- Modify: `docs/gate-2/g2ai-pilot-evidence.md`
+- Modify: `docs/history/gate-2/g2ai-pilot-evidence.md`
 - Read: Jira REST, Rovo MCP, and platform audit documentation cited in the Gate 1 blueprint
 
 **Interfaces:**
@@ -245,7 +245,7 @@ Verify the owner can find Jira issue history, Confluence version history, Rovo M
 **Files:**
 - Create externally in `G2AS`: one synthetic Story and only necessary hierarchy parents
 - Create externally in sandbox repository: `docs/fixtures/<actual-jira-key>.md`, `docs/fixtures/<actual-jira-key>.json`
-- Modify: `docs/gate-2/g2ai-pilot-evidence.md`
+- Modify: `docs/history/gate-2/g2ai-pilot-evidence.md`
 
 **Interfaces:**
 - Consumes: verified sandbox boundaries and fresh authorization for synthetic fixture creation.
@@ -304,7 +304,7 @@ Verify that the Jira story, Git commit, and Confluence projection are reachable 
 ### Task 6: Measure the manual baseline and direct REST read-only path
 
 **Files:**
-- Modify: `docs/gate-2/g2ai-pilot-evidence.md`
+- Modify: `docs/history/gate-2/g2ai-pilot-evidence.md`
 - Read: approved Jira fixture and immutable Git artifact
 
 **Interfaces:**
@@ -349,7 +349,7 @@ Compare Jira issue history, Confluence version history, Git commit count, and Ro
 ### Task 7: Compare Rovo MCP read-only behavior across Codex, Cursor, and Claude Code
 
 **Files:**
-- Modify: `docs/gate-2/g2ai-pilot-evidence.md`
+- Modify: `docs/history/gate-2/g2ai-pilot-evidence.md`
 - Read: same Jira fixture, Git SHA, and rubric from Task 6
 
 **Interfaces:**
@@ -381,7 +381,7 @@ For each host/path, record rubric result, latency, interruptions, denied/unknown
 ### Task 8: Design and execute one separately approved sandbox write probe
 
 **Files:**
-- Modify: `docs/gate-2/g2ai-pilot-evidence.md`
+- Modify: `docs/history/gate-2/g2ai-pilot-evidence.md`
 - Modify externally only after authorization: one allowlisted field or immutable repository-link write on the synthetic Jira issue
 
 **Interfaces:**
@@ -423,7 +423,7 @@ Confirm no Jira status, hierarchy, scope, acceptance criterion, security scheme,
 ### Task 9: Evaluate, decide, and cleanly stop or expand
 
 **Files:**
-- Modify: `docs/gate-2/g2ai-pilot-evidence.md`
+- Modify: `docs/history/gate-2/g2ai-pilot-evidence.md`
 - Read: all pilot evidence, source-native audit histories, and the Gate 1 scorecard
 
 **Interfaces:**
@@ -472,7 +472,7 @@ If stopping or repeating, disable the Rovo MCP client access and revoke the dire
 
 - [ ] **Step 5: Request commit approval for local evidence**
 
-Present the exact local diff for `docs/gate-2/g2ai-pilot-evidence.md` and ask the user whether it should be committed. Do not create a commit without explicit approval.
+Present the exact local diff for `docs/history/gate-2/g2ai-pilot-evidence.md` and ask the user whether it should be committed. Do not create a commit without explicit approval.
 
 ## Plan self-review
 

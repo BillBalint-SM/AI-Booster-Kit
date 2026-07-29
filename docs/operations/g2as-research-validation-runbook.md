@@ -105,8 +105,8 @@ The durable handoff must link:
 
 - this runbook;
 - `docs/operations/agent-operating-model.md`;
-- `docs/gate-2/g2ai-pilot-evidence.md`;
-- `docs/gate-2/gate-2-results-and-next-steps.md`;
+- `docs/history/gate-2/g2ai-pilot-evidence.md`;
+- `docs/history/gate-2/gate-2-results-and-next-steps.md`;
 - the Gate 2 plan/spec and the task brief/report ledger where available.
 
 The handoff must preserve the current decision: retain the manual source-native path; narrow/remediate direct REST; reject the current Rovo route until target isolation is proven; and keep the Task 8 web-link write as a bounded one-off contract.

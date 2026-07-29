@@ -4,7 +4,7 @@
 
 ## Objective
 
-Address the bounded `FAIL` findings from [the first Codex run](../../operations/host-conformance-runs/codex-2026-07-27.md) without rewriting its historical evidence:
+Address the bounded `FAIL` findings from [the first Codex run](../../history/host-conformance/codex-2026-07-27.md) without rewriting its historical evidence:
 
 1. require explicit mapping of all four operating layers;
 2. prohibit retry or elevation after a read-only sandbox failure;
@@ -63,4 +63,4 @@ The v2 protocol and remediation plan are committed separately from the v1 run ev
 
 ## Runtime diagnostic result
 
-A read-only inspection of the operator's local Codex boundary settings is recorded in [Codex runtime-boundary diagnostic](../../operations/host-conformance-runs/codex-runtime-boundary-diagnostic-2026-07-27.md). The local defaults include live web access, network access, `danger-full-access`, elevated Windows sandboxing, plugin/marketplace sections, and hook state. No setting was changed. Further conformance rerun is deferred until a disposable no-network/no-elevation profile or a separately scoped host-behavior diagnostic is approved.
+A read-only inspection of the operator's local Codex boundary settings is recorded in [Codex runtime-boundary diagnostic](../../history/host-conformance/codex-runtime-boundary-diagnostic-2026-07-27.md). The local defaults include live web access, network access, `danger-full-access`, elevated Windows sandboxing, plugin/marketplace sections, and hook state. No setting was changed. Further conformance rerun is deferred until a disposable no-network/no-elevation profile or a separately scoped host-behavior diagnostic is approved.

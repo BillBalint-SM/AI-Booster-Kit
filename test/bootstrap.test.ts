@@ -13,4 +13,5 @@ test("built CLI help lists the bootstrap commands", async () => {
   assert.match(result.stdout, /finalize/);
   assert.match(result.stdout, /sync/);
   assert.match(result.stdout, /conformance/);
+  assert.match(result.stdout, /readiness/);
 });

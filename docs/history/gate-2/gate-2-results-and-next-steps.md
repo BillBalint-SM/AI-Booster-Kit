@@ -129,16 +129,16 @@ A design, plan, evidence, Task 8 report és ez az összefoglaló jelenleg uncomm
 ## Hivatkozott lokális artefaktumok
 
 - [Gate 2 evidence](./g2ai-pilot-evidence.md)
-- [Gate 2 plan](../superpowers/plans/2026-07-27-gate-2-jira-sandbox-pilot.md)
-- [Gate 2 design](../superpowers/specs/2026-07-27-gate-2-jira-sandbox-pilot-design.md)
-- [Agent operating model](../operations/agent-operating-model.md)
-- [Jira–Git–Confluence domain adapter](../operations/jira-git-confluence-adapter.md)
-- [G2AS research and validation runbook](../operations/g2as-research-validation-runbook.md)
-- [Task 8 report](../../.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-8-report.md)
-- [Task 8 brief](../../.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-8-brief.md)
-- [Gate 2 progress ledger](../../.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/progress.md)
-- [Agent operating model baseline plan](../superpowers/plans/2026-07-27-agent-operating-model-baseline.md)
-- [Common-core/domain-adapter separation plan](../superpowers/plans/2026-07-27-layer-separation-common-core.md)
+- [Gate 2 plan](../../superpowers/plans/2026-07-27-gate-2-jira-sandbox-pilot.md)
+- [Gate 2 design](../../superpowers/specs/2026-07-27-gate-2-jira-sandbox-pilot-design.md)
+- [Agent operating model](../../operations/agent-operating-model.md)
+- [Jira–Git–Confluence domain adapter](../../operations/jira-git-confluence-adapter.md)
+- [G2AS research and validation runbook](../../operations/g2as-research-validation-runbook.md)
+- [Task 8 report](../../../.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-8-report.md)
+- [Task 8 brief](../../../.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-8-brief.md)
+- [Gate 2 progress ledger](../../../.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/progress.md)
+- [Agent operating model baseline plan](../../superpowers/plans/2026-07-27-agent-operating-model-baseline.md)
+- [Common-core/domain-adapter separation plan](../../superpowers/plans/2026-07-27-layer-separation-common-core.md)
 
 ## Context-switch handoff
 
@@ -153,27 +153,27 @@ A design, plan, evidence, Task 8 report és ez az összefoglaló jelenleg uncomm
 
 The host-native adapter and team activation slice is now documented:
 
-- [Host-native adapters and team activation plan](../superpowers/plans/2026-07-27-host-native-adapters-team-activation.md)
-- [Codex host adapter](../operations/host-adapters/codex.md)
-- [Cursor host adapter](../operations/host-adapters/cursor.md)
-- [Claude Code host adapter](../operations/host-adapters/claude-code.md)
-- [Team activation guide](../operations/team-activation-guide.md)
+- [Host-native adapters and team activation plan](../../superpowers/plans/2026-07-27-host-native-adapters-team-activation.md)
+- [Codex host adapter](../../operations/host-adapters/codex.md)
+- [Cursor host adapter](../../operations/host-adapters/cursor.md)
+- [Claude Code host adapter](../../operations/host-adapters/claude-code.md)
+- [Team activation guide](../../operations/team-activation-guide.md)
 
 These documents define how to express the common core in each host and how to activate it on a bounded task. They intentionally do not create host configuration, install or enable tools, grant permissions, or authorize external writes. Host runtime conformance remains unvalidated until each host is executed against the same bounded read-only cohort.
 
 ## Next bounded validation slice
 
-The approved next step is the [three-host read-only conformance pilot plan](../superpowers/plans/2026-07-27-host-conformance-pilot.md), using the [frozen pilot protocol](../operations/host-conformance-pilot.md) and one [evidence template per host](../operations/host-conformance-evidence-template.md). The pilot starts with strong single-agent execution and stops before any domain adapter or external write operation.
+The approved next step is the [three-host read-only conformance pilot plan](../../superpowers/plans/2026-07-27-host-conformance-pilot.md), using the [frozen pilot protocol](../../operations/host-conformance-pilot.md) and one [evidence template per host](../../operations/host-conformance-evidence-template.md). The pilot starts with strong single-agent execution and stops before any domain adapter or external write operation.
 
-The first Codex run is recorded in [Codex conformance evidence](../operations/host-conformance-runs/codex-2026-07-27.md). It is `FAIL` with bounded evidence: the local read completed, but native instruction loading was `UNKNOWN`, the first read-only sandbox spawn failed before an elevated local retry, and the response omitted the complete layer mapping. No domain or external write pilot is promoted from this result.
+The first Codex run is recorded in [Codex conformance evidence](../host-conformance/codex-2026-07-27.md). It is `FAIL` with bounded evidence: the local read completed, but native instruction loading was `UNKNOWN`, the first read-only sandbox spawn failed before an elevated local retry, and the response omitted the complete layer mapping. No domain or external write pilot is promoted from this result.
 
-The v2 remediation rerun is recorded in [Codex v2 conformance evidence](../operations/host-conformance-runs/codex-2026-07-27-v2.md). The task correctly stopped as `BLOCKED` without retry/elevation, but Codex startup attempted a remote plugin-catalog request and the Windows sandbox still could not spawn the required child process. The full local-only conformance result is therefore `FAIL`; no further rerun or domain pilot is authorized by this evidence.
+The v2 remediation rerun is recorded in [Codex v2 conformance evidence](../host-conformance/codex-2026-07-27-v2.md). The task correctly stopped as `BLOCKED` without retry/elevation, but Codex startup attempted a remote plugin-catalog request and the Windows sandbox still could not spawn the required child process. The full local-only conformance result is therefore `FAIL`; no further rerun or domain pilot is authorized by this evidence.
 
-The operating-model track now switches to the [host-behavior diagnostic](../operations/host-behavior-diagnostic.md). This permits documenting normal host behavior without treating it as security evidence. Security-boundary validation remains a separate future track requiring a disposable restricted environment.
+The operating-model track now switches to the [host-behavior diagnostic](../../operations/host-behavior-diagnostic.md). This permits documenting normal host behavior without treating it as security evidence. Security-boundary validation remains a separate future track requiring a disposable restricted environment.
 
-Cursor local execution is recorded as behavior `PARTIAL` with security `NOT EVALUATED` in the separate [Cursor record](../operations/host-conformance-runs/cursor-2026-07-27.md); its [captured response](../operations/host-conformance-runs/cursor-2026-07-27-behavior-response.md) is preserved. Claude Code has separate WSL `FAIL` evidence and native Windows `PARTIAL` evidence in the [WSL record](../operations/host-conformance-runs/claude-code-2026-07-27.md) and [native Windows record](../operations/host-conformance-runs/claude-code-2026-07-28-native.md); security remains `NOT EVALUATED`, and the WSL untracked project-local permission file remains outside the commit.
+Cursor local execution is recorded as behavior `PARTIAL` with security `NOT EVALUATED` in the separate [Cursor record](../host-conformance/cursor-2026-07-27.md); its [captured response](../host-conformance/cursor-2026-07-27-behavior-response.md) is preserved. Claude Code has separate WSL `FAIL` evidence and native Windows `PARTIAL` evidence in the [WSL record](../host-conformance/claude-code-2026-07-27.md) and [native Windows record](../host-conformance/claude-code-2026-07-28-native.md); security remains `NOT EVALUATED`, and the WSL untracked project-local permission file remains outside the commit.
 
-The supporting [Codex runtime-boundary diagnostic](../operations/host-conformance-runs/codex-runtime-boundary-diagnostic-2026-07-27.md) records the local defaults that explain why this machine is not a valid no-network/no-elevation proof environment. No setting was changed; the next decision must select a disposable restricted profile or explicitly reframe the test as host-behavior diagnostics.
+The supporting [Codex runtime-boundary diagnostic](../host-conformance/codex-runtime-boundary-diagnostic-2026-07-27.md) records the local defaults that explain why this machine is not a valid no-network/no-elevation proof environment. No setting was changed; the next decision must select a disposable restricted profile or explicitly reframe the test as host-behavior diagnostics.
 
 ## Implemented local operating contract
 

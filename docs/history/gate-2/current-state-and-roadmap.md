@@ -1,4 +1,4 @@
-# Agentic operating model — current state and roadmap
+# Agentic operating model — historical state and roadmap
 
 **As of:** 2026-07-28
 **Repository:** `BillBalint-SM/Ultimate-Longshot`
@@ -46,19 +46,19 @@ Human-in-the-loop approval, shared tools, memory, database/tool workflows, clean
 
 | Milestone | Status | Evidence |
 | --- | --- | --- |
-| Gate 2 handoff preserved | Complete | `docs/gate-2/gate-2-results-and-next-steps.md` |
+| Gate 2 handoff preserved | Complete | `docs/history/gate-2/gate-2-results-and-next-steps.md` |
 | Domain-independent agent operating model baseline | Complete | `docs/operations/agent-operating-model.md` |
 | Common core separated from domain adapter | Complete | `docs/operations/jira-git-confluence-adapter.md` |
 | Host-native adapters for Codex, Cursor, Claude Code | Complete | `docs/operations/host-adapters/` |
 | Team activation and clean-context handoff guide | Complete | `docs/operations/team-activation-guide.md` |
 | Three-host read-only conformance protocol | Complete | `docs/operations/host-conformance-pilot.md` |
 | Behavior/security separation | Complete | `docs/operations/host-behavior-diagnostic.md` |
-| Codex bounded behavior and runtime-boundary evidence | Complete | `docs/operations/host-conformance-runs/codex-2026-07-27*.md` |
-| Cursor Agent WSL behavior run | Complete, `PARTIAL` | `docs/operations/host-conformance-runs/cursor-2026-07-27.md` |
-| Claude Code WSL behavior run | Complete, `FAIL` | `docs/operations/host-conformance-runs/claude-code-2026-07-27.md` |
-| Claude Code native Windows behavior run | Complete, `PARTIAL` | `docs/operations/host-conformance-runs/claude-code-2026-07-28-native.md` |
+| Codex bounded behavior and runtime-boundary evidence | Complete | `docs/history/host-conformance/codex-2026-07-27*.md` |
+| Cursor Agent WSL behavior run | Complete, `PARTIAL` | `docs/history/host-conformance/cursor-2026-07-27.md` |
+| Claude Code WSL behavior run | Complete, `FAIL` | `docs/history/host-conformance/claude-code-2026-07-27.md` |
+| Claude Code native Windows behavior run | Complete, `PARTIAL` | `docs/history/host-conformance/claude-code-2026-07-28-native.md` |
 
-## Current host matrix
+## Host matrix at this snapshot
 
 | Host profile | Environment | Behavior | Security | Key finding |
 | --- | --- | --- | --- | --- |

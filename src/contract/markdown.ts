@@ -343,7 +343,7 @@ function validateCapabilityDeclarations(
         throw new ContractError(sourcePath, `${location}.${key}`, "is not an allowed capability metadata key.");
       }
 
-      if (typeof metadata === "string" && executableCapabilityPattern.test(metadata)) {
+      if (key !== "name" && typeof metadata === "string" && executableCapabilityPattern.test(metadata)) {
         throw new ContractError(sourcePath, `${location}.${key}`, "must not declare executable capability content.");
       }
     }
