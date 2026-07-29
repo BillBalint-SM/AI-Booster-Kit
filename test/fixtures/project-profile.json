@@ -1,0 +1,42 @@
+{
+  "jiraProjectKey": "GDEAI",
+  "jiraBoardId": "42",
+  "statusNames": [
+    "To Do",
+    "In Progress",
+    "Review",
+    "Ready for Deploy",
+    "Ready for Test",
+    "Testing",
+    "Done"
+  ],
+  "transitionNames": {
+    "To Do->In Progress": "Start Progress",
+    "In Progress->Review": "Submit for Review",
+    "Review->Ready for Deploy": "Approve Review",
+    "Ready for Deploy->Ready for Test": "Deploy to Test",
+    "Ready for Test->Testing": "Start Testing",
+    "Testing->Done": "Pass Testing",
+    "Review->To Do": "Review Failed",
+    "Testing->To Do": "Testing Failed"
+  },
+  "planningStateMappings": {
+    "Draft": "planning",
+    "Selected for Development": "selected",
+    "Waiting for Test": "waiting_for_test"
+  },
+  "allowedFields": [
+    "summary",
+    "description",
+    "parent",
+    "acceptanceCriteria",
+    "dependencyLinks",
+    "labels",
+    "comments",
+    "status"
+  ],
+  "targetIdentities": {
+    "jiraProjectKey": "GDEAI",
+    "jiraBoardId": "42"
+  }
+}

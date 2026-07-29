@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "rootDir": ".",
+    "outDir": "dist",
+    "skipLibCheck": true
+  },
+  "exclude": ["dist", ".tmp-*", "node_modules"]
+}
