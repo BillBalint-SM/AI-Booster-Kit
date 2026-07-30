@@ -21,7 +21,7 @@ function runGit(args) {
       cwd: projectRoot,
       encoding: "utf8",
       stdio: ["ignore", "pipe", "pipe"]
-    }).trim();
+    }).trimEnd();
   } catch (error) {
     const detail = error instanceof Error ? error.message : String(error);
     throw new Error(`Git command failed: git ${args.join(" ")}: ${detail}`);
@@ -60,7 +60,7 @@ function statusPaths() {
 }
 
 function changedPathsSince(commit) {
-  return splitLines(runGit(["diff", "--name-only", `${commit}..HEAD"]));
+  return splitLines(runGit(["diff", "--name-only", `${commit}..HEAD`]));
 }
 
 function assertPublishedPaths(paths, source) {
