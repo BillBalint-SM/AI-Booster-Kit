@@ -1,0 +1,1486 @@
+{
+  "name": "agent-agnostic-sync-orchestrator",
+  "description": "This repository is an agent-agnostic, contract-first synchronization orchestrator for safely coordinating work through separately approved domain adapters.",
+  "languages": [
+    "javascript",
+    "json",
+    "markdown",
+    "powershell",
+    "typescript",
+    "unknown",
+    "yaml"
+  ],
+  "frameworks": [
+    "GitHub Actions"
+  ],
+  "files": [
+    {
+      "path": ".github/pull_request_template.md",
+      "language": "markdown",
+      "sizeLines": 11,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "language": "yaml",
+      "sizeLines": 20,
+      "fileCategory": "infra"
+    },
+    {
+      "path": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/oauth-research-report.md",
+      "language": "markdown",
+      "sizeLines": 35,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/progress.md",
+      "language": "markdown",
+      "sizeLines": 40,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-1-brief.md",
+      "language": "markdown",
+      "sizeLines": 58,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-1-report.md",
+      "language": "markdown",
+      "sizeLines": 60,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-2-brief.md",
+      "language": "markdown",
+      "sizeLines": 50,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-2-report.md",
+      "language": "markdown",
+      "sizeLines": 83,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-3-brief.md",
+      "language": "markdown",
+      "sizeLines": 22,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-3-report.md",
+      "language": "markdown",
+      "sizeLines": 47,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-4-brief.md",
+      "language": "markdown",
+      "sizeLines": 20,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-4-report.md",
+      "language": "markdown",
+      "sizeLines": 35,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-5-brief.md",
+      "language": "markdown",
+      "sizeLines": 36,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-5-report.md",
+      "language": "markdown",
+      "sizeLines": 31,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-6-brief.md",
+      "language": "markdown",
+      "sizeLines": 42,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-6-report.md",
+      "language": "markdown",
+      "sizeLines": 35,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-7-brief.md",
+      "language": "markdown",
+      "sizeLines": 40,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-7-report.md",
+      "language": "markdown",
+      "sizeLines": 28,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-8-brief.md",
+      "language": "markdown",
+      "sizeLines": 23,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-8-report.md",
+      "language": "markdown",
+      "sizeLines": 40,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "AGENTS.md",
+      "language": "markdown",
+      "sizeLines": 192,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "CLAUDE.md",
+      "language": "markdown",
+      "sizeLines": 26,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "README.md",
+      "language": "markdown",
+      "sizeLines": 5,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "cli.ts",
+      "language": "typescript",
+      "sizeLines": 17,
+      "fileCategory": "code"
+    },
+    {
+      "path": "contract/adapters/claude-code.md",
+      "language": "markdown",
+      "sizeLines": 39,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "contract/adapters/codex.md",
+      "language": "markdown",
+      "sizeLines": 39,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "contract/adapters/cursor.md",
+      "language": "markdown",
+      "sizeLines": 39,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "contract/artifacts/canonical-work-artifact-template.md",
+      "language": "markdown",
+      "sizeLines": 9,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "contract/artifacts/epic-template.md",
+      "language": "markdown",
+      "sizeLines": 5,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "contract/artifacts/milestone-template.md",
+      "language": "markdown",
+      "sizeLines": 6,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "contract/artifacts/review-template.md",
+      "language": "markdown",
+      "sizeLines": 3,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "contract/artifacts/work-item-template.md",
+      "language": "markdown",
+      "sizeLines": 6,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "contract/capability-matrix.md",
+      "language": "markdown",
+      "sizeLines": 19,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "contract/lifecycle.md",
+      "language": "markdown",
+      "sizeLines": 50,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "contract/mappings/jira-confluence-github.md",
+      "language": "markdown",
+      "sizeLines": 37,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "contract/mcp-capabilities/github-readonly.json",
+      "language": "json",
+      "sizeLines": 8,
+      "fileCategory": "config"
+    },
+    {
+      "path": "contract/readiness/g2as-sandbox-target.json",
+      "language": "json",
+      "sizeLines": 12,
+      "fileCategory": "config"
+    },
+    {
+      "path": "contract/team-contract.md",
+      "language": "markdown",
+      "sizeLines": 58,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/gate-2/atlassian-oauth-read-only-preflight.md",
+      "language": "markdown",
+      "sizeLines": 83,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/history/README.md",
+      "language": "markdown",
+      "sizeLines": 10,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/history/execution-records/.gitkeep",
+      "language": "unknown",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "docs/history/gate-1/.gitkeep",
+      "language": "unknown",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "docs/history/gate-2/current-state-and-roadmap.md",
+      "language": "markdown",
+      "sizeLines": 149,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/history/gate-2/g2ai-pilot-evidence.md",
+      "language": "markdown",
+      "sizeLines": 166,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/history/gate-2/gate-2-results-and-next-steps.md",
+      "language": "markdown",
+      "sizeLines": 184,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/history/host-conformance/agent-testing-status-2026-07-28.md",
+      "language": "markdown",
+      "sizeLines": 52,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/history/host-conformance/claude-code-2026-07-27.md",
+      "language": "markdown",
+      "sizeLines": 67,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/history/host-conformance/claude-code-2026-07-28-behavior-response.md",
+      "language": "markdown",
+      "sizeLines": 91,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/history/host-conformance/claude-code-2026-07-28-context-integrity-response.md",
+      "language": "markdown",
+      "sizeLines": 257,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/history/host-conformance/claude-code-2026-07-28-context-payload-capture.md",
+      "language": "markdown",
+      "sizeLines": 49,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/history/host-conformance/claude-code-2026-07-28-native-behavior-response.md",
+      "language": "markdown",
+      "sizeLines": 34,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/history/host-conformance/claude-code-2026-07-28-native.md",
+      "language": "markdown",
+      "sizeLines": 56,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/history/host-conformance/claude-code-2026-07-28-project-cwd-rerun.md",
+      "language": "markdown",
+      "sizeLines": 28,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/history/host-conformance/claude-code-context-integrity-remediation-2026-07-28.md",
+      "language": "markdown",
+      "sizeLines": 67,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/history/host-conformance/claude-code-host-capability-investigation-2026-07-28.md",
+      "language": "markdown",
+      "sizeLines": 71,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/history/host-conformance/codex-2026-07-27-v2.md",
+      "language": "markdown",
+      "sizeLines": 117,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/history/host-conformance/codex-2026-07-27.md",
+      "language": "markdown",
+      "sizeLines": 120,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/history/host-conformance/codex-2026-07-28-v3.md",
+      "language": "markdown",
+      "sizeLines": 144,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/history/host-conformance/codex-runtime-boundary-diagnostic-2026-07-27.md",
+      "language": "markdown",
+      "sizeLines": 36,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/history/host-conformance/cursor-2026-07-27-behavior-response.md",
+      "language": "markdown",
+      "sizeLines": 153,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/history/host-conformance/cursor-2026-07-27.md",
+      "language": "markdown",
+      "sizeLines": 50,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/history/host-conformance/cursor-desktop-2026-07-28-behavior-response.md",
+      "language": "markdown",
+      "sizeLines": 100,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/history/host-conformance/cursor-desktop-2026-07-28.md",
+      "language": "markdown",
+      "sizeLines": 67,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/operations/agent-operating-model.md",
+      "language": "markdown",
+      "sizeLines": 158,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/operations/codex-conformance-remediation-v2.md",
+      "language": "markdown",
+      "sizeLines": 74,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/operations/g2as-research-validation-runbook.md",
+      "language": "markdown",
+      "sizeLines": 112,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/operations/host-adapters/claude-code.md",
+      "language": "markdown",
+      "sizeLines": 123,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/operations/host-adapters/codex.md",
+      "language": "markdown",
+      "sizeLines": 70,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/operations/host-adapters/cursor.md",
+      "language": "markdown",
+      "sizeLines": 75,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/operations/host-behavior-diagnostic.md",
+      "language": "markdown",
+      "sizeLines": 121,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/operations/host-conformance-evidence-template.md",
+      "language": "markdown",
+      "sizeLines": 75,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/operations/host-conformance-pilot.md",
+      "language": "markdown",
+      "sizeLines": 78,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/operations/jira-git-confluence-adapter.md",
+      "language": "markdown",
+      "sizeLines": 67,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/operations/team-activation-guide.md",
+      "language": "markdown",
+      "sizeLines": 113,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/project/current-state.md",
+      "language": "markdown",
+      "sizeLines": 23,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/project/documentation-map.md",
+      "language": "markdown",
+      "sizeLines": 5,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/runbooks/g2as-sandbox-readiness-certificate.md",
+      "language": "markdown",
+      "sizeLines": 99,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/runbooks/mapper-snapshot.md",
+      "language": "markdown",
+      "sizeLines": 51,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/runbooks/sync-orchestrator-v1-sandbox.md",
+      "language": "markdown",
+      "sizeLines": 79,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-07-22-ai-agent-tooling-gate-1-research.md",
+      "language": "markdown",
+      "sizeLines": 767,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-07-27-agent-operating-model-baseline.md",
+      "language": "markdown",
+      "sizeLines": 179,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-07-27-codex-conformance-remediation.md",
+      "language": "markdown",
+      "sizeLines": 66,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-07-27-gate-2-jira-sandbox-pilot.md",
+      "language": "markdown",
+      "sizeLines": 486,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-07-27-host-behavior-security-separation.md",
+      "language": "markdown",
+      "sizeLines": 62,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-07-27-host-conformance-pilot.md",
+      "language": "markdown",
+      "sizeLines": 68,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-07-27-host-native-adapters-team-activation.md",
+      "language": "markdown",
+      "sizeLines": 58,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-07-27-layer-separation-common-core.md",
+      "language": "markdown",
+      "sizeLines": 45,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-07-29-agent-agnostic-sync-orchestrator-implementation.md",
+      "language": "markdown",
+      "sizeLines": 754,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-07-29-documentation-github-structure.md",
+      "language": "markdown",
+      "sizeLines": 342,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-07-29-g2as-sandbox-readiness-certificate.md",
+      "language": "markdown",
+      "sizeLines": 629,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-07-29-native-mcp-capability-standard.md",
+      "language": "markdown",
+      "sizeLines": 409,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-07-29-post-merge-state-synchronization.md",
+      "language": "markdown",
+      "sizeLines": 68,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/superpowers/specs/2026-07-21-ai-agent-tooling-research-design.md",
+      "language": "markdown",
+      "sizeLines": 432,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/superpowers/specs/2026-07-27-gate-2-jira-sandbox-pilot-design.md",
+      "language": "markdown",
+      "sizeLines": 90,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/superpowers/specs/2026-07-29-agent-agnostic-sync-orchestrator-design.md",
+      "language": "markdown",
+      "sizeLines": 420,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/superpowers/specs/2026-07-29-g2as-sandbox-readiness-certificate-design.md",
+      "language": "markdown",
+      "sizeLines": 188,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/superpowers/specs/2026-07-29-native-mcp-capability-standard-design.md",
+      "language": "markdown",
+      "sizeLines": 118,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "package.json",
+      "language": "json",
+      "sizeLines": 25,
+      "fileCategory": "config"
+    },
+    {
+      "path": "research/2026-07-21-ai-agent-tooling-blueprint.md",
+      "language": "markdown",
+      "sizeLines": 1707,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "scripts/check-doc-links.mjs",
+      "language": "javascript",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/check-mapper-freshness.mjs",
+      "language": "javascript",
+      "sizeLines": 102,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/adapters/claude-code.ts",
+      "language": "typescript",
+      "sizeLines": 13,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/adapters/codex.ts",
+      "language": "typescript",
+      "sizeLines": 13,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/adapters/cursor.ts",
+      "language": "typescript",
+      "sizeLines": 13,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/adapters/types.ts",
+      "language": "typescript",
+      "sizeLines": 191,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/capabilities/manifest.ts",
+      "language": "typescript",
+      "sizeLines": 99,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/capabilities/projections.ts",
+      "language": "typescript",
+      "sizeLines": 113,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/capabilities/types.ts",
+      "language": "typescript",
+      "sizeLines": 30,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/cli.ts",
+      "language": "typescript",
+      "sizeLines": 191,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/connectors/confluence.ts",
+      "language": "typescript",
+      "sizeLines": 40,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/connectors/github.ts",
+      "language": "typescript",
+      "sizeLines": 35,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/connectors/jira.ts",
+      "language": "typescript",
+      "sizeLines": 74,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/connectors/types.ts",
+      "language": "typescript",
+      "sizeLines": 139,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/contract/compile.ts",
+      "language": "typescript",
+      "sizeLines": 127,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/contract/errors.ts",
+      "language": "typescript",
+      "sizeLines": 13,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/contract/markdown.ts",
+      "language": "typescript",
+      "sizeLines": 426,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/docs/links.ts",
+      "language": "typescript",
+      "sizeLines": 132,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/domain/model.ts",
+      "language": "typescript",
+      "sizeLines": 118,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/domain/schema.ts",
+      "language": "typescript",
+      "sizeLines": 226,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/domain/validate.ts",
+      "language": "typescript",
+      "sizeLines": 135,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/errors.ts",
+      "language": "typescript",
+      "sizeLines": 40,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/events/envelope.ts",
+      "language": "typescript",
+      "sizeLines": 110,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/events/outbox.ts",
+      "language": "typescript",
+      "sizeLines": 295,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/events/reconcile.ts",
+      "language": "typescript",
+      "sizeLines": 40,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/evidence/github.ts",
+      "language": "typescript",
+      "sizeLines": 150,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/evidence/readback.ts",
+      "language": "typescript",
+      "sizeLines": 73,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/lifecycle/profile.ts",
+      "language": "typescript",
+      "sizeLines": 133,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/lifecycle/start-check.ts",
+      "language": "typescript",
+      "sizeLines": 107,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/lifecycle/transitions.ts",
+      "language": "typescript",
+      "sizeLines": 122,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/orchestrator/allowlist.ts",
+      "language": "typescript",
+      "sizeLines": 229,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/orchestrator/evidence.ts",
+      "language": "typescript",
+      "sizeLines": 19,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/orchestrator/identity.ts",
+      "language": "typescript",
+      "sizeLines": 191,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/orchestrator/stop.ts",
+      "language": "typescript",
+      "sizeLines": 380,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/orchestrator/sync.ts",
+      "language": "typescript",
+      "sizeLines": 225,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/planning/finalize.ts",
+      "language": "typescript",
+      "sizeLines": 207,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/planning/traceability.ts",
+      "language": "typescript",
+      "sizeLines": 135,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/readiness/evaluate.ts",
+      "language": "typescript",
+      "sizeLines": 241,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/readiness/manifest.ts",
+      "language": "typescript",
+      "sizeLines": 203,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/readiness/observations.ts",
+      "language": "typescript",
+      "sizeLines": 308,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/readiness/render.ts",
+      "language": "typescript",
+      "sizeLines": 229,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/readiness/run.ts",
+      "language": "typescript",
+      "sizeLines": 12,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/readiness/types.ts",
+      "language": "typescript",
+      "sizeLines": 21,
+      "fileCategory": "code"
+    },
+    {
+      "path": "templates/hosts/claude-code-github-readonly-capability.md",
+      "language": "markdown",
+      "sizeLines": 33,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "templates/hosts/codex-github-readonly-capability.md",
+      "language": "markdown",
+      "sizeLines": 33,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "templates/hosts/cursor-github-readonly-capability.md",
+      "language": "markdown",
+      "sizeLines": 33,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "test/adapters.test.ts",
+      "language": "typescript",
+      "sizeLines": 202,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/bootstrap.test.ts",
+      "language": "typescript",
+      "sizeLines": 17,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/capabilities-manifest.test.ts",
+      "language": "typescript",
+      "sizeLines": 47,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/capabilities-projections.test.ts",
+      "language": "typescript",
+      "sizeLines": 41,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/conformance/host-conformance.test.ts",
+      "language": "typescript",
+      "sizeLines": 111,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/connectors.test.ts",
+      "language": "typescript",
+      "sizeLines": 326,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/contract.test.ts",
+      "language": "typescript",
+      "sizeLines": 268,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/docs-links.test.ts",
+      "language": "typescript",
+      "sizeLines": 123,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/domain.test.ts",
+      "language": "typescript",
+      "sizeLines": 137,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/e2e.test.ts",
+      "language": "typescript",
+      "sizeLines": 298,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/events.test.ts",
+      "language": "typescript",
+      "sizeLines": 250,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/evidence.test.ts",
+      "language": "typescript",
+      "sizeLines": 199,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/fixtures/ambiguous-mapping.md",
+      "language": "markdown",
+      "sizeLines": 5,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "test/fixtures/connector-server.ts",
+      "language": "typescript",
+      "sizeLines": 157,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/fixtures/invalid-milestone.md",
+      "language": "markdown",
+      "sizeLines": 7,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "test/fixtures/project-profile.json",
+      "language": "json",
+      "sizeLines": 42,
+      "fileCategory": "config"
+    },
+    {
+      "path": "test/fixtures/readiness/not-ready.json",
+      "language": "json",
+      "sizeLines": 10,
+      "fileCategory": "config"
+    },
+    {
+      "path": "test/fixtures/readiness/ready.json",
+      "language": "json",
+      "sizeLines": 10,
+      "fileCategory": "config"
+    },
+    {
+      "path": "test/fixtures/readiness/stopped.json",
+      "language": "json",
+      "sizeLines": 10,
+      "fileCategory": "config"
+    },
+    {
+      "path": "test/fixtures/readiness/unsafe-observation.json",
+      "language": "json",
+      "sizeLines": 6,
+      "fileCategory": "config"
+    },
+    {
+      "path": "test/fixtures/valid-milestone.md",
+      "language": "markdown",
+      "sizeLines": 7,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "test/lifecycle.test.ts",
+      "language": "typescript",
+      "sizeLines": 239,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/orchestrator.test.ts",
+      "language": "typescript",
+      "sizeLines": 302,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/performance/baseline.test.ts",
+      "language": "typescript",
+      "sizeLines": 241,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/planning.test.ts",
+      "language": "typescript",
+      "sizeLines": 131,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/readiness-capability.ts",
+      "language": "typescript",
+      "sizeLines": 10,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/readiness-cli.test.ts",
+      "language": "typescript",
+      "sizeLines": 149,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/readiness-evaluate.test.ts",
+      "language": "typescript",
+      "sizeLines": 258,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/readiness-manifest.test.ts",
+      "language": "typescript",
+      "sizeLines": 198,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/readiness-observations.test.ts",
+      "language": "typescript",
+      "sizeLines": 302,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/readiness-render.test.ts",
+      "language": "typescript",
+      "sizeLines": 148,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tools/claude-context-integrity/test-verify.ps1",
+      "language": "powershell",
+      "sizeLines": 120,
+      "fileCategory": "script"
+    },
+    {
+      "path": "tools/claude-context-integrity/verify.ps1",
+      "language": "powershell",
+      "sizeLines": 263,
+      "fileCategory": "script"
+    },
+    {
+      "path": "tsconfig.json",
+      "language": "json",
+      "sizeLines": 14,
+      "fileCategory": "config"
+    }
+  ],
+  "totalFiles": 179,
+  "filteredByIgnore": 9,
+  "estimatedComplexity": "large",
+  "importMap": {
+    ".github/pull_request_template.md": [],
+    ".github/workflows/ci.yml": [],
+    ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/oauth-research-report.md": [],
+    ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/progress.md": [],
+    ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-1-brief.md": [],
+    ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-1-report.md": [],
+    ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-2-brief.md": [],
+    ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-2-report.md": [],
+    ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-3-brief.md": [],
+    ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-3-report.md": [],
+    ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-4-brief.md": [],
+    ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-4-report.md": [],
+    ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-5-brief.md": [],
+    ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-5-report.md": [],
+    ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-6-brief.md": [],
+    ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-6-report.md": [],
+    ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-7-brief.md": [],
+    ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-7-report.md": [],
+    ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-8-brief.md": [],
+    ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-8-report.md": [],
+    "AGENTS.md": [],
+    "CLAUDE.md": [],
+    "README.md": [],
+    "cli.ts": [
+      "src/cli.ts",
+      "src/errors.ts"
+    ],
+    "contract/adapters/claude-code.md": [],
+    "contract/adapters/codex.md": [],
+    "contract/adapters/cursor.md": [],
+    "contract/artifacts/canonical-work-artifact-template.md": [],
+    "contract/artifacts/epic-template.md": [],
+    "contract/artifacts/milestone-template.md": [],
+    "contract/artifacts/review-template.md": [],
+    "contract/artifacts/work-item-template.md": [],
+    "contract/capability-matrix.md": [],
+    "contract/lifecycle.md": [],
+    "contract/mappings/jira-confluence-github.md": [],
+    "contract/mcp-capabilities/github-readonly.json": [],
+    "contract/readiness/g2as-sandbox-target.json": [],
+    "contract/team-contract.md": [],
+    "docs/gate-2/atlassian-oauth-read-only-preflight.md": [],
+    "docs/history/README.md": [],
+    "docs/history/execution-records/.gitkeep": [],
+    "docs/history/gate-1/.gitkeep": [],
+    "docs/history/gate-2/current-state-and-roadmap.md": [],
+    "docs/history/gate-2/g2ai-pilot-evidence.md": [],
+    "docs/history/gate-2/gate-2-results-and-next-steps.md": [],
+    "docs/history/host-conformance/agent-testing-status-2026-07-28.md": [],
+    "docs/history/host-conformance/claude-code-2026-07-27.md": [],
+    "docs/history/host-conformance/claude-code-2026-07-28-behavior-response.md": [],
+    "docs/history/host-conformance/claude-code-2026-07-28-context-integrity-response.md": [],
+    "docs/history/host-conformance/claude-code-2026-07-28-context-payload-capture.md": [],
+    "docs/history/host-conformance/claude-code-2026-07-28-native-behavior-response.md": [],
+    "docs/history/host-conformance/claude-code-2026-07-28-native.md": [],
+    "docs/history/host-conformance/claude-code-2026-07-28-project-cwd-rerun.md": [],
+    "docs/history/host-conformance/claude-code-context-integrity-remediation-2026-07-28.md": [],
+    "docs/history/host-conformance/claude-code-host-capability-investigation-2026-07-28.md": [],
+    "docs/history/host-conformance/codex-2026-07-27-v2.md": [],
+    "docs/history/host-conformance/codex-2026-07-27.md": [],
+    "docs/history/host-conformance/codex-2026-07-28-v3.md": [],
+    "docs/history/host-conformance/codex-runtime-boundary-diagnostic-2026-07-27.md": [],
+    "docs/history/host-conformance/cursor-2026-07-27-behavior-response.md": [],
+    "docs/history/host-conformance/cursor-2026-07-27.md": [],
+    "docs/history/host-conformance/cursor-desktop-2026-07-28-behavior-response.md": [],
+    "docs/history/host-conformance/cursor-desktop-2026-07-28.md": [],
+    "docs/operations/agent-operating-model.md": [],
+    "docs/operations/codex-conformance-remediation-v2.md": [],
+    "docs/operations/g2as-research-validation-runbook.md": [],
+    "docs/operations/host-adapters/claude-code.md": [],
+    "docs/operations/host-adapters/codex.md": [],
+    "docs/operations/host-adapters/cursor.md": [],
+    "docs/operations/host-behavior-diagnostic.md": [],
+    "docs/operations/host-conformance-evidence-template.md": [],
+    "docs/operations/host-conformance-pilot.md": [],
+    "docs/operations/jira-git-confluence-adapter.md": [],
+    "docs/operations/team-activation-guide.md": [],
+    "docs/project/current-state.md": [],
+    "docs/project/documentation-map.md": [],
+    "docs/runbooks/g2as-sandbox-readiness-certificate.md": [],
+    "docs/runbooks/mapper-snapshot.md": [],
+    "docs/runbooks/sync-orchestrator-v1-sandbox.md": [],
+    "docs/superpowers/plans/2026-07-22-ai-agent-tooling-gate-1-research.md": [],
+    "docs/superpowers/plans/2026-07-27-agent-operating-model-baseline.md": [],
+    "docs/superpowers/plans/2026-07-27-codex-conformance-remediation.md": [],
+    "docs/superpowers/plans/2026-07-27-gate-2-jira-sandbox-pilot.md": [],
+    "docs/superpowers/plans/2026-07-27-host-behavior-security-separation.md": [],
+    "docs/superpowers/plans/2026-07-27-host-conformance-pilot.md": [],
+    "docs/superpowers/plans/2026-07-27-host-native-adapters-team-activation.md": [],
+    "docs/superpowers/plans/2026-07-27-layer-separation-common-core.md": [],
+    "docs/superpowers/plans/2026-07-29-agent-agnostic-sync-orchestrator-implementation.md": [],
+    "docs/superpowers/plans/2026-07-29-documentation-github-structure.md": [],
+    "docs/superpowers/plans/2026-07-29-g2as-sandbox-readiness-certificate.md": [],
+    "docs/superpowers/plans/2026-07-29-native-mcp-capability-standard.md": [],
+    "docs/superpowers/plans/2026-07-29-post-merge-state-synchronization.md": [],
+    "docs/superpowers/specs/2026-07-21-ai-agent-tooling-research-design.md": [],
+    "docs/superpowers/specs/2026-07-27-gate-2-jira-sandbox-pilot-design.md": [],
+    "docs/superpowers/specs/2026-07-29-agent-agnostic-sync-orchestrator-design.md": [],
+    "docs/superpowers/specs/2026-07-29-g2as-sandbox-readiness-certificate-design.md": [],
+    "docs/superpowers/specs/2026-07-29-native-mcp-capability-standard-design.md": [],
+    "package.json": [],
+    "research/2026-07-21-ai-agent-tooling-blueprint.md": [],
+    "scripts/check-doc-links.mjs": [],
+    "scripts/check-mapper-freshness.mjs": [],
+    "src/adapters/claude-code.ts": [
+      "src/adapters/types.ts",
+      "src/contract/compile.ts"
+    ],
+    "src/adapters/codex.ts": [
+      "src/adapters/types.ts",
+      "src/contract/compile.ts"
+    ],
+    "src/adapters/cursor.ts": [
+      "src/adapters/types.ts",
+      "src/contract/compile.ts"
+    ],
+    "src/adapters/types.ts": [
+      "src/contract/markdown.ts",
+      "src/events/envelope.ts",
+      "src/lifecycle/start-check.ts"
+    ],
+    "src/capabilities/manifest.ts": [
+      "src/capabilities/types.ts",
+      "src/contract/markdown.ts"
+    ],
+    "src/capabilities/projections.ts": [
+      "src/capabilities/manifest.ts",
+      "src/capabilities/types.ts",
+      "src/contract/markdown.ts"
+    ],
+    "src/capabilities/types.ts": [
+      "src/contract/markdown.ts"
+    ],
+    "src/cli.ts": [
+      "src/adapters/claude-code.ts",
+      "src/adapters/codex.ts",
+      "src/adapters/cursor.ts",
+      "src/capabilities/manifest.ts",
+      "src/contract/markdown.ts",
+      "src/events/envelope.ts",
+      "src/orchestrator/evidence.ts",
+      "src/readiness/manifest.ts",
+      "src/readiness/observations.ts",
+      "src/readiness/render.ts",
+      "src/readiness/run.ts"
+    ],
+    "src/connectors/confluence.ts": [
+      "src/connectors/types.ts"
+    ],
+    "src/connectors/github.ts": [
+      "src/connectors/types.ts"
+    ],
+    "src/connectors/jira.ts": [
+      "src/connectors/types.ts"
+    ],
+    "src/connectors/types.ts": [],
+    "src/contract/compile.ts": [
+      "src/contract/markdown.ts"
+    ],
+    "src/contract/errors.ts": [
+      "src/errors.ts"
+    ],
+    "src/contract/markdown.ts": [
+      "src/contract/errors.ts"
+    ],
+    "src/docs/links.ts": [],
+    "src/domain/model.ts": [],
+    "src/domain/schema.ts": [],
+    "src/domain/validate.ts": [
+      "src/domain/model.ts",
+      "src/domain/schema.ts",
+      "src/errors.ts"
+    ],
+    "src/errors.ts": [],
+    "src/events/envelope.ts": [
+      "src/domain/model.ts",
+      "src/domain/validate.ts"
+    ],
+    "src/events/outbox.ts": [
+      "src/events/envelope.ts"
+    ],
+    "src/events/reconcile.ts": [],
+    "src/evidence/github.ts": [],
+    "src/evidence/readback.ts": [
+      "src/evidence/github.ts"
+    ],
+    "src/lifecycle/profile.ts": [
+      "src/domain/model.ts"
+    ],
+    "src/lifecycle/start-check.ts": [],
+    "src/lifecycle/transitions.ts": [
+      "src/domain/model.ts",
+      "src/lifecycle/profile.ts"
+    ],
+    "src/orchestrator/allowlist.ts": [
+      "src/orchestrator/identity.ts"
+    ],
+    "src/orchestrator/evidence.ts": [],
+    "src/orchestrator/identity.ts": [],
+    "src/orchestrator/stop.ts": [
+      "src/orchestrator/allowlist.ts",
+      "src/orchestrator/identity.ts"
+    ],
+    "src/orchestrator/sync.ts": [
+      "src/connectors/types.ts",
+      "src/contract/errors.ts",
+      "src/contract/markdown.ts",
+      "src/domain/model.ts",
+      "src/events/envelope.ts",
+      "src/events/outbox.ts",
+      "src/lifecycle/profile.ts",
+      "src/lifecycle/transitions.ts",
+      "src/orchestrator/allowlist.ts",
+      "src/orchestrator/evidence.ts",
+      "src/orchestrator/identity.ts"
+    ],
+    "src/planning/finalize.ts": [
+      "src/domain/model.ts",
+      "src/domain/validate.ts",
+      "src/planning/traceability.ts"
+    ],
+    "src/planning/traceability.ts": [
+      "src/domain/model.ts",
+      "src/domain/validate.ts"
+    ],
+    "src/readiness/evaluate.ts": [
+      "src/capabilities/manifest.ts",
+      "src/capabilities/types.ts",
+      "src/readiness/observations.ts",
+      "src/readiness/types.ts"
+    ],
+    "src/readiness/manifest.ts": [
+      "src/readiness/types.ts"
+    ],
+    "src/readiness/observations.ts": [
+      "src/capabilities/types.ts",
+      "src/orchestrator/evidence.ts",
+      "src/readiness/types.ts"
+    ],
+    "src/readiness/render.ts": [
+      "src/readiness/evaluate.ts",
+      "src/readiness/types.ts"
+    ],
+    "src/readiness/run.ts": [
+      "src/capabilities/types.ts",
+      "src/readiness/evaluate.ts",
+      "src/readiness/observations.ts",
+      "src/readiness/types.ts"
+    ],
+    "src/readiness/types.ts": [],
+    "templates/hosts/claude-code-github-readonly-capability.md": [],
+    "templates/hosts/codex-github-readonly-capability.md": [],
+    "templates/hosts/cursor-github-readonly-capability.md": [],
+    "test/adapters.test.ts": [
+      "src/adapters/claude-code.ts",
+      "src/adapters/codex.ts",
+      "src/adapters/cursor.ts",
+      "src/adapters/types.ts",
+      "src/contract/markdown.ts"
+    ],
+    "test/bootstrap.test.ts": [],
+    "test/capabilities-manifest.test.ts": [
+      "src/capabilities/manifest.ts"
+    ],
+    "test/capabilities-projections.test.ts": [
+      "src/capabilities/manifest.ts",
+      "src/capabilities/projections.ts",
+      "src/contract/markdown.ts"
+    ],
+    "test/conformance/host-conformance.test.ts": [
+      "src/adapters/claude-code.ts",
+      "src/adapters/codex.ts",
+      "src/adapters/cursor.ts",
+      "src/readiness/evaluate.ts",
+      "src/readiness/manifest.ts",
+      "src/readiness/observations.ts",
+      "test/readiness-capability.ts"
+    ],
+    "test/connectors.test.ts": [
+      "src/connectors/confluence.ts",
+      "src/connectors/github.ts",
+      "src/connectors/jira.ts",
+      "src/connectors/types.ts",
+      "test/fixtures/connector-server.ts"
+    ],
+    "test/contract.test.ts": [
+      "src/contract/compile.ts",
+      "src/contract/errors.ts",
+      "src/contract/markdown.ts"
+    ],
+    "test/docs-links.test.ts": [
+      "src/docs/links.ts"
+    ],
+    "test/domain.test.ts": [
+      "src/domain/model.ts",
+      "src/domain/validate.ts",
+      "src/errors.ts"
+    ],
+    "test/e2e.test.ts": [
+      "src/connectors/types.ts",
+      "src/contract/markdown.ts",
+      "src/domain/model.ts",
+      "src/events/envelope.ts",
+      "src/events/outbox.ts",
+      "src/lifecycle/profile.ts",
+      "src/lifecycle/start-check.ts",
+      "src/orchestrator/sync.ts",
+      "src/planning/finalize.ts"
+    ],
+    "test/events.test.ts": [
+      "src/events/envelope.ts",
+      "src/events/outbox.ts",
+      "src/events/reconcile.ts"
+    ],
+    "test/evidence.test.ts": [
+      "src/evidence/github.ts",
+      "src/evidence/readback.ts"
+    ],
+    "test/fixtures/ambiguous-mapping.md": [],
+    "test/fixtures/connector-server.ts": [],
+    "test/fixtures/invalid-milestone.md": [],
+    "test/fixtures/project-profile.json": [],
+    "test/fixtures/readiness/not-ready.json": [],
+    "test/fixtures/readiness/ready.json": [],
+    "test/fixtures/readiness/stopped.json": [],
+    "test/fixtures/readiness/unsafe-observation.json": [],
+    "test/fixtures/valid-milestone.md": [],
+    "test/lifecycle.test.ts": [
+      "src/lifecycle/profile.ts",
+      "src/lifecycle/start-check.ts",
+      "src/lifecycle/transitions.ts"
+    ],
+    "test/orchestrator.test.ts": [
+      "src/orchestrator/allowlist.ts",
+      "src/orchestrator/identity.ts",
+      "src/orchestrator/stop.ts"
+    ],
+    "test/performance/baseline.test.ts": [
+      "src/connectors/jira.ts",
+      "src/connectors/types.ts",
+      "src/contract/markdown.ts",
+      "src/domain/model.ts",
+      "src/events/envelope.ts",
+      "src/events/outbox.ts",
+      "src/lifecycle/profile.ts",
+      "src/orchestrator/allowlist.ts",
+      "src/orchestrator/identity.ts",
+      "src/orchestrator/sync.ts",
+      "src/planning/finalize.ts",
+      "test/fixtures/connector-server.ts"
+    ],
+    "test/planning.test.ts": [
+      "src/domain/model.ts",
+      "src/planning/finalize.ts",
+      "src/planning/traceability.ts"
+    ],
+    "test/readiness-capability.ts": [
+      "src/capabilities/manifest.ts"
+    ],
+    "test/readiness-cli.test.ts": [
+      "src/readiness/manifest.ts",
+      "src/readiness/observations.ts",
+      "src/readiness/run.ts",
+      "test/readiness-capability.ts"
+    ],
+    "test/readiness-evaluate.test.ts": [
+      "src/readiness/evaluate.ts",
+      "src/readiness/manifest.ts",
+      "src/readiness/observations.ts",
+      "test/readiness-capability.ts"
+    ],
+    "test/readiness-manifest.test.ts": [
+      "src/readiness/manifest.ts",
+      "src/readiness/types.ts"
+    ],
+    "test/readiness-observations.test.ts": [
+      "src/readiness/observations.ts",
+      "src/readiness/types.ts"
+    ],
+    "test/readiness-render.test.ts": [
+      "src/readiness/evaluate.ts",
+      "src/readiness/manifest.ts",
+      "src/readiness/observations.ts",
+      "src/readiness/render.ts",
+      "test/readiness-capability.ts"
+    ],
+    "tools/claude-context-integrity/test-verify.ps1": [],
+    "tools/claude-context-integrity/verify.ps1": [],
+    "tsconfig.json": []
+  }
+}
