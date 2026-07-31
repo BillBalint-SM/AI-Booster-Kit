@@ -24,8 +24,8 @@ test("documentation entry points: provide the approved routing contract", async 
 });
 
 test("GitHub metadata: provides the approved read-only review contract", async () => {
-  const workflow = await readFile(".github/workflows/ci.yml", "utf8");
-  const template = await readFile(".github/pull_request_template.md", "utf8");
+  const workflow = (await readFile(".github/workflows/ci.yml", "utf8")).replaceAll("\r\n", "\n");
+  const template = (await readFile(".github/pull_request_template.md", "utf8")).replaceAll("\r\n", "\n");
   const requiredTemplateHeadings = [
     "Scope and outcome",
     "Verification evidence",

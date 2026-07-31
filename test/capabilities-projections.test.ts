@@ -28,7 +28,7 @@ test("capability projections: all hosts preserve one semantic contract", async (
 test("capability projections: checked-in templates are deterministic and declarative", async () => {
   for (const host of ["codex", "claude-code", "cursor"] as const) {
     const path = resolve(`templates/hosts/${host}-github-readonly-capability.md`);
-    const actual = await readFile(path, "utf8");
+    const actual = (await readFile(path, "utf8")).replaceAll("\r\n", "\n");
     assert.equal(actual, renderGithubCapabilityTemplate(capability, host));
     assert.doesNotMatch(actual, /https?:\/\/|authorization|cookie|password|token|oauth/i);
   }
