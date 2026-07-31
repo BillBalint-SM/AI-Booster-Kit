@@ -4,7 +4,7 @@ import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { test } from "node:test";
 
-import type { CodexMcpToolCaller } from "../src/evidence/codex-mcp-tool-caller.js";
+import { CodexMcpReadFailure, type CodexMcpToolCaller } from "../src/evidence/codex-mcp-tool-caller.js";
 import { runCodexMcpPreflight } from "../src/evidence/codex-mcp-preflight.js";
 import { parseG2asReadinessManifest } from "../src/readiness/manifest.js";
 import { readinessCapability } from "./readiness-capability.js";
@@ -90,7 +90,7 @@ test("Codex MCP preflight: preserves a safe STOPPED certificate for a mismatched
   }
 });
 
-test("Codex MCP preflight: preserves TIMEOUT_UNKNOWN for a failed source read", async () => {
+test("Codex MCP preflight: classifies a generic source failure as SCOPE_UNVERIFIED", async () => {
   const root = await mkdtemp(join(tmpdir(), "g2as-codex-mcp-preflight-"));
 
   try {
@@ -109,7 +109,61 @@ test("Codex MCP preflight: preserves TIMEOUT_UNKNOWN for a failed source read", 
     });
 
     assert.equal(result.certificate.decision, "STOPPED");
+    assert.equal(result.certificate.checks.find((check) => check.name === "github")?.diagnosticCode, "SCOPE_UNVERIFIED");
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test("Codex MCP preflight: preserves TIMEOUT_UNKNOWN for an explicitly typed timeout", async () => {
+  const root = await mkdtemp(join(tmpdir(), "g2as-codex-mcp-preflight-"));
+
+  try {
+    const payload = await readRawPayload();
+    const caller = {
+      ...createCaller(payload, []),
+      readGithubCommit: async () => { throw new CodexMcpReadFailure("TIMEOUT_UNKNOWN", "github"); },
+    };
+    const result = await runCodexMcpPreflight({
+      manifest,
+      capability: readinessCapability,
+      capabilityEvidence,
+      caller,
+      getRunTimestamp: () => "2026-07-31T14:00:00.000Z",
+      outputDirectory: join(root, "output"),
+    });
+
+    assert.equal(result.certificate.decision, "STOPPED");
     assert.equal(result.certificate.checks.find((check) => check.name === "github")?.diagnosticCode, "TIMEOUT_UNKNOWN");
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test("Codex MCP preflight: emits a safe STOPPED certificate for invalid capability evidence", async () => {
+  const root = await mkdtemp(join(tmpdir(), "g2as-codex-mcp-preflight-"));
+
+  try {
+    const payload = await readRawPayload();
+    const invalidCapabilityEvidence = {
+      ...capabilityEvidence,
+      scopeFingerprint: "not-a-fingerprint",
+    } as unknown as typeof capabilityEvidence;
+    const result = await runCodexMcpPreflight({
+      manifest,
+      capability: readinessCapability,
+      capabilityEvidence: invalidCapabilityEvidence,
+      caller: createCaller(payload, []),
+      getRunTimestamp: () => "2026-07-31T14:00:00.000Z",
+      outputDirectory: join(root, "output"),
+    });
+
+    assert.equal(result.certificate.decision, "STOPPED");
+    assert.equal(result.certificate.checks.find((check) => check.name === "github")?.diagnosticCode, "CAPABILITY_UNKNOWN");
+    assert.deepEqual((await readdir(join(root, "output"))).sort(), [
+      "g2as-sandbox-readiness-certificate.json",
+      "g2as-sandbox-readiness-certificate.md",
+    ]);
   } finally {
     await rm(root, { recursive: true, force: true });
   }

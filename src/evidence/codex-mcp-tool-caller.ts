@@ -11,6 +11,24 @@ export interface CodexMcpToolCaller {
   readonly readGithubFile: (request: CodexMcpReadRequest, path: string) => Promise<unknown>;
 }
 
+export type CodexMcpReadFailureDiagnosticCode = "TIMEOUT_UNKNOWN" | "SCOPE_UNVERIFIED";
+export type CodexMcpReadFailureSource = "jira" | "confluence" | "github";
+
+export class CodexMcpReadFailure extends Error {
+  public readonly diagnosticCode: CodexMcpReadFailureDiagnosticCode;
+  public readonly source: CodexMcpReadFailureSource;
+
+  public constructor(
+    diagnosticCode: CodexMcpReadFailureDiagnosticCode,
+    source: CodexMcpReadFailureSource,
+  ) {
+    super(`Codex MCP ${source} read failed with ${diagnosticCode}.`);
+    this.name = "CodexMcpReadFailure";
+    this.diagnosticCode = diagnosticCode;
+    this.source = source;
+  }
+}
+
 export class CodexMcpToolCallerError extends Error {
   public constructor(message: string) {
     super(`Codex MCP tool caller rejected: ${message}.`);
@@ -30,15 +48,15 @@ export function createCodexMcpTransportSource(
     read: async (request: CodexMcpReadRequest) => {
       const runAt = readAt();
       const [jiraIssue, jiraRemoteLinks, confluenceSpace, confluencePage, confluencePageMetadata, githubRepository, githubCommit, markdown, json] = await Promise.all([
-        caller.readJiraIssue(request),
-        caller.readJiraRemoteLinks(request),
-        caller.readConfluenceSpace(request),
-        caller.readConfluencePage(request),
-        caller.readConfluencePageMetadata(request),
-        caller.readGithubRepository(request),
-        caller.readGithubCommit(request),
-        caller.readGithubFile(request, request.target.fixturePathOne),
-        caller.readGithubFile(request, request.target.fixturePathTwo),
+        readSource("jira", () => caller.readJiraIssue(request)),
+        readSource("jira", () => caller.readJiraRemoteLinks(request)),
+        readSource("confluence", () => caller.readConfluenceSpace(request)),
+        readSource("confluence", () => caller.readConfluencePage(request)),
+        readSource("confluence", () => caller.readConfluencePageMetadata(request)),
+        readSource("github", () => caller.readGithubRepository(request)),
+        readSource("github", () => caller.readGithubCommit(request)),
+        readSource("github", () => caller.readGithubFile(request, request.target.fixturePathOne)),
+        readSource("github", () => caller.readGithubFile(request, request.target.fixturePathTwo)),
       ]);
 
       return {
@@ -54,6 +72,18 @@ export function createCodexMcpTransportSource(
       };
     },
   });
+}
+
+async function readSource<T>(
+  source: CodexMcpReadFailureSource,
+  read: () => Promise<T>,
+): Promise<T> {
+  try {
+    return await read();
+  } catch (error: unknown) {
+    if (error instanceof CodexMcpReadFailure) throw error;
+    throw new CodexMcpReadFailure("SCOPE_UNVERIFIED", source);
+  }
 }
 
 export function assertCodexMcpToolCaller(value: unknown): asserts value is CodexMcpToolCaller {
