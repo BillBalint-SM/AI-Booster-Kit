@@ -71,7 +71,10 @@ The binding performs the nine fixed reads. A verified read produces `READY`; a
 read, normalization, or scope failure produces a safe `STOPPED` certificate.
 The certificate preserves only the safe diagnostic code and affected source
 (`TARGET_MISMATCH`, `TRACEABILITY_MISMATCH`, `CAPABILITY_UNKNOWN`,
-`TIMEOUT_UNKNOWN`, or `SCOPE_UNVERIFIED`), never the raw error or payload. It
+`TIMEOUT_UNKNOWN`, or `SCOPE_UNVERIFIED`), never the raw error or payload. An
+untyped caller failure is `SCOPE_UNVERIFIED`; `TIMEOUT_UNKNOWN` requires an
+explicitly typed timeout from the caller boundary. Invalid capability evidence
+is replaced by a redacted unknown placeholder before certificate rendering. It
 writes only `g2as-sandbox-readiness-certificate.json` and
 `g2as-sandbox-readiness-certificate.md`. It does not retry reads, write to
 Jira, Confluence, or GitHub, request OAuth, or persist raw connector payloads.

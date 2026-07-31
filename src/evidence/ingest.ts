@@ -9,6 +9,7 @@ import {
 } from "../readiness/observations.js";
 import type { G2asReadinessManifest, SourceName } from "../readiness/types.js";
 import { CodexMcpPayloadNormalizationError } from "./codex-mcp-payload.js";
+import { CodexMcpReadFailure } from "./codex-mcp-tool-caller.js";
 
 export interface CodexReadOnlyEvidenceAdapter {
   readonly host: "codex";
@@ -90,8 +91,12 @@ function classifyReadFailure(error: unknown): {
   readonly diagnosticCode: EvidenceIngestionDiagnosticCode;
   readonly source: EvidenceIngestionSource;
 } {
+  if (error instanceof CodexMcpReadFailure) {
+    return { diagnosticCode: error.diagnosticCode, source: error.source };
+  }
+
   if (!(error instanceof CodexMcpPayloadNormalizationError)) {
-    return { diagnosticCode: "TIMEOUT_UNKNOWN", source: "unknown" };
+    return { diagnosticCode: "SCOPE_UNVERIFIED", source: "unknown" };
   }
 
   const message = error.message.toLowerCase();

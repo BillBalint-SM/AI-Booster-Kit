@@ -32,6 +32,7 @@ export async function runCodexMcpPreflight(
   const runAt = request.getRunTimestamp();
   const source = createCodexMcpTransportSource(request.caller, () => runAt);
   const adapter = createCodexMcpPayloadAdapter(source, request.capabilityEvidence);
+  const safeCapabilityEvidence = normalizeCapabilityEvidence(request.capabilityEvidence);
   let certificate: ReadinessCertificate;
 
   try {
@@ -41,7 +42,7 @@ export async function runCodexMcpPreflight(
     certificate = createStoppedCertificate(
       request.manifest,
       request.capability,
-      request.capabilityEvidence,
+      safeCapabilityEvidence,
       runAt,
       error.diagnosticCode,
       error.source,
@@ -54,6 +55,43 @@ export async function runCodexMcpPreflight(
     certificate,
     outputPaths,
   });
+}
+
+function normalizeCapabilityEvidence(value: GithubCapabilityEvidence): GithubCapabilityEvidence {
+  const fallback: GithubCapabilityEvidence = {
+    capabilityId: "github-readonly-evidence-v1",
+    capabilityVersion: 1,
+    host: "codex",
+    scopeFingerprint: "0".repeat(64),
+    state: "unknown",
+  };
+
+  if (value === null || typeof value !== "object" || Array.isArray(value)) return fallback;
+
+  const record = value as unknown as Record<string, unknown>;
+  const expectedKeys = ["capabilityId", "capabilityVersion", "host", "scopeFingerprint", "state"] as const;
+  const actualKeys = Reflect.ownKeys(record);
+  if (
+    actualKeys.some((key) => typeof key !== "string" || !expectedKeys.includes(key as typeof expectedKeys[number])) ||
+    expectedKeys.some((key) => !Object.hasOwn(record, key))
+  ) return fallback;
+
+  if (
+    record.capabilityId !== "github-readonly-evidence-v1" ||
+    record.capabilityVersion !== 1 ||
+    !["codex", "claude-code", "cursor"].includes(record.host as string) ||
+    typeof record.scopeFingerprint !== "string" ||
+    !/^[a-f0-9]{64}$/.test(record.scopeFingerprint) ||
+    !["verified", "unknown"].includes(record.state as string)
+  ) return fallback;
+
+  return {
+    capabilityId: "github-readonly-evidence-v1",
+    capabilityVersion: 1,
+    host: record.host as GithubCapabilityEvidence["host"],
+    scopeFingerprint: record.scopeFingerprint,
+    state: record.state as GithubCapabilityEvidence["state"],
+  };
 }
 
 function createStoppedCertificate(

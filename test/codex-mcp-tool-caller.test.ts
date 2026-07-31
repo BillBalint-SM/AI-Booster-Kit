@@ -3,6 +3,7 @@ import { test } from "node:test";
 
 import {
   assertCodexMcpToolCaller,
+  CodexMcpReadFailure,
   createCodexMcpTransportSource,
 } from "../src/evidence/codex-mcp-tool-caller.js";
 import {
@@ -124,7 +125,10 @@ test("Codex MCP tool caller: propagates a failed read without retry", async () =
   };
   const source = createCodexMcpTransportSource(caller, () => runAt);
 
-  await assert.rejects(() => source.read(request), /commit read failed/);
+  await assert.rejects(
+    () => source.read(request),
+    (error: unknown) => error instanceof CodexMcpReadFailure && error.diagnosticCode === "SCOPE_UNVERIFIED" && error.source === "github",
+  );
   assert.equal(attempts, 1);
 });
 
