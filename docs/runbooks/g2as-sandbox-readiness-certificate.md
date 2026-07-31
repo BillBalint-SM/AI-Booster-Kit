@@ -22,7 +22,7 @@ must declare one of these read paths:
 - `mcp` for host-collected read-only connector evidence.
 - `tenant_aware_chrome` for the tenant-resolved, read-only browser fallback.
 
-The certificate generator never performs either path itself. It rejects raw
+The local certificate CLI never performs either path itself. It rejects raw
 payloads, transcripts, credentials, authorization data, cookies, arbitrary
 URLs, and unrecognized fields. It also does not retry unknown external results
 or offer a bypass for a hard stop.
@@ -48,16 +48,46 @@ npm run cli -- readiness --manifest contract/readiness/g2as-sandbox-target.json 
 The output declares `externalWriteCount: 0`; local output files are the only
 permitted write performed by this command.
 
+## Codex host-side preflight
+
+When Codex MCP is the approved read path, the host supplies the exact
+read-only `CodexMcpToolCaller` and invokes the local preflight binding. The
+Node process does not discover or activate MCP tools; it receives the caller
+from the host and keeps the existing transport, payload-normalization, and
+evidence-boundary checks in the execution path:
+
+```typescript
+await runCodexMcpPreflight({
+  manifest,
+  capability,
+  capabilityEvidence,
+  caller,
+  getRunTimestamp,
+  outputDirectory,
+});
+```
+
+The binding performs the nine fixed reads. A verified read produces `READY`; a
+read, normalization, or scope failure produces a safe `STOPPED` certificate.
+The certificate preserves only the safe diagnostic code and affected source
+(`TARGET_MISMATCH`, `TRACEABILITY_MISMATCH`, `CAPABILITY_UNKNOWN`,
+`TIMEOUT_UNKNOWN`, or `SCOPE_UNVERIFIED`), never the raw error or payload. It
+writes only `g2as-sandbox-readiness-certificate.json` and
+`g2as-sandbox-readiness-certificate.md`. It does not retry reads, write to
+Jira, Confluence, or GitHub, request OAuth, or persist raw connector payloads.
+Use a new, not-yet-existing output-directory path for each run; publication is
+staged as one directory so a failed write cannot leave a partial certificate.
+
 ## Local verification record
 
-The following local-only verification ran on 2026-07-29. It used no Jira,
+The following local-only verification ran on 2026-07-31. It used no Jira,
 Confluence, GitHub, MCP, browser, OAuth, credential, or network operation.
 
 | Check | Input or command | Result |
 | --- | --- | --- |
 | Static analysis | `npm run lint` | Passed |
 | Build | `npm run build` | Passed |
-| Full local suite | `npm test` | 144 passed, 0 failed |
+| Full local suite | `npm test` | 166 passed, 0 failed |
 | CLI ready fixture | `test/fixtures/readiness/ready.json` | `READY`, exit `0`, exactly two local certificate files, `externalWriteCount: 0` |
 | CLI capability-stop fixture | `test/fixtures/readiness/not-ready.json` | `STOPPED`, exit `3`, exactly two local certificate files, `externalWriteCount: 0` |
 | CLI target-stop fixture | `test/fixtures/readiness/stopped.json` | `STOPPED`, exit `3`, exactly two local certificate files, `externalWriteCount: 0` |

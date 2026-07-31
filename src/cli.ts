@@ -1,4 +1,4 @@
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { readFile } from "node:fs/promises";
 
 import { claudeCodeAdapter } from "./adapters/claude-code.js";
 import { codexAdapter } from "./adapters/codex.js";
@@ -9,7 +9,7 @@ import { assertSafeEvidenceRefs, EvidenceValidationError } from "./orchestrator/
 import { loadG2asReadinessManifest } from "./readiness/manifest.js";
 import { loadGithubReadOnlyCapability } from "./capabilities/manifest.js";
 import { type ReadinessAdapter, type ReadinessObservationBundle } from "./readiness/observations.js";
-import { renderCertificateJson, renderCertificateMarkdown } from "./readiness/render.js";
+import { writeReadinessCertificate } from "./readiness/output.js";
 import { runReadinessCertificate } from "./readiness/run.js";
 
 const helpText = `Usage: npm run cli -- <command>
@@ -128,12 +128,7 @@ async function runReadiness(argv: readonly string[]): Promise<number> {
     const manifest = await loadG2asReadinessManifest(argv[1]);
     const capability = await loadGithubReadOnlyCapability(argv[3]);
     const certificate = await runReadinessCertificate(manifest, createLocalObservationAdapter(argv[5]), capability);
-    const json = renderCertificateJson(certificate);
-    const markdown = renderCertificateMarkdown(certificate);
-
-    await mkdir(argv[7], { recursive: true });
-    await writeFile(`${argv[7]}/g2as-sandbox-readiness-certificate.json`, json, "utf8");
-    await writeFile(`${argv[7]}/g2as-sandbox-readiness-certificate.md`, markdown, "utf8");
+    await writeReadinessCertificate(argv[7], certificate);
 
     process.stdout.write(`${JSON.stringify({ decision: certificate.decision })}\n`);
     return readinessExitCode(certificate.decision);
