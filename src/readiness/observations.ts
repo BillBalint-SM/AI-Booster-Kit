@@ -29,7 +29,7 @@ export interface ReadinessObservationBundle {
 }
 
 export interface ReadinessAdapter {
-  read(manifest: G2asReadinessManifest): Promise<ReadinessObservationBundle>;
+  read(manifest: G2asReadinessManifest): Promise<unknown>;
 }
 
 const sourceNames = ["jira", "confluence", "github", "traceability"] as const;
