@@ -77,13 +77,39 @@ test("Codex MCP preflight: preserves a safe STOPPED certificate for a mismatched
         caller: createCaller(payload, []),
         getRunTimestamp: () => "2026-07-31T14:00:00.000Z",
         outputDirectory: join(root, "output"),
-      });
+    });
     assert.equal(result.certificate.decision, "STOPPED");
+    assert.equal(result.certificate.checks.find((check) => check.name === "github")?.diagnosticCode, "TARGET_MISMATCH");
     assert.deepEqual((await readdir(join(root, "output"))).sort(), [
       "g2as-sandbox-readiness-certificate.json",
       "g2as-sandbox-readiness-certificate.md",
     ]);
     assert.equal(JSON.parse(await readFile(result.outputPaths.json, "utf8")).externalWriteCount, 0);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test("Codex MCP preflight: preserves TIMEOUT_UNKNOWN for a failed source read", async () => {
+  const root = await mkdtemp(join(tmpdir(), "g2as-codex-mcp-preflight-"));
+
+  try {
+    const payload = await readRawPayload();
+    const caller = {
+      ...createCaller(payload, []),
+      readGithubCommit: async () => { throw new Error("synthetic source failure"); },
+    };
+    const result = await runCodexMcpPreflight({
+      manifest,
+      capability: readinessCapability,
+      capabilityEvidence,
+      caller,
+      getRunTimestamp: () => "2026-07-31T14:00:00.000Z",
+      outputDirectory: join(root, "output"),
+    });
+
+    assert.equal(result.certificate.decision, "STOPPED");
+    assert.equal(result.certificate.checks.find((check) => check.name === "github")?.diagnosticCode, "TIMEOUT_UNKNOWN");
   } finally {
     await rm(root, { recursive: true, force: true });
   }

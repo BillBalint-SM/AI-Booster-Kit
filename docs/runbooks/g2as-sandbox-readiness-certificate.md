@@ -69,7 +69,10 @@ await runCodexMcpPreflight({
 
 The binding performs the nine fixed reads. A verified read produces `READY`; a
 read, normalization, or scope failure produces a safe `STOPPED` certificate.
-It writes only `g2as-sandbox-readiness-certificate.json` and
+The certificate preserves only the safe diagnostic code and affected source
+(`TARGET_MISMATCH`, `TRACEABILITY_MISMATCH`, `CAPABILITY_UNKNOWN`,
+`TIMEOUT_UNKNOWN`, or `SCOPE_UNVERIFIED`), never the raw error or payload. It
+writes only `g2as-sandbox-readiness-certificate.json` and
 `g2as-sandbox-readiness-certificate.md`. It does not retry reads, write to
 Jira, Confluence, or GitHub, request OAuth, or persist raw connector payloads.
 Use a new, not-yet-existing output-directory path for each run; publication is
@@ -84,7 +87,7 @@ Confluence, GitHub, MCP, browser, OAuth, credential, or network operation.
 | --- | --- | --- |
 | Static analysis | `npm run lint` | Passed |
 | Build | `npm run build` | Passed |
-| Full local suite | `npm test` | 165 passed, 0 failed |
+| Full local suite | `npm test` | 166 passed, 0 failed |
 | CLI ready fixture | `test/fixtures/readiness/ready.json` | `READY`, exit `0`, exactly two local certificate files, `externalWriteCount: 0` |
 | CLI capability-stop fixture | `test/fixtures/readiness/not-ready.json` | `STOPPED`, exit `3`, exactly two local certificate files, `externalWriteCount: 0` |
 | CLI target-stop fixture | `test/fixtures/readiness/stopped.json` | `STOPPED`, exit `3`, exactly two local certificate files, `externalWriteCount: 0` |

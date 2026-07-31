@@ -8,11 +8,11 @@ The contract-first V1 runtime, local G2AS readiness certificate, native GitHub M
 
 ## Validation
 
-`npm run lint`, `npm run check:docs`, `npm test` (165/165), `npm run cli -- validate --contract contract/team-contract.md`, and `npm run cli -- conformance` pass locally. The lower-level composite live read audit is `READY`; the new host-side runner is covered by synthetic exact-caller tests. No Jira, Confluence, or GitHub write occurred.
+`npm run lint`, `npm run check:docs`, `npm test` (166/166), `npm run cli -- validate --contract contract/team-contract.md`, and `npm run cli -- conformance` pass locally. The lower-level composite live read audit is `READY`; the new host-side runner is covered by synthetic exact-caller tests, including safe source-specific failure diagnostics. No Jira, Confluence, or GitHub write occurred.
 
 ## Known limit
 
-The raw normalizer, mapper, transport contract, and tool-caller binding were validated against source-derived live MCP results; the host-side preflight runner and atomic certificate publication are validated with synthetic exact-caller tests. The runner emits `READY` after a fully verified read and a safe `STOPPED` certificate when the read boundary rejects a result. `NOT READY` remains supported by the normalized-observation CLI; the runner does not synthesize it from an incomplete raw MCP payload. The composite page reader is explicit for this Codex MCP shape; no automatic MCP tool discovery/activation or generic external synchronization is implemented. The local V1 CLI does not activate live connectors, and connector activation and host configuration remain outside the supported runtime boundary.
+The raw normalizer, mapper, transport contract, and tool-caller binding were validated against source-derived live MCP results; the host-side preflight runner and atomic certificate publication are validated with synthetic exact-caller tests. The runner emits `READY` after a fully verified read and a safe `STOPPED` certificate with a source-specific diagnostic when the read boundary rejects a result. `NOT READY` remains supported by the normalized-observation CLI; the runner does not synthesize it from an incomplete raw MCP payload. The composite page reader is explicit for this Codex MCP shape; no automatic MCP tool discovery/activation or generic external synchronization is implemented. The local V1 CLI does not activate live connectors, and connector activation and host configuration remain outside the supported runtime boundary.
 
 ## Open stop
 
