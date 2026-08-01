@@ -60,6 +60,26 @@ export interface FormationEntry {
   authority: "RECOMMENDATION_ONLY";
 }
 
+export type FormationRecommendationDecision = "RECOMMEND" | "CANDIDATE" | "NO_FIT" | "UNKNOWN" | "NO_AGENT";
+
+export interface FormationRecommendation {
+  decision: FormationRecommendationDecision;
+  scenario: FormationScenario | "UNKNOWN";
+  impact: ControllerImpact;
+  requiresAcknowledgement: boolean;
+  reasons: readonly string[];
+  missingPrerequisites: readonly string[];
+  unknownEvidence: readonly string[];
+  formation?: {
+    formationId: string;
+    version: string;
+    status: FormationEntryStatus;
+    identityKey: string;
+    pattern: string;
+  };
+  recommendationId: string;
+}
+
 export type ControllerDecision = "RECOMMEND" | "PREPARE" | "NO_AGENT" | "NO_FIT" | "STOPPED";
 export type ControllerImpact = "COMPATIBLE" | "DEGRADED" | "BREAKING" | "UNKNOWN";
 export type CheckpointChoice = "ACCEPT_RECOMMENDATION" | "REQUEST_ALTERNATIVE" | "CONTINUE_WITHOUT_AGENT";
