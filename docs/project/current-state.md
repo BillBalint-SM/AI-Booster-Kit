@@ -15,17 +15,17 @@ boundary, the first Quick Task capability contract, the ephemeral Quick Task
 Activation Package command, and the public-facing website surface. M1-A now
 adds the strict [formation catalog](../../contract/agent-library/formation-catalog.md)
 contract and TypeScript validator with one ready Quick Task entry, fully ready
-validation and refinement entries, and three bounded scenario candidates. M1-B adds
+research, validation, and refinement entries, and two bounded scenario candidates. M1-B adds
 deterministic scenario recognition and explainable, recommendation-only output
 with stable structural identity. The read-only `recommend-formation` CLI
-command now exposes the validation and refinement profile paths as `RECOMMEND`
+command now exposes the research, validation, and refinement profile paths as `RECOMMEND`
 when all required profile input is present and preserves `UNKNOWN` otherwise,
 without changing Quick Task checkpoint or activation behavior.
 
 ## Validation
 
-The refinement recipe/catalog/request/recommendation/CLI focused suite passes
-47/47, and the full repository suite passes 250/250 under the available local
+The formation recipe/catalog/request/recommendation focused suite passes
+45/45, and the full repository suite passes 257/257 under the available local
 Node 26 runtime. Documentation-link validation and `git diff --check` pass.
 Remote CI `quality` passed on PR #24. The package declares Node 22.x; local
 Node 26 is not the declared runtime, so the remote CI result remains the exact
@@ -36,7 +36,7 @@ is performed.
 
 ## Known limit
 
-The research, implementation, and debugging scenario recipes and
+The implementation and debugging scenario recipes and
 profile-specific output contracts remain future or bounded M1 slices. Host
 adaptation/execution, explicit package saving, durable session state,
 evaluation/evolve loop, debugging context injection, and optional lifecycle
@@ -55,8 +55,8 @@ specific approval, bounded authority, and source-native read-back.
 
 ## Next bounded action
 
-Select and implement the next fully `READY` scenario recipe from research,
-implementation, or debugging with its
+Select and implement the next fully `READY` scenario recipe from implementation
+or debugging with its
 profile-specific DoR/DoD/AC/evidence output contract, without changing the
 Human Checkpoint boundary.
 

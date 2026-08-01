@@ -97,7 +97,14 @@ export interface RefinementFormationInput {
   openQuestions: readonly string[];
 }
 
-export type FormationInput = ValidationFormationInput | RefinementFormationInput;
+export interface ResearchFormationInput {
+  scenario: "research";
+  scope: string;
+  sourceAllowlist: readonly string[];
+  evidenceStandard: readonly string[];
+}
+
+export type FormationInput = ResearchFormationInput | ValidationFormationInput | RefinementFormationInput;
 
 export interface ValidationRecipe {
   recipeId: "bounded-validation";
@@ -158,6 +165,37 @@ export interface RefinementRecipe {
   recovery: {
     preserve: readonly ["original-scope", "rejected-interpretations"];
     stopConditions: readonly ["unaccepted-scope-change", "unresolved-conflict"];
+  };
+}
+
+export interface ResearchRecipe {
+  recipeId: "bounded-research";
+  recipeVersion: "0.1.0";
+  status: "READY";
+  formationId: "bounded-research";
+  scenario: "research";
+  weight: "medium";
+  coordination: "parallel-fan-out-fan-in";
+  controller: {
+    version: 1;
+    eligibleComplexities: readonly ["LOW", "MEDIUM"];
+    requiredInput: readonly ["goal", "scope", "source-allowlist", "evidence-standard"];
+    executionBoundary: "LOCAL_ONLY";
+    authority: "RECOMMENDATION_ONLY";
+  };
+  outputContract: {
+    requiredSections: readonly ["source-backed-brief", "uncertainty-register", "recommendation-or-stop"];
+    unknownPolicy: "PRESERVE_AS_UNKNOWN";
+    resultState: "NOT_STARTED";
+  };
+  acceptance: {
+    criteria: readonly ["bounded-question", "primary-source-evidence", "unresolved-conflicts-visible"];
+  };
+  evidenceRequirements: readonly ["source-register", "quoted-or-linked-findings", "review-record"];
+  relations: readonly [{ kind: "related_to"; target: "quick-task-clarifier-validator" }];
+  recovery: {
+    preserve: readonly ["source-register", "conflicting-findings"];
+    stopConditions: readonly ["unknown-source-authority", "scope-expansion", "partial-evidence"];
   };
 }
 
