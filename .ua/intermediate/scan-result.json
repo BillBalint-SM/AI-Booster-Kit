@@ -1,6 +1,6 @@
 {
   "scriptCompleted": true,
-  "contentDigest": "81a7c3543ad393d135a2a0638ea06072d08b40e8c0ba1de992ffeb24496352d6",
+  "contentDigest": "0f36d4ec73fee6dd52a7604333199e30caf7edd3c05a06df625b1c883af3aa39",
   "files": [
     {
       "path": ".github/pull_request_template.md",
@@ -1600,7 +1600,7 @@
     }
   ],
   "totalFiles": 266,
-  "filteredByIgnore": 5,
+  "filteredByIgnore": 4,
   "estimatedComplexity": "large",
   "stats": {
     "filesScanned": 266,
