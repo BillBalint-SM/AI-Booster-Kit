@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
-import { loadResearchRecipe, loadValidationRecipe, parseResearchRecipe, parseValidationRecipe } from "../src/controller/formation-recipe.js";
+import { loadImplementationRecipe, loadResearchRecipe, loadValidationRecipe, parseImplementationRecipe, parseResearchRecipe, parseValidationRecipe } from "../src/controller/formation-recipe.js";
 
 const validRecipeSource = `---
 recipeId: bounded-validation
@@ -67,6 +67,38 @@ recovery:
 # Bounded Research
 `;
 
+const validImplementationRecipeSource = `---
+recipeId: bounded-implementation
+recipeVersion: 0.1.0
+status: READY
+formationId: bounded-implementation
+scenario: development
+weight: heavy
+coordination: sequential
+controller:
+  version: 1
+  eligibleComplexities: [MEDIUM]
+  requiredInput: [goal, repository, repository-state, acceptance-criteria, test-strategy, accepted-plan, rollback-boundary]
+  executionBoundary: LOCAL_ONLY
+  authority: RECOMMENDATION_ONLY
+outputContract:
+  requiredSections: [reviewable-diff, test-evidence, residual-risk-record]
+  unknownPolicy: PRESERVE_AS_UNKNOWN
+  resultState: NOT_STARTED
+acceptance:
+  criteria: [scope-matched-diff, relevant-tests-pass, rollback-boundary-preserved]
+evidenceRequirements: [git-diff, test-output, review-record]
+relations:
+  - kind: depends_on
+    target: bounded-refinement
+recovery:
+  preserve: [prior-setup, failing-evidence]
+  stopConditions: [dirty-state-conflict, unsafe-change, failed-read-back]
+---
+
+# Bounded Implementation
+`;
+
 test("validation recipe: parses the profile-specific input and output contract", async () => {
   const recipe = parseValidationRecipe(validRecipeSource, "fixtures/bounded-validation.md");
 
@@ -130,4 +162,40 @@ test("research recipe: rejects an unsafe authority", () => {
   const source = validResearchRecipeSource.replace("authority: RECOMMENDATION_ONLY", "authority: ACTIVATION");
 
   assert.throws(() => parseResearchRecipe(source, "fixtures/bounded-research.md"), /Validation recipe rejected: controller\.authority must be RECOMMENDATION_ONLY\./);
+});
+
+test("implementation recipe: parses the complete READY profile contract", () => {
+  const recipe = parseImplementationRecipe(validImplementationRecipeSource, "fixtures/bounded-implementation.md");
+
+  assert.equal(recipe.recipeId, "bounded-implementation");
+  assert.deepEqual(recipe.controller.requiredInput, ["goal", "repository", "repository-state", "acceptance-criteria", "test-strategy", "accepted-plan", "rollback-boundary"]);
+  assert.deepEqual(recipe.outputContract.requiredSections, ["reviewable-diff", "test-evidence", "residual-risk-record"]);
+  assert.deepEqual(recipe.acceptance.criteria, ["scope-matched-diff", "relevant-tests-pass", "rollback-boundary-preserved"]);
+  assert.deepEqual(recipe.recovery.stopConditions, ["dirty-state-conflict", "unsafe-change", "failed-read-back"]);
+});
+
+test("implementation recipe: loads the checked-in READY contract", async () => {
+  const recipe = await loadImplementationRecipe("contract/agent-library/bounded-implementation.md");
+
+  assert.equal(recipe.status, "READY");
+  assert.equal(recipe.scenario, "development");
+  assert.equal(recipe.controller.executionBoundary, "LOCAL_ONLY");
+});
+
+test("implementation recipe: rejects unknown metadata", () => {
+  const source = validImplementationRecipeSource.replace("status: READY", "status: READY\nunsafe: true");
+
+  assert.throws(() => parseImplementationRecipe(source, "fixtures/bounded-implementation.md"), /Implementation recipe rejected: frontmatter\.unsafe is not allowed\./);
+});
+
+test("implementation recipe: rejects an incomplete output contract", () => {
+  const source = validImplementationRecipeSource.replace("  requiredSections: [reviewable-diff, test-evidence, residual-risk-record]\n", "  requiredSections: [reviewable-diff, test-evidence]\n");
+
+  assert.throws(() => parseImplementationRecipe(source, "fixtures/bounded-implementation.md"), /Implementation recipe rejected: outputContract\.requiredSections must declare the canonical sections\./);
+});
+
+test("implementation recipe: rejects an unsafe authority", () => {
+  const source = validImplementationRecipeSource.replace("authority: RECOMMENDATION_ONLY", "authority: ACTIVATION");
+
+  assert.throws(() => parseImplementationRecipe(source, "fixtures/bounded-implementation.md"), /Implementation recipe rejected: controller\.authority must be RECOMMENDATION_ONLY\./);
 });

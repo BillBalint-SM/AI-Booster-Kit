@@ -97,6 +97,9 @@ function unresolvedPrerequisites(request: QuickTaskRequest, formation: Formation
     if (prerequisite === "current-scope") return request.formationInput?.scenario !== "refinement" || request.formationInput.currentScope.trim().length === 0;
     if (prerequisite === "constraints") return request.formationInput?.scenario !== "refinement" || request.formationInput.constraints.length === 0;
     if (prerequisite === "open-questions") return request.formationInput?.scenario !== "refinement" || request.formationInput.openQuestions.length === 0;
+    if (prerequisite === "repository-state") return request.formationInput?.scenario !== "development" || request.formationInput.repository.trim().length === 0 || request.formationInput.repositoryState !== "VERIFIED";
+    if (prerequisite === "accepted-plan") return request.formationInput?.scenario !== "development" || request.formationInput.planState !== "ACCEPTED" || request.formationInput.acceptanceCriteria.length === 0 || request.formationInput.testStrategy.length === 0;
+    if (prerequisite === "rollback-boundary") return request.formationInput?.scenario !== "development" || request.formationInput.rollbackBoundary.trim().length === 0;
     return true;
   });
 }

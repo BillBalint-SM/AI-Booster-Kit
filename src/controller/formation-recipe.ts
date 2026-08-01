@@ -2,7 +2,7 @@ import { readFile } from "node:fs/promises";
 
 import { parseDocument } from "yaml";
 
-import type { RefinementRecipe, ResearchRecipe, ValidationRecipe } from "./types.js";
+import type { ImplementationRecipe, RefinementRecipe, ResearchRecipe, ValidationRecipe } from "./types.js";
 
 const rootKeys = ["recipeId", "recipeVersion", "status", "formationId", "scenario", "weight", "coordination", "controller", "outputContract", "acceptance", "evidenceRequirements", "relations", "recovery"] as const;
 const controllerKeys = ["version", "eligibleComplexities", "requiredInput", "executionBoundary", "authority"] as const;
@@ -29,6 +29,13 @@ export class RefinementRecipeError extends Error {
   }
 }
 
+export class ImplementationRecipeError extends Error {
+  public constructor(field: string, message: string) {
+    super(`Implementation recipe rejected: ${field} ${message}.`);
+    this.name = "ImplementationRecipeError";
+  }
+}
+
 export async function loadValidationRecipe(sourcePath: string): Promise<ValidationRecipe> {
   return parseValidationRecipe(await readFile(sourcePath, "utf8"), sourcePath);
 }
@@ -39,6 +46,10 @@ export async function loadResearchRecipe(sourcePath: string): Promise<ResearchRe
 
 export async function loadRefinementRecipe(sourcePath: string): Promise<RefinementRecipe> {
   return parseRefinementRecipe(await readFile(sourcePath, "utf8"), sourcePath);
+}
+
+export async function loadImplementationRecipe(sourcePath: string): Promise<ImplementationRecipe> {
+  return parseImplementationRecipe(await readFile(sourcePath, "utf8"), sourcePath);
 }
 
 export function parseValidationRecipe(source: string, sourcePath: string): ValidationRecipe {
@@ -189,6 +200,91 @@ export function parseResearchRecipe(source: string, sourcePath: string): Researc
     recovery: {
       preserve: ["source-register", "conflicting-findings"],
       stopConditions: ["unknown-source-authority", "scope-expansion", "partial-evidence"],
+    },
+  };
+}
+
+export function parseImplementationRecipe(source: string, sourcePath: string): ImplementationRecipe {
+  try {
+    return parseImplementationRecipeUnchecked(source, sourcePath);
+  } catch (error) {
+    if (error instanceof ValidationRecipeError) throw new ImplementationRecipeError(error.field, error.reason);
+    throw error;
+  }
+}
+
+function parseImplementationRecipeUnchecked(source: string, sourcePath: string): ImplementationRecipe {
+  const frontmatter = extractFrontmatter(source, sourcePath);
+  const document = parseDocument(frontmatter, { uniqueKeys: true });
+  if (document.errors.length > 0) throw new ValidationRecipeError("frontmatter", "contains invalid YAML metadata");
+
+  const metadata = requireRecord(document.toJS(), "frontmatter");
+  requireExactKeys(metadata, rootKeys, "frontmatter");
+  requireLiteral(metadata, "recipeId", "bounded-implementation", "recipeId");
+  requireLiteral(metadata, "recipeVersion", "0.1.0", "recipeVersion");
+  requireLiteral(metadata, "status", "READY", "status");
+  requireLiteral(metadata, "formationId", "bounded-implementation", "formationId");
+  requireLiteral(metadata, "scenario", "development", "scenario");
+  requireLiteral(metadata, "weight", "heavy", "weight");
+  requireLiteral(metadata, "coordination", "sequential", "coordination");
+
+  const controller = requireRecord(metadata.controller, "controller");
+  requireExactKeys(controller, controllerKeys, "controller");
+  requireLiteral(controller, "version", 1, "controller.version");
+  requireExactArray(controller, "eligibleComplexities", ["MEDIUM"], "controller.eligibleComplexities", "must declare MEDIUM");
+  requireExactArray(controller, "requiredInput", ["goal", "repository", "repository-state", "acceptance-criteria", "test-strategy", "accepted-plan", "rollback-boundary"], "controller.requiredInput", "must declare the canonical input sections");
+  requireLiteral(controller, "executionBoundary", "LOCAL_ONLY", "controller.executionBoundary");
+  requireLiteral(controller, "authority", "RECOMMENDATION_ONLY", "controller.authority");
+
+  const outputContract = requireRecord(metadata.outputContract, "outputContract");
+  requireExactKeys(outputContract, outputKeys, "outputContract");
+  requireExactArray(outputContract, "requiredSections", ["reviewable-diff", "test-evidence", "residual-risk-record"], "outputContract.requiredSections", "must declare the canonical sections");
+  requireLiteral(outputContract, "unknownPolicy", "PRESERVE_AS_UNKNOWN", "outputContract.unknownPolicy");
+  requireLiteral(outputContract, "resultState", "NOT_STARTED", "outputContract.resultState");
+
+  const acceptance = requireRecord(metadata.acceptance, "acceptance");
+  requireExactKeys(acceptance, acceptanceKeys, "acceptance");
+  requireExactArray(acceptance, "criteria", ["scope-matched-diff", "relevant-tests-pass", "rollback-boundary-preserved"], "acceptance.criteria", "must declare the canonical criteria");
+  requireExactArray(metadata, "evidenceRequirements", ["git-diff", "test-output", "review-record"], "evidenceRequirements", "must declare the canonical evidence requirements");
+
+  const relations = requireList(metadata.relations, "relations");
+  if (relations.length !== 1) throw new ValidationRecipeError("relations", "must declare exactly one relation");
+  const relation = requireRecord(relations[0], "relations[0]");
+  requireExactKeys(relation, relationKeys, "relations[0]");
+  requireLiteral(relation, "kind", "depends_on", "relations[0].kind");
+  requireLiteral(relation, "target", "bounded-refinement", "relations[0].target");
+
+  const recovery = requireRecord(metadata.recovery, "recovery");
+  requireExactKeys(recovery, recoveryKeys, "recovery");
+  requireExactArray(recovery, "preserve", ["prior-setup", "failing-evidence"], "recovery.preserve", "must declare the canonical preserved state");
+  requireExactArray(recovery, "stopConditions", ["dirty-state-conflict", "unsafe-change", "failed-read-back"], "recovery.stopConditions", "must declare the canonical stop conditions");
+
+  return {
+    recipeId: "bounded-implementation",
+    recipeVersion: "0.1.0",
+    status: "READY",
+    formationId: "bounded-implementation",
+    scenario: "development",
+    weight: "heavy",
+    coordination: "sequential",
+    controller: {
+      version: 1,
+      eligibleComplexities: ["MEDIUM"],
+      requiredInput: ["goal", "repository", "repository-state", "acceptance-criteria", "test-strategy", "accepted-plan", "rollback-boundary"],
+      executionBoundary: "LOCAL_ONLY",
+      authority: "RECOMMENDATION_ONLY",
+    },
+    outputContract: {
+      requiredSections: ["reviewable-diff", "test-evidence", "residual-risk-record"],
+      unknownPolicy: "PRESERVE_AS_UNKNOWN",
+      resultState: "NOT_STARTED",
+    },
+    acceptance: { criteria: ["scope-matched-diff", "relevant-tests-pass", "rollback-boundary-preserved"] },
+    evidenceRequirements: ["git-diff", "test-output", "review-record"],
+    relations: [{ kind: "depends_on", target: "bounded-refinement" }],
+    recovery: {
+      preserve: ["prior-setup", "failing-evidence"],
+      stopConditions: ["dirty-state-conflict", "unsafe-change", "failed-read-back"],
     },
   };
 }

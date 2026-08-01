@@ -1,4 +1,4 @@
-import type { FormationInput, LinkDeclaration, QuickTaskRequest, RefinementFormationInput, ResearchFormationInput, ValidationFormationInput } from "./types.js";
+import type { FormationInput, ImplementationFormationInput, LinkDeclaration, QuickTaskRequest, RefinementFormationInput, ResearchFormationInput, ValidationFormationInput } from "./types.js";
 
 const rootKeys = ["requestVersion", "workItemType", "goal", "outcomeOwner", "complexity", "executionBoundary", "value", "context", "relations", "dependencies", "preferences", "formationInput"] as const;
 
@@ -34,10 +34,11 @@ export function parseQuickTaskRequest(value: unknown): QuickTaskRequest {
 
 function parseFormationInput(value: unknown): FormationInput {
   const record = plainRecord(value, "formationInput");
-  const scenario = oneOf(record, "scenario", ["research", "validation", "refinement"]);
+  const scenario = oneOf(record, "scenario", ["research", "validation", "refinement", "development"]);
   if (scenario === "research") return parseResearchFormationInput(record);
   if (scenario === "validation") return parseValidationFormationInput(record);
-  return parseRefinementFormationInput(record);
+  if (scenario === "refinement") return parseRefinementFormationInput(record);
+  return parseImplementationFormationInput(record);
 }
 
 function parseResearchFormationInput(record: Record<string, unknown>): ResearchFormationInput {
@@ -68,6 +69,21 @@ function parseRefinementFormationInput(record: Record<string, unknown>): Refinem
     currentScope: nonEmptyField(record, "currentScope", "formationInput.currentScope"),
     constraints: requiredStringArray(record.constraints, "formationInput.constraints"),
     openQuestions: requiredStringArray(record.openQuestions, "formationInput.openQuestions"),
+  };
+}
+
+function parseImplementationFormationInput(record: Record<string, unknown>): ImplementationFormationInput {
+  exactKeys(record, ["scenario", "repository", "repositoryState", "acceptanceCriteria", "testStrategy", "planState", "rollbackBoundary"], "formationInput");
+  if (record.repositoryState !== "VERIFIED") throw new ControllerRequestError("formationInput.repositoryState", "must be VERIFIED");
+  if (record.planState !== "ACCEPTED") throw new ControllerRequestError("formationInput.planState", "must be ACCEPTED");
+  return {
+    scenario: literal(record, "scenario", "development"),
+    repository: nonEmptyField(record, "repository", "formationInput.repository"),
+    repositoryState: "VERIFIED",
+    acceptanceCriteria: requiredStringArray(record.acceptanceCriteria, "formationInput.acceptanceCriteria"),
+    testStrategy: requiredStringArray(record.testStrategy, "formationInput.testStrategy"),
+    planState: "ACCEPTED",
+    rollbackBoundary: nonEmptyField(record, "rollbackBoundary", "formationInput.rollbackBoundary"),
   };
 }
 

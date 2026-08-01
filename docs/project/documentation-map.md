@@ -34,6 +34,7 @@ This page is the repository’s thematic index. Start from the [root README](../
 - [Bounded Validation recipe](../../contract/agent-library/bounded-validation.md) — READY validation profile and output contract.
 - [Bounded Refinement recipe](../../contract/agent-library/bounded-refinement.md) — READY refinement profile and output contract.
 - [Bounded Research recipe](../../contract/agent-library/bounded-research.md) — READY research profile, source boundary, and output contract.
+- [Bounded Implementation recipe](../../contract/agent-library/bounded-implementation.md) — READY implementation profile with verified-repository, accepted-plan, evidence, and rollback boundaries.
 - The Controller exposes the local `activate-quick-task --input <request.json> --choice <choice.json> --profile <profile>` command, which issues an ephemeral host-agnostic package only after fresh evaluation and `ACTIVATION_INTENT`; see the approved [design](../superpowers/specs/2026-08-01-ai-booster-kit-quick-task-activation-package-design.md) and [implementation plan](../superpowers/plans/2026-08-01-ai-booster-kit-quick-task-activation-package.md), which remain review artifacts rather than default runtime context.
 - [Canonical artifact templates](../../contract/artifacts/canonical-work-artifact-template.md) — common artifact shape.
 - [Jira–Confluence–GitHub mapping contract](../../contract/mappings/jira-confluence-github.md) — future synchronization boundary.

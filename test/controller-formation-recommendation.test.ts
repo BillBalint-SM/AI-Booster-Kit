@@ -34,7 +34,6 @@ test("formation recommendation: selects the ready Quick Task formation with an e
 test("formation recommendation: returns bounded candidates for each unready scenario", async () => {
   const catalog = await loadFormationCatalog(catalogPath);
   const cases: readonly [string, string][] = [
-    ["Implement a bounded parser improvement.", "development"],
     ["Debug the failing parser test.", "debugging"],
   ];
 
@@ -46,6 +45,39 @@ test("formation recommendation: returns bounded candidates for each unready scen
     assert.equal(recommendation.requiresAcknowledgement, true);
     assert.equal(recommendation.impact, "UNKNOWN");
   }
+});
+
+test("formation recommendation: promotes the linked implementation recipe to RECOMMEND", async () => {
+  const recommendation = recommendFormation({
+    ...baseRequest,
+    goal: "Implement a bounded parser improvement.",
+    complexity: "MEDIUM",
+    formationInput: {
+      scenario: "development",
+      repository: "AI Booster Kit",
+      repositoryState: "VERIFIED",
+      acceptanceCriteria: ["the implementation contract is validated"],
+      testStrategy: ["focused and full test suites pass"],
+      planState: "ACCEPTED",
+      rollbackBoundary: "preserve the prior setup and stop before external writes",
+    },
+  } as unknown as QuickTaskRequest, await loadFormationCatalog(catalogPath));
+
+  assert.equal(recommendation.decision, "RECOMMEND");
+  assert.equal(recommendation.scenario, "development");
+  assert.equal(recommendation.formation?.status, "READY");
+  assert.equal(recommendation.formation?.recipePath, "contract/agent-library/bounded-implementation.md");
+  assert.equal(recommendation.requiresAcknowledgement, false);
+  assert.equal(recommendation.impact, "COMPATIBLE");
+});
+
+test("formation recommendation: keeps implementation UNKNOWN without the required profile", async () => {
+  const recommendation = recommendFormation({ ...baseRequest, goal: "Implement a bounded parser improvement." }, await loadFormationCatalog(catalogPath));
+
+  assert.equal(recommendation.decision, "UNKNOWN");
+  assert.equal(recommendation.requiresAcknowledgement, true);
+  assert.deepEqual(recommendation.missingPrerequisites, ["repository-state", "accepted-plan", "rollback-boundary"]);
+  assert.equal(recommendation.formation, undefined);
 });
 
 test("formation recommendation: promotes the linked research recipe to RECOMMEND", async () => {
