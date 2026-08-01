@@ -10,5 +10,5 @@
     "outDir": "dist",
     "skipLibCheck": true
   },
-  "exclude": ["dist", ".tmp-*", "node_modules"]
+  "exclude": ["dist", ".tmp-*", "node_modules", "website"]
 }

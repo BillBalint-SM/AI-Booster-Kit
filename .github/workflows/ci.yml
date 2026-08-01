@@ -18,3 +18,12 @@ jobs:
       - run: npm run lint
       - run: npm run check:docs
       - run: npm test
+      - name: Install website dependencies
+        run: npm ci
+        working-directory: website
+      - name: Lint website
+        run: npm run lint
+        working-directory: website
+      - name: Build and test website
+        run: npm test
+        working-directory: website
