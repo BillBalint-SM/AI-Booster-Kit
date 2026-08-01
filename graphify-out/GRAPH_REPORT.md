@@ -1,16 +1,16 @@
 # Graph Report - AI Booster Kit  (2026-08-02)
 
 ## Corpus Check
-- 268 files · ~287,914 words
+- 268 files · ~287,959 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2533 nodes · 4291 edges · 207 communities (178 shown, 29 thin omitted)
+- 2533 nodes · 4291 edges · 209 communities (180 shown, 29 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 18 edges (avg confidence: 0.65)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `37bafb8c`
+- Built from commit: `82b77508`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -200,6 +200,7 @@
 - work-item-template.md
 - Historical evidence archive
 - 2026-08-01-ai-booster-kit-ready-refinement-recipe.md
+- ingest.ts
 - eslint-config-next
 - react-server-dom-webpack
 - @tailwindcss/postcss
@@ -215,6 +216,7 @@
 - wrangler
 - postcss.config.mjs
 - vite.config.ts
+- Emerging watchlist
 
 ## God Nodes (most connected - your core abstractions)
 1. `parseG2asReadinessManifest()` - 29 edges
@@ -243,7 +245,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (207 total, 29 thin omitted)
+## Communities (209 total, 29 thin omitted)
 
 ### Community 0 - "stop.ts"
 Cohesion: 0.05
@@ -310,8 +312,8 @@ Cohesion: 0.12
 Nodes (29): CodexMcpPreflightResult, ReadinessCertificate, ReadinessCertificateOutputPaths, writeReadinessCertificate(), capabilityStates, checkStates, decisions, diagnosticCodes (+21 more)
 
 ### Community 16 - "evaluate.ts"
-Cohesion: 0.14
-Nodes (25): GithubReadOnlyCapability, EvidenceIngestionDiagnosticCode, EvidenceIngestionError, EvidenceIngestionSource, allowedObservedIds(), canonicalJson(), createCheck(), evaluateObservation() (+17 more)
+Cohesion: 0.19
+Nodes (21): allowedObservedIds(), canonicalJson(), createCheck(), evaluateObservation(), evaluateReadiness(), evaluateSource(), expectedIds(), fieldsFor() (+13 more)
 
 ### Community 17 - "manifest.ts"
 Cohesion: 0.31
@@ -326,8 +328,8 @@ Cohesion: 0.12
 Nodes (15): dist, .tmp-*, website, compilerOptions, exactOptionalPropertyTypes, module, moduleResolution, noUncheckedIndexedAccess (+7 more)
 
 ### Community 20 - "codex-mcp-preflight.test.ts"
-Cohesion: 0.09
-Nodes (22): classifyReadFailure(), CodexReadOnlyEvidenceAdapter, ingestCodexReadOnlyEvidence(), capabilityEvidence, manifest, assertRequest(), capabilityEvidence, confluencePageEnvelope() (+14 more)
+Cohesion: 0.11
+Nodes (17): CodexMcpReadFailure, capabilityEvidence, manifest, assertRequest(), capabilityEvidence, confluencePageEnvelope(), confluencePageMetadata(), createCaller() (+9 more)
 
 ### Community 21 - "ingest.ts"
 Cohesion: 0.33
@@ -354,8 +356,8 @@ Cohesion: 0.05
 Nodes (42): Acceptance criteria, AI Agent Tooling Research Design, Balanced scorecard, Blueprint structure, Claim requirements, Comparison rules, Cost and compute constraints, Data and autonomy (+34 more)
 
 ### Community 27 - "codex-mcp-tool-caller.test.ts"
-Cohesion: 0.08
-Nodes (27): createCodexMcpPayloadAdapter(), CodexMcpPreflightRequest, createStoppedCertificate(), normalizeCapabilityEvidence(), runCodexMcpPreflight(), stoppedObservation(), assertCodexMcpToolCaller(), CodexMcpReadFailure (+19 more)
+Cohesion: 0.09
+Nodes (17): assertCodexMcpToolCaller(), CodexMcpReadFailureDiagnosticCode, CodexMcpReadFailureSource, CodexMcpToolCallerError, readSource(), record(), reject(), assertCodexMcpTransportSource() (+9 more)
 
 ### Community 32 - "cli.ts"
 Cohesion: 0.14
@@ -414,8 +416,8 @@ Cohesion: 0.10
 Nodes (20): Branch and pull request, Completed deliverable, Current-state impact, Documentation and GitHub Structure Implementation Plan, External, OAuth, or permission impact, File structure, Global constraints, Known limit (+12 more)
 
 ### Community 47 - "AI Agent Tooling Blueprint"
-Cohesion: 0.10
-Nodes (19): AI Agent Tooling Blueprint, Balanced scorecard and eval plan, Contradiction reconciliation, Cross-layer tooling matrix, Current-state baseline, Emerging watchlist, Externally verified product baseline, Gate 2 baseline and threshold method (+11 more)
+Cohesion: 0.12
+Nodes (16): AI Agent Tooling Blueprint, Balanced scorecard and eval plan, Contradiction reconciliation, Cross-layer tooling matrix, Current-state baseline, Externally verified product baseline, Gate 2 baseline and threshold method, Gate 2 workflow pilot evidence (+8 more)
 
 ### Community 48 - "outbox.ts"
 Cohesion: 0.11
@@ -928,6 +930,14 @@ Nodes (3): Decision vocabulary, Executive decision map, Situation-based toolkit
 ### Community 179 - "ContractDocument"
 Cohesion: 0.33
 Nodes (3): HostAdapter, ContractDocument, NativeAdapterProjection
+
+### Community 189 - "ingest.ts"
+Cohesion: 0.15
+Nodes (19): GithubReadOnlyCapability, createCodexMcpPayloadAdapter(), CodexMcpPreflightRequest, createStoppedCertificate(), normalizeCapabilityEvidence(), runCodexMcpPreflight(), stoppedObservation(), CodexMcpToolCaller (+11 more)
+
+### Community 208 - "Emerging watchlist"
+Cohesion: 0.67
+Nodes (3): Emerging watchlist, Other conditional watchlist candidates, Qwen3-Coder-Next for future shared inference
 
 ## Knowledge Gaps
 - **1187 isolated node(s):** `name`, `version`, `private`, `type`, `node` (+1182 more)

@@ -1033,8 +1033,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_capabilities_types",
-      "community": 16,
-      "community_name": "evaluate.ts",
+      "community": 189,
+      "community_name": "ingest.ts",
       "norm_label": "types.ts"
     },
     {
@@ -1044,8 +1044,8 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_capabilities_types_githubreadonlycapability",
-      "community": 16,
-      "community_name": "evaluate.ts",
+      "community": 189,
+      "community_name": "ingest.ts",
       "norm_label": "githubreadonlycapability"
     },
     {
@@ -5785,8 +5785,8 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_evidence_codex_mcp_payload_createcodexmcppayloadadapter",
-      "community": 27,
-      "community_name": "codex-mcp-tool-caller.test.ts",
+      "community": 189,
+      "community_name": "ingest.ts",
       "norm_label": "createcodexmcppayloadadapter()"
     },
     {
@@ -6071,8 +6071,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_evidence_codex_mcp_preflight",
-      "community": 27,
-      "community_name": "codex-mcp-tool-caller.test.ts",
+      "community": 189,
+      "community_name": "ingest.ts",
       "norm_label": "codex-mcp-preflight.ts"
     },
     {
@@ -6082,8 +6082,8 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_evidence_codex_mcp_preflight_codexmcppreflightrequest",
-      "community": 27,
-      "community_name": "codex-mcp-tool-caller.test.ts",
+      "community": 189,
+      "community_name": "ingest.ts",
       "norm_label": "codexmcppreflightrequest"
     },
     {
@@ -6104,8 +6104,8 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "src_evidence_codex_mcp_preflight_runcodexmcppreflight",
-      "community": 27,
-      "community_name": "codex-mcp-tool-caller.test.ts",
+      "community": 189,
+      "community_name": "ingest.ts",
       "norm_label": "runcodexmcppreflight()"
     },
     {
@@ -6115,8 +6115,8 @@
       "source_location": "L60",
       "_origin": "ast",
       "id": "src_evidence_codex_mcp_preflight_normalizecapabilityevidence",
-      "community": 27,
-      "community_name": "codex-mcp-tool-caller.test.ts",
+      "community": 189,
+      "community_name": "ingest.ts",
       "norm_label": "normalizecapabilityevidence()"
     },
     {
@@ -6126,8 +6126,8 @@
       "source_location": "L97",
       "_origin": "ast",
       "id": "src_evidence_codex_mcp_preflight_createstoppedcertificate",
-      "community": 27,
-      "community_name": "codex-mcp-tool-caller.test.ts",
+      "community": 189,
+      "community_name": "ingest.ts",
       "norm_label": "createstoppedcertificate()"
     },
     {
@@ -6137,8 +6137,8 @@
       "source_location": "L130",
       "_origin": "ast",
       "id": "src_evidence_codex_mcp_preflight_stoppedobservation",
-      "community": 27,
-      "community_name": "codex-mcp-tool-caller.test.ts",
+      "community": 189,
+      "community_name": "ingest.ts",
       "norm_label": "stoppedobservation()"
     },
     {
@@ -6159,8 +6159,8 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_evidence_codex_mcp_tool_caller_codexmcptoolcaller",
-      "community": 27,
-      "community_name": "codex-mcp-tool-caller.test.ts",
+      "community": 189,
+      "community_name": "ingest.ts",
       "norm_label": "codexmcptoolcaller"
     },
     {
@@ -6192,8 +6192,8 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "src_evidence_codex_mcp_tool_caller_codexmcpreadfailure",
-      "community": 27,
-      "community_name": "codex-mcp-tool-caller.test.ts",
+      "community": 20,
+      "community_name": "codex-mcp-preflight.test.ts",
       "norm_label": "codexmcpreadfailure"
     },
     {
@@ -6203,8 +6203,8 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "src_evidence_codex_mcp_tool_caller_codexmcpreadfailure_constructor",
-      "community": 27,
-      "community_name": "codex-mcp-tool-caller.test.ts",
+      "community": 20,
+      "community_name": "codex-mcp-preflight.test.ts",
       "norm_label": ".constructor()"
     },
     {
@@ -6236,8 +6236,8 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "src_evidence_codex_mcp_tool_caller_createcodexmcptransportsource",
-      "community": 27,
-      "community_name": "codex-mcp-tool-caller.test.ts",
+      "community": 189,
+      "community_name": "ingest.ts",
       "norm_label": "createcodexmcptransportsource()"
     },
     {
@@ -6687,8 +6687,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_evidence_ingest",
-      "community": 16,
-      "community_name": "evaluate.ts",
+      "community": 189,
+      "community_name": "ingest.ts",
       "norm_label": "ingest.ts"
     },
     {
@@ -6698,8 +6698,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "src_evidence_ingest_codexreadonlyevidenceadapter",
-      "community": 20,
-      "community_name": "codex-mcp-preflight.test.ts",
+      "community": 189,
+      "community_name": "ingest.ts",
       "norm_label": "codexreadonlyevidenceadapter"
     },
     {
@@ -6709,8 +6709,8 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_evidence_ingest_codexreadonlyevidenceadapter_read",
-      "community": 20,
-      "community_name": "codex-mcp-preflight.test.ts",
+      "community": 189,
+      "community_name": "ingest.ts",
       "norm_label": ".read()"
     },
     {
@@ -6731,8 +6731,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "src_evidence_ingest_evidenceingestiondiagnosticcode",
-      "community": 16,
-      "community_name": "evaluate.ts",
+      "community": 189,
+      "community_name": "ingest.ts",
       "norm_label": "evidenceingestiondiagnosticcode"
     },
     {
@@ -6742,8 +6742,8 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "src_evidence_ingest_evidenceingestionsource",
-      "community": 16,
-      "community_name": "evaluate.ts",
+      "community": 189,
+      "community_name": "ingest.ts",
       "norm_label": "evidenceingestionsource"
     },
     {
@@ -6753,8 +6753,8 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "src_evidence_ingest_evidenceingestionerror",
-      "community": 16,
-      "community_name": "evaluate.ts",
+      "community": 189,
+      "community_name": "ingest.ts",
       "norm_label": "evidenceingestionerror"
     },
     {
@@ -6764,8 +6764,8 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "src_evidence_ingest_evidenceingestionerror_constructor",
-      "community": 16,
-      "community_name": "evaluate.ts",
+      "community": 189,
+      "community_name": "ingest.ts",
       "norm_label": ".constructor()"
     },
     {
@@ -6775,8 +6775,8 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "src_evidence_ingest_ingestcodexreadonlyevidence",
-      "community": 20,
-      "community_name": "codex-mcp-preflight.test.ts",
+      "community": 189,
+      "community_name": "ingest.ts",
       "norm_label": "ingestcodexreadonlyevidence()"
     },
     {
@@ -6786,8 +6786,8 @@
       "source_location": "L90",
       "_origin": "ast",
       "id": "src_evidence_ingest_classifyreadfailure",
-      "community": 20,
-      "community_name": "codex-mcp-preflight.test.ts",
+      "community": 189,
+      "community_name": "ingest.ts",
       "norm_label": "classifyreadfailure()"
     },
     {
@@ -10075,8 +10075,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_readiness_types_g2asreadinessmanifest",
-      "community": 27,
-      "community_name": "codex-mcp-tool-caller.test.ts",
+      "community": 189,
+      "community_name": "ingest.ts",
       "norm_label": "g2asreadinessmanifest"
     },
     {
@@ -11538,8 +11538,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "test_evidence_ingestion_test",
-      "community": 20,
-      "community_name": "codex-mcp-preflight.test.ts",
+      "community": 189,
+      "community_name": "ingest.ts",
       "norm_label": "evidence-ingestion.test.ts"
     },
     {
@@ -11549,8 +11549,8 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "test_evidence_ingestion_test_manifest",
-      "community": 20,
-      "community_name": "codex-mcp-preflight.test.ts",
+      "community": 189,
+      "community_name": "ingest.ts",
       "norm_label": "manifest"
     },
     {
@@ -11560,8 +11560,8 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "test_evidence_ingestion_test_read",
-      "community": 20,
-      "community_name": "codex-mcp-preflight.test.ts",
+      "community": 189,
+      "community_name": "ingest.ts",
       "norm_label": "read()"
     },
     {
@@ -11571,8 +11571,8 @@
       "source_location": "L111",
       "_origin": "ast",
       "id": "test_evidence_ingestion_test_readfixture",
-      "community": 20,
-      "community_name": "codex-mcp-preflight.test.ts",
+      "community": 189,
+      "community_name": "ingest.ts",
       "norm_label": "readfixture()"
     },
     {
@@ -11582,8 +11582,8 @@
       "source_location": "L115",
       "_origin": "ast",
       "id": "test_evidence_ingestion_test_replaceobservation",
-      "community": 20,
-      "community_name": "codex-mcp-preflight.test.ts",
+      "community": 189,
+      "community_name": "ingest.ts",
       "norm_label": "replaceobservation()"
     },
     {
@@ -21446,7 +21446,7 @@
       "label": "Known limit",
       "file_type": "document",
       "source_file": "docs/project/current-state.md",
-      "source_location": "L39",
+      "source_location": "L40",
       "_origin": "ast",
       "id": "docs_project_current_state_known_limit",
       "community": 123,
@@ -21457,7 +21457,7 @@
       "label": "Open stop",
       "file_type": "document",
       "source_file": "docs/project/current-state.md",
-      "source_location": "L52",
+      "source_location": "L53",
       "_origin": "ast",
       "id": "docs_project_current_state_open_stop",
       "community": 123,
@@ -21468,7 +21468,7 @@
       "label": "Next bounded action",
       "file_type": "document",
       "source_file": "docs/project/current-state.md",
-      "source_location": "L58",
+      "source_location": "L59",
       "_origin": "ast",
       "id": "docs_project_current_state_next_bounded_action",
       "community": 123,
@@ -27202,8 +27202,8 @@
       "source_location": "L1240",
       "_origin": "ast",
       "id": "research_2026_07_21_ai_agent_tooling_blueprint_emerging_watchlist",
-      "community": 47,
-      "community_name": "AI Agent Tooling Blueprint",
+      "community": 208,
+      "community_name": "Emerging watchlist",
       "norm_label": "emerging watchlist"
     },
     {
@@ -27213,8 +27213,8 @@
       "source_location": "L1244",
       "_origin": "ast",
       "id": "research_2026_07_21_ai_agent_tooling_blueprint_qwen3_coder_next_for_future_shared_inference",
-      "community": 47,
-      "community_name": "AI Agent Tooling Blueprint",
+      "community": 208,
+      "community_name": "Emerging watchlist",
       "norm_label": "qwen3-coder-next for future shared inference"
     },
     {
@@ -27224,8 +27224,8 @@
       "source_location": "L1260",
       "_origin": "ast",
       "id": "research_2026_07_21_ai_agent_tooling_blueprint_other_conditional_watchlist_candidates",
-      "community": 47,
-      "community_name": "AI Agent Tooling Blueprint",
+      "community": 208,
+      "community_name": "Emerging watchlist",
       "norm_label": "other conditional watchlist candidates"
     },
     {
@@ -70991,7 +70991,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/project/current-state.md",
-      "source_location": "L39",
+      "source_location": "L40",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_project_current_state_current_delivery_state",
@@ -71002,7 +71002,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/project/current-state.md",
-      "source_location": "L58",
+      "source_location": "L59",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_project_current_state_current_delivery_state",
@@ -71013,7 +71013,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/project/current-state.md",
-      "source_location": "L52",
+      "source_location": "L53",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_project_current_state_current_delivery_state",
@@ -76995,5 +76995,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "37bafb8c626db8d0ddb37d9c1863849a2b006382"
+  "built_at_commit": "82b7750833aae504f064f5d4f764a7472629fc22"
 }
