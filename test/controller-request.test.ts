@@ -54,6 +54,21 @@ test("quick task request: parses the validation profile and rejects incomplete p
   assert.throws(() => parseQuickTaskRequest({ ...value, formationInput: { ...value.formationInput as object, evidenceSources: [] } }), /formationInput\.evidenceSources must be a non-empty list of non-empty strings/);
 });
 
+test("quick task request: parses the refinement profile and rejects an empty scope", async () => {
+  const value = await fixture("eligible-quick-task.json") as Record<string, unknown>;
+  value.formationInput = {
+    scenario: "refinement",
+    currentScope: "The controller remains local and recommendation-only.",
+    constraints: ["Do not activate a host or connector."],
+    openQuestions: ["Which remaining scenario should become READY next?"],
+  };
+  const request = parseQuickTaskRequest(value);
+
+  assert.equal(request.formationInput?.scenario, "refinement");
+  assert.deepEqual(request.formationInput?.constraints, ["Do not activate a host or connector."]);
+  assert.throws(() => parseQuickTaskRequest({ ...value, formationInput: { ...value.formationInput as object, currentScope: "" } }), /formationInput\.currentScope must be a non-empty string/);
+});
+
 test("quick task identities: separate full-request reproducibility from structural pattern matching", async () => {
   const request = parseQuickTaskRequest(await fixture("eligible-quick-task.json"));
   const changedGoal = parseQuickTaskRequest({ ...request, goal: "A different private goal." });

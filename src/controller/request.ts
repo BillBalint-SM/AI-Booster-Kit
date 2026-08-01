@@ -1,4 +1,4 @@
-import type { LinkDeclaration, QuickTaskRequest, ValidationFormationInput } from "./types.js";
+import type { FormationInput, LinkDeclaration, QuickTaskRequest, RefinementFormationInput, ValidationFormationInput } from "./types.js";
 
 const rootKeys = ["requestVersion", "workItemType", "goal", "outcomeOwner", "complexity", "executionBoundary", "value", "context", "relations", "dependencies", "preferences", "formationInput"] as const;
 
@@ -32,8 +32,14 @@ export function parseQuickTaskRequest(value: unknown): QuickTaskRequest {
   return request;
 }
 
-function parseFormationInput(value: unknown): ValidationFormationInput {
+function parseFormationInput(value: unknown): FormationInput {
   const record = plainRecord(value, "formationInput");
+  const scenario = oneOf(record, "scenario", ["validation", "refinement"]);
+  if (scenario === "validation") return parseValidationFormationInput(record);
+  return parseRefinementFormationInput(record);
+}
+
+function parseValidationFormationInput(record: Record<string, unknown>): ValidationFormationInput {
   exactKeys(record, ["scenario", "claim", "acceptanceCriteria", "evidenceSources", "knownLimits"], "formationInput");
   return {
     scenario: literal(record, "scenario", "validation"),
@@ -41,6 +47,16 @@ function parseFormationInput(value: unknown): ValidationFormationInput {
     acceptanceCriteria: requiredStringArray(record.acceptanceCriteria, "formationInput.acceptanceCriteria"),
     evidenceSources: requiredStringArray(record.evidenceSources, "formationInput.evidenceSources"),
     knownLimits: requiredStringArray(record.knownLimits, "formationInput.knownLimits"),
+  };
+}
+
+function parseRefinementFormationInput(record: Record<string, unknown>): RefinementFormationInput {
+  exactKeys(record, ["scenario", "currentScope", "constraints", "openQuestions"], "formationInput");
+  return {
+    scenario: literal(record, "scenario", "refinement"),
+    currentScope: nonEmptyField(record, "currentScope", "formationInput.currentScope"),
+    constraints: requiredStringArray(record.constraints, "formationInput.constraints"),
+    openQuestions: requiredStringArray(record.openQuestions, "formationInput.openQuestions"),
   };
 }
 
@@ -104,6 +120,12 @@ function oneOf<T extends string>(record: Record<string, unknown>, field: string,
 
 function nonEmpty(record: Record<string, unknown>, field: string): string {
   const value = record[field];
+  if (typeof value !== "string" || value.trim() === "") throw new ControllerRequestError(field, "must be a non-empty string");
+  return value;
+}
+
+function nonEmptyField(record: Record<string, unknown>, key: string, field: string): string {
+  const value = record[key];
   if (typeof value !== "string" || value.trim() === "") throw new ControllerRequestError(field, "must be a non-empty string");
   return value;
 }

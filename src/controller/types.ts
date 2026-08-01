@@ -90,6 +90,15 @@ export interface ValidationFormationInput {
   knownLimits: readonly string[];
 }
 
+export interface RefinementFormationInput {
+  scenario: "refinement";
+  currentScope: string;
+  constraints: readonly string[];
+  openQuestions: readonly string[];
+}
+
+export type FormationInput = ValidationFormationInput | RefinementFormationInput;
+
 export interface ValidationRecipe {
   recipeId: "bounded-validation";
   recipeVersion: "0.1.0";
@@ -118,6 +127,37 @@ export interface ValidationRecipe {
   recovery: {
     preserve: readonly ["pre-validation-claim", "failed-checks"];
     stopConditions: readonly ["missing-evidence", "source-mismatch", "unknown-capability"];
+  };
+}
+
+export interface RefinementRecipe {
+  recipeId: "bounded-refinement";
+  recipeVersion: "0.1.0";
+  status: "READY";
+  formationId: "bounded-refinement";
+  scenario: "refinement";
+  weight: "light";
+  coordination: "sequential";
+  controller: {
+    version: 1;
+    eligibleComplexities: readonly ["LOW"];
+    requiredInput: readonly ["goal", "current-scope", "constraints", "open-questions"];
+    executionBoundary: "LOCAL_ONLY";
+    authority: "RECOMMENDATION_ONLY";
+  };
+  outputContract: {
+    requiredSections: readonly ["refined-scope", "acceptance-criteria", "decision-record"];
+    unknownPolicy: "PRESERVE_AS_UNKNOWN";
+    resultState: "NOT_STARTED";
+  };
+  acceptance: {
+    criteria: readonly ["scope-preserved", "assumptions-visible", "acceptance-testable"];
+  };
+  evidenceRequirements: readonly ["before-scope", "after-scope", "decision-record"];
+  relations: readonly [{ kind: "related_to"; target: "quick-task-clarifier-validator" }];
+  recovery: {
+    preserve: readonly ["original-scope", "rejected-interpretations"];
+    stopConditions: readonly ["unaccepted-scope-change", "unresolved-conflict"];
   };
 }
 
@@ -261,7 +301,7 @@ export interface QuickTaskRequest {
   relations?: LinkDeclaration;
   dependencies?: LinkDeclaration;
   preferences?: { continuation: "NO_AGENT" | "CUSTOM_TOOL" };
-  formationInput?: ValidationFormationInput;
+  formationInput?: FormationInput;
 }
 
 export type LinkDeclaration = { state: "KNOWN"; items: readonly string[] } | { state: "ABSENT" | "UNKNOWN"; items: readonly [] };
