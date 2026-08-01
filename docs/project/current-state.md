@@ -5,7 +5,7 @@ short and must not become a second roadmap, transcript, or historical report.
 
 ## Branch and pull request
 
-The public website delivery was merged as [PR #13](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/13), the documentation structure and roadmap as [PR #14](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/14), the Activation Package state correction as [PR #15](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/15), M1-A as [PR #16](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/16), and M1-B as [PR #18](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/18). The current local delivery branch is `agent/m1-close-cli-recommendation`, tracking its `origin` branch, with no open pull request yet.
+The public website delivery was merged as [PR #13](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/13), the documentation structure and roadmap as [PR #14](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/14), the Activation Package state correction as [PR #15](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/15), M1-A as [PR #16](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/16), M1-B as [PR #18](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/18), and the CLI integration as [PR #20](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/20). The current local delivery base is `main`, tracking `origin/main`, with no open pull request for this branch.
 
 ## Completed deliverable
 
