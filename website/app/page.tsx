@@ -109,7 +109,7 @@ export default function Home() {
 
       <footer className="site-footer section-shell">
         <div className="footer-brand"><a className="brand-mark" href="#top"><span className="brand-orbit" aria-hidden="true" /><span>AI Booster Kit</span></a><p>A shared field for human-led, Agent-assisted work.</p></div>
-        <div className="footer-links"><a href="#operating-model">Operating model</a><a href="#frameworks">Framework library</a><a href="#roadmap">Roadmap</a><a href="https://github.com/" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></div>
+        <div className="footer-links"><a href="#operating-model">Operating model</a><a href="#frameworks">Framework library</a><a href="#roadmap">Roadmap</a><a href="https://github.com/BillBalint-SM/AI-Booster-Kit" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></div>
         <p className="footer-note">Designed for continuous evolution. Built for useful work.</p>
       </footer>
     </main>
