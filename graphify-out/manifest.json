@@ -385,23 +385,23 @@
     "semantic_hash": ""
   },
   ".ua/fingerprints.json": {
-    "mtime": 1785612489.591918,
-    "ast_hash": "6c3fd19dbe363bbb0afd6ceb8e90d994",
+    "mtime": 1785618951.3031647,
+    "ast_hash": "1e30aea8f7fe46aed4b7edfded7b27d7",
     "semantic_hash": ""
   },
   ".ua/intermediate/scan-result.json": {
-    "mtime": 1785612489.5929186,
-    "ast_hash": "4b35deda39375678c080a5cf30273e2d",
+    "mtime": 1785618950.8074732,
+    "ast_hash": "0790d61818e3759360e29bd959d56edc",
     "semantic_hash": ""
   },
   ".ua/knowledge-graph.json": {
-    "mtime": 1785612489.5939186,
-    "ast_hash": "3de8d64496de9de7b2bb9d71356beb08",
+    "mtime": 1785618769.001484,
+    "ast_hash": "30e3ab4c8bd3734f06cd486aa5dbfe97",
     "semantic_hash": ""
   },
   ".ua/meta.json": {
-    "mtime": 1785612489.5949183,
-    "ast_hash": "a1d81ac74c66b1b27a0bb863f9e2d407",
+    "mtime": 1785618769.0024843,
+    "ast_hash": "50e46b2b6c11d2baa262298648150cc9",
     "semantic_hash": ""
   },
   "scripts/check-mapper-freshness.mjs": {
@@ -1105,8 +1105,8 @@
     "semantic_hash": ""
   },
   "docs/project/current-state.md": {
-    "mtime": 1785617572.1081712,
-    "ast_hash": "ff853c99aaa223a413449ecc9d650ed3",
+    "mtime": 1785618932.5070035,
+    "ast_hash": "2a150d943af307929c24b98a84480052",
     "semantic_hash": ""
   },
   "docs/project/documentation-map.md": {
