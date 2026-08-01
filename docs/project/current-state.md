@@ -5,7 +5,7 @@ short and must not become a second roadmap, transcript, or historical report.
 
 ## Branch and pull request
 
-The public website delivery was merged as [PR #13](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/13), the documentation structure and roadmap as [PR #14](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/14), the Activation Package state correction as [PR #15](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/15), M1-A as [PR #16](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/16), M1-B as [PR #18](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/18), the CLI integration as [PR #20](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/20), the first fully ready validation formation as [PR #22](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/22), and the ready refinement formation as [PR #24](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/24). The current local delivery base is `main`, tracking `origin/main`, with no open pull request for this branch.
+The public website delivery was merged as [PR #13](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/13), the documentation structure and roadmap as [PR #14](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/14), the Activation Package state correction as [PR #15](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/15), M1-A as [PR #16](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/16), M1-B as [PR #18](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/18), the CLI integration as [PR #20](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/20), the first fully ready validation formation as [PR #22](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/22), the ready refinement formation as [PR #24](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/24), the documentation routing alignment as [PR #26](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/26), and the current mapper snapshot refresh as [PR #27](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/27). The current local delivery base is `main`, tracking `origin/main`, with no open pull request for this branch.
 
 ## Completed deliverable
 
@@ -43,9 +43,9 @@ evaluation/evolve loop, debugging context injection, and optional lifecycle
 synchronization remain future work. The current Activation Package, M1-A
 catalog, and M1-B recommendation remain `READY_WITH_LIMIT` overall: they
 prepare, describe, or recommend bounded, host-agnostic work but do not activate
-an Agent or persist an artifact. Mapper freshness is also `NOT_READY` because
-the checked-in mapper snapshot predates source changes; no generated mapper
-artifact was regenerated in this slice.
+an Agent or persist an artifact. Mapper freshness is `READY` at `fcd2a38d`: the
+checked-in Understand Anything and Graphify snapshots match the current source
+revision, and the mapper gate passes.
 
 ## Open stop
 
