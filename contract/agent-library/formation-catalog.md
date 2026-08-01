@@ -31,7 +31,7 @@ formations:
     authority: RECOMMENDATION_ONLY
   - formationId: bounded-research
     version: 0.1.0
-    status: CANDIDATE
+    status: READY
     scenario: research
     weight: medium
     complexity: medium
@@ -45,14 +45,14 @@ formations:
     relations:
       - kind: related_to
         target: quick-task-clarifier-validator
-    prerequisites: [bounded-question, source-allowlist, evidence-standard]
+    prerequisites: [scope, source-allowlist, evidence-standard]
     recovery:
       preserve: [source-register, conflicting-findings]
       stopConditions: [unknown-source-authority, scope-expansion, partial-evidence]
     identity:
       key: bounded-research
       pattern: research:medium:parallel-fan-out-fan-in
-    recipePath: null
+    recipePath: contract/agent-library/bounded-research.md
     executionBoundary: LOCAL_ONLY
     authority: RECOMMENDATION_ONLY
   - formationId: bounded-refinement
@@ -167,6 +167,6 @@ This catalog is a declarative, host-agnostic index. It characterizes formations
 so the Controller can recognize scenarios and explain recommendations.
 Catalog entries do not activate a host, invoke a connector, create files, or
 persist a session. The Quick Task entry is ready with a documented limit; the
-validation and refinement entries are fully ready with linked profile recipes;
-the other three entries remain bounded candidates until their recipes and Controller
+research, validation, and refinement entries are fully ready with linked profile
+recipes; the other two entries remain bounded candidates until their recipes and Controller
 recommendation paths are implemented and verified.

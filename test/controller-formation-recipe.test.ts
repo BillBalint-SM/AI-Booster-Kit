@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
-import { loadValidationRecipe, parseValidationRecipe } from "../src/controller/formation-recipe.js";
+import { loadResearchRecipe, loadValidationRecipe, parseResearchRecipe, parseValidationRecipe } from "../src/controller/formation-recipe.js";
 
 const validRecipeSource = `---
 recipeId: bounded-validation
@@ -33,6 +33,38 @@ recovery:
 ---
 
 # Bounded Validation
+`;
+
+const validResearchRecipeSource = `---
+recipeId: bounded-research
+recipeVersion: 0.1.0
+status: READY
+formationId: bounded-research
+scenario: research
+weight: medium
+coordination: parallel-fan-out-fan-in
+controller:
+  version: 1
+  eligibleComplexities: [LOW, MEDIUM]
+  requiredInput: [goal, scope, source-allowlist, evidence-standard]
+  executionBoundary: LOCAL_ONLY
+  authority: RECOMMENDATION_ONLY
+outputContract:
+  requiredSections: [source-backed-brief, uncertainty-register, recommendation-or-stop]
+  unknownPolicy: PRESERVE_AS_UNKNOWN
+  resultState: NOT_STARTED
+acceptance:
+  criteria: [bounded-question, primary-source-evidence, unresolved-conflicts-visible]
+evidenceRequirements: [source-register, quoted-or-linked-findings, review-record]
+relations:
+  - kind: related_to
+    target: quick-task-clarifier-validator
+recovery:
+  preserve: [source-register, conflicting-findings]
+  stopConditions: [unknown-source-authority, scope-expansion, partial-evidence]
+---
+
+# Bounded Research
 `;
 
 test("validation recipe: parses the profile-specific input and output contract", async () => {
@@ -75,4 +107,27 @@ test("validation recipe: preserves UNKNOWN instead of normalizing it", () => {
   const source = validRecipeSource.replace("unknownPolicy: PRESERVE_AS_UNKNOWN", "unknownPolicy: NORMALIZE");
 
   assert.throws(() => parseValidationRecipe(source, "fixtures/bounded-validation.md"), /Validation recipe rejected: outputContract\.unknownPolicy must be PRESERVE_AS_UNKNOWN\./);
+});
+
+test("research recipe: parses the complete READY profile contract", () => {
+  const recipe = parseResearchRecipe(validResearchRecipeSource, "fixtures/bounded-research.md");
+
+  assert.equal(recipe.recipeId, "bounded-research");
+  assert.deepEqual(recipe.controller.requiredInput, ["goal", "scope", "source-allowlist", "evidence-standard"]);
+  assert.deepEqual(recipe.outputContract.requiredSections, ["source-backed-brief", "uncertainty-register", "recommendation-or-stop"]);
+  assert.deepEqual(recipe.recovery.stopConditions, ["unknown-source-authority", "scope-expansion", "partial-evidence"]);
+});
+
+test("research recipe: loads the checked-in READY contract", async () => {
+  const recipe = await loadResearchRecipe("contract/agent-library/bounded-research.md");
+
+  assert.equal(recipe.status, "READY");
+  assert.equal(recipe.scenario, "research");
+  assert.equal(recipe.controller.executionBoundary, "LOCAL_ONLY");
+});
+
+test("research recipe: rejects an unsafe authority", () => {
+  const source = validResearchRecipeSource.replace("authority: RECOMMENDATION_ONLY", "authority: ACTIVATION");
+
+  assert.throws(() => parseResearchRecipe(source, "fixtures/bounded-research.md"), /Validation recipe rejected: controller\.authority must be RECOMMENDATION_ONLY\./);
 });

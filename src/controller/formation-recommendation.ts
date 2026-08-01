@@ -91,6 +91,9 @@ function unresolvedPrerequisites(request: QuickTaskRequest, formation: Formation
     if (prerequisite === "acceptance-criteria") return request.formationInput?.scenario !== "validation" || request.formationInput.acceptanceCriteria.length === 0;
     if (prerequisite === "evidence-sources") return request.formationInput?.scenario !== "validation" || request.formationInput.evidenceSources.length === 0;
     if (prerequisite === "known-limits") return request.formationInput?.scenario !== "validation" || request.formationInput.knownLimits.length === 0;
+    if (prerequisite === "scope") return request.formationInput?.scenario !== "research" || request.formationInput.scope.trim().length === 0;
+    if (prerequisite === "source-allowlist") return request.formationInput?.scenario !== "research" || request.formationInput.sourceAllowlist.length === 0;
+    if (prerequisite === "evidence-standard") return request.formationInput?.scenario !== "research" || request.formationInput.evidenceStandard.length === 0;
     if (prerequisite === "current-scope") return request.formationInput?.scenario !== "refinement" || request.formationInput.currentScope.trim().length === 0;
     if (prerequisite === "constraints") return request.formationInput?.scenario !== "refinement" || request.formationInput.constraints.length === 0;
     if (prerequisite === "open-questions") return request.formationInput?.scenario !== "refinement" || request.formationInput.openQuestions.length === 0;

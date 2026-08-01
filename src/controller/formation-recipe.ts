@@ -2,7 +2,7 @@ import { readFile } from "node:fs/promises";
 
 import { parseDocument } from "yaml";
 
-import type { RefinementRecipe, ValidationRecipe } from "./types.js";
+import type { RefinementRecipe, ResearchRecipe, ValidationRecipe } from "./types.js";
 
 const rootKeys = ["recipeId", "recipeVersion", "status", "formationId", "scenario", "weight", "coordination", "controller", "outputContract", "acceptance", "evidenceRequirements", "relations", "recovery"] as const;
 const controllerKeys = ["version", "eligibleComplexities", "requiredInput", "executionBoundary", "authority"] as const;
@@ -31,6 +31,10 @@ export class RefinementRecipeError extends Error {
 
 export async function loadValidationRecipe(sourcePath: string): Promise<ValidationRecipe> {
   return parseValidationRecipe(await readFile(sourcePath, "utf8"), sourcePath);
+}
+
+export async function loadResearchRecipe(sourcePath: string): Promise<ResearchRecipe> {
+  return parseResearchRecipe(await readFile(sourcePath, "utf8"), sourcePath);
 }
 
 export async function loadRefinementRecipe(sourcePath: string): Promise<RefinementRecipe> {
@@ -109,6 +113,82 @@ export function parseValidationRecipe(source: string, sourcePath: string): Valid
     recovery: {
       preserve: ["pre-validation-claim", "failed-checks"],
       stopConditions: ["missing-evidence", "source-mismatch", "unknown-capability"],
+    },
+  };
+}
+
+export function parseResearchRecipe(source: string, sourcePath: string): ResearchRecipe {
+  const frontmatter = extractFrontmatter(source, sourcePath);
+  const document = parseDocument(frontmatter, { uniqueKeys: true });
+  if (document.errors.length > 0) throw new ValidationRecipeError("frontmatter", "contains invalid YAML metadata");
+
+  const metadata = requireRecord(document.toJS(), "frontmatter");
+  requireExactKeys(metadata, rootKeys, "frontmatter");
+  requireLiteral(metadata, "recipeId", "bounded-research", "recipeId");
+  requireLiteral(metadata, "recipeVersion", "0.1.0", "recipeVersion");
+  requireLiteral(metadata, "status", "READY", "status");
+  requireLiteral(metadata, "formationId", "bounded-research", "formationId");
+  requireLiteral(metadata, "scenario", "research", "scenario");
+  requireLiteral(metadata, "weight", "medium", "weight");
+  requireLiteral(metadata, "coordination", "parallel-fan-out-fan-in", "coordination");
+
+  const controller = requireRecord(metadata.controller, "controller");
+  requireExactKeys(controller, controllerKeys, "controller");
+  requireLiteral(controller, "version", 1, "controller.version");
+  requireExactArray(controller, "eligibleComplexities", ["LOW", "MEDIUM"], "controller.eligibleComplexities", "must declare LOW then MEDIUM");
+  requireExactArray(controller, "requiredInput", ["goal", "scope", "source-allowlist", "evidence-standard"], "controller.requiredInput", "must declare the canonical input sections");
+  requireLiteral(controller, "executionBoundary", "LOCAL_ONLY", "controller.executionBoundary");
+  requireLiteral(controller, "authority", "RECOMMENDATION_ONLY", "controller.authority");
+
+  const outputContract = requireRecord(metadata.outputContract, "outputContract");
+  requireExactKeys(outputContract, outputKeys, "outputContract");
+  requireExactArray(outputContract, "requiredSections", ["source-backed-brief", "uncertainty-register", "recommendation-or-stop"], "outputContract.requiredSections", "must declare the canonical sections");
+  requireLiteral(outputContract, "unknownPolicy", "PRESERVE_AS_UNKNOWN", "outputContract.unknownPolicy");
+  requireLiteral(outputContract, "resultState", "NOT_STARTED", "outputContract.resultState");
+
+  const acceptance = requireRecord(metadata.acceptance, "acceptance");
+  requireExactKeys(acceptance, acceptanceKeys, "acceptance");
+  requireExactArray(acceptance, "criteria", ["bounded-question", "primary-source-evidence", "unresolved-conflicts-visible"], "acceptance.criteria", "must declare the canonical criteria");
+  requireExactArray(metadata, "evidenceRequirements", ["source-register", "quoted-or-linked-findings", "review-record"], "evidenceRequirements", "must declare the canonical evidence requirements");
+
+  const relations = requireList(metadata.relations, "relations");
+  if (relations.length !== 1) throw new ValidationRecipeError("relations", "must declare exactly one relation");
+  const relation = requireRecord(relations[0], "relations[0]");
+  requireExactKeys(relation, relationKeys, "relations[0]");
+  requireLiteral(relation, "kind", "related_to", "relations[0].kind");
+  requireLiteral(relation, "target", "quick-task-clarifier-validator", "relations[0].target");
+
+  const recovery = requireRecord(metadata.recovery, "recovery");
+  requireExactKeys(recovery, recoveryKeys, "recovery");
+  requireExactArray(recovery, "preserve", ["source-register", "conflicting-findings"], "recovery.preserve", "must declare the canonical preserved state");
+  requireExactArray(recovery, "stopConditions", ["unknown-source-authority", "scope-expansion", "partial-evidence"], "recovery.stopConditions", "must declare the canonical stop conditions");
+
+  return {
+    recipeId: "bounded-research",
+    recipeVersion: "0.1.0",
+    status: "READY",
+    formationId: "bounded-research",
+    scenario: "research",
+    weight: "medium",
+    coordination: "parallel-fan-out-fan-in",
+    controller: {
+      version: 1,
+      eligibleComplexities: ["LOW", "MEDIUM"],
+      requiredInput: ["goal", "scope", "source-allowlist", "evidence-standard"],
+      executionBoundary: "LOCAL_ONLY",
+      authority: "RECOMMENDATION_ONLY",
+    },
+    outputContract: {
+      requiredSections: ["source-backed-brief", "uncertainty-register", "recommendation-or-stop"],
+      unknownPolicy: "PRESERVE_AS_UNKNOWN",
+      resultState: "NOT_STARTED",
+    },
+    acceptance: { criteria: ["bounded-question", "primary-source-evidence", "unresolved-conflicts-visible"] },
+    evidenceRequirements: ["source-register", "quoted-or-linked-findings", "review-record"],
+    relations: [{ kind: "related_to", target: "quick-task-clarifier-validator" }],
+    recovery: {
+      preserve: ["source-register", "conflicting-findings"],
+      stopConditions: ["unknown-source-authority", "scope-expansion", "partial-evidence"],
     },
   };
 }

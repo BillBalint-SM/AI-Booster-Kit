@@ -1,4 +1,4 @@
-import type { FormationInput, LinkDeclaration, QuickTaskRequest, RefinementFormationInput, ValidationFormationInput } from "./types.js";
+import type { FormationInput, LinkDeclaration, QuickTaskRequest, RefinementFormationInput, ResearchFormationInput, ValidationFormationInput } from "./types.js";
 
 const rootKeys = ["requestVersion", "workItemType", "goal", "outcomeOwner", "complexity", "executionBoundary", "value", "context", "relations", "dependencies", "preferences", "formationInput"] as const;
 
@@ -34,9 +34,20 @@ export function parseQuickTaskRequest(value: unknown): QuickTaskRequest {
 
 function parseFormationInput(value: unknown): FormationInput {
   const record = plainRecord(value, "formationInput");
-  const scenario = oneOf(record, "scenario", ["validation", "refinement"]);
+  const scenario = oneOf(record, "scenario", ["research", "validation", "refinement"]);
+  if (scenario === "research") return parseResearchFormationInput(record);
   if (scenario === "validation") return parseValidationFormationInput(record);
   return parseRefinementFormationInput(record);
+}
+
+function parseResearchFormationInput(record: Record<string, unknown>): ResearchFormationInput {
+  exactKeys(record, ["scenario", "scope", "sourceAllowlist", "evidenceStandard"], "formationInput");
+  return {
+    scenario: literal(record, "scenario", "research"),
+    scope: nonEmptyField(record, "scope", "formationInput.scope"),
+    sourceAllowlist: requiredStringArray(record.sourceAllowlist, "formationInput.sourceAllowlist"),
+    evidenceStandard: requiredStringArray(record.evidenceStandard, "formationInput.evidenceStandard"),
+  };
 }
 
 function parseValidationFormationInput(record: Record<string, unknown>): ValidationFormationInput {
