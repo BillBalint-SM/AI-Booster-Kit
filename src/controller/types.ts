@@ -12,6 +12,54 @@ export interface QuickTaskRecipe {
   };
 }
 
+export type FormationCatalogStatus = "READY_WITH_LIMIT";
+export type FormationEntryStatus = "CANDIDATE" | "READY_WITH_LIMIT";
+export type FormationScenario = "quick_task" | "research" | "refinement" | "development" | "debugging" | "validation";
+export type FormationWeight = "light" | "medium" | "heavy";
+export type FormationComplexity = "low" | "medium" | "high";
+export type FormationTopology = "single-agent" | "sequential" | "parallel-fan-out-fan-in";
+export type FormationRole = "clarifier" | "validator" | "human-checkpoint" | "researcher" | "evidence-manager" | "reviewer" | "planner" | "implementer" | "debugger";
+export type FormationRelationKind = "implements" | "depends_on" | "blocks" | "validates" | "parallel_to" | "related_to";
+
+export interface FormationCatalog {
+  catalogId: "agent-formation-library";
+  catalogVersion: "1.0.0";
+  status: FormationCatalogStatus;
+  formations: readonly FormationEntry[];
+}
+
+export interface FormationEntry {
+  formationId: string;
+  version: string;
+  status: FormationEntryStatus;
+  scenario: FormationScenario;
+  weight: FormationWeight;
+  complexity: FormationComplexity;
+  topology: FormationTopology;
+  roles: readonly FormationRole[];
+  requiredInput: readonly string[];
+  expectedOutput: readonly string[];
+  acceptance: {
+    criteria: readonly string[];
+    evidence: readonly string[];
+  };
+  relations: readonly {
+    kind: FormationRelationKind;
+    target: string;
+  }[];
+  prerequisites: readonly string[];
+  recovery: {
+    preserve: readonly string[];
+    stopConditions: readonly string[];
+  };
+  identity: {
+    key: string;
+    pattern: string;
+  };
+  executionBoundary: "LOCAL_ONLY";
+  authority: "RECOMMENDATION_ONLY";
+}
+
 export type ControllerDecision = "RECOMMEND" | "PREPARE" | "NO_AGENT" | "NO_FIT" | "STOPPED";
 export type ControllerImpact = "COMPATIBLE" | "DEGRADED" | "BREAKING" | "UNKNOWN";
 export type CheckpointChoice = "ACCEPT_RECOMMENDATION" | "REQUEST_ALTERNATIVE" | "CONTINUE_WITHOUT_AGENT";
