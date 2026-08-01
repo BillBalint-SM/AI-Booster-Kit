@@ -13,6 +13,8 @@ import { writeReadinessCertificate } from "./readiness/output.js";
 import { runReadinessCertificate } from "./readiness/run.js";
 import { createQuickTaskActivationPackage, parseActivationProfile } from "./controller/activation-package.js";
 import { evaluateQuickTask, ControllerEvaluationError } from "./controller/evaluate.js";
+import { FormationCatalogError, loadFormationCatalog } from "./controller/formation.js";
+import { FormationRecommendationError, recommendFormation } from "./controller/formation-recommendation.js";
 import { ControllerCheckpointError, parseCheckpointChoice } from "./controller/choice.js";
 import { ControllerRecipeError, loadQuickTaskRecipe } from "./controller/recipe.js";
 import { ControllerRequestError, parseQuickTaskRequest } from "./controller/request.js";
@@ -28,6 +30,7 @@ Commands:
   conformance   Run cross-host conformance checks
   readiness     Generate a local G2AS Sandbox Readiness Certificate
   quick-task    Recommend the local Quick Task recipe
+  recommend-formation  Recommend a catalog formation without activation
   resolve-checkpoint  Resolve an explicit local Quick Task checkpoint
   activate-quick-task  Issue an ephemeral Quick Task Activation Package
 `;
@@ -61,6 +64,7 @@ async function dispatchCli(argv: readonly string[]): Promise<number> {
   if (command === "conformance") return runConformance(argv.slice(1));
   if (command === "readiness") return runReadiness(argv.slice(1));
   if (command === "quick-task") return runQuickTask(argv.slice(1));
+  if (command === "recommend-formation") return runFormationRecommendation(argv.slice(1));
   if (command === "resolve-checkpoint") return runResolveCheckpoint(argv.slice(1));
   if (command === "activate-quick-task") return runActivateQuickTask(argv.slice(1));
 
@@ -85,6 +89,29 @@ async function runQuickTask(argv: readonly string[]): Promise<number> {
     return response.decision === "RECOMMEND" || response.decision === "NO_AGENT" ? 0 : 2;
   } catch (error) {
     if (error instanceof ControllerRequestError || error instanceof ControllerRecipeError || error instanceof ControllerEvaluationError) return stoppedController("CONTROLLER_VALIDATION_FAILED", error.message, 3);
+    throw error;
+  }
+}
+
+async function runFormationRecommendation(argv: readonly string[]): Promise<number> {
+  if (argv[0] !== "--input" || argv[1] === undefined || argv.length !== 2) return stoppedController("COMMAND_CONFIGURATION_INVALID", "recommend-formation requires exactly --input <path>", 4);
+  let source: string;
+  try { source = await readFile(argv[1], "utf8"); } catch (error) {
+    if (isSystemError(error)) return stoppedController("FORMATION_INPUT_PATH_UNREADABLE", "The explicit input path could not be read", 4);
+    throw error;
+  }
+  let input: unknown;
+  try { input = JSON.parse(source) as unknown; } catch (error) {
+    if (error instanceof SyntaxError) return stoppedController("FORMATION_INPUT_JSON_INVALID", "The explicit input is not valid JSON", 3);
+    throw error;
+  }
+  try {
+    const recommendation = recommendFormation(parseQuickTaskRequest(input), await loadFormationCatalog("contract/agent-library/formation-catalog.md"));
+    process.stdout.write(`${JSON.stringify(recommendation)}\n`);
+    return recommendation.decision === "RECOMMEND" || recommendation.decision === "NO_AGENT" ? 0 : 2;
+  } catch (error) {
+    if (error instanceof ControllerRequestError) return stoppedController("FORMATION_REQUEST_VALIDATION_FAILED", "The formation recommendation request was rejected", 3);
+    if (error instanceof FormationCatalogError || error instanceof FormationRecommendationError) return stoppedController("FORMATION_RECOMMENDATION_FAILED", "The formation recommendation stopped safely", 3);
     throw error;
   }
 }
