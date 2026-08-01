@@ -1,0 +1,13 @@
+{
+  "requestVersion": "1.0",
+  "workItemType": "Quick Task",
+  "goal": "Validate a no-Agent continuation.",
+  "outcomeOwner": "delivery-team",
+  "complexity": "LOW",
+  "executionBoundary": "LOCAL_ONLY",
+  "value": { "state": "KNOWN", "statement": "A reviewable local recommendation." },
+  "context": { "state": "CURRENT", "reference": "workspace:controller-mvp" },
+  "relations": { "state": "ABSENT", "items": [] },
+  "dependencies": { "state": "ABSENT", "items": [] },
+  "preferences": { "continuation": "NO_AGENT" }
+}

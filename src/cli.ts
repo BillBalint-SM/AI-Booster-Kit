@@ -11,6 +11,9 @@ import { loadGithubReadOnlyCapability } from "./capabilities/manifest.js";
 import { type ReadinessAdapter, type ReadinessObservationBundle } from "./readiness/observations.js";
 import { writeReadinessCertificate } from "./readiness/output.js";
 import { runReadinessCertificate } from "./readiness/run.js";
+import { evaluateQuickTask, ControllerEvaluationError } from "./controller/evaluate.js";
+import { ControllerRecipeError, loadQuickTaskRecipe } from "./controller/recipe.js";
+import { ControllerRequestError, parseQuickTaskRequest } from "./controller/request.js";
 
 const helpText = `Usage: npm run cli -- <command>
 
@@ -20,6 +23,7 @@ Commands:
   sync          Validate local planned or local-result sync output
   conformance   Run cross-host conformance checks
   readiness     Generate a local G2AS Sandbox Readiness Certificate
+  quick-task    Recommend the local Quick Task recipe
 `;
 
 export async function runCli(argv: readonly string[]): Promise<number> {
@@ -50,8 +54,36 @@ async function dispatchCli(argv: readonly string[]): Promise<number> {
   if (command === "sync") return runSync(argv.slice(1));
   if (command === "conformance") return runConformance(argv.slice(1));
   if (command === "readiness") return runReadiness(argv.slice(1));
+  if (command === "quick-task") return runQuickTask(argv.slice(1));
 
   throw new CliError("CONFIGURATION_ERROR", 4);
+}
+
+async function runQuickTask(argv: readonly string[]): Promise<number> {
+  if (argv[0] !== "--input" || argv[1] === undefined || argv.length !== 2) return stoppedController("COMMAND_CONFIGURATION_INVALID", "quick-task requires exactly --input <path>", 4);
+  let source: string;
+  try { source = await readFile(argv[1], "utf8"); } catch (error) {
+    if (isSystemError(error)) return stoppedController("INPUT_PATH_UNREADABLE", "The explicit input path could not be read", 4);
+    throw error;
+  }
+  let input: unknown;
+  try { input = JSON.parse(source) as unknown; } catch (error) {
+    if (error instanceof SyntaxError) return stoppedController("INPUT_JSON_INVALID", "The explicit input is not valid JSON", 3);
+    throw error;
+  }
+  try {
+    const response = evaluateQuickTask(parseQuickTaskRequest(input), await loadQuickTaskRecipe("contract/agent-library/quick-task-clarifier-validator.md"));
+    process.stdout.write(`${JSON.stringify(response)}\n`);
+    return response.decision === "RECOMMEND" || response.decision === "NO_AGENT" ? 0 : 2;
+  } catch (error) {
+    if (error instanceof ControllerRequestError || error instanceof ControllerRecipeError || error instanceof ControllerEvaluationError) return stoppedController("CONTROLLER_VALIDATION_FAILED", error.message, 3);
+    throw error;
+  }
+}
+
+function stoppedController(code: string, message: string, exitCode: 3 | 4): 3 | 4 {
+  process.stdout.write(`${JSON.stringify({ decision: "STOPPED", impact: "UNKNOWN", requiresAcknowledgement: false, error: { code, message } })}\n`);
+  return exitCode;
 }
 
 async function runValidate(argv: readonly string[]): Promise<number> {
