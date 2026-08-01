@@ -3,8 +3,8 @@
   "project": {
     "name": "AI-Booster-Kit",
     "description": "This repository is an agent-agnostic, contract-first synchronization orchestrator for safely coordinating work through separately approved domain adapters. It provides a shareable operating layer for coordinating Jira, GitHub, and Confluence work across multiple coding agents.",
-    "analyzedAt": "2026-08-01T21:20:52.638Z",
-    "gitCommitHash": "7214cb08dc1ad96e3184dec5a64b4362894e7b34"
+    "analyzedAt": "2026-08-01T21:35:18.801Z",
+    "gitCommitHash": "6c0a0421a612ca2ec8e2e30b77a45ad70134659f"
   },
   "nodes": [
     {
@@ -9966,6 +9966,20 @@
         "structural-extraction"
       ],
       "complexity": "simple"
+    },
+    {
+      "id": "document:contract/agent-library/bounded-research.md",
+      "type": "document",
+      "name": "bounded-research.md",
+      "filePath": "contract/agent-library/bounded-research.md",
+      "summary": "Defines the bounded research formation recipe and its source-backed evidence boundary.",
+      "tags": [
+        "documentation",
+        "agent-formation",
+        "research",
+        "ready"
+      ],
+      "complexity": "moderate"
     }
   ],
   "edges": [
@@ -18473,6 +18487,13 @@
       "type": "imports",
       "direction": "forward",
       "weight": 0.8
+    },
+    {
+      "source": "document:contract/agent-library/bounded-research.md",
+      "target": "document:contract/agent-library/formation-catalog.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
     }
   ],
   "layers": [
@@ -18588,7 +18609,8 @@
         "config:website/.openai/hosting.json",
         "config:website/drizzle/meta/_journal.json",
         "config:website/package.json",
-        "config:website/tsconfig.json"
+        "config:website/tsconfig.json",
+        "document:contract/agent-library/bounded-research.md"
       ]
     },
     {

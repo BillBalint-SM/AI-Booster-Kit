@@ -1,6 +1,6 @@
 {
   "scriptCompleted": true,
-  "contentDigest": "2cf3374a60983040004207ceb063f5245f21f8a77fe2a2602648f330ea6401d7",
+  "contentDigest": "5cf165acf68702187ef0bdcad9c731dfd52902946144decd254d919f1913b786",
   "files": [
     {
       "path": ".github/pull_request_template.md",
@@ -174,6 +174,12 @@
       "path": "contract/agent-library/bounded-refinement.md",
       "language": "markdown",
       "sizeLines": 70,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "contract/agent-library/bounded-research.md",
+      "language": "markdown",
+      "sizeLines": 92,
       "fileCategory": "docs"
     },
     {
@@ -485,7 +491,7 @@
     {
       "path": "docs/project/documentation-map.md",
       "language": "markdown",
-      "sizeLines": 55,
+      "sizeLines": 56,
       "fileCategory": "docs"
     },
     {
@@ -839,13 +845,13 @@
     {
       "path": "src/controller/formation-recipe.ts",
       "language": "typescript",
-      "sizeLines": 232,
+      "sizeLines": 312,
       "fileCategory": "code"
     },
     {
       "path": "src/controller/formation-recommendation.ts",
       "language": "typescript",
-      "sizeLines": 131,
+      "sizeLines": 134,
       "fileCategory": "code"
     },
     {
@@ -869,7 +875,7 @@
     {
       "path": "src/controller/request.ts",
       "language": "typescript",
-      "sizeLines": 142,
+      "sizeLines": 153,
       "fileCategory": "code"
     },
     {
@@ -881,7 +887,7 @@
     {
       "path": "src/controller/types.ts",
       "language": "typescript",
-      "sizeLines": 320,
+      "sizeLines": 358,
       "fileCategory": "code"
     },
     {
@@ -1199,7 +1205,7 @@
     {
       "path": "test/controller-cli.test.ts",
       "language": "typescript",
-      "sizeLines": 195,
+      "sizeLines": 229,
       "fileCategory": "code"
     },
     {
@@ -1211,19 +1217,19 @@
     {
       "path": "test/controller-formation-recipe.test.ts",
       "language": "typescript",
-      "sizeLines": 78,
+      "sizeLines": 133,
       "fileCategory": "code"
     },
     {
       "path": "test/controller-formation-recommendation.test.ts",
       "language": "typescript",
-      "sizeLines": 193,
+      "sizeLines": 221,
       "fileCategory": "code"
     },
     {
       "path": "test/controller-formation.test.ts",
       "language": "typescript",
-      "sizeLines": 144,
+      "sizeLines": 147,
       "fileCategory": "code"
     },
     {
@@ -1241,7 +1247,7 @@
     {
       "path": "test/controller-request.test.ts",
       "language": "typescript",
-      "sizeLines": 84,
+      "sizeLines": 99,
       "fileCategory": "code"
     },
     {
@@ -1599,13 +1605,13 @@
       "fileCategory": "docs"
     }
   ],
-  "totalFiles": 266,
-  "filteredByIgnore": 4,
+  "totalFiles": 267,
+  "filteredByIgnore": 5,
   "estimatedComplexity": "large",
   "stats": {
-    "filesScanned": 266,
+    "filesScanned": 267,
     "byCategory": {
-      "docs": 119,
+      "docs": 120,
       "infra": 1,
       "code": 122,
       "config": 21,
@@ -1613,7 +1619,7 @@
       "markup": 1
     },
     "byLanguage": {
-      "markdown": 119,
+      "markdown": 120,
       "yaml": 1,
       "typescript": 115,
       "json": 21,
