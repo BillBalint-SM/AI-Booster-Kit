@@ -43,9 +43,9 @@ evaluation/evolve loop, debugging context injection, and optional lifecycle
 synchronization remain future work. The current Activation Package, M1-A
 catalog, and M1-B recommendation remain `READY_WITH_LIMIT` overall: they
 prepare, describe, or recommend bounded, host-agnostic work but do not activate
-an Agent or persist an artifact. Mapper freshness is `READY` at `fcd2a38d`: the
-checked-in Understand Anything and Graphify snapshots match the current source
-revision, and the mapper gate passes.
+an Agent or persist an artifact. Mapper freshness is `READY` at the current
+`main` source revision: the checked-in Understand Anything and Graphify
+snapshots match the source revision, and the mapper gate passes.
 
 ## Open stop
 
