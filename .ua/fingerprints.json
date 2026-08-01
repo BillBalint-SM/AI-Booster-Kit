@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "gitCommitHash": "7214cb08dc1ad96e3184dec5a64b4362894e7b34",
-  "generatedAt": "2026-08-01T21:20:52.561Z",
+  "gitCommitHash": "6c0a0421a612ca2ec8e2e30b77a45ad70134659f",
+  "generatedAt": "2026-08-01T21:34:55.001Z",
   "files": {
     ".github/pull_request_template.md": {
       "filePath": ".github/pull_request_template.md",
@@ -314,6 +314,16 @@
       "totalLines": 71,
       "hasStructuralAnalysis": true
     },
+    "contract/agent-library/bounded-research.md": {
+      "filePath": "contract/agent-library/bounded-research.md",
+      "contentHash": "3e43196a43a326e6d4d4f5b8edf8d9dd7899caf149ea05873e4c16103fa1f757",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 93,
+      "hasStructuralAnalysis": true
+    },
     "contract/agent-library/bounded-validation.md": {
       "filePath": "contract/agent-library/bounded-validation.md",
       "contentHash": "af634d3e7035be4c4b7bee1553298b69225399e3433f64ca513acead3bd049f6",
@@ -326,7 +336,7 @@
     },
     "contract/agent-library/formation-catalog.md": {
       "filePath": "contract/agent-library/formation-catalog.md",
-      "contentHash": "efc1104fa9e7896f1ecb82c1bd0b80b7db7f9f4ada6132b8cca76921c7a60215",
+      "contentHash": "5dba807da9bed65ddc4f8908c832b4465912464ab7e279edfaa18c84ba58b3f0",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -816,7 +826,7 @@
     },
     "docs/project/current-state.md": {
       "filePath": "docs/project/current-state.md",
-      "contentHash": "ba71ca0d0810d22c2d454d0f6925e86232de2297cbbf62153c72d0c30cf59250",
+      "contentHash": "0e0fd1c9667c1e02cc1b04cfe1f3429d36303bbbc648f4eaed936c466391130c",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -826,17 +836,17 @@
     },
     "docs/project/documentation-map.md": {
       "filePath": "docs/project/documentation-map.md",
-      "contentHash": "1d8011654bc2c9f1c39e3d54a15140dce02bf9b56976f4fa4224d4f7d5477a7c",
+      "contentHash": "a7b06b3a5fcc2b7242d4b146e1344718f2d973d96308b54c11615617214dd574",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 56,
+      "totalLines": 57,
       "hasStructuralAnalysis": true
     },
     "docs/project/roadmap.md": {
       "filePath": "docs/project/roadmap.md",
-      "contentHash": "a51b3a91e2c7bf9acfb4ad51a9b2f7580be5abc75dda8b2801b35d847f399635",
+      "contentHash": "ac0076aa0383cf85b0e6226216b308436d41ddcbd4b942b4cede464c910dbd07",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -3196,7 +3206,7 @@
     },
     "src/controller/formation-recipe.ts": {
       "filePath": "src/controller/formation-recipe.ts",
-      "contentHash": "09ee52a25fa125587cab3c03550aff5d01c369a3f6f8887f6eafae1b92053db6",
+      "contentHash": "9bff173f6707bd057a0fe92af81185670f4166af27ecd444ffcb2a224d82e549",
       "functions": [
         {
           "name": "loadValidationRecipe",
@@ -3204,6 +3214,15 @@
             "sourcePath"
           ],
           "returnType": "Promise<ValidationRecipe>",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "loadResearchRecipe",
+          "params": [
+            "sourcePath"
+          ],
+          "returnType": "Promise<ResearchRecipe>",
           "exported": true,
           "lineCount": 3
         },
@@ -3223,6 +3242,16 @@
             "sourcePath"
           ],
           "returnType": "ValidationRecipe",
+          "exported": true,
+          "lineCount": 75
+        },
+        {
+          "name": "parseResearchRecipe",
+          "params": [
+            "source",
+            "sourcePath"
+          ],
+          "returnType": "ResearchRecipe",
           "exported": true,
           "lineCount": 75
         },
@@ -3353,6 +3382,7 @@
           "source": "./types.js",
           "specifiers": [
             "RefinementRecipe",
+            "ResearchRecipe",
             "ValidationRecipe"
           ]
         }
@@ -3361,16 +3391,18 @@
         "ValidationRecipeError",
         "RefinementRecipeError",
         "loadValidationRecipe",
+        "loadResearchRecipe",
         "loadRefinementRecipe",
         "parseValidationRecipe",
+        "parseResearchRecipe",
         "parseRefinementRecipe"
       ],
-      "totalLines": 233,
+      "totalLines": 313,
       "hasStructuralAnalysis": true
     },
     "src/controller/formation-recommendation.ts": {
       "filePath": "src/controller/formation-recommendation.ts",
-      "contentHash": "d36f51f50f6f97e844caa9319d8e6020d4cdb391eaba7968a8ad189edf7918e9",
+      "contentHash": "9a356ce6e50b04c591cbdb6e94c0811b7ea8aa3729989dc68bd475721cac51ad",
       "functions": [
         {
           "name": "recommendFormation",
@@ -3417,7 +3449,7 @@
           ],
           "returnType": "readonly string[]",
           "exported": false,
-          "lineCount": 16
+          "lineCount": 19
         },
         {
           "name": "unknownRequestEvidence",
@@ -3482,7 +3514,7 @@
         "FormationRecommendationError",
         "recommendFormation"
       ],
-      "totalLines": 132,
+      "totalLines": 135,
       "hasStructuralAnalysis": true
     },
     "src/controller/formation.ts": {
@@ -3900,7 +3932,7 @@
     },
     "src/controller/request.ts": {
       "filePath": "src/controller/request.ts",
-      "contentHash": "2ddf1ab542cc24d7e087b485e1acae2a8789644ac445502a2ab1b31507d6cdb5",
+      "contentHash": "c70f47e566ccec833336664ffae321fb45b55b30c830491f534250506b8377d4",
       "functions": [
         {
           "name": "parseQuickTaskRequest",
@@ -3918,7 +3950,16 @@
           ],
           "returnType": "FormationInput",
           "exported": false,
-          "lineCount": 6
+          "lineCount": 7
+        },
+        {
+          "name": "parseResearchFormationInput",
+          "params": [
+            "record"
+          ],
+          "returnType": "ResearchFormationInput",
+          "exported": false,
+          "lineCount": 9
         },
         {
           "name": "parseValidationFormationInput",
@@ -4090,6 +4131,7 @@
             "LinkDeclaration",
             "QuickTaskRequest",
             "RefinementFormationInput",
+            "ResearchFormationInput",
             "ValidationFormationInput"
           ]
         }
@@ -4098,7 +4140,7 @@
         "ControllerRequestError",
         "parseQuickTaskRequest"
       ],
-      "totalLines": 143,
+      "totalLines": 154,
       "hasStructuralAnalysis": true
     },
     "src/controller/resolve.ts": {
@@ -4151,7 +4193,7 @@
     },
     "src/controller/types.ts": {
       "filePath": "src/controller/types.ts",
-      "contentHash": "0fc1d8908aa7d39d0f2ecfd2a57517f06dade6f2c1c56be21d2ebbe5917151a0",
+      "contentHash": "df9ae0d217d43f04b64701e6fe0186291bac817f4784ac89c7bc5a75e78acc56",
       "functions": [],
       "classes": [
         {
@@ -4168,7 +4210,7 @@
       "exports": [
         "ControllerActivationPackageError"
       ],
-      "totalLines": 321,
+      "totalLines": 359,
       "hasStructuralAnalysis": true
     },
     "src/docs/links.ts": {
@@ -9347,7 +9389,7 @@
     },
     "test/controller-cli.test.ts": {
       "filePath": "test/controller-cli.test.ts",
-      "contentHash": "d9b3e61be1b838b38621d95e8c65be4bf353354e67e47bc55250a390e3638629",
+      "contentHash": "f7af3ae9ea50121724f47009b0396ba77d04ec9e86b65d9dd9d44cb0a859d708",
       "functions": [
         {
           "name": "runBuiltCli",
@@ -9403,7 +9445,7 @@
         }
       ],
       "exports": [],
-      "totalLines": 196,
+      "totalLines": 230,
       "hasStructuralAnalysis": true
     },
     "test/controller-evaluate.test.ts": {
@@ -9465,7 +9507,7 @@
     },
     "test/controller-formation-recipe.test.ts": {
       "filePath": "test/controller-formation-recipe.test.ts",
-      "contentHash": "e4cc4135542c0a2db22e42e9ab0823a8a3dc147be4c62762f4bb2b2d30391594",
+      "contentHash": "0a74b38a379695ad7427d146f921c8f18821975e996cfa48c49aaece55426a7a",
       "functions": [],
       "classes": [],
       "imports": [
@@ -9484,18 +9526,20 @@
         {
           "source": "../src/controller/formation-recipe.js",
           "specifiers": [
+            "loadResearchRecipe",
             "loadValidationRecipe",
+            "parseResearchRecipe",
             "parseValidationRecipe"
           ]
         }
       ],
       "exports": [],
-      "totalLines": 79,
+      "totalLines": 134,
       "hasStructuralAnalysis": true
     },
     "test/controller-formation-recommendation.test.ts": {
       "filePath": "test/controller-formation-recommendation.test.ts",
-      "contentHash": "07c74019c9c0c8e17db584ffd0087cce7be955aae1da71a49a12796242eebc33",
+      "contentHash": "13ce6424b3a54c765c9c69fb944c4a66a836e172e96bb79f7f98584da0025b52",
       "functions": [],
       "classes": [],
       "imports": [
@@ -9538,12 +9582,12 @@
         }
       ],
       "exports": [],
-      "totalLines": 194,
+      "totalLines": 222,
       "hasStructuralAnalysis": true
     },
     "test/controller-formation.test.ts": {
       "filePath": "test/controller-formation.test.ts",
-      "contentHash": "144b05c4b013b8c8d2b4865f8ef4e19a98803bdfcad35ce43edeafdb4f839b71",
+      "contentHash": "208b573e57a1bbc9707f86a97d1526aa6da36fefe71a34b58a1698cf7f1a488b",
       "functions": [
         {
           "name": "catalogSource",
@@ -9578,7 +9622,7 @@
         }
       ],
       "exports": [],
-      "totalLines": 145,
+      "totalLines": 148,
       "hasStructuralAnalysis": true
     },
     "test/controller-recipe.test.ts": {
@@ -9642,7 +9686,7 @@
     },
     "test/controller-request.test.ts": {
       "filePath": "test/controller-request.test.ts",
-      "contentHash": "9cf192746f3d42b1b1e5336eeb4ed5912239b82d794387abf85d71175722ac74",
+      "contentHash": "c9e44632e303d2d8921368104d83c721907a0070eccb699a010d3137df37c005",
       "functions": [
         {
           "name": "fixture",
@@ -9695,7 +9739,7 @@
         }
       ],
       "exports": [],
-      "totalLines": 85,
+      "totalLines": 100,
       "hasStructuralAnalysis": true
     },
     "test/controller-resolve.test.ts": {
