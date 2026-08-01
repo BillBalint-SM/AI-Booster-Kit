@@ -15,7 +15,7 @@ import type {
 } from "./types.js";
 
 const catalogKeys = ["catalogId", "catalogVersion", "status", "formations"] as const;
-const entryKeys = ["formationId", "version", "status", "scenario", "weight", "complexity", "topology", "roles", "requiredInput", "expectedOutput", "acceptance", "relations", "prerequisites", "recovery", "identity", "executionBoundary", "authority"] as const;
+const entryKeys = ["formationId", "version", "status", "scenario", "weight", "complexity", "topology", "roles", "requiredInput", "expectedOutput", "acceptance", "relations", "prerequisites", "recovery", "identity", "recipePath", "executionBoundary", "authority"] as const;
 const acceptanceKeys = ["criteria", "evidence"] as const;
 const relationKeys = ["kind", "target"] as const;
 const recoveryKeys = ["preserve", "stopConditions"] as const;
@@ -78,10 +78,13 @@ function parseFormationEntry(value: unknown, index: number): FormationEntry {
   const identity = requireRecord(entry.identity, `${field}.identity`);
   requireExactKeys(identity, identityKeys, `${field}.identity`);
 
+  const status = requireEnum(entry.status, ["CANDIDATE", "READY_WITH_LIMIT", "READY"], `${field}.status`, "CANDIDATE, READY_WITH_LIMIT, or READY") as FormationEntryStatus;
+  const recipePath = requireNullableString(entry.recipePath, `${field}.recipePath`);
+  if (status === "READY" && recipePath === null) throw new FormationCatalogError(`${field}.recipePath`, "is required for READY entries");
   return {
     formationId: requireNonEmptyString(entry.formationId, `${field}.formationId`),
     version: requireNonEmptyString(entry.version, `${field}.version`),
-    status: requireEnum(entry.status, ["CANDIDATE", "READY_WITH_LIMIT"], `${field}.status`, "CANDIDATE or READY_WITH_LIMIT") as FormationEntryStatus,
+    status,
     scenario: requireEnum(entry.scenario, ["quick_task", "research", "refinement", "development", "debugging", "validation"], `${field}.scenario`, "a supported scenario") as FormationScenario,
     weight: requireEnum(entry.weight, ["light", "medium", "heavy"], `${field}.weight`, "light, medium, or heavy") as FormationWeight,
     complexity: requireEnum(entry.complexity, ["low", "medium", "high"], `${field}.complexity`, "low, medium, or high") as FormationComplexity,
@@ -103,6 +106,7 @@ function parseFormationEntry(value: unknown, index: number): FormationEntry {
       key: requireNonEmptyString(identity.key, `${field}.identity.key`),
       pattern: requireNonEmptyString(identity.pattern, `${field}.identity.pattern`),
     },
+    recipePath,
     executionBoundary: requireEnum(entry.executionBoundary, ["LOCAL_ONLY"], `${field}.executionBoundary`, "LOCAL_ONLY") as "LOCAL_ONLY",
     authority: requireEnum(entry.authority, ["RECOMMENDATION_ONLY"], `${field}.authority`, "RECOMMENDATION_ONLY") as "RECOMMENDATION_ONLY",
   };
@@ -144,6 +148,11 @@ function requireExactKeys(record: Record<string, unknown>, expected: readonly st
 function requireNonEmptyString(value: unknown, field: string): string {
   if (typeof value !== "string" || value.trim().length === 0) throw new FormationCatalogError(field, "must be a non-empty string");
   return value;
+}
+
+function requireNullableString(value: unknown, field: string): string | null {
+  if (value !== null && (typeof value !== "string" || value.trim().length === 0)) throw new FormationCatalogError(field, "must be a non-empty string or null");
+  return value as string | null;
 }
 
 function requireNonEmptyList(value: unknown, field: string): readonly unknown[] {

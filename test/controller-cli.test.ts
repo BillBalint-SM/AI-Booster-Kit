@@ -19,7 +19,7 @@ test("built controller CLI: emits one recommendation JSON object without writing
   assert.deepEqual(await readdir(root), before);
 });
 
-test("built formation CLI: exposes a candidate recommendation without writing artifacts", async () => {
+test("built formation CLI: exposes a ready validation recommendation without writing artifacts", async () => {
   const root = await mkdtemp(join(tmpdir(), "ai-booster-controller-"));
   const input = join(root, "request.json");
   await writeFile(input, JSON.stringify({
@@ -33,15 +33,22 @@ test("built formation CLI: exposes a candidate recommendation without writing ar
     context: { state: "CURRENT", reference: "repository-state" },
     relations: { state: "ABSENT", items: [] },
     dependencies: { state: "ABSENT", items: [] },
+    formationInput: {
+      scenario: "validation",
+      claim: "The local contract is valid.",
+      acceptanceCriteria: ["all contract checks pass"],
+      evidenceSources: ["local test output"],
+      knownLimits: ["Node 22 CI is the exact runtime gate"],
+    },
   }), "utf8");
   const before = await readdir(root);
 
   const result = await runBuiltCli(["recommend-formation", "--input", input]);
   const recommendation = JSON.parse(result.stdout);
 
-  assert.equal(result.code, 2);
+  assert.equal(result.code, 0);
   assert.equal(result.stderr, "");
-  assert.equal(recommendation.decision, "CANDIDATE");
+  assert.equal(recommendation.decision, "RECOMMEND");
   assert.equal(recommendation.scenario, "validation");
   assert.equal(recommendation.formation.formationId, "bounded-validation");
   assert.deepEqual(await readdir(root), before);

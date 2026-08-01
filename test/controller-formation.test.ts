@@ -27,6 +27,7 @@ const validEntry = `
     identity:
       key: test-formation
       pattern: validation:light:single-agent
+    recipePath: null
     executionBoundary: LOCAL_ONLY
     authority: RECOMMENDATION_ONLY
 `;
@@ -64,8 +65,11 @@ test("formation catalog: loads the six declared M1-A entries", async () => {
   );
   assert.deepEqual(
     catalog.formations.filter((formation) => formation.status === "CANDIDATE").map((formation) => formation.scenario),
-    ["research", "refinement", "development", "debugging", "validation"],
+    ["research", "refinement", "development", "debugging"],
   );
+  const validation = catalog.formations.find((formation) => formation.formationId === "bounded-validation");
+  assert.equal(validation?.status, "READY");
+  assert.equal(validation?.recipePath, "contract/agent-library/bounded-validation.md");
 });
 
 test("formation catalog: rejects an unknown root field", () => {
@@ -119,9 +123,15 @@ test("formation catalog: rejects an authority that could activate work", () => {
 });
 
 test("formation catalog: rejects unsupported candidate status", () => {
+  const source = catalogSource(validEntry.replace("status: READY_WITH_LIMIT", "status: DRAFT"));
+
+  assert.throws(() => parseFormationCatalog(source, "fixtures/catalog.md"), /formation catalog rejected: formations\[0\]\.status must be CANDIDATE, READY_WITH_LIMIT, or READY\./);
+});
+
+test("formation catalog: rejects a READY entry without a linked recipe", () => {
   const source = catalogSource(validEntry.replace("status: READY_WITH_LIMIT", "status: READY"));
 
-  assert.throws(() => parseFormationCatalog(source, "fixtures/catalog.md"), /formation catalog rejected: formations\[0\]\.status must be CANDIDATE or READY_WITH_LIMIT\./);
+  assert.throws(() => parseFormationCatalog(source, "fixtures/catalog.md"), /formation catalog rejected: formations\[0\]\.recipePath is required for READY entries\./);
 });
 
 test("formation catalog: rejects duplicate YAML keys before validation", () => {
