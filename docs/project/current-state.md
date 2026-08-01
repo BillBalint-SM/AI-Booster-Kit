@@ -1,6 +1,6 @@
 ## Branch and pull request
 
-The Controller MVP is merged according to the confirmed GitHub delivery state. The current local delivery branch is `codex/human-checkpoint-activation-intent`; it holds the next reviewable local Controller slice. GitHub publication remains an explicit approval-gated operation.
+The Controller MVP is merged according to the confirmed GitHub delivery state. The current delivery branch is `codex/human-checkpoint-activation-intent`; draft [PR #11](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/11) contains the reviewable Human Checkpoint and Activation Intent slice. GitHub publication remains an explicit approval-gated operation.
 
 ## Completed deliverable
 
