@@ -19,6 +19,69 @@ test("built controller CLI: emits one recommendation JSON object without writing
   assert.deepEqual(await readdir(root), before);
 });
 
+test("built formation CLI: exposes a candidate recommendation without writing artifacts", async () => {
+  const root = await mkdtemp(join(tmpdir(), "ai-booster-controller-"));
+  const input = join(root, "request.json");
+  await writeFile(input, JSON.stringify({
+    requestVersion: "1.0",
+    workItemType: "Quick Task",
+    goal: "Validate the local contract with tests.",
+    outcomeOwner: "delivery-team",
+    complexity: "LOW",
+    executionBoundary: "LOCAL_ONLY",
+    value: { state: "KNOWN", statement: "A bounded local result." },
+    context: { state: "CURRENT", reference: "repository-state" },
+    relations: { state: "ABSENT", items: [] },
+    dependencies: { state: "ABSENT", items: [] },
+  }), "utf8");
+  const before = await readdir(root);
+
+  const result = await runBuiltCli(["recommend-formation", "--input", input]);
+  const recommendation = JSON.parse(result.stdout);
+
+  assert.equal(result.code, 2);
+  assert.equal(result.stderr, "");
+  assert.equal(recommendation.decision, "CANDIDATE");
+  assert.equal(recommendation.scenario, "validation");
+  assert.equal(recommendation.formation.formationId, "bounded-validation");
+  assert.deepEqual(await readdir(root), before);
+});
+
+test("built formation CLI: preserves an ambiguous scenario as UNKNOWN", async () => {
+  const root = await mkdtemp(join(tmpdir(), "ai-booster-controller-"));
+  const input = join(root, "request.json");
+  await writeFile(input, JSON.stringify({
+    requestVersion: "1.0",
+    workItemType: "Quick Task",
+    goal: "Research and implement the parser.",
+    outcomeOwner: "delivery-team",
+    complexity: "LOW",
+    executionBoundary: "LOCAL_ONLY",
+  }), "utf8");
+
+  const result = await runBuiltCli(["recommend-formation", "--input", input]);
+  const recommendation = JSON.parse(result.stdout);
+
+  assert.equal(result.code, 2);
+  assert.equal(recommendation.decision, "UNKNOWN");
+  assert.equal(recommendation.scenario, "UNKNOWN");
+  assert.deepEqual(recommendation.unknownEvidence, ["scenario"]);
+});
+
+test("built formation CLI: stops malformed JSON without echoing input", async () => {
+  const root = await mkdtemp(join(tmpdir(), "ai-booster-controller-"));
+  const input = join(root, "request.json");
+  await writeFile(input, "{\"privateValue\":\"do-not-echo-this-value\"", "utf8");
+
+  const result = await runBuiltCli(["recommend-formation", "--input", input]);
+  const stopped = JSON.parse(result.stdout);
+
+  assert.equal(result.code, 3);
+  assert.equal(stopped.decision, "STOPPED");
+  assert.equal(stopped.error.code, "FORMATION_INPUT_JSON_INVALID");
+  assert.equal(result.stdout.includes("do-not-echo-this-value"), false);
+});
+
 test("built controller CLI: returns stopped JSON for malformed local input", async () => {
   const root = await mkdtemp(join(tmpdir(), "ai-booster-controller-"));
   const input = join(root, "request.json");
