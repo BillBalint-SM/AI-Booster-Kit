@@ -1,6 +1,6 @@
 ## Branch and pull request
 
-`main` is at merge commit `db25ca9`; the current isolated review branch is `codex/ai-booster-kit-team-delivery-loop`. It contains the locally reviewed AI Booster Kit Team Delivery Loop documentation/contract slice on top of the merged preflight runner hardening. No pull request or external publication exists for this slice.
+Local `main` includes commit `353530e`, `docs: add AI Booster Kit team delivery loop`, on top of merge commit `db25ca9`. The AI Booster Kit slice is merged locally; no pull request or external publication exists.
 
 ## Completed deliverable
 
@@ -24,4 +24,4 @@ No further external write is authorized by default. Any new Jira, Confluence, or
 
 ## Next bounded action
 
-Review the AI Booster Kit workflow/contract diff, then commit and publish it only after explicit approval. The next implementation slice is a local controller and contract-validation harness for the Quick Task recipe; it requires its own reviewed design and plan. Any broader tenant or synchronization work requires a new exact target, grant, and read-back. Keep writes, OAuth, connector installation, host configuration, lifecycle transitions, and generic synchronization disabled.
+Review the merged AI Booster Kit workflow/contract slice, then publish it only after explicit approval. The next implementation slice is a local controller and contract-validation harness for the Quick Task recipe; it requires its own reviewed design and plan. Any broader tenant or synchronization work requires a new exact target, grant, and read-back. Keep writes, OAuth, connector installation, host configuration, lifecycle transitions, and generic synchronization disabled.
