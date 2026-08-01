@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "gitCommitHash": "39c4d454538fe2bf2a15f7177b88ed9a6c4b3dc4",
-  "generatedAt": "2026-07-30T12:56:39.543Z",
+  "gitCommitHash": "383aa5871939185d790cc1334fc089bb2f86b3a2",
+  "generatedAt": "2026-08-01T21:09:23.891Z",
   "files": {
     ".github/pull_request_template.md": {
       "filePath": ".github/pull_request_template.md",
@@ -15,12 +15,12 @@
     },
     ".github/workflows/ci.yml": {
       "filePath": ".github/workflows/ci.yml",
-      "contentHash": "553b11310bf5b5bdd8a12a3b569d2b5626788a6e72cdf70dab554e1734c6e42b",
+      "contentHash": "c0f6ff1104450b013009fb89a51098ad8ab125c47d586cb07e27b356f4135315",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 21,
+      "totalLines": 30,
       "hasStructuralAnalysis": true
     },
     ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/oauth-research-report.md": {
@@ -223,14 +223,24 @@
       "totalLines": 27,
       "hasStructuralAnalysis": true
     },
-    "README.md": {
-      "filePath": "README.md",
-      "contentHash": "09fc7b8bb9f228852c714d0f79a860f9eac378d0d62b146c51db286e07ed90d5",
+    "NOTES.md": {
+      "filePath": "NOTES.md",
+      "contentHash": "6260f978ac8ef96160805d96b657805889f53f399abb2b132386110d1cd7944b",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 6,
+      "totalLines": 52,
+      "hasStructuralAnalysis": true
+    },
+    "README.md": {
+      "filePath": "README.md",
+      "contentHash": "eb5affa4de6fa1bfac0bed19b1c4b20f6a0715c62143745986898ae27736351e",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 75,
       "hasStructuralAnalysis": true
     },
     "cli.ts": {
@@ -292,6 +302,46 @@
       "imports": [],
       "exports": [],
       "totalLines": 40,
+      "hasStructuralAnalysis": true
+    },
+    "contract/agent-library/bounded-refinement.md": {
+      "filePath": "contract/agent-library/bounded-refinement.md",
+      "contentHash": "7f887e87b8330cdd6d8a26bcf3282ce2df64ebc519ad245dd76f45c0ea5138fe",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 71,
+      "hasStructuralAnalysis": true
+    },
+    "contract/agent-library/bounded-validation.md": {
+      "filePath": "contract/agent-library/bounded-validation.md",
+      "contentHash": "af634d3e7035be4c4b7bee1553298b69225399e3433f64ca513acead3bd049f6",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 70,
+      "hasStructuralAnalysis": true
+    },
+    "contract/agent-library/formation-catalog.md": {
+      "filePath": "contract/agent-library/formation-catalog.md",
+      "contentHash": "efc1104fa9e7896f1ecb82c1bd0b80b7db7f9f4ada6132b8cca76921c7a60215",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 173,
+      "hasStructuralAnalysis": true
+    },
+    "contract/agent-library/quick-task-clarifier-validator.md": {
+      "filePath": "contract/agent-library/quick-task-clarifier-validator.md",
+      "contentHash": "242c26efe7f14e8fe149159207e62d98bba0e2bc2fe3f106593e00d355747714",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 111,
       "hasStructuralAnalysis": true
     },
     "contract/artifacts/canonical-work-artifact-template.md": {
@@ -766,37 +816,47 @@
     },
     "docs/project/current-state.md": {
       "filePath": "docs/project/current-state.md",
-      "contentHash": "abd9f3f1f29337c88547c67f616a33706dc190f024055ca4ffb2ea2da3c0ef0b",
+      "contentHash": "9359e76b1d0ae01e363771ced4f06e1d1154f363dac19da778fb509a120e5828",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 24,
+      "totalLines": 63,
       "hasStructuralAnalysis": true
     },
     "docs/project/documentation-map.md": {
       "filePath": "docs/project/documentation-map.md",
-      "contentHash": "37e5aa3c583ae29623d1d08c300dc1c5b7d7d288eee869922d7707fb8de9f7d8",
+      "contentHash": "1d8011654bc2c9f1c39e3d54a15140dce02bf9b56976f4fa4224d4f7d5477a7c",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 6,
+      "totalLines": 56,
+      "hasStructuralAnalysis": true
+    },
+    "docs/project/roadmap.md": {
+      "filePath": "docs/project/roadmap.md",
+      "contentHash": "a51b3a91e2c7bf9acfb4ad51a9b2f7580be5abc75dda8b2801b35d847f399635",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 403,
       "hasStructuralAnalysis": true
     },
     "docs/runbooks/g2as-sandbox-readiness-certificate.md": {
       "filePath": "docs/runbooks/g2as-sandbox-readiness-certificate.md",
-      "contentHash": "51c9c071b60c585c548b4ff47d9b1d71787079281baf8b86f8dbf28a70e8a5df",
+      "contentHash": "b50fdf40e2e281f0bd5df9c1e48342c5d3f0b98d4f7edc89add18dc11a627483",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 100,
+      "totalLines": 133,
       "hasStructuralAnalysis": true
     },
     "docs/runbooks/mapper-snapshot.md": {
       "filePath": "docs/runbooks/mapper-snapshot.md",
-      "contentHash": "a31fab5bcf06e40ff9f402807d0cf61666daba37cc0cc00f7a25fb2f56c27b7f",
+      "contentHash": "d7a5e4f4a939294b75458db7217652491b129443880d4f0279caf915114452bf",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -944,6 +1004,96 @@
       "totalLines": 69,
       "hasStructuralAnalysis": true
     },
+    "docs/superpowers/plans/2026-08-01-ai-booster-kit-controller-mvp.md": {
+      "filePath": "docs/superpowers/plans/2026-08-01-ai-booster-kit-controller-mvp.md",
+      "contentHash": "235821d5b549d9e2ff9f0ea562abfd4a53f03c58cb9b15317e7907982ce63170",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 177,
+      "hasStructuralAnalysis": true
+    },
+    "docs/superpowers/plans/2026-08-01-ai-booster-kit-human-checkpoint-activation-intent.md": {
+      "filePath": "docs/superpowers/plans/2026-08-01-ai-booster-kit-human-checkpoint-activation-intent.md",
+      "contentHash": "127e00827ab12e381258ebf6a1aa881999adc352e15a25a8719671d2c05e6947",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 437,
+      "hasStructuralAnalysis": true
+    },
+    "docs/superpowers/plans/2026-08-01-ai-booster-kit-m1-a-library-catalog.md": {
+      "filePath": "docs/superpowers/plans/2026-08-01-ai-booster-kit-m1-a-library-catalog.md",
+      "contentHash": "b708502a7cdbf76ae2b11fb7da7c127e05da2a1611f39b724e5f4718f4ad8fdf",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 80,
+      "hasStructuralAnalysis": true
+    },
+    "docs/superpowers/plans/2026-08-01-ai-booster-kit-m1-b-scenario-recommendation.md": {
+      "filePath": "docs/superpowers/plans/2026-08-01-ai-booster-kit-m1-b-scenario-recommendation.md",
+      "contentHash": "636ca88e26902de839457f8b5f050d4889bad30c1e3be46a7fe03572521a5718",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 87,
+      "hasStructuralAnalysis": true
+    },
+    "docs/superpowers/plans/2026-08-01-ai-booster-kit-m1-readiness-cli-integration.md": {
+      "filePath": "docs/superpowers/plans/2026-08-01-ai-booster-kit-m1-readiness-cli-integration.md",
+      "contentHash": "c60e4de385c184cc5e93a15f1697561ab83a38b5e508974cdba25a3a1983b257",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 61,
+      "hasStructuralAnalysis": true
+    },
+    "docs/superpowers/plans/2026-08-01-ai-booster-kit-quick-task-activation-package.md": {
+      "filePath": "docs/superpowers/plans/2026-08-01-ai-booster-kit-quick-task-activation-package.md",
+      "contentHash": "da32dd8cc32255c408b0de4ca39d2706c5618b65d2eb78c861588a1064f82866",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 383,
+      "hasStructuralAnalysis": true
+    },
+    "docs/superpowers/plans/2026-08-01-ai-booster-kit-ready-refinement-recipe.md": {
+      "filePath": "docs/superpowers/plans/2026-08-01-ai-booster-kit-ready-refinement-recipe.md",
+      "contentHash": "b7ae8781847a18a4da374336d03358e27d67b8dfe3b6675d0ef350147113c2bb",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 34,
+      "hasStructuralAnalysis": true
+    },
+    "docs/superpowers/plans/2026-08-01-ai-booster-kit-ready-validation-recipe.md": {
+      "filePath": "docs/superpowers/plans/2026-08-01-ai-booster-kit-ready-validation-recipe.md",
+      "contentHash": "d15b5d019603d11b914f491e7c386b96b408991494fae22cd6699c23f937c7b7",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 71,
+      "hasStructuralAnalysis": true
+    },
+    "docs/superpowers/plans/2026-08-01-ai-booster-kit-team-delivery-loop.md": {
+      "filePath": "docs/superpowers/plans/2026-08-01-ai-booster-kit-team-delivery-loop.md",
+      "contentHash": "c19418f26415d295d9776a6cd7367767506bb2faac39c1c71e57f9ea00aa7505",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 198,
+      "hasStructuralAnalysis": true
+    },
     "docs/superpowers/specs/2026-07-21-ai-agent-tooling-research-design.md": {
       "filePath": "docs/superpowers/specs/2026-07-21-ai-agent-tooling-research-design.md",
       "contentHash": "6dff3bd545c66783ff801d29349423ceaab15f43a1bf6bbda816ca3ec2a1ce8a",
@@ -994,9 +1144,49 @@
       "totalLines": 119,
       "hasStructuralAnalysis": true
     },
+    "docs/superpowers/specs/2026-08-01-ai-booster-kit-controller-mvp-design.md": {
+      "filePath": "docs/superpowers/specs/2026-08-01-ai-booster-kit-controller-mvp-design.md",
+      "contentHash": "7f621ddd97817d888dc6006173842d767cb80aaa251ceef9bff48f03a3a4ca64",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 131,
+      "hasStructuralAnalysis": true
+    },
+    "docs/superpowers/specs/2026-08-01-ai-booster-kit-human-checkpoint-activation-intent-design.md": {
+      "filePath": "docs/superpowers/specs/2026-08-01-ai-booster-kit-human-checkpoint-activation-intent-design.md",
+      "contentHash": "c8208dd3d5589e33cecd979f9d61acb0df4d6a3710f1b43487a42f8cdfdd20f6",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 86,
+      "hasStructuralAnalysis": true
+    },
+    "docs/superpowers/specs/2026-08-01-ai-booster-kit-quick-task-activation-package-design.md": {
+      "filePath": "docs/superpowers/specs/2026-08-01-ai-booster-kit-quick-task-activation-package-design.md",
+      "contentHash": "befd11a0983ae2b4f9d2a6461f0012343d1f372b257af5eeff654289fdd761d3",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 106,
+      "hasStructuralAnalysis": true
+    },
+    "docs/superpowers/specs/2026-08-01-ai-booster-kit-team-delivery-loop-design.md": {
+      "filePath": "docs/superpowers/specs/2026-08-01-ai-booster-kit-team-delivery-loop-design.md",
+      "contentHash": "77d505f22fb9ee8c46ae050914cfbb377465161eab99746c1dab3d03c581ccc4",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 178,
+      "hasStructuralAnalysis": true
+    },
     "package.json": {
       "filePath": "package.json",
-      "contentHash": "de326115129a595a78c396b0e1b503fc2688e5ae1dd3dc4a0243b7894f622721",
+      "contentHash": "4590bcc3edb244512e474dd55bf009f7b8d4a3cbeb57e358f282c7385132a8a3",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -1033,7 +1223,7 @@
     },
     "scripts/check-mapper-freshness.mjs": {
       "filePath": "scripts/check-mapper-freshness.mjs",
-      "contentHash": "75cda6b1010e0ce59335b6f6816935f1144e2f9f49298601cf0ce1714eef08db",
+      "contentHash": "1eb40eff3828b67abc82b39aadfa087ea6b7f96d269c85ff8c4e27a3141cc869",
       "functions": [
         {
           "name": "runGit",
@@ -1602,7 +1792,7 @@
     },
     "src/cli.ts": {
       "filePath": "src/cli.ts",
-      "contentHash": "bb3f0850d4571a01ca1b741a58142ebedffda5a3f42b886eb64ba88b684a25b7",
+      "contentHash": "6805a7eee0b9267532da0316048d0846f81afec56ea46382715f85c8868d6f04",
       "functions": [
         {
           "name": "runCli",
@@ -1620,7 +1810,63 @@
           ],
           "returnType": "Promise<number>",
           "exported": false,
-          "lineCount": 19
+          "lineCount": 23
+        },
+        {
+          "name": "runQuickTask",
+          "params": [
+            "argv"
+          ],
+          "returnType": "Promise<number>",
+          "exported": false,
+          "lineCount": 21
+        },
+        {
+          "name": "runFormationRecommendation",
+          "params": [
+            "argv"
+          ],
+          "returnType": "Promise<number>",
+          "exported": false,
+          "lineCount": 22
+        },
+        {
+          "name": "runResolveCheckpoint",
+          "params": [
+            "argv"
+          ],
+          "returnType": "Promise<number>",
+          "exported": false,
+          "lineCount": 35
+        },
+        {
+          "name": "runActivateQuickTask",
+          "params": [
+            "argv"
+          ],
+          "returnType": "Promise<number>",
+          "exported": false,
+          "lineCount": 44
+        },
+        {
+          "name": "activationErrorCode",
+          "params": [
+            "error"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "stoppedController",
+          "params": [
+            "code",
+            "message",
+            "exitCode"
+          ],
+          "returnType": "3 | 4",
+          "exported": false,
+          "lineCount": 4
         },
         {
           "name": "runValidate",
@@ -1665,7 +1911,7 @@
           ],
           "returnType": "Promise<number>",
           "exported": false,
-          "lineCount": 33
+          "lineCount": 28
         },
         {
           "name": "createLocalObservationAdapter",
@@ -1735,9 +1981,7 @@
         {
           "source": "node:fs/promises",
           "specifiers": [
-            "mkdir",
-            "readFile",
-            "writeFile"
+            "readFile"
           ]
         },
         {
@@ -1798,10 +2042,9 @@
           ]
         },
         {
-          "source": "./readiness/render.js",
+          "source": "./readiness/output.js",
           "specifiers": [
-            "renderCertificateJson",
-            "renderCertificateMarkdown"
+            "writeReadinessCertificate"
           ]
         },
         {
@@ -1809,12 +2052,73 @@
           "specifiers": [
             "runReadinessCertificate"
           ]
+        },
+        {
+          "source": "./controller/activation-package.js",
+          "specifiers": [
+            "createQuickTaskActivationPackage",
+            "parseActivationProfile"
+          ]
+        },
+        {
+          "source": "./controller/evaluate.js",
+          "specifiers": [
+            "evaluateQuickTask",
+            "ControllerEvaluationError"
+          ]
+        },
+        {
+          "source": "./controller/formation.js",
+          "specifiers": [
+            "FormationCatalogError",
+            "loadFormationCatalog"
+          ]
+        },
+        {
+          "source": "./controller/formation-recommendation.js",
+          "specifiers": [
+            "FormationRecommendationError",
+            "recommendFormation"
+          ]
+        },
+        {
+          "source": "./controller/choice.js",
+          "specifiers": [
+            "ControllerCheckpointError",
+            "parseCheckpointChoice"
+          ]
+        },
+        {
+          "source": "./controller/recipe.js",
+          "specifiers": [
+            "ControllerRecipeError",
+            "loadQuickTaskRecipe"
+          ]
+        },
+        {
+          "source": "./controller/request.js",
+          "specifiers": [
+            "ControllerRequestError",
+            "parseQuickTaskRequest"
+          ]
+        },
+        {
+          "source": "./controller/resolve.js",
+          "specifiers": [
+            "resolveCheckpoint"
+          ]
+        },
+        {
+          "source": "./controller/types.js",
+          "specifiers": [
+            "ControllerActivationPackageError"
+          ]
         }
       ],
       "exports": [
         "runCli"
       ],
-      "totalLines": 192,
+      "totalLines": 342,
       "hasStructuralAnalysis": true
     },
     "src/connectors/confluence.ts": {
@@ -2596,6 +2900,1277 @@
       "totalLines": 427,
       "hasStructuralAnalysis": true
     },
+    "src/controller/activation-package.ts": {
+      "filePath": "src/controller/activation-package.ts",
+      "contentHash": "5acb613d28f5ebaca6742a434d3e6e10c8fc7be3490c0caa480cf70e00832de6",
+      "functions": [
+        {
+          "name": "parseActivationProfile",
+          "params": [
+            "value"
+          ],
+          "returnType": "ActivationProfile",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "createQuickTaskActivationPackage",
+          "params": [
+            "request",
+            "intent",
+            "profile"
+          ],
+          "returnType": "QuickTaskActivationPackage",
+          "exported": true,
+          "lineCount": 17
+        },
+        {
+          "name": "activationInput",
+          "params": [
+            "request"
+          ],
+          "returnType": "QuickTaskActivationInput",
+          "exported": false,
+          "lineCount": 13
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "./identity.js",
+          "specifiers": [
+            "requestFingerprint"
+          ]
+        },
+        {
+          "source": "./types.js",
+          "specifiers": [
+            "ActivationIntent",
+            "ActivationProfile",
+            "ActivationProfileContract",
+            "QuickTaskActivationInput",
+            "QuickTaskActivationPackage",
+            "QuickTaskRequest"
+          ]
+        },
+        {
+          "source": "./types.js",
+          "specifiers": [
+            "ActivationPackageError"
+          ]
+        }
+      ],
+      "exports": [
+        "parseActivationProfile",
+        "createQuickTaskActivationPackage"
+      ],
+      "totalLines": 79,
+      "hasStructuralAnalysis": true
+    },
+    "src/controller/checkpoint.ts": {
+      "filePath": "src/controller/checkpoint.ts",
+      "contentHash": "48331c25dc2a13c6d375b9d9e0754626305fbfa874465b9b6fb618a92c6b7867",
+      "functions": [
+        {
+          "name": "createCheckpoint",
+          "params": [
+            "response"
+          ],
+          "returnType": "ControllerCheckpoint | undefined",
+          "exported": true,
+          "lineCount": 12
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "./types.js",
+          "specifiers": [
+            "ControllerCheckpoint",
+            "ControllerResponse"
+          ]
+        }
+      ],
+      "exports": [
+        "createCheckpoint"
+      ],
+      "totalLines": 17,
+      "hasStructuralAnalysis": true
+    },
+    "src/controller/choice.ts": {
+      "filePath": "src/controller/choice.ts",
+      "contentHash": "ff3fa1cbe92095edddecaed01189024933aaab7a4ba36a33ef898ccc19587ae8",
+      "functions": [
+        {
+          "name": "parseCheckpointChoice",
+          "params": [
+            "value"
+          ],
+          "returnType": "CheckpointChoiceInput",
+          "exported": true,
+          "lineCount": 21
+        },
+        {
+          "name": "plainRecord",
+          "params": [
+            "value",
+            "field"
+          ],
+          "returnType": "Record<string, unknown>",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "exactKeys",
+          "params": [
+            "record",
+            "expected",
+            "field"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "allowedKeys",
+          "params": [
+            "record",
+            "expected",
+            "field"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "requiredKeys",
+          "params": [
+            "record",
+            "expected",
+            "field"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "oneOf",
+          "params": [
+            "record",
+            "field",
+            "expected"
+          ],
+          "returnType": "T",
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "digest",
+          "params": [
+            "record",
+            "field"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "nonEmpty",
+          "params": [
+            "record",
+            "field"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 5
+        }
+      ],
+      "classes": [
+        {
+          "name": "ControllerCheckpointError",
+          "methods": [
+            "constructor"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 6
+        }
+      ],
+      "imports": [
+        {
+          "source": "./types.js",
+          "specifiers": [
+            "CheckpointChoiceInput"
+          ]
+        }
+      ],
+      "exports": [
+        "ControllerCheckpointError",
+        "parseCheckpointChoice"
+      ],
+      "totalLines": 72,
+      "hasStructuralAnalysis": true
+    },
+    "src/controller/evaluate.ts": {
+      "filePath": "src/controller/evaluate.ts",
+      "contentHash": "c8dedeb095f687a1428cdf62930419c16aa288a7c6caf1ac8e30856b5be2bbf6",
+      "functions": [
+        {
+          "name": "evaluateQuickTask",
+          "params": [
+            "request",
+            "recipe"
+          ],
+          "returnType": "ControllerResponse",
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "missing",
+          "params": [
+            "request",
+            "field"
+          ],
+          "returnType": "boolean",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "response",
+          "params": [
+            "request",
+            "recipe",
+            "decision",
+            "impact",
+            "requiresAcknowledgement",
+            "reasons",
+            "requiredClarifications"
+          ],
+          "returnType": "ControllerResponse",
+          "exported": false,
+          "lineCount": 5
+        }
+      ],
+      "classes": [
+        {
+          "name": "ControllerEvaluationError",
+          "methods": [
+            "constructor"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 6
+        }
+      ],
+      "imports": [
+        {
+          "source": "./checkpoint.js",
+          "specifiers": [
+            "createCheckpoint"
+          ]
+        },
+        {
+          "source": "./identity.js",
+          "specifiers": [
+            "patternId",
+            "recipeSignature",
+            "requestFingerprint"
+          ]
+        },
+        {
+          "source": "./types.js",
+          "specifiers": [
+            "ControllerImpact",
+            "ControllerResponse",
+            "QuickTaskRecipe",
+            "QuickTaskRequest"
+          ]
+        }
+      ],
+      "exports": [
+        "evaluateQuickTask",
+        "ControllerEvaluationError"
+      ],
+      "totalLines": 34,
+      "hasStructuralAnalysis": true
+    },
+    "src/controller/formation-recipe.ts": {
+      "filePath": "src/controller/formation-recipe.ts",
+      "contentHash": "09ee52a25fa125587cab3c03550aff5d01c369a3f6f8887f6eafae1b92053db6",
+      "functions": [
+        {
+          "name": "loadValidationRecipe",
+          "params": [
+            "sourcePath"
+          ],
+          "returnType": "Promise<ValidationRecipe>",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "loadRefinementRecipe",
+          "params": [
+            "sourcePath"
+          ],
+          "returnType": "Promise<RefinementRecipe>",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "parseValidationRecipe",
+          "params": [
+            "source",
+            "sourcePath"
+          ],
+          "returnType": "ValidationRecipe",
+          "exported": true,
+          "lineCount": 75
+        },
+        {
+          "name": "parseRefinementRecipe",
+          "params": [
+            "source",
+            "sourcePath"
+          ],
+          "returnType": "RefinementRecipe",
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "parseRefinementRecipeUnchecked",
+          "params": [
+            "source",
+            "sourcePath"
+          ],
+          "returnType": "RefinementRecipe",
+          "exported": false,
+          "lineCount": 75
+        },
+        {
+          "name": "extractFrontmatter",
+          "params": [
+            "source",
+            "sourcePath"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "requireRecord",
+          "params": [
+            "value",
+            "field"
+          ],
+          "returnType": "Record<string, unknown>",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "requireExactKeys",
+          "params": [
+            "record",
+            "expected",
+            "field"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "requireLiteral",
+          "params": [
+            "record",
+            "field",
+            "expected",
+            "location"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "requireExactArray",
+          "params": [
+            "record",
+            "field",
+            "expected",
+            "location",
+            "message"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "requireList",
+          "params": [
+            "value",
+            "field"
+          ],
+          "returnType": "readonly unknown[]",
+          "exported": false,
+          "lineCount": 4
+        }
+      ],
+      "classes": [
+        {
+          "name": "ValidationRecipeError",
+          "methods": [
+            "constructor"
+          ],
+          "properties": [
+            "field",
+            "reason"
+          ],
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "RefinementRecipeError",
+          "methods": [
+            "constructor"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 6
+        }
+      ],
+      "imports": [
+        {
+          "source": "node:fs/promises",
+          "specifiers": [
+            "readFile"
+          ]
+        },
+        {
+          "source": "yaml",
+          "specifiers": [
+            "parseDocument"
+          ]
+        },
+        {
+          "source": "./types.js",
+          "specifiers": [
+            "RefinementRecipe",
+            "ValidationRecipe"
+          ]
+        }
+      ],
+      "exports": [
+        "ValidationRecipeError",
+        "RefinementRecipeError",
+        "loadValidationRecipe",
+        "loadRefinementRecipe",
+        "parseValidationRecipe",
+        "parseRefinementRecipe"
+      ],
+      "totalLines": 233,
+      "hasStructuralAnalysis": true
+    },
+    "src/controller/formation-recommendation.ts": {
+      "filePath": "src/controller/formation-recommendation.ts",
+      "contentHash": "d36f51f50f6f97e844caa9319d8e6020d4cdb391eaba7968a8ad189edf7918e9",
+      "functions": [
+        {
+          "name": "recommendFormation",
+          "params": [
+            "request",
+            "catalog"
+          ],
+          "returnType": "FormationRecommendation",
+          "exported": true,
+          "lineCount": 37
+        },
+        {
+          "name": "validateRequest",
+          "params": [
+            "request"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "validateCatalog",
+          "params": [
+            "catalog"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "recognizeScenario",
+          "params": [
+            "goal"
+          ],
+          "returnType": "readonly RecognizedScenario[]",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "unresolvedPrerequisites",
+          "params": [
+            "request",
+            "formation"
+          ],
+          "returnType": "readonly string[]",
+          "exported": false,
+          "lineCount": 16
+        },
+        {
+          "name": "unknownRequestEvidence",
+          "params": [
+            "request"
+          ],
+          "returnType": "readonly string[]",
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "recommendation",
+          "params": [
+            "request",
+            "decision",
+            "scenario",
+            "impact",
+            "requiresAcknowledgement",
+            "reasons",
+            "missingPrerequisites",
+            "unknownEvidence",
+            "identityKey",
+            "formation"
+          ],
+          "returnType": "FormationRecommendation",
+          "exported": false,
+          "lineCount": 23
+        }
+      ],
+      "classes": [
+        {
+          "name": "FormationRecommendationError",
+          "methods": [
+            "constructor"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 6
+        }
+      ],
+      "imports": [
+        {
+          "source": "./identity.js",
+          "specifiers": [
+            "formationRecommendationId"
+          ]
+        },
+        {
+          "source": "./types.js",
+          "specifiers": [
+            "ControllerImpact",
+            "FormationCatalog",
+            "FormationEntry",
+            "FormationRecommendation",
+            "FormationRecommendationDecision",
+            "FormationScenario",
+            "QuickTaskRequest"
+          ]
+        }
+      ],
+      "exports": [
+        "FormationRecommendationError",
+        "recommendFormation"
+      ],
+      "totalLines": 132,
+      "hasStructuralAnalysis": true
+    },
+    "src/controller/formation.ts": {
+      "filePath": "src/controller/formation.ts",
+      "contentHash": "de65e4ffd1bc16f4aba62f19e41551c982e399ba981b6fddfd749ba02116646f",
+      "functions": [
+        {
+          "name": "loadFormationCatalog",
+          "params": [
+            "sourcePath"
+          ],
+          "returnType": "Promise<FormationCatalog>",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "parseFormationCatalog",
+          "params": [
+            "source",
+            "sourcePath"
+          ],
+          "returnType": "FormationCatalog",
+          "exported": true,
+          "lineCount": 33
+        },
+        {
+          "name": "parseFormationEntry",
+          "params": [
+            "value",
+            "index"
+          ],
+          "returnType": "FormationEntry",
+          "exported": false,
+          "lineCount": 45
+        },
+        {
+          "name": "parseRelation",
+          "params": [
+            "value",
+            "field",
+            "index"
+          ],
+          "returnType": "{ kind: FormationRelationKind; target: string }",
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "extractFrontmatter",
+          "params": [
+            "source",
+            "sourcePath"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "requireRecord",
+          "params": [
+            "value",
+            "field"
+          ],
+          "returnType": "Record<string, unknown>",
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "requireExactKeys",
+          "params": [
+            "record",
+            "expected",
+            "field"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "requireNonEmptyString",
+          "params": [
+            "value",
+            "field"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "requireNullableString",
+          "params": [
+            "value",
+            "field"
+          ],
+          "returnType": "string | null",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "requireNonEmptyList",
+          "params": [
+            "value",
+            "field"
+          ],
+          "returnType": "readonly unknown[]",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "requireNonEmptyStringList",
+          "params": [
+            "value",
+            "field"
+          ],
+          "returnType": "readonly string[]",
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "requireEnum",
+          "params": [
+            "value",
+            "allowed",
+            "field",
+            "description"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "requireEnumList",
+          "params": [
+            "value",
+            "allowed",
+            "field",
+            "description"
+          ],
+          "returnType": "readonly string[]",
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "requireLiteral",
+          "params": [
+            "record",
+            "field",
+            "expected",
+            "location"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 3
+        }
+      ],
+      "classes": [
+        {
+          "name": "FormationCatalogError",
+          "methods": [
+            "constructor"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 6
+        }
+      ],
+      "imports": [
+        {
+          "source": "node:fs/promises",
+          "specifiers": [
+            "readFile"
+          ]
+        },
+        {
+          "source": "yaml",
+          "specifiers": [
+            "parseDocument"
+          ]
+        },
+        {
+          "source": "./types.js",
+          "specifiers": [
+            "FormationCatalog",
+            "FormationComplexity",
+            "FormationEntry",
+            "FormationEntryStatus",
+            "FormationRelationKind",
+            "FormationRole",
+            "FormationScenario",
+            "FormationTopology",
+            "FormationWeight"
+          ]
+        }
+      ],
+      "exports": [
+        "FormationCatalogError",
+        "loadFormationCatalog",
+        "parseFormationCatalog"
+      ],
+      "totalLines": 187,
+      "hasStructuralAnalysis": true
+    },
+    "src/controller/identity.ts": {
+      "filePath": "src/controller/identity.ts",
+      "contentHash": "8643dbd5d42bc8b3978eeedde52b21fb39f59a5a403c87788c2f0c8c5923795e",
+      "functions": [
+        {
+          "name": "requestFingerprint",
+          "params": [
+            "request"
+          ],
+          "returnType": "string",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "recipeSignature",
+          "params": [
+            "recipe"
+          ],
+          "returnType": "string",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "patternId",
+          "params": [
+            "request",
+            "recipe",
+            "decision",
+            "impact"
+          ],
+          "returnType": "string",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "formationRecommendationId",
+          "params": [
+            "request",
+            "scenario",
+            "decision",
+            "identityKey",
+            "missingPrerequisites",
+            "unknownEvidence"
+          ],
+          "returnType": "string",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "digest",
+          "params": [
+            "value"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "canonicalJson",
+          "params": [
+            "value"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 8
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:crypto",
+          "specifiers": [
+            "createHash"
+          ]
+        },
+        {
+          "source": "./types.js",
+          "specifiers": [
+            "ControllerDecision",
+            "ControllerImpact",
+            "FormationRecommendationDecision",
+            "FormationScenario",
+            "QuickTaskRecipe",
+            "QuickTaskRequest"
+          ]
+        }
+      ],
+      "exports": [
+        "requestFingerprint",
+        "recipeSignature",
+        "patternId",
+        "formationRecommendationId"
+      ],
+      "totalLines": 33,
+      "hasStructuralAnalysis": true
+    },
+    "src/controller/recipe.ts": {
+      "filePath": "src/controller/recipe.ts",
+      "contentHash": "4927526a58e900b040161adffdd5fb5905100d88eec095d85c05f856bdd8448d",
+      "functions": [
+        {
+          "name": "loadQuickTaskRecipe",
+          "params": [
+            "sourcePath"
+          ],
+          "returnType": "Promise<QuickTaskRecipe>",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "parseQuickTaskRecipe",
+          "params": [
+            "source",
+            "sourcePath"
+          ],
+          "returnType": "QuickTaskRecipe",
+          "exported": true,
+          "lineCount": 37
+        },
+        {
+          "name": "extractFrontmatter",
+          "params": [
+            "source",
+            "sourcePath"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "requireRecord",
+          "params": [
+            "value",
+            "field"
+          ],
+          "returnType": "Record<string, unknown>",
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "requireExactKeys",
+          "params": [
+            "record",
+            "expected",
+            "field"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "requireLiteral",
+          "params": [
+            "record",
+            "field",
+            "expected",
+            "location"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "requireExactArray",
+          "params": [
+            "record",
+            "field",
+            "expected",
+            "message"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 9
+        }
+      ],
+      "classes": [
+        {
+          "name": "ControllerRecipeError",
+          "methods": [
+            "constructor"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 6
+        }
+      ],
+      "imports": [
+        {
+          "source": "node:fs/promises",
+          "specifiers": [
+            "readFile"
+          ]
+        },
+        {
+          "source": "yaml",
+          "specifiers": [
+            "parseDocument"
+          ]
+        },
+        {
+          "source": "./types.js",
+          "specifiers": [
+            "QuickTaskRecipe"
+          ]
+        }
+      ],
+      "exports": [
+        "ControllerRecipeError",
+        "loadQuickTaskRecipe",
+        "parseQuickTaskRecipe"
+      ],
+      "totalLines": 96,
+      "hasStructuralAnalysis": true
+    },
+    "src/controller/request.ts": {
+      "filePath": "src/controller/request.ts",
+      "contentHash": "2ddf1ab542cc24d7e087b485e1acae2a8789644ac445502a2ab1b31507d6cdb5",
+      "functions": [
+        {
+          "name": "parseQuickTaskRequest",
+          "params": [
+            "value"
+          ],
+          "returnType": "QuickTaskRequest",
+          "exported": true,
+          "lineCount": 22
+        },
+        {
+          "name": "parseFormationInput",
+          "params": [
+            "value"
+          ],
+          "returnType": "FormationInput",
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "parseValidationFormationInput",
+          "params": [
+            "record"
+          ],
+          "returnType": "ValidationFormationInput",
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "parseRefinementFormationInput",
+          "params": [
+            "record"
+          ],
+          "returnType": "RefinementFormationInput",
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "parseValue",
+          "params": [
+            "value"
+          ],
+          "returnType": "Exclude<QuickTaskRequest[\"value\"], undefined>",
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "parseContext",
+          "params": [
+            "value"
+          ],
+          "returnType": "Exclude<QuickTaskRequest[\"context\"], undefined>",
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "parseLinks",
+          "params": [
+            "value",
+            "field"
+          ],
+          "returnType": "LinkDeclaration",
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "parsePreferences",
+          "params": [
+            "value"
+          ],
+          "returnType": "{ continuation: \"NO_AGENT\" | \"CUSTOM_TOOL\" }",
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "plainRecord",
+          "params": [
+            "value",
+            "field"
+          ],
+          "returnType": "Record<string, unknown>",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "exactKeys",
+          "params": [
+            "record",
+            "expected",
+            "field"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "allowedKeys",
+          "params": [
+            "record",
+            "expected",
+            "field"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "literal",
+          "params": [
+            "record",
+            "field",
+            "expected"
+          ],
+          "returnType": "T",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "oneOf",
+          "params": [
+            "record",
+            "field",
+            "expected"
+          ],
+          "returnType": "T",
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "nonEmpty",
+          "params": [
+            "record",
+            "field"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "nonEmptyField",
+          "params": [
+            "record",
+            "key",
+            "field"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "stringArray",
+          "params": [
+            "value",
+            "field"
+          ],
+          "returnType": "string[]",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "requiredStringArray",
+          "params": [
+            "value",
+            "field"
+          ],
+          "returnType": "string[]",
+          "exported": false,
+          "lineCount": 5
+        }
+      ],
+      "classes": [
+        {
+          "name": "ControllerRequestError",
+          "methods": [
+            "constructor"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 6
+        }
+      ],
+      "imports": [
+        {
+          "source": "./types.js",
+          "specifiers": [
+            "FormationInput",
+            "LinkDeclaration",
+            "QuickTaskRequest",
+            "RefinementFormationInput",
+            "ValidationFormationInput"
+          ]
+        }
+      ],
+      "exports": [
+        "ControllerRequestError",
+        "parseQuickTaskRequest"
+      ],
+      "totalLines": 143,
+      "hasStructuralAnalysis": true
+    },
+    "src/controller/resolve.ts": {
+      "filePath": "src/controller/resolve.ts",
+      "contentHash": "8ef7d75c1ba0e8297058ed36aa95cf460e37160cef0754d3a10a4a88d4dea81f",
+      "functions": [
+        {
+          "name": "resolveCheckpoint",
+          "params": [
+            "response",
+            "choice"
+          ],
+          "returnType": "ControllerIntent",
+          "exported": true,
+          "lineCount": 28
+        },
+        {
+          "name": "acknowledgementRequired",
+          "params": [
+            "impact"
+          ],
+          "returnType": "boolean",
+          "exported": false,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "./choice.js",
+          "specifiers": [
+            "ControllerCheckpointError"
+          ]
+        },
+        {
+          "source": "./types.js",
+          "specifiers": [
+            "CheckpointChoiceInput",
+            "ControllerImpact",
+            "ControllerIntent",
+            "ControllerResponse"
+          ]
+        }
+      ],
+      "exports": [
+        "resolveCheckpoint"
+      ],
+      "totalLines": 36,
+      "hasStructuralAnalysis": true
+    },
+    "src/controller/types.ts": {
+      "filePath": "src/controller/types.ts",
+      "contentHash": "0fc1d8908aa7d39d0f2ecfd2a57517f06dade6f2c1c56be21d2ebbe5917151a0",
+      "functions": [],
+      "classes": [
+        {
+          "name": "ControllerActivationPackageError",
+          "methods": [
+            "constructor"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 6
+        }
+      ],
+      "imports": [],
+      "exports": [
+        "ControllerActivationPackageError"
+      ],
+      "totalLines": 321,
+      "hasStructuralAnalysis": true
+    },
     "src/docs/links.ts": {
       "filePath": "src/docs/links.ts",
       "contentHash": "770d80590ea5fe30f37a76130c359de2a4f00c16ed8762d74651f6703f2262df",
@@ -3282,6 +4857,730 @@
       "totalLines": 41,
       "hasStructuralAnalysis": true
     },
+    "src/evidence/codex-mcp-adapter.ts": {
+      "filePath": "src/evidence/codex-mcp-adapter.ts",
+      "contentHash": "9759e0cd812d41353e07b56a1e746c991fbabf2eaa3808670d306184deae41f6",
+      "functions": [
+        {
+          "name": "createCodexMcpReadAdapter",
+          "params": [
+            "source"
+          ],
+          "returnType": "CodexReadOnlyEvidenceAdapter",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "mapCodexMcpReadToObservationBundle",
+          "params": [
+            "value"
+          ],
+          "returnType": "ReadinessObservationBundle",
+          "exported": true,
+          "lineCount": 45
+        },
+        {
+          "name": "observation",
+          "params": [
+            "source",
+            "observedIds",
+            "evidenceRef",
+            "observedAt",
+            "capabilityEvidence"
+          ],
+          "returnType": "Record<string, unknown>",
+          "exported": false,
+          "lineCount": 19
+        },
+        {
+          "name": "exactRecord",
+          "params": [
+            "value",
+            "keys"
+          ],
+          "returnType": "Record<string, unknown>",
+          "exported": false,
+          "lineCount": 13
+        },
+        {
+          "name": "recordField",
+          "params": [
+            "value"
+          ],
+          "returnType": "Record<string, string>",
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "stringPair",
+          "params": [
+            "value"
+          ],
+          "returnType": "[string, string]",
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "stringField",
+          "params": [
+            "value"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "reject",
+          "params": [
+            "message"
+          ],
+          "returnType": "never",
+          "exported": false,
+          "lineCount": 3
+        }
+      ],
+      "classes": [
+        {
+          "name": "CodexMcpReadMappingError",
+          "methods": [
+            "constructor"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 6
+        }
+      ],
+      "imports": [
+        {
+          "source": "./ingest.js",
+          "specifiers": [
+            "CodexReadOnlyEvidenceAdapter"
+          ]
+        },
+        {
+          "source": "../readiness/observations.js",
+          "specifiers": [
+            "parseReadinessObservationBundle",
+            "ReadinessObservationBundle"
+          ]
+        },
+        {
+          "source": "../readiness/types.js",
+          "specifiers": [
+            "G2asReadinessManifest"
+          ]
+        }
+      ],
+      "exports": [
+        "CodexMcpReadMappingError",
+        "createCodexMcpReadAdapter",
+        "mapCodexMcpReadToObservationBundle"
+      ],
+      "totalLines": 126,
+      "hasStructuralAnalysis": true
+    },
+    "src/evidence/codex-mcp-payload.ts": {
+      "filePath": "src/evidence/codex-mcp-payload.ts",
+      "contentHash": "8654de6ec01e859c6d08bb97a7dd5d3057663f4cd9477fcd88d083e2c18a363f",
+      "functions": [
+        {
+          "name": "createCodexMcpPayloadAdapter",
+          "params": [
+            "source",
+            "capabilityEvidence"
+          ],
+          "returnType": "CodexReadOnlyEvidenceAdapter",
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "normalizeCodexMcpPayload",
+          "params": [
+            "manifest",
+            "value",
+            "capabilityEvidence"
+          ],
+          "exported": true,
+          "lineCount": 44
+        },
+        {
+          "name": "parseJira",
+          "params": [
+            "value",
+            "target"
+          ],
+          "exported": false,
+          "lineCount": 32
+        },
+        {
+          "name": "parseConfluence",
+          "params": [
+            "value",
+            "target"
+          ],
+          "exported": false,
+          "lineCount": 33
+        },
+        {
+          "name": "parseConfluencePage",
+          "params": [
+            "value",
+            "target",
+            "spaceId"
+          ],
+          "returnType": "Record<string, unknown>",
+          "exported": false,
+          "lineCount": 39
+        },
+        {
+          "name": "parseGithub",
+          "params": [
+            "value",
+            "target"
+          ],
+          "exported": false,
+          "lineCount": 25
+        },
+        {
+          "name": "parseTraceability",
+          "params": [
+            "jira",
+            "confluence",
+            "github",
+            "target"
+          ],
+          "exported": false,
+          "lineCount": 20
+        },
+        {
+          "name": "parseFixtureFile",
+          "params": [
+            "value",
+            "expectedTitle"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "uniqueLink",
+          "params": [
+            "value",
+            "expectedUrl",
+            "label"
+          ],
+          "returnType": "{ id: string }",
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "uniqueCard",
+          "params": [
+            "value",
+            "expectedUrl",
+            "label"
+          ],
+          "returnType": "{ localId: string; url: string }",
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "findInlineCards",
+          "params": [
+            "value"
+          ],
+          "returnType": "Array<{ localId: string; url: string }>",
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "walk",
+          "params": [
+            "value",
+            "visit"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "record",
+          "params": [
+            "value",
+            "label"
+          ],
+          "returnType": "Record<string, unknown>",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "array",
+          "params": [
+            "value",
+            "label"
+          ],
+          "returnType": "unknown[]",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "jsonObject",
+          "params": [
+            "value",
+            "label"
+          ],
+          "returnType": "Record<string, unknown>",
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "jsonArray",
+          "params": [
+            "value",
+            "label"
+          ],
+          "returnType": "unknown[]",
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "parseTextEnvelope",
+          "params": [
+            "value",
+            "label"
+          ],
+          "returnType": "unknown",
+          "exported": false,
+          "lineCount": 11
+        },
+        {
+          "name": "exactKeys",
+          "params": [
+            "value",
+            "keys"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "safeString",
+          "params": [
+            "value",
+            "label"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "fixtureContent",
+          "params": [
+            "value",
+            "label"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "nativeId",
+          "params": [
+            "value",
+            "label"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "positiveInteger",
+          "params": [
+            "value",
+            "label"
+          ],
+          "returnType": "number",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "isoTimestamp",
+          "params": [
+            "value",
+            "label"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "validateCapabilityEvidence",
+          "params": [
+            "value"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "rejectUnsafeKeys",
+          "params": [
+            "value"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "reject",
+          "params": [
+            "message"
+          ],
+          "returnType": "never",
+          "exported": false,
+          "lineCount": 3
+        }
+      ],
+      "classes": [
+        {
+          "name": "CodexMcpPayloadNormalizationError",
+          "methods": [
+            "constructor"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 6
+        }
+      ],
+      "imports": [
+        {
+          "source": "../capabilities/types.js",
+          "specifiers": [
+            "GithubCapabilityEvidence"
+          ]
+        },
+        {
+          "source": "../readiness/manifest.js",
+          "specifiers": [
+            "parseG2asReadinessManifest"
+          ]
+        },
+        {
+          "source": "../readiness/types.js",
+          "specifiers": [
+            "G2asReadinessManifest"
+          ]
+        },
+        {
+          "source": "./codex-mcp-adapter.js",
+          "specifiers": [
+            "createCodexMcpReadAdapter"
+          ]
+        },
+        {
+          "source": "./codex-mcp-transport.js",
+          "specifiers": [
+            "assertCodexMcpTransportSource",
+            "createCodexMcpReadRequest",
+            "CodexMcpTransportSource"
+          ]
+        },
+        {
+          "source": "./ingest.js",
+          "specifiers": [
+            "CodexReadOnlyEvidenceAdapter"
+          ]
+        }
+      ],
+      "exports": [
+        "CodexMcpPayloadNormalizationError",
+        "createCodexMcpPayloadAdapter",
+        "normalizeCodexMcpPayload"
+      ],
+      "totalLines": 356,
+      "hasStructuralAnalysis": true
+    },
+    "src/evidence/codex-mcp-preflight.ts": {
+      "filePath": "src/evidence/codex-mcp-preflight.ts",
+      "contentHash": "bd755b96c9ff77e9d7f478c842958e92ac23b86d24a978dcbaf9b6c951c30b3b",
+      "functions": [
+        {
+          "name": "runCodexMcpPreflight",
+          "params": [
+            "request"
+          ],
+          "returnType": "Promise<CodexMcpPreflightResult>",
+          "exported": true,
+          "lineCount": 30
+        },
+        {
+          "name": "normalizeCapabilityEvidence",
+          "params": [
+            "value"
+          ],
+          "returnType": "GithubCapabilityEvidence",
+          "exported": false,
+          "lineCount": 36
+        },
+        {
+          "name": "createStoppedCertificate",
+          "params": [
+            "manifest",
+            "capability",
+            "capabilityEvidence",
+            "runAt",
+            "diagnosticCode",
+            "source"
+          ],
+          "returnType": "ReadinessCertificate",
+          "exported": false,
+          "lineCount": 32
+        },
+        {
+          "name": "stoppedObservation",
+          "params": [
+            "source",
+            "observedIds",
+            "runAt",
+            "capabilityEvidence",
+            "diagnosticCode",
+            "failureSource"
+          ],
+          "exported": false,
+          "lineCount": 21
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "../capabilities/types.js",
+          "specifiers": [
+            "GithubCapabilityEvidence",
+            "GithubReadOnlyCapability"
+          ]
+        },
+        {
+          "source": "../readiness/evaluate.js",
+          "specifiers": [
+            "evaluateReadiness",
+            "ReadinessCertificate"
+          ]
+        },
+        {
+          "source": "../readiness/output.js",
+          "specifiers": [
+            "writeReadinessCertificate",
+            "ReadinessCertificateOutputPaths"
+          ]
+        },
+        {
+          "source": "../readiness/observations.js",
+          "specifiers": [
+            "parseReadinessObservationBundle"
+          ]
+        },
+        {
+          "source": "../readiness/types.js",
+          "specifiers": [
+            "G2asReadinessManifest"
+          ]
+        },
+        {
+          "source": "./codex-mcp-payload.js",
+          "specifiers": [
+            "createCodexMcpPayloadAdapter"
+          ]
+        },
+        {
+          "source": "./ingest.js",
+          "specifiers": [
+            "EvidenceIngestionError",
+            "ingestCodexReadOnlyEvidence",
+            "EvidenceIngestionDiagnosticCode",
+            "EvidenceIngestionSource"
+          ]
+        },
+        {
+          "source": "./codex-mcp-tool-caller.js",
+          "specifiers": [
+            "createCodexMcpTransportSource",
+            "CodexMcpToolCaller"
+          ]
+        }
+      ],
+      "exports": [
+        "runCodexMcpPreflight"
+      ],
+      "totalLines": 151,
+      "hasStructuralAnalysis": true
+    },
+    "src/evidence/codex-mcp-tool-caller.ts": {
+      "filePath": "src/evidence/codex-mcp-tool-caller.ts",
+      "contentHash": "48414caa120cba6673658b755a8ccfb009316c1365e930029df20ef28a922ae9",
+      "functions": [
+        {
+          "name": "createCodexMcpTransportSource",
+          "params": [
+            "caller",
+            "readAt"
+          ],
+          "returnType": "CodexMcpTransportSource",
+          "exported": true,
+          "lineCount": 37
+        },
+        {
+          "name": "readSource",
+          "params": [
+            "source",
+            "read"
+          ],
+          "returnType": "Promise<T>",
+          "exported": false,
+          "lineCount": 11
+        },
+        {
+          "name": "assertCodexMcpToolCaller",
+          "params": [
+            "value"
+          ],
+          "exported": true,
+          "lineCount": 20
+        },
+        {
+          "name": "record",
+          "params": [
+            "value",
+            "label"
+          ],
+          "returnType": "Record<string, unknown>",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "reject",
+          "params": [
+            "message"
+          ],
+          "returnType": "never",
+          "exported": false,
+          "lineCount": 3
+        }
+      ],
+      "classes": [
+        {
+          "name": "CodexMcpReadFailure",
+          "methods": [
+            "constructor"
+          ],
+          "properties": [
+            "diagnosticCode",
+            "source"
+          ],
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "CodexMcpToolCallerError",
+          "methods": [
+            "constructor"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 6
+        }
+      ],
+      "imports": [
+        {
+          "source": "./codex-mcp-transport.js",
+          "specifiers": [
+            "CodexMcpReadRequest",
+            "CodexMcpTransportSource"
+          ]
+        }
+      ],
+      "exports": [
+        "CodexMcpReadFailure",
+        "CodexMcpToolCallerError",
+        "createCodexMcpTransportSource",
+        "assertCodexMcpToolCaller"
+      ],
+      "totalLines": 118,
+      "hasStructuralAnalysis": true
+    },
+    "src/evidence/codex-mcp-transport.ts": {
+      "filePath": "src/evidence/codex-mcp-transport.ts",
+      "contentHash": "755c8c4df5ff8c4cdddbefd9312cb55c20fcd5a592ae987b0e57b68384575be9",
+      "functions": [
+        {
+          "name": "createCodexMcpReadRequest",
+          "params": [
+            "manifest"
+          ],
+          "returnType": "CodexMcpReadRequest",
+          "exported": true,
+          "lineCount": 17
+        },
+        {
+          "name": "assertCodexMcpTransportSource",
+          "params": [
+            "value"
+          ],
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "record",
+          "params": [
+            "value",
+            "label"
+          ],
+          "returnType": "Record<string, unknown>",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "reject",
+          "params": [
+            "message"
+          ],
+          "returnType": "never",
+          "exported": false,
+          "lineCount": 3
+        }
+      ],
+      "classes": [
+        {
+          "name": "CodexMcpTransportError",
+          "methods": [
+            "constructor"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 6
+        }
+      ],
+      "imports": [
+        {
+          "source": "../readiness/manifest.js",
+          "specifiers": [
+            "parseG2asReadinessManifest"
+          ]
+        },
+        {
+          "source": "../readiness/types.js",
+          "specifiers": [
+            "G2asReadinessManifest"
+          ]
+        }
+      ],
+      "exports": [
+        "CodexMcpTransportError",
+        "createCodexMcpReadRequest",
+        "assertCodexMcpTransportSource"
+      ],
+      "totalLines": 76,
+      "hasStructuralAnalysis": true
+    },
     "src/evidence/github.ts": {
       "filePath": "src/evidence/github.ts",
       "contentHash": "42b8b24d628d04a0e5d333ed3fe851b84fed4e4fb01dd9f21002d7f20876bfc7",
@@ -3494,6 +5793,107 @@
         "collectGitHubEvidence"
       ],
       "totalLines": 151,
+      "hasStructuralAnalysis": true
+    },
+    "src/evidence/ingest.ts": {
+      "filePath": "src/evidence/ingest.ts",
+      "contentHash": "4c518207774bddb2f3738c794f5c859943687c9fcf200857d18905fbe2a5c390",
+      "functions": [
+        {
+          "name": "ingestCodexReadOnlyEvidence",
+          "params": [
+            "manifest",
+            "adapter",
+            "capability"
+          ],
+          "returnType": "Promise<CodexReadOnlyEvidence>",
+          "exported": true,
+          "lineCount": 45
+        },
+        {
+          "name": "classifyReadFailure",
+          "params": [
+            "error"
+          ],
+          "returnType": "{\r\n  readonly diagnosticCode: EvidenceIngestionDiagnosticCode;\r\n  readonly source: EvidenceIngestionSource;\r\n}",
+          "exported": false,
+          "lineCount": 22
+        }
+      ],
+      "classes": [
+        {
+          "name": "EvidenceIngestionError",
+          "methods": [
+            "constructor"
+          ],
+          "properties": [
+            "diagnosticCode",
+            "source"
+          ],
+          "exported": true,
+          "lineCount": 15
+        }
+      ],
+      "imports": [
+        {
+          "source": "../capabilities/manifest.js",
+          "specifiers": [
+            "githubScopeFingerprint",
+            "parseGithubReadOnlyCapability"
+          ]
+        },
+        {
+          "source": "../capabilities/types.js",
+          "specifiers": [
+            "GithubReadOnlyCapability"
+          ]
+        },
+        {
+          "source": "../readiness/evaluate.js",
+          "specifiers": [
+            "evaluateReadiness",
+            "ReadinessCertificate"
+          ]
+        },
+        {
+          "source": "../readiness/manifest.js",
+          "specifiers": [
+            "parseG2asReadinessManifest"
+          ]
+        },
+        {
+          "source": "../readiness/observations.js",
+          "specifiers": [
+            "readObservations",
+            "ReadinessObservation",
+            "ReadinessObservationBundle"
+          ]
+        },
+        {
+          "source": "../readiness/types.js",
+          "specifiers": [
+            "G2asReadinessManifest",
+            "SourceName"
+          ]
+        },
+        {
+          "source": "./codex-mcp-payload.js",
+          "specifiers": [
+            "CodexMcpPayloadNormalizationError"
+          ]
+        },
+        {
+          "source": "./codex-mcp-tool-caller.js",
+          "specifiers": [
+            "CodexMcpReadFailure"
+          ]
+        }
+      ],
+      "exports": [
+        "EvidenceIngestionError",
+        "ingestCodexReadOnlyEvidence"
+      ],
+      "totalLines": 112,
       "hasStructuralAnalysis": true
     },
     "src/evidence/readback.ts": {
@@ -5406,7 +7806,7 @@
     },
     "src/readiness/observations.ts": {
       "filePath": "src/readiness/observations.ts",
-      "contentHash": "4419a70b041fb9db93f846016bc29cff734607a49128814e511777c4166f66ae",
+      "contentHash": "adbcdd0f03d238065e137373bfcdbc3f3bf847406658d23aec87462f72666f7f",
       "functions": [
         {
           "name": "parseReadinessObservationBundle",
@@ -5598,6 +7998,61 @@
         "readObservations"
       ],
       "totalLines": 309,
+      "hasStructuralAnalysis": true
+    },
+    "src/readiness/output.ts": {
+      "filePath": "src/readiness/output.ts",
+      "contentHash": "d9c88b8098725234b34d9965e8606bdef62e067b14fded76e9e43d2ea9ada820",
+      "functions": [
+        {
+          "name": "writeReadinessCertificate",
+          "params": [
+            "outputDirectory",
+            "certificate"
+          ],
+          "returnType": "Promise<ReadinessCertificateOutputPaths>",
+          "exported": true,
+          "lineCount": 25
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:path",
+          "specifiers": [
+            "dirname",
+            "join",
+            "resolve"
+          ]
+        },
+        {
+          "source": "node:fs/promises",
+          "specifiers": [
+            "mkdtemp",
+            "mkdir",
+            "rename",
+            "rm",
+            "writeFile"
+          ]
+        },
+        {
+          "source": "./evaluate.js",
+          "specifiers": [
+            "ReadinessCertificate"
+          ]
+        },
+        {
+          "source": "./render.js",
+          "specifiers": [
+            "renderCertificateJson",
+            "renderCertificateMarkdown"
+          ]
+        }
+      ],
+      "exports": [
+        "writeReadinessCertificate"
+      ],
+      "totalLines": 40,
       "hasStructuralAnalysis": true
     },
     "src/readiness/render.ts": {
@@ -6001,7 +8456,7 @@
     },
     "test/capabilities-projections.test.ts": {
       "filePath": "test/capabilities-projections.test.ts",
-      "contentHash": "7f3a3cc96e67d8e735ff3b4434c47d0da37e9b99d422a827aca8852989fa6e32",
+      "contentHash": "d0ba2abedfbc0999245c350793d5cab572f72c82a76883c606ce1a9707368037",
       "functions": [],
       "classes": [],
       "imports": [
@@ -6052,6 +8507,336 @@
       ],
       "exports": [],
       "totalLines": 42,
+      "hasStructuralAnalysis": true
+    },
+    "test/codex-mcp-adapter.test.ts": {
+      "filePath": "test/codex-mcp-adapter.test.ts",
+      "contentHash": "1116381702739b65b1d812cd08b7baef58faf75e7417dfa0de36aeca18a0e76b",
+      "functions": [
+        {
+          "name": "mcpRead",
+          "params": [],
+          "exported": false,
+          "lineCount": 58
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "../src/evidence/codex-mcp-adapter.js",
+          "specifiers": [
+            "createCodexMcpReadAdapter",
+            "mapCodexMcpReadToObservationBundle"
+          ]
+        },
+        {
+          "source": "../src/evidence/ingest.js",
+          "specifiers": [
+            "ingestCodexReadOnlyEvidence"
+          ]
+        },
+        {
+          "source": "../src/readiness/manifest.js",
+          "specifiers": [
+            "parseG2asReadinessManifest"
+          ]
+        },
+        {
+          "source": "../src/readiness/observations.js",
+          "specifiers": [
+            "ReadinessObservationBundle"
+          ]
+        },
+        {
+          "source": "./readiness-capability.js",
+          "specifiers": [
+            "readinessCapability"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 126,
+      "hasStructuralAnalysis": true
+    },
+    "test/codex-mcp-payload.test.ts": {
+      "filePath": "test/codex-mcp-payload.test.ts",
+      "contentHash": "1368f6631dd7baa08d7370f2f155d903645db45536c0f1320a7133311e7e2f35",
+      "functions": [
+        {
+          "name": "textEnvelope",
+          "params": [
+            "value"
+          ],
+          "exported": false,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "../src/evidence/codex-mcp-payload.js",
+          "specifiers": [
+            "createCodexMcpPayloadAdapter",
+            "normalizeCodexMcpPayload"
+          ]
+        },
+        {
+          "source": "../src/evidence/ingest.js",
+          "specifiers": [
+            "ingestCodexReadOnlyEvidence"
+          ]
+        },
+        {
+          "source": "../src/readiness/manifest.js",
+          "specifiers": [
+            "parseG2asReadinessManifest"
+          ]
+        },
+        {
+          "source": "./readiness-capability.js",
+          "specifiers": [
+            "readinessCapability"
+          ]
+        },
+        {
+          "source": "./helpers/codex-mcp-payload.js",
+          "specifiers": [
+            "rawPayload"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 164,
+      "hasStructuralAnalysis": true
+    },
+    "test/codex-mcp-preflight.test.ts": {
+      "filePath": "test/codex-mcp-preflight.test.ts",
+      "contentHash": "d28334e643e52f12e44959d109ca9d1e852505cacdfb5736b094f8e91a0b63f9",
+      "functions": [
+        {
+          "name": "readRawPayload",
+          "params": [],
+          "returnType": "Promise<RawPayload>",
+          "exported": false,
+          "lineCount": 17
+        },
+        {
+          "name": "confluencePageEnvelope",
+          "params": [
+            "page"
+          ],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "confluencePageMetadata",
+          "params": [],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "createCaller",
+          "params": [
+            "payload",
+            "calls"
+          ],
+          "returnType": "CodexMcpToolCaller",
+          "exported": false,
+          "lineCount": 16
+        },
+        {
+          "name": "assertRequest",
+          "params": [
+            "request"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 4
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "node:fs/promises",
+          "specifiers": [
+            "mkdir",
+            "readFile",
+            "readdir",
+            "rm",
+            "mkdtemp",
+            "writeFile"
+          ]
+        },
+        {
+          "source": "node:os",
+          "specifiers": [
+            "tmpdir"
+          ]
+        },
+        {
+          "source": "node:path",
+          "specifiers": [
+            "join",
+            "resolve"
+          ]
+        },
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "../src/evidence/codex-mcp-tool-caller.js",
+          "specifiers": [
+            "CodexMcpReadFailure",
+            "CodexMcpToolCaller"
+          ]
+        },
+        {
+          "source": "../src/evidence/codex-mcp-preflight.js",
+          "specifiers": [
+            "runCodexMcpPreflight"
+          ]
+        },
+        {
+          "source": "../src/readiness/manifest.js",
+          "specifiers": [
+            "parseG2asReadinessManifest"
+          ]
+        },
+        {
+          "source": "./readiness-capability.js",
+          "specifiers": [
+            "readinessCapability"
+          ]
+        },
+        {
+          "source": "./helpers/codex-mcp-payload.js",
+          "specifiers": [
+            "createSyntheticCodexMcpPayload"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 255,
+      "hasStructuralAnalysis": true
+    },
+    "test/codex-mcp-tool-caller.test.ts": {
+      "filePath": "test/codex-mcp-tool-caller.test.ts",
+      "contentHash": "3494671eff1cc1e5a6e7a0759e20bef34b482daab25eedcd34b18661db11ea6d",
+      "functions": [
+        {
+          "name": "readCaller",
+          "params": [],
+          "exported": false,
+          "lineCount": 12
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "../src/evidence/codex-mcp-tool-caller.js",
+          "specifiers": [
+            "assertCodexMcpToolCaller",
+            "CodexMcpReadFailure",
+            "createCodexMcpTransportSource"
+          ]
+        },
+        {
+          "source": "../src/evidence/codex-mcp-transport.js",
+          "specifiers": [
+            "assertCodexMcpTransportSource",
+            "createCodexMcpReadRequest"
+          ]
+        },
+        {
+          "source": "../src/readiness/manifest.js",
+          "specifiers": [
+            "parseG2asReadinessManifest"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 147,
+      "hasStructuralAnalysis": true
+    },
+    "test/codex-mcp-transport.test.ts": {
+      "filePath": "test/codex-mcp-transport.test.ts",
+      "contentHash": "4be82e8500208c89ed75c1393d84ced9aa256f538571a5b5d6a10f097d6b08d4",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "../src/evidence/codex-mcp-transport.js",
+          "specifiers": [
+            "assertCodexMcpTransportSource",
+            "createCodexMcpReadRequest"
+          ]
+        },
+        {
+          "source": "../src/readiness/manifest.js",
+          "specifiers": [
+            "parseG2asReadinessManifest"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 67,
       "hasStructuralAnalysis": true
     },
     "test/conformance/host-conformance.test.ts": {
@@ -6321,9 +9106,691 @@
       "totalLines": 269,
       "hasStructuralAnalysis": true
     },
+    "test/controller-activation-package-cli.test.ts": {
+      "filePath": "test/controller-activation-package-cli.test.ts",
+      "contentHash": "6409772231c7153d13afe34b8b864469d7071ea87db9ea59fad5b93423edf30e",
+      "functions": [
+        {
+          "name": "assertStopped",
+          "params": [
+            "result",
+            "expectedCode"
+          ],
+          "returnType": "{ decision: string; error: { code: string } }",
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "runBuiltCli",
+          "params": [
+            "argv"
+          ],
+          "returnType": "Promise<{ code: number | null; stdout: string; stderr: string }>",
+          "exported": false,
+          "lineCount": 11
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "node:child_process",
+          "specifiers": [
+            "spawn"
+          ]
+        },
+        {
+          "source": "node:fs/promises",
+          "specifiers": [
+            "copyFile",
+            "mkdtemp",
+            "readFile",
+            "readdir",
+            "writeFile"
+          ]
+        },
+        {
+          "source": "node:os",
+          "specifiers": [
+            "tmpdir"
+          ]
+        },
+        {
+          "source": "node:path",
+          "specifiers": [
+            "join",
+            "resolve"
+          ]
+        },
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 135,
+      "hasStructuralAnalysis": true
+    },
+    "test/controller-activation-package.test.ts": {
+      "filePath": "test/controller-activation-package.test.ts",
+      "contentHash": "789fde9f752d4a17cb0c8fa8133fb4d4bc961e4e6648d04c49c9e029dabf0f05",
+      "functions": [
+        {
+          "name": "acceptedChoice",
+          "params": [
+            "response"
+          ],
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "acceptedIntent",
+          "params": [
+            "response"
+          ],
+          "returnType": "ActivationIntent",
+          "exported": false,
+          "lineCount": 5
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "../src/controller/activation-package.js",
+          "specifiers": [
+            "createQuickTaskActivationPackage",
+            "parseActivationProfile"
+          ]
+        },
+        {
+          "source": "../src/controller/evaluate.js",
+          "specifiers": [
+            "evaluateQuickTask"
+          ]
+        },
+        {
+          "source": "../src/controller/resolve.js",
+          "specifiers": [
+            "resolveCheckpoint"
+          ]
+        },
+        {
+          "source": "../src/controller/identity.js",
+          "specifiers": [
+            "requestFingerprint"
+          ]
+        },
+        {
+          "source": "../src/controller/request.js",
+          "specifiers": [
+            "parseQuickTaskRequest"
+          ]
+        },
+        {
+          "source": "../src/controller/types.js",
+          "specifiers": [
+            "ActivationIntent",
+            "QuickTaskRecipe",
+            "ControllerResponse",
+            "QuickTaskRequest"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 135,
+      "hasStructuralAnalysis": true
+    },
+    "test/controller-checkpoint.test.ts": {
+      "filePath": "test/controller-checkpoint.test.ts",
+      "contentHash": "2b9b986b2b6e39eb9b38137c5d4d8386b7d370cf70418c8967061a035ef7de3c",
+      "functions": [
+        {
+          "name": "fixture",
+          "params": [
+            "name"
+          ],
+          "returnType": "Promise<unknown>",
+          "exported": false,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "node:fs/promises",
+          "specifiers": [
+            "readFile"
+          ]
+        },
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "../src/controller/evaluate.js",
+          "specifiers": [
+            "evaluateQuickTask"
+          ]
+        },
+        {
+          "source": "../src/controller/request.js",
+          "specifiers": [
+            "parseQuickTaskRequest"
+          ]
+        },
+        {
+          "source": "../src/controller/types.js",
+          "specifiers": [
+            "QuickTaskRecipe"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 55,
+      "hasStructuralAnalysis": true
+    },
+    "test/controller-choice.test.ts": {
+      "filePath": "test/controller-choice.test.ts",
+      "contentHash": "80680e50cea73671e76602a7a71798f889c31ceb30aed9ad7c6794c5eedd4f16",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "../src/controller/choice.js",
+          "specifiers": [
+            "parseCheckpointChoice"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 55,
+      "hasStructuralAnalysis": true
+    },
+    "test/controller-cli.test.ts": {
+      "filePath": "test/controller-cli.test.ts",
+      "contentHash": "d9b3e61be1b838b38621d95e8c65be4bf353354e67e47bc55250a390e3638629",
+      "functions": [
+        {
+          "name": "runBuiltCli",
+          "params": [
+            "argv"
+          ],
+          "returnType": "Promise<{ code: number | null; stdout: string; stderr: string }>",
+          "exported": false,
+          "lineCount": 11
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "node:child_process",
+          "specifiers": [
+            "spawn"
+          ]
+        },
+        {
+          "source": "node:fs/promises",
+          "specifiers": [
+            "copyFile",
+            "mkdtemp",
+            "readdir",
+            "writeFile"
+          ]
+        },
+        {
+          "source": "node:os",
+          "specifiers": [
+            "tmpdir"
+          ]
+        },
+        {
+          "source": "node:path",
+          "specifiers": [
+            "join",
+            "resolve"
+          ]
+        },
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 196,
+      "hasStructuralAnalysis": true
+    },
+    "test/controller-evaluate.test.ts": {
+      "filePath": "test/controller-evaluate.test.ts",
+      "contentHash": "4022e2bb407da62c0e56797bf62a774cefeb4450318c9f354343d31892002d4e",
+      "functions": [
+        {
+          "name": "fixture",
+          "params": [
+            "name"
+          ],
+          "returnType": "Promise<unknown>",
+          "exported": false,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "node:fs/promises",
+          "specifiers": [
+            "readFile"
+          ]
+        },
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "../src/controller/evaluate.js",
+          "specifiers": [
+            "evaluateQuickTask"
+          ]
+        },
+        {
+          "source": "../src/controller/request.js",
+          "specifiers": [
+            "parseQuickTaskRequest"
+          ]
+        },
+        {
+          "source": "../src/controller/types.js",
+          "specifiers": [
+            "QuickTaskRecipe"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 50,
+      "hasStructuralAnalysis": true
+    },
+    "test/controller-formation-recipe.test.ts": {
+      "filePath": "test/controller-formation-recipe.test.ts",
+      "contentHash": "e4cc4135542c0a2db22e42e9ab0823a8a3dc147be4c62762f4bb2b2d30391594",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "../src/controller/formation-recipe.js",
+          "specifiers": [
+            "loadValidationRecipe",
+            "parseValidationRecipe"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 79,
+      "hasStructuralAnalysis": true
+    },
+    "test/controller-formation-recommendation.test.ts": {
+      "filePath": "test/controller-formation-recommendation.test.ts",
+      "contentHash": "07c74019c9c0c8e17db584ffd0087cce7be955aae1da71a49a12796242eebc33",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "../src/controller/formation.js",
+          "specifiers": [
+            "loadFormationCatalog"
+          ]
+        },
+        {
+          "source": "../src/controller/formation-recommendation.js",
+          "specifiers": [
+            "recommendFormation"
+          ]
+        },
+        {
+          "source": "../src/controller/request.js",
+          "specifiers": [
+            "parseQuickTaskRequest"
+          ]
+        },
+        {
+          "source": "../src/controller/types.js",
+          "specifiers": [
+            "FormationCatalog",
+            "QuickTaskRequest"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 194,
+      "hasStructuralAnalysis": true
+    },
+    "test/controller-formation.test.ts": {
+      "filePath": "test/controller-formation.test.ts",
+      "contentHash": "144b05c4b013b8c8d2b4865f8ef4e19a98803bdfcad35ce43edeafdb4f839b71",
+      "functions": [
+        {
+          "name": "catalogSource",
+          "params": [
+            "entry"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 8
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "../src/controller/formation.js",
+          "specifiers": [
+            "loadFormationCatalog",
+            "parseFormationCatalog"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 145,
+      "hasStructuralAnalysis": true
+    },
+    "test/controller-recipe.test.ts": {
+      "filePath": "test/controller-recipe.test.ts",
+      "contentHash": "f08d2d03fc77caec78791c1eac85a8efdaaa25fa492b7ae9a079b2caefa93e9d",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "../src/controller/recipe.js",
+          "specifiers": [
+            "parseQuickTaskRecipe"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 84,
+      "hasStructuralAnalysis": true
+    },
+    "test/controller-refinement-recipe.test.ts": {
+      "filePath": "test/controller-refinement-recipe.test.ts",
+      "contentHash": "d9d313009b3bf5ce23ba12e2117960bb741066a38eacffdf478b95f1e3316699",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "../src/controller/formation-recipe.js",
+          "specifiers": [
+            "loadRefinementRecipe",
+            "parseRefinementRecipe"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 79,
+      "hasStructuralAnalysis": true
+    },
+    "test/controller-request.test.ts": {
+      "filePath": "test/controller-request.test.ts",
+      "contentHash": "9cf192746f3d42b1b1e5336eeb4ed5912239b82d794387abf85d71175722ac74",
+      "functions": [
+        {
+          "name": "fixture",
+          "params": [
+            "name"
+          ],
+          "returnType": "Promise<unknown>",
+          "exported": false,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "node:fs/promises",
+          "specifiers": [
+            "readFile"
+          ]
+        },
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "../src/controller/identity.js",
+          "specifiers": [
+            "patternId",
+            "requestFingerprint"
+          ]
+        },
+        {
+          "source": "../src/controller/request.js",
+          "specifiers": [
+            "parseQuickTaskRequest"
+          ]
+        },
+        {
+          "source": "../src/controller/types.js",
+          "specifiers": [
+            "QuickTaskRecipe"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 85,
+      "hasStructuralAnalysis": true
+    },
+    "test/controller-resolve.test.ts": {
+      "filePath": "test/controller-resolve.test.ts",
+      "contentHash": "045bdd2e83a326d5c43051dc2bbe74e8cb70837a3b7f0978605ec3eb49100344",
+      "functions": [
+        {
+          "name": "recommendedResponse",
+          "params": [],
+          "returnType": "Promise<ControllerResponse>",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "accept",
+          "params": [
+            "checkpoint"
+          ],
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "riskyRecommendation",
+          "params": [
+            "response",
+            "impact"
+          ],
+          "returnType": "ControllerResponse",
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "fixture",
+          "params": [
+            "name"
+          ],
+          "returnType": "Promise<unknown>",
+          "exported": false,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "node:fs/promises",
+          "specifiers": [
+            "readFile"
+          ]
+        },
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "../src/controller/evaluate.js",
+          "specifiers": [
+            "evaluateQuickTask"
+          ]
+        },
+        {
+          "source": "../src/controller/request.js",
+          "specifiers": [
+            "parseQuickTaskRequest"
+          ]
+        },
+        {
+          "source": "../src/controller/resolve.js",
+          "specifiers": [
+            "resolveCheckpoint"
+          ]
+        },
+        {
+          "source": "../src/controller/types.js",
+          "specifiers": [
+            "ControllerImpact",
+            "ControllerResponse",
+            "QuickTaskRecipe"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 132,
+      "hasStructuralAnalysis": true
+    },
     "test/docs-links.test.ts": {
       "filePath": "test/docs-links.test.ts",
-      "contentHash": "17ab0eb49b4a4e37946457fa98f54f42165ec691a461499455d3e3abfefb5702",
+      "contentHash": "9d04bd8031552eeb65548b3a4e964a293f306cd69223e30d2bb91a0c5a5ddd88",
       "functions": [],
       "classes": [],
       "imports": [
@@ -6745,6 +10212,85 @@
       "totalLines": 251,
       "hasStructuralAnalysis": true
     },
+    "test/evidence-ingestion.test.ts": {
+      "filePath": "test/evidence-ingestion.test.ts",
+      "contentHash": "0a1ebd42b1d9ed8f7afc681f1a2de327ac89ed80f95544decc71155442a28dda",
+      "functions": [
+        {
+          "name": "readFixture",
+          "params": [
+            "name"
+          ],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "replaceObservation",
+          "params": [
+            "bundle",
+            "source",
+            "changes"
+          ],
+          "exported": false,
+          "lineCount": 10
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "node:fs/promises",
+          "specifiers": [
+            "readFile"
+          ]
+        },
+        {
+          "source": "node:path",
+          "specifiers": [
+            "resolve"
+          ]
+        },
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "../src/evidence/ingest.js",
+          "specifiers": [
+            "ingestCodexReadOnlyEvidence",
+            "CodexReadOnlyEvidenceAdapter"
+          ]
+        },
+        {
+          "source": "../src/readiness/manifest.js",
+          "specifiers": [
+            "parseG2asReadinessManifest"
+          ]
+        },
+        {
+          "source": "../src/readiness/observations.js",
+          "specifiers": [
+            "parseReadinessObservationBundle"
+          ]
+        },
+        {
+          "source": "./readiness-capability.js",
+          "specifiers": [
+            "readinessCapability"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 125,
+      "hasStructuralAnalysis": true
+    },
     "test/evidence.test.ts": {
       "filePath": "test/evidence.test.ts",
       "contentHash": "84f8b02bd3a1649d308e3f8911e6dc60f1339d8d9c400090f6a44bcef1fe8ff9",
@@ -6945,6 +10491,86 @@
       "totalLines": 158,
       "hasStructuralAnalysis": true
     },
+    "test/fixtures/controller/accept-recommendation.json": {
+      "filePath": "test/fixtures/controller/accept-recommendation.json",
+      "contentHash": "31848d31880e76a7eb79b11fe7622373f0fc011e69e041d2d3170a377fdf0b08",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 6,
+      "hasStructuralAnalysis": true
+    },
+    "test/fixtures/controller/continue-without-agent.json": {
+      "filePath": "test/fixtures/controller/continue-without-agent.json",
+      "contentHash": "d19b636d0d19f407959f692de58c5517084c8438ebb54a201f6ba18d9dcb9525",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 6,
+      "hasStructuralAnalysis": true
+    },
+    "test/fixtures/controller/custom-tool-quick-task.json": {
+      "filePath": "test/fixtures/controller/custom-tool-quick-task.json",
+      "contentHash": "1ad550ca8d84063aedbe9040de85e31953e2ffb76bde080d539d4f12cb38ad77",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 14,
+      "hasStructuralAnalysis": true
+    },
+    "test/fixtures/controller/eligible-quick-task.json": {
+      "filePath": "test/fixtures/controller/eligible-quick-task.json",
+      "contentHash": "0c5cfef5808ef7ee747b7307291737a27a311eea9e9f1b5b745dda399b536354",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 13,
+      "hasStructuralAnalysis": true
+    },
+    "test/fixtures/controller/high-complexity-quick-task.json": {
+      "filePath": "test/fixtures/controller/high-complexity-quick-task.json",
+      "contentHash": "d989422b4a1ba70f03cd946c89b293229c82b26e5c27f566ff2ace23015f8441",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 13,
+      "hasStructuralAnalysis": true
+    },
+    "test/fixtures/controller/incomplete-quick-task.json": {
+      "filePath": "test/fixtures/controller/incomplete-quick-task.json",
+      "contentHash": "d9d9a2e16071079fb2356e9da2f36130f4d654fc2446a83f7a79afe07646d0a3",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 11,
+      "hasStructuralAnalysis": true
+    },
+    "test/fixtures/controller/no-agent-quick-task.json": {
+      "filePath": "test/fixtures/controller/no-agent-quick-task.json",
+      "contentHash": "09b92d99a4a0615228f8aed5667e2fc0b13a0721d47d83c6a176e5b252b37f72",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 14,
+      "hasStructuralAnalysis": true
+    },
+    "test/fixtures/controller/request-alternative.json": {
+      "filePath": "test/fixtures/controller/request-alternative.json",
+      "contentHash": "8615e06b6bd890073b94281ec7e058f55bb96e196e1b7b44ecb9f6a3d94ccb4b",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 7,
+      "hasStructuralAnalysis": true
+    },
     "test/fixtures/invalid-milestone.md": {
       "filePath": "test/fixtures/invalid-milestone.md",
       "contentHash": "614039d30b79592c3b9e4b5448bd56adb0364c347f5616187c516f8d0db61464",
@@ -7013,6 +10639,25 @@
       "imports": [],
       "exports": [],
       "totalLines": 8,
+      "hasStructuralAnalysis": true
+    },
+    "test/helpers/codex-mcp-payload.ts": {
+      "filePath": "test/helpers/codex-mcp-payload.ts",
+      "contentHash": "dd2f2958ab53fabcabd641fc823fa9074ff138c250045cccd90a92b712702943",
+      "functions": [
+        {
+          "name": "createSyntheticCodexMcpPayload",
+          "params": [],
+          "exported": true,
+          "lineCount": 43
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "createSyntheticCodexMcpPayload"
+      ],
+      "totalLines": 45,
       "hasStructuralAnalysis": true
     },
     "test/lifecycle.test.ts": {
@@ -7966,12 +11611,525 @@
     },
     "tsconfig.json": {
       "filePath": "tsconfig.json",
-      "contentHash": "8c8e5b35180185778005d24248dbfb130d75071803e78c4edb8d14994c202fa0",
+      "contentHash": "37d683f128f4524d5d83ac7b7ddcc512afdea04d3abf75dd60e547812de65e46",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
       "totalLines": 15,
+      "hasStructuralAnalysis": true
+    },
+    "website/.openai/hosting.json": {
+      "filePath": "website/.openai/hosting.json",
+      "contentHash": "5987749827f6a1991ed412c1c1144d42b48f5cd18e9ec6fbee4e9cab21c89f73",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 6,
+      "hasStructuralAnalysis": true
+    },
+    "website/README.md": {
+      "filePath": "website/README.md",
+      "contentHash": "d52ddcd5524a888ed9d1988822e201a270fb1318fd0271dde8b451ec9e17e581",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 101,
+      "hasStructuralAnalysis": true
+    },
+    "website/app/chatgpt-auth.ts": {
+      "filePath": "website/app/chatgpt-auth.ts",
+      "contentHash": "e19651c2d1db12696883ae3eb79d4f09dce249f7afa1144a62d544e2e18299ca",
+      "functions": [
+        {
+          "name": "getChatGPTUser",
+          "params": [],
+          "returnType": "Promise<ChatGPTUser | null>",
+          "exported": true,
+          "lineCount": 20
+        },
+        {
+          "name": "requireChatGPTUser",
+          "params": [
+            "returnTo"
+          ],
+          "returnType": "Promise<ChatGPTUser>",
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "chatGPTSignInPath",
+          "params": [
+            "returnTo"
+          ],
+          "returnType": "string",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "chatGPTSignOutPath",
+          "params": [
+            "returnTo"
+          ],
+          "returnType": "string",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "safeRelativeReturnPath",
+          "params": [
+            "value"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 14
+        },
+        {
+          "name": "isReservedAuthPath",
+          "params": [
+            "pathname"
+          ],
+          "returnType": "boolean",
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "safeDecodeURIComponent",
+          "params": [
+            "value"
+          ],
+          "returnType": "string | null",
+          "exported": false,
+          "lineCount": 7
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "next/headers",
+          "specifiers": [
+            "headers"
+          ]
+        },
+        {
+          "source": "next/navigation",
+          "specifiers": [
+            "redirect"
+          ]
+        }
+      ],
+      "exports": [
+        "getChatGPTUser",
+        "requireChatGPTUser",
+        "chatGPTSignInPath",
+        "chatGPTSignOutPath"
+      ],
+      "totalLines": 91,
+      "hasStructuralAnalysis": true
+    },
+    "website/app/globals.css": {
+      "filePath": "website/app/globals.css",
+      "contentHash": "54ed3d403144ba8ddbf63133f98238a5684d752b8c7867232170db0e09d99861",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 87,
+      "hasStructuralAnalysis": false
+    },
+    "website/app/layout.tsx": {
+      "filePath": "website/app/layout.tsx",
+      "contentHash": "b57e8948f4ce8a88693595131ecad87d3d57f452ecd11c866c184881c4d7f194",
+      "functions": [
+        {
+          "name": "RootLayout",
+          "params": [
+            "{\r\n  children,\r\n}"
+          ],
+          "exported": true,
+          "lineCount": 11
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "next",
+          "specifiers": [
+            "Metadata"
+          ]
+        },
+        {
+          "source": "./globals.css",
+          "specifiers": []
+        }
+      ],
+      "exports": [
+        "metadata",
+        "RootLayout"
+      ],
+      "totalLines": 25,
+      "hasStructuralAnalysis": true
+    },
+    "website/app/page.tsx": {
+      "filePath": "website/app/page.tsx",
+      "contentHash": "1111374b47cd90c954cf935ca7d653bac5fb59f0922ff6ca94e019fdf73238fc",
+      "functions": [
+        {
+          "name": "Home",
+          "params": [],
+          "exported": true,
+          "lineCount": 83
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "Home"
+      ],
+      "totalLines": 118,
+      "hasStructuralAnalysis": true
+    },
+    "website/db/index.ts": {
+      "filePath": "website/db/index.ts",
+      "contentHash": "effa59e46bcbb42dfb7b46911e809a1de0f2c37df1fd935e3dca89023eaf97e4",
+      "functions": [
+        {
+          "name": "getDb",
+          "params": [],
+          "exported": true,
+          "lineCount": 9
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "cloudflare:workers",
+          "specifiers": [
+            "env"
+          ]
+        },
+        {
+          "source": "drizzle-orm/d1",
+          "specifiers": [
+            "drizzle"
+          ]
+        },
+        {
+          "source": "./schema",
+          "specifiers": [
+            "* as schema"
+          ]
+        }
+      ],
+      "exports": [
+        "getDb"
+      ],
+      "totalLines": 14,
+      "hasStructuralAnalysis": true
+    },
+    "website/db/schema.ts": {
+      "filePath": "website/db/schema.ts",
+      "contentHash": "48b4f7fafee1f2720b8977ba31bc0cf03dedb7ea8826c4bcbc8dfd74f2d8744f",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 5,
+      "hasStructuralAnalysis": true
+    },
+    "website/drizzle.config.ts": {
+      "filePath": "website/drizzle.config.ts",
+      "contentHash": "73d0807c58e541dc3eaf175909fb5acc966faed61f74ff659d9d55027bf3e25b",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "drizzle-kit",
+          "specifiers": [
+            "defineConfig"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 8,
+      "hasStructuralAnalysis": true
+    },
+    "website/drizzle/meta/_journal.json": {
+      "filePath": "website/drizzle/meta/_journal.json",
+      "contentHash": "5a5f57f8f48fcf1d065725c0f3dab19e590e96e7e1e5bf8ddff17339a0de8d9a",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 6,
+      "hasStructuralAnalysis": true
+    },
+    "website/eslint.config.mjs": {
+      "filePath": "website/eslint.config.mjs",
+      "contentHash": "275a07c13fc7c83a652efcfa9fb6a207c451a2f5088e6793415ce44281285720",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "eslint/config",
+          "specifiers": [
+            "defineConfig",
+            "globalIgnores"
+          ]
+        },
+        {
+          "source": "eslint-config-next/core-web-vitals",
+          "specifiers": [
+            "nextVitals"
+          ]
+        },
+        {
+          "source": "eslint-config-next/typescript",
+          "specifiers": [
+            "nextTs"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 19,
+      "hasStructuralAnalysis": true
+    },
+    "website/examples/d1/app/api/notes/route.ts": {
+      "filePath": "website/examples/d1/app/api/notes/route.ts",
+      "contentHash": "b0b134b9b0b4a9f5947abbd13fd4425b88b59c64f91db1aacb0cecbc16c38f45",
+      "functions": [
+        {
+          "name": "toRouteErrorMessage",
+          "params": [
+            "error"
+          ],
+          "exported": false,
+          "lineCount": 12
+        },
+        {
+          "name": "GET",
+          "params": [],
+          "exported": true,
+          "lineCount": 17
+        },
+        {
+          "name": "POST",
+          "params": [
+            "request"
+          ],
+          "exported": true,
+          "lineCount": 23
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "drizzle-orm",
+          "specifiers": [
+            "desc"
+          ]
+        },
+        {
+          "source": "../../../../../db",
+          "specifiers": [
+            "getDb"
+          ]
+        },
+        {
+          "source": "../../../db/schema",
+          "specifiers": [
+            "notes"
+          ]
+        }
+      ],
+      "exports": [
+        "GET",
+        "POST"
+      ],
+      "totalLines": 59,
+      "hasStructuralAnalysis": true
+    },
+    "website/examples/d1/db/schema.ts": {
+      "filePath": "website/examples/d1/db/schema.ts",
+      "contentHash": "1acd70317bcaf22cb140436fb47754c2144e7c2adfc59a3f427ecb1d816fa0f3",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "drizzle-orm",
+          "specifiers": [
+            "sql"
+          ]
+        },
+        {
+          "source": "drizzle-orm/sqlite-core",
+          "specifiers": [
+            "integer",
+            "sqliteTable",
+            "text"
+          ]
+        }
+      ],
+      "exports": [
+        "notes"
+      ],
+      "totalLines": 10,
+      "hasStructuralAnalysis": true
+    },
+    "website/next.config.ts": {
+      "filePath": "website/next.config.ts",
+      "contentHash": "a972c4f0ffa6dd714e7909b02d1ac19d2f2fe3d01f191efd2c5054bd6f142ec1",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "next",
+          "specifiers": [
+            "NextConfig"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 8,
+      "hasStructuralAnalysis": true
+    },
+    "website/package.json": {
+      "filePath": "website/package.json",
+      "contentHash": "ea1c6641963f27498418ad1c87fe37df2a7a095b29276d4d18f29a782a084f93",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 42,
+      "hasStructuralAnalysis": true
+    },
+    "website/postcss.config.mjs": {
+      "filePath": "website/postcss.config.mjs",
+      "contentHash": "7b299d3d3b16699ddda397c0b2373b3af4f25f8fc9ccc9b3d9e64ef083bc1c21",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 8,
+      "hasStructuralAnalysis": true
+    },
+    "website/tests/rendered-html.test.mjs": {
+      "filePath": "website/tests/rendered-html.test.mjs",
+      "contentHash": "14fea29b33c99bf27778e8ce19e516d93760eac14b86cf85d0fb4bf69f2803e5",
+      "functions": [
+        {
+          "name": "render",
+          "params": [],
+          "exported": false,
+          "lineCount": 20
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "node:fs/promises",
+          "specifiers": [
+            "access",
+            "readFile"
+          ]
+        },
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 64,
+      "hasStructuralAnalysis": true
+    },
+    "website/tsconfig.json": {
+      "filePath": "website/tsconfig.json",
+      "contentHash": "fbff01604d6cb54694be707f26e7a0eb21a6ef796b888c6a1dab1839fa7c6ccc",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 35,
+      "hasStructuralAnalysis": true
+    },
+    "website/vite.config.ts": {
+      "filePath": "website/vite.config.ts",
+      "contentHash": "5d68239b2f24f42354e8a05cf69b83fd8f3ce34727f2edf2b55283e4f732c77a",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "vinext",
+          "specifiers": [
+            "vinext"
+          ]
+        },
+        {
+          "source": "vite",
+          "specifiers": [
+            "defineConfig"
+          ]
+        },
+        {
+          "source": "./.openai/hosting.json",
+          "specifiers": [
+            "hostingConfig"
+          ]
+        },
+        {
+          "source": "./build/sites-vite-plugin",
+          "specifiers": [
+            "sites"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 60,
+      "hasStructuralAnalysis": true
+    },
+    "website/worker/index.ts": {
+      "filePath": "website/worker/index.ts",
+      "contentHash": "6f8983ab616309202039ad672b1a46a835bede1bb77636dc751613c664f969e5",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "vinext/server/image-optimization",
+          "specifiers": [
+            "handleImageOptimization",
+            "DEFAULT_DEVICE_SIZES",
+            "DEFAULT_IMAGE_SIZES"
+          ]
+        },
+        {
+          "source": "vinext/server/app-router-entry",
+          "specifiers": [
+            "handler"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 48,
+      "hasStructuralAnalysis": true
+    },
+    "workflows/team-delivery-loop.md": {
+      "filePath": "workflows/team-delivery-loop.md",
+      "contentHash": "847133772b9f165f2119530299fa3246466d9e5eae308869b29ac5473cdae922",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 159,
       "hasStructuralAnalysis": true
     }
   }
