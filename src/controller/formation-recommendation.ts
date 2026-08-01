@@ -55,7 +55,7 @@ export function recommendFormation(request: QuickTaskRequest, catalog: Formation
   if (request.complexity === "HIGH") {
     return recommendation(request, "NO_FIT", scenario, "COMPATIBLE", false, ["The request complexity is HIGH; the bounded catalog path does not support this complexity."], missingPrerequisites, unknownEvidence, formation.identity.key, undefined);
   }
-  if (formation.status === "READY_WITH_LIMIT" && (missingPrerequisites.length > 0 || unknownEvidence.length > 0)) {
+  if ((formation.status === "READY" || formation.status === "READY_WITH_LIMIT") && (missingPrerequisites.length > 0 || unknownEvidence.length > 0)) {
     return recommendation(request, "UNKNOWN", scenario, "UNKNOWN", true, ["The ready formation has missing prerequisites or UNKNOWN evidence; recommendation is withheld."], missingPrerequisites, unknownEvidence, formation.identity.key, undefined);
   }
   if (formation.status === "CANDIDATE") {
@@ -86,6 +86,10 @@ function unresolvedPrerequisites(request: QuickTaskRequest, formation: Formation
     if (prerequisite === "named-outcome-owner") return request.outcomeOwner.trim().length === 0;
     if (prerequisite === "current-or-unknown-context") return request.context === undefined;
     if (prerequisite === "bounded-question" || prerequisite === "goal") return request.goal.trim().length === 0;
+    if (prerequisite === "claim-under-test") return request.formationInput?.scenario !== "validation" || request.formationInput.claim.trim().length === 0;
+    if (prerequisite === "acceptance-criteria") return request.formationInput?.scenario !== "validation" || request.formationInput.acceptanceCriteria.length === 0;
+    if (prerequisite === "evidence-sources") return request.formationInput?.scenario !== "validation" || request.formationInput.evidenceSources.length === 0;
+    if (prerequisite === "known-limits") return request.formationInput?.scenario !== "validation" || request.formationInput.knownLimits.length === 0;
     return true;
   });
 }
@@ -116,6 +120,7 @@ function recommendation(request: QuickTaskRequest, decision: FormationRecommenda
       status: formation.status,
       identityKey: formation.identity.key,
       pattern: formation.identity.pattern,
+      recipePath: formation.recipePath,
     };
   }
   return result;

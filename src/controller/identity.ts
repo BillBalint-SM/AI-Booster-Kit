@@ -15,7 +15,7 @@ export function patternId(request: QuickTaskRequest, recipe: QuickTaskRecipe, de
 }
 
 export function formationRecommendationId(request: QuickTaskRequest, scenario: FormationScenario | "UNKNOWN", decision: FormationRecommendationDecision, identityKey: string, missingPrerequisites: readonly string[], unknownEvidence: readonly string[]): string {
-  return digest({ workItemType: request.workItemType, complexity: request.complexity, scenario, decision, identityKey, relations: request.relations?.state ?? "MISSING", dependencies: request.dependencies?.state ?? "MISSING", context: request.context?.state ?? "MISSING", value: request.value?.state ?? "MISSING", missingPrerequisites, unknownEvidence });
+  return digest({ workItemType: request.workItemType, complexity: request.complexity, scenario, decision, identityKey, relations: request.relations?.state ?? "MISSING", dependencies: request.dependencies?.state ?? "MISSING", context: request.context?.state ?? "MISSING", value: request.value?.state ?? "MISSING", formationInput: request.formationInput?.scenario ?? "MISSING", missingPrerequisites, unknownEvidence });
 }
 
 function digest(value: unknown): string {

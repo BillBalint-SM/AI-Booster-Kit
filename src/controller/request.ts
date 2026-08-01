@@ -1,6 +1,6 @@
-import type { LinkDeclaration, QuickTaskRequest } from "./types.js";
+import type { LinkDeclaration, QuickTaskRequest, ValidationFormationInput } from "./types.js";
 
-const rootKeys = ["requestVersion", "workItemType", "goal", "outcomeOwner", "complexity", "executionBoundary", "value", "context", "relations", "dependencies", "preferences"] as const;
+const rootKeys = ["requestVersion", "workItemType", "goal", "outcomeOwner", "complexity", "executionBoundary", "value", "context", "relations", "dependencies", "preferences", "formationInput"] as const;
 
 export class ControllerRequestError extends Error {
   public constructor(field: string, message: string) {
@@ -28,7 +28,20 @@ export function parseQuickTaskRequest(value: unknown): QuickTaskRequest {
   if (Object.hasOwn(record, "relations")) request.relations = parseLinks(record.relations, "relations");
   if (Object.hasOwn(record, "dependencies")) request.dependencies = parseLinks(record.dependencies, "dependencies");
   if (Object.hasOwn(record, "preferences")) request.preferences = parsePreferences(record.preferences);
+  if (Object.hasOwn(record, "formationInput")) request.formationInput = parseFormationInput(record.formationInput);
   return request;
+}
+
+function parseFormationInput(value: unknown): ValidationFormationInput {
+  const record = plainRecord(value, "formationInput");
+  exactKeys(record, ["scenario", "claim", "acceptanceCriteria", "evidenceSources", "knownLimits"], "formationInput");
+  return {
+    scenario: literal(record, "scenario", "validation"),
+    claim: nonEmpty(record, "claim"),
+    acceptanceCriteria: requiredStringArray(record.acceptanceCriteria, "formationInput.acceptanceCriteria"),
+    evidenceSources: requiredStringArray(record.evidenceSources, "formationInput.evidenceSources"),
+    knownLimits: requiredStringArray(record.knownLimits, "formationInput.knownLimits"),
+  };
 }
 
 function parseValue(value: unknown): Exclude<QuickTaskRequest["value"], undefined> {
@@ -98,4 +111,10 @@ function nonEmpty(record: Record<string, unknown>, field: string): string {
 function stringArray(value: unknown, field: string): string[] {
   if (!Array.isArray(value) || Reflect.ownKeys(value).some((key) => typeof key !== "string" || (key !== "length" && !/^\d+$/.test(key))) || value.some((item) => typeof item !== "string" || item.trim() === "")) throw new ControllerRequestError(field, "must be a list of non-empty strings");
   return [...value];
+}
+
+function requiredStringArray(value: unknown, field: string): string[] {
+  const items = stringArray(value, field);
+  if (items.length === 0) throw new ControllerRequestError(field, "must be a non-empty list of non-empty strings");
+  return items;
 }

@@ -31,14 +31,13 @@ test("formation recommendation: selects the ready Quick Task formation with an e
   assert.match(recommendation.reasons[0] ?? "", /ready/);
 });
 
-test("formation recommendation: returns bounded candidates for each recognized scenario", async () => {
+test("formation recommendation: returns bounded candidates for each unready scenario", async () => {
   const catalog = await loadFormationCatalog(catalogPath);
   const cases: readonly [string, string][] = [
     ["Research primary sources for the contract.", "research"],
     ["Refine the acceptance criteria and scope.", "refinement"],
     ["Implement a bounded parser improvement.", "development"],
     ["Debug the failing parser test.", "debugging"],
-    ["Validate the local contract with tests.", "validation"],
   ];
 
   for (const [goal, scenario] of cases) {
@@ -49,6 +48,36 @@ test("formation recommendation: returns bounded candidates for each recognized s
     assert.equal(recommendation.requiresAcknowledgement, true);
     assert.equal(recommendation.impact, "UNKNOWN");
   }
+});
+
+test("formation recommendation: promotes the linked validation recipe to RECOMMEND", async () => {
+  const recommendation = recommendFormation({
+    ...baseRequest,
+    goal: "Validate the local contract with tests.",
+    formationInput: {
+      scenario: "validation",
+      claim: "The local contract is valid.",
+      acceptanceCriteria: ["all contract checks pass"],
+      evidenceSources: ["local test output"],
+      knownLimits: ["Node 22 CI is the exact runtime gate"],
+    },
+  }, await loadFormationCatalog(catalogPath));
+
+  assert.equal(recommendation.decision, "RECOMMEND");
+  assert.equal(recommendation.scenario, "validation");
+  assert.equal(recommendation.formation?.status, "READY");
+  assert.equal(recommendation.formation?.recipePath, "contract/agent-library/bounded-validation.md");
+  assert.equal(recommendation.requiresAcknowledgement, false);
+  assert.equal(recommendation.impact, "COMPATIBLE");
+});
+
+test("formation recommendation: keeps validation UNKNOWN without the required profile", async () => {
+  const recommendation = recommendFormation({ ...baseRequest, goal: "Validate the local contract with tests." }, await loadFormationCatalog(catalogPath));
+
+  assert.equal(recommendation.decision, "UNKNOWN");
+  assert.equal(recommendation.requiresAcknowledgement, true);
+  assert.deepEqual(recommendation.missingPrerequisites, ["claim-under-test", "acceptance-criteria", "evidence-sources", "known-limits"]);
+  assert.equal(recommendation.formation, undefined);
 });
 
 test("formation recommendation: preserves ambiguity instead of guessing", async () => {

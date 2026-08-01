@@ -38,6 +38,22 @@ test("quick task request: rejects a non-local boundary", async () => {
   assert.throws(() => parseQuickTaskRequest(value), /executionBoundary must be LOCAL_ONLY/);
 });
 
+test("quick task request: parses the validation profile and rejects incomplete profile input", async () => {
+  const value = await fixture("eligible-quick-task.json") as Record<string, unknown>;
+  value.formationInput = {
+    scenario: "validation",
+    claim: "The local contract is valid.",
+    acceptanceCriteria: ["all contract checks pass"],
+    evidenceSources: ["local test output"],
+    knownLimits: ["Node 22 CI is the exact runtime gate"],
+  };
+  const request = parseQuickTaskRequest(value);
+
+  assert.equal(request.formationInput?.scenario, "validation");
+  assert.deepEqual(request.formationInput?.acceptanceCriteria, ["all contract checks pass"]);
+  assert.throws(() => parseQuickTaskRequest({ ...value, formationInput: { ...value.formationInput as object, evidenceSources: [] } }), /formationInput\.evidenceSources must be a non-empty list of non-empty strings/);
+});
+
 test("quick task identities: separate full-request reproducibility from structural pattern matching", async () => {
   const request = parseQuickTaskRequest(await fixture("eligible-quick-task.json"));
   const changedGoal = parseQuickTaskRequest({ ...request, goal: "A different private goal." });

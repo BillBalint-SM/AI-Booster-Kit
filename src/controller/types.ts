@@ -13,7 +13,7 @@ export interface QuickTaskRecipe {
 }
 
 export type FormationCatalogStatus = "READY_WITH_LIMIT";
-export type FormationEntryStatus = "CANDIDATE" | "READY_WITH_LIMIT";
+export type FormationEntryStatus = "CANDIDATE" | "READY_WITH_LIMIT" | "READY";
 export type FormationScenario = "quick_task" | "research" | "refinement" | "development" | "debugging" | "validation";
 export type FormationWeight = "light" | "medium" | "heavy";
 export type FormationComplexity = "low" | "medium" | "high";
@@ -56,6 +56,7 @@ export interface FormationEntry {
     key: string;
     pattern: string;
   };
+  recipePath: string | null;
   executionBoundary: "LOCAL_ONLY";
   authority: "RECOMMENDATION_ONLY";
 }
@@ -76,8 +77,48 @@ export interface FormationRecommendation {
     status: FormationEntryStatus;
     identityKey: string;
     pattern: string;
+    recipePath: string | null;
   };
   recommendationId: string;
+}
+
+export interface ValidationFormationInput {
+  scenario: "validation";
+  claim: string;
+  acceptanceCriteria: readonly string[];
+  evidenceSources: readonly string[];
+  knownLimits: readonly string[];
+}
+
+export interface ValidationRecipe {
+  recipeId: "bounded-validation";
+  recipeVersion: "0.1.0";
+  status: "READY";
+  formationId: "bounded-validation";
+  scenario: "validation";
+  weight: "medium";
+  coordination: "sequential";
+  controller: {
+    version: 1;
+    eligibleComplexities: readonly ["LOW", "MEDIUM"];
+    requiredInput: readonly ["claim", "acceptance-criteria", "evidence-sources", "known-limits"];
+    executionBoundary: "LOCAL_ONLY";
+    authority: "RECOMMENDATION_ONLY";
+  };
+  outputContract: {
+    requiredSections: readonly ["validation-result", "evidence-map", "explicit-stop-or-pass"];
+    unknownPolicy: "PRESERVE_AS_UNKNOWN";
+    resultState: "NOT_STARTED";
+  };
+  acceptance: {
+    criteria: readonly ["claim-traced-to-evidence", "negative-paths-checked", "limits-visible"];
+  };
+  evidenceRequirements: readonly ["validation-log", "source-read-back", "residual-risk-record"];
+  relations: readonly [{ kind: "validates"; target: "controller" }];
+  recovery: {
+    preserve: readonly ["pre-validation-claim", "failed-checks"];
+    stopConditions: readonly ["missing-evidence", "source-mismatch", "unknown-capability"];
+  };
 }
 
 export type ControllerDecision = "RECOMMEND" | "PREPARE" | "NO_AGENT" | "NO_FIT" | "STOPPED";
@@ -220,6 +261,7 @@ export interface QuickTaskRequest {
   relations?: LinkDeclaration;
   dependencies?: LinkDeclaration;
   preferences?: { continuation: "NO_AGENT" | "CUSTOM_TOOL" };
+  formationInput?: ValidationFormationInput;
 }
 
 export type LinkDeclaration = { state: "KNOWN"; items: readonly string[] } | { state: "ABSENT" | "UNKNOWN"; items: readonly [] };
