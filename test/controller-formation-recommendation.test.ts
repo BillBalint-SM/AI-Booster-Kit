@@ -35,7 +35,6 @@ test("formation recommendation: returns bounded candidates for each unready scen
   const catalog = await loadFormationCatalog(catalogPath);
   const cases: readonly [string, string][] = [
     ["Research primary sources for the contract.", "research"],
-    ["Refine the acceptance criteria and scope.", "refinement"],
     ["Implement a bounded parser improvement.", "development"],
     ["Debug the failing parser test.", "debugging"],
   ];
@@ -48,6 +47,35 @@ test("formation recommendation: returns bounded candidates for each unready scen
     assert.equal(recommendation.requiresAcknowledgement, true);
     assert.equal(recommendation.impact, "UNKNOWN");
   }
+});
+
+test("formation recommendation: promotes the linked refinement recipe to RECOMMEND", async () => {
+  const recommendation = recommendFormation({
+    ...baseRequest,
+    goal: "Refine the acceptance criteria and scope.",
+    formationInput: {
+      scenario: "refinement",
+      currentScope: "The controller remains local and recommendation-only.",
+      constraints: ["Do not activate a host or connector."],
+      openQuestions: ["Which remaining scenario should become READY next?"],
+    },
+  }, await loadFormationCatalog(catalogPath));
+
+  assert.equal(recommendation.decision, "RECOMMEND");
+  assert.equal(recommendation.scenario, "refinement");
+  assert.equal(recommendation.formation?.status, "READY");
+  assert.equal(recommendation.formation?.recipePath, "contract/agent-library/bounded-refinement.md");
+  assert.equal(recommendation.requiresAcknowledgement, false);
+  assert.equal(recommendation.impact, "COMPATIBLE");
+});
+
+test("formation recommendation: keeps refinement UNKNOWN without the required profile", async () => {
+  const recommendation = recommendFormation({ ...baseRequest, goal: "Refine the acceptance criteria and scope." }, await loadFormationCatalog(catalogPath));
+
+  assert.equal(recommendation.decision, "UNKNOWN");
+  assert.equal(recommendation.requiresAcknowledgement, true);
+  assert.deepEqual(recommendation.missingPrerequisites, ["current-scope", "constraints", "open-questions"]);
+  assert.equal(recommendation.formation, undefined);
 });
 
 test("formation recommendation: promotes the linked validation recipe to RECOMMEND", async () => {

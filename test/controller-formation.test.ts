@@ -65,8 +65,11 @@ test("formation catalog: loads the six declared M1-A entries", async () => {
   );
   assert.deepEqual(
     catalog.formations.filter((formation) => formation.status === "CANDIDATE").map((formation) => formation.scenario),
-    ["research", "refinement", "development", "debugging"],
+    ["research", "development", "debugging"],
   );
+  const refinement = catalog.formations.find((formation) => formation.formationId === "bounded-refinement");
+  assert.equal(refinement?.status, "READY");
+  assert.equal(refinement?.recipePath, "contract/agent-library/bounded-refinement.md");
   const validation = catalog.formations.find((formation) => formation.formationId === "bounded-validation");
   assert.equal(validation?.status, "READY");
   assert.equal(validation?.recipePath, "contract/agent-library/bounded-validation.md");

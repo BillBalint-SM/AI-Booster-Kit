@@ -57,7 +57,7 @@ formations:
     authority: RECOMMENDATION_ONLY
   - formationId: bounded-refinement
     version: 0.1.0
-    status: CANDIDATE
+    status: READY
     scenario: refinement
     weight: light
     complexity: low
@@ -71,14 +71,14 @@ formations:
     relations:
       - kind: related_to
         target: quick-task-clarifier-validator
-    prerequisites: [current-scope, named-decision-owner]
+    prerequisites: [current-scope, constraints, open-questions, named-decision-owner]
     recovery:
       preserve: [original-scope, rejected-interpretations]
       stopConditions: [unaccepted-scope-change, unresolved-conflict]
     identity:
       key: bounded-refinement
       pattern: refinement:light:sequential
-    recipePath: null
+    recipePath: contract/agent-library/bounded-refinement.md
     executionBoundary: LOCAL_ONLY
     authority: RECOMMENDATION_ONLY
   - formationId: bounded-implementation
@@ -167,6 +167,6 @@ This catalog is a declarative, host-agnostic index. It characterizes formations
 so the Controller can recognize scenarios and explain recommendations.
 Catalog entries do not activate a host, invoke a connector, create files, or
 persist a session. The Quick Task entry is ready with a documented limit; the
-validation entry is fully ready with a linked profile recipe; the other four
-entries remain bounded candidates until their recipes and Controller
+validation and refinement entries are fully ready with linked profile recipes;
+the other three entries remain bounded candidates until their recipes and Controller
 recommendation paths are implemented and verified.

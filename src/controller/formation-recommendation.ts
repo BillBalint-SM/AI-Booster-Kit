@@ -84,12 +84,16 @@ function recognizeScenario(goal: string): readonly RecognizedScenario[] {
 function unresolvedPrerequisites(request: QuickTaskRequest, formation: FormationEntry): readonly string[] {
   return formation.prerequisites.filter((prerequisite) => {
     if (prerequisite === "named-outcome-owner") return request.outcomeOwner.trim().length === 0;
+    if (prerequisite === "named-decision-owner") return request.outcomeOwner.trim().length === 0;
     if (prerequisite === "current-or-unknown-context") return request.context === undefined;
     if (prerequisite === "bounded-question" || prerequisite === "goal") return request.goal.trim().length === 0;
     if (prerequisite === "claim-under-test") return request.formationInput?.scenario !== "validation" || request.formationInput.claim.trim().length === 0;
     if (prerequisite === "acceptance-criteria") return request.formationInput?.scenario !== "validation" || request.formationInput.acceptanceCriteria.length === 0;
     if (prerequisite === "evidence-sources") return request.formationInput?.scenario !== "validation" || request.formationInput.evidenceSources.length === 0;
     if (prerequisite === "known-limits") return request.formationInput?.scenario !== "validation" || request.formationInput.knownLimits.length === 0;
+    if (prerequisite === "current-scope") return request.formationInput?.scenario !== "refinement" || request.formationInput.currentScope.trim().length === 0;
+    if (prerequisite === "constraints") return request.formationInput?.scenario !== "refinement" || request.formationInput.constraints.length === 0;
+    if (prerequisite === "open-questions") return request.formationInput?.scenario !== "refinement" || request.formationInput.openQuestions.length === 0;
     return true;
   });
 }
