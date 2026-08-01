@@ -5,7 +5,7 @@ short and must not become a second roadmap, transcript, or historical report.
 
 ## Branch and pull request
 
-The public website delivery was merged as [PR #13](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/13). The current documentation-structure work is on branch `codex/ai-booster-kit-docs-structure`, based on the merged website delivery and intended for a separate reviewable pull request.
+The public website delivery was merged as [PR #13](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/13). The documentation-structure work is under review in [PR #14](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/14) on branch `codex/ai-booster-kit-docs-structure-api`, based on the merged website delivery.
 
 ## Completed deliverable
 
@@ -39,7 +39,8 @@ specific approval, bounded authority, and source-native read-back.
 
 ## Next bounded action
 
-Publish and review this documentation-structure slice. After that, design and
-implement **M1: Agent Framework Library and Recipe Controller v1** as a separate
-contract, design, implementation plan, and reviewable delivery.
+Review and merge [PR #14](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/14).
+After that, design and implement **M1: Agent Framework Library and Recipe
+Controller v1** as a separate contract, design, implementation plan, and
+reviewable delivery.
 
