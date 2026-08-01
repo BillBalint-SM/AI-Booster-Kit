@@ -87,6 +87,59 @@ export type ControllerIntent =
       artifactGenerationPerformed: false;
     };
 
+export type ActivationProfile = "clarify" | "research" | "planning" | "validation";
+export type ActivationIntent = Extract<ControllerIntent, { state: "ACTIVATION_INTENT" }>;
+
+export interface QuickTaskActivationInput {
+  goal: string;
+  outcomeOwner: string;
+  value: Exclude<QuickTaskRequest["value"], undefined>;
+  context: Exclude<QuickTaskRequest["context"], undefined>;
+  relations: LinkDeclaration;
+  dependencies: LinkDeclaration;
+}
+
+export interface ActivationProfileContract {
+  requiredSections: readonly string[];
+  unknownPolicy: "PRESERVE_AS_UNKNOWN";
+  resultState: "NOT_STARTED";
+}
+
+export interface QuickTaskActivationPackage {
+  activationVersion: "1.0";
+  state: "EPHEMERAL_PACKAGE_ISSUED";
+  retention: "EPHEMERAL";
+  profile: ActivationProfile;
+  recipe: ControllerRecipeIdentity;
+  intent: {
+    state: "ACTIVATION_INTENT";
+    requestFingerprint: string;
+    recipeSignature: string;
+  };
+  agent: {
+    role: "quick-task-clarifier-validator";
+    mode: "assist";
+    input: QuickTaskActivationInput;
+    outputContract: ActivationProfileContract;
+    instructions: readonly string[];
+    stopConditions: readonly string[];
+    executionBoundary: "LOCAL_ONLY";
+  };
+  operations: {
+    packageIssued: true;
+    hostActivationPerformed: false;
+    artifactGenerationPerformed: false;
+    persistencePerformed: false;
+  };
+}
+
+export class ControllerActivationPackageError extends Error {
+  public constructor(code: string, message: string) {
+    super(`${code}: ${message}.`);
+    this.name = "ControllerActivationPackageError";
+  }
+}
+
 export interface QuickTaskRequest {
   requestVersion: "1.0";
   workItemType: "Quick Task";

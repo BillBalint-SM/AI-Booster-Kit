@@ -11,11 +11,13 @@ import { loadGithubReadOnlyCapability } from "./capabilities/manifest.js";
 import { type ReadinessAdapter, type ReadinessObservationBundle } from "./readiness/observations.js";
 import { writeReadinessCertificate } from "./readiness/output.js";
 import { runReadinessCertificate } from "./readiness/run.js";
+import { createQuickTaskActivationPackage, parseActivationProfile } from "./controller/activation-package.js";
 import { evaluateQuickTask, ControllerEvaluationError } from "./controller/evaluate.js";
 import { ControllerCheckpointError, parseCheckpointChoice } from "./controller/choice.js";
 import { ControllerRecipeError, loadQuickTaskRecipe } from "./controller/recipe.js";
 import { ControllerRequestError, parseQuickTaskRequest } from "./controller/request.js";
 import { resolveCheckpoint } from "./controller/resolve.js";
+import { ControllerActivationPackageError } from "./controller/types.js";
 
 const helpText = `Usage: npm run cli -- <command>
 
@@ -27,6 +29,7 @@ Commands:
   readiness     Generate a local G2AS Sandbox Readiness Certificate
   quick-task    Recommend the local Quick Task recipe
   resolve-checkpoint  Resolve an explicit local Quick Task checkpoint
+  activate-quick-task  Issue an ephemeral Quick Task Activation Package
 `;
 
 export async function runCli(argv: readonly string[]): Promise<number> {
@@ -59,6 +62,7 @@ async function dispatchCli(argv: readonly string[]): Promise<number> {
   if (command === "readiness") return runReadiness(argv.slice(1));
   if (command === "quick-task") return runQuickTask(argv.slice(1));
   if (command === "resolve-checkpoint") return runResolveCheckpoint(argv.slice(1));
+  if (command === "activate-quick-task") return runActivateQuickTask(argv.slice(1));
 
   throw new CliError("CONFIGURATION_ERROR", 4);
 }
@@ -119,6 +123,58 @@ async function runResolveCheckpoint(argv: readonly string[]): Promise<number> {
     }
     throw error;
   }
+}
+
+async function runActivateQuickTask(argv: readonly string[]): Promise<number> {
+  if (argv[0] !== "--input" || argv[1] === undefined || argv[2] !== "--choice" || argv[3] === undefined || argv[4] !== "--profile" || argv[5] === undefined || argv.length !== 6) {
+    return stoppedController("COMMAND_CONFIGURATION_INVALID", "activate-quick-task requires exactly --input <path> --choice <path> --profile <profile>", 4);
+  }
+
+  let requestSource: string;
+  try { requestSource = await readFile(argv[1], "utf8"); } catch (error) {
+    if (isSystemError(error)) return stoppedController("ACTIVATION_INPUT_PATH_UNREADABLE", "The explicit activation input path could not be read", 4);
+    throw error;
+  }
+  let choiceSource: string;
+  try { choiceSource = await readFile(argv[3], "utf8"); } catch (error) {
+    if (isSystemError(error)) return stoppedController("ACTIVATION_CHOICE_PATH_UNREADABLE", "The explicit activation choice path could not be read", 4);
+    throw error;
+  }
+
+  let requestInput: unknown;
+  try { requestInput = JSON.parse(requestSource) as unknown; } catch (error) {
+    if (error instanceof SyntaxError) return stoppedController("ACTIVATION_INPUT_JSON_INVALID", "The explicit activation input is not valid JSON", 3);
+    throw error;
+  }
+  let choiceInput: unknown;
+  try { choiceInput = JSON.parse(choiceSource) as unknown; } catch (error) {
+    if (error instanceof SyntaxError) return stoppedController("ACTIVATION_CHOICE_JSON_INVALID", "The explicit activation choice is not valid JSON", 3);
+    throw error;
+  }
+
+  try {
+    const profile = parseActivationProfile(argv[5]);
+    const recipe = await loadQuickTaskRecipe("contract/agent-library/quick-task-clarifier-validator.md");
+    const request = parseQuickTaskRequest(requestInput);
+    const response = evaluateQuickTask(request, recipe);
+    const intent = resolveCheckpoint(response, parseCheckpointChoice(choiceInput));
+    if (intent.state !== "ACTIVATION_INTENT") return stoppedController("ACTIVATION_INTENT_REQUIRED", "A current activation intent is required before package issuance", 3);
+    const activationPackage = createQuickTaskActivationPackage(request, intent, profile);
+    process.stdout.write(`${JSON.stringify(activationPackage)}\n`);
+    return 0;
+  } catch (error) {
+    if (error instanceof ControllerRequestError || error instanceof ControllerRecipeError || error instanceof ControllerEvaluationError || error instanceof ControllerCheckpointError || error instanceof ControllerActivationPackageError) {
+      return stoppedController(activationErrorCode(error), "Activation package request stopped safely", 3);
+    }
+    throw error;
+  }
+}
+
+function activationErrorCode(error: Error): string {
+  if (error instanceof ControllerActivationPackageError) return error.message.split(":", 1)[0] ?? "ACTIVATION_PACKAGE_FAILED";
+  const checkpointCode = /^Quick Task checkpoint rejected: ([A-Z_]+)/.exec(error.message)?.[1];
+  if (checkpointCode !== undefined) return checkpointCode;
+  return "CONTROLLER_VALIDATION_FAILED";
 }
 
 function stoppedController(code: string, message: string, exitCode: 3 | 4): 3 | 4 {
