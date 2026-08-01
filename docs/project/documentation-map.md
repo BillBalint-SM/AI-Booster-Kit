@@ -30,6 +30,7 @@ This page is the repository’s thematic index. Start from the [root README](../
 ## Active entry points
 
 - [Quick Task Clarifier and Validator](../../contract/agent-library/quick-task-clarifier-validator.md) — first bounded Agent capability contract.
+- The Controller exposes the local `activate-quick-task --input <request.json> --choice <choice.json> --profile <profile>` command, which issues an ephemeral host-agnostic package only after fresh evaluation and `ACTIVATION_INTENT`; see the approved [design](../superpowers/specs/2026-08-01-ai-booster-kit-quick-task-activation-package-design.md) and [implementation plan](../superpowers/plans/2026-08-01-ai-booster-kit-quick-task-activation-package.md), which remain review artifacts rather than default runtime context.
 - [Canonical artifact templates](../../contract/artifacts/canonical-work-artifact-template.md) — common artifact shape.
 - [Jira–Confluence–GitHub mapping contract](../../contract/mappings/jira-confluence-github.md) — future synchronization boundary.
 - [Host adapter contracts](../operations/host-adapters/) — host-specific projections of the shared model.
