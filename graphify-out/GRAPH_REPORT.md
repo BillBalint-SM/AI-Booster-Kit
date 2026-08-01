@@ -1,16 +1,16 @@
-# Graph Report - AI Booster Kit  (2026-08-01)
+# Graph Report - AI Booster Kit  (2026-08-02)
 
 ## Corpus Check
-- 267 files · ~285,814 words
+- 268 files · ~287,914 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2519 nodes · 4260 edges · 209 communities (179 shown, 30 thin omitted)
+- 2533 nodes · 4291 edges · 207 communities (178 shown, 29 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 18 edges (avg confidence: 0.65)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `6c0a0421`
+- Built from commit: `37bafb8c`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -18,7 +18,7 @@
 - stop.ts
 - markdown.ts
 - types.ts
-- OutboxStore
+- codex-mcp-payload.ts
 - manifest.ts
 - sync.ts
 - types.ts
@@ -35,7 +35,7 @@
 - manifest.ts
 - validate.ts
 - compilerOptions
-- readiness-render.test.ts
+- codex-mcp-preflight.test.ts
 - ingest.ts
 - links.ts
 - finalize.ts
@@ -48,7 +48,7 @@
 - formation.ts
 - compilerOptions
 - request.ts
-- codex-mcp-payload.ts
+- formation-recommendation.ts
 - formation-recipe.ts
 - gate-2-results-and-next-steps.md
 - Agent-agnostic contract-first sync orchestrator
@@ -67,7 +67,7 @@
 - Sync orchestrator V1 sandbox runbook
 - Confirmed by current official Atlassian documentation
 - G2AS sandbox pilot evidence
-- controller-activation-package.test.ts
+- connector-server.ts
 - Common Agent Operating Model
 - compile.ts
 - devDependencies
@@ -75,7 +75,7 @@
 - File and module map
 - G2AS Sandbox Readiness Certificate Design
 - AI Booster Kit Team Delivery Loop Design
-- projections.ts
+- Bounded Implementation
 - choice.ts
 - Codex host-conformance pilot run — 2026-07-27
 - Codex host-conformance remediation run v2 — 2026-07-27
@@ -88,15 +88,15 @@
 - Codex host-conformance remediation run v3 — 2026-07-28
 - recipe.ts
 - codex-mcp-adapter.ts
-- codex-mcp-preflight.test.ts
+- Bounded Research
 - Gate 2 Task 2 Report
 - Agent Operating Model Baseline Implementation Plan
 - AI Booster Kit Controller MVP Design
-- activation-package.ts
+- controller-activation-package.test.ts
 - Agent-agnostic sync orchestrator — project operating rules
 - File structure
 - Gate 2 Jira-Centered Sandbox Pilot Design
-- adapters.test.ts
+- readiness-cli.test.ts
 - Team Delivery Loop
 - Quick Task Clarifier & Validator
 - Claude Code host-capability investigation — 2026-07-28
@@ -191,7 +191,7 @@
 - Task 8 brief — one explicitly authorized Jira evidence-link write
 - jira-confluence-github.md
 - Executive decision map
-- HostAdapter
+- ContractDocument
 - Task 1: Freeze the pilot contract and authorize the first external operation
 - layout.tsx
 - epic-template.md
@@ -200,7 +200,6 @@
 - work-item-template.md
 - Historical evidence archive
 - 2026-08-01-ai-booster-kit-ready-refinement-recipe.md
-- drizzle-kit
 - eslint-config-next
 - react-server-dom-webpack
 - @tailwindcss/postcss
@@ -216,7 +215,6 @@
 - wrangler
 - postcss.config.mjs
 - vite.config.ts
-- eslint
 
 ## God Nodes (most connected - your core abstractions)
 1. `parseG2asReadinessManifest()` - 29 edges
@@ -245,7 +243,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (209 total, 30 thin omitted)
+## Communities (207 total, 29 thin omitted)
 
 ### Community 0 - "stop.ts"
 Cohesion: 0.05
@@ -256,12 +254,12 @@ Cohesion: 0.13
 Nodes (26): allowedCapabilityKeys, allowedMetadataKeys, canonicalBoardStatuses, canonicalVocabulary(), CapabilityDeclaration, CapabilityReport, capabilityStates, ContractSemantics (+18 more)
 
 ### Community 2 - "types.ts"
-Cohesion: 0.07
-Nodes (62): ConfluenceGateway, ConfluenceGatewayOptions, parseIntent(), sameArray(), validObservedAt(), GitHubGateway, GitHubGatewayOptions, parseCheck() (+54 more)
+Cohesion: 0.09
+Nodes (52): ConfluenceGateway, ConfluenceGatewayOptions, parseIntent(), sameArray(), validObservedAt(), GitHubGateway, GitHubGatewayOptions, parseCheck() (+44 more)
 
-### Community 3 - "OutboxStore"
-Cohesion: 0.29
-Nodes (5): isExistingPathError(), isMissingFileError(), isPermissionError(), pathExists(), waitForClaimPoll()
+### Community 3 - "codex-mcp-payload.ts"
+Cohesion: 0.27
+Nodes (27): GithubCapabilityEvidence, array(), CodexMcpPayloadNormalizationError, exactKeys(), findInlineCards(), fixtureContent(), isoTimestamp(), jsonArray() (+19 more)
 
 ### Community 4 - "manifest.ts"
 Cohesion: 0.12
@@ -280,24 +278,24 @@ Cohesion: 0.09
 Nodes (50): CanonicalEvidence, collectGitHubEvidence(), commitUrl(), evidence(), evidenceState(), EvidenceValidationError, exactRecord(), externalId() (+42 more)
 
 ### Community 8 - "profile.ts"
-Cohesion: 0.08
-Nodes (41): AttentionState, BoardStatus, assertNonEmptyString(), assertProjectProfile(), assertStringArray(), assertStringRecord(), assertTargetIdentities(), canonicalStatuses (+33 more)
+Cohesion: 0.07
+Nodes (44): AttentionState, BoardStatus, assertNonEmptyString(), assertProjectProfile(), assertStringArray(), assertStringRecord(), assertTargetIdentities(), canonicalStatuses (+36 more)
 
 ### Community 9 - "baseline.test.ts"
 Cohesion: 0.19
 Nodes (13): acceptedEvidenceRefs, allowlistInput(), assertSecurityPaths(), classifyFailure(), createOrchestrator(), dryRunGateway, eventFor(), fixtureOrigin() (+5 more)
 
 ### Community 10 - "observations.ts"
-Cohesion: 0.19
-Nodes (25): bundleKeys, capabilityStates, checkStates, diagnosticCodes, observationKeys, observedIdFields, parseCapabilityEvidence(), parseEvidenceRefs() (+17 more)
+Cohesion: 0.13
+Nodes (27): bundleKeys, capabilityStates, checkStates, diagnosticCodes, observationKeys, observedIdFields, parseCapabilityEvidence(), parseEvidenceRefs() (+19 more)
 
 ### Community 11 - "package.json"
 Cohesion: 0.08
 Nodes (24): ajv, dependencies, ajv, yaml, devDependencies, @types/node, typescript, engines (+16 more)
 
 ### Community 12 - "types.ts"
-Cohesion: 0.11
-Nodes (24): choices, createCheckpoint(), evaluateQuickTask(), missing(), response(), canonicalJson(), digest(), patternId() (+16 more)
+Cohesion: 0.10
+Nodes (27): choices, createCheckpoint(), evaluateQuickTask(), missing(), response(), canonicalJson(), digest(), patternId() (+19 more)
 
 ### Community 13 - "e2e.test.ts"
 Cohesion: 0.12
@@ -308,16 +306,16 @@ Cohesion: 0.15
 Nodes (18): CanonicalWorkArtifact, ChildWorkItem, Epic, ExecutionSet, Milestone, ProjectProfile, ValidatedRecord, WorkItemType (+10 more)
 
 ### Community 15 - "render.ts"
-Cohesion: 0.14
-Nodes (30): check(), ReadinessCheck, ReadinessObservation, writeReadinessCertificate(), capabilityStates, checkStates, decisions, diagnosticCodes (+22 more)
+Cohesion: 0.12
+Nodes (29): CodexMcpPreflightResult, ReadinessCertificate, ReadinessCertificateOutputPaths, writeReadinessCertificate(), capabilityStates, checkStates, decisions, diagnosticCodes (+21 more)
 
 ### Community 16 - "evaluate.ts"
-Cohesion: 0.15
-Nodes (21): allowedObservedIds(), canonicalJson(), createCheck(), decide(), evaluateObservation(), evaluateReadiness(), evaluateSource(), expectedIds() (+13 more)
+Cohesion: 0.14
+Nodes (25): GithubReadOnlyCapability, EvidenceIngestionDiagnosticCode, EvidenceIngestionError, EvidenceIngestionSource, allowedObservedIds(), canonicalJson(), createCheck(), evaluateObservation() (+17 more)
 
 ### Community 17 - "manifest.ts"
-Cohesion: 0.24
-Nodes (19): createLocalObservationAdapter(), readinessExitCode(), runReadiness(), hasSecondTargetRecord(), loadG2asReadinessManifest(), parseG2asReadinessManifest(), parseManifestJson(), reject() (+11 more)
+Cohesion: 0.31
+Nodes (16): hasSecondTargetRecord(), loadG2asReadinessManifest(), parseG2asReadinessManifest(), parseManifestJson(), reject(), rejectTokenField(), requireExactKeys(), requireRecord() (+8 more)
 
 ### Community 18 - "validate.ts"
 Cohesion: 0.20
@@ -327,13 +325,13 @@ Nodes (15): boardStatus, canonicalSchemas, nonEmptyString, SchemaName, schemaNam
 Cohesion: 0.12
 Nodes (15): dist, .tmp-*, website, compilerOptions, exactOptionalPropertyTypes, module, moduleResolution, noUncheckedIndexedAccess (+7 more)
 
-### Community 20 - "readiness-render.test.ts"
-Cohesion: 0.10
-Nodes (18): capabilityEvidence, manifest, assertRequest(), capabilityEvidence, confluencePageEnvelope(), confluencePageMetadata(), createCaller(), manifest (+10 more)
+### Community 20 - "codex-mcp-preflight.test.ts"
+Cohesion: 0.09
+Nodes (22): classifyReadFailure(), CodexReadOnlyEvidenceAdapter, ingestCodexReadOnlyEvidence(), capabilityEvidence, manifest, assertRequest(), capabilityEvidence, confluencePageEnvelope() (+14 more)
 
 ### Community 21 - "ingest.ts"
-Cohesion: 0.16
-Nodes (20): GithubReadOnlyCapability, CodexMcpPreflightRequest, CodexMcpPreflightResult, createStoppedCertificate(), normalizeCapabilityEvidence(), runCodexMcpPreflight(), stoppedObservation(), classifyReadFailure() (+12 more)
+Cohesion: 0.33
+Nodes (10): asRecord(), CapturedRequest, closeServer(), firstHeaderValue(), githubBody(), readBackBody(), readJsonBody(), sendJson() (+2 more)
 
 ### Community 22 - "links.ts"
 Cohesion: 0.36
@@ -357,31 +355,31 @@ Nodes (42): Acceptance criteria, AI Agent Tooling Research Design, Balanced scor
 
 ### Community 27 - "codex-mcp-tool-caller.test.ts"
 Cohesion: 0.08
-Nodes (48): GithubCapabilityEvidence, array(), CodexMcpPayloadNormalizationError, createCodexMcpPayloadAdapter(), exactKeys(), findInlineCards(), fixtureContent(), isoTimestamp() (+40 more)
+Nodes (27): createCodexMcpPayloadAdapter(), CodexMcpPreflightRequest, createStoppedCertificate(), normalizeCapabilityEvidence(), runCodexMcpPreflight(), stoppedObservation(), assertCodexMcpToolCaller(), CodexMcpReadFailure (+19 more)
 
 ### Community 32 - "cli.ts"
-Cohesion: 0.17
-Nodes (23): main(), activationErrorCode(), CliError, dispatchCli(), isSystemError(), parseSafeEvent(), readLocalFile(), runActivateQuickTask() (+15 more)
+Cohesion: 0.14
+Nodes (26): main(), activationErrorCode(), CliError, createLocalObservationAdapter(), dispatchCli(), isSystemError(), parseSafeEvent(), readinessExitCode() (+18 more)
 
 ### Community 33 - "formation.ts"
 Cohesion: 0.11
-Nodes (26): acceptanceKeys, catalogKeys, entryKeys, extractFrontmatter(), FormationCatalogError, identityKeys, parseFormationCatalog(), parseFormationEntry() (+18 more)
+Nodes (27): acceptanceKeys, catalogKeys, entryKeys, extractFrontmatter(), FormationCatalogError, identityKeys, loadFormationCatalog(), parseFormationCatalog() (+19 more)
 
 ### Community 34 - "compilerOptions"
 Cohesion: 0.07
 Nodes (28): dom, dom.iterable, esnext, **/*.mts, .next/dev/types/**/*.ts, next-env.d.ts, .next/types/**/*.ts, **/*.ts (+20 more)
 
 ### Community 35 - "request.ts"
-Cohesion: 0.28
-Nodes (20): allowedKeys(), ControllerRequestError, exactKeys(), literal(), nonEmpty(), nonEmptyField(), oneOf(), parseContext() (+12 more)
+Cohesion: 0.26
+Nodes (23): allowedKeys(), exactKeys(), literal(), nonEmpty(), nonEmptyField(), oneOf(), parseContext(), parseFormationInput() (+15 more)
 
-### Community 36 - "codex-mcp-payload.ts"
-Cohesion: 0.15
-Nodes (17): FormationRecommendationError, RecognizedScenario, recognizeScenario(), recommendation(), recommendFormation(), scenarioSignals, unknownRequestEvidence(), unresolvedPrerequisites() (+9 more)
+### Community 36 - "formation-recommendation.ts"
+Cohesion: 0.14
+Nodes (18): FormationRecommendationError, RecognizedScenario, recognizeScenario(), recommendation(), recommendFormation(), scenarioSignals, unknownRequestEvidence(), unresolvedPrerequisites() (+10 more)
 
 ### Community 37 - "formation-recipe.ts"
-Cohesion: 0.14
-Nodes (24): acceptanceKeys, controllerKeys, extractFrontmatter(), loadRefinementRecipe(), loadResearchRecipe(), loadValidationRecipe(), outputKeys, parseRefinementRecipe() (+16 more)
+Cohesion: 0.12
+Nodes (29): acceptanceKeys, controllerKeys, extractFrontmatter(), ImplementationRecipeError, loadImplementationRecipe(), loadRefinementRecipe(), loadResearchRecipe(), loadValidationRecipe() (+21 more)
 
 ### Community 39 - "Agent-agnostic contract-first sync orchestrator"
 Cohesion: 0.08
@@ -416,12 +414,12 @@ Cohesion: 0.10
 Nodes (20): Branch and pull request, Completed deliverable, Current-state impact, Documentation and GitHub Structure Implementation Plan, External, OAuth, or permission impact, File structure, Global constraints, Known limit (+12 more)
 
 ### Community 47 - "AI Agent Tooling Blueprint"
-Cohesion: 0.12
-Nodes (16): AI Agent Tooling Blueprint, Balanced scorecard and eval plan, Contradiction reconciliation, Cross-layer tooling matrix, Emerging watchlist, Gate 2 baseline and threshold method, Gate 2 workflow pilot evidence, Other conditional watchlist candidates (+8 more)
+Cohesion: 0.10
+Nodes (19): AI Agent Tooling Blueprint, Balanced scorecard and eval plan, Contradiction reconciliation, Cross-layer tooling matrix, Current-state baseline, Emerging watchlist, Externally verified product baseline, Gate 2 baseline and threshold method (+11 more)
 
 ### Community 48 - "outbox.ts"
-Cohesion: 0.16
-Nodes (18): CanonicalEvent, assertExactRecord(), ClaimRecord, claimRecordKeys, DurableClaimResult, EventRecord, eventRecordKeys, isNonEmptyString() (+10 more)
+Cohesion: 0.11
+Nodes (28): CanonicalEvent, assertExactRecord(), assertRecordHistory(), ClaimRecord, claimRecordKeys, DurableClaimResult, EventRecord, eventRecordKeys (+20 more)
 
 ### Community 49 - "eligible-quick-task.json"
 Cohesion: 0.10
@@ -447,9 +445,9 @@ Nodes (16): App and ownership prerequisite, Confirmed by current official Atlass
 Cohesion: 0.11
 Nodes (18): Authority and stop policy, Baseline chronology addendum (Task 5), Cohort and comparison limits, Direct REST diagnostic OAuth boundary, Evidence scorecard, Explicit decision and bounded next step, G2AS sandbox pilot evidence, Host-native activation handoff (+10 more)
 
-### Community 55 - "controller-activation-package.test.ts"
+### Community 55 - "connector-server.ts"
 Cohesion: 0.33
-Nodes (5): assertRecordHistory(), OutboxStore, sameResult(), sameStableEvent(), stableSerialize()
+Nodes (5): Acceptance and evidence, Bounded Implementation, Input contract (DoR), Output contract (DoD), Recovery
 
 ### Community 56 - "Common Agent Operating Model"
 Cohesion: 0.12
@@ -461,7 +459,7 @@ Nodes (17): claudeCodeAdapter, codexAdapter, cursorAdapter, createLocalHostAdapt
 
 ### Community 58 - "devDependencies"
 Cohesion: 0.13
-Nodes (15): @cloudflare/vite-plugin, drizzle-kit, tailwindcss, @types/react, @types/react-dom, vinext, vite, devDependencies (+7 more)
+Nodes (15): @cloudflare/vite-plugin, eslint, tailwindcss, @types/react, @types/react-dom, vinext, vite, devDependencies (+7 more)
 
 ### Community 59 - "File Structure"
 Cohesion: 0.13
@@ -524,10 +522,10 @@ Cohesion: 0.23
 Nodes (10): controllerKeys, ControllerRecipeError, extractFrontmatter(), parseQuickTaskRecipe(), recipeKeys, requiredDor, requireExactArray(), requireExactKeys() (+2 more)
 
 ### Community 75 - "codex-mcp-adapter.ts"
-Cohesion: 0.23
-Nodes (14): CodexMcpReadMappingError, CodexMcpReadSource, createCodexMcpReadAdapter(), exactRecord(), mapCodexMcpReadToObservationBundle(), observation(), recordField(), reject() (+6 more)
+Cohesion: 0.21
+Nodes (15): CodexMcpReadMappingError, CodexMcpReadSource, createCodexMcpReadAdapter(), exactRecord(), mapCodexMcpReadToObservationBundle(), observation(), recordField(), reject() (+7 more)
 
-### Community 76 - "codex-mcp-preflight.test.ts"
+### Community 76 - "Bounded Research"
 Cohesion: 0.29
 Nodes (6): Acceptance and evidence, Bounded Research, Coordination contract, Input contract (DoR), Output contract (DoD), Recovery
 
@@ -543,9 +541,9 @@ Nodes (11): Acceptance criteria, Agent Operating Model Baseline Implementation P
 Cohesion: 0.17
 Nodes (11): Acceptance criteria, AI Booster Kit Controller MVP Design, Approaches considered, Architecture, Canonical recipe declaration, Decision and impact contract, Error and exit-code contract, Request contract (+3 more)
 
-### Community 80 - "activation-package.ts"
-Cohesion: 0.11
-Nodes (21): activationInput(), commonInstructions, createQuickTaskActivationPackage(), profileDefinitions, stopConditions, ActivationIntent, ActivationProfile, ActivationProfileContract (+13 more)
+### Community 80 - "controller-activation-package.test.ts"
+Cohesion: 0.14
+Nodes (15): activationInput(), commonInstructions, createQuickTaskActivationPackage(), profileDefinitions, stopConditions, ActivationIntent, ActivationProfile, ActivationProfileContract (+7 more)
 
 ### Community 81 - "Agent-agnostic sync orchestrator — project operating rules"
 Cohesion: 0.18
@@ -559,9 +557,9 @@ Nodes (10): File structure, Global Constraints, Native MCP Capability Standard I
 Cohesion: 0.18
 Nodes (10): Acceptance criteria, Architecture and pilot sequence, Direct REST diagnostic OAuth boundary, Gate 2 Jira-Centered Sandbox Pilot Design, Goal, Implementation boundary, Measurements and promotion gate, Roles and authority (+2 more)
 
-### Community 84 - "adapters.test.ts"
-Cohesion: 0.29
-Nodes (4): capabilityPath, manifestPath, readFixture(), readinessManifest
+### Community 84 - "readiness-cli.test.ts"
+Cohesion: 0.23
+Nodes (7): ReadinessAdapter, readObservations(), runReadinessCertificate(), capabilityPath, manifestPath, readFixture(), readinessManifest
 
 ### Community 85 - "Team Delivery Loop"
 Cohesion: 0.18
@@ -927,33 +925,29 @@ Nodes (3): Approved contract and execution record, Execution result, Task 8 brie
 Cohesion: 0.67
 Nodes (3): Decision vocabulary, Executive decision map, Situation-based toolkit
 
-### Community 179 - "HostAdapter"
+### Community 179 - "ContractDocument"
 Cohesion: 0.33
 Nodes (3): HostAdapter, ContractDocument, NativeAdapterProjection
 
-### Community 189 - "drizzle-kit"
-Cohesion: 0.67
-Nodes (3): Current-state baseline, Externally verified product baseline, User-provided operating facts
-
 ## Knowledge Gaps
-- **1183 isolated node(s):** `name`, `version`, `private`, `type`, `node` (+1178 more)
+- **1187 isolated node(s):** `name`, `version`, `private`, `type`, `node` (+1182 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **30 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **29 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `assertSafeEvidenceRefs()` connect `sync.ts` to `cli.ts`, `observations.ts`?**
-  _High betweenness centrality (0.008) - this node is a cross-community bridge._
 - **Why does `observedAt()` connect `types.ts` to `readback.ts`?**
-  _High betweenness centrality (0.008) - this node is a cross-community bridge._
-- **Why does `EvidenceValidationError` connect `sync.ts` to `cli.ts`, `observations.ts`?**
-  _High betweenness centrality (0.007) - this node is a cross-community bridge._
+  _High betweenness centrality (0.014) - this node is a cross-community bridge._
+- **Why does `validateCanonicalEvent()` connect `envelope.ts` to `cli.ts`, `traceability.ts`, `outbox.ts`, `sync.ts`?**
+  _High betweenness centrality (0.009) - this node is a cross-community bridge._
+- **Why does `assertSafeEvidenceRefs()` connect `sync.ts` to `cli.ts`, `observations.ts`?**
+  _High betweenness centrality (0.009) - this node is a cross-community bridge._
 - **What connects `name`, `version`, `private` to the rest of the system?**
-  _1183 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _1187 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `stop.ts` be split into smaller, more focused modules?**
   _Cohesion score 0.054431960049937576 - nodes in this community are weakly interconnected._
 - **Should `markdown.ts` be split into smaller, more focused modules?**
   _Cohesion score 0.1339031339031339 - nodes in this community are weakly interconnected._
 - **Should `types.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.07432651736449204 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.0913081650570676 - nodes in this community are weakly interconnected._

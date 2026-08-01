@@ -98,11 +98,11 @@ the bounded slice is present, not that the complete product vision is finished.
 | Shared vocabulary and team contract | `COMPLETE_WITH_LIMIT` | `NOTES.md`, `contract/team-contract.md` | Keep terminology canonical and avoid duplicate status documents. | `implements` Vision; `supports` all tracks |
 | Team Delivery Loop | `COMPLETE_WITH_LIMIT` | `workflows/team-delivery-loop.md` | Continue validating parallel ownership, fan-in, and rollback behavior. | `implements` Roadmap; `supports` Epic/Milestone delivery |
 | Host-agnostic contracts and projections | `COMPLETE_WITH_LIMIT` | `contract/`, `src/contract/`, host adapter contracts | Prove conformance independently per host; do not infer security from host behavior. | `related_to` every execution track |
-| Controller recommendation MVP | `COMPLETE_WITH_LIMIT` | `src/controller/`, `src/cli.ts`, formation catalog, scenario recommendation, three READY scenario recipes, and focused tests | Keep the ready Quick Task, research, validation, and refinement paths stable; complete the remaining scenario recipes and profile-specific output contracts separately. | `implements` Controller layer |
+| Controller recommendation MVP | `COMPLETE_WITH_LIMIT` | `src/controller/`, `src/cli.ts`, formation catalog, scenario recommendation, four READY scenario recipes, and focused tests | Keep the ready Quick Task, research, validation, refinement, and implementation paths stable; complete the debugging recipe and profile-specific output contract separately. | `implements` Controller layer |
 | Human Checkpoint and Activation Intent | `COMPLETE_WITH_LIMIT` | `src/controller/checkpoint.ts`, `choice.ts`, `resolve.ts`, focused tests | Keep the checkpoint late, explicit, and side-effect-free until activation is separately authorized. | `depends_on` Controller; `protects` User consent |
 | Quick Task Clarifier/Validator recipe | `COMPLETE_WITH_LIMIT` | `contract/agent-library/quick-task-clarifier-validator.md` | Add more ready-to-use formations without changing this recipe implicitly. | `implements` first library entry |
 | Quick Task Activation Package | `COMPLETE_WITH_LIMIT` | `src/controller/activation-package.ts`, `src/cli.ts`, focused Controller tests, and the approved design/plan | Preserve the ephemeral, host-agnostic boundary; design host adaptation/execution or explicit package saving separately. | `depends_on` Human Checkpoint |
-| Agent Framework Library and Recipe Controller v1 | `NOW` / `NOT READY` | M1-A catalog/validator, M1-B scenario recognizer/recommendation, and READY research/validation/refinement recipes with profile contracts provide the bounded foundation | Complete implementation and debugging recipes plus the remaining readiness/negative-path evidence before promoting the library. | `depends_on` Controller; `enables` all later Agent tracks |
+| Agent Framework Library and Recipe Controller v1 | `NOW` / `NOT READY` | M1-A catalog/validator, M1-B scenario recognizer/recommendation, and READY research/validation/refinement/implementation recipes with profile contracts provide the bounded foundation | Complete the debugging recipe plus the remaining readiness/negative-path evidence before promoting the library. | `depends_on` Controller; `enables` all later Agent tracks |
 | Activation, tuning, save-or-ephemeral choice | `NEXT` / `NOT EXECUTED` | Human checkpoint contract defines the boundary | Add explicit activation executor, tuning inputs, artifact lifecycle, and rollback. | `depends_on` Library v1 |
 | Compact session state and optional storage | `NEXT` / `NOT EXECUTED` | Session-state principles are defined in the workflow contract | Persist only resumable state, never a full transcript by default. | `supports` activation and evolve |
 | Evaluation and `evolve` review | `LATER` / `NOT EXECUTED` | Accepted product direction and event vocabulary | Evaluate session outcomes and repeated `UNKNOWN` or +/- events; evolve one formation at a time. | `validates` active setup |
@@ -238,8 +238,8 @@ The prerequisite is a reasoned contract, not a universal mandatory template.
 The library milestone can move from `NOT READY` to `READY` only when:
 
 1. the catalog has the first light Quick Task formation, READY research,
-   validation, and refinement formations, and bounded candidates for
-   implementation and debugging;
+   validation, refinement, and implementation formations, and a bounded
+   candidate for debugging;
 2. the Controller can classify a request, explain its recommendation, state
    missing prerequisites and `UNKNOWN` evidence, and avoid recommendation when
    the fit is not supported;

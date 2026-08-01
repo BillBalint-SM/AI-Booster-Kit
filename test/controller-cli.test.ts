@@ -122,6 +122,43 @@ test("built formation CLI: exposes a ready refinement recommendation without wri
   assert.deepEqual(await readdir(root), before);
 });
 
+test("built formation CLI: exposes a ready implementation recommendation without writing artifacts", async () => {
+  const root = await mkdtemp(join(tmpdir(), "ai-booster-controller-"));
+  const input = join(root, "request.json");
+  await writeFile(input, JSON.stringify({
+    requestVersion: "1.0",
+    workItemType: "Quick Task",
+    goal: "Implement a bounded parser improvement.",
+    outcomeOwner: "delivery-team",
+    complexity: "MEDIUM",
+    executionBoundary: "LOCAL_ONLY",
+    value: { state: "KNOWN", statement: "A bounded local implementation." },
+    context: { state: "CURRENT", reference: "repository-state" },
+    relations: { state: "ABSENT", items: [] },
+    dependencies: { state: "ABSENT", items: [] },
+    formationInput: {
+      scenario: "development",
+      repository: "AI Booster Kit",
+      repositoryState: "VERIFIED",
+      acceptanceCriteria: ["the implementation contract is validated"],
+      testStrategy: ["focused and full test suites pass"],
+      planState: "ACCEPTED",
+      rollbackBoundary: "preserve the prior setup and stop before external writes",
+    },
+  }), "utf8");
+  const before = await readdir(root);
+
+  const result = await runBuiltCli(["recommend-formation", "--input", input]);
+  const recommendation = JSON.parse(result.stdout);
+
+  assert.equal(result.code, 0);
+  assert.equal(result.stderr, "");
+  assert.equal(recommendation.decision, "RECOMMEND");
+  assert.equal(recommendation.scenario, "development");
+  assert.equal(recommendation.formation.formationId, "bounded-implementation");
+  assert.deepEqual(await readdir(root), before);
+});
+
 test("built formation CLI: preserves an ambiguous scenario as UNKNOWN", async () => {
   const root = await mkdtemp(join(tmpdir(), "ai-booster-controller-"));
   const input = join(root, "request.json");

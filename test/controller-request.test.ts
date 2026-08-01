@@ -84,6 +84,41 @@ test("quick task request: parses the research profile and rejects an empty sourc
   assert.throws(() => parseQuickTaskRequest({ ...value, formationInput: { ...value.formationInput as object, sourceAllowlist: [] } }), /formationInput\.sourceAllowlist must be a non-empty list of non-empty strings/);
 });
 
+test("quick task request: parses the implementation profile and rejects an empty repository", async () => {
+  const value = await fixture("eligible-quick-task.json") as Record<string, unknown>;
+  value.formationInput = {
+    scenario: "development",
+    repository: "AI Booster Kit",
+    repositoryState: "VERIFIED",
+    acceptanceCriteria: ["the implementation contract is validated"],
+    testStrategy: ["focused and full test suites pass"],
+    planState: "ACCEPTED",
+    rollbackBoundary: "preserve the prior setup and stop before external writes",
+  };
+  const request = parseQuickTaskRequest(value);
+
+  assert.equal(request.formationInput?.scenario, "development");
+  if (request.formationInput?.scenario !== "development") assert.fail("development profile was not preserved");
+  assert.deepEqual(request.formationInput.testStrategy, ["focused and full test suites pass"]);
+  assert.throws(() => parseQuickTaskRequest({ ...value, formationInput: { ...value.formationInput as object, repository: "" } }), /formationInput\.repository must be a non-empty string/);
+});
+
+test("quick task request: rejects unverified implementation readiness declarations", async () => {
+  const value = await fixture("eligible-quick-task.json") as Record<string, unknown>;
+  const formationInput = {
+    scenario: "development",
+    repository: "AI Booster Kit",
+    repositoryState: "VERIFIED",
+    acceptanceCriteria: ["the implementation contract is validated"],
+    testStrategy: ["focused and full test suites pass"],
+    planState: "ACCEPTED",
+    rollbackBoundary: "preserve the prior setup and stop before external writes",
+  };
+
+  assert.throws(() => parseQuickTaskRequest({ ...value, formationInput: { ...formationInput, repositoryState: "UNKNOWN" } }), /formationInput\.repositoryState must be VERIFIED/);
+  assert.throws(() => parseQuickTaskRequest({ ...value, formationInput: { ...formationInput, planState: "DRAFT" } }), /formationInput\.planState must be ACCEPTED/);
+});
+
 test("quick task identities: separate full-request reproducibility from structural pattern matching", async () => {
   const request = parseQuickTaskRequest(await fixture("eligible-quick-task.json"));
   const changedGoal = parseQuickTaskRequest({ ...request, goal: "A different private goal." });

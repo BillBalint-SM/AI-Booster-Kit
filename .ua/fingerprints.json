@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "gitCommitHash": "6c0a0421a612ca2ec8e2e30b77a45ad70134659f",
-  "generatedAt": "2026-08-01T21:34:55.001Z",
+  "gitCommitHash": "37bafb8c626db8d0ddb37d9c1863849a2b006382",
+  "generatedAt": "2026-08-01T22:36:55.646Z",
   "files": {
     ".github/pull_request_template.md": {
       "filePath": ".github/pull_request_template.md",
@@ -304,6 +304,16 @@
       "totalLines": 40,
       "hasStructuralAnalysis": true
     },
+    "contract/agent-library/bounded-implementation.md": {
+      "filePath": "contract/agent-library/bounded-implementation.md",
+      "contentHash": "6eb4c2c3f8fbec0c95e0244e25f3f19f8f7a567f0e052cf4e5ed5d2379e7421f",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 83,
+      "hasStructuralAnalysis": true
+    },
     "contract/agent-library/bounded-refinement.md": {
       "filePath": "contract/agent-library/bounded-refinement.md",
       "contentHash": "7f887e87b8330cdd6d8a26bcf3282ce2df64ebc519ad245dd76f45c0ea5138fe",
@@ -336,12 +346,12 @@
     },
     "contract/agent-library/formation-catalog.md": {
       "filePath": "contract/agent-library/formation-catalog.md",
-      "contentHash": "5dba807da9bed65ddc4f8908c832b4465912464ab7e279edfaa18c84ba58b3f0",
+      "contentHash": "732bb6bee4158e645eecaddc3a5da5a13e10b499f2524db10fc7017120d3ac86",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 173,
+      "totalLines": 174,
       "hasStructuralAnalysis": true
     },
     "contract/agent-library/quick-task-clarifier-validator.md": {
@@ -826,27 +836,27 @@
     },
     "docs/project/current-state.md": {
       "filePath": "docs/project/current-state.md",
-      "contentHash": "0e0fd1c9667c1e02cc1b04cfe1f3429d36303bbbc648f4eaed936c466391130c",
+      "contentHash": "7dd193e9f6ccc08394880bcad93b8dde09ced34139c7f7cdb0270179491bc6de",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 63,
+      "totalLines": 64,
       "hasStructuralAnalysis": true
     },
     "docs/project/documentation-map.md": {
       "filePath": "docs/project/documentation-map.md",
-      "contentHash": "a7b06b3a5fcc2b7242d4b146e1344718f2d973d96308b54c11615617214dd574",
+      "contentHash": "d7462aa76bc60c82315d58e387517550bd68febd67baa520883ba081ef999250",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 57,
+      "totalLines": 58,
       "hasStructuralAnalysis": true
     },
     "docs/project/roadmap.md": {
       "filePath": "docs/project/roadmap.md",
-      "contentHash": "ac0076aa0383cf85b0e6226216b308436d41ddcbd4b942b4cede464c910dbd07",
+      "contentHash": "de746a9b318d1fcd9c345f244f7ee67463f440f5d34fe7ec1e4e71fb11d28259",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -886,7 +896,7 @@
     },
     "docs/superpowers/plans/2026-07-22-ai-agent-tooling-gate-1-research.md": {
       "filePath": "docs/superpowers/plans/2026-07-22-ai-agent-tooling-gate-1-research.md",
-      "contentHash": "3b434fafefe9e11754b8208831ac172960180ed8f2a09393bc89deb908ccef84",
+      "contentHash": "b8803c3ba25698230d47643c907895776188eb0f90922ae1cd46fa51659ef9b6",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -1106,7 +1116,7 @@
     },
     "docs/superpowers/specs/2026-07-21-ai-agent-tooling-research-design.md": {
       "filePath": "docs/superpowers/specs/2026-07-21-ai-agent-tooling-research-design.md",
-      "contentHash": "6dff3bd545c66783ff801d29349423ceaab15f43a1bf6bbda816ca3ec2a1ce8a",
+      "contentHash": "31d5b7955e834bc4c82005f8dcab5cc95263191ea49e873217a55125fbe75584",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -3206,7 +3216,7 @@
     },
     "src/controller/formation-recipe.ts": {
       "filePath": "src/controller/formation-recipe.ts",
-      "contentHash": "9bff173f6707bd057a0fe92af81185670f4166af27ecd444ffcb2a224d82e549",
+      "contentHash": "3ba056faf9f925f110d7554c987a4cc5237688a7fe52cc551a0f338f5e3c2165",
       "functions": [
         {
           "name": "loadValidationRecipe",
@@ -3236,6 +3246,15 @@
           "lineCount": 3
         },
         {
+          "name": "loadImplementationRecipe",
+          "params": [
+            "sourcePath"
+          ],
+          "returnType": "Promise<ImplementationRecipe>",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
           "name": "parseValidationRecipe",
           "params": [
             "source",
@@ -3253,6 +3272,26 @@
           ],
           "returnType": "ResearchRecipe",
           "exported": true,
+          "lineCount": 75
+        },
+        {
+          "name": "parseImplementationRecipe",
+          "params": [
+            "source",
+            "sourcePath"
+          ],
+          "returnType": "ImplementationRecipe",
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "parseImplementationRecipeUnchecked",
+          "params": [
+            "source",
+            "sourcePath"
+          ],
+          "returnType": "ImplementationRecipe",
+          "exported": false,
           "lineCount": 75
         },
         {
@@ -3363,6 +3402,15 @@
           "properties": [],
           "exported": true,
           "lineCount": 6
+        },
+        {
+          "name": "ImplementationRecipeError",
+          "methods": [
+            "constructor"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 6
         }
       ],
       "imports": [
@@ -3381,6 +3429,7 @@
         {
           "source": "./types.js",
           "specifiers": [
+            "ImplementationRecipe",
             "RefinementRecipe",
             "ResearchRecipe",
             "ValidationRecipe"
@@ -3390,19 +3439,22 @@
       "exports": [
         "ValidationRecipeError",
         "RefinementRecipeError",
+        "ImplementationRecipeError",
         "loadValidationRecipe",
         "loadResearchRecipe",
         "loadRefinementRecipe",
+        "loadImplementationRecipe",
         "parseValidationRecipe",
         "parseResearchRecipe",
+        "parseImplementationRecipe",
         "parseRefinementRecipe"
       ],
-      "totalLines": 313,
+      "totalLines": 409,
       "hasStructuralAnalysis": true
     },
     "src/controller/formation-recommendation.ts": {
       "filePath": "src/controller/formation-recommendation.ts",
-      "contentHash": "9a356ce6e50b04c591cbdb6e94c0811b7ea8aa3729989dc68bd475721cac51ad",
+      "contentHash": "ba6b4e7d2aa77394d404713e44a250cf3b297860c4c6524acdaf346c926a1774",
       "functions": [
         {
           "name": "recommendFormation",
@@ -3449,7 +3501,7 @@
           ],
           "returnType": "readonly string[]",
           "exported": false,
-          "lineCount": 19
+          "lineCount": 22
         },
         {
           "name": "unknownRequestEvidence",
@@ -3514,7 +3566,7 @@
         "FormationRecommendationError",
         "recommendFormation"
       ],
-      "totalLines": 135,
+      "totalLines": 138,
       "hasStructuralAnalysis": true
     },
     "src/controller/formation.ts": {
@@ -3932,7 +3984,7 @@
     },
     "src/controller/request.ts": {
       "filePath": "src/controller/request.ts",
-      "contentHash": "c70f47e566ccec833336664ffae321fb45b55b30c830491f534250506b8377d4",
+      "contentHash": "35e9f380794336f300ad4bff61a142901d3cf418e75f3f2c2f7c06011a9f8539",
       "functions": [
         {
           "name": "parseQuickTaskRequest",
@@ -3950,7 +4002,7 @@
           ],
           "returnType": "FormationInput",
           "exported": false,
-          "lineCount": 7
+          "lineCount": 8
         },
         {
           "name": "parseResearchFormationInput",
@@ -3978,6 +4030,15 @@
           "returnType": "RefinementFormationInput",
           "exported": false,
           "lineCount": 9
+        },
+        {
+          "name": "parseImplementationFormationInput",
+          "params": [
+            "record"
+          ],
+          "returnType": "ImplementationFormationInput",
+          "exported": false,
+          "lineCount": 14
         },
         {
           "name": "parseValue",
@@ -4128,6 +4189,7 @@
           "source": "./types.js",
           "specifiers": [
             "FormationInput",
+            "ImplementationFormationInput",
             "LinkDeclaration",
             "QuickTaskRequest",
             "RefinementFormationInput",
@@ -4140,7 +4202,7 @@
         "ControllerRequestError",
         "parseQuickTaskRequest"
       ],
-      "totalLines": 154,
+      "totalLines": 170,
       "hasStructuralAnalysis": true
     },
     "src/controller/resolve.ts": {
@@ -4193,7 +4255,7 @@
     },
     "src/controller/types.ts": {
       "filePath": "src/controller/types.ts",
-      "contentHash": "df9ae0d217d43f04b64701e6fe0186291bac817f4784ac89c7bc5a75e78acc56",
+      "contentHash": "4a28b7b4ce20561f64f13d8fa614ef598ef3005c2bfc0ae2ef78cd831f9b7bfa",
       "functions": [],
       "classes": [
         {
@@ -4210,7 +4272,7 @@
       "exports": [
         "ControllerActivationPackageError"
       ],
-      "totalLines": 359,
+      "totalLines": 400,
       "hasStructuralAnalysis": true
     },
     "src/docs/links.ts": {
@@ -9389,7 +9451,7 @@
     },
     "test/controller-cli.test.ts": {
       "filePath": "test/controller-cli.test.ts",
-      "contentHash": "f7af3ae9ea50121724f47009b0396ba77d04ec9e86b65d9dd9d44cb0a859d708",
+      "contentHash": "80951f5d8a0e852d9f42fbcc833587357ffaf79b4f687c55f6edd3237f4a34a8",
       "functions": [
         {
           "name": "runBuiltCli",
@@ -9445,7 +9507,7 @@
         }
       ],
       "exports": [],
-      "totalLines": 230,
+      "totalLines": 267,
       "hasStructuralAnalysis": true
     },
     "test/controller-evaluate.test.ts": {
@@ -9507,7 +9569,7 @@
     },
     "test/controller-formation-recipe.test.ts": {
       "filePath": "test/controller-formation-recipe.test.ts",
-      "contentHash": "0a74b38a379695ad7427d146f921c8f18821975e996cfa48c49aaece55426a7a",
+      "contentHash": "e9261793afea171877d7268e6bcad43e0263e0a97cdbacd253f63093ccacc2cc",
       "functions": [],
       "classes": [],
       "imports": [
@@ -9526,20 +9588,22 @@
         {
           "source": "../src/controller/formation-recipe.js",
           "specifiers": [
+            "loadImplementationRecipe",
             "loadResearchRecipe",
             "loadValidationRecipe",
+            "parseImplementationRecipe",
             "parseResearchRecipe",
             "parseValidationRecipe"
           ]
         }
       ],
       "exports": [],
-      "totalLines": 134,
+      "totalLines": 202,
       "hasStructuralAnalysis": true
     },
     "test/controller-formation-recommendation.test.ts": {
       "filePath": "test/controller-formation-recommendation.test.ts",
-      "contentHash": "13ce6424b3a54c765c9c69fb944c4a66a836e172e96bb79f7f98584da0025b52",
+      "contentHash": "d73be1895bbdec48d40dfb1a80efef51a807e88124ac4f59935e765a7c922be7",
       "functions": [],
       "classes": [],
       "imports": [
@@ -9582,12 +9646,12 @@
         }
       ],
       "exports": [],
-      "totalLines": 222,
+      "totalLines": 254,
       "hasStructuralAnalysis": true
     },
     "test/controller-formation.test.ts": {
       "filePath": "test/controller-formation.test.ts",
-      "contentHash": "208b573e57a1bbc9707f86a97d1526aa6da36fefe71a34b58a1698cf7f1a488b",
+      "contentHash": "eaabcfab73b733fe582d45087421bb7c135142358a528680f4f805cae1c48e87",
       "functions": [
         {
           "name": "catalogSource",
@@ -9622,7 +9686,7 @@
         }
       ],
       "exports": [],
-      "totalLines": 148,
+      "totalLines": 151,
       "hasStructuralAnalysis": true
     },
     "test/controller-recipe.test.ts": {
@@ -9686,7 +9750,7 @@
     },
     "test/controller-request.test.ts": {
       "filePath": "test/controller-request.test.ts",
-      "contentHash": "c9e44632e303d2d8921368104d83c721907a0070eccb699a010d3137df37c005",
+      "contentHash": "dd25675dd50510f98c85be0b149e92ad4e9f25c30f8a1ac635dd6c79344fd3e6",
       "functions": [
         {
           "name": "fixture",
@@ -9739,7 +9803,7 @@
         }
       ],
       "exports": [],
-      "totalLines": 100,
+      "totalLines": 135,
       "hasStructuralAnalysis": true
     },
     "test/controller-resolve.test.ts": {

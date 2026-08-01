@@ -5,7 +5,7 @@ short and must not become a second roadmap, transcript, or historical report.
 
 ## Branch and pull request
 
-The public website delivery was merged as [PR #13](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/13), the documentation structure and roadmap as [PR #14](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/14), the Activation Package state correction as [PR #15](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/15), M1-A as [PR #16](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/16), M1-B as [PR #18](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/18), the CLI integration as [PR #20](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/20), the first fully ready validation formation as [PR #22](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/22), the ready refinement formation as [PR #24](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/24), the documentation routing alignment as [PR #26](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/26), and the current mapper snapshot refresh as [PR #27](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/27). The current local delivery base is `main`, tracking `origin/main`, with no open pull request for this branch.
+The public website delivery was merged as [PR #13](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/13), the documentation structure and roadmap as [PR #14](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/14), the Activation Package state correction as [PR #15](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/15), M1-A as [PR #16](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/16), M1-B as [PR #18](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/18), the CLI integration as [PR #20](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/20), the first fully ready validation formation as [PR #22](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/22), the ready refinement formation as [PR #24](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/24), the documentation routing alignment as [PR #26](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/26), and the current mapper snapshot refresh as [PR #27](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/27). The current implementation delivery is on `codex/bounded-implementation-ready`, published as [PR #34](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/34) against `main`.
 
 ## Completed deliverable
 
@@ -15,17 +15,19 @@ boundary, the first Quick Task capability contract, the ephemeral Quick Task
 Activation Package command, and the public-facing website surface. M1-A now
 adds the strict [formation catalog](../../contract/agent-library/formation-catalog.md)
 contract and TypeScript validator with one ready Quick Task entry, fully ready
-research, validation, and refinement entries, and two bounded scenario candidates. M1-B adds
+research, validation, refinement, and implementation entries, and one bounded
+debugging candidate. M1-B adds
 deterministic scenario recognition and explainable, recommendation-only output
 with stable structural identity. The read-only `recommend-formation` CLI
-command now exposes the research, validation, and refinement profile paths as `RECOMMEND`
+command now exposes the research, validation, refinement, and implementation
+profile paths as `RECOMMEND`
 when all required profile input is present and preserves `UNKNOWN` otherwise,
 without changing Quick Task checkpoint or activation behavior.
 
 ## Validation
 
-The formation recipe/catalog/request/recommendation focused suite passes
-45/45, and the full repository suite passes 257/257 under the available local
+The formation recipe/catalog/request/recommendation/CLI focused suite passes
+64/64, and the full repository suite passes 267/267 under the available local
 Node 26 runtime. Documentation-link validation and `git diff --check` pass.
 Remote CI `quality` passed on PR #24. The package declares Node 22.x; local
 Node 26 is not the declared runtime, so the remote CI result remains the exact
@@ -36,16 +38,16 @@ is performed.
 
 ## Known limit
 
-The implementation and debugging scenario recipes and
-profile-specific output contracts remain future or bounded M1 slices. Host
+The debugging scenario recipe and profile-specific output contract remain a
+bounded M1 slice. Host
 adaptation/execution, explicit package saving, durable session state,
 evaluation/evolve loop, debugging context injection, and optional lifecycle
 synchronization remain future work. The current Activation Package, M1-A
 catalog, and M1-B recommendation remain `READY_WITH_LIMIT` overall: they
 prepare, describe, or recommend bounded, host-agnostic work but do not activate
-an Agent or persist an artifact. Mapper freshness is `READY` at the current
-`main` source revision: the checked-in Understand Anything and Graphify
-snapshots match the source revision, and the mapper gate passes.
+an Agent or persist an artifact. Mapper freshness is commit-relative:
+publication requires the checked-in Understand Anything and Graphify snapshots
+to identify the final source revision and `npm run check:mappers` to pass.
 
 ## Open stop
 
@@ -55,8 +57,7 @@ specific approval, bounded authority, and source-native read-back.
 
 ## Next bounded action
 
-Select and implement the next fully `READY` scenario recipe from implementation
-or debugging with its
-profile-specific DoR/DoD/AC/evidence output contract, without changing the
-Human Checkpoint boundary.
+Implement the bounded debugging scenario as the final READY recipe/profile
+contract required by the current M1 roadmap slice, without changing the Human
+Checkpoint boundary.
 

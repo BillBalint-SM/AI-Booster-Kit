@@ -104,7 +104,17 @@ export interface ResearchFormationInput {
   evidenceStandard: readonly string[];
 }
 
-export type FormationInput = ResearchFormationInput | ValidationFormationInput | RefinementFormationInput;
+export interface ImplementationFormationInput {
+  scenario: "development";
+  repository: string;
+  repositoryState: "VERIFIED";
+  acceptanceCriteria: readonly string[];
+  testStrategy: readonly string[];
+  planState: "ACCEPTED";
+  rollbackBoundary: string;
+}
+
+export type FormationInput = ResearchFormationInput | ValidationFormationInput | RefinementFormationInput | ImplementationFormationInput;
 
 export interface ValidationRecipe {
   recipeId: "bounded-validation";
@@ -196,6 +206,37 @@ export interface ResearchRecipe {
   recovery: {
     preserve: readonly ["source-register", "conflicting-findings"];
     stopConditions: readonly ["unknown-source-authority", "scope-expansion", "partial-evidence"];
+  };
+}
+
+export interface ImplementationRecipe {
+  recipeId: "bounded-implementation";
+  recipeVersion: "0.1.0";
+  status: "READY";
+  formationId: "bounded-implementation";
+  scenario: "development";
+  weight: "heavy";
+  coordination: "sequential";
+  controller: {
+    version: 1;
+    eligibleComplexities: readonly ["MEDIUM"];
+    requiredInput: readonly ["goal", "repository", "repository-state", "acceptance-criteria", "test-strategy", "accepted-plan", "rollback-boundary"];
+    executionBoundary: "LOCAL_ONLY";
+    authority: "RECOMMENDATION_ONLY";
+  };
+  outputContract: {
+    requiredSections: readonly ["reviewable-diff", "test-evidence", "residual-risk-record"];
+    unknownPolicy: "PRESERVE_AS_UNKNOWN";
+    resultState: "NOT_STARTED";
+  };
+  acceptance: {
+    criteria: readonly ["scope-matched-diff", "relevant-tests-pass", "rollback-boundary-preserved"];
+  };
+  evidenceRequirements: readonly ["git-diff", "test-output", "review-record"];
+  relations: readonly [{ kind: "depends_on"; target: "bounded-refinement" }];
+  recovery: {
+    preserve: readonly ["prior-setup", "failing-evidence"];
+    stopConditions: readonly ["dirty-state-conflict", "unsafe-change", "failed-read-back"];
   };
 }
 
