@@ -1,10 +1,23 @@
 {
   "version": "1.0.0",
   "project": {
-    "name": "AI-Booster-Kit",
-    "description": "This repository is an agent-agnostic, contract-first synchronization orchestrator for safely coordinating work through separately approved domain adapters. It provides a shareable operating layer for coordinating Jira, GitHub, and Confluence work across multiple coding agents.",
-    "analyzedAt": "2026-08-01T21:35:18.801Z",
-    "gitCommitHash": "6c0a0421a612ca2ec8e2e30b77a45ad70134659f"
+    "name": "agent-agnostic-sync-orchestrator",
+    "languages": [
+      "css",
+      "javascript",
+      "json",
+      "markdown",
+      "powershell",
+      "typescript",
+      "unknown",
+      "yaml"
+    ],
+    "frameworks": [
+      "GitHub Actions"
+    ],
+    "description": "AI Booster Kit is a modular, human-centred platform for choosing, tuning, validating, and reusing Agent or Multi-Agent capabilities without making Agent assistance mandatory. Note: this project has over 100 source files; consider scoping analysis to a subdirectory for faster results.",
+    "analyzedAt": "2026-08-01T22:36:55.090Z",
+    "gitCommitHash": "37bafb8c626db8d0ddb37d9c1863849a2b006382"
   },
   "nodes": [
     {
@@ -5596,18 +5609,6 @@
       "complexity": "moderate"
     },
     {
-      "id": "document:contract/agent-library/formation-catalog.md",
-      "type": "document",
-      "name": "formation-catalog.md",
-      "filePath": "contract/agent-library/formation-catalog.md",
-      "summary": "Defines a bounded agent formation recipe or catalog entry used by the controller recommendation flow.",
-      "tags": [
-        "documentation",
-        "contract-agent-library"
-      ],
-      "complexity": "complex"
-    },
-    {
       "id": "document:contract/agent-library/quick-task-clarifier-validator.md",
       "type": "document",
       "name": "quick-task-clarifier-validator.md",
@@ -5618,42 +5619,6 @@
         "contract-agent-library"
       ],
       "complexity": "moderate"
-    },
-    {
-      "id": "document:docs/project/current-state.md",
-      "type": "document",
-      "name": "current-state.md",
-      "filePath": "docs/project/current-state.md",
-      "summary": "Records the current project routing, documentation map, or milestone roadmap for the delivery state.",
-      "tags": [
-        "documentation",
-        "docs-project"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "document:docs/project/documentation-map.md",
-      "type": "document",
-      "name": "documentation-map.md",
-      "filePath": "docs/project/documentation-map.md",
-      "summary": "Records the current project routing, documentation map, or milestone roadmap for the delivery state.",
-      "tags": [
-        "documentation",
-        "docs-project"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "document:docs/project/roadmap.md",
-      "type": "document",
-      "name": "roadmap.md",
-      "filePath": "docs/project/roadmap.md",
-      "summary": "Records the current project routing, documentation map, or milestone roadmap for the delivery state.",
-      "tags": [
-        "documentation",
-        "docs-project"
-      ],
-      "complexity": "complex"
     },
     {
       "id": "document:docs/runbooks/g2as-sandbox-readiness-certificate.md",
@@ -5869,30 +5834,6 @@
       "complexity": "simple"
     },
     {
-      "id": "file:src/controller/formation-recipe.ts",
-      "type": "file",
-      "name": "formation-recipe.ts",
-      "filePath": "src/controller/formation-recipe.ts",
-      "summary": "Implements the controller boundary for formation-recipe requests, choices, recipes, or activation decisions.",
-      "tags": [
-        "file",
-        "src-controller"
-      ],
-      "complexity": "complex"
-    },
-    {
-      "id": "file:src/controller/formation-recommendation.ts",
-      "type": "file",
-      "name": "formation-recommendation.ts",
-      "filePath": "src/controller/formation-recommendation.ts",
-      "summary": "Implements the controller boundary for formation-recommendation requests, choices, recipes, or activation decisions.",
-      "tags": [
-        "file",
-        "src-controller"
-      ],
-      "complexity": "moderate"
-    },
-    {
       "id": "file:src/controller/formation.ts",
       "type": "file",
       "name": "formation.ts",
@@ -5929,18 +5870,6 @@
       "complexity": "moderate"
     },
     {
-      "id": "file:src/controller/request.ts",
-      "type": "file",
-      "name": "request.ts",
-      "filePath": "src/controller/request.ts",
-      "summary": "Implements the controller boundary for request requests, choices, recipes, or activation decisions.",
-      "tags": [
-        "file",
-        "src-controller"
-      ],
-      "complexity": "moderate"
-    },
-    {
       "id": "file:src/controller/resolve.ts",
       "type": "file",
       "name": "resolve.ts",
@@ -5951,18 +5880,6 @@
         "src-controller"
       ],
       "complexity": "simple"
-    },
-    {
-      "id": "file:src/controller/types.ts",
-      "type": "file",
-      "name": "types.ts",
-      "filePath": "src/controller/types.ts",
-      "summary": "Implements the controller boundary for types requests, choices, recipes, or activation decisions.",
-      "tags": [
-        "file",
-        "src-controller"
-      ],
-      "complexity": "complex"
     },
     {
       "id": "file:src/evidence/codex-mcp-adapter.ts",
@@ -6044,7 +5961,8 @@
       "summary": "Defines readiness observations and output handling for the bounded sandbox verification flow.",
       "tags": [
         "file",
-        "src-readiness"
+        "src-readiness",
+        "tested"
       ],
       "complexity": "complex"
     },
@@ -6181,18 +6099,6 @@
       "complexity": "moderate"
     },
     {
-      "id": "file:test/controller-cli.test.ts",
-      "type": "file",
-      "name": "controller-cli.test.ts",
-      "filePath": "test/controller-cli.test.ts",
-      "summary": "Verifies the repository behavior, contract boundary, failure path, or controller scenario covered by this test.",
-      "tags": [
-        "file",
-        "test"
-      ],
-      "complexity": "complex"
-    },
-    {
       "id": "file:test/controller-evaluate.test.ts",
       "type": "file",
       "name": "controller-evaluate.test.ts",
@@ -6203,42 +6109,6 @@
         "test"
       ],
       "complexity": "simple"
-    },
-    {
-      "id": "file:test/controller-formation-recipe.test.ts",
-      "type": "file",
-      "name": "controller-formation-recipe.test.ts",
-      "filePath": "test/controller-formation-recipe.test.ts",
-      "summary": "Verifies the repository behavior, contract boundary, failure path, or controller scenario covered by this test.",
-      "tags": [
-        "file",
-        "test"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "file:test/controller-formation-recommendation.test.ts",
-      "type": "file",
-      "name": "controller-formation-recommendation.test.ts",
-      "filePath": "test/controller-formation-recommendation.test.ts",
-      "summary": "Verifies the repository behavior, contract boundary, failure path, or controller scenario covered by this test.",
-      "tags": [
-        "file",
-        "test"
-      ],
-      "complexity": "complex"
-    },
-    {
-      "id": "file:test/controller-formation.test.ts",
-      "type": "file",
-      "name": "controller-formation.test.ts",
-      "filePath": "test/controller-formation.test.ts",
-      "summary": "Verifies the repository behavior, contract boundary, failure path, or controller scenario covered by this test.",
-      "tags": [
-        "file",
-        "test"
-      ],
-      "complexity": "moderate"
     },
     {
       "id": "file:test/controller-recipe.test.ts",
@@ -6257,18 +6127,6 @@
       "type": "file",
       "name": "controller-refinement-recipe.test.ts",
       "filePath": "test/controller-refinement-recipe.test.ts",
-      "summary": "Verifies the repository behavior, contract boundary, failure path, or controller scenario covered by this test.",
-      "tags": [
-        "file",
-        "test"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "file:test/controller-request.test.ts",
-      "type": "file",
-      "name": "controller-request.test.ts",
-      "filePath": "test/controller-request.test.ts",
       "summary": "Verifies the repository behavior, contract boundary, failure path, or controller scenario covered by this test.",
       "tags": [
         "file",
@@ -7238,321 +7096,6 @@
       "complexity": "simple"
     },
     {
-      "id": "function:src/controller/formation-recipe.ts:loadValidationRecipe",
-      "type": "function",
-      "name": "loadValidationRecipe",
-      "filePath": "src/controller/formation-recipe.ts",
-      "lineRange": [
-        32,
-        34
-      ],
-      "summary": "Defines loadValidationRecipe in src/controller/formation-recipe.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "function:src/controller/formation-recipe.ts:loadRefinementRecipe",
-      "type": "function",
-      "name": "loadRefinementRecipe",
-      "filePath": "src/controller/formation-recipe.ts",
-      "lineRange": [
-        36,
-        38
-      ],
-      "summary": "Defines loadRefinementRecipe in src/controller/formation-recipe.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "function:src/controller/formation-recipe.ts:parseValidationRecipe",
-      "type": "function",
-      "name": "parseValidationRecipe",
-      "filePath": "src/controller/formation-recipe.ts",
-      "lineRange": [
-        40,
-        114
-      ],
-      "summary": "Defines parseValidationRecipe in src/controller/formation-recipe.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/controller/formation-recipe.ts:parseRefinementRecipe",
-      "type": "function",
-      "name": "parseRefinementRecipe",
-      "filePath": "src/controller/formation-recipe.ts",
-      "lineRange": [
-        116,
-        123
-      ],
-      "summary": "Defines parseRefinementRecipe in src/controller/formation-recipe.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "function:src/controller/formation-recipe.ts:parseRefinementRecipeUnchecked",
-      "type": "function",
-      "name": "parseRefinementRecipeUnchecked",
-      "filePath": "src/controller/formation-recipe.ts",
-      "lineRange": [
-        125,
-        199
-      ],
-      "summary": "Defines parseRefinementRecipeUnchecked in src/controller/formation-recipe.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/controller/formation-recipe.ts:extractFrontmatter",
-      "type": "function",
-      "name": "extractFrontmatter",
-      "filePath": "src/controller/formation-recipe.ts",
-      "lineRange": [
-        201,
-        205
-      ],
-      "summary": "Defines extractFrontmatter in src/controller/formation-recipe.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "function:src/controller/formation-recipe.ts:requireRecord",
-      "type": "function",
-      "name": "requireRecord",
-      "filePath": "src/controller/formation-recipe.ts",
-      "lineRange": [
-        207,
-        210
-      ],
-      "summary": "Defines requireRecord in src/controller/formation-recipe.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "function:src/controller/formation-recipe.ts:requireExactKeys",
-      "type": "function",
-      "name": "requireExactKeys",
-      "filePath": "src/controller/formation-recipe.ts",
-      "lineRange": [
-        212,
-        218
-      ],
-      "summary": "Defines requireExactKeys in src/controller/formation-recipe.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "function:src/controller/formation-recipe.ts:requireLiteral",
-      "type": "function",
-      "name": "requireLiteral",
-      "filePath": "src/controller/formation-recipe.ts",
-      "lineRange": [
-        220,
-        222
-      ],
-      "summary": "Defines requireLiteral in src/controller/formation-recipe.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "function:src/controller/formation-recipe.ts:requireExactArray",
-      "type": "function",
-      "name": "requireExactArray",
-      "filePath": "src/controller/formation-recipe.ts",
-      "lineRange": [
-        224,
-        227
-      ],
-      "summary": "Defines requireExactArray in src/controller/formation-recipe.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "function:src/controller/formation-recipe.ts:requireList",
-      "type": "function",
-      "name": "requireList",
-      "filePath": "src/controller/formation-recipe.ts",
-      "lineRange": [
-        229,
-        232
-      ],
-      "summary": "Defines requireList in src/controller/formation-recipe.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "class:src/controller/formation-recipe.ts:ValidationRecipeError",
-      "type": "class",
-      "name": "ValidationRecipeError",
-      "filePath": "src/controller/formation-recipe.ts",
-      "lineRange": [
-        13,
-        23
-      ],
-      "summary": "Defines ValidationRecipeError in src/controller/formation-recipe.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "class:src/controller/formation-recipe.ts:RefinementRecipeError",
-      "type": "class",
-      "name": "RefinementRecipeError",
-      "filePath": "src/controller/formation-recipe.ts",
-      "lineRange": [
-        25,
-        30
-      ],
-      "summary": "Defines RefinementRecipeError in src/controller/formation-recipe.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "function:src/controller/formation-recommendation.ts:recommendFormation",
-      "type": "function",
-      "name": "recommendFormation",
-      "filePath": "src/controller/formation-recommendation.ts",
-      "lineRange": [
-        29,
-        65
-      ],
-      "summary": "Defines recommendFormation in src/controller/formation-recommendation.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "function:src/controller/formation-recommendation.ts:validateRequest",
-      "type": "function",
-      "name": "validateRequest",
-      "filePath": "src/controller/formation-recommendation.ts",
-      "lineRange": [
-        67,
-        70
-      ],
-      "summary": "Defines validateRequest in src/controller/formation-recommendation.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "function:src/controller/formation-recommendation.ts:validateCatalog",
-      "type": "function",
-      "name": "validateCatalog",
-      "filePath": "src/controller/formation-recommendation.ts",
-      "lineRange": [
-        72,
-        77
-      ],
-      "summary": "Defines validateCatalog in src/controller/formation-recommendation.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "function:src/controller/formation-recommendation.ts:recognizeScenario",
-      "type": "function",
-      "name": "recognizeScenario",
-      "filePath": "src/controller/formation-recommendation.ts",
-      "lineRange": [
-        79,
-        82
-      ],
-      "summary": "Defines recognizeScenario in src/controller/formation-recommendation.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "function:src/controller/formation-recommendation.ts:unresolvedPrerequisites",
-      "type": "function",
-      "name": "unresolvedPrerequisites",
-      "filePath": "src/controller/formation-recommendation.ts",
-      "lineRange": [
-        84,
-        99
-      ],
-      "summary": "Defines unresolvedPrerequisites in src/controller/formation-recommendation.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "function:src/controller/formation-recommendation.ts:unknownRequestEvidence",
-      "type": "function",
-      "name": "unknownRequestEvidence",
-      "filePath": "src/controller/formation-recommendation.ts",
-      "lineRange": [
-        101,
-        107
-      ],
-      "summary": "Defines unknownRequestEvidence in src/controller/formation-recommendation.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "function:src/controller/formation-recommendation.ts:recommendation",
-      "type": "function",
-      "name": "recommendation",
-      "filePath": "src/controller/formation-recommendation.ts",
-      "lineRange": [
-        109,
-        131
-      ],
-      "summary": "Defines recommendation in src/controller/formation-recommendation.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "class:src/controller/formation-recommendation.ts:FormationRecommendationError",
-      "type": "class",
-      "name": "FormationRecommendationError",
-      "filePath": "src/controller/formation-recommendation.ts",
-      "lineRange": [
-        22,
-        27
-      ],
-      "summary": "Defines FormationRecommendationError in src/controller/formation-recommendation.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
       "id": "function:src/controller/formation.ts:loadFormationCatalog",
       "type": "function",
       "name": "loadFormationCatalog",
@@ -7988,276 +7531,6 @@
       "complexity": "simple"
     },
     {
-      "id": "function:src/controller/request.ts:parseQuickTaskRequest",
-      "type": "function",
-      "name": "parseQuickTaskRequest",
-      "filePath": "src/controller/request.ts",
-      "lineRange": [
-        12,
-        33
-      ],
-      "summary": "Defines parseQuickTaskRequest in src/controller/request.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "function:src/controller/request.ts:parseFormationInput",
-      "type": "function",
-      "name": "parseFormationInput",
-      "filePath": "src/controller/request.ts",
-      "lineRange": [
-        35,
-        40
-      ],
-      "summary": "Defines parseFormationInput in src/controller/request.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "function:src/controller/request.ts:parseValidationFormationInput",
-      "type": "function",
-      "name": "parseValidationFormationInput",
-      "filePath": "src/controller/request.ts",
-      "lineRange": [
-        42,
-        51
-      ],
-      "summary": "Defines parseValidationFormationInput in src/controller/request.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "function:src/controller/request.ts:parseRefinementFormationInput",
-      "type": "function",
-      "name": "parseRefinementFormationInput",
-      "filePath": "src/controller/request.ts",
-      "lineRange": [
-        53,
-        61
-      ],
-      "summary": "Defines parseRefinementFormationInput in src/controller/request.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "function:src/controller/request.ts:parseValue",
-      "type": "function",
-      "name": "parseValue",
-      "filePath": "src/controller/request.ts",
-      "lineRange": [
-        63,
-        68
-      ],
-      "summary": "Defines parseValue in src/controller/request.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "function:src/controller/request.ts:parseContext",
-      "type": "function",
-      "name": "parseContext",
-      "filePath": "src/controller/request.ts",
-      "lineRange": [
-        70,
-        75
-      ],
-      "summary": "Defines parseContext in src/controller/request.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "function:src/controller/request.ts:parseLinks",
-      "type": "function",
-      "name": "parseLinks",
-      "filePath": "src/controller/request.ts",
-      "lineRange": [
-        77,
-        85
-      ],
-      "summary": "Defines parseLinks in src/controller/request.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "function:src/controller/request.ts:parsePreferences",
-      "type": "function",
-      "name": "parsePreferences",
-      "filePath": "src/controller/request.ts",
-      "lineRange": [
-        87,
-        91
-      ],
-      "summary": "Defines parsePreferences in src/controller/request.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "function:src/controller/request.ts:plainRecord",
-      "type": "function",
-      "name": "plainRecord",
-      "filePath": "src/controller/request.ts",
-      "lineRange": [
-        93,
-        96
-      ],
-      "summary": "Defines plainRecord in src/controller/request.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "function:src/controller/request.ts:exactKeys",
-      "type": "function",
-      "name": "exactKeys",
-      "filePath": "src/controller/request.ts",
-      "lineRange": [
-        98,
-        101
-      ],
-      "summary": "Defines exactKeys in src/controller/request.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "function:src/controller/request.ts:allowedKeys",
-      "type": "function",
-      "name": "allowedKeys",
-      "filePath": "src/controller/request.ts",
-      "lineRange": [
-        103,
-        108
-      ],
-      "summary": "Defines allowedKeys in src/controller/request.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "function:src/controller/request.ts:literal",
-      "type": "function",
-      "name": "literal",
-      "filePath": "src/controller/request.ts",
-      "lineRange": [
-        110,
-        113
-      ],
-      "summary": "Defines literal in src/controller/request.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "function:src/controller/request.ts:oneOf",
-      "type": "function",
-      "name": "oneOf",
-      "filePath": "src/controller/request.ts",
-      "lineRange": [
-        115,
-        119
-      ],
-      "summary": "Defines oneOf in src/controller/request.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "function:src/controller/request.ts:nonEmpty",
-      "type": "function",
-      "name": "nonEmpty",
-      "filePath": "src/controller/request.ts",
-      "lineRange": [
-        121,
-        125
-      ],
-      "summary": "Defines nonEmpty in src/controller/request.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "function:src/controller/request.ts:nonEmptyField",
-      "type": "function",
-      "name": "nonEmptyField",
-      "filePath": "src/controller/request.ts",
-      "lineRange": [
-        127,
-        131
-      ],
-      "summary": "Defines nonEmptyField in src/controller/request.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "function:src/controller/request.ts:stringArray",
-      "type": "function",
-      "name": "stringArray",
-      "filePath": "src/controller/request.ts",
-      "lineRange": [
-        133,
-        136
-      ],
-      "summary": "Defines stringArray in src/controller/request.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "function:src/controller/request.ts:requiredStringArray",
-      "type": "function",
-      "name": "requiredStringArray",
-      "filePath": "src/controller/request.ts",
-      "lineRange": [
-        138,
-        142
-      ],
-      "summary": "Defines requiredStringArray in src/controller/request.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "class:src/controller/request.ts:ControllerRequestError",
-      "type": "class",
-      "name": "ControllerRequestError",
-      "filePath": "src/controller/request.ts",
-      "lineRange": [
-        5,
-        10
-      ],
-      "summary": "Defines ControllerRequestError in src/controller/request.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
       "id": "function:src/controller/resolve.ts:resolveCheckpoint",
       "type": "function",
       "name": "resolveCheckpoint",
@@ -8282,21 +7555,6 @@
         35
       ],
       "summary": "Defines acknowledgementRequired in src/controller/resolve.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "class:src/controller/types.ts:ControllerActivationPackageError",
-      "type": "class",
-      "name": "ControllerActivationPackageError",
-      "filePath": "src/controller/types.ts",
-      "lineRange": [
-        285,
-        290
-      ],
-      "summary": "Defines ControllerActivationPackageError in src/controller/types.ts.",
       "tags": [
         "structural-extraction"
       ],
@@ -9593,21 +8851,6 @@
       "complexity": "simple"
     },
     {
-      "id": "function:test/controller-cli.test.ts:runBuiltCli",
-      "type": "function",
-      "name": "runBuiltCli",
-      "filePath": "test/controller-cli.test.ts",
-      "lineRange": [
-        185,
-        195
-      ],
-      "summary": "Defines runBuiltCli in test/controller-cli.test.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
       "id": "function:test/controller-evaluate.test.ts:fixture",
       "type": "function",
       "name": "fixture",
@@ -9617,36 +8860,6 @@
         49
       ],
       "summary": "Defines fixture in test/controller-evaluate.test.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "function:test/controller-formation.test.ts:catalogSource",
-      "type": "function",
-      "name": "catalogSource",
-      "filePath": "test/controller-formation.test.ts",
-      "lineRange": [
-        35,
-        42
-      ],
-      "summary": "Defines catalogSource in test/controller-formation.test.ts.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "function:test/controller-request.test.ts:fixture",
-      "type": "function",
-      "name": "fixture",
-      "filePath": "test/controller-request.test.ts",
-      "lineRange": [
-        82,
-        84
-      ],
-      "summary": "Defines fixture in test/controller-request.test.ts.",
       "tags": [
         "structural-extraction"
       ],
@@ -9980,6 +9193,595 @@
         "ready"
       ],
       "complexity": "moderate"
+    },
+    {
+      "id": "file:src/controller/formation-recommendation.ts",
+      "type": "file",
+      "name": "formation-recommendation.ts",
+      "filePath": "src/controller/formation-recommendation.ts",
+      "summary": "Classifies Quick Task goals and emits explainable formation recommendations while preserving missing implementation prerequisites and UNKNOWN evidence.",
+      "tags": [
+        "recommendation",
+        "controller",
+        "scenario-routing",
+        "validation",
+        "tested"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/controller/formation-recommendation.ts:recommendFormation",
+      "type": "function",
+      "name": "recommendFormation",
+      "filePath": "src/controller/formation-recommendation.ts",
+      "lineRange": [
+        29,
+        65
+      ],
+      "summary": "Selects or withholds a formation using scenario recognition, complexity, prerequisites, and UNKNOWN evidence.",
+      "tags": [
+        "controller",
+        "validation",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/controller/formation-recommendation.ts:unresolvedPrerequisites",
+      "type": "function",
+      "name": "unresolvedPrerequisites",
+      "filePath": "src/controller/formation-recommendation.ts",
+      "lineRange": [
+        84,
+        105
+      ],
+      "summary": "Evaluates scenario-specific prerequisites, including explicit implementation repository, plan, test, and rollback evidence.",
+      "tags": [
+        "controller",
+        "validation",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/controller/formation-recommendation.ts:recommendation",
+      "type": "function",
+      "name": "recommendation",
+      "filePath": "src/controller/formation-recommendation.ts",
+      "lineRange": [
+        115,
+        137
+      ],
+      "summary": "Function recommendation provides a validated part of the Controller contract implemented in src/controller/formation-recommendation.ts.",
+      "tags": [
+        "controller",
+        "validation",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/controller/formation-recommendation.ts:FormationRecommendationError",
+      "type": "class",
+      "name": "FormationRecommendationError",
+      "filePath": "src/controller/formation-recommendation.ts",
+      "lineRange": [
+        22,
+        27
+      ],
+      "summary": "FormationRecommendationError reports a specific rejected Controller contract without exposing input values.",
+      "tags": [
+        "controller",
+        "error-handling",
+        "validation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/controller/request.ts",
+      "type": "file",
+      "name": "request.ts",
+      "filePath": "src/controller/request.ts",
+      "summary": "Strictly parses Quick Task requests and scenario profiles, requiring VERIFIED repository state and an ACCEPTED plan for development work.",
+      "tags": [
+        "request-parser",
+        "validation",
+        "controller",
+        "safety-boundary",
+        "tested"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/controller/request.ts:parseQuickTaskRequest",
+      "type": "function",
+      "name": "parseQuickTaskRequest",
+      "filePath": "src/controller/request.ts",
+      "lineRange": [
+        12,
+        33
+      ],
+      "summary": "Validates the complete Quick Task request envelope and delegates scenario-profile parsing.",
+      "tags": [
+        "controller",
+        "validation",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/controller/request.ts:parseValidationFormationInput",
+      "type": "function",
+      "name": "parseValidationFormationInput",
+      "filePath": "src/controller/request.ts",
+      "lineRange": [
+        54,
+        63
+      ],
+      "summary": "Function parseValidationFormationInput provides a validated part of the Controller contract implemented in src/controller/request.ts.",
+      "tags": [
+        "controller",
+        "validation",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/controller/request.ts:parseImplementationFormationInput",
+      "type": "function",
+      "name": "parseImplementationFormationInput",
+      "filePath": "src/controller/request.ts",
+      "lineRange": [
+        75,
+        88
+      ],
+      "summary": "Requires the exact development profile, VERIFIED repository state, ACCEPTED plan, test strategy, and rollback boundary.",
+      "tags": [
+        "controller",
+        "validation",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/controller/request.ts:ControllerRequestError",
+      "type": "class",
+      "name": "ControllerRequestError",
+      "filePath": "src/controller/request.ts",
+      "lineRange": [
+        5,
+        10
+      ],
+      "summary": "ControllerRequestError reports a specific rejected Controller contract without exposing input values.",
+      "tags": [
+        "controller",
+        "error-handling",
+        "validation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/controller/types.ts",
+      "type": "file",
+      "name": "types.ts",
+      "filePath": "src/controller/types.ts",
+      "summary": "Defines canonical Controller request, recipe, recommendation, checkpoint, and activation types, including the bounded implementation contracts.",
+      "tags": [
+        "type-definition",
+        "controller",
+        "recipe-contract",
+        "typescript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:src/controller/types.ts:ControllerActivationPackageError",
+      "type": "class",
+      "name": "ControllerActivationPackageError",
+      "filePath": "src/controller/types.ts",
+      "lineRange": [
+        364,
+        369
+      ],
+      "summary": "ControllerActivationPackageError reports a specific rejected Controller contract without exposing input values.",
+      "tags": [
+        "controller",
+        "error-handling",
+        "validation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:test/controller-formation-recommendation.test.ts",
+      "type": "file",
+      "name": "controller-formation-recommendation.test.ts",
+      "filePath": "test/controller-formation-recommendation.test.ts",
+      "summary": "Verifies scenario classification, implementation recommendation, missing-prerequisite UNKNOWN behavior, and safe no-Agent precedence.",
+      "tags": [
+        "test",
+        "recommendation",
+        "scenario-routing",
+        "negative-path"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:test/controller-formation.test.ts",
+      "type": "file",
+      "name": "controller-formation.test.ts",
+      "filePath": "test/controller-formation.test.ts",
+      "summary": "Verifies strict formation catalog parsing, unique identities, READY recipe links, and unsafe or malformed catalog rejection.",
+      "tags": [
+        "test",
+        "formation-catalog",
+        "validation",
+        "negative-path"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:test/controller-request.test.ts",
+      "type": "file",
+      "name": "controller-request.test.ts",
+      "filePath": "test/controller-request.test.ts",
+      "summary": "Verifies strict Quick Task and scenario-profile parsing, including implementation repository, plan-state, and empty-input failures.",
+      "tags": [
+        "test",
+        "request-parser",
+        "validation",
+        "negative-path"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/controller/formation-recipe.ts",
+      "type": "file",
+      "name": "formation-recipe.ts",
+      "filePath": "src/controller/formation-recipe.ts",
+      "summary": "Loads and strictly validates scenario-specific READY recipe frontmatter, including the bounded implementation profile and its safety invariants.",
+      "tags": [
+        "validation",
+        "recipe-parser",
+        "controller",
+        "safety-boundary",
+        "tested"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/controller/formation-recipe.ts:loadValidationRecipe",
+      "type": "function",
+      "name": "loadValidationRecipe",
+      "filePath": "src/controller/formation-recipe.ts",
+      "lineRange": [
+        39,
+        41
+      ],
+      "summary": "Function loadValidationRecipe provides a validated part of the Controller contract implemented in src/controller/formation-recipe.ts.",
+      "tags": [
+        "controller",
+        "validation",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/controller/formation-recipe.ts:loadResearchRecipe",
+      "type": "function",
+      "name": "loadResearchRecipe",
+      "filePath": "src/controller/formation-recipe.ts",
+      "lineRange": [
+        43,
+        45
+      ],
+      "summary": "Function loadResearchRecipe provides a validated part of the Controller contract implemented in src/controller/formation-recipe.ts.",
+      "tags": [
+        "controller",
+        "validation",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/controller/formation-recipe.ts:loadRefinementRecipe",
+      "type": "function",
+      "name": "loadRefinementRecipe",
+      "filePath": "src/controller/formation-recipe.ts",
+      "lineRange": [
+        47,
+        49
+      ],
+      "summary": "Function loadRefinementRecipe provides a validated part of the Controller contract implemented in src/controller/formation-recipe.ts.",
+      "tags": [
+        "controller",
+        "validation",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/controller/formation-recipe.ts:loadImplementationRecipe",
+      "type": "function",
+      "name": "loadImplementationRecipe",
+      "filePath": "src/controller/formation-recipe.ts",
+      "lineRange": [
+        51,
+        53
+      ],
+      "summary": "Loads a bounded implementation recipe from disk and delegates to the strict profile parser.",
+      "tags": [
+        "controller",
+        "validation",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/controller/formation-recipe.ts:parseValidationRecipe",
+      "type": "function",
+      "name": "parseValidationRecipe",
+      "filePath": "src/controller/formation-recipe.ts",
+      "lineRange": [
+        55,
+        129
+      ],
+      "summary": "Function parseValidationRecipe provides a validated part of the Controller contract implemented in src/controller/formation-recipe.ts.",
+      "tags": [
+        "controller",
+        "validation",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/controller/formation-recipe.ts:parseResearchRecipe",
+      "type": "function",
+      "name": "parseResearchRecipe",
+      "filePath": "src/controller/formation-recipe.ts",
+      "lineRange": [
+        131,
+        205
+      ],
+      "summary": "Function parseResearchRecipe provides a validated part of the Controller contract implemented in src/controller/formation-recipe.ts.",
+      "tags": [
+        "controller",
+        "validation",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/controller/formation-recipe.ts:parseImplementationRecipe",
+      "type": "function",
+      "name": "parseImplementationRecipe",
+      "filePath": "src/controller/formation-recipe.ts",
+      "lineRange": [
+        207,
+        214
+      ],
+      "summary": "Parses an implementation recipe and maps shared validation failures to an implementation-specific error.",
+      "tags": [
+        "controller",
+        "validation",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/controller/formation-recipe.ts:parseImplementationRecipeUnchecked",
+      "type": "function",
+      "name": "parseImplementationRecipeUnchecked",
+      "filePath": "src/controller/formation-recipe.ts",
+      "lineRange": [
+        216,
+        290
+      ],
+      "summary": "Validates every canonical implementation recipe field and constructs the exact typed READY contract.",
+      "tags": [
+        "controller",
+        "validation",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/controller/formation-recipe.ts:parseRefinementRecipe",
+      "type": "function",
+      "name": "parseRefinementRecipe",
+      "filePath": "src/controller/formation-recipe.ts",
+      "lineRange": [
+        292,
+        299
+      ],
+      "summary": "Function parseRefinementRecipe provides a validated part of the Controller contract implemented in src/controller/formation-recipe.ts.",
+      "tags": [
+        "controller",
+        "validation",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/controller/formation-recipe.ts:parseRefinementRecipeUnchecked",
+      "type": "function",
+      "name": "parseRefinementRecipeUnchecked",
+      "filePath": "src/controller/formation-recipe.ts",
+      "lineRange": [
+        301,
+        375
+      ],
+      "summary": "Function parseRefinementRecipeUnchecked provides a validated part of the Controller contract implemented in src/controller/formation-recipe.ts.",
+      "tags": [
+        "controller",
+        "validation",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:src/controller/formation-recipe.ts:ValidationRecipeError",
+      "type": "class",
+      "name": "ValidationRecipeError",
+      "filePath": "src/controller/formation-recipe.ts",
+      "lineRange": [
+        13,
+        23
+      ],
+      "summary": "ValidationRecipeError reports a specific rejected Controller contract without exposing input values.",
+      "tags": [
+        "controller",
+        "error-handling",
+        "validation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/controller/formation-recipe.ts:RefinementRecipeError",
+      "type": "class",
+      "name": "RefinementRecipeError",
+      "filePath": "src/controller/formation-recipe.ts",
+      "lineRange": [
+        25,
+        30
+      ],
+      "summary": "RefinementRecipeError reports a specific rejected Controller contract without exposing input values.",
+      "tags": [
+        "controller",
+        "error-handling",
+        "validation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/controller/formation-recipe.ts:ImplementationRecipeError",
+      "type": "class",
+      "name": "ImplementationRecipeError",
+      "filePath": "src/controller/formation-recipe.ts",
+      "lineRange": [
+        32,
+        37
+      ],
+      "summary": "ImplementationRecipeError reports a specific rejected Controller contract without exposing input values.",
+      "tags": [
+        "controller",
+        "error-handling",
+        "validation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:test/controller-formation-recipe.test.ts",
+      "type": "file",
+      "name": "controller-formation-recipe.test.ts",
+      "filePath": "test/controller-formation-recipe.test.ts",
+      "summary": "Verifies READY recipe parsing and checked-in contracts, including implementation metadata, output completeness, and unsafe-authority rejection.",
+      "tags": [
+        "test",
+        "recipe-parser",
+        "negative-path",
+        "contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:contract/agent-library/bounded-implementation.md",
+      "type": "document",
+      "name": "bounded-implementation.md",
+      "filePath": "contract/agent-library/bounded-implementation.md",
+      "summary": "Defines the READY, local-only implementation formation with explicit verified-repository, accepted-plan, evidence, rollback, and stop contracts under recommendation-only authority.",
+      "tags": [
+        "documentation",
+        "implementation-contract",
+        "agent-formation",
+        "safety-boundary"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:contract/agent-library/formation-catalog.md",
+      "type": "document",
+      "name": "formation-catalog.md",
+      "filePath": "contract/agent-library/formation-catalog.md",
+      "summary": "Defines the canonical six-entry formation catalog, promotes bounded implementation to READY, and preserves bounded debugging as the remaining candidate.",
+      "tags": [
+        "documentation",
+        "agent-formation",
+        "controller-contract",
+        "readiness"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:docs/project/current-state.md",
+      "type": "document",
+      "name": "current-state.md",
+      "filePath": "docs/project/current-state.md",
+      "summary": "Routes the active implementation delivery through GitHub PR #34, its verification evidence, the remaining debugging limit, and the next bounded M1 action.",
+      "tags": [
+        "documentation",
+        "delivery-routing",
+        "current-state",
+        "readiness"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:docs/project/documentation-map.md",
+      "type": "document",
+      "name": "documentation-map.md",
+      "filePath": "docs/project/documentation-map.md",
+      "summary": "Indexes the repository's canonical documentation and now routes readers to the READY bounded implementation recipe.",
+      "tags": [
+        "documentation",
+        "navigation",
+        "agent-formation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:docs/project/roadmap.md",
+      "type": "document",
+      "name": "roadmap.md",
+      "filePath": "docs/project/roadmap.md",
+      "summary": "Defines the platform capability sequence and M1 acceptance gate, including four READY scenario recipes and debugging as the remaining recipe slice.",
+      "tags": [
+        "documentation",
+        "roadmap",
+        "milestone",
+        "readiness"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:test/controller-cli.test.ts",
+      "type": "file",
+      "name": "controller-cli.test.ts",
+      "filePath": "test/controller-cli.test.ts",
+      "summary": "Exercises the built Controller CLI across ready scenario profiles, including an implementation recommendation that performs no artifact writes.",
+      "tags": [
+        "test",
+        "cli",
+        "integration",
+        "no-side-effects"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:test/controller-cli.test.ts:runBuiltCli",
+      "type": "function",
+      "name": "runBuiltCli",
+      "filePath": "test/controller-cli.test.ts",
+      "lineRange": [
+        256,
+        266
+      ],
+      "summary": "Function runBuiltCli provides a validated part of the Controller contract implemented in test/controller-cli.test.ts.",
+      "tags": [
+        "controller",
+        "validation",
+        "function"
+      ],
+      "complexity": "simple"
     }
   ],
   "edges": [
@@ -13834,20 +13636,6 @@
       "weight": 0.5
     },
     {
-      "source": "document:docs/project/documentation-map.md",
-      "target": "document:docs/project/current-state.md",
-      "type": "documents",
-      "direction": "forward",
-      "weight": 0.5
-    },
-    {
-      "source": "document:docs/project/documentation-map.md",
-      "target": "document:docs/history/README.md",
-      "type": "documents",
-      "direction": "forward",
-      "weight": 0.5
-    },
-    {
       "source": "document:docs/gate-2/atlassian-oauth-read-only-preflight.md",
       "target": "config:contract/readiness/g2as-sandbox-target.json",
       "type": "documents",
@@ -14408,356 +14196,6 @@
       "weight": 0.7
     },
     {
-      "source": "file:src/controller/formation-recipe.ts",
-      "target": "function:src/controller/formation-recipe.ts:loadValidationRecipe",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:src/controller/formation-recipe.ts",
-      "target": "function:src/controller/formation-recipe.ts:loadRefinementRecipe",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:src/controller/formation-recipe.ts",
-      "target": "function:src/controller/formation-recipe.ts:parseValidationRecipe",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:src/controller/formation-recipe.ts",
-      "target": "function:src/controller/formation-recipe.ts:parseRefinementRecipe",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:src/controller/formation-recipe.ts",
-      "target": "function:src/controller/formation-recipe.ts:parseRefinementRecipeUnchecked",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:src/controller/formation-recipe.ts",
-      "target": "function:src/controller/formation-recipe.ts:extractFrontmatter",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:src/controller/formation-recipe.ts",
-      "target": "function:src/controller/formation-recipe.ts:requireRecord",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:src/controller/formation-recipe.ts",
-      "target": "function:src/controller/formation-recipe.ts:requireExactKeys",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:src/controller/formation-recipe.ts",
-      "target": "function:src/controller/formation-recipe.ts:requireLiteral",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:src/controller/formation-recipe.ts",
-      "target": "function:src/controller/formation-recipe.ts:requireExactArray",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:src/controller/formation-recipe.ts",
-      "target": "function:src/controller/formation-recipe.ts:requireList",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:src/controller/formation-recipe.ts",
-      "target": "class:src/controller/formation-recipe.ts:ValidationRecipeError",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:src/controller/formation-recipe.ts",
-      "target": "class:src/controller/formation-recipe.ts:RefinementRecipeError",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:src/controller/formation-recipe.ts",
-      "target": "class:src/controller/formation-recipe.ts:ValidationRecipeError",
-      "type": "exports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "file:src/controller/formation-recipe.ts",
-      "target": "class:src/controller/formation-recipe.ts:RefinementRecipeError",
-      "type": "exports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "file:src/controller/formation-recipe.ts",
-      "target": "function:src/controller/formation-recipe.ts:loadValidationRecipe",
-      "type": "exports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "file:src/controller/formation-recipe.ts",
-      "target": "function:src/controller/formation-recipe.ts:loadRefinementRecipe",
-      "type": "exports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "file:src/controller/formation-recipe.ts",
-      "target": "function:src/controller/formation-recipe.ts:parseValidationRecipe",
-      "type": "exports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "file:src/controller/formation-recipe.ts",
-      "target": "function:src/controller/formation-recipe.ts:parseRefinementRecipe",
-      "type": "exports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "function:src/controller/formation-recipe.ts:loadValidationRecipe",
-      "target": "function:src/controller/formation-recipe.ts:parseValidationRecipe",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/formation-recipe.ts:loadRefinementRecipe",
-      "target": "function:src/controller/formation-recipe.ts:parseRefinementRecipe",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/formation-recipe.ts:parseValidationRecipe",
-      "target": "function:src/controller/formation-recipe.ts:extractFrontmatter",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/formation-recipe.ts:parseValidationRecipe",
-      "target": "function:src/controller/formation-recipe.ts:requireRecord",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/formation-recipe.ts:parseValidationRecipe",
-      "target": "function:src/controller/formation-recipe.ts:requireExactKeys",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/formation-recipe.ts:parseValidationRecipe",
-      "target": "function:src/controller/formation-recipe.ts:requireLiteral",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/formation-recipe.ts:parseValidationRecipe",
-      "target": "function:src/controller/formation-recipe.ts:requireExactArray",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/formation-recipe.ts:parseValidationRecipe",
-      "target": "function:src/controller/formation-recipe.ts:requireList",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/formation-recipe.ts:parseRefinementRecipe",
-      "target": "function:src/controller/formation-recipe.ts:parseRefinementRecipeUnchecked",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/formation-recipe.ts:parseRefinementRecipeUnchecked",
-      "target": "function:src/controller/formation-recipe.ts:extractFrontmatter",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/formation-recipe.ts:parseRefinementRecipeUnchecked",
-      "target": "function:src/controller/formation-recipe.ts:requireRecord",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/formation-recipe.ts:parseRefinementRecipeUnchecked",
-      "target": "function:src/controller/formation-recipe.ts:requireExactKeys",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/formation-recipe.ts:parseRefinementRecipeUnchecked",
-      "target": "function:src/controller/formation-recipe.ts:requireLiteral",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/formation-recipe.ts:parseRefinementRecipeUnchecked",
-      "target": "function:src/controller/formation-recipe.ts:requireExactArray",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/formation-recipe.ts:parseRefinementRecipeUnchecked",
-      "target": "function:src/controller/formation-recipe.ts:requireList",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "file:src/controller/formation-recommendation.ts",
-      "target": "function:src/controller/formation-recommendation.ts:recommendFormation",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:src/controller/formation-recommendation.ts",
-      "target": "function:src/controller/formation-recommendation.ts:validateRequest",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:src/controller/formation-recommendation.ts",
-      "target": "function:src/controller/formation-recommendation.ts:validateCatalog",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:src/controller/formation-recommendation.ts",
-      "target": "function:src/controller/formation-recommendation.ts:recognizeScenario",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:src/controller/formation-recommendation.ts",
-      "target": "function:src/controller/formation-recommendation.ts:unresolvedPrerequisites",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:src/controller/formation-recommendation.ts",
-      "target": "function:src/controller/formation-recommendation.ts:unknownRequestEvidence",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:src/controller/formation-recommendation.ts",
-      "target": "function:src/controller/formation-recommendation.ts:recommendation",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:src/controller/formation-recommendation.ts",
-      "target": "class:src/controller/formation-recommendation.ts:FormationRecommendationError",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:src/controller/formation-recommendation.ts",
-      "target": "class:src/controller/formation-recommendation.ts:FormationRecommendationError",
-      "type": "exports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "file:src/controller/formation-recommendation.ts",
-      "target": "function:src/controller/formation-recommendation.ts:recommendFormation",
-      "type": "exports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "function:src/controller/formation-recommendation.ts:recommendFormation",
-      "target": "function:src/controller/formation-recommendation.ts:validateRequest",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/formation-recommendation.ts:recommendFormation",
-      "target": "function:src/controller/formation-recommendation.ts:validateCatalog",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/formation-recommendation.ts:recommendFormation",
-      "target": "function:src/controller/formation-recommendation.ts:recommendation",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/formation-recommendation.ts:recommendFormation",
-      "target": "function:src/controller/formation-recommendation.ts:recognizeScenario",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/formation-recommendation.ts:recommendFormation",
-      "target": "function:src/controller/formation-recommendation.ts:unresolvedPrerequisites",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/formation-recommendation.ts:recommendFormation",
-      "target": "function:src/controller/formation-recommendation.ts:unknownRequestEvidence",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
       "source": "file:src/controller/formation.ts",
       "target": "function:src/controller/formation.ts:loadFormationCatalog",
       "type": "contains",
@@ -15262,419 +14700,6 @@
       "weight": 0.7
     },
     {
-      "source": "file:src/controller/request.ts",
-      "target": "function:src/controller/request.ts:parseQuickTaskRequest",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:src/controller/request.ts",
-      "target": "function:src/controller/request.ts:parseFormationInput",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:src/controller/request.ts",
-      "target": "function:src/controller/request.ts:parseValidationFormationInput",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:src/controller/request.ts",
-      "target": "function:src/controller/request.ts:parseRefinementFormationInput",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:src/controller/request.ts",
-      "target": "function:src/controller/request.ts:parseValue",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:src/controller/request.ts",
-      "target": "function:src/controller/request.ts:parseContext",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:src/controller/request.ts",
-      "target": "function:src/controller/request.ts:parseLinks",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:src/controller/request.ts",
-      "target": "function:src/controller/request.ts:parsePreferences",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:src/controller/request.ts",
-      "target": "function:src/controller/request.ts:plainRecord",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:src/controller/request.ts",
-      "target": "function:src/controller/request.ts:exactKeys",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:src/controller/request.ts",
-      "target": "function:src/controller/request.ts:allowedKeys",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:src/controller/request.ts",
-      "target": "function:src/controller/request.ts:literal",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:src/controller/request.ts",
-      "target": "function:src/controller/request.ts:oneOf",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:src/controller/request.ts",
-      "target": "function:src/controller/request.ts:nonEmpty",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:src/controller/request.ts",
-      "target": "function:src/controller/request.ts:nonEmptyField",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:src/controller/request.ts",
-      "target": "function:src/controller/request.ts:stringArray",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:src/controller/request.ts",
-      "target": "function:src/controller/request.ts:requiredStringArray",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:src/controller/request.ts",
-      "target": "class:src/controller/request.ts:ControllerRequestError",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:src/controller/request.ts",
-      "target": "class:src/controller/request.ts:ControllerRequestError",
-      "type": "exports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "file:src/controller/request.ts",
-      "target": "function:src/controller/request.ts:parseQuickTaskRequest",
-      "type": "exports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "function:src/controller/request.ts:parseQuickTaskRequest",
-      "target": "function:src/controller/request.ts:plainRecord",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/request.ts:parseQuickTaskRequest",
-      "target": "function:src/controller/request.ts:allowedKeys",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/request.ts:parseQuickTaskRequest",
-      "target": "function:src/controller/request.ts:literal",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/request.ts:parseQuickTaskRequest",
-      "target": "function:src/controller/request.ts:nonEmpty",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/request.ts:parseQuickTaskRequest",
-      "target": "function:src/controller/request.ts:oneOf",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/request.ts:parseQuickTaskRequest",
-      "target": "function:src/controller/request.ts:parseValue",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/request.ts:parseQuickTaskRequest",
-      "target": "function:src/controller/request.ts:parseContext",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/request.ts:parseQuickTaskRequest",
-      "target": "function:src/controller/request.ts:parseLinks",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/request.ts:parseQuickTaskRequest",
-      "target": "function:src/controller/request.ts:parsePreferences",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/request.ts:parseQuickTaskRequest",
-      "target": "function:src/controller/request.ts:parseFormationInput",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/request.ts:parseFormationInput",
-      "target": "function:src/controller/request.ts:plainRecord",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/request.ts:parseFormationInput",
-      "target": "function:src/controller/request.ts:oneOf",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/request.ts:parseFormationInput",
-      "target": "function:src/controller/request.ts:parseValidationFormationInput",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/request.ts:parseFormationInput",
-      "target": "function:src/controller/request.ts:parseRefinementFormationInput",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/request.ts:parseValidationFormationInput",
-      "target": "function:src/controller/request.ts:exactKeys",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/request.ts:parseValidationFormationInput",
-      "target": "function:src/controller/request.ts:literal",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/request.ts:parseValidationFormationInput",
-      "target": "function:src/controller/request.ts:nonEmpty",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/request.ts:parseValidationFormationInput",
-      "target": "function:src/controller/request.ts:requiredStringArray",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/request.ts:parseRefinementFormationInput",
-      "target": "function:src/controller/request.ts:exactKeys",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/request.ts:parseRefinementFormationInput",
-      "target": "function:src/controller/request.ts:literal",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/request.ts:parseRefinementFormationInput",
-      "target": "function:src/controller/request.ts:nonEmptyField",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/request.ts:parseRefinementFormationInput",
-      "target": "function:src/controller/request.ts:requiredStringArray",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/request.ts:parseValue",
-      "target": "function:src/controller/request.ts:plainRecord",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/request.ts:parseValue",
-      "target": "function:src/controller/request.ts:oneOf",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/request.ts:parseValue",
-      "target": "function:src/controller/request.ts:exactKeys",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/request.ts:parseValue",
-      "target": "function:src/controller/request.ts:nonEmpty",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/request.ts:parseContext",
-      "target": "function:src/controller/request.ts:plainRecord",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/request.ts:parseContext",
-      "target": "function:src/controller/request.ts:oneOf",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/request.ts:parseContext",
-      "target": "function:src/controller/request.ts:exactKeys",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/request.ts:parseContext",
-      "target": "function:src/controller/request.ts:nonEmpty",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/request.ts:parseLinks",
-      "target": "function:src/controller/request.ts:plainRecord",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/request.ts:parseLinks",
-      "target": "function:src/controller/request.ts:exactKeys",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/request.ts:parseLinks",
-      "target": "function:src/controller/request.ts:oneOf",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/request.ts:parseLinks",
-      "target": "function:src/controller/request.ts:stringArray",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/request.ts:parsePreferences",
-      "target": "function:src/controller/request.ts:plainRecord",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/request.ts:parsePreferences",
-      "target": "function:src/controller/request.ts:exactKeys",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/request.ts:parsePreferences",
-      "target": "function:src/controller/request.ts:oneOf",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/request.ts:exactKeys",
-      "target": "function:src/controller/request.ts:allowedKeys",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "function:src/controller/request.ts:requiredStringArray",
-      "target": "function:src/controller/request.ts:stringArray",
-      "type": "calls",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
       "source": "file:src/controller/resolve.ts",
       "target": "function:src/controller/resolve.ts:resolveCheckpoint",
       "type": "contains",
@@ -15701,20 +14726,6 @@
       "type": "calls",
       "direction": "forward",
       "weight": 0.7
-    },
-    {
-      "source": "file:src/controller/types.ts",
-      "target": "class:src/controller/types.ts:ControllerActivationPackageError",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:src/controller/types.ts",
-      "target": "class:src/controller/types.ts:ControllerActivationPackageError",
-      "type": "exports",
-      "direction": "forward",
-      "weight": 0.8
     },
     {
       "source": "file:src/evidence/codex-mcp-adapter.ts",
@@ -17390,29 +16401,8 @@
       "weight": 1
     },
     {
-      "source": "file:test/controller-cli.test.ts",
-      "target": "function:test/controller-cli.test.ts:runBuiltCli",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
       "source": "file:test/controller-evaluate.test.ts",
       "target": "function:test/controller-evaluate.test.ts:fixture",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:test/controller-formation.test.ts",
-      "target": "function:test/controller-formation.test.ts:catalogSource",
-      "type": "contains",
-      "direction": "forward",
-      "weight": 1
-    },
-    {
-      "source": "file:test/controller-request.test.ts",
-      "target": "function:test/controller-request.test.ts:fixture",
       "type": "contains",
       "direction": "forward",
       "weight": 1
@@ -17720,13 +16710,6 @@
     },
     {
       "source": "file:src/cli.ts",
-      "target": "file:src/controller/formation-recommendation.ts",
-      "type": "imports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "file:src/cli.ts",
       "target": "file:src/controller/formation.ts",
       "type": "imports",
       "direction": "forward",
@@ -17741,21 +16724,7 @@
     },
     {
       "source": "file:src/cli.ts",
-      "target": "file:src/controller/request.ts",
-      "type": "imports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "file:src/cli.ts",
       "target": "file:src/controller/resolve.ts",
-      "type": "imports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "file:src/cli.ts",
-      "target": "file:src/controller/types.ts",
       "type": "imports",
       "direction": "forward",
       "weight": 0.8
@@ -17775,27 +16744,6 @@
       "weight": 0.8
     },
     {
-      "source": "file:src/controller/activation-package.ts",
-      "target": "file:src/controller/types.ts",
-      "type": "imports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "file:src/controller/checkpoint.ts",
-      "target": "file:src/controller/types.ts",
-      "type": "imports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "file:src/controller/choice.ts",
-      "target": "file:src/controller/types.ts",
-      "type": "imports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
       "source": "file:src/controller/evaluate.ts",
       "target": "file:src/controller/checkpoint.ts",
       "type": "imports",
@@ -17810,71 +16758,8 @@
       "weight": 0.8
     },
     {
-      "source": "file:src/controller/evaluate.ts",
-      "target": "file:src/controller/types.ts",
-      "type": "imports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "file:src/controller/formation-recipe.ts",
-      "target": "file:src/controller/types.ts",
-      "type": "imports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "file:src/controller/formation-recommendation.ts",
-      "target": "file:src/controller/identity.ts",
-      "type": "imports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "file:src/controller/formation-recommendation.ts",
-      "target": "file:src/controller/types.ts",
-      "type": "imports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "file:src/controller/formation.ts",
-      "target": "file:src/controller/types.ts",
-      "type": "imports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "file:src/controller/identity.ts",
-      "target": "file:src/controller/types.ts",
-      "type": "imports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "file:src/controller/recipe.ts",
-      "target": "file:src/controller/types.ts",
-      "type": "imports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "file:src/controller/request.ts",
-      "target": "file:src/controller/types.ts",
-      "type": "imports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
       "source": "file:src/controller/resolve.ts",
       "target": "file:src/controller/choice.ts",
-      "type": "imports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "file:src/controller/resolve.ts",
-      "target": "file:src/controller/types.ts",
       "type": "imports",
       "direction": "forward",
       "weight": 0.8
@@ -18252,21 +17137,7 @@
     },
     {
       "source": "file:test/controller-activation-package.test.ts",
-      "target": "file:src/controller/request.ts",
-      "type": "imports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "file:test/controller-activation-package.test.ts",
       "target": "file:src/controller/resolve.ts",
-      "type": "imports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "file:test/controller-activation-package.test.ts",
-      "target": "file:src/controller/types.ts",
       "type": "imports",
       "direction": "forward",
       "weight": 0.8
@@ -18274,20 +17145,6 @@
     {
       "source": "file:test/controller-checkpoint.test.ts",
       "target": "file:src/controller/evaluate.ts",
-      "type": "imports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "file:test/controller-checkpoint.test.ts",
-      "target": "file:src/controller/request.ts",
-      "type": "imports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "file:test/controller-checkpoint.test.ts",
-      "target": "file:src/controller/types.ts",
       "type": "imports",
       "direction": "forward",
       "weight": 0.8
@@ -18307,92 +17164,8 @@
       "weight": 0.8
     },
     {
-      "source": "file:test/controller-evaluate.test.ts",
-      "target": "file:src/controller/request.ts",
-      "type": "imports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "file:test/controller-evaluate.test.ts",
-      "target": "file:src/controller/types.ts",
-      "type": "imports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "file:test/controller-formation-recipe.test.ts",
-      "target": "file:src/controller/formation-recipe.ts",
-      "type": "imports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "file:test/controller-formation-recommendation.test.ts",
-      "target": "file:src/controller/formation-recommendation.ts",
-      "type": "imports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "file:test/controller-formation-recommendation.test.ts",
-      "target": "file:src/controller/formation.ts",
-      "type": "imports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "file:test/controller-formation-recommendation.test.ts",
-      "target": "file:src/controller/request.ts",
-      "type": "imports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "file:test/controller-formation-recommendation.test.ts",
-      "target": "file:src/controller/types.ts",
-      "type": "imports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "file:test/controller-formation.test.ts",
-      "target": "file:src/controller/formation.ts",
-      "type": "imports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
       "source": "file:test/controller-recipe.test.ts",
       "target": "file:src/controller/recipe.ts",
-      "type": "imports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "file:test/controller-refinement-recipe.test.ts",
-      "target": "file:src/controller/formation-recipe.ts",
-      "type": "imports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "file:test/controller-request.test.ts",
-      "target": "file:src/controller/identity.ts",
-      "type": "imports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "file:test/controller-request.test.ts",
-      "target": "file:src/controller/request.ts",
-      "type": "imports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "file:test/controller-request.test.ts",
-      "target": "file:src/controller/types.ts",
       "type": "imports",
       "direction": "forward",
       "weight": 0.8
@@ -18406,21 +17179,7 @@
     },
     {
       "source": "file:test/controller-resolve.test.ts",
-      "target": "file:src/controller/request.ts",
-      "type": "imports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "file:test/controller-resolve.test.ts",
       "target": "file:src/controller/resolve.ts",
-      "type": "imports",
-      "direction": "forward",
-      "weight": 0.8
-    },
-    {
-      "source": "file:test/controller-resolve.test.ts",
-      "target": "file:src/controller/types.ts",
       "type": "imports",
       "direction": "forward",
       "weight": 0.8
@@ -18489,11 +17248,647 @@
       "weight": 0.8
     },
     {
-      "source": "document:contract/agent-library/bounded-research.md",
+      "source": "file:src/controller/formation-recommendation.ts",
+      "target": "function:src/controller/formation-recommendation.ts:recommendFormation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/formation-recommendation.ts",
+      "target": "function:src/controller/formation-recommendation.ts:recommendFormation",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/controller/formation-recommendation.ts",
+      "target": "function:src/controller/formation-recommendation.ts:unresolvedPrerequisites",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/formation-recommendation.ts",
+      "target": "function:src/controller/formation-recommendation.ts:recommendation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/formation-recommendation.ts",
+      "target": "class:src/controller/formation-recommendation.ts:FormationRecommendationError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/formation-recommendation.ts",
+      "target": "class:src/controller/formation-recommendation.ts:FormationRecommendationError",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/controller/formation-recommendation.ts:recommendFormation",
+      "target": "function:src/controller/formation-recommendation.ts:recommendation",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/controller/formation-recommendation.ts:recommendFormation",
+      "target": "function:src/controller/formation-recommendation.ts:unresolvedPrerequisites",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/controller/formation-recommendation.ts",
+      "target": "file:src/controller/identity.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/controller/formation-recommendation.ts",
+      "target": "file:src/controller/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/controller/formation-recommendation.ts",
+      "target": "file:test/controller-formation-recommendation.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:src/controller/request.ts",
+      "target": "function:src/controller/request.ts:parseQuickTaskRequest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/request.ts",
+      "target": "function:src/controller/request.ts:parseQuickTaskRequest",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/controller/request.ts",
+      "target": "function:src/controller/request.ts:parseValidationFormationInput",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/request.ts",
+      "target": "function:src/controller/request.ts:parseImplementationFormationInput",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/request.ts",
+      "target": "class:src/controller/request.ts:ControllerRequestError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/request.ts",
+      "target": "class:src/controller/request.ts:ControllerRequestError",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/controller/request.ts",
+      "target": "file:src/controller/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/controller/request.ts",
+      "target": "file:test/controller-request.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:src/controller/types.ts",
+      "target": "class:src/controller/types.ts:ControllerActivationPackageError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/types.ts",
+      "target": "class:src/controller/types.ts:ControllerActivationPackageError",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:test/controller-formation-recommendation.test.ts",
+      "target": "file:src/controller/formation-recommendation.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test/controller-formation-recommendation.test.ts",
+      "target": "file:src/controller/formation.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test/controller-formation-recommendation.test.ts",
+      "target": "file:src/controller/request.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test/controller-formation-recommendation.test.ts",
+      "target": "file:src/controller/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test/controller-formation.test.ts",
+      "target": "file:src/controller/formation.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test/controller-request.test.ts",
+      "target": "file:src/controller/identity.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test/controller-request.test.ts",
+      "target": "file:src/controller/request.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test/controller-request.test.ts",
+      "target": "file:src/controller/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/controller/formation-recipe.ts",
+      "target": "function:src/controller/formation-recipe.ts:loadValidationRecipe",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/formation-recipe.ts",
+      "target": "function:src/controller/formation-recipe.ts:loadValidationRecipe",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/controller/formation-recipe.ts",
+      "target": "function:src/controller/formation-recipe.ts:loadResearchRecipe",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/formation-recipe.ts",
+      "target": "function:src/controller/formation-recipe.ts:loadResearchRecipe",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/controller/formation-recipe.ts",
+      "target": "function:src/controller/formation-recipe.ts:loadRefinementRecipe",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/formation-recipe.ts",
+      "target": "function:src/controller/formation-recipe.ts:loadRefinementRecipe",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/controller/formation-recipe.ts",
+      "target": "function:src/controller/formation-recipe.ts:loadImplementationRecipe",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/formation-recipe.ts",
+      "target": "function:src/controller/formation-recipe.ts:loadImplementationRecipe",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/controller/formation-recipe.ts",
+      "target": "function:src/controller/formation-recipe.ts:parseValidationRecipe",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/formation-recipe.ts",
+      "target": "function:src/controller/formation-recipe.ts:parseValidationRecipe",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/controller/formation-recipe.ts",
+      "target": "function:src/controller/formation-recipe.ts:parseResearchRecipe",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/formation-recipe.ts",
+      "target": "function:src/controller/formation-recipe.ts:parseResearchRecipe",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/controller/formation-recipe.ts",
+      "target": "function:src/controller/formation-recipe.ts:parseImplementationRecipe",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/formation-recipe.ts",
+      "target": "function:src/controller/formation-recipe.ts:parseImplementationRecipe",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/controller/formation-recipe.ts",
+      "target": "function:src/controller/formation-recipe.ts:parseImplementationRecipeUnchecked",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/formation-recipe.ts",
+      "target": "function:src/controller/formation-recipe.ts:parseRefinementRecipe",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/formation-recipe.ts",
+      "target": "function:src/controller/formation-recipe.ts:parseRefinementRecipe",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/controller/formation-recipe.ts",
+      "target": "function:src/controller/formation-recipe.ts:parseRefinementRecipeUnchecked",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/formation-recipe.ts",
+      "target": "class:src/controller/formation-recipe.ts:ValidationRecipeError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/formation-recipe.ts",
+      "target": "class:src/controller/formation-recipe.ts:ValidationRecipeError",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/controller/formation-recipe.ts",
+      "target": "class:src/controller/formation-recipe.ts:RefinementRecipeError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/formation-recipe.ts",
+      "target": "class:src/controller/formation-recipe.ts:RefinementRecipeError",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/controller/formation-recipe.ts",
+      "target": "class:src/controller/formation-recipe.ts:ImplementationRecipeError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/formation-recipe.ts",
+      "target": "class:src/controller/formation-recipe.ts:ImplementationRecipeError",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/controller/formation-recipe.ts:loadValidationRecipe",
+      "target": "function:src/controller/formation-recipe.ts:parseValidationRecipe",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/controller/formation-recipe.ts:loadResearchRecipe",
+      "target": "function:src/controller/formation-recipe.ts:parseResearchRecipe",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/controller/formation-recipe.ts:loadRefinementRecipe",
+      "target": "function:src/controller/formation-recipe.ts:parseRefinementRecipe",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/controller/formation-recipe.ts:loadImplementationRecipe",
+      "target": "function:src/controller/formation-recipe.ts:parseImplementationRecipe",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/controller/formation-recipe.ts:parseImplementationRecipe",
+      "target": "function:src/controller/formation-recipe.ts:parseImplementationRecipeUnchecked",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/controller/formation-recipe.ts:parseRefinementRecipe",
+      "target": "function:src/controller/formation-recipe.ts:parseRefinementRecipeUnchecked",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/controller/formation-recipe.ts",
+      "target": "file:src/controller/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/controller/formation-recipe.ts",
+      "target": "file:test/controller-formation-recipe.test.ts",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:test/controller-formation-recipe.test.ts",
+      "target": "file:src/controller/formation-recipe.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "document:contract/agent-library/bounded-implementation.md",
       "target": "document:contract/agent-library/formation-catalog.md",
       "type": "related",
       "direction": "forward",
-      "weight": 0.7
+      "weight": 0.5
+    },
+    {
+      "source": "document:contract/agent-library/formation-catalog.md",
+      "target": "document:contract/agent-library/bounded-implementation.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:docs/project/current-state.md",
+      "target": "document:docs/project/roadmap.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:docs/project/current-state.md",
+      "target": "document:contract/agent-library/bounded-implementation.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:docs/project/documentation-map.md",
+      "target": "document:contract/agent-library/bounded-implementation.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:docs/project/roadmap.md",
+      "target": "document:contract/agent-library/bounded-implementation.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:test/controller-cli.test.ts",
+      "target": "function:test/controller-cli.test.ts:runBuiltCli",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/cli.ts",
+      "target": "file:src/controller/formation-recommendation.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7,
+      "recoveredFromImportMap": true
+    },
+    {
+      "source": "file:src/cli.ts",
+      "target": "file:src/controller/request.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7,
+      "recoveredFromImportMap": true
+    },
+    {
+      "source": "file:src/cli.ts",
+      "target": "file:src/controller/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7,
+      "recoveredFromImportMap": true
+    },
+    {
+      "source": "file:src/controller/activation-package.ts",
+      "target": "file:src/controller/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7,
+      "recoveredFromImportMap": true
+    },
+    {
+      "source": "file:src/controller/checkpoint.ts",
+      "target": "file:src/controller/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7,
+      "recoveredFromImportMap": true
+    },
+    {
+      "source": "file:src/controller/choice.ts",
+      "target": "file:src/controller/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7,
+      "recoveredFromImportMap": true
+    },
+    {
+      "source": "file:src/controller/evaluate.ts",
+      "target": "file:src/controller/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7,
+      "recoveredFromImportMap": true
+    },
+    {
+      "source": "file:src/controller/formation.ts",
+      "target": "file:src/controller/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7,
+      "recoveredFromImportMap": true
+    },
+    {
+      "source": "file:src/controller/identity.ts",
+      "target": "file:src/controller/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7,
+      "recoveredFromImportMap": true
+    },
+    {
+      "source": "file:src/controller/recipe.ts",
+      "target": "file:src/controller/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7,
+      "recoveredFromImportMap": true
+    },
+    {
+      "source": "file:src/controller/resolve.ts",
+      "target": "file:src/controller/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7,
+      "recoveredFromImportMap": true
+    },
+    {
+      "source": "file:test/controller-activation-package.test.ts",
+      "target": "file:src/controller/request.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7,
+      "recoveredFromImportMap": true
+    },
+    {
+      "source": "file:test/controller-activation-package.test.ts",
+      "target": "file:src/controller/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7,
+      "recoveredFromImportMap": true
+    },
+    {
+      "source": "file:test/controller-checkpoint.test.ts",
+      "target": "file:src/controller/request.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7,
+      "recoveredFromImportMap": true
+    },
+    {
+      "source": "file:test/controller-checkpoint.test.ts",
+      "target": "file:src/controller/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7,
+      "recoveredFromImportMap": true
+    },
+    {
+      "source": "file:test/controller-evaluate.test.ts",
+      "target": "file:src/controller/request.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7,
+      "recoveredFromImportMap": true
+    },
+    {
+      "source": "file:test/controller-evaluate.test.ts",
+      "target": "file:src/controller/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7,
+      "recoveredFromImportMap": true
+    },
+    {
+      "source": "file:test/controller-refinement-recipe.test.ts",
+      "target": "file:src/controller/formation-recipe.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7,
+      "recoveredFromImportMap": true
+    },
+    {
+      "source": "file:test/controller-resolve.test.ts",
+      "target": "file:src/controller/request.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7,
+      "recoveredFromImportMap": true
+    },
+    {
+      "source": "file:test/controller-resolve.test.ts",
+      "target": "file:src/controller/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7,
+      "recoveredFromImportMap": true
     }
   ],
   "layers": [
@@ -18610,7 +18005,8 @@
         "config:website/drizzle/meta/_journal.json",
         "config:website/package.json",
         "config:website/tsconfig.json",
-        "document:contract/agent-library/bounded-research.md"
+        "document:contract/agent-library/bounded-research.md",
+        "document:contract/agent-library/bounded-implementation.md"
       ]
     },
     {
@@ -18776,10 +18172,6 @@
         "document:docs/project/current-state.md",
         "document:docs/project/documentation-map.md",
         "document:research/2026-07-21-ai-agent-tooling-blueprint.md",
-        "document:templates/hosts/claude-code-github-readonly-capability.md",
-        "document:templates/hosts/codex-github-readonly-capability.md",
-        "document:templates/hosts/cursor-github-readonly-capability.md",
-        "document:.github/pull_request_template.md",
         "document:NOTES.md",
         "document:docs/project/roadmap.md",
         "document:docs/superpowers/plans/2026-08-01-ai-booster-kit-controller-mvp.md",
@@ -18839,6 +18231,19 @@
     },
     {
       "order": 4,
+      "title": "Formation Controller",
+      "description": "The formation catalog and READY implementation recipe define which bounded agent shape may be recommended and what verified inputs, evidence, and rollback boundary it requires. Request parsing and recipe validation fail closed before the recommendation engine can expose the development profile, preserving UNKNOWN state and recommendation-only authority.",
+      "nodeIds": [
+        "document:contract/agent-library/formation-catalog.md",
+        "document:contract/agent-library/bounded-implementation.md",
+        "file:src/controller/request.ts",
+        "file:src/controller/formation-recommendation.ts",
+        "file:src/controller/formation-recipe.ts"
+      ],
+      "languageLesson": "TypeScript discriminated unions keep each scenario profile explicit, while runtime parsers independently enforce the same contract for untrusted JSON and Markdown inputs."
+    },
+    {
+      "order": 5,
       "title": "Domain Model Validation",
       "description": "Building on the contract boundary, the domain model defines milestones, work items, execution sets, project profiles, and durable events. AJV-backed validation converts malformed or incomplete data into precise domain errors, keeping later orchestration steps grounded in explicit schemas.",
       "nodeIds": [
@@ -18848,7 +18253,7 @@
       "languageLesson": "TypeScript types and runtime schemas serve different purposes here: static types guide implementation, while AJV validation protects the boundary when data arrives from files, adapters, or other external inputs."
     },
     {
-      "order": 5,
+      "order": 6,
       "title": "Events and Evidence",
       "description": "The event envelope carries canonical operations with stable idempotency keys and exact approved-field checks. Evidence guards sit alongside it to reject empty or credential-like references, connecting the domain model to an auditable execution path without allowing unsafe data into results.",
       "nodeIds": [
@@ -18857,7 +18262,7 @@
       ]
     },
     {
-      "order": 6,
+      "order": 7,
       "title": "Readiness Target",
       "description": "The readiness manifest fixes the sandbox target and its tenant, issue, page, repository, commit, and fixture constraints. Observation parsing then defines the safe boundary for Jira, Confluence, GitHub, and traceability evidence, so readiness is evaluated from normalized, validated inputs rather than assumptions.",
       "nodeIds": [
@@ -18866,7 +18271,7 @@
       ]
     },
     {
-      "order": 7,
+      "order": 8,
       "title": "Readiness Decisions",
       "description": "The readiness decision engine compares the four-source observations with the canonical manifest and derives a bounded decision. The orchestration wrapper reads an observation bundle through an injected adapter and turns that decision into a readiness certificate, completing the evidence-to-verdict flow introduced in the previous steps.",
       "nodeIds": [
@@ -18875,7 +18280,7 @@
       ]
     },
     {
-      "order": 8,
+      "order": 9,
       "title": "Host Adapter Projections",
       "description": "Shared adapter contracts define local event emission, capability reporting, and implementation-start safety checks. The Codex, Claude Code, and Cursor modules provide host metadata to that common machinery, showing how host-specific projections remain aligned without duplicating the domain contract.",
       "nodeIds": [
@@ -18886,7 +18291,7 @@
       ]
     },
     {
-      "order": 9,
+      "order": 10,
       "title": "Operating Model",
       "description": "The portable operating model documents the sequence from observation and validation through planning, execution, verification, and handoff, while keeping host and domain rules in their adapters. The Jira-Git-Confluence adapter specializes that model with authority, lifecycle, external-write, audit, and recovery boundaries for the project's synchronization domain.",
       "nodeIds": [
@@ -18895,7 +18300,7 @@
       ]
     },
     {
-      "order": 10,
+      "order": 11,
       "title": "Build and Verification",
       "description": "The package manifest defines the Node and validation toolchain, while the strict TypeScript configuration fixes the compilation target and module behavior. GitHub Actions turns those local conventions into repeatable pull-request and main-branch checks, including linting, documentation-link validation, and the test suite.",
       "nodeIds": [
