@@ -6,6 +6,12 @@ ownership: personal_or_team
 weight: light
 coordination: single-agent
 supportedWorkItem: Quick Task
+controller:
+  version: 1
+  eligibleComplexities: [LOW, MEDIUM]
+  executionBoundary: LOCAL_ONLY
+  requiredDor: [value, context, relations, dependencies]
+  authority: RECOMMENDATION_ONLY
 ---
 
 # Quick Task Clarifier & Validator

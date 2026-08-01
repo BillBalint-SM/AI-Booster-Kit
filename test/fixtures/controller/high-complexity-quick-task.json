@@ -1,0 +1,12 @@
+{
+  "requestVersion": "1.0",
+  "workItemType": "Quick Task",
+  "goal": "Validate a large local controller configuration.",
+  "outcomeOwner": "delivery-team",
+  "complexity": "HIGH",
+  "executionBoundary": "LOCAL_ONLY",
+  "value": { "state": "KNOWN", "statement": "A reviewable local recommendation." },
+  "context": { "state": "CURRENT", "reference": "workspace:controller-mvp" },
+  "relations": { "state": "ABSENT", "items": [] },
+  "dependencies": { "state": "ABSENT", "items": [] }
+}
