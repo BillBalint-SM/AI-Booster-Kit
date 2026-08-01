@@ -12,8 +12,10 @@ import { type ReadinessAdapter, type ReadinessObservationBundle } from "./readin
 import { writeReadinessCertificate } from "./readiness/output.js";
 import { runReadinessCertificate } from "./readiness/run.js";
 import { evaluateQuickTask, ControllerEvaluationError } from "./controller/evaluate.js";
+import { ControllerCheckpointError, parseCheckpointChoice } from "./controller/choice.js";
 import { ControllerRecipeError, loadQuickTaskRecipe } from "./controller/recipe.js";
 import { ControllerRequestError, parseQuickTaskRequest } from "./controller/request.js";
+import { resolveCheckpoint } from "./controller/resolve.js";
 
 const helpText = `Usage: npm run cli -- <command>
 
@@ -24,6 +26,7 @@ Commands:
   conformance   Run cross-host conformance checks
   readiness     Generate a local G2AS Sandbox Readiness Certificate
   quick-task    Recommend the local Quick Task recipe
+  resolve-checkpoint  Resolve an explicit local Quick Task checkpoint
 `;
 
 export async function runCli(argv: readonly string[]): Promise<number> {
@@ -55,6 +58,7 @@ async function dispatchCli(argv: readonly string[]): Promise<number> {
   if (command === "conformance") return runConformance(argv.slice(1));
   if (command === "readiness") return runReadiness(argv.slice(1));
   if (command === "quick-task") return runQuickTask(argv.slice(1));
+  if (command === "resolve-checkpoint") return runResolveCheckpoint(argv.slice(1));
 
   throw new CliError("CONFIGURATION_ERROR", 4);
 }
@@ -77,6 +81,42 @@ async function runQuickTask(argv: readonly string[]): Promise<number> {
     return response.decision === "RECOMMEND" || response.decision === "NO_AGENT" ? 0 : 2;
   } catch (error) {
     if (error instanceof ControllerRequestError || error instanceof ControllerRecipeError || error instanceof ControllerEvaluationError) return stoppedController("CONTROLLER_VALIDATION_FAILED", error.message, 3);
+    throw error;
+  }
+}
+
+async function runResolveCheckpoint(argv: readonly string[]): Promise<number> {
+  if (argv[0] !== "--input" || argv[1] === undefined || argv[2] !== "--choice" || argv[3] === undefined || argv.length !== 4) {
+    return stoppedController("COMMAND_CONFIGURATION_INVALID", "resolve-checkpoint requires exactly --input <path> --choice <path>", 4);
+  }
+  let requestSource: string;
+  try { requestSource = await readFile(argv[1], "utf8"); } catch (error) {
+    if (isSystemError(error)) return stoppedController("INPUT_PATH_UNREADABLE", "The explicit input path could not be read", 4);
+    throw error;
+  }
+  let choiceSource: string;
+  try { choiceSource = await readFile(argv[3], "utf8"); } catch (error) {
+    if (isSystemError(error)) return stoppedController("CHOICE_PATH_UNREADABLE", "The explicit choice path could not be read", 4);
+    throw error;
+  }
+  let requestInput: unknown;
+  try { requestInput = JSON.parse(requestSource) as unknown; } catch (error) {
+    if (error instanceof SyntaxError) return stoppedController("INPUT_JSON_INVALID", "The explicit input is not valid JSON", 3);
+    throw error;
+  }
+  let choiceInput: unknown;
+  try { choiceInput = JSON.parse(choiceSource) as unknown; } catch (error) {
+    if (error instanceof SyntaxError) return stoppedController("CHOICE_JSON_INVALID", "The explicit choice is not valid JSON", 3);
+    throw error;
+  }
+  try {
+    const response = evaluateQuickTask(parseQuickTaskRequest(requestInput), await loadQuickTaskRecipe("contract/agent-library/quick-task-clarifier-validator.md"));
+    process.stdout.write(`${JSON.stringify(resolveCheckpoint(response, parseCheckpointChoice(choiceInput)))}\n`);
+    return 0;
+  } catch (error) {
+    if (error instanceof ControllerRequestError || error instanceof ControllerRecipeError || error instanceof ControllerEvaluationError || error instanceof ControllerCheckpointError) {
+      return stoppedController("CHECKPOINT_RESOLUTION_FAILED", error.message, 3);
+    }
     throw error;
   }
 }

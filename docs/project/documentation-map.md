@@ -6,4 +6,6 @@ The AI Booster Kit first slice uses [Team Delivery Loop](../../workflows/team-de
 
 The Controller MVP adds the local `quick-task --input <file>` recommendation command and its strict request, recipe, identity, and evaluation modules. Its separately approved Controller design and implementation plan remain review artifacts rather than default runtime context.
 
+The Human Checkpoint and Activation Intent slice adds local `resolve-checkpoint --input <request.json> --choice <choice.json>` resolution. It re-evaluates the canonical Quick Task request and recipe, requires matching signatures, and emits only a side-effect-free User Intent. Its approved [design](../superpowers/specs/2026-08-01-ai-booster-kit-human-checkpoint-activation-intent-design.md) and [implementation plan](../superpowers/plans/2026-08-01-ai-booster-kit-human-checkpoint-activation-intent.md) remain review artifacts rather than default runtime context.
+
 Read [current state](current-state.md) only for routing, status, handoff, or target decisions. Historical evidence is not default agent context; use the [archive](../history/README.md) only when historical context is needed.

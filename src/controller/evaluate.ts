@@ -1,3 +1,4 @@
+import { createCheckpoint } from "./checkpoint.js";
 import { patternId, recipeSignature, requestFingerprint } from "./identity.js";
 import type { ControllerImpact, ControllerResponse, QuickTaskRecipe, QuickTaskRequest } from "./types.js";
 
@@ -26,5 +27,7 @@ function missing(request: QuickTaskRequest, field: "value" | "context" | "relati
 }
 
 function response(request: QuickTaskRequest, recipe: QuickTaskRecipe, decision: ControllerResponse["decision"], impact: ControllerImpact, requiresAcknowledgement: boolean, reasons: readonly string[], requiredClarifications: ControllerResponse["requiredClarifications"]): ControllerResponse {
-  return { decision, impact, requiresAcknowledgement, reasons, requiredClarifications, recipe: { recipeId: recipe.recipeId, recipeVersion: recipe.recipeVersion, status: recipe.status }, requestFingerprint: requestFingerprint(request), recipeSignature: recipeSignature(recipe), patternId: patternId(request, recipe, decision, impact) };
+  const evaluated = { decision, impact, requiresAcknowledgement, reasons, requiredClarifications, recipe: { recipeId: recipe.recipeId, recipeVersion: recipe.recipeVersion, status: recipe.status }, requestFingerprint: requestFingerprint(request), recipeSignature: recipeSignature(recipe), patternId: patternId(request, recipe, decision, impact) };
+  const checkpoint = createCheckpoint(evaluated);
+  return checkpoint === undefined ? evaluated : { ...evaluated, checkpoint };
 }

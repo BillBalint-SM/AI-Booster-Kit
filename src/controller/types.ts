@@ -14,6 +14,78 @@ export interface QuickTaskRecipe {
 
 export type ControllerDecision = "RECOMMEND" | "PREPARE" | "NO_AGENT" | "NO_FIT" | "STOPPED";
 export type ControllerImpact = "COMPATIBLE" | "DEGRADED" | "BREAKING" | "UNKNOWN";
+export type CheckpointChoice = "ACCEPT_RECOMMENDATION" | "REQUEST_ALTERNATIVE" | "CONTINUE_WITHOUT_AGENT";
+
+export interface ControllerRecipeIdentity {
+  recipeId: "quick-task-clarifier-validator";
+  recipeVersion: "0.1.0";
+  status: "READY_WITH_LIMIT";
+}
+
+export interface ControllerCheckpoint {
+  decision: "RECOMMEND";
+  impact: ControllerImpact;
+  requiresAcknowledgement: boolean;
+  choices: readonly ["ACCEPT_RECOMMENDATION", "REQUEST_ALTERNATIVE", "CONTINUE_WITHOUT_AGENT"];
+  recipe: ControllerRecipeIdentity;
+  requestFingerprint: string;
+  recipeSignature: string;
+}
+
+export type CheckpointChoiceInput =
+  | {
+      choice: "ACCEPT_RECOMMENDATION";
+      expectedRequestFingerprint: string;
+      expectedRecipeSignature: string;
+      acknowledgement?: true;
+    }
+  | {
+      choice: "REQUEST_ALTERNATIVE";
+      expectedRequestFingerprint: string;
+      expectedRecipeSignature: string;
+      rationale: string;
+    }
+  | {
+      choice: "CONTINUE_WITHOUT_AGENT";
+      expectedRequestFingerprint: string;
+      expectedRecipeSignature: string;
+    };
+
+export type ControllerIntent =
+  | {
+      state: "ACTIVATION_INTENT";
+      decision: "RECOMMEND";
+      impact: ControllerImpact;
+      choice: "ACCEPT_RECOMMENDATION";
+      recipe: ControllerRecipeIdentity;
+      requestFingerprint: string;
+      recipeSignature: string;
+      activationPerformed: false;
+      artifactGenerationPerformed: false;
+    }
+  | {
+      state: "ALTERNATIVE_REQUESTED";
+      decision: "RECOMMEND";
+      impact: ControllerImpact;
+      choice: "REQUEST_ALTERNATIVE";
+      rationale: string;
+      recipe: ControllerRecipeIdentity;
+      requestFingerprint: string;
+      recipeSignature: string;
+      activationPerformed: false;
+      artifactGenerationPerformed: false;
+    }
+  | {
+      state: "NO_AGENT_CONTINUATION";
+      decision: "RECOMMEND";
+      impact: ControllerImpact;
+      choice: "CONTINUE_WITHOUT_AGENT";
+      recipe: ControllerRecipeIdentity;
+      requestFingerprint: string;
+      recipeSignature: string;
+      activationPerformed: false;
+      artifactGenerationPerformed: false;
+    };
 
 export interface QuickTaskRequest {
   requestVersion: "1.0";
@@ -37,8 +109,9 @@ export interface ControllerResponse {
   requiresAcknowledgement: boolean;
   reasons: readonly string[];
   requiredClarifications: readonly { field: "value" | "context" | "relations" | "dependencies"; rationale: string; severity: "REQUIRED"; decisionImpact: "BLOCKS_RECOMMENDATION" }[];
-  recipe: { recipeId: "quick-task-clarifier-validator"; recipeVersion: "0.1.0"; status: "READY_WITH_LIMIT" };
+  recipe: ControllerRecipeIdentity;
   requestFingerprint: string;
   recipeSignature: string;
   patternId: string;
+  checkpoint?: ControllerCheckpoint;
 }
