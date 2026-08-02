@@ -16,8 +16,8 @@
       "GitHub Actions"
     ],
     "description": "AI Booster Kit is a modular, human-centred platform for choosing, tuning, validating, and reusing Agent or Multi-Agent capabilities without making Agent assistance mandatory. Note: this project has over 100 source files; consider scoping analysis to a subdirectory for faster results.",
-    "analyzedAt": "2026-08-02T04:41:25.220Z",
-    "gitCommitHash": "efa960434681f2658f385f409120c2e74595eb9a"
+    "analyzedAt": "2026-08-02T04:42:49.735Z",
+    "gitCommitHash": "a077e34519cb913ef2efdccfc3a6d64ceab5b59e"
   },
   "nodes": [
     {
