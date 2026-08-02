@@ -10,6 +10,9 @@
 # --- From .gitignore (uncomment to exclude) ---
 
 .worktrees/
+.superpowers/
+docs/superpowers/
+docs/history/
 
 # Mapper-generated artifacts are not project source.
 .ua/

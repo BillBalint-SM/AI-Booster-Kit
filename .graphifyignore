@@ -1,0 +1,9 @@
+# Graphify input exclusions: generated output and process/history noise.
+.ua/
+graphify-out/
+.superpowers/
+docs/superpowers/
+docs/history/
+.worktrees/
+node_modules/
+dist/
