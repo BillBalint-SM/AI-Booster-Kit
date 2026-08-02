@@ -1,0 +1,92 @@
+:root {
+  color-scheme: dark;
+
+  /* Primitive brand colors */
+  --color-loop-ink: #090d18;
+  --color-control-blue-500: #326bff;
+  --color-control-blue-650: #2b5fe8;
+  --color-evolution-lime: #c8ff3d;
+  --color-signal-white: #f7f9ff;
+  --color-system-slate: #141925;
+  --color-system-line: #293043;
+
+  /* Dark-prototype state roles */
+  --state-ready-indicator: #22c55e;
+  --state-ready-foreground: #86efac;
+  --state-ready-background: #052e16;
+  --state-recommend-indicator: #3b82f6;
+  --state-recommend-foreground: #bfdbfe;
+  --state-recommend-background: #172554;
+  --state-limit-indicator: #f59e0b;
+  --state-limit-foreground: #fde68a;
+  --state-limit-background: #451a03;
+  --state-unknown-indicator: #94a3b8;
+  --state-unknown-foreground: #cbd5e1;
+  --state-unknown-background: #1e293b;
+  --state-stop-indicator: #ef4444;
+  --state-stop-foreground: #fecaca;
+  --state-stop-background: #450a0a;
+
+  /* Semantic aliases */
+  --color-background: var(--color-loop-ink);
+  --color-surface: var(--color-system-slate);
+  --color-border: var(--color-system-line);
+  --color-foreground: var(--color-signal-white);
+  --color-primary-action: var(--color-control-blue-650);
+  --color-brand-signal: var(--color-control-blue-500);
+  --color-checkpoint: var(--color-evolution-lime);
+  --color-focus: var(--color-evolution-lime);
+
+  /* Typography */
+  --font-display: "Inter Tight", "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", "Cascadia Code", monospace;
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  --text-caption: 0.75rem;
+  --text-small: 0.875rem;
+  --text-body: 1rem;
+  --text-body-large: 1.125rem;
+  --text-heading-3: 1.75rem;
+  --text-heading-2: 2.25rem;
+  --text-heading-1: 3rem;
+  --leading-tight: 1.2;
+  --leading-heading: 1.3;
+  --leading-body: 1.5;
+  --leading-long-form: 1.625;
+
+  /* Layout */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --radius-control: 0.5rem;
+  --radius-card: 0.75rem;
+  --radius-dialog: 1rem;
+  --radius-pill: 9999px;
+  --border-default: 1px;
+  --focus-width: 2px;
+  --focus-offset: 2px;
+  --prose-maximum: 70ch;
+  --grid-mobile-columns: 4;
+  --grid-desktop-columns: 12;
+
+  /* Motion */
+  --duration-color: 150ms;
+  --duration-position: 200ms;
+  --duration-reveal-maximum: 300ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-color: 0ms;
+    --duration-position: 0ms;
+    --duration-reveal-maximum: 0ms;
+  }
+}
