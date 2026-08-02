@@ -14,21 +14,19 @@ Controller recommendation MVP, the Human Checkpoint and Activation Intent
 boundary, the first Quick Task capability contract, the ephemeral Quick Task
 Activation Package command, and the public-facing website surface. M1-A now
 adds the strict [formation catalog](../../contract/agent-library/formation-catalog.md)
-contract and TypeScript validator with one ready Quick Task entry, fully ready
-research, validation, refinement, and implementation entries, and one bounded
-debugging candidate. M1-B adds
-deterministic scenario recognition and explainable, recommendation-only output
-with stable structural identity. The read-only `recommend-formation` CLI
-command now exposes the research, validation, refinement, and implementation
-profile paths as `RECOMMEND`
+contract and TypeScript validator with one ready Quick Task entry and five READY
+scenario profiles: research, validation, refinement, implementation, and
+debugging. M1-B adds deterministic scenario recognition and explainable,
+recommendation-only output with stable structural identity. The read-only
+`recommend-formation` CLI command exposes all five profile paths as `RECOMMEND`
 when all required profile input is present and preserves `UNKNOWN` otherwise,
 without changing Quick Task checkpoint or activation behavior.
 
 ## Validation
 
-The formation recipe/catalog/request/recommendation/CLI focused suite passes
-64/64, and the full repository suite passes 267/267 under the available local
-Node 26 runtime. Documentation-link validation and `git diff --check` pass.
+The bounded-debugging M1 focused suite passes 58/58, and the full repository
+suite passes 275/275 under the available local Node v26.4.0 runtime. Lint,
+documentation-link validation, and `git diff --check` pass.
 Remote CI `quality` passed on PR #34 and on its `main` merge commit
 `050f6bf760a859d78821245b63e2c84da709fbfd`. The package declares Node 22.x;
 local Node 26 is not the declared runtime, so those remote CI results remain
@@ -39,14 +37,14 @@ is performed.
 
 ## Known limit
 
-The debugging scenario recipe and profile-specific output contract remain a
-bounded M1 slice. Host
-adaptation/execution, explicit package saving, durable session state,
-evaluation/evolve loop, debugging context injection, and optional lifecycle
-synchronization remain future work. The current Activation Package, M1-A
-catalog, and M1-B recommendation remain `READY_WITH_LIMIT` overall: they
-prepare, describe, or recommend bounded, host-agnostic work but do not activate
-an Agent or persist an artifact. Mapper freshness is commit-relative:
+The five scenario profiles are READY only as bounded M1 recommendation paths.
+Host adaptation/execution, automatic fixes, explicit package saving, durable
+session state, evaluation/evolve loop, debugging context injection, and
+optional lifecycle synchronization remain future work. The current Activation
+Package, M1-A catalog, and M1-B recommendation remain `READY_WITH_LIMIT`
+overall: they prepare, describe, or recommend bounded, host-agnostic work but
+do not activate an Agent or persist an artifact. Mapper freshness is
+commit-relative:
 publication requires the checked-in Understand Anything and Graphify snapshots
 to identify the final source revision and `npm run check:mappers` to pass.
 
@@ -58,7 +56,6 @@ specific approval, bounded authority, and source-native read-back.
 
 ## Next bounded action
 
-Implement the bounded debugging scenario as the final READY recipe/profile
-contract required by the current M1 roadmap slice, without changing the Human
-Checkpoint boundary.
+Roadmap review and design of the first M2 activation and tuning slice, without
+implying implementation approval or changing the Human Checkpoint boundary.
 

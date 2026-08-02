@@ -98,11 +98,11 @@ the bounded slice is present, not that the complete product vision is finished.
 | Shared vocabulary and team contract | `COMPLETE_WITH_LIMIT` | `NOTES.md`, `contract/team-contract.md` | Keep terminology canonical and avoid duplicate status documents. | `implements` Vision; `supports` all tracks |
 | Team Delivery Loop | `COMPLETE_WITH_LIMIT` | `workflows/team-delivery-loop.md` | Continue validating parallel ownership, fan-in, and rollback behavior. | `implements` Roadmap; `supports` Epic/Milestone delivery |
 | Host-agnostic contracts and projections | `COMPLETE_WITH_LIMIT` | `contract/`, `src/contract/`, host adapter contracts | Prove conformance independently per host; do not infer security from host behavior. | `related_to` every execution track |
-| Controller recommendation MVP | `COMPLETE_WITH_LIMIT` | `src/controller/`, `src/cli.ts`, formation catalog, scenario recommendation, four READY scenario recipes, and focused tests | Keep the ready Quick Task, research, validation, refinement, and implementation paths stable; complete the debugging recipe and profile-specific output contract separately. | `implements` Controller layer |
+| Controller recommendation MVP | `COMPLETE_WITH_LIMIT` | `src/controller/`, `src/cli.ts`, formation catalog, scenario recommendation, five READY scenario recipes, and focused tests | Keep the ready Quick Task, research, validation, refinement, implementation, and debugging paths stable within recommendation-only scope. | `implements` Controller layer |
 | Human Checkpoint and Activation Intent | `COMPLETE_WITH_LIMIT` | `src/controller/checkpoint.ts`, `choice.ts`, `resolve.ts`, focused tests | Keep the checkpoint late, explicit, and side-effect-free until activation is separately authorized. | `depends_on` Controller; `protects` User consent |
 | Quick Task Clarifier/Validator recipe | `COMPLETE_WITH_LIMIT` | `contract/agent-library/quick-task-clarifier-validator.md` | Add more ready-to-use formations without changing this recipe implicitly. | `implements` first library entry |
 | Quick Task Activation Package | `COMPLETE_WITH_LIMIT` | `src/controller/activation-package.ts`, `src/cli.ts`, focused Controller tests, and the approved design/plan | Preserve the ephemeral, host-agnostic boundary; design host adaptation/execution or explicit package saving separately. | `depends_on` Human Checkpoint |
-| Agent Framework Library and Recipe Controller v1 | `NOW` / `NOT READY` | M1-A catalog/validator, M1-B scenario recognizer/recommendation, and READY research/validation/refinement/implementation recipes with profile contracts provide the bounded foundation | Complete the debugging recipe plus the remaining readiness/negative-path evidence before promoting the library. | `depends_on` Controller; `enables` all later Agent tracks |
+| Agent Framework Library and Recipe Controller v1 | `READY` within local recommendation-only scope | M1-A catalog/validator, M1-B scenario recognizer/recommendation, and five READY research/validation/refinement/implementation/debugging recipes with profile contracts provide the bounded foundation | Preserve the recommendation-only boundary; activation, tuning, persistence, iterative debugging tooling, and synchronization remain independent future tracks. | `depends_on` Controller; `enables` all later Agent tracks |
 | Activation, tuning, save-or-ephemeral choice | `NEXT` / `NOT EXECUTED` | Human checkpoint contract defines the boundary | Add explicit activation executor, tuning inputs, artifact lifecycle, and rollback. | `depends_on` Library v1 |
 | Compact session state and optional storage | `NEXT` / `NOT EXECUTED` | Session-state principles are defined in the workflow contract | Persist only resumable state, never a full transcript by default. | `supports` activation and evolve |
 | Evaluation and `evolve` review | `LATER` / `NOT EXECUTED` | Accepted product direction and event vocabulary | Evaluate session outcomes and repeated `UNKNOWN` or +/- events; evolve one formation at a time. | `validates` active setup |
@@ -237,9 +237,8 @@ The prerequisite is a reasoned contract, not a universal mandatory template.
 
 The library milestone can move from `NOT READY` to `READY` only when:
 
-1. the catalog has the first light Quick Task formation, READY research,
-   validation, refinement, and implementation formations, and a bounded
-   candidate for debugging;
+1. the catalog has the first light Quick Task formation plus READY research,
+   validation, refinement, implementation, and debugging formations;
 2. the Controller can classify a request, explain its recommendation, state
    missing prerequisites and `UNKNOWN` evidence, and avoid recommendation when
    the fit is not supported;
@@ -252,6 +251,11 @@ The library milestone can move from `NOT READY` to `READY` only when:
    and no-Agent paths;
 7. the result is reviewable as a contract, implementation, and evidence-backed
    diff.
+
+The M1 exit evidence is satisfied by the contracts, positive and negative
+fixtures, and reviewed implementation diff. This promotion is limited to the
+local, recommendation-only library; it does not authorize activation, tuning,
+persistence, iterative debugging tooling, or synchronization.
 
 ## 8. Parallel team delivery model
 
@@ -288,10 +292,12 @@ This sequence is intentionally outcome-oriented and has no calendar promise.
 
 Create the catalog and recipe contract, define light/heavy dimensions and
 prerequisites, add scenario recognition, and produce explainable
-recommendations with a stable identity signal.
+recommendations with a stable identity signal. The five READY scenario
+profiles are research, validation, refinement, implementation, and debugging.
 
-**Exit evidence:** library contract, first catalog entries, recommendation
-fixtures, negative/unknown-path tests, and a reviewed implementation diff.
+**Exit evidence:** library contract, first catalog entries, positive and
+negative recommendation fixtures, and a reviewed implementation diff. This is
+READY only within local recommendation-only scope.
 
 ### Next — M2: Activation and agent tuning boundary
 
@@ -395,8 +401,8 @@ Roadmap evolution is expected, but it must be deliberate:
 - [Capability matrix](../../contract/capability-matrix.md) — capability and host
   projection boundaries.
 
-The next concrete delivery slice is **M1: Agent Framework Library and Recipe
-Controller v1**. The platform is useful already, but it is intentionally not
-declared finished: the roadmap keeps the next functional capability visible
+The next concrete delivery slice is **M2: Activation and tuning boundary**.
+The platform is useful already, but this routing statement does not approve
+implementation: the roadmap keeps the next functional capability visible
 without turning future options into mandatory process.
 
