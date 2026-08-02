@@ -119,6 +119,42 @@ test("quick task request: rejects unverified implementation readiness declaratio
   assert.throws(() => parseQuickTaskRequest({ ...value, formationInput: { ...formationInput, planState: "DRAFT" } }), /formationInput\.planState must be ACCEPTED/);
 });
 
+test("quick task request: parses the debugging profile and rejects empty fields", async () => {
+  const value = await fixture("eligible-quick-task.json") as Record<string, unknown>;
+  const formationInput = {
+    scenario: "debugging",
+    symptom: "The parser rejects a valid frontmatter document.",
+    reproduction: ["Run the focused parser test with the valid fixture."],
+    expectedBehavior: "The valid fixture parses without an error.",
+    environment: ["AI Booster Kit verified local revision", "Node 22 test runtime"],
+  };
+  const request = parseQuickTaskRequest({ ...value, formationInput });
+
+  assert.equal(request.formationInput?.scenario, "debugging");
+  if (request.formationInput?.scenario !== "debugging") assert.fail("debugging profile was not preserved");
+  assert.deepEqual(request.formationInput.reproduction, ["Run the focused parser test with the valid fixture."]);
+  assert.throws(() => parseQuickTaskRequest({ ...value, formationInput: { ...formationInput, symptom: "" } }), /formationInput\.symptom must be a non-empty string/);
+  assert.throws(() => parseQuickTaskRequest({ ...value, formationInput: { ...formationInput, reproduction: [] } }), /formationInput\.reproduction must be a non-empty list of non-empty strings/);
+  assert.throws(() => parseQuickTaskRequest({ ...value, formationInput: { ...formationInput, expectedBehavior: "" } }), /formationInput\.expectedBehavior must be a non-empty string/);
+  assert.throws(() => parseQuickTaskRequest({ ...value, formationInput: { ...formationInput, environment: [] } }), /formationInput\.environment must be a non-empty list of non-empty strings/);
+});
+
+test("quick task request: rejects unknown debugging metadata without echoing its value", async () => {
+  const value = await fixture("eligible-quick-task.json") as Record<string, unknown>;
+  const formationInput = {
+    scenario: "debugging",
+    symptom: "The parser fails.",
+    reproduction: ["Run the focused parser test."],
+    expectedBehavior: "The parser accepts the valid fixture.",
+    environment: ["local synthetic fixture"],
+    unsafe: "do-not-echo-this-value",
+  };
+  assert.throws(
+    () => parseQuickTaskRequest({ ...value, formationInput }),
+    (error: unknown) => error instanceof Error && /formationInput\.unsafe is not allowed/.test(error.message) && !error.message.includes("do-not-echo-this-value"),
+  );
+});
+
 test("quick task identities: separate full-request reproducibility from structural pattern matching", async () => {
   const request = parseQuickTaskRequest(await fixture("eligible-quick-task.json"));
   const changedGoal = parseQuickTaskRequest({ ...request, goal: "A different private goal." });

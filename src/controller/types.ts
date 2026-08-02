@@ -114,7 +114,15 @@ export interface ImplementationFormationInput {
   rollbackBoundary: string;
 }
 
-export type FormationInput = ResearchFormationInput | ValidationFormationInput | RefinementFormationInput | ImplementationFormationInput;
+export interface DebuggingFormationInput {
+  scenario: "debugging";
+  symptom: string;
+  reproduction: readonly string[];
+  expectedBehavior: string;
+  environment: readonly string[];
+}
+
+export type FormationInput = ResearchFormationInput | ValidationFormationInput | RefinementFormationInput | ImplementationFormationInput | DebuggingFormationInput;
 
 export interface ValidationRecipe {
   recipeId: "bounded-validation";
