@@ -12,7 +12,7 @@ main
 feature
   ▲
   │ one PR per bounded delivery slice
-dev/<scope> → merge → feature → dev/<next-scope>
+dev-<scope> → merge → feature → dev-<next-scope>
 ```
 
 - `main` is the stable integration baseline. It receives a coherent feature
@@ -21,8 +21,10 @@ dev/<scope> → merge → feature → dev/<next-scope>
   It collects several completed `dev` slices and is the only branch that
   normally opens the delivery PR to `main`.
 - `dev` is a short-lived role for one bounded delivery slice. Use a unique
-  name such as `dev/bounded-debugging` or `dev/branching-model-docs`; do not
-  keep adding unrelated work to a merged dev branch.
+  flat name such as `dev-bounded-debugging` or
+  `dev-branching-model-docs`; do not keep adding unrelated work to a merged
+  dev branch. A flat name is required when the remote already has a literal
+  `dev` branch, because Git cannot create both `dev` and `dev/<scope>` refs.
 
 The remote `dev` branch may be used as an initial bootstrap branch, but each
 subsequent slice gets a new scope-specific dev branch. The branch list does not
@@ -47,7 +49,7 @@ Start each bounded slice from the current feature branch:
 git fetch origin feature
 git switch feature
 git merge --ff-only origin/feature
-git switch --create dev/<scope>
+git switch --create dev-<scope>
 ```
 
 The dev pull request targets `feature`, never `main`.
@@ -58,7 +60,7 @@ After the remote dev PR is merged:
 
 1. Read back the PR merge result and the updated `feature` head.
 2. Fast-forward local `feature` to `origin/feature`.
-3. Start the next `dev/<next-scope>` immediately from that updated feature.
+3. Start the next `dev-<next-scope>` immediately from that updated feature.
 4. Do not continue work on the merged dev branch and do not reuse its name.
 
 This keeps the feature branch as the accumulating delivery stream while every
