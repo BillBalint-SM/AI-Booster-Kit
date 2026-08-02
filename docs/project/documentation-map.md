@@ -11,7 +11,8 @@ This page is the repository’s thematic index. Start from the [root README](../
 5. **How to operate it:** [Operations](../operations/)
 6. **How to execute repeatable procedures:** [Runbooks](../runbooks/)
 7. **Why a design exists and how it is implemented:** [Specifications](../superpowers/specs/) and [plans](../superpowers/plans/)
-8. **What is historical context only:** [Archive](../history/README.md)
+8. **How the product is positioned and represented:** [Marketing prototype](../../marketing/README.md)
+9. **What is historical context only:** [Archive](../history/README.md)
 
 ## Canonical source by question
 
@@ -25,6 +26,7 @@ This page is the repository’s thematic index. Start from the [root README](../
 | How is a repeatable check performed? | [`docs/runbooks/`](../runbooks/) | Permanent product requirements and current-state claims. |
 | Why was a design chosen? | [`docs/superpowers/specs/`](../superpowers/specs/) | Active runtime context and mutable delivery status. |
 | In what order is approved work implemented? | [`docs/superpowers/plans/`](../superpowers/plans/) | A second roadmap or a current-state substitute. |
+| How is the product positioned and visually represented? | [`marketing/`](../../marketing/) | Delivery status, legal clearance, and unverified product claims. |
 | What happened previously? | [`docs/history/`](../history/) | Default Agent instructions and current decisions. |
 
 ## Active entry points
@@ -35,6 +37,7 @@ This page is the repository’s thematic index. Start from the [root README](../
 - [Bounded Refinement recipe](../../contract/agent-library/bounded-refinement.md) — READY refinement profile and output contract.
 - [Bounded Research recipe](../../contract/agent-library/bounded-research.md) — READY research profile, source boundary, and output contract.
 - [Bounded Implementation recipe](../../contract/agent-library/bounded-implementation.md) — READY implementation profile with verified-repository, accepted-plan, evidence, and rollback boundaries.
+- [Marketing prototype](../../marketing/README.md) — brand direction, naming screens, prototype design tokens, asset governance, and publication boundaries.
 - The Controller exposes the local `activate-quick-task --input <request.json> --choice <choice.json> --profile <profile>` command, which issues an ephemeral host-agnostic package only after fresh evaluation and `ACTIVATION_INTENT`; see the approved [design](../superpowers/specs/2026-08-01-ai-booster-kit-quick-task-activation-package-design.md) and [implementation plan](../superpowers/plans/2026-08-01-ai-booster-kit-quick-task-activation-package.md), which remain review artifacts rather than default runtime context.
 - [Canonical artifact templates](../../contract/artifacts/canonical-work-artifact-template.md) — common artifact shape.
 - [Jira–Confluence–GitHub mapping contract](../../contract/mappings/jira-confluence-github.md) — future synchronization boundary.

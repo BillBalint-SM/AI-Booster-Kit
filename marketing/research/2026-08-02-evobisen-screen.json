@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "candidate": "EVOBISEN",
+  "observedDate": "2026-08-02",
+  "status": "BOUNDED_SESSION_RECONSTRUCTION",
+  "verdict": "STOP",
+  "limitations": [
+    "Raw responses and immutable captures were not retained.",
+    "Negative observations require a fresh rerun before any naming decision.",
+    "This packet is not legal or trademark clearance.",
+    "No login, CAPTCHA bypass, contact, purchase, registration, filing, or handle reservation was performed."
+  ],
+  "observations": [
+    {
+      "source": "Verisign RDAP",
+      "transport": "HTTPS GET",
+      "query": "https://rdap.verisign.com/com/v1/domain/evobisen.com",
+      "normalizedResult": "HTTP_404_NO_REGISTRY_OBJECT",
+      "evidenceClass": "REPRODUCIBLE_ENDPOINT"
+    },
+    {
+      "source": "Identity Digital RDAP",
+      "transport": "HTTPS GET",
+      "query": "https://rdap.identitydigital.services/rdap/domain/evobisen.ai",
+      "normalizedResult": "HTTP_404_NO_REGISTRY_OBJECT",
+      "evidenceClass": "REPRODUCIBLE_ENDPOINT"
+    },
+    {
+      "source": "Google Registry RDAP",
+      "transport": "HTTPS GET",
+      "query": "https://pubapi.registry.google/rdap/domain/evobisen.app",
+      "normalizedResult": "HTTP_404_NO_REGISTRY_OBJECT",
+      "evidenceClass": "REPRODUCIBLE_ENDPOINT"
+    },
+    {
+      "source": "NIC.IO WHOIS",
+      "transport": "TCP whois.nic.io:43",
+      "query": "evobisen.io",
+      "normalizedResult": "NO_REGISTRY_OBJECT",
+      "evidenceClass": "SESSION_OBSERVATION"
+    },
+    {
+      "source": "USPTO Trademark Search",
+      "transport": "Interactive official web search",
+      "query": "Wordmark: EVOBISEN; close form: CM:/evo.*bis[eo]n.*/",
+      "normalizedResult": "NO_RESULTS_OBSERVED",
+      "evidenceClass": "SESSION_OBSERVATION"
+    },
+    {
+      "source": "SZTNH e-kutatas",
+      "transport": "Interactive official web search",
+      "query": "National and international title/mark contains EVOBISEN",
+      "normalizedResult": "ZERO_RESULTS_OBSERVED",
+      "evidenceClass": "SESSION_OBSERVATION"
+    },
+    {
+      "source": "TMview",
+      "transport": "Interactive official web access",
+      "query": "EVOBISEN",
+      "normalizedResult": "UNKNOWN_ACCESS_ERROR_REFERENCE_ctj58sa1sev",
+      "evidenceClass": "UNKNOWN"
+    },
+    {
+      "source": "WIPO Global Brand Database",
+      "transport": "HTTPS GET",
+      "query": "https://branddb.wipo.int/",
+      "normalizedResult": "NOT_EXECUTED_ALTCHA_CAPTCHA",
+      "evidenceClass": "NOT_EXECUTED"
+    },
+    {
+      "source": "GitHub user API",
+      "transport": "HTTPS GET",
+      "query": "https://api.github.com/users/evobisen",
+      "normalizedResult": "HTTP_404_NO_USER_OR_ORG",
+      "evidenceClass": "REPRODUCIBLE_ENDPOINT"
+    },
+    {
+      "source": "GitHub repository search API",
+      "transport": "HTTPS GET",
+      "query": "https://api.github.com/search/repositories?q=evobisen",
+      "normalizedResult": "HTTP_200_TOTAL_COUNT_0",
+      "evidenceClass": "REPRODUCIBLE_ENDPOINT"
+    },
+    {
+      "source": "GitHub code search API",
+      "transport": "HTTPS GET",
+      "query": "EVOBISEN",
+      "normalizedResult": "UNKNOWN_HTTP_401_AUTH_REQUIRED",
+      "evidenceClass": "UNKNOWN"
+    },
+    {
+      "source": "npm registry",
+      "transport": "HTTPS GET",
+      "query": "https://registry.npmjs.org/evobisen",
+      "normalizedResult": "HTTP_404_NO_PACKAGE",
+      "evidenceClass": "REPRODUCIBLE_ENDPOINT"
+    },
+    {
+      "source": "PyPI JSON API",
+      "transport": "HTTPS GET",
+      "query": "https://pypi.org/pypi/evobisen/json",
+      "normalizedResult": "HTTP_404_NO_PACKAGE",
+      "evidenceClass": "REPRODUCIBLE_ENDPOINT"
+    },
+    {
+      "source": "Hugging Face model API",
+      "transport": "HTTPS GET",
+      "query": "https://huggingface.co/api/models?search=evobisen&limit=20",
+      "normalizedResult": "HTTP_200_RAW_EMPTY_ARRAY",
+      "evidenceClass": "REPRODUCIBLE_ENDPOINT"
+    },
+    {
+      "source": "Hugging Face Space API",
+      "transport": "HTTPS GET",
+      "query": "https://huggingface.co/api/spaces?search=evobisen&limit=20",
+      "normalizedResult": "HTTP_200_RAW_EMPTY_ARRAY",
+      "evidenceClass": "REPRODUCIBLE_ENDPOINT"
+    },
+    {
+      "source": "Indexed social and product search",
+      "transport": "Search-engine site queries",
+      "query": "site:linkedin.com/company EVOBISEN; site:youtube.com EVOBISEN; site:reddit.com EVOBISEN; site:producthunt.com EVOBISEN",
+      "normalizedResult": "NO_RELEVANT_EXACT_RESULT_OBSERVED",
+      "evidenceClass": "SESSION_OBSERVATION"
+    },
+    {
+      "source": "EVOBIS primary public sources",
+      "transport": "HTTPS GET",
+      "query": "https://evobis.dk/; https://evobis.dk/platforme/; https://evobis.dk/ydelser/",
+      "normalizedResult": "ACTIVE_CLOSE_NAME_AND_CLOSE_TECHNOLOGY_CATEGORY",
+      "evidenceClass": "PRIMARY_PUBLIC_SOURCE"
+    }
+  ]
+}
