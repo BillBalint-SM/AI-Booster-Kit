@@ -16,8 +16,8 @@
       "GitHub Actions"
     ],
     "description": "AI Booster Kit is a modular, human-centred platform for choosing, tuning, validating, and reusing Agent or Multi-Agent capabilities without making Agent assistance mandatory. Note: this project has over 100 source files; consider scoping analysis to a subdirectory for faster results.",
-    "analyzedAt": "2026-08-02T04:42:49.735Z",
-    "gitCommitHash": "a077e34519cb913ef2efdccfc3a6d64ceab5b59e"
+    "analyzedAt": "2026-08-02T05:33:28.033Z",
+    "gitCommitHash": "a61101ef473ada13065ee67cc6a40a9a520a5652"
   },
   "nodes": [
     {
@@ -9023,6 +9023,21 @@
         "stop"
       ],
       "complexity": "moderate"
+    },
+    {
+      "id": "document:docs/runbooks/branching.md",
+      "type": "document",
+      "name": "branching.md",
+      "filePath": "docs/runbooks/branching.md",
+      "summary": "Canonical Git and GitHub branching contract for the main, feature, and short-lived dev roles, including immediate next-slice flow and feature-to-main promotion.",
+      "tags": [
+        "documentation",
+        "branching",
+        "git",
+        "github",
+        "delivery"
+      ],
+      "complexity": "moderate"
     }
   ],
   "edges": [
@@ -17165,6 +17180,13 @@
       "type": "related",
       "direction": "forward",
       "weight": 0.7
+    },
+    {
+      "source": "document:docs/project/documentation-map.md",
+      "target": "document:docs/runbooks/branching.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.7
     }
   ],
   "layers": [
@@ -17224,7 +17246,8 @@
         "document:marketing/README.md",
         "document:marketing/assets/README.md",
         "document:marketing/brand-prototype.md",
-        "document:marketing/naming-screening.md"
+        "document:marketing/naming-screening.md",
+        "document:docs/runbooks/branching.md"
       ]
     },
     {
@@ -17439,7 +17462,8 @@
       "nodeIds": [
         "document:docs/project/current-state.md",
         "document:docs/project/roadmap.md",
-        "document:docs/runbooks/mapper-snapshot.md"
+        "document:docs/runbooks/mapper-snapshot.md",
+        "document:docs/runbooks/branching.md"
       ]
     },
     {

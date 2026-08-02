@@ -1,6 +1,6 @@
 {
   "scriptCompleted": true,
-  "contentDigest": "2f8b3889fc089fe2bd578c40c7023668cbce1ee518de6b08ed25c94a065dafe9",
+  "contentDigest": "21fd845352bbc70f2e86f27c2c9f3c0140a15a88a12ec0a345ebe31306cc1728",
   "files": [
     {
       "path": ".github/pull_request_template.md",
@@ -257,13 +257,19 @@
     {
       "path": "docs/project/documentation-map.md",
       "language": "markdown",
-      "sizeLines": 61,
+      "sizeLines": 63,
       "fileCategory": "docs"
     },
     {
       "path": "docs/project/roadmap.md",
       "language": "markdown",
       "sizeLines": 408,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/runbooks/branching.md",
+      "language": "markdown",
+      "sizeLines": 89,
       "fileCategory": "docs"
     },
     {
@@ -1233,13 +1239,13 @@
       "fileCategory": "docs"
     }
   ],
-  "totalFiles": 205,
+  "totalFiles": 206,
   "filteredByIgnore": 78,
   "estimatedComplexity": "large",
   "stats": {
-    "filesScanned": 205,
+    "filesScanned": 206,
     "byCategory": {
-      "docs": 55,
+      "docs": 56,
       "infra": 1,
       "code": 122,
       "config": 23,
@@ -1247,7 +1253,7 @@
       "script": 2
     },
     "byLanguage": {
-      "markdown": 55,
+      "markdown": 56,
       "yaml": 1,
       "unknown": 1,
       "typescript": 116,

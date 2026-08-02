@@ -24,6 +24,7 @@ This page is the repository’s thematic index. Start from the [root README](../
 | What must an artifact or capability guarantee? | [`contract/`](../../contract/) | Runtime logs, historical reports, and connector payloads. |
 | How is a host or operation used? | [`docs/operations/`](../operations/) | Strategic decisions and duplicate workflow definitions. |
 | How is a repeatable check performed? | [`docs/runbooks/`](../runbooks/) | Permanent product requirements and current-state claims. |
+| How are main, feature, and dev branches synchronized? | [Three-level branching model](../runbooks/branching.md) | Unverified local cleanliness, stale branch assumptions, and implicit merge claims. |
 | Why was a design chosen? | [`docs/superpowers/specs/`](../superpowers/specs/) | Active runtime context and mutable delivery status. |
 | In what order is approved work implemented? | [`docs/superpowers/plans/`](../superpowers/plans/) | A second roadmap or a current-state substitute. |
 | How is the product positioned and visually represented? | [`marketing/`](../../marketing/) | Delivery status, legal clearance, and unverified product claims. |
@@ -39,6 +40,7 @@ This page is the repository’s thematic index. Start from the [root README](../
 - [Bounded Implementation recipe](../../contract/agent-library/bounded-implementation.md) — READY implementation profile with verified-repository, accepted-plan, evidence, and rollback boundaries.
 - [Marketing prototype](../../marketing/README.md) — brand direction, naming screens, prototype design tokens, asset governance, and publication boundaries.
 - [Bounded Debugging recipe](../../contract/agent-library/bounded-debugging.md) — READY debugging profile with reproduction, root-cause, minimal-fix, regression-evidence, and fail-closed recovery boundaries.
+- [Three-level branching model](../runbooks/branching.md) — main/feature/dev roles, immediate next-dev flow, and feature-to-main promotion.
 - The Controller exposes the local `activate-quick-task --input <request.json> --choice <choice.json> --profile <profile>` command, which issues an ephemeral host-agnostic package only after fresh evaluation and `ACTIVATION_INTENT`; see the approved [design](../superpowers/specs/2026-08-01-ai-booster-kit-quick-task-activation-package-design.md) and [implementation plan](../superpowers/plans/2026-08-01-ai-booster-kit-quick-task-activation-package.md), which remain review artifacts rather than default runtime context.
 - [Canonical artifact templates](../../contract/artifacts/canonical-work-artifact-template.md) — common artifact shape.
 - [Jira–Confluence–GitHub mapping contract](../../contract/mappings/jira-confluence-github.md) — future synchronization boundary.

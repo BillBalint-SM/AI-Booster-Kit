@@ -410,12 +410,12 @@
     "semantic_hash": "1f843f4a151517e92685294c6f10e171"
   },
   "src/controller/formation-recipe.ts": {
-    "mtime": 1785645345.635328,
+    "mtime": 1785645978.936163,
     "ast_hash": "c9e9ef9b82990c34a3d16bca59167cfc",
     "semantic_hash": "c9e9ef9b82990c34a3d16bca59167cfc"
   },
   "src/controller/formation-recommendation.ts": {
-    "mtime": 1785645345.657328,
+    "mtime": 1785645978.937163,
     "ast_hash": "fefac88f965bad8081edc8cee766e1a0",
     "semantic_hash": "fefac88f965bad8081edc8cee766e1a0"
   },
@@ -435,7 +435,7 @@
     "semantic_hash": "4423c72cccf40f078de02492927836ce"
   },
   "src/controller/request.ts": {
-    "mtime": 1785645345.6113284,
+    "mtime": 1785645978.937163,
     "ast_hash": "18bdf972d6d39aad18e5b26f943178a9",
     "semantic_hash": "18bdf972d6d39aad18e5b26f943178a9"
   },
@@ -445,7 +445,7 @@
     "semantic_hash": "71fa1d4503e6655467f548dbba6c6ae8"
   },
   "src/controller/types.ts": {
-    "mtime": 1785645345.6363275,
+    "mtime": 1785645978.9381635,
     "ast_hash": "449e692f91c348c29f86fa048362cfdf",
     "semantic_hash": "449e692f91c348c29f86fa048362cfdf"
   },
@@ -530,7 +530,7 @@
     "semantic_hash": "ca05f33050ea6794a12ffd79888ca583"
   },
   "test/controller-cli.test.ts": {
-    "mtime": 1785645345.6583278,
+    "mtime": 1785645978.9381635,
     "ast_hash": "38668897b706a449e7ac41a6e5eeda10",
     "semantic_hash": "38668897b706a449e7ac41a6e5eeda10"
   },
@@ -540,17 +540,17 @@
     "semantic_hash": "885a0415db0c72eb5ed67c4c6b3c9967"
   },
   "test/controller-formation-recipe.test.ts": {
-    "mtime": 1785622067.2498505,
-    "ast_hash": "77ac7054f68720e7952091670800a2c5",
-    "semantic_hash": "77ac7054f68720e7952091670800a2c5"
+    "mtime": 1785645978.9391632,
+    "ast_hash": "00ee62f0a34239b2a9dc7ae5d6484244",
+    "semantic_hash": "00ee62f0a34239b2a9dc7ae5d6484244"
   },
   "test/controller-formation-recommendation.test.ts": {
-    "mtime": 1785645345.659327,
+    "mtime": 1785645978.9391632,
     "ast_hash": "c64096f3b093e2b5b384bd668edb8a37",
     "semantic_hash": "c64096f3b093e2b5b384bd668edb8a37"
   },
   "test/controller-formation.test.ts": {
-    "mtime": 1785645345.659327,
+    "mtime": 1785645978.9401636,
     "ast_hash": "cd6e808d965bf1e7a9181d74939f184a",
     "semantic_hash": "cd6e808d965bf1e7a9181d74939f184a"
   },
@@ -565,7 +565,7 @@
     "semantic_hash": "3a57cb21bd76e27504710c55fcd79ae3"
   },
   "test/controller-request.test.ts": {
-    "mtime": 1785645345.6123283,
+    "mtime": 1785645978.9401636,
     "ast_hash": "c779a77fd61ac4eaa03d4bc1f9894aa3",
     "semantic_hash": "c779a77fd61ac4eaa03d4bc1f9894aa3"
   },
@@ -995,12 +995,12 @@
     "semantic_hash": ""
   },
   "marketing/research/2026-08-02-evobisen-screen.json": {
-    "mtime": 1785645337.758895,
+    "mtime": 1785645978.9351633,
     "ast_hash": "f01037d67c42511ab7a009ccf8ffe6e4",
     "semantic_hash": "f01037d67c42511ab7a009ccf8ffe6e4"
   },
   "test/controller-debugging-recipe.test.ts": {
-    "mtime": 1785645345.6363275,
+    "mtime": 1785645978.9391632,
     "ast_hash": "eb33ca70e755e1421b8860a02f0c6d0e",
     "semantic_hash": "eb33ca70e755e1421b8860a02f0c6d0e"
   }
