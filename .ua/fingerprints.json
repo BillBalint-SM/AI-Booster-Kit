@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "gitCommitHash": "a077e34519cb913ef2efdccfc3a6d64ceab5b59e",
-  "generatedAt": "2026-08-02T04:42:50.097Z",
+  "gitCommitHash": "a61101ef473ada13065ee67cc6a40a9a520a5652",
+  "generatedAt": "2026-08-02T05:33:39.683Z",
   "files": {
     ".github/pull_request_template.md": {
       "filePath": ".github/pull_request_template.md",
@@ -25,7 +25,7 @@
     },
     ".graphifyignore": {
       "filePath": ".graphifyignore",
-      "contentHash": "552d6978377be404fa487866b70910ed1b614bbd24d53088b554649c8343ab2e",
+      "contentHash": "b47067f0f4bc4b693b27cf735831baab3516048366958ec7dbd8be2c0d2fa942",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -146,7 +146,7 @@
     },
     "contract/agent-library/bounded-implementation.md": {
       "filePath": "contract/agent-library/bounded-implementation.md",
-      "contentHash": "6eb4c2c3f8fbec0c95e0244e25f3f19f8f7a567f0e052cf4e5ed5d2379e7421f",
+      "contentHash": "e7031100ebf08799c446e26b20377dcd704be276f5c70afe343c4e5a838b6ff8",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -436,7 +436,7 @@
     },
     "docs/project/current-state.md": {
       "filePath": "docs/project/current-state.md",
-      "contentHash": "d428b4ee6fa8e5ea5e8cd8447d422f5bf76d6cea0d0b20b466618bebeb2798f0",
+      "contentHash": "ff483894f755b805ea8c1fa80780db1de9350433cd5f73cfe53e273402e724c6",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -446,12 +446,12 @@
     },
     "docs/project/documentation-map.md": {
       "filePath": "docs/project/documentation-map.md",
-      "contentHash": "4c9f14ebfe004238049dca3555a183c8e4b2c42ebc68fd21d61437b794b2419c",
+      "contentHash": "8b6daef4edaf0835b484ff60e03edacaa4821cfb794579c25926882c6d7bf7d4",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 62,
+      "totalLines": 64,
       "hasStructuralAnalysis": true
     },
     "docs/project/roadmap.md": {
@@ -462,6 +462,16 @@
       "imports": [],
       "exports": [],
       "totalLines": 409,
+      "hasStructuralAnalysis": true
+    },
+    "docs/runbooks/branching.md": {
+      "filePath": "docs/runbooks/branching.md",
+      "contentHash": "afc69c38affb6c8b17097545732b95776bc83a1cd5da478afb4ed3ff9179d526",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 90,
       "hasStructuralAnalysis": true
     },
     "docs/runbooks/g2as-sandbox-readiness-certificate.md": {
@@ -476,7 +486,7 @@
     },
     "docs/runbooks/mapper-snapshot.md": {
       "filePath": "docs/runbooks/mapper-snapshot.md",
-      "contentHash": "38e2b5eaeafc35a32c2da0eb2d4bf437c91277e10389bc4033acb96f2cc25c01",
+      "contentHash": "8c94ebcf538f212ec389d43416535cdabf7825042a7ef8207a82c67c35f925c9",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -9011,7 +9021,7 @@
     },
     "test/controller-formation-recipe.test.ts": {
       "filePath": "test/controller-formation-recipe.test.ts",
-      "contentHash": "e9261793afea171877d7268e6bcad43e0263e0a97cdbacd253f63093ccacc2cc",
+      "contentHash": "47cb62461f6b19aaf2bf87db0ba37dbd9be163c5b906016a92b2268b2657e495",
       "functions": [],
       "classes": [],
       "imports": [
