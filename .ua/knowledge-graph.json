@@ -16,8 +16,8 @@
       "GitHub Actions"
     ],
     "description": "AI Booster Kit is a modular, human-centred platform for choosing, tuning, validating, and reusing Agent or Multi-Agent capabilities without making Agent assistance mandatory. Note: this project has over 100 source files; consider scoping analysis to a subdirectory for faster results.",
-    "analyzedAt": "2026-08-02T05:33:28.033Z",
-    "gitCommitHash": "a61101ef473ada13065ee67cc6a40a9a520a5652"
+    "analyzedAt": "2026-08-02T06:13:24.671Z",
+    "gitCommitHash": "a08b2bc6daceffbddfab54f0ab8888f52f50a267"
   },
   "nodes": [
     {
@@ -8782,7 +8782,7 @@
       "type": "document",
       "name": "current-state.md",
       "filePath": "docs/project/current-state.md",
-      "summary": "Operational routing source for the repository's current delivery state, including branch and pull-request context, completed capabilities, validation evidence, known limits, open stops, and the next bounded action.",
+      "summary": "Operational routing source for the current main, feature, and dev delivery state, including M2 routing, validation evidence, known limits, open stops, and the next bounded activation/tuning action.",
       "tags": [
         "documentation",
         "current-state",
