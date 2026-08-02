@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "gitCommitHash": "82b7750833aae504f064f5d4f764a7472629fc22",
-  "generatedAt": "2026-08-01T23:38:45.852Z",
+  "gitCommitHash": "efa960434681f2658f385f409120c2e74595eb9a",
+  "generatedAt": "2026-08-02T04:41:25.600Z",
   "files": {
     ".github/pull_request_template.md": {
       "filePath": ".github/pull_request_template.md",
@@ -23,185 +23,15 @@
       "totalLines": 30,
       "hasStructuralAnalysis": true
     },
-    ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/oauth-research-report.md": {
-      "filePath": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/oauth-research-report.md",
-      "contentHash": "094422884b9e1998bae15adadf17d79c22f33f51585c7ab47891e2e51073e0aa",
+    ".graphifyignore": {
+      "filePath": ".graphifyignore",
+      "contentHash": "552d6978377be404fa487866b70910ed1b614bbd24d53088b554649c8343ab2e",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 36,
-      "hasStructuralAnalysis": true
-    },
-    ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/progress.md": {
-      "filePath": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/progress.md",
-      "contentHash": "43803cf4772cb647f93f3f117c2ec3eabecb2b5e38cd28164c2e6a514fe70a56",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 41,
-      "hasStructuralAnalysis": true
-    },
-    ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-1-brief.md": {
-      "filePath": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-1-brief.md",
-      "contentHash": "c4962c1def247bac6b0f495700efacabff2704695d35b9437f02102d06347246",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 59,
-      "hasStructuralAnalysis": true
-    },
-    ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-1-report.md": {
-      "filePath": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-1-report.md",
-      "contentHash": "7a1bc683477e4f32d49e4d1b1473fe60b2bed255d8dcb45d8982fa1cf7ed7bac",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 61,
-      "hasStructuralAnalysis": true
-    },
-    ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-2-brief.md": {
-      "filePath": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-2-brief.md",
-      "contentHash": "6b4325e033d5926a7ccafa569d9f24c320c205517080b9012f6c79be6475a8d9",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 51,
-      "hasStructuralAnalysis": true
-    },
-    ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-2-report.md": {
-      "filePath": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-2-report.md",
-      "contentHash": "6adf420d34575bab4f8d60a45cac23d348412932d1f6dcf6a12bb786cc73abe0",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 84,
-      "hasStructuralAnalysis": true
-    },
-    ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-3-brief.md": {
-      "filePath": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-3-brief.md",
-      "contentHash": "b9ab0695968a54b6a0d149b417bbb77a218280cf762f169b3909933136adecfd",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 23,
-      "hasStructuralAnalysis": true
-    },
-    ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-3-report.md": {
-      "filePath": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-3-report.md",
-      "contentHash": "26efef5772a449bb2eabed2ca2041272bcd648bf4531c97f0b976b91b069cfde",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 48,
-      "hasStructuralAnalysis": true
-    },
-    ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-4-brief.md": {
-      "filePath": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-4-brief.md",
-      "contentHash": "15187b05242985dca58851b5b88834f7452ad8fa2285d81649dc16b33e3996cd",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 21,
-      "hasStructuralAnalysis": true
-    },
-    ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-4-report.md": {
-      "filePath": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-4-report.md",
-      "contentHash": "1d3c5810ba38b066f1cb7a1b39e8e4946381ab1c11a9235eb7eb15e3612a2851",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 36,
-      "hasStructuralAnalysis": true
-    },
-    ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-5-brief.md": {
-      "filePath": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-5-brief.md",
-      "contentHash": "9a50c5d2ab6710cd2a6a6b7a021ac6f852c5f039fa1794c00813172b18e7057d",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 37,
-      "hasStructuralAnalysis": true
-    },
-    ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-5-report.md": {
-      "filePath": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-5-report.md",
-      "contentHash": "a39a03069873323447937495e447926fb671be569b8f7ccff33f00b489e6b263",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 32,
-      "hasStructuralAnalysis": true
-    },
-    ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-6-brief.md": {
-      "filePath": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-6-brief.md",
-      "contentHash": "1408e59152761826a8ae912ac9afe13e13f53b69df6ceb2bfcb022dce0388a1b",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 43,
-      "hasStructuralAnalysis": true
-    },
-    ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-6-report.md": {
-      "filePath": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-6-report.md",
-      "contentHash": "117623c859c737c427488310e6490ca3374aeb3eaa5d6f33ec9670bb9bc1a095",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 36,
-      "hasStructuralAnalysis": true
-    },
-    ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-7-brief.md": {
-      "filePath": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-7-brief.md",
-      "contentHash": "077abc378bad4eadfa327af747fba2b3f349112d1e8416bc7fc7f63053d5c8b8",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 41,
-      "hasStructuralAnalysis": true
-    },
-    ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-7-report.md": {
-      "filePath": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-7-report.md",
-      "contentHash": "985c620a79a9e9e3c9a63ec6f8dbfe610c07a80084965c5d8ed16366f3d1cae3",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 29,
-      "hasStructuralAnalysis": true
-    },
-    ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-8-brief.md": {
-      "filePath": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-8-brief.md",
-      "contentHash": "dce7ae05880066026e58c570aaa8ab3adf0ee9d14a0b7bb8ecab010a0666b394",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 24,
-      "hasStructuralAnalysis": true
-    },
-    ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-8-report.md": {
-      "filePath": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-8-report.md",
-      "contentHash": "e25669fa7bd6628d4b3277a084c4559c72003417cfa7092358edf8024d96f2fd",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 41,
-      "hasStructuralAnalysis": true
+      "totalLines": 10,
+      "hasStructuralAnalysis": false
     },
     "AGENTS.md": {
       "filePath": "AGENTS.md",
@@ -304,6 +134,16 @@
       "totalLines": 40,
       "hasStructuralAnalysis": true
     },
+    "contract/agent-library/bounded-debugging.md": {
+      "filePath": "contract/agent-library/bounded-debugging.md",
+      "contentHash": "2e6c3d82bb2cca6247e00185be60553aedb91f31637e0261a144db30b6e6fd87",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 63,
+      "hasStructuralAnalysis": true
+    },
     "contract/agent-library/bounded-implementation.md": {
       "filePath": "contract/agent-library/bounded-implementation.md",
       "contentHash": "6eb4c2c3f8fbec0c95e0244e25f3f19f8f7a567f0e052cf4e5ed5d2379e7421f",
@@ -346,7 +186,7 @@
     },
     "contract/agent-library/formation-catalog.md": {
       "filePath": "contract/agent-library/formation-catalog.md",
-      "contentHash": "732bb6bee4158e645eecaddc3a5da5a13e10b499f2524db10fc7017120d3ac86",
+      "contentHash": "9ae80fb1a8520e357aa9a3724e2153a1f5fef590691c2eff63ea7acfd33b00f6",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -484,246 +324,6 @@
       "totalLines": 84,
       "hasStructuralAnalysis": true
     },
-    "docs/history/README.md": {
-      "filePath": "docs/history/README.md",
-      "contentHash": "a7ec157acc5332dc5871af3ee353723767824742847e273f86f8b1f871ee9092",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 11,
-      "hasStructuralAnalysis": true
-    },
-    "docs/history/execution-records/.gitkeep": {
-      "filePath": "docs/history/execution-records/.gitkeep",
-      "contentHash": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 2,
-      "hasStructuralAnalysis": false
-    },
-    "docs/history/gate-1/.gitkeep": {
-      "filePath": "docs/history/gate-1/.gitkeep",
-      "contentHash": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 2,
-      "hasStructuralAnalysis": false
-    },
-    "docs/history/gate-2/current-state-and-roadmap.md": {
-      "filePath": "docs/history/gate-2/current-state-and-roadmap.md",
-      "contentHash": "3abacf3f334549460b1c9126987bf96f3c0c2baad5bcc76a50e3728fe451b9eb",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 150,
-      "hasStructuralAnalysis": true
-    },
-    "docs/history/gate-2/g2ai-pilot-evidence.md": {
-      "filePath": "docs/history/gate-2/g2ai-pilot-evidence.md",
-      "contentHash": "6fe80d648a41baaf0addc3eb59986404302c9c23be785d91f0866bdb5cb35169",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 167,
-      "hasStructuralAnalysis": true
-    },
-    "docs/history/gate-2/gate-2-results-and-next-steps.md": {
-      "filePath": "docs/history/gate-2/gate-2-results-and-next-steps.md",
-      "contentHash": "2eed1012390fece6208dc457786bddbec9c277e627e2504e7873778fbe584f6c",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 185,
-      "hasStructuralAnalysis": true
-    },
-    "docs/history/host-conformance/agent-testing-status-2026-07-28.md": {
-      "filePath": "docs/history/host-conformance/agent-testing-status-2026-07-28.md",
-      "contentHash": "69900066c97cf442486ec45508dd59b172fd574aa2dcb7205f2340245d85f750",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 53,
-      "hasStructuralAnalysis": true
-    },
-    "docs/history/host-conformance/claude-code-2026-07-27.md": {
-      "filePath": "docs/history/host-conformance/claude-code-2026-07-27.md",
-      "contentHash": "d152a646d5fb613a6cfdbcac0a4b9622afe566aa7d4bb168ddfa22592b8ab157",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 68,
-      "hasStructuralAnalysis": true
-    },
-    "docs/history/host-conformance/claude-code-2026-07-28-behavior-response.md": {
-      "filePath": "docs/history/host-conformance/claude-code-2026-07-28-behavior-response.md",
-      "contentHash": "30ccb7dac2e3f14a2a5c518a17180484a6d2033e915ef0ea77a553ab0450c4fe",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 92,
-      "hasStructuralAnalysis": true
-    },
-    "docs/history/host-conformance/claude-code-2026-07-28-context-integrity-response.md": {
-      "filePath": "docs/history/host-conformance/claude-code-2026-07-28-context-integrity-response.md",
-      "contentHash": "9bdf77959c97423a86e78ae3d140d46d35a32cddd5691cca8e14e571480ff009",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 258,
-      "hasStructuralAnalysis": true
-    },
-    "docs/history/host-conformance/claude-code-2026-07-28-context-payload-capture.md": {
-      "filePath": "docs/history/host-conformance/claude-code-2026-07-28-context-payload-capture.md",
-      "contentHash": "44b32aef632bc98bb8af8efd923a4cf07bc65a4039588bf8591d914c6831aba4",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 50,
-      "hasStructuralAnalysis": true
-    },
-    "docs/history/host-conformance/claude-code-2026-07-28-native-behavior-response.md": {
-      "filePath": "docs/history/host-conformance/claude-code-2026-07-28-native-behavior-response.md",
-      "contentHash": "46998a4f48460712482cfb7c25a9f1a7730faf3877eff00cc4842bfdd551a8c6",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 35,
-      "hasStructuralAnalysis": true
-    },
-    "docs/history/host-conformance/claude-code-2026-07-28-native.md": {
-      "filePath": "docs/history/host-conformance/claude-code-2026-07-28-native.md",
-      "contentHash": "b78bd1368d455a5c4e3770785176b9dde015916c86eef11df500f7cbe1f92d7d",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 57,
-      "hasStructuralAnalysis": true
-    },
-    "docs/history/host-conformance/claude-code-2026-07-28-project-cwd-rerun.md": {
-      "filePath": "docs/history/host-conformance/claude-code-2026-07-28-project-cwd-rerun.md",
-      "contentHash": "751d2b2d815e28624e460c70b7d06d918c9d4d026c55c0824e86ae8362bcab51",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 29,
-      "hasStructuralAnalysis": true
-    },
-    "docs/history/host-conformance/claude-code-context-integrity-remediation-2026-07-28.md": {
-      "filePath": "docs/history/host-conformance/claude-code-context-integrity-remediation-2026-07-28.md",
-      "contentHash": "bcbb2a405f3f8ec92bb74ec52fcb8c021baca93e43317208c3a49e6fd5519391",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 68,
-      "hasStructuralAnalysis": true
-    },
-    "docs/history/host-conformance/claude-code-host-capability-investigation-2026-07-28.md": {
-      "filePath": "docs/history/host-conformance/claude-code-host-capability-investigation-2026-07-28.md",
-      "contentHash": "f36efc52b838ffe0ba43543035d01ea0463a44e2fe8e77d66944d8cc4a8289e6",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 72,
-      "hasStructuralAnalysis": true
-    },
-    "docs/history/host-conformance/codex-2026-07-27-v2.md": {
-      "filePath": "docs/history/host-conformance/codex-2026-07-27-v2.md",
-      "contentHash": "0e77190e5de8638169d93611db394a3e161fa6940419446dff052b9f50927e20",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 118,
-      "hasStructuralAnalysis": true
-    },
-    "docs/history/host-conformance/codex-2026-07-27.md": {
-      "filePath": "docs/history/host-conformance/codex-2026-07-27.md",
-      "contentHash": "2439f38d41e110aa8c024a3b38e2db2fa6b487a10378d83a7fbfd699d8c1d9f1",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 121,
-      "hasStructuralAnalysis": true
-    },
-    "docs/history/host-conformance/codex-2026-07-28-v3.md": {
-      "filePath": "docs/history/host-conformance/codex-2026-07-28-v3.md",
-      "contentHash": "6031bcc9d0294e5a8401f5d887b00301b67899f26eb3f783a7fae032039943b6",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 145,
-      "hasStructuralAnalysis": true
-    },
-    "docs/history/host-conformance/codex-runtime-boundary-diagnostic-2026-07-27.md": {
-      "filePath": "docs/history/host-conformance/codex-runtime-boundary-diagnostic-2026-07-27.md",
-      "contentHash": "60414c28f9063e3eb793cdf3ddafdecf254cbb1ede1e8822294b589bc956f9b9",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 37,
-      "hasStructuralAnalysis": true
-    },
-    "docs/history/host-conformance/cursor-2026-07-27-behavior-response.md": {
-      "filePath": "docs/history/host-conformance/cursor-2026-07-27-behavior-response.md",
-      "contentHash": "fbc852d4aeb1d06ff7120bcf0807f2f1f2b700e28aee0fb0e244f92cc7cf52a7",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 154,
-      "hasStructuralAnalysis": true
-    },
-    "docs/history/host-conformance/cursor-2026-07-27.md": {
-      "filePath": "docs/history/host-conformance/cursor-2026-07-27.md",
-      "contentHash": "42c4e3be2fdc73a4048453ae6dd5248d21a79c732fd64b6032d71baa707139b2",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 51,
-      "hasStructuralAnalysis": true
-    },
-    "docs/history/host-conformance/cursor-desktop-2026-07-28-behavior-response.md": {
-      "filePath": "docs/history/host-conformance/cursor-desktop-2026-07-28-behavior-response.md",
-      "contentHash": "a2a7f3dd8d12a80b0aafe52ac5487c192a4d70e6d4417269c39ea386c1055741",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 101,
-      "hasStructuralAnalysis": true
-    },
-    "docs/history/host-conformance/cursor-desktop-2026-07-28.md": {
-      "filePath": "docs/history/host-conformance/cursor-desktop-2026-07-28.md",
-      "contentHash": "10c4ec541354ea8755c902e1aaa111462700a593fdab76a032d5cd8485b570ea",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 68,
-      "hasStructuralAnalysis": true
-    },
     "docs/operations/agent-operating-model.md": {
       "filePath": "docs/operations/agent-operating-model.md",
       "contentHash": "426ba6b1f3d0a8cb4e7070258dcda742ae5b1603e7a84d8d15b8fab64f37ab45",
@@ -836,32 +436,32 @@
     },
     "docs/project/current-state.md": {
       "filePath": "docs/project/current-state.md",
-      "contentHash": "99fd9c71ae764fb9a467fb59eec2e2f9803f9c07088420b78f80666387f104ce",
+      "contentHash": "cd531cf49a036e320228b5bb28cda7a675bf920ac5bfbaad9810e0df8a0f0d1e",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 65,
+      "totalLines": 63,
       "hasStructuralAnalysis": true
     },
     "docs/project/documentation-map.md": {
       "filePath": "docs/project/documentation-map.md",
-      "contentHash": "d7462aa76bc60c82315d58e387517550bd68febd67baa520883ba081ef999250",
+      "contentHash": "4c9f14ebfe004238049dca3555a183c8e4b2c42ebc68fd21d61437b794b2419c",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 58,
+      "totalLines": 62,
       "hasStructuralAnalysis": true
     },
     "docs/project/roadmap.md": {
       "filePath": "docs/project/roadmap.md",
-      "contentHash": "de746a9b318d1fcd9c345f244f7ee67463f440f5d34fe7ec1e4e71fb11d28259",
+      "contentHash": "ecfff142e12fe2ec4dea4f2c3ce796caef966c7d6538b66203de25d3d82d2529",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 403,
+      "totalLines": 409,
       "hasStructuralAnalysis": true
     },
     "docs/runbooks/g2as-sandbox-readiness-certificate.md": {
@@ -876,12 +476,12 @@
     },
     "docs/runbooks/mapper-snapshot.md": {
       "filePath": "docs/runbooks/mapper-snapshot.md",
-      "contentHash": "d7a5e4f4a939294b75458db7217652491b129443880d4f0279caf915114452bf",
+      "contentHash": "38e2b5eaeafc35a32c2da0eb2d4bf437c91277e10389bc4033acb96f2cc25c01",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 52,
+      "totalLines": 67,
       "hasStructuralAnalysis": true
     },
     "docs/runbooks/sync-orchestrator-v1-sandbox.md": {
@@ -894,314 +494,74 @@
       "totalLines": 80,
       "hasStructuralAnalysis": true
     },
-    "docs/superpowers/plans/2026-07-22-ai-agent-tooling-gate-1-research.md": {
-      "filePath": "docs/superpowers/plans/2026-07-22-ai-agent-tooling-gate-1-research.md",
-      "contentHash": "b8803c3ba25698230d47643c907895776188eb0f90922ae1cd46fa51659ef9b6",
+    "marketing/README.md": {
+      "filePath": "marketing/README.md",
+      "contentHash": "3d97f0bb2c3f98757d5ae8f57dd35330eec0aed67d53e86bd8e27bf4bdca662e",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 768,
+      "totalLines": 76,
       "hasStructuralAnalysis": true
     },
-    "docs/superpowers/plans/2026-07-27-agent-operating-model-baseline.md": {
-      "filePath": "docs/superpowers/plans/2026-07-27-agent-operating-model-baseline.md",
-      "contentHash": "e900085b9c79c03dc40b2a6dacc260b8a26754796dfdb40818071c39c5c18c0a",
+    "marketing/assets/README.md": {
+      "filePath": "marketing/assets/README.md",
+      "contentHash": "fd8c24b9d3edb0558b9db5385f1ae087ba379afdb99d66b71f0107e489ecc9cf",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 180,
+      "totalLines": 132,
       "hasStructuralAnalysis": true
     },
-    "docs/superpowers/plans/2026-07-27-codex-conformance-remediation.md": {
-      "filePath": "docs/superpowers/plans/2026-07-27-codex-conformance-remediation.md",
-      "contentHash": "1a36b0b9c0062fe10b42c68526359d89e216e4970f8b89a03f17498c4bf08ef4",
+    "marketing/brand-prototype.md": {
+      "filePath": "marketing/brand-prototype.md",
+      "contentHash": "e9899904b30d2d17128b934b209729ac5b2f1cb6cf9c246d3f45bfa323e876d7",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 67,
+      "totalLines": 469,
       "hasStructuralAnalysis": true
     },
-    "docs/superpowers/plans/2026-07-27-gate-2-jira-sandbox-pilot.md": {
-      "filePath": "docs/superpowers/plans/2026-07-27-gate-2-jira-sandbox-pilot.md",
-      "contentHash": "a17c93f9040dad7c1f033039fa0451a393a19777669ff09e24a06fcfb3cf9bc6",
+    "marketing/design/tokens.css": {
+      "filePath": "marketing/design/tokens.css",
+      "contentHash": "a58393149ba02ddec5b9e9e596eab08d35a0cd9d5e6e00a51eaf8a61f65074f6",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 487,
+      "totalLines": 93,
+      "hasStructuralAnalysis": false
+    },
+    "marketing/design/tokens.json": {
+      "filePath": "marketing/design/tokens.json",
+      "contentHash": "93dd33c5a8cea1b2a4d789e132bcb1a0c7e20432d1abdc54e071defd3043136b",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 122,
       "hasStructuralAnalysis": true
     },
-    "docs/superpowers/plans/2026-07-27-host-behavior-security-separation.md": {
-      "filePath": "docs/superpowers/plans/2026-07-27-host-behavior-security-separation.md",
-      "contentHash": "83a7e7c767c9953e2fb9f87c4702a35b5097d7d886c8bafbe27e628a2ae67563",
+    "marketing/naming-screening.md": {
+      "filePath": "marketing/naming-screening.md",
+      "contentHash": "1ca911a888997516b73d5a413aa0e4110448efb8e67cf1b5bd24b0518443b828",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 63,
+      "totalLines": 179,
       "hasStructuralAnalysis": true
     },
-    "docs/superpowers/plans/2026-07-27-host-conformance-pilot.md": {
-      "filePath": "docs/superpowers/plans/2026-07-27-host-conformance-pilot.md",
-      "contentHash": "bde59010874c414ec490f923086ac5a9e0f65eebaf05ce4109647ca6ce2da0c7",
+    "marketing/research/2026-08-02-evobisen-screen.json": {
+      "filePath": "marketing/research/2026-08-02-evobisen-screen.json",
+      "contentHash": "02a5199306d6a7b2a19b438baf63245574ee2cdeecbd4047437135765134b3b4",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 69,
-      "hasStructuralAnalysis": true
-    },
-    "docs/superpowers/plans/2026-07-27-host-native-adapters-team-activation.md": {
-      "filePath": "docs/superpowers/plans/2026-07-27-host-native-adapters-team-activation.md",
-      "contentHash": "baae027ea52071622c1d52219831bb5ca605901801132d6da17e16c41a821bce",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 59,
-      "hasStructuralAnalysis": true
-    },
-    "docs/superpowers/plans/2026-07-27-layer-separation-common-core.md": {
-      "filePath": "docs/superpowers/plans/2026-07-27-layer-separation-common-core.md",
-      "contentHash": "43dc551c5033daa00c553e10c00fb65f13690febfb1132c6b1c5b6963e728d41",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 46,
-      "hasStructuralAnalysis": true
-    },
-    "docs/superpowers/plans/2026-07-29-agent-agnostic-sync-orchestrator-implementation.md": {
-      "filePath": "docs/superpowers/plans/2026-07-29-agent-agnostic-sync-orchestrator-implementation.md",
-      "contentHash": "e7dfd456c34c45d75dc0686a6006bfeda7269ae209d6f7397fa1d059dc2201a8",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 755,
-      "hasStructuralAnalysis": true
-    },
-    "docs/superpowers/plans/2026-07-29-documentation-github-structure.md": {
-      "filePath": "docs/superpowers/plans/2026-07-29-documentation-github-structure.md",
-      "contentHash": "aa21c940f53058b68a8cb458a07f05805a06527ef2695f9c49a2a1f72e72e6cc",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 343,
-      "hasStructuralAnalysis": true
-    },
-    "docs/superpowers/plans/2026-07-29-g2as-sandbox-readiness-certificate.md": {
-      "filePath": "docs/superpowers/plans/2026-07-29-g2as-sandbox-readiness-certificate.md",
-      "contentHash": "ba0d105c8413d858c662028808af8b152f68bffae3606ac17d578a014a78d96d",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 630,
-      "hasStructuralAnalysis": true
-    },
-    "docs/superpowers/plans/2026-07-29-native-mcp-capability-standard.md": {
-      "filePath": "docs/superpowers/plans/2026-07-29-native-mcp-capability-standard.md",
-      "contentHash": "63155a3f4a2bab3fdd9969f5141dcc5554eedbf36e6b3a5b61cf50cad2eb923f",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 410,
-      "hasStructuralAnalysis": true
-    },
-    "docs/superpowers/plans/2026-07-29-post-merge-state-synchronization.md": {
-      "filePath": "docs/superpowers/plans/2026-07-29-post-merge-state-synchronization.md",
-      "contentHash": "af55387f0b43119ba43f309fea1afe7aefd39adf3929523babbe42bb528a69df",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 69,
-      "hasStructuralAnalysis": true
-    },
-    "docs/superpowers/plans/2026-08-01-ai-booster-kit-controller-mvp.md": {
-      "filePath": "docs/superpowers/plans/2026-08-01-ai-booster-kit-controller-mvp.md",
-      "contentHash": "235821d5b549d9e2ff9f0ea562abfd4a53f03c58cb9b15317e7907982ce63170",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 177,
-      "hasStructuralAnalysis": true
-    },
-    "docs/superpowers/plans/2026-08-01-ai-booster-kit-human-checkpoint-activation-intent.md": {
-      "filePath": "docs/superpowers/plans/2026-08-01-ai-booster-kit-human-checkpoint-activation-intent.md",
-      "contentHash": "127e00827ab12e381258ebf6a1aa881999adc352e15a25a8719671d2c05e6947",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 437,
-      "hasStructuralAnalysis": true
-    },
-    "docs/superpowers/plans/2026-08-01-ai-booster-kit-m1-a-library-catalog.md": {
-      "filePath": "docs/superpowers/plans/2026-08-01-ai-booster-kit-m1-a-library-catalog.md",
-      "contentHash": "b708502a7cdbf76ae2b11fb7da7c127e05da2a1611f39b724e5f4718f4ad8fdf",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 80,
-      "hasStructuralAnalysis": true
-    },
-    "docs/superpowers/plans/2026-08-01-ai-booster-kit-m1-b-scenario-recommendation.md": {
-      "filePath": "docs/superpowers/plans/2026-08-01-ai-booster-kit-m1-b-scenario-recommendation.md",
-      "contentHash": "636ca88e26902de839457f8b5f050d4889bad30c1e3be46a7fe03572521a5718",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 87,
-      "hasStructuralAnalysis": true
-    },
-    "docs/superpowers/plans/2026-08-01-ai-booster-kit-m1-readiness-cli-integration.md": {
-      "filePath": "docs/superpowers/plans/2026-08-01-ai-booster-kit-m1-readiness-cli-integration.md",
-      "contentHash": "c60e4de385c184cc5e93a15f1697561ab83a38b5e508974cdba25a3a1983b257",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 61,
-      "hasStructuralAnalysis": true
-    },
-    "docs/superpowers/plans/2026-08-01-ai-booster-kit-quick-task-activation-package.md": {
-      "filePath": "docs/superpowers/plans/2026-08-01-ai-booster-kit-quick-task-activation-package.md",
-      "contentHash": "da32dd8cc32255c408b0de4ca39d2706c5618b65d2eb78c861588a1064f82866",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 383,
-      "hasStructuralAnalysis": true
-    },
-    "docs/superpowers/plans/2026-08-01-ai-booster-kit-ready-refinement-recipe.md": {
-      "filePath": "docs/superpowers/plans/2026-08-01-ai-booster-kit-ready-refinement-recipe.md",
-      "contentHash": "b7ae8781847a18a4da374336d03358e27d67b8dfe3b6675d0ef350147113c2bb",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 34,
-      "hasStructuralAnalysis": true
-    },
-    "docs/superpowers/plans/2026-08-01-ai-booster-kit-ready-validation-recipe.md": {
-      "filePath": "docs/superpowers/plans/2026-08-01-ai-booster-kit-ready-validation-recipe.md",
-      "contentHash": "d15b5d019603d11b914f491e7c386b96b408991494fae22cd6699c23f937c7b7",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 71,
-      "hasStructuralAnalysis": true
-    },
-    "docs/superpowers/plans/2026-08-01-ai-booster-kit-team-delivery-loop.md": {
-      "filePath": "docs/superpowers/plans/2026-08-01-ai-booster-kit-team-delivery-loop.md",
-      "contentHash": "c19418f26415d295d9776a6cd7367767506bb2faac39c1c71e57f9ea00aa7505",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 198,
-      "hasStructuralAnalysis": true
-    },
-    "docs/superpowers/specs/2026-07-21-ai-agent-tooling-research-design.md": {
-      "filePath": "docs/superpowers/specs/2026-07-21-ai-agent-tooling-research-design.md",
-      "contentHash": "31d5b7955e834bc4c82005f8dcab5cc95263191ea49e873217a55125fbe75584",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 433,
-      "hasStructuralAnalysis": true
-    },
-    "docs/superpowers/specs/2026-07-27-gate-2-jira-sandbox-pilot-design.md": {
-      "filePath": "docs/superpowers/specs/2026-07-27-gate-2-jira-sandbox-pilot-design.md",
-      "contentHash": "2e6a7c2e53f199607b79dfed5516b2dd3886d555036838c16d6e4ff23516273c",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 91,
-      "hasStructuralAnalysis": true
-    },
-    "docs/superpowers/specs/2026-07-29-agent-agnostic-sync-orchestrator-design.md": {
-      "filePath": "docs/superpowers/specs/2026-07-29-agent-agnostic-sync-orchestrator-design.md",
-      "contentHash": "f9906ddd6d2a1c4b80a7a57b866cc3a3f6fdf9761e2dae113e7fb480ac2b78ad",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 421,
-      "hasStructuralAnalysis": true
-    },
-    "docs/superpowers/specs/2026-07-29-g2as-sandbox-readiness-certificate-design.md": {
-      "filePath": "docs/superpowers/specs/2026-07-29-g2as-sandbox-readiness-certificate-design.md",
-      "contentHash": "48046c2671ca282b698bd6c498ac7f659a819f2d60ea1979a18ae4f37e3f2a4f",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 189,
-      "hasStructuralAnalysis": true
-    },
-    "docs/superpowers/specs/2026-07-29-native-mcp-capability-standard-design.md": {
-      "filePath": "docs/superpowers/specs/2026-07-29-native-mcp-capability-standard-design.md",
-      "contentHash": "8a0890e0993eb2e5ff9e08b368d654aec78e0f1c287b1ed0f8f240e9c15bb491",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 119,
-      "hasStructuralAnalysis": true
-    },
-    "docs/superpowers/specs/2026-08-01-ai-booster-kit-controller-mvp-design.md": {
-      "filePath": "docs/superpowers/specs/2026-08-01-ai-booster-kit-controller-mvp-design.md",
-      "contentHash": "7f621ddd97817d888dc6006173842d767cb80aaa251ceef9bff48f03a3a4ca64",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 131,
-      "hasStructuralAnalysis": true
-    },
-    "docs/superpowers/specs/2026-08-01-ai-booster-kit-human-checkpoint-activation-intent-design.md": {
-      "filePath": "docs/superpowers/specs/2026-08-01-ai-booster-kit-human-checkpoint-activation-intent-design.md",
-      "contentHash": "c8208dd3d5589e33cecd979f9d61acb0df4d6a3710f1b43487a42f8cdfdd20f6",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 86,
-      "hasStructuralAnalysis": true
-    },
-    "docs/superpowers/specs/2026-08-01-ai-booster-kit-quick-task-activation-package-design.md": {
-      "filePath": "docs/superpowers/specs/2026-08-01-ai-booster-kit-quick-task-activation-package-design.md",
-      "contentHash": "befd11a0983ae2b4f9d2a6461f0012343d1f372b257af5eeff654289fdd761d3",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 106,
-      "hasStructuralAnalysis": true
-    },
-    "docs/superpowers/specs/2026-08-01-ai-booster-kit-team-delivery-loop-design.md": {
-      "filePath": "docs/superpowers/specs/2026-08-01-ai-booster-kit-team-delivery-loop-design.md",
-      "contentHash": "77d505f22fb9ee8c46ae050914cfbb377465161eab99746c1dab3d03c581ccc4",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 178,
+      "totalLines": 135,
       "hasStructuralAnalysis": true
     },
     "package.json": {
@@ -3216,7 +2576,7 @@
     },
     "src/controller/formation-recipe.ts": {
       "filePath": "src/controller/formation-recipe.ts",
-      "contentHash": "3ba056faf9f925f110d7554c987a4cc5237688a7fe52cc551a0f338f5e3c2165",
+      "contentHash": "4ddcbe5c1cd93949f4771778219333d07f63595f8f7b4ba5cd076e75f04af01c",
       "functions": [
         {
           "name": "loadValidationRecipe",
@@ -3255,6 +2615,15 @@
           "lineCount": 3
         },
         {
+          "name": "loadDebuggingRecipe",
+          "params": [
+            "sourcePath"
+          ],
+          "returnType": "Promise<DebuggingRecipe>",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
           "name": "parseValidationRecipe",
           "params": [
             "source",
@@ -3272,6 +2641,26 @@
           ],
           "returnType": "ResearchRecipe",
           "exported": true,
+          "lineCount": 75
+        },
+        {
+          "name": "parseDebuggingRecipe",
+          "params": [
+            "source",
+            "sourcePath"
+          ],
+          "returnType": "DebuggingRecipe",
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "parseDebuggingRecipeUnchecked",
+          "params": [
+            "source",
+            "sourcePath"
+          ],
+          "returnType": "DebuggingRecipe",
+          "exported": false,
           "lineCount": 75
         },
         {
@@ -3411,6 +2800,15 @@
           "properties": [],
           "exported": true,
           "lineCount": 6
+        },
+        {
+          "name": "DebuggingRecipeError",
+          "methods": [
+            "constructor"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 6
         }
       ],
       "imports": [
@@ -3429,6 +2827,7 @@
         {
           "source": "./types.js",
           "specifiers": [
+            "DebuggingRecipe",
             "ImplementationRecipe",
             "RefinementRecipe",
             "ResearchRecipe",
@@ -3440,21 +2839,24 @@
         "ValidationRecipeError",
         "RefinementRecipeError",
         "ImplementationRecipeError",
+        "DebuggingRecipeError",
         "loadValidationRecipe",
         "loadResearchRecipe",
         "loadRefinementRecipe",
         "loadImplementationRecipe",
+        "loadDebuggingRecipe",
         "parseValidationRecipe",
         "parseResearchRecipe",
+        "parseDebuggingRecipe",
         "parseImplementationRecipe",
         "parseRefinementRecipe"
       ],
-      "totalLines": 409,
+      "totalLines": 505,
       "hasStructuralAnalysis": true
     },
     "src/controller/formation-recommendation.ts": {
       "filePath": "src/controller/formation-recommendation.ts",
-      "contentHash": "ba6b4e7d2aa77394d404713e44a250cf3b297860c4c6524acdaf346c926a1774",
+      "contentHash": "ef4f741ff59eee8888fe92150d3e2dca931a10ad6f0bdce4344cdc437e4a9003",
       "functions": [
         {
           "name": "recommendFormation",
@@ -3501,7 +2903,7 @@
           ],
           "returnType": "readonly string[]",
           "exported": false,
-          "lineCount": 22
+          "lineCount": 26
         },
         {
           "name": "unknownRequestEvidence",
@@ -3566,7 +2968,7 @@
         "FormationRecommendationError",
         "recommendFormation"
       ],
-      "totalLines": 138,
+      "totalLines": 142,
       "hasStructuralAnalysis": true
     },
     "src/controller/formation.ts": {
@@ -3984,7 +3386,7 @@
     },
     "src/controller/request.ts": {
       "filePath": "src/controller/request.ts",
-      "contentHash": "35e9f380794336f300ad4bff61a142901d3cf418e75f3f2c2f7c06011a9f8539",
+      "contentHash": "2614fdf6f8420edababea386198b0c8c279712f5d190bb479cc7c1235ca60cf0",
       "functions": [
         {
           "name": "parseQuickTaskRequest",
@@ -4002,7 +3404,7 @@
           ],
           "returnType": "FormationInput",
           "exported": false,
-          "lineCount": 8
+          "lineCount": 9
         },
         {
           "name": "parseResearchFormationInput",
@@ -4030,6 +3432,15 @@
           "returnType": "RefinementFormationInput",
           "exported": false,
           "lineCount": 9
+        },
+        {
+          "name": "parseDebuggingFormationInput",
+          "params": [
+            "record"
+          ],
+          "returnType": "DebuggingFormationInput",
+          "exported": false,
+          "lineCount": 10
         },
         {
           "name": "parseImplementationFormationInput",
@@ -4096,7 +3507,7 @@
           ],
           "returnType": "void",
           "exported": false,
-          "lineCount": 4
+          "lineCount": 7
         },
         {
           "name": "allowedKeys",
@@ -4188,6 +3599,7 @@
         {
           "source": "./types.js",
           "specifiers": [
+            "DebuggingFormationInput",
             "FormationInput",
             "ImplementationFormationInput",
             "LinkDeclaration",
@@ -4202,7 +3614,7 @@
         "ControllerRequestError",
         "parseQuickTaskRequest"
       ],
-      "totalLines": 170,
+      "totalLines": 185,
       "hasStructuralAnalysis": true
     },
     "src/controller/resolve.ts": {
@@ -4255,7 +3667,7 @@
     },
     "src/controller/types.ts": {
       "filePath": "src/controller/types.ts",
-      "contentHash": "4a28b7b4ce20561f64f13d8fa614ef598ef3005c2bfc0ae2ef78cd831f9b7bfa",
+      "contentHash": "5c4d7e99729e0e2c00876324e7d8feba0841a3cc23a8e9ca74117bf2842c6459",
       "functions": [],
       "classes": [
         {
@@ -4272,7 +3684,7 @@
       "exports": [
         "ControllerActivationPackageError"
       ],
-      "totalLines": 400,
+      "totalLines": 439,
       "hasStructuralAnalysis": true
     },
     "src/docs/links.ts": {
@@ -9451,7 +8863,7 @@
     },
     "test/controller-cli.test.ts": {
       "filePath": "test/controller-cli.test.ts",
-      "contentHash": "80951f5d8a0e852d9f42fbcc833587357ffaf79b4f687c55f6edd3237f4a34a8",
+      "contentHash": "c697dd497aabc628fbf31572c20762e65b84f5e93749ba3c0f2103d11a33a49f",
       "functions": [
         {
           "name": "runBuiltCli",
@@ -9507,7 +8919,37 @@
         }
       ],
       "exports": [],
-      "totalLines": 267,
+      "totalLines": 298,
+      "hasStructuralAnalysis": true
+    },
+    "test/controller-debugging-recipe.test.ts": {
+      "filePath": "test/controller-debugging-recipe.test.ts",
+      "contentHash": "8845b62187f94e3f6836851a6a670737d049dd21ecacb1e96e555438538ca14f",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "../src/controller/formation-recipe.js",
+          "specifiers": [
+            "loadDebuggingRecipe",
+            "parseDebuggingRecipe"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 57,
       "hasStructuralAnalysis": true
     },
     "test/controller-evaluate.test.ts": {
@@ -9603,7 +9045,7 @@
     },
     "test/controller-formation-recommendation.test.ts": {
       "filePath": "test/controller-formation-recommendation.test.ts",
-      "contentHash": "d73be1895bbdec48d40dfb1a80efef51a807e88124ac4f59935e765a7c922be7",
+      "contentHash": "a61786042aa649c375da55a2f139975d56bc7c88b87ddf770ce6883415a7c3f2",
       "functions": [],
       "classes": [],
       "imports": [
@@ -9646,12 +9088,12 @@
         }
       ],
       "exports": [],
-      "totalLines": 254,
+      "totalLines": 278,
       "hasStructuralAnalysis": true
     },
     "test/controller-formation.test.ts": {
       "filePath": "test/controller-formation.test.ts",
-      "contentHash": "eaabcfab73b733fe582d45087421bb7c135142358a528680f4f805cae1c48e87",
+      "contentHash": "400b9949b69a8ee6fd1980ed712e8bc0e263fd80ac5266ca82ace7e8bcb7eb7e",
       "functions": [
         {
           "name": "catalogSource",
@@ -9686,7 +9128,7 @@
         }
       ],
       "exports": [],
-      "totalLines": 151,
+      "totalLines": 154,
       "hasStructuralAnalysis": true
     },
     "test/controller-recipe.test.ts": {
@@ -9750,7 +9192,7 @@
     },
     "test/controller-request.test.ts": {
       "filePath": "test/controller-request.test.ts",
-      "contentHash": "dd25675dd50510f98c85be0b149e92ad4e9f25c30f8a1ac635dd6c79344fd3e6",
+      "contentHash": "afd31ab7154013120673585f5f398f296940bb931f7ea950a3537fffee8a68aa",
       "functions": [
         {
           "name": "fixture",
@@ -9803,7 +9245,7 @@
         }
       ],
       "exports": [],
-      "totalLines": 135,
+      "totalLines": 171,
       "hasStructuralAnalysis": true
     },
     "test/controller-resolve.test.ts": {

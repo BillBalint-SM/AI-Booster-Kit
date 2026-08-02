@@ -16,8 +16,8 @@
       "GitHub Actions"
     ],
     "description": "AI Booster Kit is a modular, human-centred platform for choosing, tuning, validating, and reusing Agent or Multi-Agent capabilities without making Agent assistance mandatory. Note: this project has over 100 source files; consider scoping analysis to a subdirectory for faster results.",
-    "analyzedAt": "2026-08-01T23:38:03.480Z",
-    "gitCommitHash": "82b7750833aae504f064f5d4f764a7472629fc22"
+    "analyzedAt": "2026-08-02T04:41:25.220Z",
+    "gitCommitHash": "efa960434681f2658f385f409120c2e74595eb9a"
   },
   "nodes": [
     {
@@ -3769,275 +3769,6 @@
       "complexity": "complex"
     },
     {
-      "id": "document:.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/oauth-research-report.md",
-      "type": "document",
-      "name": "oauth-research-report.md",
-      "filePath": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/oauth-research-report.md",
-      "summary": "Records the Gate 2 direct Jira REST OAuth research and concludes that a constrained 3LO diagnostic path is feasible only after tenant-policy and permission verification. It defines the required preflight, credential, and revoke controls while preserving unresolved concerns.",
-      "tags": [
-        "documentation",
-        "oauth",
-        "jira",
-        "security",
-        "preflight"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "document:.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/progress.md",
-      "type": "document",
-      "name": "progress.md",
-      "filePath": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/progress.md",
-      "summary": "Maintains the SDD ledger for the Gate 2 Jira sandbox pilot, covering preflight findings and task completion status. It records Task 2 as blocked after the approved repository target became unavailable and no suitable authenticated GitHub authority was present.",
-      "tags": [
-        "documentation",
-        "project-tracking",
-        "sdd",
-        "status"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "document:.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-1-brief.md",
-      "type": "document",
-      "name": "task-1-brief.md",
-      "filePath": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-1-brief.md",
-      "summary": "Defines Task 1's contract for freezing the Gate 2 pilot scope and requesting authorization before the first external operation. It specifies the sanitized pilot evidence record, its source interfaces, and the required local structure.",
-      "tags": [
-        "documentation",
-        "sandbox",
-        "authorization",
-        "jira",
-        "planning"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "document:.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-1-report.md",
-      "type": "document",
-      "name": "task-1-report.md",
-      "filePath": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-1-report.md",
-      "summary": "Reports that Task 1's local pilot-contract work completed while the first remote operation remained blocked pending fresh authorization. It records the sanitized evidence file, local checks, self-review, and the explicit no-remote-operation boundary.",
-      "tags": [
-        "documentation",
-        "pilot",
-        "authorization",
-        "verification",
-        "blocker"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "document:.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-2-brief.md",
-      "type": "document",
-      "name": "task-2-brief.md",
-      "filePath": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-2-brief.md",
-      "summary": "Specifies the authorized workflow for creating and verifying a private GitHub sandbox repository and recording its immutable fixture location. It includes the exact target, preflight absence check, verification criteria, and narrowly bounded recovery rule.",
-      "tags": [
-        "documentation",
-        "github",
-        "sandbox",
-        "authorization",
-        "repository"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "document:.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-2-report.md",
-      "type": "document",
-      "name": "task-2-report.md",
-      "filePath": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-2-report.md",
-      "summary": "Captures the historical and final verification record for the private GitHub sandbox repository, including the earlier owner and authentication blocker. It preserves observed remote state, local checks, recovery follow-up, and the later approved-owner verification result.",
-      "tags": [
-        "documentation",
-        "github",
-        "verification",
-        "blocker",
-        "audit"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "document:.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-3-brief.md",
-      "type": "document",
-      "name": "task-3-brief.md",
-      "filePath": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-3-brief.md",
-      "summary": "Defines the local-only Task 3 work for recording the manually provisioned Jira and Confluence sandbox boundaries. It establishes the actual G2AS targets, user-attested evidence quality, and prohibition on remote access or authentication changes.",
-      "tags": [
-        "documentation",
-        "jira",
-        "confluence",
-        "sandbox",
-        "boundary"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "document:.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-3-report.md",
-      "type": "document",
-      "name": "task-3-report.md",
-      "filePath": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-3-report.md",
-      "summary": "Reports the Jira and Confluence sandbox attestation and the replacement of the planned G2AI key with the actual G2AS key in current artifacts. It records connector-unverified evidence quality, local verification, and remaining concerns.",
-      "tags": [
-        "documentation",
-        "jira",
-        "confluence",
-        "attestation",
-        "verification"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "document:.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-4-brief.md",
-      "type": "document",
-      "name": "task-4-brief.md",
-      "filePath": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-4-brief.md",
-      "summary": "Defines the approved diagnostic named-user OAuth boundary for direct Jira REST access. It limits the path to a resource-level read-only request and one G2AS project endpoint while explicitly excluding promotion to autonomous or production use.",
-      "tags": [
-        "documentation",
-        "oauth",
-        "jira",
-        "security",
-        "boundary"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "document:.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-4-report.md",
-      "type": "document",
-      "name": "task-4-report.md",
-      "filePath": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-4-report.md",
-      "summary": "Records the diagnostic, non-isolated named-user OAuth boundary and its exact endpoint, scope, and promotion restrictions. It summarizes local checks, the remaining manual step, and the review-evidence binding for the change.",
-      "tags": [
-        "documentation",
-        "oauth",
-        "jira",
-        "security",
-        "verification"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "document:.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-5-brief.md",
-      "type": "document",
-      "name": "task-5-brief.md",
-      "filePath": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-5-brief.md",
-      "summary": "Sets the scope for documenting the synthetic Jira fixture, immutable Git revision, and labelled Confluence projection without performing additional external writes. It lists the approved G2AS-1 facts and acceptance criteria for the evidence record.",
-      "tags": [
-        "documentation",
-        "jira",
-        "github",
-        "confluence",
-        "fixture"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "document:.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-5-report.md",
-      "type": "document",
-      "name": "task-5-report.md",
-      "filePath": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-5-report.md",
-      "summary": "Summarizes the completed G2AS-1 synthetic fixture context across Jira, GitHub, and Confluence. Its acceptance table distinguishes Jira lifecycle truth, immutable Git evidence, and Confluence as an explicit projection while retaining a documented permission concern.",
-      "tags": [
-        "documentation",
-        "traceability",
-        "jira",
-        "github",
-        "confluence"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "document:.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-6-brief.md",
-      "type": "document",
-      "name": "task-6-brief.md",
-      "filePath": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-6-brief.md",
-      "summary": "Defines the read-only Task 6 baseline work: freeze the rubric, record source-native G2AS-1 evidence, validate local failure fixtures, and document the blocked direct REST candidate. It establishes the approved scope, known boundary, and acceptance checks.",
-      "tags": [
-        "documentation",
-        "jira",
-        "read-only",
-        "verification",
-        "fixtures"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "document:.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-6-report.md",
-      "type": "document",
-      "name": "task-6-report.md",
-      "filePath": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-6-report.md",
-      "summary": "Reports the read-only manual baseline and its rubric results for the G2AS-1 context, including Git and Confluence references. It classifies local negative fixtures successfully and records the direct REST path as blocked by the OAuth setup limitation.",
-      "tags": [
-        "documentation",
-        "jira",
-        "read-only",
-        "verification",
-        "limitation"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "document:.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-7-brief.md",
-      "type": "document",
-      "name": "task-7-brief.md",
-      "filePath": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-7-brief.md",
-      "summary": "Defines a read-only comparison of Codex, Cursor, and Claude Code against the fixed G2AS-1 retrieval contract. It emphasizes immediate stopping on target, scope, or authorization deviations and prohibits all external writes.",
-      "tags": [
-        "documentation",
-        "rovo",
-        "host-comparison",
-        "scope-boundary",
-        "safety"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "document:.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-7-report.md",
-      "type": "document",
-      "name": "task-7-report.md",
-      "filePath": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-7-report.md",
-      "summary": "Records the fixed retrieval prompt, host comparison matrix, and guardrail decision for the Rovo read-only trial. It classifies the Codex result as a scope-violation stop and the other two hosts as unavailable without reusing unrelated returned content.",
-      "tags": [
-        "documentation",
-        "rovo",
-        "host-comparison",
-        "scope-violation",
-        "guardrails"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "document:.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-8-brief.md",
-      "type": "document",
-      "name": "task-8-brief.md",
-      "filePath": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-8-brief.md",
-      "summary": "Defines the exact contract for one authorized Jira evidence-link write from G2AS-1 to an immutable Git commit URL. It specifies the target, actor, duplicate rule, pre-read, single-write boundary, and required issue/history read-back.",
-      "tags": [
-        "documentation",
-        "jira",
-        "evidence-link",
-        "authorization",
-        "audit"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "document:.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-8-report.md",
-      "type": "document",
-      "name": "task-8-report.md",
-      "filePath": ".superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-8-report.md",
-      "summary": "Reports the successful single Jira web-link write for the G2AS-1 issue and the exact Git commit URL. It documents the contract, pre-read, one-click write, source-native read-back, and the remaining evidence limits.",
-      "tags": [
-        "documentation",
-        "jira",
-        "evidence-link",
-        "verification",
-        "audit"
-      ],
-      "complexity": "simple"
-    },
-    {
       "id": "document:AGENTS.md",
       "type": "document",
       "name": "AGENTS.md",
@@ -4240,321 +3971,6 @@
       "complexity": "moderate"
     },
     {
-      "id": "document:docs/history/gate-2/current-state-and-roadmap.md",
-      "type": "document",
-      "name": "current-state-and-roadmap.md",
-      "filePath": "docs/history/gate-2/current-state-and-roadmap.md",
-      "summary": "Historical operating-model baseline and roadmap for selectable agent workflows across Codex, Cursor, and Claude Code. It records completed milestones, host-behavior limits, security-validation gaps, and decision gates for later Jira, Git, and Confluence integration.",
-      "tags": [
-        "documentation",
-        "historical-state",
-        "roadmap",
-        "governance",
-        "host-integration"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "document:docs/history/gate-2/g2ai-pilot-evidence.md",
-      "type": "document",
-      "name": "g2ai-pilot-evidence.md",
-      "filePath": "docs/history/gate-2/g2ai-pilot-evidence.md",
-      "summary": "Evidence record for the G2AS sandbox pilot spanning Jira, GitHub, and Confluence. It documents authority boundaries, diagnostic OAuth limits, operation and read-back history, scorecard results, and the conditions that prevent promotion to broader external actions.",
-      "tags": [
-        "documentation",
-        "evidence",
-        "sandbox",
-        "audit",
-        "governance"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "document:docs/history/gate-2/gate-2-results-and-next-steps.md",
-      "type": "document",
-      "name": "gate-2-results-and-next-steps.md",
-      "filePath": "docs/history/gate-2/gate-2-results-and-next-steps.md",
-      "summary": "Hungarian Gate 2 results and handoff document summarizing the sandbox artifacts, task-by-task outcomes, unresolved connector and host-comparison limits, and bounded follow-up work. It also preserves the operating-contract and context-switch handoff needed for the next validation slice.",
-      "tags": [
-        "documentation",
-        "status-report",
-        "sandbox",
-        "handoff",
-        "governance"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "document:docs/history/host-conformance/agent-testing-status-2026-07-28.md",
-      "type": "document",
-      "name": "agent-testing-status-2026-07-28.md",
-      "filePath": "docs/history/host-conformance/agent-testing-status-2026-07-28.md",
-      "summary": "Historical status and roadmap handoff for agent host-conformance testing on 2026-07-28. It records completed work, the host matrix, decisions, next steps, and verification evidence.",
-      "tags": [
-        "documentation",
-        "host-conformance",
-        "status",
-        "roadmap",
-        "verification"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "document:docs/history/host-conformance/claude-code-2026-07-27.md",
-      "type": "document",
-      "name": "claude-code-2026-07-27.md",
-      "filePath": "docs/history/host-conformance/claude-code-2026-07-27.md",
-      "summary": "Historical Claude Code host-behavior diagnostic covering execution context, observed behavior, an independent review matrix, and the separate security track. It closes with a decision and bounded follow-up actions.",
-      "tags": [
-        "documentation",
-        "claude-code",
-        "host-behavior",
-        "diagnostic",
-        "security"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "document:docs/history/host-conformance/claude-code-2026-07-28-behavior-response.md",
-      "type": "document",
-      "name": "claude-code-2026-07-28-behavior-response.md",
-      "filePath": "docs/history/host-conformance/claude-code-2026-07-28-behavior-response.md",
-      "summary": "Captured-response record for Claude Code host behavior on 2026-07-28. The document preserves the reported behavior evidence for later conformance review.",
-      "tags": [
-        "documentation",
-        "claude-code",
-        "behavior-response",
-        "host-conformance",
-        "evidence"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "document:docs/history/host-conformance/claude-code-2026-07-28-context-integrity-response.md",
-      "type": "document",
-      "name": "claude-code-2026-07-28-context-integrity-response.md",
-      "filePath": "docs/history/host-conformance/claude-code-2026-07-28-context-integrity-response.md",
-      "summary": "Detailed Claude Code context-integrity response for 2026-07-28. It documents the objective and boundary, context observations, instruction-layer map, classifications, evidence distinctions, verdicts, and clean-context handoff.",
-      "tags": [
-        "documentation",
-        "claude-code",
-        "context-integrity",
-        "conformance",
-        "handoff"
-      ],
-      "complexity": "complex"
-    },
-    {
-      "id": "document:docs/history/host-conformance/claude-code-2026-07-28-context-payload-capture.md",
-      "type": "document",
-      "name": "claude-code-2026-07-28-context-payload-capture.md",
-      "filePath": "docs/history/host-conformance/claude-code-2026-07-28-context-payload-capture.md",
-      "summary": "Historical record of a Claude Code context-payload capture attempt. It defines the boundary, lists inspected artifacts, records the capture result and rerun, and classifies the outcome with a bounded next action.",
-      "tags": [
-        "documentation",
-        "claude-code",
-        "context-payload",
-        "capture",
-        "diagnostic"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "document:docs/history/host-conformance/claude-code-2026-07-28-native-behavior-response.md",
-      "type": "document",
-      "name": "claude-code-2026-07-28-native-behavior-response.md",
-      "filePath": "docs/history/host-conformance/claude-code-2026-07-28-native-behavior-response.md",
-      "summary": "Captured response for Claude Code native Windows host behavior on 2026-07-28. It records the reported verdict, material observations, the reported four-layer map, and an independent-review note.",
-      "tags": [
-        "documentation",
-        "claude-code",
-        "native-windows",
-        "behavior-response",
-        "evidence"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "document:docs/history/host-conformance/claude-code-2026-07-28-native.md",
-      "type": "document",
-      "name": "claude-code-2026-07-28-native.md",
-      "filePath": "docs/history/host-conformance/claude-code-2026-07-28-native.md",
-      "summary": "Historical Claude Code native Windows host-behavior diagnostic. It separates execution context, behavior-track observations, independent review, and security findings before recording a decision and bounded next actions.",
-      "tags": [
-        "documentation",
-        "claude-code",
-        "native-windows",
-        "host-behavior",
-        "diagnostic"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "document:docs/history/host-conformance/claude-code-2026-07-28-project-cwd-rerun.md",
-      "type": "document",
-      "name": "claude-code-2026-07-28-project-cwd-rerun.md",
-      "filePath": "docs/history/host-conformance/claude-code-2026-07-28-project-cwd-rerun.md",
-      "summary": "Historical record of a Claude Code rerun from the project working directory. It captures scope, direct source evidence, gate classification, and the resulting handoff.",
-      "tags": [
-        "documentation",
-        "claude-code",
-        "project-cwd",
-        "rerun",
-        "evidence"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "document:docs/history/host-conformance/claude-code-context-integrity-remediation-2026-07-28.md",
-      "type": "document",
-      "name": "claude-code-context-integrity-remediation-2026-07-28.md",
-      "filePath": "docs/history/host-conformance/claude-code-context-integrity-remediation-2026-07-28.md",
-      "summary": "Historical remediation record for Claude Code context integrity. It explains the trigger and change, defines M2 acceptance criteria, reports verification status, and provides a handoff.",
-      "tags": [
-        "documentation",
-        "claude-code",
-        "context-integrity",
-        "remediation",
-        "acceptance-criteria"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "document:docs/history/host-conformance/claude-code-host-capability-investigation-2026-07-28.md",
-      "type": "document",
-      "name": "claude-code-host-capability-investigation-2026-07-28.md",
-      "filePath": "docs/history/host-conformance/claude-code-host-capability-investigation-2026-07-28.md",
-      "summary": "Historical investigation of Claude Code host capabilities and the evidence boundary. It records the auth and cost gate, ranked hypotheses, observations, assessment, and the next bounded action.",
-      "tags": [
-        "documentation",
-        "claude-code",
-        "capability",
-        "investigation",
-        "evidence"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "document:docs/history/host-conformance/codex-2026-07-27-v2.md",
-      "type": "document",
-      "name": "codex-2026-07-27-v2.md",
-      "filePath": "docs/history/host-conformance/codex-2026-07-27-v2.md",
-      "summary": "Second historical Codex host-conformance remediation run. It records run identity, source-evidence boundaries, runtime events, independent review, the decision, and a preserved response.",
-      "tags": [
-        "documentation",
-        "codex",
-        "host-conformance",
-        "remediation",
-        "runtime-evidence"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "document:docs/history/host-conformance/codex-2026-07-27.md",
-      "type": "document",
-      "name": "codex-2026-07-27.md",
-      "filePath": "docs/history/host-conformance/codex-2026-07-27.md",
-      "summary": "Historical Codex host-conformance pilot record. It documents run identity, source-evidence boundaries, runtime events, the runtime-boundary finding, independent review, and the final decision.",
-      "tags": [
-        "documentation",
-        "codex",
-        "host-conformance",
-        "pilot",
-        "runtime-boundary"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "document:docs/history/host-conformance/codex-2026-07-28-v3.md",
-      "type": "document",
-      "name": "codex-2026-07-28-v3.md",
-      "filePath": "docs/history/host-conformance/codex-2026-07-28-v3.md",
-      "summary": "Third historical Codex host-conformance remediation record. It combines runtime observations and review with a selected pattern, common-core lifecycle, explicit facts and unknowns, stop conditions, and a clean-context handoff.",
-      "tags": [
-        "documentation",
-        "codex",
-        "host-conformance",
-        "stop-conditions",
-        "handoff"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "document:docs/history/host-conformance/codex-runtime-boundary-diagnostic-2026-07-27.md",
-      "type": "document",
-      "name": "codex-runtime-boundary-diagnostic-2026-07-27.md",
-      "filePath": "docs/history/host-conformance/codex-runtime-boundary-diagnostic-2026-07-27.md",
-      "summary": "Historical Codex runtime-boundary diagnostic. It correlates observed local configuration with evidence and records the resulting decision.",
-      "tags": [
-        "documentation",
-        "codex",
-        "runtime-boundary",
-        "diagnostic",
-        "configuration"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "document:docs/history/host-conformance/cursor-2026-07-27-behavior-response.md",
-      "type": "document",
-      "name": "cursor-2026-07-27-behavior-response.md",
-      "filePath": "docs/history/host-conformance/cursor-2026-07-27-behavior-response.md",
-      "summary": "Captured behavior response for the Cursor Agent host-conformance run on 2026-07-27. The document preserves the reported response for historical comparison.",
-      "tags": [
-        "documentation",
-        "cursor",
-        "behavior-response",
-        "host-conformance",
-        "evidence"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "document:docs/history/host-conformance/cursor-2026-07-27.md",
-      "type": "document",
-      "name": "cursor-2026-07-27.md",
-      "filePath": "docs/history/host-conformance/cursor-2026-07-27.md",
-      "summary": "Historical Cursor host-behavior diagnostic. It covers execution context, behavior observations, independent review, the separate security track, and the team handoff.",
-      "tags": [
-        "documentation",
-        "cursor",
-        "host-behavior",
-        "diagnostic",
-        "security"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "document:docs/history/host-conformance/cursor-desktop-2026-07-28-behavior-response.md",
-      "type": "document",
-      "name": "cursor-desktop-2026-07-28-behavior-response.md",
-      "filePath": "docs/history/host-conformance/cursor-desktop-2026-07-28-behavior-response.md",
-      "summary": "Captured Cursor Desktop behavior response for 2026-07-28. It records the objective and boundary, host observations, four-layer map, selected pattern, explicit facts and unknowns, verdicts, and clean-context handoff.",
-      "tags": [
-        "documentation",
-        "cursor-desktop",
-        "behavior-response",
-        "host-conformance",
-        "handoff"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "document:docs/history/host-conformance/cursor-desktop-2026-07-28.md",
-      "type": "document",
-      "name": "cursor-desktop-2026-07-28.md",
-      "filePath": "docs/history/host-conformance/cursor-desktop-2026-07-28.md",
-      "summary": "Historical Cursor Desktop host-behavior diagnostic. It records execution context, source-evidence boundaries, independent review, findings and conflicts, the decision, and the handoff.",
-      "tags": [
-        "documentation",
-        "cursor-desktop",
-        "host-behavior",
-        "diagnostic",
-        "handoff"
-      ],
-      "complexity": "simple"
-    },
-    {
       "id": "document:docs/operations/agent-operating-model.md",
       "type": "document",
       "name": "agent-operating-model.md",
@@ -4727,15 +4143,14 @@
       "type": "document",
       "name": "mapper-snapshot.md",
       "filePath": "docs/runbooks/mapper-snapshot.md",
-      "summary": "Documents the reviewed Understand Anything and Graphify snapshot artifacts, their source-revision freshness contract, and the controlled sequence for refreshing and publishing them.",
+      "summary": "Defines the operating rule for publishing and validating reviewed Understand Anything and Graphify snapshots. Documents the freshness contract, independent Graphify-then-UA sequencing, readiness states, preflight check, and refresh sequence.",
       "tags": [
         "documentation",
-        "understand-anything",
-        "graphify",
-        "freshness",
-        "release"
+        "runbook",
+        "graph-refresh",
+        "freshness-contract"
       ],
-      "complexity": "simple"
+      "complexity": "moderate"
     },
     {
       "id": "document:docs/runbooks/sync-orchestrator-v1-sandbox.md",
@@ -4751,268 +4166,6 @@
         "read-back"
       ],
       "complexity": "simple"
-    },
-    {
-      "id": "document:docs/superpowers/plans/2026-07-22-ai-agent-tooling-gate-1-research.md",
-      "type": "document",
-      "name": "2026-07-22-ai-agent-tooling-gate-1-research.md",
-      "filePath": "docs/superpowers/plans/2026-07-22-ai-agent-tooling-gate-1-research.md",
-      "summary": "Detailed implementation plan for researching Codex, Cursor, and Claude Code profiles, integrations, workflow patterns, and governance controls for the AI Agent Tooling Gate 1 decision.",
-      "tags": [
-        "documentation",
-        "research",
-        "tooling",
-        "governance"
-      ],
-      "complexity": "complex"
-    },
-    {
-      "id": "document:docs/superpowers/plans/2026-07-27-agent-operating-model-baseline.md",
-      "type": "document",
-      "name": "2026-07-27-agent-operating-model-baseline.md",
-      "filePath": "docs/superpowers/plans/2026-07-27-agent-operating-model-baseline.md",
-      "summary": "Implementation plan for establishing a canonical agent operating model, a local synthetic research-and-validation runbook, and its connection to the Gate 2 decision record.",
-      "tags": [
-        "documentation",
-        "operating-model",
-        "runbook",
-        "validation"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "document:docs/superpowers/plans/2026-07-27-codex-conformance-remediation.md",
-      "type": "document",
-      "name": "2026-07-27-codex-conformance-remediation.md",
-      "filePath": "docs/superpowers/plans/2026-07-27-codex-conformance-remediation.md",
-      "summary": "Bounded remediation plan for Codex conformance, including scope, acceptance criteria, decision rules, and verification of a controlled rerun.",
-      "tags": [
-        "documentation",
-        "conformance",
-        "remediation",
-        "verification"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "document:docs/superpowers/plans/2026-07-27-gate-2-jira-sandbox-pilot.md",
-      "type": "document",
-      "name": "2026-07-27-gate-2-jira-sandbox-pilot.md",
-      "filePath": "docs/superpowers/plans/2026-07-27-gate-2-jira-sandbox-pilot.md",
-      "summary": "Implementation plan for a Jira-centered sandbox pilot covering approved external operations, GitHub and Atlassian boundaries, identity and allowlist controls, read-only measurements, and one separately approved write probe.",
-      "tags": [
-        "documentation",
-        "jira",
-        "sandbox",
-        "pilot",
-        "governance"
-      ],
-      "complexity": "complex"
-    },
-    {
-      "id": "document:docs/superpowers/plans/2026-07-27-host-behavior-security-separation.md",
-      "type": "document",
-      "name": "2026-07-27-host-behavior-security-separation.md",
-      "filePath": "docs/superpowers/plans/2026-07-27-host-behavior-security-separation.md",
-      "summary": "Plan for separating observed host behavior from independently verified security-boundary claims, with explicit scope, controls, acceptance criteria, and verification steps.",
-      "tags": [
-        "documentation",
-        "security",
-        "host-behavior",
-        "verification"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "document:docs/superpowers/plans/2026-07-27-host-conformance-pilot.md",
-      "type": "document",
-      "name": "2026-07-27-host-conformance-pilot.md",
-      "filePath": "docs/superpowers/plans/2026-07-27-host-conformance-pilot.md",
-      "summary": "Plan for a three-host read-only conformance pilot, defining the cohort, acceptance criteria, risks, controls, and verification approach.",
-      "tags": [
-        "documentation",
-        "conformance",
-        "multi-host",
-        "pilot"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "document:docs/superpowers/plans/2026-07-27-host-native-adapters-team-activation.md",
-      "type": "document",
-      "name": "2026-07-27-host-native-adapters-team-activation.md",
-      "filePath": "docs/superpowers/plans/2026-07-27-host-native-adapters-team-activation.md",
-      "summary": "Team activation plan for host-native adapters, defining the package scope, acceptance criteria, operational risks, controls, and verification handoff.",
-      "tags": [
-        "documentation",
-        "adapters",
-        "team-activation",
-        "operations"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "document:docs/superpowers/plans/2026-07-27-layer-separation-common-core.md",
-      "type": "document",
-      "name": "2026-07-27-layer-separation-common-core.md",
-      "filePath": "docs/superpowers/plans/2026-07-27-layer-separation-common-core.md",
-      "summary": "Architecture plan defining the separation between a shared agent core and domain-specific adapters, including responsibilities, acceptance criteria, and verification results.",
-      "tags": [
-        "documentation",
-        "architecture",
-        "agent-core",
-        "domain-adapter"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "document:docs/superpowers/plans/2026-07-29-agent-agnostic-sync-orchestrator-implementation.md",
-      "type": "document",
-      "name": "2026-07-29-agent-agnostic-sync-orchestrator-implementation.md",
-      "filePath": "docs/superpowers/plans/2026-07-29-agent-agnostic-sync-orchestrator-implementation.md",
-      "summary": "Comprehensive implementation plan for a contract-first, agent-agnostic synchronization orchestrator spanning domain validation, lifecycle and event handling, connectors, native adapters, CLI safety, evidence, and sandbox readiness.",
-      "tags": [
-        "documentation",
-        "orchestration",
-        "implementation-plan",
-        "contract",
-        "integration"
-      ],
-      "complexity": "complex"
-    },
-    {
-      "id": "document:docs/superpowers/plans/2026-07-29-documentation-github-structure.md",
-      "type": "document",
-      "name": "2026-07-29-documentation-github-structure.md",
-      "filePath": "docs/superpowers/plans/2026-07-29-documentation-github-structure.md",
-      "summary": "Implementation plan for testable Markdown-link verification, active documentation entry points, historical evidence organization, minimal CI, and an evidence-oriented GitHub pull-request template.",
-      "tags": [
-        "documentation",
-        "github",
-        "structure",
-        "ci-cd",
-        "links"
-      ],
-      "complexity": "complex"
-    },
-    {
-      "id": "document:docs/superpowers/plans/2026-07-29-g2as-sandbox-readiness-certificate.md",
-      "type": "document",
-      "name": "2026-07-29-g2as-sandbox-readiness-certificate.md",
-      "filePath": "docs/superpowers/plans/2026-07-29-g2as-sandbox-readiness-certificate.md",
-      "summary": "Implementation plan for a G2AS sandbox readiness certificate covering fixed manifests, strict readiness types, normalized observations, exact-target evaluation, safe certificate rendering, CLI orchestration, and live-read gating.",
-      "tags": [
-        "documentation",
-        "readiness",
-        "certificate",
-        "sandbox",
-        "validation"
-      ],
-      "complexity": "complex"
-    },
-    {
-      "id": "document:docs/superpowers/plans/2026-07-29-native-mcp-capability-standard.md",
-      "type": "document",
-      "name": "2026-07-29-native-mcp-capability-standard.md",
-      "filePath": "docs/superpowers/plans/2026-07-29-native-mcp-capability-standard.md",
-      "summary": "Implementation plan for a native MCP capability standard, including canonical manifests, deterministic host projections, capability evidence, readiness enforcement, CLI integration, and cross-host conformance.",
-      "tags": [
-        "documentation",
-        "mcp",
-        "capability",
-        "governance",
-        "standard"
-      ],
-      "complexity": "complex"
-    },
-    {
-      "id": "document:docs/superpowers/plans/2026-07-29-post-merge-state-synchronization.md",
-      "type": "document",
-      "name": "2026-07-29-post-merge-state-synchronization.md",
-      "filePath": "docs/superpowers/plans/2026-07-29-post-merge-state-synchronization.md",
-      "summary": "Short post-merge synchronization plan focused on recording the merged current state and preserving the resulting decision record.",
-      "tags": [
-        "documentation",
-        "post-merge",
-        "state-synchronization",
-        "handoff"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "document:docs/superpowers/specs/2026-07-21-ai-agent-tooling-research-design.md",
-      "type": "document",
-      "name": "2026-07-21-ai-agent-tooling-research-design.md",
-      "filePath": "docs/superpowers/specs/2026-07-21-ai-agent-tooling-research-design.md",
-      "summary": "Designs a gated research program for agent-native tooling, covering priority workflows, source-of-truth artifacts, evidence policy, research workstreams, evaluation, security boundaries, and handoff criteria.",
-      "tags": [
-        "documentation",
-        "research",
-        "governance",
-        "security",
-        "evaluation"
-      ],
-      "complexity": "complex"
-    },
-    {
-      "id": "document:docs/superpowers/specs/2026-07-27-gate-2-jira-sandbox-pilot-design.md",
-      "type": "document",
-      "name": "2026-07-27-gate-2-jira-sandbox-pilot-design.md",
-      "filePath": "docs/superpowers/specs/2026-07-27-gate-2-jira-sandbox-pilot-design.md",
-      "summary": "Defines the Gate 2 Jira-centered sandbox pilot, including its architecture and sequence, role authority, read-only OAuth diagnostic boundary, recovery contract, measurements, promotion gate, and acceptance criteria.",
-      "tags": [
-        "documentation",
-        "jira",
-        "sandbox",
-        "security",
-        "acceptance-criteria"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "document:docs/superpowers/specs/2026-07-29-agent-agnostic-sync-orchestrator-design.md",
-      "type": "document",
-      "name": "2026-07-29-agent-agnostic-sync-orchestrator-design.md",
-      "filePath": "docs/superpowers/specs/2026-07-29-agent-agnostic-sync-orchestrator-design.md",
-      "summary": "Specifies a contract-first, agent-agnostic synchronization orchestrator with canonical contracts, generated host adapters, Jira-centered work hierarchy, allowlisted sync, idempotency, recovery, audit, cross-host conformance, and V1 acceptance boundaries.",
-      "tags": [
-        "documentation",
-        "architecture",
-        "orchestration",
-        "jira",
-        "governance"
-      ],
-      "complexity": "complex"
-    },
-    {
-      "id": "document:docs/superpowers/specs/2026-07-29-g2as-sandbox-readiness-certificate-design.md",
-      "type": "document",
-      "name": "2026-07-29-g2as-sandbox-readiness-certificate-design.md",
-      "filePath": "docs/superpowers/specs/2026-07-29-g2as-sandbox-readiness-certificate-design.md",
-      "summary": "Defines the G2AS sandbox readiness certificate, its target manifest, read-only execution policy, evidence and certificate schema, readiness decision, verification requirements, and implementation boundary.",
-      "tags": [
-        "documentation",
-        "sandbox",
-        "readiness",
-        "evidence",
-        "security"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "document:docs/superpowers/specs/2026-07-29-native-mcp-capability-standard-design.md",
-      "type": "document",
-      "name": "2026-07-29-native-mcp-capability-standard-design.md",
-      "filePath": "docs/superpowers/specs/2026-07-29-native-mcp-capability-standard-design.md",
-      "summary": "Defines a native MCP capability standard based on a canonical capability manifest, host projections, capability evidence, native traceability, stop protocols, validation, and deferred pilot remediation.",
-      "tags": [
-        "documentation",
-        "mcp",
-        "capability-standard",
-        "traceability",
-        "validation"
-      ],
-      "complexity": "moderate"
     },
     {
       "id": "document:templates/hosts/claude-code-github-readonly-capability.md",
@@ -5245,46 +4398,6 @@
         "jira"
       ],
       "complexity": "moderate"
-    },
-    {
-      "id": "document:docs/history/README.md",
-      "type": "document",
-      "name": "README.md",
-      "filePath": "docs/history/README.md",
-      "summary": "Archive index explaining that historical evidence is immutable context and listing the principal Gate 2 and host-conformance records.",
-      "tags": [
-        "documentation",
-        "history",
-        "evidence",
-        "archive"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "file:docs/history/execution-records/.gitkeep",
-      "type": "file",
-      "name": ".gitkeep",
-      "filePath": "docs/history/execution-records/.gitkeep",
-      "summary": "Repository placeholder preserving the historical execution-records directory for future evidence artifacts.",
-      "tags": [
-        "placeholder",
-        "history",
-        "evidence"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "file:docs/history/gate-1/.gitkeep",
-      "type": "file",
-      "name": ".gitkeep",
-      "filePath": "docs/history/gate-1/.gitkeep",
-      "summary": "Repository placeholder preserving the historical Gate 1 directory for archived research and review evidence.",
-      "tags": [
-        "placeholder",
-        "history",
-        "research"
-      ],
-      "complexity": "simple"
     },
     {
       "id": "document:research/2026-07-21-ai-agent-tooling-blueprint.md",
@@ -5630,149 +4743,6 @@
         "documentation"
       ],
       "complexity": "moderate"
-    },
-    {
-      "id": "document:docs/superpowers/plans/2026-08-01-ai-booster-kit-controller-mvp.md",
-      "type": "document",
-      "name": "2026-08-01-ai-booster-kit-controller-mvp.md",
-      "filePath": "docs/superpowers/plans/2026-08-01-ai-booster-kit-controller-mvp.md",
-      "summary": "Documents the project operating model, verification evidence, or bounded delivery procedure.",
-      "tags": [
-        "documentation"
-      ],
-      "complexity": "complex"
-    },
-    {
-      "id": "document:docs/superpowers/plans/2026-08-01-ai-booster-kit-human-checkpoint-activation-intent.md",
-      "type": "document",
-      "name": "2026-08-01-ai-booster-kit-human-checkpoint-activation-intent.md",
-      "filePath": "docs/superpowers/plans/2026-08-01-ai-booster-kit-human-checkpoint-activation-intent.md",
-      "summary": "Documents the project operating model, verification evidence, or bounded delivery procedure.",
-      "tags": [
-        "documentation"
-      ],
-      "complexity": "complex"
-    },
-    {
-      "id": "document:docs/superpowers/plans/2026-08-01-ai-booster-kit-m1-a-library-catalog.md",
-      "type": "document",
-      "name": "2026-08-01-ai-booster-kit-m1-a-library-catalog.md",
-      "filePath": "docs/superpowers/plans/2026-08-01-ai-booster-kit-m1-a-library-catalog.md",
-      "summary": "Documents the project operating model, verification evidence, or bounded delivery procedure.",
-      "tags": [
-        "documentation"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "document:docs/superpowers/plans/2026-08-01-ai-booster-kit-m1-b-scenario-recommendation.md",
-      "type": "document",
-      "name": "2026-08-01-ai-booster-kit-m1-b-scenario-recommendation.md",
-      "filePath": "docs/superpowers/plans/2026-08-01-ai-booster-kit-m1-b-scenario-recommendation.md",
-      "summary": "Documents the project operating model, verification evidence, or bounded delivery procedure.",
-      "tags": [
-        "documentation"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "document:docs/superpowers/plans/2026-08-01-ai-booster-kit-m1-readiness-cli-integration.md",
-      "type": "document",
-      "name": "2026-08-01-ai-booster-kit-m1-readiness-cli-integration.md",
-      "filePath": "docs/superpowers/plans/2026-08-01-ai-booster-kit-m1-readiness-cli-integration.md",
-      "summary": "Documents the project operating model, verification evidence, or bounded delivery procedure.",
-      "tags": [
-        "documentation"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "document:docs/superpowers/plans/2026-08-01-ai-booster-kit-quick-task-activation-package.md",
-      "type": "document",
-      "name": "2026-08-01-ai-booster-kit-quick-task-activation-package.md",
-      "filePath": "docs/superpowers/plans/2026-08-01-ai-booster-kit-quick-task-activation-package.md",
-      "summary": "Documents the project operating model, verification evidence, or bounded delivery procedure.",
-      "tags": [
-        "documentation"
-      ],
-      "complexity": "complex"
-    },
-    {
-      "id": "document:docs/superpowers/plans/2026-08-01-ai-booster-kit-ready-refinement-recipe.md",
-      "type": "document",
-      "name": "2026-08-01-ai-booster-kit-ready-refinement-recipe.md",
-      "filePath": "docs/superpowers/plans/2026-08-01-ai-booster-kit-ready-refinement-recipe.md",
-      "summary": "Documents the project operating model, verification evidence, or bounded delivery procedure.",
-      "tags": [
-        "documentation"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "document:docs/superpowers/plans/2026-08-01-ai-booster-kit-ready-validation-recipe.md",
-      "type": "document",
-      "name": "2026-08-01-ai-booster-kit-ready-validation-recipe.md",
-      "filePath": "docs/superpowers/plans/2026-08-01-ai-booster-kit-ready-validation-recipe.md",
-      "summary": "Documents the project operating model, verification evidence, or bounded delivery procedure.",
-      "tags": [
-        "documentation"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "document:docs/superpowers/plans/2026-08-01-ai-booster-kit-team-delivery-loop.md",
-      "type": "document",
-      "name": "2026-08-01-ai-booster-kit-team-delivery-loop.md",
-      "filePath": "docs/superpowers/plans/2026-08-01-ai-booster-kit-team-delivery-loop.md",
-      "summary": "Documents the project operating model, verification evidence, or bounded delivery procedure.",
-      "tags": [
-        "documentation"
-      ],
-      "complexity": "complex"
-    },
-    {
-      "id": "document:docs/superpowers/specs/2026-08-01-ai-booster-kit-controller-mvp-design.md",
-      "type": "document",
-      "name": "2026-08-01-ai-booster-kit-controller-mvp-design.md",
-      "filePath": "docs/superpowers/specs/2026-08-01-ai-booster-kit-controller-mvp-design.md",
-      "summary": "Documents the project operating model, verification evidence, or bounded delivery procedure.",
-      "tags": [
-        "documentation"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "document:docs/superpowers/specs/2026-08-01-ai-booster-kit-human-checkpoint-activation-intent-design.md",
-      "type": "document",
-      "name": "2026-08-01-ai-booster-kit-human-checkpoint-activation-intent-design.md",
-      "filePath": "docs/superpowers/specs/2026-08-01-ai-booster-kit-human-checkpoint-activation-intent-design.md",
-      "summary": "Documents the project operating model, verification evidence, or bounded delivery procedure.",
-      "tags": [
-        "documentation"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "document:docs/superpowers/specs/2026-08-01-ai-booster-kit-quick-task-activation-package-design.md",
-      "type": "document",
-      "name": "2026-08-01-ai-booster-kit-quick-task-activation-package-design.md",
-      "filePath": "docs/superpowers/specs/2026-08-01-ai-booster-kit-quick-task-activation-package-design.md",
-      "summary": "Documents the project operating model, verification evidence, or bounded delivery procedure.",
-      "tags": [
-        "documentation"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "document:docs/superpowers/specs/2026-08-01-ai-booster-kit-team-delivery-loop-design.md",
-      "type": "document",
-      "name": "2026-08-01-ai-booster-kit-team-delivery-loop-design.md",
-      "filePath": "docs/superpowers/specs/2026-08-01-ai-booster-kit-team-delivery-loop-design.md",
-      "summary": "Documents the project operating model, verification evidence, or bounded delivery procedure.",
-      "tags": [
-        "documentation"
-      ],
-      "complexity": "complex"
     },
     {
       "id": "file:src/cli.ts",
@@ -9199,12 +8169,13 @@
       "type": "file",
       "name": "formation-recommendation.ts",
       "filePath": "src/controller/formation-recommendation.ts",
-      "summary": "Classifies Quick Task goals and emits explainable formation recommendations while preserving missing implementation prerequisites and UNKNOWN evidence.",
+      "summary": "Evaluates Quick Task requests against the formation catalog and returns bounded recommendations. It recognizes scenarios, reports missing prerequisites or unknown evidence, and preserves recommendation-only authority for unsupported cases.",
       "tags": [
-        "recommendation",
         "controller",
+        "recommendation",
         "scenario-routing",
-        "validation",
+        "prerequisites",
+        "decision",
         "tested"
       ],
       "complexity": "moderate"
@@ -9218,13 +8189,15 @@
         29,
         65
       ],
-      "summary": "Selects or withholds a formation using scenario recognition, complexity, prerequisites, and UNKNOWN evidence.",
+      "summary": "Validates a Quick Task request and catalog, recognizes the requested scenario, and returns a recommendation that accounts for user continuation preferences, catalog uniqueness, complexity, prerequisites, evidence state, and formation readiness.",
       "tags": [
-        "controller",
+        "recommendation",
+        "scenario-routing",
         "validation",
-        "function"
+        "prerequisites",
+        "decision"
       ],
-      "complexity": "simple"
+      "complexity": "complex"
     },
     {
       "id": "function:src/controller/formation-recommendation.ts:unresolvedPrerequisites",
@@ -9233,15 +8206,16 @@
       "filePath": "src/controller/formation-recommendation.ts",
       "lineRange": [
         84,
-        105
+        109
       ],
-      "summary": "Evaluates scenario-specific prerequisites, including explicit implementation repository, plan, test, and rollback evidence.",
+      "summary": "Filters catalog prerequisites by checking the corresponding Quick Task owner, goal, formation input, repository, rollback, debugging, and evidence fields.",
       "tags": [
-        "controller",
+        "prerequisites",
         "validation",
-        "function"
+        "formation",
+        "controller"
       ],
-      "complexity": "simple"
+      "complexity": "moderate"
     },
     {
       "id": "function:src/controller/formation-recommendation.ts:recommendation",
@@ -9249,16 +8223,17 @@
       "name": "recommendation",
       "filePath": "src/controller/formation-recommendation.ts",
       "lineRange": [
-        115,
-        137
+        119,
+        141
       ],
-      "summary": "Function recommendation provides a validated part of the Controller contract implemented in src/controller/formation-recommendation.ts.",
+      "summary": "Builds the normalized recommendation result, including decision, impact, acknowledgement requirements, reasons, unknown evidence, and optional formation identity details.",
       "tags": [
-        "controller",
-        "validation",
-        "function"
+        "recommendation",
+        "result-building",
+        "decision",
+        "controller"
       ],
-      "complexity": "simple"
+      "complexity": "moderate"
     },
     {
       "id": "class:src/controller/formation-recommendation.ts:FormationRecommendationError",
@@ -9269,11 +8244,12 @@
         22,
         27
       ],
-      "summary": "FormationRecommendationError reports a specific rejected Controller contract without exposing input values.",
+      "summary": "Reports invalid request or catalog assumptions encountered while producing a formation recommendation.",
       "tags": [
-        "controller",
-        "error-handling",
-        "validation"
+        "error-type",
+        "recommendation",
+        "validation",
+        "controller"
       ],
       "complexity": "simple"
     },
@@ -9282,12 +8258,13 @@
       "type": "file",
       "name": "request.ts",
       "filePath": "src/controller/request.ts",
-      "summary": "Strictly parses Quick Task requests and scenario profiles, requiring VERIFIED repository state and an ACCEPTED plan for development work.",
+      "summary": "Parses and validates untrusted Quick Task request objects into typed controller inputs. It enforces allowed keys, literal values, scenario-specific formation inputs, non-empty strings, and list invariants before recommendation logic consumes the request.",
       "tags": [
-        "request-parser",
-        "validation",
         "controller",
-        "safety-boundary",
+        "request-parsing",
+        "validation",
+        "input-contract",
+        "type-guards",
         "tested"
       ],
       "complexity": "moderate"
@@ -9301,13 +8278,14 @@
         12,
         33
       ],
-      "summary": "Validates the complete Quick Task request envelope and delegates scenario-profile parsing.",
+      "summary": "Validates an unknown request value and constructs a typed Quick Task request, parsing optional value, context, links, preferences, and scenario-specific formation input sections.",
       "tags": [
-        "controller",
+        "request-parsing",
         "validation",
-        "function"
+        "input-contract",
+        "controller"
       ],
-      "complexity": "simple"
+      "complexity": "moderate"
     },
     {
       "id": "function:src/controller/request.ts:parseValidationFormationInput",
@@ -9315,14 +8293,15 @@
       "name": "parseValidationFormationInput",
       "filePath": "src/controller/request.ts",
       "lineRange": [
-        54,
-        63
+        55,
+        64
       ],
-      "summary": "Function parseValidationFormationInput provides a validated part of the Controller contract implemented in src/controller/request.ts.",
+      "summary": "Validates and constructs the validation scenario input with a claim, acceptance criteria, evidence sources, and known limits.",
       "tags": [
-        "controller",
+        "request-parsing",
         "validation",
-        "function"
+        "formation-input",
+        "controller"
       ],
       "complexity": "simple"
     },
@@ -9332,16 +8311,18 @@
       "name": "parseImplementationFormationInput",
       "filePath": "src/controller/request.ts",
       "lineRange": [
-        75,
-        88
+        87,
+        100
       ],
-      "summary": "Requires the exact development profile, VERIFIED repository state, ACCEPTED plan, test strategy, and rollback boundary.",
+      "summary": "Validates and constructs the development scenario input, requiring a verified repository, accepted plan, acceptance criteria, test strategy, and rollback boundary.",
       "tags": [
+        "request-parsing",
+        "implementation",
+        "formation-input",
         "controller",
-        "validation",
-        "function"
+        "safety"
       ],
-      "complexity": "simple"
+      "complexity": "moderate"
     },
     {
       "id": "class:src/controller/request.ts:ControllerRequestError",
@@ -9352,11 +8333,12 @@
         5,
         10
       ],
-      "summary": "ControllerRequestError reports a specific rejected Controller contract without exposing input values.",
+      "summary": "Reports a Quick Task request field that violates the controller input contract.",
       "tags": [
-        "controller",
-        "error-handling",
-        "validation"
+        "error-type",
+        "request",
+        "validation",
+        "controller"
       ],
       "complexity": "simple"
     },
@@ -9365,14 +8347,16 @@
       "type": "file",
       "name": "types.ts",
       "filePath": "src/controller/types.ts",
-      "summary": "Defines canonical Controller request, recipe, recommendation, checkpoint, and activation types, including the bounded implementation contracts.",
+      "summary": "Defines the controller domain model for formation catalogs, recipes, Quick Task requests, recommendations, activation packages, and response contracts. The file centralizes literal unions and nested interfaces that constrain controller behavior.",
       "tags": [
-        "type-definition",
         "controller",
-        "recipe-contract",
-        "typescript"
+        "type-definition",
+        "formation",
+        "domain-model",
+        "contracts"
       ],
-      "complexity": "complex"
+      "complexity": "complex",
+      "languageNotes": "Uses TypeScript literal unions and readonly nested structures to make controller states and authority boundaries explicit."
     },
     {
       "id": "class:src/controller/types.ts:ControllerActivationPackageError",
@@ -9380,14 +8364,15 @@
       "name": "ControllerActivationPackageError",
       "filePath": "src/controller/types.ts",
       "lineRange": [
-        364,
-        369
+        403,
+        408
       ],
-      "summary": "ControllerActivationPackageError reports a specific rejected Controller contract without exposing input values.",
+      "summary": "Represents an activation-package construction failure with a stable error code and message.",
       "tags": [
+        "error-type",
+        "activation",
         "controller",
-        "error-handling",
-        "validation"
+        "contract"
       ],
       "complexity": "simple"
     },
@@ -9396,12 +8381,13 @@
       "type": "file",
       "name": "controller-formation-recommendation.test.ts",
       "filePath": "test/controller-formation-recommendation.test.ts",
-      "summary": "Verifies scenario classification, implementation recommendation, missing-prerequisite UNKNOWN behavior, and safe no-Agent precedence.",
+      "summary": "Covers formation recommendation behavior across ready, unready, ambiguous, missing, duplicate, high-complexity, and unsafe request scenarios, including precedence and stable identity.",
       "tags": [
         "test",
         "recommendation",
-        "scenario-routing",
-        "negative-path"
+        "validation",
+        "controller",
+        "decision-logic"
       ],
       "complexity": "complex"
     },
@@ -9410,12 +8396,12 @@
       "type": "file",
       "name": "controller-formation.test.ts",
       "filePath": "test/controller-formation.test.ts",
-      "summary": "Verifies strict formation catalog parsing, unique identities, READY recipe links, and unsafe or malformed catalog rejection.",
+      "summary": "Tests formation catalog parsing and loading, including stable identities, required fields, duplicate detection, safe boundaries, supported statuses, linked recipes, and duplicate YAML keys.",
       "tags": [
         "test",
-        "formation-catalog",
+        "configuration",
         "validation",
-        "negative-path"
+        "schema"
       ],
       "complexity": "moderate"
     },
@@ -9424,12 +8410,12 @@
       "type": "file",
       "name": "controller-request.test.ts",
       "filePath": "test/controller-request.test.ts",
-      "summary": "Verifies strict Quick Task and scenario-profile parsing, including implementation repository, plan-state, and empty-input failures.",
+      "summary": "Tests quick-task request parsing and identity behavior across eligible profiles, invalid boundaries, incomplete evidence, unknown input, and reproducibility.",
       "tags": [
         "test",
-        "request-parser",
         "validation",
-        "negative-path"
+        "parsing",
+        "controller"
       ],
       "complexity": "moderate"
     },
@@ -9438,15 +8424,17 @@
       "type": "file",
       "name": "formation-recipe.ts",
       "filePath": "src/controller/formation-recipe.ts",
-      "summary": "Loads and strictly validates scenario-specific READY recipe frontmatter, including the bounded implementation profile and its safety invariants.",
+      "summary": "Loads and parses YAML-backed formation recipes for validation, research, refinement, implementation, and debugging. It enforces exact frontmatter contracts, literal values, required arrays, and explicit recovery boundaries.",
       "tags": [
-        "validation",
-        "recipe-parser",
         "controller",
-        "safety-boundary",
+        "recipe",
+        "parsing",
+        "validation",
+        "yaml",
         "tested"
       ],
-      "complexity": "complex"
+      "complexity": "complex",
+      "languageNotes": "Uses TypeScript literal types together with YAML frontmatter parsing and explicit runtime schema guards."
     },
     {
       "id": "function:src/controller/formation-recipe.ts:loadValidationRecipe",
@@ -9454,14 +8442,15 @@
       "name": "loadValidationRecipe",
       "filePath": "src/controller/formation-recipe.ts",
       "lineRange": [
-        39,
-        41
+        46,
+        48
       ],
-      "summary": "Function loadValidationRecipe provides a validated part of the Controller contract implemented in src/controller/formation-recipe.ts.",
+      "summary": "Reads a validation recipe source file as UTF-8 and passes it to the validation parser.",
       "tags": [
-        "controller",
+        "recipe",
+        "file-loading",
         "validation",
-        "function"
+        "controller"
       ],
       "complexity": "simple"
     },
@@ -9471,14 +8460,15 @@
       "name": "loadResearchRecipe",
       "filePath": "src/controller/formation-recipe.ts",
       "lineRange": [
-        43,
-        45
+        50,
+        52
       ],
-      "summary": "Function loadResearchRecipe provides a validated part of the Controller contract implemented in src/controller/formation-recipe.ts.",
+      "summary": "Reads a research recipe source file and delegates parsing to the research recipe validator.",
       "tags": [
-        "controller",
-        "validation",
-        "function"
+        "recipe",
+        "file-loading",
+        "research",
+        "controller"
       ],
       "complexity": "simple"
     },
@@ -9488,14 +8478,15 @@
       "name": "loadRefinementRecipe",
       "filePath": "src/controller/formation-recipe.ts",
       "lineRange": [
-        47,
-        49
+        54,
+        56
       ],
-      "summary": "Function loadRefinementRecipe provides a validated part of the Controller contract implemented in src/controller/formation-recipe.ts.",
+      "summary": "Reads a refinement recipe source file and delegates parsing to the refinement recipe validator.",
       "tags": [
-        "controller",
-        "validation",
-        "function"
+        "recipe",
+        "file-loading",
+        "refinement",
+        "controller"
       ],
       "complexity": "simple"
     },
@@ -9505,14 +8496,15 @@
       "name": "loadImplementationRecipe",
       "filePath": "src/controller/formation-recipe.ts",
       "lineRange": [
-        51,
-        53
+        58,
+        60
       ],
-      "summary": "Loads a bounded implementation recipe from disk and delegates to the strict profile parser.",
+      "summary": "Reads an implementation recipe source file and delegates parsing to the implementation recipe validator.",
       "tags": [
-        "controller",
-        "validation",
-        "function"
+        "recipe",
+        "file-loading",
+        "implementation",
+        "controller"
       ],
       "complexity": "simple"
     },
@@ -9522,16 +8514,18 @@
       "name": "parseValidationRecipe",
       "filePath": "src/controller/formation-recipe.ts",
       "lineRange": [
-        55,
-        129
+        66,
+        140
       ],
-      "summary": "Function parseValidationRecipe provides a validated part of the Controller contract implemented in src/controller/formation-recipe.ts.",
+      "summary": "Parses and validates validation-recipe frontmatter, including controller inputs, output sections, acceptance criteria, evidence requirements, relations, and recovery stop conditions.",
       "tags": [
-        "controller",
+        "recipe",
+        "parsing",
         "validation",
-        "function"
+        "schema-checking",
+        "controller"
       ],
-      "complexity": "moderate"
+      "complexity": "complex"
     },
     {
       "id": "function:src/controller/formation-recipe.ts:parseResearchRecipe",
@@ -9539,16 +8533,18 @@
       "name": "parseResearchRecipe",
       "filePath": "src/controller/formation-recipe.ts",
       "lineRange": [
-        131,
-        205
+        142,
+        216
       ],
-      "summary": "Function parseResearchRecipe provides a validated part of the Controller contract implemented in src/controller/formation-recipe.ts.",
+      "summary": "Parses and validates research-recipe frontmatter against its exact research controller, output, evidence, relation, and recovery contract.",
       "tags": [
-        "controller",
-        "validation",
-        "function"
+        "recipe",
+        "parsing",
+        "research",
+        "schema-checking",
+        "controller"
       ],
-      "complexity": "moderate"
+      "complexity": "complex"
     },
     {
       "id": "function:src/controller/formation-recipe.ts:parseImplementationRecipe",
@@ -9556,14 +8552,15 @@
       "name": "parseImplementationRecipe",
       "filePath": "src/controller/formation-recipe.ts",
       "lineRange": [
-        207,
-        214
+        303,
+        310
       ],
-      "summary": "Parses an implementation recipe and maps shared validation failures to an implementation-specific error.",
+      "summary": "Parses an implementation recipe through its unchecked structural parser and returns the typed implementation recipe.",
       "tags": [
-        "controller",
-        "validation",
-        "function"
+        "recipe",
+        "parsing",
+        "implementation",
+        "validation"
       ],
       "complexity": "simple"
     },
@@ -9573,16 +8570,18 @@
       "name": "parseImplementationRecipeUnchecked",
       "filePath": "src/controller/formation-recipe.ts",
       "lineRange": [
-        216,
-        290
+        312,
+        386
       ],
-      "summary": "Validates every canonical implementation recipe field and constructs the exact typed READY contract.",
+      "summary": "Validates implementation-recipe metadata and constructs the typed recipe while enforcing execution, output, evidence, relation, and recovery constraints.",
       "tags": [
-        "controller",
-        "validation",
-        "function"
+        "recipe",
+        "parsing",
+        "implementation",
+        "schema-checking",
+        "recovery"
       ],
-      "complexity": "moderate"
+      "complexity": "complex"
     },
     {
       "id": "function:src/controller/formation-recipe.ts:parseRefinementRecipe",
@@ -9590,14 +8589,15 @@
       "name": "parseRefinementRecipe",
       "filePath": "src/controller/formation-recipe.ts",
       "lineRange": [
-        292,
-        299
+        388,
+        395
       ],
-      "summary": "Function parseRefinementRecipe provides a validated part of the Controller contract implemented in src/controller/formation-recipe.ts.",
+      "summary": "Parses a refinement recipe through its unchecked structural parser and returns the typed refinement recipe.",
       "tags": [
-        "controller",
-        "validation",
-        "function"
+        "recipe",
+        "parsing",
+        "refinement",
+        "validation"
       ],
       "complexity": "simple"
     },
@@ -9607,16 +8607,18 @@
       "name": "parseRefinementRecipeUnchecked",
       "filePath": "src/controller/formation-recipe.ts",
       "lineRange": [
-        301,
-        375
+        397,
+        471
       ],
-      "summary": "Function parseRefinementRecipeUnchecked provides a validated part of the Controller contract implemented in src/controller/formation-recipe.ts.",
+      "summary": "Validates refinement-recipe metadata and constructs the typed recipe with exact scope, constraints, open-question, relation, and recovery requirements.",
       "tags": [
-        "controller",
-        "validation",
-        "function"
+        "recipe",
+        "parsing",
+        "refinement",
+        "schema-checking",
+        "recovery"
       ],
-      "complexity": "moderate"
+      "complexity": "complex"
     },
     {
       "id": "class:src/controller/formation-recipe.ts:ValidationRecipeError",
@@ -9627,11 +8629,12 @@
         13,
         23
       ],
-      "summary": "ValidationRecipeError reports a specific rejected Controller contract without exposing input values.",
+      "summary": "Reports validation-recipe contract failures with the rejected field and reason preserved for callers.",
       "tags": [
-        "controller",
-        "error-handling",
-        "validation"
+        "error-type",
+        "validation",
+        "recipe",
+        "controller"
       ],
       "complexity": "simple"
     },
@@ -9644,11 +8647,12 @@
         25,
         30
       ],
-      "summary": "RefinementRecipeError reports a specific rejected Controller contract without exposing input values.",
+      "summary": "Represents a rejected refinement recipe and identifies the invalid field in its error message.",
       "tags": [
-        "controller",
-        "error-handling",
-        "validation"
+        "error-type",
+        "refinement",
+        "recipe",
+        "controller"
       ],
       "complexity": "simple"
     },
@@ -9661,11 +8665,12 @@
         32,
         37
       ],
-      "summary": "ImplementationRecipeError reports a specific rejected Controller contract without exposing input values.",
+      "summary": "Represents an implementation recipe that violates its declared contract.",
       "tags": [
-        "controller",
-        "error-handling",
-        "validation"
+        "error-type",
+        "implementation",
+        "recipe",
+        "controller"
       ],
       "complexity": "simple"
     },
@@ -9702,12 +8707,13 @@
       "type": "document",
       "name": "formation-catalog.md",
       "filePath": "contract/agent-library/formation-catalog.md",
-      "summary": "Defines the canonical six-entry formation catalog, promotes bounded implementation to READY, and preserves bounded debugging as the remaining candidate.",
+      "summary": "Indexes the v1 agent formation library as a declarative, host-agnostic catalog covering quick tasks, research, refinement, implementation, debugging, and validation. Each formation records its scenario, topology, roles, input and output contracts, acceptance evidence, authority boundary, prerequisites, and recovery stops.",
       "tags": [
         "documentation",
         "agent-formation",
-        "controller-contract",
-        "readiness"
+        "catalog",
+        "workflow",
+        "governance"
       ],
       "complexity": "moderate"
     },
@@ -9716,11 +8722,12 @@
       "type": "document",
       "name": "documentation-map.md",
       "filePath": "docs/project/documentation-map.md",
-      "summary": "Indexes the repository's canonical documentation and now routes readers to the READY bounded implementation recipe.",
+      "summary": "Thematic documentation index that defines reading order, canonical sources by question, active entry points, and the boundary between current context and historical material.",
       "tags": [
         "documentation",
         "navigation",
-        "agent-formation"
+        "canonical-sources",
+        "routing"
       ],
       "complexity": "simple"
     },
@@ -9729,12 +8736,13 @@
       "type": "document",
       "name": "roadmap.md",
       "filePath": "docs/project/roadmap.md",
-      "summary": "Defines the platform capability sequence and M1 acceptance gate, including four READY scenario recipes and debugging as the remaining recipe slice.",
+      "summary": "Durable platform roadmap describing AI Booster Kit's capability journey, product tracks, milestone gates, team delivery model, and boundaries for future activation, persistence, evolution, debugging, and synchronization work.",
       "tags": [
         "documentation",
         "roadmap",
-        "milestone",
-        "readiness"
+        "capabilities",
+        "milestones",
+        "planning"
       ],
       "complexity": "complex"
     },
@@ -9743,12 +8751,12 @@
       "type": "file",
       "name": "controller-cli.test.ts",
       "filePath": "test/controller-cli.test.ts",
-      "summary": "Exercises the built Controller CLI across ready scenario profiles, including an implementation recommendation that performs no artifact writes.",
+      "summary": "End-to-end tests for the built controller and formation CLIs, covering recommendations, malformed input, checkpoint resolution, and artifact non-creation.",
       "tags": [
         "test",
         "cli",
         "integration",
-        "no-side-effects"
+        "validation"
       ],
       "complexity": "complex"
     },
@@ -9758,14 +8766,14 @@
       "name": "runBuiltCli",
       "filePath": "test/controller-cli.test.ts",
       "lineRange": [
-        256,
-        266
+        287,
+        297
       ],
-      "summary": "Function runBuiltCli provides a validated part of the Controller contract implemented in test/controller-cli.test.ts.",
+      "summary": "Runs the built CLI as a child process and collects its standard output, error output, and exit result for assertions.",
       "tags": [
-        "controller",
-        "validation",
-        "function"
+        "test",
+        "utility",
+        "cli"
       ],
       "complexity": "simple"
     },
@@ -9774,12 +8782,245 @@
       "type": "document",
       "name": "current-state.md",
       "filePath": "docs/project/current-state.md",
-      "summary": "Defines the repository's operational delivery routing state, including merged deliverables, validation evidence, known limits, authorization stops, and the next bounded M1 action. It records the development-session branch as the accumulation point before a larger delivery slice is merged to main.",
+      "summary": "Operational routing source for the repository's current delivery state, including branch and pull-request context, completed capabilities, validation evidence, known limits, open stops, and the next bounded action.",
       "tags": [
         "documentation",
-        "delivery-state",
-        "operational-routing",
-        "milestone-planning"
+        "current-state",
+        "delivery",
+        "routing"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:contract/agent-library/bounded-debugging.md",
+      "type": "document",
+      "name": "bounded-debugging.md",
+      "filePath": "contract/agent-library/bounded-debugging.md",
+      "summary": "Defines a host-agnostic debugging recipe for diagnosing one bounded failure from an explicit reproduction, supporting one root cause with evidence, and specifying the smallest justified fix with regression proof. It establishes local-only, recommendation-only authority and explicit stop and recovery conditions.",
+      "tags": [
+        "documentation",
+        "debugging",
+        "evidence",
+        "acceptance",
+        "recovery"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:.graphifyignore",
+      "type": "file",
+      "name": ".graphifyignore",
+      "filePath": ".graphifyignore",
+      "summary": "Graphify exclusion rules that keep generated output, process artifacts, historical documentation, worktrees, dependencies, and build directories out of source analysis.",
+      "tags": [
+        "configuration",
+        "exclusion",
+        "graphify",
+        "repository-hygiene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/controller/formation-recipe.ts:DebuggingRecipeError",
+      "type": "class",
+      "name": "DebuggingRecipeError",
+      "filePath": "src/controller/formation-recipe.ts",
+      "lineRange": [
+        39,
+        44
+      ],
+      "summary": "Represents a debugging recipe that fails its frontmatter or recovery contract checks.",
+      "tags": [
+        "error-type",
+        "debugging",
+        "recipe",
+        "controller"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/controller/formation-recipe.ts:loadDebuggingRecipe",
+      "type": "function",
+      "name": "loadDebuggingRecipe",
+      "filePath": "src/controller/formation-recipe.ts",
+      "lineRange": [
+        62,
+        64
+      ],
+      "summary": "Reads a debugging recipe source file and delegates parsing to the debugging recipe validator.",
+      "tags": [
+        "recipe",
+        "file-loading",
+        "debugging",
+        "controller"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/controller/formation-recipe.ts:parseDebuggingRecipe",
+      "type": "function",
+      "name": "parseDebuggingRecipe",
+      "filePath": "src/controller/formation-recipe.ts",
+      "lineRange": [
+        218,
+        225
+      ],
+      "summary": "Parses a debugging recipe through its unchecked structural parser and exposes the typed debugging recipe contract.",
+      "tags": [
+        "recipe",
+        "parsing",
+        "debugging",
+        "validation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/controller/formation-recipe.ts:parseDebuggingRecipeUnchecked",
+      "type": "function",
+      "name": "parseDebuggingRecipeUnchecked",
+      "filePath": "src/controller/formation-recipe.ts",
+      "lineRange": [
+        227,
+        301
+      ],
+      "summary": "Validates debugging-recipe metadata and constructs the typed recipe after checking exact keys, canonical inputs, evidence requirements, relations, and recovery rules.",
+      "tags": [
+        "recipe",
+        "parsing",
+        "debugging",
+        "schema-checking",
+        "recovery"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/controller/request.ts:parseDebuggingFormationInput",
+      "type": "function",
+      "name": "parseDebuggingFormationInput",
+      "filePath": "src/controller/request.ts",
+      "lineRange": [
+        76,
+        85
+      ],
+      "summary": "Validates and constructs the debugging scenario input with a symptom, reproduction steps, expected behavior, and environment record.",
+      "tags": [
+        "request-parsing",
+        "debugging",
+        "formation-input",
+        "controller"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:test/controller-debugging-recipe.test.ts",
+      "type": "file",
+      "name": "controller-debugging-recipe.test.ts",
+      "filePath": "test/controller-debugging-recipe.test.ts",
+      "summary": "Tests parsing, loading, and validation of the canonical debugging recipe, including rejection of non-canonical metadata and execution boundaries.",
+      "tags": [
+        "test",
+        "debugging",
+        "recipe",
+        "validation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:marketing/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "marketing/README.md",
+      "summary": "Reviewable marketing and brand prototype index preserving explored directions, the selected creative system, naming screens, and design elements without claiming final public brand approval.",
+      "tags": [
+        "marketing",
+        "brand",
+        "prototype",
+        "routing"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:marketing/assets/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "marketing/assets/README.md",
+      "summary": "Marketing asset governance specification for the name-agnostic mark concept, publication gates, and reusable design-system references.",
+      "tags": [
+        "marketing",
+        "assets",
+        "governance",
+        "prototype"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:marketing/brand-prototype.md",
+      "type": "document",
+      "name": "brand-prototype.md",
+      "filePath": "marketing/brand-prototype.md",
+      "summary": "Approved creative-system prototype with unresolved master name, controlled-evolution narrative, selected visual direction, and explicit non-production boundary.",
+      "tags": [
+        "marketing",
+        "brand",
+        "creative-system",
+        "decision"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:marketing/design/tokens.css",
+      "type": "file",
+      "name": "tokens.css",
+      "filePath": "marketing/design/tokens.css",
+      "summary": "CSS design tokens for the marketing prototype, including primitive brand colors, state roles, spacing, typography, and visual system values.",
+      "tags": [
+        "marketing",
+        "design-system",
+        "tokens",
+        "css"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:marketing/design/tokens.json",
+      "type": "config",
+      "name": "tokens.json",
+      "filePath": "marketing/design/tokens.json",
+      "summary": "Machine-readable marketing design-token source with prototype metadata, name status, color primitives, and reusable visual-system values.",
+      "tags": [
+        "marketing",
+        "design-system",
+        "tokens",
+        "configuration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:marketing/naming-screening.md",
+      "type": "document",
+      "name": "naming-screening.md",
+      "filePath": "marketing/naming-screening.md",
+      "summary": "Bounded brand-name screening record separating creative preference, public-use evidence, limitations, and stop decisions from legal clearance.",
+      "tags": [
+        "marketing",
+        "naming",
+        "screening",
+        "stop"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:marketing/research/2026-08-02-evobisen-screen.json",
+      "type": "config",
+      "name": "2026-08-02-evobisen-screen.json",
+      "filePath": "marketing/research/2026-08-02-evobisen-screen.json",
+      "summary": "Synthetic-safe bounded naming-screen reconstruction for EVOBISEN with a STOP verdict, limitations, and no-automation or legal-clearance claim.",
+      "tags": [
+        "marketing",
+        "research",
+        "naming",
+        "bounded-evidence",
+        "stop"
       ],
       "complexity": "moderate"
     }
@@ -13256,118 +12497,6 @@
       "type": "calls",
       "direction": "forward",
       "weight": 0.8
-    },
-    {
-      "source": "document:docs/history/host-conformance/agent-testing-status-2026-07-28.md",
-      "target": "document:docs/history/host-conformance/claude-code-2026-07-27.md",
-      "type": "related",
-      "direction": "forward",
-      "weight": 0.5
-    },
-    {
-      "source": "document:docs/history/host-conformance/agent-testing-status-2026-07-28.md",
-      "target": "document:docs/history/host-conformance/codex-2026-07-27.md",
-      "type": "related",
-      "direction": "forward",
-      "weight": 0.5
-    },
-    {
-      "source": "document:docs/history/host-conformance/agent-testing-status-2026-07-28.md",
-      "target": "document:docs/history/host-conformance/cursor-2026-07-27.md",
-      "type": "related",
-      "direction": "forward",
-      "weight": 0.5
-    },
-    {
-      "source": "document:docs/history/host-conformance/claude-code-2026-07-27.md",
-      "target": "document:docs/history/host-conformance/claude-code-2026-07-28-behavior-response.md",
-      "type": "related",
-      "direction": "forward",
-      "weight": 0.5
-    },
-    {
-      "source": "document:docs/history/host-conformance/claude-code-2026-07-28-native.md",
-      "target": "document:docs/history/host-conformance/claude-code-2026-07-28-native-behavior-response.md",
-      "type": "related",
-      "direction": "forward",
-      "weight": 0.5
-    },
-    {
-      "source": "document:docs/history/host-conformance/claude-code-2026-07-28-context-integrity-response.md",
-      "target": "document:docs/history/host-conformance/claude-code-context-integrity-remediation-2026-07-28.md",
-      "type": "related",
-      "direction": "forward",
-      "weight": 0.5
-    },
-    {
-      "source": "document:docs/history/host-conformance/claude-code-2026-07-28-context-integrity-response.md",
-      "target": "document:docs/history/host-conformance/claude-code-2026-07-28-context-payload-capture.md",
-      "type": "related",
-      "direction": "forward",
-      "weight": 0.5
-    },
-    {
-      "source": "document:docs/history/host-conformance/claude-code-2026-07-28-context-integrity-response.md",
-      "target": "document:docs/history/host-conformance/claude-code-host-capability-investigation-2026-07-28.md",
-      "type": "related",
-      "direction": "forward",
-      "weight": 0.5
-    },
-    {
-      "source": "document:docs/history/host-conformance/claude-code-2026-07-28-context-payload-capture.md",
-      "target": "document:docs/history/host-conformance/claude-code-2026-07-28-project-cwd-rerun.md",
-      "type": "related",
-      "direction": "forward",
-      "weight": 0.5
-    },
-    {
-      "source": "document:docs/history/host-conformance/claude-code-2026-07-28-native.md",
-      "target": "document:docs/history/host-conformance/claude-code-2026-07-28-context-integrity-response.md",
-      "type": "related",
-      "direction": "forward",
-      "weight": 0.5
-    },
-    {
-      "source": "document:docs/history/host-conformance/codex-2026-07-27.md",
-      "target": "document:docs/history/host-conformance/codex-2026-07-27-v2.md",
-      "type": "related",
-      "direction": "forward",
-      "weight": 0.5
-    },
-    {
-      "source": "document:docs/history/host-conformance/codex-2026-07-27-v2.md",
-      "target": "document:docs/history/host-conformance/codex-2026-07-28-v3.md",
-      "type": "related",
-      "direction": "forward",
-      "weight": 0.5
-    },
-    {
-      "source": "document:docs/history/host-conformance/codex-2026-07-27.md",
-      "target": "document:docs/history/host-conformance/codex-runtime-boundary-diagnostic-2026-07-27.md",
-      "type": "related",
-      "direction": "forward",
-      "weight": 0.5
-    },
-    {
-      "source": "document:docs/history/host-conformance/cursor-2026-07-27.md",
-      "target": "document:docs/history/host-conformance/cursor-2026-07-27-behavior-response.md",
-      "type": "related",
-      "direction": "forward",
-      "weight": 0.5
-    },
-    {
-      "source": "document:docs/history/host-conformance/cursor-desktop-2026-07-28.md",
-      "target": "document:docs/history/host-conformance/cursor-desktop-2026-07-28-behavior-response.md",
-      "type": "related",
-      "direction": "forward",
-      "weight": 0.5
-    },
-    {
-      "source": "document:docs/history/host-conformance/cursor-desktop-2026-07-28-behavior-response.md",
-      "target": "document:docs/history/host-conformance/claude-code-2026-07-28-context-integrity-response.md",
-      "type": "related",
-      "direction": "forward",
-      "weight": 0.5
     },
     {
       "source": "document:docs/operations/codex-conformance-remediation-v2.md",
@@ -17889,13 +17018,219 @@
       "type": "documents",
       "direction": "forward",
       "weight": 0.5
+    },
+    {
+      "source": "document:docs/project/documentation-map.md",
+      "target": "document:docs/project/roadmap.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:docs/project/documentation-map.md",
+      "target": "document:docs/project/current-state.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:docs/project/roadmap.md",
+      "target": "document:docs/project/current-state.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:src/controller/formation-recipe.ts",
+      "target": "class:src/controller/formation-recipe.ts:DebuggingRecipeError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/formation-recipe.ts",
+      "target": "function:src/controller/formation-recipe.ts:loadDebuggingRecipe",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/formation-recipe.ts",
+      "target": "function:src/controller/formation-recipe.ts:parseDebuggingRecipe",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/formation-recipe.ts",
+      "target": "function:src/controller/formation-recipe.ts:parseDebuggingRecipeUnchecked",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/request.ts",
+      "target": "function:src/controller/request.ts:parseDebuggingFormationInput",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/formation-recipe.ts",
+      "target": "class:src/controller/formation-recipe.ts:DebuggingRecipeError",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/controller/formation-recipe.ts",
+      "target": "function:src/controller/formation-recipe.ts:loadDebuggingRecipe",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/controller/formation-recipe.ts",
+      "target": "function:src/controller/formation-recipe.ts:parseDebuggingRecipe",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/controller/formation-recipe.ts:loadDebuggingRecipe",
+      "target": "function:src/controller/formation-recipe.ts:parseDebuggingRecipe",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/controller/formation-recipe.ts:parseDebuggingRecipe",
+      "target": "function:src/controller/formation-recipe.ts:parseDebuggingRecipeUnchecked",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "document:docs/project/documentation-map.md",
+      "target": "document:marketing/README.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:marketing/README.md",
+      "target": "document:marketing/brand-prototype.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "document:marketing/README.md",
+      "target": "document:marketing/naming-screening.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "document:marketing/README.md",
+      "target": "document:marketing/assets/README.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "document:marketing/assets/README.md",
+      "target": "config:marketing/design/tokens.json",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "document:marketing/assets/README.md",
+      "target": "file:marketing/design/tokens.css",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "document:marketing/naming-screening.md",
+      "target": "config:marketing/research/2026-08-02-evobisen-screen.json",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "config:marketing/design/tokens.json",
+      "target": "file:marketing/design/tokens.css",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
     }
   ],
   "layers": [
     {
-      "id": "layer:core-runtime",
-      "name": "Core Runtime",
-      "description": "The TypeScript entrypoint and cohesive runtime modules that implement orchestration, lifecycle, readiness, connectors, events, evidence, and canonical domain behavior.",
+      "id": "layer:documentation-contract",
+      "name": "Documentation and Contracts",
+      "description": "Roadmaps, contracts, runbooks, research, templates, and operating documents that define the agent-agnostic sync orchestrator.",
+      "nodeIds": [
+        "document:AGENTS.md",
+        "document:CLAUDE.md",
+        "document:contract/adapters/claude-code.md",
+        "document:contract/adapters/codex.md",
+        "document:contract/adapters/cursor.md",
+        "document:contract/artifacts/canonical-work-artifact-template.md",
+        "document:contract/artifacts/epic-template.md",
+        "document:contract/artifacts/milestone-template.md",
+        "document:contract/artifacts/review-template.md",
+        "document:contract/artifacts/work-item-template.md",
+        "document:contract/capability-matrix.md",
+        "document:contract/lifecycle.md",
+        "document:contract/team-contract.md",
+        "document:docs/operations/agent-operating-model.md",
+        "document:docs/operations/codex-conformance-remediation-v2.md",
+        "document:docs/operations/g2as-research-validation-runbook.md",
+        "document:docs/operations/host-behavior-diagnostic.md",
+        "document:docs/operations/host-conformance-evidence-template.md",
+        "document:docs/operations/host-conformance-pilot.md",
+        "document:docs/operations/jira-git-confluence-adapter.md",
+        "document:docs/operations/team-activation-guide.md",
+        "document:docs/operations/host-adapters/claude-code.md",
+        "document:docs/operations/host-adapters/codex.md",
+        "document:docs/operations/host-adapters/cursor.md",
+        "document:docs/runbooks/mapper-snapshot.md",
+        "document:docs/runbooks/sync-orchestrator-v1-sandbox.md",
+        "document:templates/hosts/claude-code-github-readonly-capability.md",
+        "document:templates/hosts/codex-github-readonly-capability.md",
+        "document:templates/hosts/cursor-github-readonly-capability.md",
+        "document:contract/mappings/jira-confluence-github.md",
+        "config:contract/mcp-capabilities/github-readonly.json",
+        "config:contract/readiness/g2as-sandbox-target.json",
+        "document:docs/gate-2/atlassian-oauth-read-only-preflight.md",
+        "document:research/2026-07-21-ai-agent-tooling-blueprint.md",
+        "document:NOTES.md",
+        "document:README.md",
+        "document:contract/agent-library/bounded-refinement.md",
+        "document:contract/agent-library/bounded-validation.md",
+        "document:contract/agent-library/quick-task-clarifier-validator.md",
+        "document:docs/runbooks/g2as-sandbox-readiness-certificate.md",
+        "document:workflows/team-delivery-loop.md",
+        "document:contract/agent-library/bounded-research.md",
+        "document:contract/agent-library/bounded-implementation.md",
+        "document:contract/agent-library/formation-catalog.md",
+        "document:docs/project/documentation-map.md",
+        "document:docs/project/roadmap.md",
+        "document:docs/project/current-state.md",
+        "document:contract/agent-library/bounded-debugging.md",
+        "document:marketing/README.md",
+        "document:marketing/assets/README.md",
+        "document:marketing/brand-prototype.md",
+        "document:marketing/naming-screening.md"
+      ]
+    },
+    {
+      "id": "layer:application-readiness",
+      "name": "Application and Readiness",
+      "description": "Controller, domain, lifecycle, orchestration, planning, readiness, and event modules that implement bounded coordination.",
       "nodeIds": [
         "file:src/domain/model.ts",
         "file:src/domain/schema.ts",
@@ -17909,110 +17244,67 @@
         "file:src/orchestrator/sync.ts",
         "file:src/planning/finalize.ts",
         "file:src/planning/traceability.ts",
-        "file:src/cli.ts",
         "file:src/orchestrator/evidence.ts",
         "file:src/readiness/evaluate.ts",
         "file:src/readiness/manifest.ts",
-        "file:src/readiness/observations.ts",
         "file:src/readiness/render.ts",
         "file:src/readiness/run.ts",
         "file:src/readiness/types.ts",
-        "file:src/connectors/confluence.ts",
-        "file:src/connectors/github.ts",
-        "file:src/connectors/jira.ts",
-        "file:src/connectors/types.ts",
         "file:src/orchestrator/allowlist.ts",
         "file:src/orchestrator/identity.ts",
         "file:src/orchestrator/stop.ts",
-        "file:cli.ts",
         "file:src/capabilities/manifest.ts",
         "file:src/capabilities/projections.ts",
         "file:src/capabilities/types.ts",
         "file:src/contract/errors.ts",
         "file:src/contract/markdown.ts",
         "file:src/errors.ts",
-        "file:src/adapters/claude-code.ts",
-        "file:src/adapters/codex.ts",
-        "file:src/adapters/cursor.ts",
-        "file:src/adapters/types.ts",
         "file:src/contract/compile.ts",
-        "file:src/evidence/github.ts",
-        "file:src/evidence/readback.ts",
         "file:src/docs/links.ts",
+        "file:src/cli.ts",
         "file:src/controller/activation-package.ts",
         "file:src/controller/checkpoint.ts",
         "file:src/controller/choice.ts",
         "file:src/controller/evaluate.ts",
-        "file:src/controller/formation-recipe.ts",
-        "file:src/controller/formation-recommendation.ts",
         "file:src/controller/formation.ts",
         "file:src/controller/identity.ts",
         "file:src/controller/recipe.ts",
-        "file:src/controller/request.ts",
         "file:src/controller/resolve.ts",
+        "file:src/readiness/observations.ts",
+        "file:src/readiness/output.ts",
+        "file:src/controller/formation-recommendation.ts",
+        "file:src/controller/request.ts",
         "file:src/controller/types.ts",
+        "file:src/controller/formation-recipe.ts"
+      ]
+    },
+    {
+      "id": "layer:integration-evidence",
+      "name": "Integration and Evidence",
+      "description": "Host adapters, Jira/GitHub/Confluence connectors, and evidence boundaries that mediate external-system reads and read-back.",
+      "nodeIds": [
+        "file:src/connectors/confluence.ts",
+        "file:src/connectors/github.ts",
+        "file:src/connectors/jira.ts",
+        "file:src/connectors/types.ts",
+        "file:src/adapters/claude-code.ts",
+        "file:src/adapters/codex.ts",
+        "file:src/adapters/cursor.ts",
+        "file:src/adapters/types.ts",
+        "file:src/evidence/github.ts",
+        "file:src/evidence/readback.ts",
         "file:src/evidence/codex-mcp-adapter.ts",
         "file:src/evidence/codex-mcp-payload.ts",
         "file:src/evidence/codex-mcp-preflight.ts",
         "file:src/evidence/codex-mcp-tool-caller.ts",
         "file:src/evidence/codex-mcp-transport.ts",
-        "file:src/evidence/ingest.ts",
-        "file:src/readiness/output.ts",
-        "file:website/app/chatgpt-auth.ts",
-        "file:website/app/globals.css",
-        "file:website/app/layout.tsx",
-        "file:website/app/page.tsx",
-        "file:website/db/index.ts",
-        "file:website/db/schema.ts",
-        "file:website/drizzle.config.ts",
-        "file:website/eslint.config.mjs",
-        "file:website/examples/d1/app/api/notes/route.ts",
-        "file:website/examples/d1/db/schema.ts",
-        "file:website/next.config.ts",
-        "file:website/postcss.config.mjs",
-        "file:website/tests/rendered-html.test.mjs",
-        "file:website/vite.config.ts",
-        "file:website/worker/index.ts"
+        "file:src/evidence/ingest.ts"
       ]
     },
     {
-      "id": "layer:contracts-adapters",
-      "name": "Contracts and Adapters",
-      "description": "The host adapter specifications, capability contracts, synchronization mappings, artifact templates, and contract configuration that define safe cross-system operation.",
-      "nodeIds": [
-        "document:contract/adapters/claude-code.md",
-        "document:contract/adapters/codex.md",
-        "document:contract/adapters/cursor.md",
-        "document:contract/artifacts/canonical-work-artifact-template.md",
-        "document:contract/artifacts/epic-template.md",
-        "document:contract/artifacts/milestone-template.md",
-        "document:contract/artifacts/review-template.md",
-        "document:contract/artifacts/work-item-template.md",
-        "document:contract/capability-matrix.md",
-        "document:contract/lifecycle.md",
-        "document:contract/team-contract.md",
-        "document:templates/hosts/claude-code-github-readonly-capability.md",
-        "document:templates/hosts/codex-github-readonly-capability.md",
-        "document:templates/hosts/cursor-github-readonly-capability.md",
-        "document:contract/mappings/jira-confluence-github.md",
-        "config:contract/mcp-capabilities/github-readonly.json",
-        "config:contract/readiness/g2as-sandbox-target.json",
-        "document:contract/agent-library/bounded-refinement.md",
-        "document:contract/agent-library/bounded-validation.md",
-        "document:contract/agent-library/formation-catalog.md",
-        "document:contract/agent-library/quick-task-clarifier-validator.md",
-        "config:website/.openai/hosting.json",
-        "config:website/drizzle/meta/_journal.json",
-        "config:website/package.json",
-        "config:website/tsconfig.json",
-        "document:contract/agent-library/bounded-research.md",
-        "document:contract/agent-library/bounded-implementation.md"
-      ]
-    },
-    {
-      "id": "layer:test-fixtures",
-      "name": "Tests and Fixtures",
-      "description": "Automated unit, integration, conformance, performance, end-to-end, and readiness tests together with their synthetic fixtures and test metadata.",
+      "id": "layer:tests-conformance",
+      "name": "Tests and Conformance",
+      "description": "Automated tests and fixtures that validate contracts, readiness decisions, host behavior, connectors, and controller flows.",
       "nodeIds": [
         "file:test/domain.test.ts",
         "file:test/e2e.test.ts",
@@ -18030,7 +17322,6 @@
         "file:test/orchestrator.test.ts",
         "file:test/performance/baseline.test.ts",
         "file:test/capabilities-manifest.test.ts",
-        "file:test/capabilities-projections.test.ts",
         "file:test/contract.test.ts",
         "file:test/adapters.test.ts",
         "file:test/conformance/host-conformance.test.ts",
@@ -18044,7 +17335,7 @@
         "config:test/fixtures/readiness/stopped.json",
         "config:test/fixtures/readiness/unsafe-observation.json",
         "file:test/bootstrap.test.ts",
-        "file:test/docs-links.test.ts",
+        "file:test/capabilities-projections.test.ts",
         "file:test/codex-mcp-adapter.test.ts",
         "file:test/codex-mcp-payload.test.ts",
         "file:test/codex-mcp-preflight.test.ts",
@@ -18054,15 +17345,11 @@
         "file:test/controller-activation-package.test.ts",
         "file:test/controller-checkpoint.test.ts",
         "file:test/controller-choice.test.ts",
-        "file:test/controller-cli.test.ts",
         "file:test/controller-evaluate.test.ts",
-        "file:test/controller-formation-recipe.test.ts",
-        "file:test/controller-formation-recommendation.test.ts",
-        "file:test/controller-formation.test.ts",
         "file:test/controller-recipe.test.ts",
         "file:test/controller-refinement-recipe.test.ts",
-        "file:test/controller-request.test.ts",
         "file:test/controller-resolve.test.ts",
+        "file:test/docs-links.test.ts",
         "file:test/evidence-ingestion.test.ts",
         "config:test/fixtures/controller/accept-recommendation.json",
         "config:test/fixtures/controller/continue-without-agent.json",
@@ -18072,134 +17359,67 @@
         "config:test/fixtures/controller/incomplete-quick-task.json",
         "config:test/fixtures/controller/no-agent-quick-task.json",
         "config:test/fixtures/controller/request-alternative.json",
-        "file:test/helpers/codex-mcp-payload.ts"
+        "file:test/helpers/codex-mcp-payload.ts",
+        "file:test/controller-formation-recommendation.test.ts",
+        "file:test/controller-formation.test.ts",
+        "file:test/controller-request.test.ts",
+        "file:test/controller-formation-recipe.test.ts",
+        "file:test/controller-cli.test.ts",
+        "file:test/controller-debugging-recipe.test.ts"
       ]
     },
     {
-      "id": "layer:ci-build",
-      "name": "CI and Build Configuration",
-      "description": "Package and TypeScript build configuration plus the GitHub Actions pipeline and pull-request verification template used to validate delivery.",
+      "id": "layer:tooling-delivery",
+      "name": "Tooling and Delivery",
+      "description": "CLI scripts, CI pipelines, and developer tools that build, validate, and deliver the repository.",
       "nodeIds": [
-        "pipeline:.github/workflows/ci.yml",
-        "config:package.json",
-        "config:tsconfig.json",
-        "document:.github/pull_request_template.md"
-      ]
-    },
-    {
-      "id": "layer:documentation-evidence",
-      "name": "Documentation and Evidence",
-      "description": "Project guidance, operating contracts, architecture and research material, historical evidence, runbooks, plans, and current-state documentation.",
-      "nodeIds": [
-        "document:.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/oauth-research-report.md",
-        "document:.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/progress.md",
-        "document:.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-1-brief.md",
-        "document:.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-1-report.md",
-        "document:.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-2-brief.md",
-        "document:.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-2-report.md",
-        "document:.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-3-brief.md",
-        "document:.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-3-report.md",
-        "document:.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-4-brief.md",
-        "document:.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-4-report.md",
-        "document:.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-5-brief.md",
-        "document:.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-5-report.md",
-        "document:.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-6-brief.md",
-        "document:.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-6-report.md",
-        "document:.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-7-brief.md",
-        "document:.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-7-report.md",
-        "document:.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-8-brief.md",
-        "document:.superpowers/sdd/2026-07-27-gate-2-jira-sandbox-pilot/task-8-report.md",
-        "document:AGENTS.md",
-        "document:CLAUDE.md",
-        "document:README.md",
-        "document:docs/history/gate-2/current-state-and-roadmap.md",
-        "document:docs/history/gate-2/g2ai-pilot-evidence.md",
-        "document:docs/history/gate-2/gate-2-results-and-next-steps.md",
-        "document:docs/history/host-conformance/agent-testing-status-2026-07-28.md",
-        "document:docs/history/host-conformance/claude-code-2026-07-27.md",
-        "document:docs/history/host-conformance/claude-code-2026-07-28-behavior-response.md",
-        "document:docs/history/host-conformance/claude-code-2026-07-28-context-integrity-response.md",
-        "document:docs/history/host-conformance/claude-code-2026-07-28-context-payload-capture.md",
-        "document:docs/history/host-conformance/claude-code-2026-07-28-native-behavior-response.md",
-        "document:docs/history/host-conformance/claude-code-2026-07-28-native.md",
-        "document:docs/history/host-conformance/claude-code-2026-07-28-project-cwd-rerun.md",
-        "document:docs/history/host-conformance/claude-code-context-integrity-remediation-2026-07-28.md",
-        "document:docs/history/host-conformance/claude-code-host-capability-investigation-2026-07-28.md",
-        "document:docs/history/host-conformance/codex-2026-07-27-v2.md",
-        "document:docs/history/host-conformance/codex-2026-07-27.md",
-        "document:docs/history/host-conformance/codex-2026-07-28-v3.md",
-        "document:docs/history/host-conformance/codex-runtime-boundary-diagnostic-2026-07-27.md",
-        "document:docs/history/host-conformance/cursor-2026-07-27-behavior-response.md",
-        "document:docs/history/host-conformance/cursor-2026-07-27.md",
-        "document:docs/history/host-conformance/cursor-desktop-2026-07-28-behavior-response.md",
-        "document:docs/history/host-conformance/cursor-desktop-2026-07-28.md",
-        "document:docs/operations/agent-operating-model.md",
-        "document:docs/operations/codex-conformance-remediation-v2.md",
-        "document:docs/operations/g2as-research-validation-runbook.md",
-        "document:docs/operations/host-behavior-diagnostic.md",
-        "document:docs/operations/host-conformance-evidence-template.md",
-        "document:docs/operations/host-conformance-pilot.md",
-        "document:docs/operations/jira-git-confluence-adapter.md",
-        "document:docs/operations/team-activation-guide.md",
-        "document:docs/operations/host-adapters/claude-code.md",
-        "document:docs/operations/host-adapters/codex.md",
-        "document:docs/operations/host-adapters/cursor.md",
-        "document:docs/runbooks/g2as-sandbox-readiness-certificate.md",
-        "document:docs/runbooks/mapper-snapshot.md",
-        "document:docs/runbooks/sync-orchestrator-v1-sandbox.md",
-        "document:docs/superpowers/plans/2026-07-22-ai-agent-tooling-gate-1-research.md",
-        "document:docs/superpowers/plans/2026-07-27-agent-operating-model-baseline.md",
-        "document:docs/superpowers/plans/2026-07-27-codex-conformance-remediation.md",
-        "document:docs/superpowers/plans/2026-07-27-gate-2-jira-sandbox-pilot.md",
-        "document:docs/superpowers/plans/2026-07-27-host-behavior-security-separation.md",
-        "document:docs/superpowers/plans/2026-07-27-host-conformance-pilot.md",
-        "document:docs/superpowers/plans/2026-07-27-host-native-adapters-team-activation.md",
-        "document:docs/superpowers/plans/2026-07-27-layer-separation-common-core.md",
-        "document:docs/superpowers/plans/2026-07-29-agent-agnostic-sync-orchestrator-implementation.md",
-        "document:docs/superpowers/plans/2026-07-29-documentation-github-structure.md",
-        "document:docs/superpowers/plans/2026-07-29-g2as-sandbox-readiness-certificate.md",
-        "document:docs/superpowers/plans/2026-07-29-native-mcp-capability-standard.md",
-        "document:docs/superpowers/plans/2026-07-29-post-merge-state-synchronization.md",
-        "document:docs/superpowers/specs/2026-07-21-ai-agent-tooling-research-design.md",
-        "document:docs/superpowers/specs/2026-07-27-gate-2-jira-sandbox-pilot-design.md",
-        "document:docs/superpowers/specs/2026-07-29-agent-agnostic-sync-orchestrator-design.md",
-        "document:docs/superpowers/specs/2026-07-29-g2as-sandbox-readiness-certificate-design.md",
-        "document:docs/superpowers/specs/2026-07-29-native-mcp-capability-standard-design.md",
-        "document:docs/gate-2/atlassian-oauth-read-only-preflight.md",
-        "document:docs/history/README.md",
-        "file:docs/history/execution-records/.gitkeep",
-        "file:docs/history/gate-1/.gitkeep",
-        "document:docs/project/current-state.md",
-        "document:docs/project/documentation-map.md",
-        "document:research/2026-07-21-ai-agent-tooling-blueprint.md",
-        "document:NOTES.md",
-        "document:docs/project/roadmap.md",
-        "document:docs/superpowers/plans/2026-08-01-ai-booster-kit-controller-mvp.md",
-        "document:docs/superpowers/plans/2026-08-01-ai-booster-kit-human-checkpoint-activation-intent.md",
-        "document:docs/superpowers/plans/2026-08-01-ai-booster-kit-m1-a-library-catalog.md",
-        "document:docs/superpowers/plans/2026-08-01-ai-booster-kit-m1-b-scenario-recommendation.md",
-        "document:docs/superpowers/plans/2026-08-01-ai-booster-kit-m1-readiness-cli-integration.md",
-        "document:docs/superpowers/plans/2026-08-01-ai-booster-kit-quick-task-activation-package.md",
-        "document:docs/superpowers/plans/2026-08-01-ai-booster-kit-ready-refinement-recipe.md",
-        "document:docs/superpowers/plans/2026-08-01-ai-booster-kit-ready-validation-recipe.md",
-        "document:docs/superpowers/plans/2026-08-01-ai-booster-kit-team-delivery-loop.md",
-        "document:docs/superpowers/specs/2026-08-01-ai-booster-kit-controller-mvp-design.md",
-        "document:docs/superpowers/specs/2026-08-01-ai-booster-kit-human-checkpoint-activation-intent-design.md",
-        "document:docs/superpowers/specs/2026-08-01-ai-booster-kit-quick-task-activation-package-design.md",
-        "document:docs/superpowers/specs/2026-08-01-ai-booster-kit-team-delivery-loop-design.md",
-        "document:website/README.md",
-        "document:workflows/team-delivery-loop.md"
-      ]
-    },
-    {
-      "id": "layer:developer-tooling",
-      "name": "Developer Tooling",
-      "description": "Repository-local validation and context-integrity scripts that check documentation links, mapper freshness, and host behavior.",
-      "nodeIds": [
+        "document:.github/pull_request_template.md",
         "file:scripts/check-doc-links.mjs",
         "file:tools/claude-context-integrity/test-verify.ps1",
         "file:tools/claude-context-integrity/verify.ps1",
-        "file:scripts/check-mapper-freshness.mjs"
+        "file:scripts/check-mapper-freshness.mjs",
+        "pipeline:.github/workflows/ci.yml"
+      ]
+    },
+    {
+      "id": "layer:website",
+      "name": "Website Surface",
+      "description": "The website application, worker, database schema, and browser-facing runtime surface.",
+      "nodeIds": [
+        "config:website/.openai/hosting.json",
+        "document:website/README.md",
+        "file:website/app/chatgpt-auth.ts",
+        "file:website/app/globals.css",
+        "file:website/app/layout.tsx",
+        "file:website/app/page.tsx",
+        "file:website/db/index.ts",
+        "file:website/db/schema.ts",
+        "file:website/drizzle.config.ts",
+        "config:website/drizzle/meta/_journal.json",
+        "file:website/eslint.config.mjs",
+        "file:website/examples/d1/app/api/notes/route.ts",
+        "file:website/examples/d1/db/schema.ts",
+        "file:website/next.config.ts",
+        "config:website/package.json",
+        "file:website/postcss.config.mjs",
+        "file:website/tests/rendered-html.test.mjs",
+        "config:website/tsconfig.json",
+        "file:website/vite.config.ts",
+        "file:website/worker/index.ts"
+      ]
+    },
+    {
+      "id": "layer:configuration",
+      "name": "Configuration",
+      "description": "Project manifests, compiler/build settings, ignore rules, and other repository-level configuration.",
+      "nodeIds": [
+        "file:cli.ts",
+        "config:package.json",
+        "config:tsconfig.json",
+        "file:.graphifyignore",
+        "file:marketing/design/tokens.css",
+        "config:marketing/design/tokens.json",
+        "config:marketing/research/2026-08-02-evobisen-screen.json"
       ]
     }
   ],
@@ -18207,108 +17427,84 @@
     {
       "order": 1,
       "title": "Project Overview",
-      "description": "Begin with README.md to understand AI-Booster-Kit as an agent-agnostic, contract-first synchronization orchestrator. Its documentation map and routing-only current-state link establish where the architecture, operating rules, and delivery status are described for the rest of the tour.",
+      "description": "Start with the repository README to understand the agent-agnostic sync orchestrator and its operating boundary. It provides the vocabulary for the contract, readiness, connector, and delivery areas covered by the rest of the tour.",
       "nodeIds": [
         "document:README.md"
       ]
     },
     {
       "order": 2,
-      "title": "CLI Entry Point",
-      "description": "The CLI is the runtime front door, dispatching validation, finalization, synchronization, conformance, and readiness commands. After the project overview, this file shows how user intent enters the system and how errors are reported safely before the deeper layers take over.",
+      "title": "Current Delivery Contract",
+      "description": "The current-state, roadmap, and mapper runbook explain what is actually ready, what remains stopped, and how source truth relates to generated navigation graphs. This is the project-level frame for interpreting the implementation without promoting historical or generated evidence.",
       "nodeIds": [
-        "file:src/cli.ts"
+        "document:docs/project/current-state.md",
+        "document:docs/project/roadmap.md",
+        "document:docs/runbooks/mapper-snapshot.md"
       ]
     },
     {
       "order": 3,
-      "title": "Contract Compilation",
-      "description": "The contract layer parses declarative Markdown into a strict canonical vocabulary, capability policy, lifecycle semantics, and stop protocol. The compiler then turns that canonical contract into host-specific projections, making one shared operating model usable across different agent hosts.",
+      "title": "CLI and Request Flow",
+      "description": "The CLI and request/controller entry points turn an incoming task into a bounded decision flow. The formation recipe and request types connect user intent to the recommendation and readiness machinery implemented deeper in the application.",
       "nodeIds": [
-        "file:src/contract/markdown.ts",
-        "file:src/contract/compile.ts"
+        "file:src/cli.ts",
+        "file:src/controller/request.ts",
+        "file:src/controller/formation-recipe.ts"
       ]
     },
     {
       "order": 4,
-      "title": "Formation Controller",
-      "description": "The formation catalog and READY implementation recipe define which bounded agent shape may be recommended and what verified inputs, evidence, and rollback boundary it requires. Request parsing and recipe validation fail closed before the recommendation engine can expose the development profile, preserving UNKNOWN state and recommendation-only authority.",
+      "title": "Readiness Boundaries",
+      "description": "The readiness evaluator, run path, lifecycle start-check, and explicit stop handling define when work can proceed and when the system must fail closed. Together they make the READY, NOT READY, and STOPPED distinctions executable rather than merely descriptive.",
       "nodeIds": [
-        "document:contract/agent-library/formation-catalog.md",
-        "document:contract/agent-library/bounded-implementation.md",
-        "file:src/controller/request.ts",
-        "file:src/controller/formation-recommendation.ts",
-        "file:src/controller/formation-recipe.ts"
-      ],
-      "languageLesson": "TypeScript discriminated unions keep each scenario profile explicit, while runtime parsers independently enforce the same contract for untrusted JSON and Markdown inputs."
+        "file:src/readiness/evaluate.ts",
+        "file:src/readiness/run.ts",
+        "file:src/lifecycle/start-check.ts",
+        "file:src/orchestrator/stop.ts"
+      ]
     },
     {
       "order": 5,
-      "title": "Domain Model Validation",
-      "description": "Building on the contract boundary, the domain model defines milestones, work items, execution sets, project profiles, and durable events. AJV-backed validation converts malformed or incomplete data into precise domain errors, keeping later orchestration steps grounded in explicit schemas.",
+      "title": "Integration and Evidence",
+      "description": "Adapters and Jira/GitHub/Confluence connectors form the external boundary, while evidence ingestion and read-back preserve provenance and independent verification. This layer is where authority, target identity, and native evidence are kept separate from local recommendations.",
       "nodeIds": [
-        "file:src/domain/model.ts",
-        "file:src/domain/validate.ts"
-      ],
-      "languageLesson": "TypeScript types and runtime schemas serve different purposes here: static types guide implementation, while AJV validation protects the boundary when data arrives from files, adapters, or other external inputs."
+        "file:src/adapters/codex.ts",
+        "file:src/connectors/github.ts",
+        "file:src/connectors/jira.ts",
+        "file:src/evidence/readback.ts"
+      ]
     },
     {
       "order": 6,
-      "title": "Events and Evidence",
-      "description": "The event envelope carries canonical operations with stable idempotency keys and exact approved-field checks. Evidence guards sit alongside it to reject empty or credential-like references, connecting the domain model to an auditable execution path without allowing unsafe data into results.",
+      "title": "Agent Recipes and Contracts",
+      "description": "The agent-library documents and formation recommendation code describe bounded scenarios such as debugging and the contract needed before a recommendation becomes actionable. They provide the human-readable operating projection over the typed controller behavior.",
       "nodeIds": [
-        "file:src/events/envelope.ts",
-        "file:src/orchestrator/evidence.ts"
+        "document:contract/agent-library/bounded-debugging.md",
+        "document:contract/agent-library/formation-catalog.md",
+        "file:src/controller/formation-recommendation.ts"
       ]
     },
     {
       "order": 7,
-      "title": "Readiness Target",
-      "description": "The readiness manifest fixes the sandbox target and its tenant, issue, page, repository, commit, and fixture constraints. Observation parsing then defines the safe boundary for Jira, Confluence, GitHub, and traceability evidence, so readiness is evaluated from normalized, validated inputs rather than assumptions.",
+      "title": "Tests and Conformance",
+      "description": "Controller, readiness, debugging-recipe, and host-conformance tests show how the project checks both positive behavior and fail-closed boundaries. These tests are the executable evidence that connects the contracts to the implementation.",
       "nodeIds": [
-        "file:src/readiness/manifest.ts",
-        "file:src/readiness/observations.ts"
+        "file:test/controller-debugging-recipe.test.ts",
+        "file:test/controller-request.test.ts",
+        "file:test/readiness-evaluate.test.ts",
+        "file:test/conformance/host-conformance.test.ts"
       ]
     },
     {
       "order": 8,
-      "title": "Readiness Decisions",
-      "description": "The readiness decision engine compares the four-source observations with the canonical manifest and derives a bounded decision. The orchestration wrapper reads an observation bundle through an injected adapter and turns that decision into a readiness certificate, completing the evidence-to-verdict flow introduced in the previous steps.",
-      "nodeIds": [
-        "file:src/readiness/evaluate.ts",
-        "file:src/readiness/run.ts"
-      ]
-    },
-    {
-      "order": 9,
-      "title": "Host Adapter Projections",
-      "description": "Shared adapter contracts define local event emission, capability reporting, and implementation-start safety checks. The Codex, Claude Code, and Cursor modules provide host metadata to that common machinery, showing how host-specific projections remain aligned without duplicating the domain contract.",
-      "nodeIds": [
-        "file:src/adapters/types.ts",
-        "file:src/adapters/codex.ts",
-        "file:src/adapters/claude-code.ts",
-        "file:src/adapters/cursor.ts"
-      ]
-    },
-    {
-      "order": 10,
-      "title": "Operating Model",
-      "description": "The portable operating model documents the sequence from observation and validation through planning, execution, verification, and handoff, while keeping host and domain rules in their adapters. The Jira-Git-Confluence adapter specializes that model with authority, lifecycle, external-write, audit, and recovery boundaries for the project's synchronization domain.",
-      "nodeIds": [
-        "document:docs/operations/agent-operating-model.md",
-        "document:docs/operations/jira-git-confluence-adapter.md"
-      ]
-    },
-    {
-      "order": 11,
-      "title": "Build and Verification",
-      "description": "The package manifest defines the Node and validation toolchain, while the strict TypeScript configuration fixes the compilation target and module behavior. GitHub Actions turns those local conventions into repeatable pull-request and main-branch checks, including linting, documentation-link validation, and the test suite.",
+      "title": "Delivery Surface",
+      "description": "The package manifest, CI workflow, and website surface show how the repository is built, checked, and exposed to a user-facing runtime. This closes the tour by connecting local implementation and evidence rules to the delivery pipeline.",
       "nodeIds": [
         "config:package.json",
-        "config:tsconfig.json",
-        "pipeline:.github/workflows/ci.yml"
-      ],
-      "languageLesson": "NodeNext module settings make import and package-boundary behavior explicit; CI then verifies the same project conventions continuously so the contract-first architecture remains reviewable as it changes."
+        "pipeline:.github/workflows/ci.yml",
+        "file:website/app/page.tsx",
+        "document:marketing/README.md"
+      ]
     }
   ]
 }
