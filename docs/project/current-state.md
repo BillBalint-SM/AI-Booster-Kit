@@ -56,7 +56,7 @@ specific approval, bounded authority, and source-native read-back.
 
 ## Next bounded action
 
-Refresh Graphify first and UA second against the final source revision, verify
-the mapper gate, and prepare the bounded-debugging M1 review; only after its
-main read-back should the first M2 activation and tuning slice be designed.
+Review the bounded-debugging M1 diff and publish it for main read-back; only
+after that read-back should the first M2 activation and tuning slice be
+designed.
 
