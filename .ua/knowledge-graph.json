@@ -16,8 +16,8 @@
       "GitHub Actions"
     ],
     "description": "AI Booster Kit is a modular, human-centred platform for choosing, tuning, validating, and reusing Agent or Multi-Agent capabilities without making Agent assistance mandatory. Note: this project has over 100 source files; consider scoping analysis to a subdirectory for faster results.",
-    "analyzedAt": "2026-08-01T22:36:55.090Z",
-    "gitCommitHash": "37bafb8c626db8d0ddb37d9c1863849a2b006382"
+    "analyzedAt": "2026-08-01T23:38:03.480Z",
+    "gitCommitHash": "82b7750833aae504f064f5d4f764a7472629fc22"
   },
   "nodes": [
     {
@@ -9712,20 +9712,6 @@
       "complexity": "moderate"
     },
     {
-      "id": "document:docs/project/current-state.md",
-      "type": "document",
-      "name": "current-state.md",
-      "filePath": "docs/project/current-state.md",
-      "summary": "Routes the active implementation delivery through GitHub PR #34, its verification evidence, the remaining debugging limit, and the next bounded M1 action.",
-      "tags": [
-        "documentation",
-        "delivery-routing",
-        "current-state",
-        "readiness"
-      ],
-      "complexity": "simple"
-    },
-    {
       "id": "document:docs/project/documentation-map.md",
       "type": "document",
       "name": "documentation-map.md",
@@ -9782,6 +9768,20 @@
         "function"
       ],
       "complexity": "simple"
+    },
+    {
+      "id": "document:docs/project/current-state.md",
+      "type": "document",
+      "name": "current-state.md",
+      "filePath": "docs/project/current-state.md",
+      "summary": "Defines the repository's operational delivery routing state, including merged deliverables, validation evidence, known limits, authorization stops, and the next bounded M1 action. It records the development-session branch as the accumulation point before a larger delivery slice is merged to main.",
+      "tags": [
+        "documentation",
+        "delivery-state",
+        "operational-routing",
+        "milestone-planning"
+      ],
+      "complexity": "moderate"
     }
   ],
   "edges": [
@@ -17696,20 +17696,6 @@
       "weight": 0.5
     },
     {
-      "source": "document:docs/project/current-state.md",
-      "target": "document:docs/project/roadmap.md",
-      "type": "related",
-      "direction": "forward",
-      "weight": 0.5
-    },
-    {
-      "source": "document:docs/project/current-state.md",
-      "target": "document:contract/agent-library/bounded-implementation.md",
-      "type": "documents",
-      "direction": "forward",
-      "weight": 0.5
-    },
-    {
       "source": "document:docs/project/documentation-map.md",
       "target": "document:contract/agent-library/bounded-implementation.md",
       "type": "documents",
@@ -17889,6 +17875,20 @@
       "direction": "forward",
       "weight": 0.7,
       "recoveredFromImportMap": true
+    },
+    {
+      "source": "document:docs/project/current-state.md",
+      "target": "document:docs/project/roadmap.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:docs/project/current-state.md",
+      "target": "document:contract/agent-library/bounded-implementation.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
     }
   ],
   "layers": [

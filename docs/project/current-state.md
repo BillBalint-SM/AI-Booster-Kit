@@ -5,7 +5,7 @@ short and must not become a second roadmap, transcript, or historical report.
 
 ## Branch and pull request
 
-The public website delivery was merged as [PR #13](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/13), the documentation structure and roadmap as [PR #14](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/14), the Activation Package state correction as [PR #15](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/15), M1-A as [PR #16](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/16), M1-B as [PR #18](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/18), the CLI integration as [PR #20](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/20), the first fully ready validation formation as [PR #22](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/22), the ready refinement formation as [PR #24](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/24), the documentation routing alignment as [PR #26](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/26), and the current mapper snapshot refresh as [PR #27](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/27). The current implementation delivery is on `codex/bounded-implementation-ready`, published as [PR #34](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/34) against `main`.
+The public website delivery was merged as [PR #13](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/13), the documentation structure and roadmap as [PR #14](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/14), the Activation Package state correction as [PR #15](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/15), M1-A as [PR #16](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/16), M1-B as [PR #18](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/18), the CLI integration as [PR #20](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/20), the first fully ready validation formation as [PR #22](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/22), the ready refinement formation as [PR #24](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/24), the documentation routing alignment as [PR #26](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/26), the mapper snapshot refresh as [PR #27](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/27), and the bounded implementation delivery as [PR #34](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/34). Active work now accumulates on `codex/development-session`; its single draft pull request against `main` is review and CI routing only until a larger delivery slice or an explicit merge request.
 
 ## Completed deliverable
 
@@ -29,9 +29,10 @@ without changing Quick Task checkpoint or activation behavior.
 The formation recipe/catalog/request/recommendation/CLI focused suite passes
 64/64, and the full repository suite passes 267/267 under the available local
 Node 26 runtime. Documentation-link validation and `git diff --check` pass.
-Remote CI `quality` passed on PR #24. The package declares Node 22.x; local
-Node 26 is not the declared runtime, so the remote CI result remains the exact
-publication evidence.
+Remote CI `quality` passed on PR #34 and on its `main` merge commit
+`050f6bf760a859d78821245b63e2c84da709fbfd`. The package declares Node 22.x;
+local Node 26 is not the declared runtime, so those remote CI results remain
+the exact publication evidence.
 The implementation remains local and deterministic; no host runtime, generated
 artifact, session persistence, connector call, external read, or external write
 is performed.
