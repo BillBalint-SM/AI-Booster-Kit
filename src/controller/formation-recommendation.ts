@@ -100,6 +100,10 @@ function unresolvedPrerequisites(request: QuickTaskRequest, formation: Formation
     if (prerequisite === "repository-state") return request.formationInput?.scenario !== "development" || request.formationInput.repository.trim().length === 0 || request.formationInput.repositoryState !== "VERIFIED";
     if (prerequisite === "accepted-plan") return request.formationInput?.scenario !== "development" || request.formationInput.planState !== "ACCEPTED" || request.formationInput.acceptanceCriteria.length === 0 || request.formationInput.testStrategy.length === 0;
     if (prerequisite === "rollback-boundary") return request.formationInput?.scenario !== "development" || request.formationInput.rollbackBoundary.trim().length === 0;
+    if (prerequisite === "symptom") return request.formationInput?.scenario !== "debugging" || request.formationInput.symptom.trim().length === 0;
+    if (prerequisite === "reproduction-procedure") return request.formationInput?.scenario !== "debugging" || request.formationInput.reproduction.length === 0;
+    if (prerequisite === "expected-behavior") return request.formationInput?.scenario !== "debugging" || request.formationInput.expectedBehavior.trim().length === 0;
+    if (prerequisite === "environment-record") return request.formationInput?.scenario !== "debugging" || request.formationInput.environment.length === 0;
     return true;
   });
 }

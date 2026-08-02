@@ -65,7 +65,7 @@ test("formation catalog: loads the six declared M1-A entries", async () => {
   );
   assert.deepEqual(
     catalog.formations.filter((formation) => formation.status === "CANDIDATE").map((formation) => formation.scenario),
-    ["debugging"],
+    [],
   );
   const implementation = catalog.formations.find((formation) => formation.formationId === "bounded-implementation");
   assert.equal(implementation?.status, "READY");
@@ -79,6 +79,9 @@ test("formation catalog: loads the six declared M1-A entries", async () => {
   const validation = catalog.formations.find((formation) => formation.formationId === "bounded-validation");
   assert.equal(validation?.status, "READY");
   assert.equal(validation?.recipePath, "contract/agent-library/bounded-validation.md");
+  const debugging = catalog.formations.find((formation) => formation.formationId === "bounded-debugging");
+  assert.equal(debugging?.status, "READY");
+  assert.equal(debugging?.recipePath, "contract/agent-library/bounded-debugging.md");
 });
 
 test("formation catalog: rejects an unknown root field", () => {
