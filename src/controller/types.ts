@@ -217,6 +217,37 @@ export interface ResearchRecipe {
   };
 }
 
+export interface DebuggingRecipe {
+  recipeId: "bounded-debugging";
+  recipeVersion: "0.1.0";
+  status: "READY";
+  formationId: "bounded-debugging";
+  scenario: "debugging";
+  weight: "medium";
+  coordination: "sequential";
+  controller: {
+    version: 1;
+    eligibleComplexities: readonly ["LOW", "MEDIUM"];
+    requiredInput: readonly ["symptom", "reproduction", "expected-behavior", "environment"];
+    executionBoundary: "LOCAL_ONLY";
+    authority: "RECOMMENDATION_ONLY";
+  };
+  outputContract: {
+    requiredSections: readonly ["root-cause-record", "minimal-fix", "regression-evidence"];
+    unknownPolicy: "PRESERVE_AS_UNKNOWN";
+    resultState: "NOT_STARTED";
+  };
+  acceptance: {
+    criteria: readonly ["failure-reproduced", "root-cause-supported", "regression-covered"];
+  };
+  evidenceRequirements: readonly ["reproduction-output", "failing-test", "passing-test"];
+  relations: readonly [{ kind: "validates"; target: "bounded-implementation" }];
+  recovery: {
+    preserve: readonly ["failure-evidence", "pre-fix-state"];
+    stopConditions: readonly ["not-reproduced", "ambiguous-root-cause", "destructive-fix"];
+  };
+}
+
 export interface ImplementationRecipe {
   recipeId: "bounded-implementation";
   recipeVersion: "0.1.0";
