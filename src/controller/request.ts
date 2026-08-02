@@ -1,4 +1,4 @@
-import type { FormationInput, ImplementationFormationInput, LinkDeclaration, QuickTaskRequest, RefinementFormationInput, ResearchFormationInput, ValidationFormationInput } from "./types.js";
+import type { DebuggingFormationInput, FormationInput, ImplementationFormationInput, LinkDeclaration, QuickTaskRequest, RefinementFormationInput, ResearchFormationInput, ValidationFormationInput } from "./types.js";
 
 const rootKeys = ["requestVersion", "workItemType", "goal", "outcomeOwner", "complexity", "executionBoundary", "value", "context", "relations", "dependencies", "preferences", "formationInput"] as const;
 
@@ -34,10 +34,11 @@ export function parseQuickTaskRequest(value: unknown): QuickTaskRequest {
 
 function parseFormationInput(value: unknown): FormationInput {
   const record = plainRecord(value, "formationInput");
-  const scenario = oneOf(record, "scenario", ["research", "validation", "refinement", "development"]);
+  const scenario = oneOf(record, "scenario", ["research", "validation", "refinement", "debugging", "development"]);
   if (scenario === "research") return parseResearchFormationInput(record);
   if (scenario === "validation") return parseValidationFormationInput(record);
   if (scenario === "refinement") return parseRefinementFormationInput(record);
+  if (scenario === "debugging") return parseDebuggingFormationInput(record);
   return parseImplementationFormationInput(record);
 }
 
@@ -69,6 +70,17 @@ function parseRefinementFormationInput(record: Record<string, unknown>): Refinem
     currentScope: nonEmptyField(record, "currentScope", "formationInput.currentScope"),
     constraints: requiredStringArray(record.constraints, "formationInput.constraints"),
     openQuestions: requiredStringArray(record.openQuestions, "formationInput.openQuestions"),
+  };
+}
+
+function parseDebuggingFormationInput(record: Record<string, unknown>): DebuggingFormationInput {
+  exactKeys(record, ["scenario", "symptom", "reproduction", "expectedBehavior", "environment"], "formationInput");
+  return {
+    scenario: literal(record, "scenario", "debugging"),
+    symptom: nonEmptyField(record, "symptom", "formationInput.symptom"),
+    reproduction: requiredStringArray(record.reproduction, "formationInput.reproduction"),
+    expectedBehavior: nonEmptyField(record, "expectedBehavior", "formationInput.expectedBehavior"),
+    environment: requiredStringArray(record.environment, "formationInput.environment"),
   };
 }
 
@@ -123,7 +135,10 @@ function plainRecord(value: unknown, field: string): Record<string, unknown> {
 }
 
 function exactKeys(record: Record<string, unknown>, expected: readonly string[], field: string): void {
-  allowedKeys(record, expected, field);
+  for (const key of Reflect.ownKeys(record)) {
+    if (typeof key !== "string") throw new ControllerRequestError(field, "must not contain symbol keys");
+    if (!expected.includes(key)) throw new ControllerRequestError(`${field}.${key}`, "is not allowed");
+  }
   for (const key of expected) if (!Object.hasOwn(record, key)) throw new ControllerRequestError(key, "is required");
 }
 

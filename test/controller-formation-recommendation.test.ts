@@ -31,20 +31,44 @@ test("formation recommendation: selects the ready Quick Task formation with an e
   assert.match(recommendation.reasons[0] ?? "", /ready/);
 });
 
-test("formation recommendation: returns bounded candidates for each unready scenario", async () => {
+test("formation recommendation: retains candidate behavior for an unready entry", async () => {
   const catalog = await loadFormationCatalog(catalogPath);
-  const cases: readonly [string, string][] = [
-    ["Debug the failing parser test.", "debugging"],
-  ];
+  const candidateCatalog = {
+    ...catalog,
+    formations: catalog.formations.map((formation) => formation.scenario === "debugging" ? { ...formation, status: "CANDIDATE", recipePath: null } : formation),
+  } as FormationCatalog;
+  const recommendation = recommendFormation({ ...baseRequest, goal: "Debug the failing parser test." }, candidateCatalog);
+  assert.equal(recommendation.decision, "CANDIDATE");
+  assert.equal(recommendation.formation?.status, "CANDIDATE");
+  assert.equal(recommendation.requiresAcknowledgement, true);
+  assert.equal(recommendation.impact, "UNKNOWN");
+});
 
-  for (const [goal, scenario] of cases) {
-    const recommendation = recommendFormation({ ...baseRequest, goal }, catalog);
-    assert.equal(recommendation.decision, "CANDIDATE");
-    assert.equal(recommendation.scenario, scenario);
-    assert.equal(recommendation.formation?.status, "CANDIDATE");
-    assert.equal(recommendation.requiresAcknowledgement, true);
-    assert.equal(recommendation.impact, "UNKNOWN");
-  }
+test("formation recommendation: promotes the linked debugging recipe to RECOMMEND", async () => {
+  const recommendation = recommendFormation({
+    ...baseRequest,
+    goal: "Debug the failing parser test.",
+    complexity: "MEDIUM",
+    formationInput: {
+      scenario: "debugging",
+      symptom: "The parser rejects a valid frontmatter document.",
+      reproduction: ["Run the focused parser test with the valid fixture."],
+      expectedBehavior: "The parser accepts the valid fixture.",
+      environment: ["AI Booster Kit verified local revision", "Node 22 test runtime"],
+    },
+  }, await loadFormationCatalog(catalogPath));
+  assert.equal(recommendation.decision, "RECOMMEND");
+  assert.equal(recommendation.scenario, "debugging");
+  assert.equal(recommendation.formation?.status, "READY");
+  assert.equal(recommendation.formation?.recipePath, "contract/agent-library/bounded-debugging.md");
+  assert.equal(recommendation.requiresAcknowledgement, false);
+});
+
+test("formation recommendation: keeps debugging UNKNOWN without the required profile", async () => {
+  const recommendation = recommendFormation({ ...baseRequest, goal: "Debug the failing parser test." }, await loadFormationCatalog(catalogPath));
+  assert.equal(recommendation.decision, "UNKNOWN");
+  assert.deepEqual(recommendation.missingPrerequisites, ["symptom", "reproduction-procedure", "expected-behavior", "environment-record"]);
+  assert.equal(recommendation.formation, undefined);
 });
 
 test("formation recommendation: promotes the linked implementation recipe to RECOMMEND", async () => {

@@ -159,6 +159,37 @@ test("built formation CLI: exposes a ready implementation recommendation without
   assert.deepEqual(await readdir(root), before);
 });
 
+test("built formation CLI: exposes a ready debugging recommendation without writing artifacts", async () => {
+  const root = await mkdtemp(join(tmpdir(), "ai-booster-controller-"));
+  const input = join(root, "request.json");
+  await writeFile(input, JSON.stringify({
+    requestVersion: "1.0",
+    workItemType: "Quick Task",
+    goal: "Debug the failing parser test.",
+    outcomeOwner: "delivery-team",
+    complexity: "MEDIUM",
+    executionBoundary: "LOCAL_ONLY",
+    value: { state: "KNOWN", statement: "A bounded root-cause record." },
+    context: { state: "CURRENT", reference: "repository-state" },
+    relations: { state: "ABSENT", items: [] },
+    dependencies: { state: "ABSENT", items: [] },
+    formationInput: {
+      scenario: "debugging",
+      symptom: "The parser rejects a valid frontmatter document.",
+      reproduction: ["Run the focused parser test with the valid fixture."],
+      expectedBehavior: "The parser accepts the valid fixture.",
+      environment: ["AI Booster Kit verified local revision", "Node 22 test runtime"],
+    },
+  }), "utf8");
+  const before = await readdir(root);
+  const result = await runBuiltCli(["recommend-formation", "--input", input]);
+  const recommendation = JSON.parse(result.stdout);
+  assert.equal(result.code, 0);
+  assert.equal(recommendation.decision, "RECOMMEND");
+  assert.equal(recommendation.formation.formationId, "bounded-debugging");
+  assert.deepEqual(await readdir(root), before);
+});
+
 test("built formation CLI: preserves an ambiguous scenario as UNKNOWN", async () => {
   const root = await mkdtemp(join(tmpdir(), "ai-booster-controller-"));
   const input = join(root, "request.json");

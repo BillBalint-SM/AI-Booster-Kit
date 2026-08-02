@@ -109,7 +109,7 @@ formations:
     authority: RECOMMENDATION_ONLY
   - formationId: bounded-debugging
     version: 0.1.0
-    status: CANDIDATE
+    status: READY
     scenario: debugging
     weight: medium
     complexity: medium
@@ -123,14 +123,14 @@ formations:
     relations:
       - kind: validates
         target: bounded-implementation
-    prerequisites: [reproducible-symptom, expected-behavior, environment-record]
+    prerequisites: [symptom, reproduction-procedure, expected-behavior, environment-record]
     recovery:
       preserve: [failure-evidence, pre-fix-state]
       stopConditions: [not-reproduced, ambiguous-root-cause, destructive-fix]
     identity:
       key: bounded-debugging
       pattern: debugging:medium:sequential
-    recipePath: null
+    recipePath: contract/agent-library/bounded-debugging.md
     executionBoundary: LOCAL_ONLY
     authority: RECOMMENDATION_ONLY
   - formationId: bounded-validation
@@ -167,7 +167,7 @@ This catalog is a declarative, host-agnostic index. It characterizes formations
 so the Controller can recognize scenarios and explain recommendations.
 Catalog entries do not activate a host, invoke a connector, create files, or
 persist a session. The Quick Task entry is ready with a documented limit; the
-research, validation, and refinement entries are fully ready with linked profile
-recipes; implementation is fully ready with an explicit verified-repository and
-accepted-plan profile; debugging remains a bounded candidate until its recipe
-and Controller recommendation path are implemented and verified.
+research, validation, refinement, implementation, and debugging entries are
+fully ready with linked profile recipes. Quick Task remains ready with a
+documented limit, and the catalog retains its no-activation and Quick Task
+limits.
