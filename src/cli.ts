@@ -19,7 +19,10 @@ import { ControllerCheckpointError, parseCheckpointChoice } from "./controller/c
 import { ControllerRecipeError, loadQuickTaskRecipe } from "./controller/recipe.js";
 import { ControllerRequestError, parseQuickTaskRequest } from "./controller/request.js";
 import { resolveCheckpoint } from "./controller/resolve.js";
+import { createActivationBoundaryPackage } from "./controller/activation-boundary.js";
+import { saveActivationPackage } from "./controller/activation-storage.js";
 import { ControllerActivationPackageError } from "./controller/types.js";
+import type { ActivationBoundaryPackage, ActivationContextKind, RetentionScope, TuningRequest } from "./controller/types.js";
 
 const helpText = `Usage: npm run cli -- <command>
 
@@ -33,6 +36,8 @@ Commands:
   recommend-formation  Recommend a catalog formation without activation
   resolve-checkpoint  Resolve an explicit local Quick Task checkpoint
   activate-quick-task  Issue an ephemeral Quick Task Activation Package
+  prepare-activation  Prepare an explicit M2 activation package
+  save-activation     Save an explicit Personal or Team activation package
 `;
 
 export async function runCli(argv: readonly string[]): Promise<number> {
@@ -67,6 +72,8 @@ async function dispatchCli(argv: readonly string[]): Promise<number> {
   if (command === "recommend-formation") return runFormationRecommendation(argv.slice(1));
   if (command === "resolve-checkpoint") return runResolveCheckpoint(argv.slice(1));
   if (command === "activate-quick-task") return runActivateQuickTask(argv.slice(1));
+  if (command === "prepare-activation") return runPrepareActivation(argv.slice(1));
+  if (command === "save-activation") return runSaveActivation(argv.slice(1));
 
   throw new CliError("CONFIGURATION_ERROR", 4);
 }
@@ -193,6 +200,93 @@ async function runActivateQuickTask(argv: readonly string[]): Promise<number> {
     if (error instanceof ControllerRequestError || error instanceof ControllerRecipeError || error instanceof ControllerEvaluationError || error instanceof ControllerCheckpointError || error instanceof ControllerActivationPackageError) {
       return stoppedController(activationErrorCode(error), "Activation package request stopped safely", 3);
     }
+    throw error;
+  }
+}
+
+async function runPrepareActivation(argv: readonly string[]): Promise<number> {
+  if (
+    argv[0] !== "--input" || argv[1] === undefined ||
+    argv[2] !== "--choice" || argv[3] === undefined ||
+    argv[4] !== "--profile" || argv[5] === undefined ||
+    argv[6] !== "--context-kind" || argv[7] === undefined ||
+    argv[8] !== "--context-id" || argv[9] === undefined ||
+    argv[10] !== "--context-revision" || argv[11] === undefined ||
+    argv[12] !== "--retention" || argv[13] === undefined ||
+    argv[14] !== "--tuning" || argv[15] === undefined ||
+    argv.length !== 16
+  ) {
+    return stoppedController("COMMAND_CONFIGURATION_INVALID", "prepare-activation requires the exact activation arguments", 4);
+  }
+
+  try {
+    const requestInput = await readActivationJson(argv[1], "ACTIVATION_INPUT_PATH_UNREADABLE", "ACTIVATION_INPUT_JSON_INVALID");
+    const choiceInput = await readActivationJson(argv[3], "ACTIVATION_CHOICE_PATH_UNREADABLE", "ACTIVATION_CHOICE_JSON_INVALID");
+    const tuningInput = await readActivationJson(argv[15], "ACTIVATION_TUNING_PATH_UNREADABLE", "ACTIVATION_TUNING_JSON_INVALID");
+    const profile = parseActivationProfile(argv[5]);
+    const recipe = await loadQuickTaskRecipe("contract/agent-library/quick-task-clarifier-validator.md");
+    const request = parseQuickTaskRequest(requestInput);
+    const response = evaluateQuickTask(request, recipe);
+    const intent = resolveCheckpoint(response, parseCheckpointChoice(choiceInput));
+    if (intent.state !== "ACTIVATION_INTENT") return stoppedController("ACTIVATION_INTENT_REQUIRED", "A current activation intent is required before package preparation", 3);
+    const basePackage = createQuickTaskActivationPackage(request, intent, profile);
+    const activationPackage = createActivationBoundaryPackage({
+      basePackage,
+      context: {
+        kind: argv[7] as ActivationContextKind,
+        contextId: argv[9],
+        sourceRevision: argv[11],
+      },
+      retention: argv[13] as RetentionScope,
+      tuning: tuningInput as TuningRequest,
+      setupSnapshot: {
+        recipeId: basePackage.recipe.recipeId,
+        recipeVersion: basePackage.recipe.recipeVersion,
+        variantId: profile,
+        fingerprint: basePackage.intent.recipeSignature,
+      },
+    });
+    process.stdout.write(`${JSON.stringify(activationPackage)}\n`);
+    return 0;
+  } catch (error) {
+    if (error instanceof ActivationCliError) return stoppedController(error.code, "Activation input processing stopped safely", error.exitCode);
+    if (error instanceof ControllerRequestError || error instanceof ControllerRecipeError || error instanceof ControllerEvaluationError || error instanceof ControllerCheckpointError || error instanceof ControllerActivationPackageError) {
+      return stoppedController(activationErrorCode(error), "Activation preparation stopped safely", 3);
+    }
+    throw error;
+  }
+}
+
+async function runSaveActivation(argv: readonly string[]): Promise<number> {
+  if (
+    argv[0] !== "--input" || argv[1] === undefined ||
+    argv[2] !== "--target" || argv[3] === undefined ||
+    (argv.length !== 4 && argv.length !== 6) ||
+    (argv.length === 6 && (argv[4] !== "--repository-root" || argv[5] === undefined))
+  ) {
+    return stoppedController("COMMAND_CONFIGURATION_INVALID", "save-activation requires the exact save arguments", 4);
+  }
+
+  try {
+    const packageInput = await readActivationJson(argv[1], "ACTIVATION_PACKAGE_PATH_UNREADABLE", "ACTIVATION_PACKAGE_JSON_INVALID");
+    const result = await saveActivationPackage(argv[3], packageInput as ActivationBoundaryPackage, argv.length === 6 ? argv[5] : undefined);
+    process.stdout.write(`${JSON.stringify(result)}\n`);
+    return 0;
+  } catch (error) {
+    if (error instanceof ActivationCliError) return stoppedController(error.code, "Activation package input processing stopped safely", error.exitCode);
+    if (error instanceof ControllerActivationPackageError) return stoppedController(activationErrorCode(error), "Activation package saving stopped safely", 3);
+    throw error;
+  }
+}
+
+async function readActivationJson(path: string, unreadableCode: string, invalidJsonCode: string): Promise<unknown> {
+  let source: string;
+  try { source = await readFile(path, "utf8"); } catch (error) {
+    if (isSystemError(error)) throw new ActivationCliError(unreadableCode, 4);
+    throw error;
+  }
+  try { return JSON.parse(source) as unknown; } catch (error) {
+    if (error instanceof SyntaxError) throw new ActivationCliError(invalidJsonCode, 3);
     throw error;
   }
 }
@@ -332,6 +426,10 @@ async function readLocalFile(path: string): Promise<string> {
 
 class CliError extends Error {
   public constructor(readonly code: "CONFIGURATION_ERROR" | "VALIDATION_FAILED", readonly exitCode: 2 | 4) { super(code); }
+}
+
+class ActivationCliError extends Error {
+  public constructor(readonly code: string, readonly exitCode: 3 | 4) { super(code); }
 }
 
 function isSystemError(error: unknown): error is NodeJS.ErrnoException { return typeof error === "object" && error !== null && "code" in error; }

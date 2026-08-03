@@ -101,9 +101,9 @@ the bounded slice is present, not that the complete product vision is finished.
 | Controller recommendation MVP | `COMPLETE_WITH_LIMIT` | `src/controller/`, `src/cli.ts`, formation catalog, scenario recommendation, five READY scenario recipes, and focused tests | Keep the ready Quick Task, research, validation, refinement, implementation, and debugging paths stable within recommendation-only scope. | `implements` Controller layer |
 | Human Checkpoint and Activation Intent | `COMPLETE_WITH_LIMIT` | `src/controller/checkpoint.ts`, `choice.ts`, `resolve.ts`, focused tests | Keep the checkpoint late, explicit, and side-effect-free until activation is separately authorized. | `depends_on` Controller; `protects` User consent |
 | Quick Task Clarifier/Validator recipe | `COMPLETE_WITH_LIMIT` | `contract/agent-library/quick-task-clarifier-validator.md` | Add more ready-to-use formations without changing this recipe implicitly. | `implements` first library entry |
-| Quick Task Activation Package | `COMPLETE_WITH_LIMIT` | `src/controller/activation-package.ts`, `src/cli.ts`, focused Controller tests, and the approved design/plan | Preserve the ephemeral, host-agnostic boundary; design host adaptation/execution or explicit package saving separately. | `depends_on` Human Checkpoint |
+| Quick Task Activation Package | `COMPLETE_WITH_LIMIT` | `src/controller/activation-package.ts`, `src/controller/activation-boundary.ts`, `src/controller/activation-storage.ts`, `src/cli.ts`, focused Controller/storage/CLI tests, and the approved design/plan | Preserve the host-agnostic boundary; host adaptation/execution and external publication remain separate. | `depends_on` Human Checkpoint |
 | Agent Framework Library and Recipe Controller v1 | `READY` within local recommendation-only scope | M1-A catalog/validator, M1-B scenario recognizer/recommendation, and five READY research/validation/refinement/implementation/debugging recipes with profile contracts provide the bounded foundation | Preserve the recommendation-only boundary; activation, tuning, persistence, iterative debugging tooling, and synchronization remain independent future tracks. | `depends_on` Controller; `enables` all later Agent tracks |
-| Activation, tuning, save-or-ephemeral choice | `NEXT` / `NOT EXECUTED` | Human checkpoint contract defines the boundary | Add explicit activation executor, tuning inputs, artifact lifecycle, and rollback. | `depends_on` Library v1 |
+| Activation, tuning, save-or-ephemeral choice | `COMPLETE_WITH_LIMIT` | M2 boundary builder, explicit Personal/Team saver, `prepare-activation`/`save-activation` CLI, positive/negative tests, full local suite, and current-HEAD Graphify refresh | UA must be refreshed against the same stable source revision before mapper freshness/publication can be `READY`; host adaptation/execution, durable session state, and external publication remain separate gates. | `depends_on` Library v1 |
 | Compact session state and optional storage | `NEXT` / `NOT EXECUTED` | Session-state principles are defined in the workflow contract | Persist only resumable state, never a full transcript by default. | `supports` activation and evolve |
 | Evaluation and `evolve` review | `LATER` / `NOT EXECUTED` | Accepted product direction and event vocabulary | Evaluate session outcomes and repeated `UNKNOWN` or +/- events; evolve one formation at a time. | `validates` active setup |
 | Debugging and iterative verification tooling | `LATER` / `NOT EXECUTED` | Product vision and debugging workflow direction | Build modify–run–verify probes and zero-configuration local context injection. | `supports` implementation and validation |
@@ -288,7 +288,7 @@ unknown condition.
 
 This sequence is intentionally outcome-oriented and has no calendar promise.
 
-### Now — M1: Agent Framework Library and Recipe Controller v1
+### Complete bounded slice — M1: Agent Framework Library and Recipe Controller v1
 
 Create the catalog and recipe contract, define light/heavy dimensions and
 prerequisites, add scenario recognition, and produce explainable
@@ -299,14 +299,20 @@ profiles are research, validation, refinement, implementation, and debugging.
 negative recommendation fixtures, and a reviewed implementation diff. This is
 READY only within local recommendation-only scope.
 
-### Next — M2: Activation and agent tuning boundary
+### Complete with limit — M2: Activation and agent tuning boundary
 
-Turn a User-approved intent into a scoped, host-agnostic activation/tuning
-artifact. Keep activation, generated files, saved packages, and external actions
-behind explicit boundaries.
+Turned a User-approved intent into a scoped, host-agnostic activation/tuning
+package with explicit save-or-ephemeral behavior. The local slice includes the
+pure boundary builder, rollback reference, Personal/Team storage, and strict
+CLI operations.
 
 **Exit evidence:** activation contract, one-at-a-time mutation rule, preserved
-prior setup, rollback test, and explicit save-versus-ephemeral behavior.
+prior setup, rollback test, explicit save-versus-ephemeral behavior, positive
+and negative tests, and a 304/304 full local suite. This remains
+`COMPLETE_WITH_LIMIT` because no host runtime is activated and no external
+publication occurs. Mapper freshness remains `NOT_READY`: the local Graphify
+snapshot identifies `d570212…`, while the source mapper identifies
+`a08b2bc6…`; both require one stable source revision before publication.
 
 ### Next — M3: Compact session state and optional storage
 
@@ -401,8 +407,9 @@ Roadmap evolution is expected, but it must be deliberate:
 - [Capability matrix](../../contract/capability-matrix.md) — capability and host
   projection boundaries.
 
-The next concrete delivery slice is **M2: Activation and tuning boundary**.
-The platform is useful already, but this routing statement does not approve
-implementation: the roadmap keeps the next functional capability visible
-without turning future options into mandatory process.
+The next concrete delivery slice is **M3: Compact session state and optional
+storage**. The platform is useful already, but this routing statement does not
+approve external activation or publication: the roadmap keeps the next
+functional capability visible without turning future options into mandatory
+process.
 

@@ -10,6 +10,10 @@ export function recipeSignature(recipe: QuickTaskRecipe): string {
   return digest(recipe);
 }
 
+export function activationPackageFingerprint(value: unknown): string {
+  return digest(value);
+}
+
 export function patternId(request: QuickTaskRequest, recipe: QuickTaskRecipe, decision: ControllerDecision, impact: ControllerImpact): string {
   return digest({ workItemType: request.workItemType, recipeId: recipe.recipeId, recipeVersion: recipe.recipeVersion, decision, impact, complexity: request.complexity, relations: request.relations?.state ?? "MISSING", dependencies: request.dependencies?.state ?? "MISSING" });
 }
