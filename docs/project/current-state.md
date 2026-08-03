@@ -38,9 +38,11 @@ local results remain local evidence. M2 behavior remains local and
 deterministic: no host runtime, generated host artifact, connector call,
 external read, Git operation, or publication is performed.
 
-Mapper status remains `NOT_READY`: Graphify and the source mapper must identify
-one stable source revision before a mapper publication gate can pass. No
-semantic-extraction backend or credentialed external analysis was invoked.
+Mapper status is currently `READY`: the checked-in Graphify and Understand
+Anything snapshots identify the same stable source revision and
+`npm run check:mappers` passes. The refresh used Graphify code-only extraction
+and UA deterministic local structural extraction; no semantic-extraction
+backend or credentialed external analysis was invoked.
 
 ## Known limit
 
@@ -55,11 +57,10 @@ enforcement, and pure resume decisions. Host adaptation and
 execution, evaluation/evolve, debugging context injection, and lifecycle
 synchronization remain future work. M2 and the local M3 slice are
 `COMPLETE_WITH_LIMIT`: they never activate an Agent or perform external work.
-Mapper freshness is
-commit-relative: publication requires the checked-in Understand Anything and
-Graphify snapshots to identify the final source revision and
-`npm run check:mappers` to pass. Until then this is a local implementation
-state, not a publication-ready mapper state.
+Mapper freshness remains commit-relative: the current local snapshot is fresh
+and valid, but this branch has no upstream publication, PR, or merge yet.
+Mapper output remains a navigation projection; source, tests, and Git review
+remain authoritative.
 
 ## Open stop
 
@@ -69,9 +70,6 @@ specific approval, bounded authority, and source-native read-back.
 
 ## Next bounded action
 
-Review and explicitly approve this focused M3 validation-hardening diff. After
-the source revision is stable in a commit, refresh Graphify and Understand
-Anything against that exact revision, then run the mapper gate before any
-publication decision. No M4 follow-on or external write is authorized by this
-local review state.
+Review and explicitly approve the M3 source and mapper commits. No M4
+follow-on or external write is authorized by this local review state.
 
