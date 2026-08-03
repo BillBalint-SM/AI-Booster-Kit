@@ -3,7 +3,7 @@ import { parseDocument, stringify } from "yaml";
 import { ContextError } from "./types.js";
 import type { ContextState, EpicContext, MilestoneContext, WorkContext } from "./types.js";
 
-const commonKeys = ["contextVersion", "kind", "contextId", "sourceRevision", "owner", "retention", "state"] as const;
+const commonKeys = ["contextVersion", "kind", "contextId", "sourceRevision", "owner", "retention", "state", "readScope", "writeAuthority"] as const;
 const milestoneKeys = [...commonKeys, "milestoneId", "projectVision", "roadmap", "scope", "nonGoals", "decisions", "forecast", "evidenceRefs", "unknowns", "dependencies", "epicIds"] as const;
 const epicKeys = [...commonKeys, "epicId", "milestoneId", "outcome", "featureValue", "scope", "nonGoals", "workItemIds", "acceptanceCriteria", "decisions", "evidenceRefs", "unknowns", "dependencies"] as const;
 const executablePattern = /\b(?:npm|node|bash|powershell|pwsh|curl|wget|python|script|hook|plugin|mcp)\b/i;
@@ -75,6 +75,8 @@ function parseEnvelope(metadata: Record<string, unknown>, sourcePath: string) {
     owner: stringValue(metadata, "owner", sourcePath),
     retention,
     state: state as ContextState,
+    readScope: literal(metadata, "readScope", ["FULL_MILESTONE"], sourcePath),
+    writeAuthority: literal(metadata, "writeAuthority", ["ARTIFACT_OWNER_THROUGH_APPROVED_PR"], sourcePath),
   };
 }
 

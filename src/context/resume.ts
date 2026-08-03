@@ -25,6 +25,8 @@ export function evaluateSessionResume(state: SessionState, contexts: readonly Wo
     if (error instanceof ContextError) return stopped(validated.sessionId, ["referenced context parent link is invalid"]);
     throw error;
   }
+  const scopeResult = validateExecutionScope(validated, milestone, epic);
+  if (scopeResult !== undefined) return scopeResult;
   if (epic !== undefined && validated.workItemIds.some((workItemId) => !epic.workItemIds.includes(workItemId))) {
     return stopped(validated.sessionId, ["session work item is outside the referenced Epic"]);
   }
@@ -33,6 +35,22 @@ export function evaluateSessionResume(state: SessionState, contexts: readonly Wo
   const executionResult = validateExecution(validated, runtime);
   if (executionResult !== undefined) return executionResult;
   return { decision: "RESUME", sessionId: validated.sessionId, nextAction: validated.nextAction, evidenceRefs: validated.evidenceRefs };
+}
+
+function validateExecutionScope(state: SessionState, milestone: MilestoneContext, epic: EpicContext | undefined): ResumeResult | undefined {
+  if (state.executionScope.kind === "MILESTONE") {
+    if (epic !== undefined || state.executionScope.contextId !== milestone.contextId) {
+      return stopped(state.sessionId, ["Milestone execution scope does not match current context"]);
+    }
+    return undefined;
+  }
+  if (epic === undefined || state.executionScope.contextId !== epic.contextId) {
+    return stopped(state.sessionId, ["Epic execution scope does not match current context"]);
+  }
+  if (state.executionScope.workItemIds.some((workItemId) => !epic.workItemIds.includes(workItemId))) {
+    return stopped(state.sessionId, ["execution scope work item is outside the referenced Epic"]);
+  }
+  return undefined;
 }
 
 function resolveContexts(state: SessionState, contexts: readonly WorkContext[]): { milestone: MilestoneContext; epic: EpicContext | undefined } | { result: ResumeResult } {

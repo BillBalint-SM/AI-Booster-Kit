@@ -1,7 +1,7 @@
 import { ContextError } from "./types.js";
 import type { ContextReference, EpicContext, MilestoneContext, SessionExecutionBinding, SessionState } from "./types.js";
 
-const sessionKeys = ["sessionVersion", "sessionId", "owner", "retention", "contextReferences", "workItemIds", "activationPackageId", "recipe", "setupFingerprint", "status", "decisions", "evidenceRefs", "unknowns", "deviations", "dependencies", "progress", "nextAction", "execution"] as const;
+const sessionKeys = ["sessionVersion", "sessionId", "owner", "retention", "readScope", "executionScope", "writeAuthority", "contextReferences", "workItemIds", "activationPackageId", "recipe", "setupFingerprint", "status", "decisions", "evidenceRefs", "unknowns", "deviations", "dependencies", "progress", "nextAction", "execution"] as const;
 const secretFieldPattern = /(?:transcript|prompt|secret|token|credential|cookie)/i;
 
 export function validateMilestoneContext(milestone: MilestoneContext, epics: readonly EpicContext[]): void {
@@ -44,6 +44,9 @@ export function validateSessionState(value: unknown): SessionState {
   exactKeys(record, sessionKeys, "session state");
   const references = contextReferences(record.contextReferences);
   const workItemIds = stringList(record.workItemIds, "session state workItemIds");
+  const readScope = literal(record, "readScope", ["FULL_MILESTONE"], "session state");
+  const executionScope = sessionExecutionScope(record.executionScope);
+  const writeAuthority = literal(record, "writeAuthority", ["ARTIFACT_OWNER_THROUGH_APPROVED_PR"], "session state");
   const recipe = recipeValue(record.recipe);
   const setupFingerprint = nullableString(record.setupFingerprint, "session state setupFingerprint");
   const activationPackageId = nullableString(record.activationPackageId, "session state activationPackageId");
@@ -56,11 +59,20 @@ export function validateSessionState(value: unknown): SessionState {
   if (milestoneReferences.length !== 1 || epicReferences.length > 1) throw new ContextError("session state must reference one Milestone and at most one Epic");
   if ((execution !== null || workItemIds.length > 0) && epicReferences.length !== 1) throw new ContextError("an implementation session requires one Epic reference");
   if (execution !== null && workItemIds.length === 0) throw new ContextError("an implementation session requires affected Story, Task, or Bug references");
+  if (executionScope.kind === "MILESTONE" && (epicReferences.length > 0 || executionScope.contextId !== milestoneReferences[0]!.contextId || executionScope.workItemIds.length > 0)) {
+    throw new ContextError("Milestone execution scope must reference only the session Milestone");
+  }
+  if (executionScope.kind === "EPIC" && (epicReferences.length !== 1 || executionScope.contextId !== epicReferences[0]!.contextId || !sameStringList(executionScope.workItemIds, workItemIds))) {
+    throw new ContextError("Epic execution scope must match the session Epic and work items");
+  }
   return {
     sessionVersion: literal(record, "sessionVersion", ["1.0"], "session state"),
     sessionId: requiredString(record, "sessionId", "session state"),
     owner: requiredString(record, "owner", "session state"),
     retention: literal(record, "retention", ["EPHEMERAL", "PERSONAL", "TEAM"], "session state"),
+    readScope,
+    executionScope,
+    writeAuthority,
     contextReferences: references,
     workItemIds,
     activationPackageId,
@@ -85,11 +97,13 @@ function validateEpicShape(epic: EpicContext): void {
   assertUnique(epic.workItemIds, `Epic '${epic.epicId}' work item`);
 }
 
-function validateContextEnvelope(context: { contextVersion: unknown; kind: unknown; contextId: unknown; sourceRevision: unknown; owner: unknown; retention: unknown; state: unknown }, expectedKind: "MILESTONE" | "EPIC"): void {
+function validateContextEnvelope(context: { contextVersion: unknown; kind: unknown; contextId: unknown; sourceRevision: unknown; owner: unknown; retention: unknown; state: unknown; readScope: unknown; writeAuthority: unknown }, expectedKind: "MILESTONE" | "EPIC"): void {
   if (context.kind !== expectedKind || context.contextVersion !== "1.0" || !["DRAFT", "ACCEPTED", "STALE", "SUPERSEDED"].includes(context.state as string) || context.state === "STALE" || context.state === "SUPERSEDED") {
     throw new ContextError(`${expectedKind} context is not current and usable`);
   }
   if (!(["EPHEMERAL", "PERSONAL", "TEAM"] as readonly unknown[]).includes(context.retention)) throw new ContextError(`${expectedKind} retention is invalid`);
+  if (context.readScope !== "FULL_MILESTONE") throw new ContextError(`${expectedKind} read scope is invalid`);
+  if (context.writeAuthority !== "ARTIFACT_OWNER_THROUGH_APPROVED_PR") throw new ContextError(`${expectedKind} write authority is invalid`);
   assertNonEmpty(context.contextId, `${expectedKind} context identifier`);
   assertNonEmpty(context.sourceRevision, `${expectedKind} source revision`);
   assertNonEmpty(context.owner, `${expectedKind} owner`);
@@ -139,6 +153,10 @@ function stringList(value: unknown, label: string): readonly string[] {
   return value;
 }
 
+function sameStringList(left: readonly string[], right: readonly string[]): boolean {
+  return left.length === right.length && left.every((value) => right.includes(value));
+}
+
 function contextReferences(value: unknown): readonly ContextReference[] {
   if (!Array.isArray(value) || value.length === 0) throw new ContextError("session state contextReferences must be a non-empty list");
   const references = value.map((entry) => {
@@ -153,6 +171,16 @@ function contextReferences(value: unknown): readonly ContextReference[] {
   const identities = references.map((reference) => `${reference.kind}:${reference.contextId}`);
   if (new Set(identities).size !== identities.length) throw new ContextError("session state context references must be unique");
   return references;
+}
+
+function sessionExecutionScope(value: unknown): SessionState["executionScope"] {
+  const record = recordValue(value, "session execution scope");
+  exactKeys(record, ["kind", "contextId", "workItemIds"], "session execution scope");
+  const kind = literal(record, "kind", ["MILESTONE", "EPIC"], "session execution scope");
+  const contextId = requiredString(record, "contextId", "session execution scope");
+  const workItemIds = stringList(record.workItemIds, "session execution scope workItemIds");
+  if (kind === "MILESTONE" && workItemIds.length > 0) throw new ContextError("Milestone execution scope cannot contain work items");
+  return kind === "MILESTONE" ? { kind, contextId, workItemIds: [] } : { kind, contextId, workItemIds };
 }
 
 function recipeValue(value: unknown): SessionState["recipe"] {

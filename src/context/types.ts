@@ -3,6 +3,12 @@ import type { ContextReference, RetentionScope } from "../controller/types.js";
 export type { ContextReference, RetentionScope } from "../controller/types.js";
 
 export type ContextState = "DRAFT" | "ACCEPTED" | "STALE" | "SUPERSEDED";
+export type ContextReadScope = "FULL_MILESTONE";
+export type ArtifactWriteAuthority = "ARTIFACT_OWNER_THROUGH_APPROVED_PR";
+
+export type SessionExecutionScope =
+  | { kind: "MILESTONE"; contextId: string; workItemIds: readonly [] }
+  | { kind: "EPIC"; contextId: string; workItemIds: readonly string[] };
 
 export interface ContextEnvelope {
   contextVersion: "1.0";
@@ -11,6 +17,8 @@ export interface ContextEnvelope {
   owner: string;
   retention: RetentionScope;
   state: ContextState;
+  readScope: ContextReadScope;
+  writeAuthority: ArtifactWriteAuthority;
 }
 
 export interface MilestoneContext extends ContextEnvelope {
@@ -60,6 +68,9 @@ export interface SessionState {
   sessionId: string;
   owner: string;
   retention: RetentionScope;
+  readScope: ContextReadScope;
+  executionScope: SessionExecutionScope;
+  writeAuthority: ArtifactWriteAuthority;
   contextReferences: readonly ContextReference[];
   workItemIds: readonly string[];
   activationPackageId: string | null;

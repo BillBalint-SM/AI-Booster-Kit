@@ -10,17 +10,18 @@ import { saveSessionState, saveWorkContext } from "../src/context/storage.js";
 import type { EpicContext, MilestoneContext, SessionState } from "../src/context/types.js";
 
 const milestone: MilestoneContext = {
-  contextVersion: "1.0", kind: "MILESTONE", contextId: "milestone-context-m3", sourceRevision: "rev-m3-1", owner: "product-owner", retention: "PERSONAL", state: "ACCEPTED", milestoneId: "milestone-m3",
+  contextVersion: "1.0", kind: "MILESTONE", contextId: "milestone-context-m3", sourceRevision: "rev-m3-1", owner: "product-owner", retention: "PERSONAL", state: "ACCEPTED", readScope: "FULL_MILESTONE", writeAuthority: "ARTIFACT_OWNER_THROUGH_APPROVED_PR", milestoneId: "milestone-m3",
   projectVision: "Make AI work resumable.", roadmap: "M3 compact session context.", scope: ["Context contracts"], nonGoals: ["Host execution"], decisions: ["Contexts are Markdown source artifacts."], forecast: ["One bounded M3 delivery."], evidenceRefs: ["decision:m3-approved"], unknowns: [], dependencies: ["contract:team-contract"], epicIds: ["epic-context-parser"],
 };
 
 const epic: EpicContext = {
-  contextVersion: "1.0", kind: "EPIC", contextId: "epic-context-parser", sourceRevision: "rev-m3-1", owner: "engineering", retention: "TEAM", state: "ACCEPTED", epicId: "epic-context-parser", milestoneId: "milestone-m3",
+  contextVersion: "1.0", kind: "EPIC", contextId: "epic-context-parser", sourceRevision: "rev-m3-1", owner: "engineering", retention: "TEAM", state: "ACCEPTED", readScope: "FULL_MILESTONE", writeAuthority: "ARTIFACT_OWNER_THROUGH_APPROVED_PR", epicId: "epic-context-parser", milestoneId: "milestone-m3",
   outcome: "Validate a portable context contract.", featureValue: "Human-readable resume context.", scope: ["Strict parser"], nonGoals: ["Automatic merge"], workItemIds: ["story-context-parser"], acceptanceCriteria: ["Malformed context stops before use."], decisions: ["Frontmatter is the structured contract."], evidenceRefs: ["test:context-markdown"], unknowns: [], dependencies: ["milestone:milestone-m3"],
 };
 
 const session: SessionState = {
   sessionVersion: "1.0", sessionId: "session-m3-po", owner: "product-owner", retention: "PERSONAL",
+  readScope: "FULL_MILESTONE", executionScope: { kind: "MILESTONE", contextId: "milestone-context-m3", workItemIds: [] }, writeAuthority: "ARTIFACT_OWNER_THROUGH_APPROVED_PR",
   contextReferences: [{ kind: "MILESTONE", contextId: "milestone-context-m3", sourceRevision: "rev-m3-1" }], workItemIds: [], activationPackageId: null, recipe: null, setupFingerprint: null, status: "PAUSED", decisions: ["Use strict Markdown context."], evidenceRefs: ["test:context-storage"], unknowns: [], deviations: [], dependencies: [], progress: ["Context prepared."], nextAction: "Review the linked Epic contexts.", execution: null,
 };
 

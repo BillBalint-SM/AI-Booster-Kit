@@ -23,6 +23,9 @@ stored session state that resumes only after current context and runtime checks.
   `validate-context`, `save-context`, `save-session`, and `resume-session`.
 - [x] Add PO-to-two-Epic isolation evidence: each developer resumes only the
   referenced Epic and a changed Milestone revision stops both resumes.
+- [x] Add the team scope contract: full Milestone read visibility, one-Epic
+  execution scope for developers, and artifact-owner approval through PR for
+  canonical changes.
 - [x] Run the complete repository quality gates, review the diff and authority
   boundaries, then leave the result uncommitted for explicit review.
 
@@ -36,3 +39,6 @@ stored session state that resumes only after current context and runtime checks.
    contradictory facts return `STOPPED` while preserving state.
 4. Personal/Team writes are explicit, idempotent only for identical content,
    and fail closed for Ephemeral, traversal, missing parents, and conflicts.
+5. A session cannot resume when its execution scope points outside the current
+   Milestone/Epic/work-item evidence, even when the session itself is otherwise
+   structurally valid.
