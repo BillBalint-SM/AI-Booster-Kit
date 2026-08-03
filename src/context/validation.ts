@@ -5,6 +5,7 @@ const sessionKeys = ["sessionVersion", "sessionId", "owner", "retention", "conte
 const secretFieldPattern = /(?:transcript|prompt|secret|token|credential|cookie)/i;
 
 export function validateMilestoneContext(milestone: MilestoneContext, epics: readonly EpicContext[]): void {
+  validateMilestoneShape(milestone);
   const epicIds = new Set<string>();
   for (const epic of epics) {
     validateEpicShape(epic);
@@ -19,6 +20,7 @@ export function validateMilestoneContext(milestone: MilestoneContext, epics: rea
 }
 
 export function validateEpicContext(epic: EpicContext, milestone: MilestoneContext, knownWorkItemIds: readonly string[]): void {
+  validateMilestoneShape(milestone);
   validateEpicShape(epic);
   if (epic.milestoneId !== milestone.milestoneId) throw new ContextError(`Epic '${epic.epicId}' must have Milestone parent '${milestone.milestoneId}'`);
   if (!milestone.epicIds.includes(epic.epicId)) throw new ContextError(`Epic '${epic.epicId}' is not linked by its Milestone-context`);
@@ -26,6 +28,12 @@ export function validateEpicContext(epic: EpicContext, milestone: MilestoneConte
   if (epic.workItemIds.some((workItemId) => !knownWorkItemIds.includes(workItemId))) {
     throw new ContextError(`Epic '${epic.epicId}' contains a Story, Task, or Bug outside its declared boundary`);
   }
+}
+
+function validateMilestoneShape(milestone: MilestoneContext): void {
+  validateContextEnvelope(milestone, "MILESTONE");
+  assertNonEmpty(milestone.milestoneId, "Milestone identifier");
+  assertUnique(milestone.epicIds, "Milestone Epic reference");
 }
 
 export function validateSessionState(value: unknown): SessionState {
@@ -71,15 +79,28 @@ export function validateSessionState(value: unknown): SessionState {
 }
 
 function validateEpicShape(epic: EpicContext): void {
-  if (epic.kind !== "EPIC" || epic.contextVersion !== "1.0" || epic.state === "STALE" || epic.state === "SUPERSEDED") {
-    throw new ContextError("Epic context is not current and usable");
-  }
-  if (epic.epicId.trim() === "" || epic.milestoneId.trim() === "" || epic.contextId.trim() === "") throw new ContextError("Epic identifiers must be non-empty");
+  validateContextEnvelope(epic, "EPIC");
+  assertNonEmpty(epic.epicId, "Epic identifier");
+  assertNonEmpty(epic.milestoneId, "Epic Milestone identifier");
   assertUnique(epic.workItemIds, `Epic '${epic.epicId}' work item`);
 }
 
-function assertUnique(values: readonly string[], label: string): void {
-  if (values.some((value) => value.trim() === "") || new Set(values).size !== values.length) throw new ContextError(`${label} values must be non-empty and unique`);
+function validateContextEnvelope(context: { contextVersion: unknown; kind: unknown; contextId: unknown; sourceRevision: unknown; owner: unknown; retention: unknown; state: unknown }, expectedKind: "MILESTONE" | "EPIC"): void {
+  if (context.kind !== expectedKind || context.contextVersion !== "1.0" || !["DRAFT", "ACCEPTED", "STALE", "SUPERSEDED"].includes(context.state as string) || context.state === "STALE" || context.state === "SUPERSEDED") {
+    throw new ContextError(`${expectedKind} context is not current and usable`);
+  }
+  if (!(["EPHEMERAL", "PERSONAL", "TEAM"] as readonly unknown[]).includes(context.retention)) throw new ContextError(`${expectedKind} retention is invalid`);
+  assertNonEmpty(context.contextId, `${expectedKind} context identifier`);
+  assertNonEmpty(context.sourceRevision, `${expectedKind} source revision`);
+  assertNonEmpty(context.owner, `${expectedKind} owner`);
+}
+
+function assertNonEmpty(value: unknown, label: string): void {
+  if (typeof value !== "string" || value.trim() === "") throw new ContextError(`${label} must be non-empty`);
+}
+
+function assertUnique(values: readonly unknown[], label: string): void {
+  if (!Array.isArray(values) || values.some((value) => typeof value !== "string" || value.trim() === "") || new Set(values).size !== values.length) throw new ContextError(`${label} values must be non-empty and unique`);
 }
 
 function recordValue(value: unknown, label: string): Record<string, unknown> {

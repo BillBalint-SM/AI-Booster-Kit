@@ -5,7 +5,7 @@ short and must not become a second roadmap, transcript, or historical report.
 
 ## Branch and pull request
 
-The public website delivery was merged as [PR #13](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/13), the documentation structure and roadmap as [PR #14](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/14), the Activation Package state correction as [PR #15](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/15), M1-A as [PR #16](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/16), M1-B as [PR #18](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/18), the CLI integration as [PR #20](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/20), the first fully ready validation formation as [PR #22](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/22), the ready refinement formation as [PR #24](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/24), the documentation routing alignment as [PR #26](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/26), the mapper snapshot refresh as [PR #27](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/27), and the bounded implementation delivery as [PR #34](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/34). The bounded-debugging M1 slice was promoted through [PR #37](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/37). The three-level branching documentation and mapper refresh were delivered through [PR #38](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/38) and promoted to `main` through [PR #39](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/39). M2 was merged into `feature` through [PR #40](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/40); the local M3 context/session slice is active on `dev-m3-session-state` with no PR yet.
+The public website delivery was merged as [PR #13](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/13), the documentation structure and roadmap as [PR #14](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/14), the Activation Package state correction as [PR #15](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/15), M1-A as [PR #16](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/16), M1-B as [PR #18](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/18), the CLI integration as [PR #20](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/20), the first fully ready validation formation as [PR #22](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/22), the ready refinement formation as [PR #24](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/24), the documentation routing alignment as [PR #26](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/26), the mapper snapshot refresh as [PR #27](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/27), and the bounded implementation delivery as [PR #34](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/34). The bounded-debugging M1 slice was promoted through [PR #37](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/37). The three-level branching documentation and mapper refresh were delivered through [PR #38](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/38) and promoted to `main` through [PR #39](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/39). M2 was merged into `feature` through [PR #40](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/40); the local M3 context/session slice is active on `dev-m3-session-context-review` with no PR yet. This branch adds the focused Milestone-envelope validation hardening from the M3 review.
 
 ## Completed deliverable
 
@@ -26,8 +26,9 @@ without changing Quick Task checkpoint or activation behavior.
 
 The local M2 boundary, explicit storage, and CLI suites pass. M3 adds strict
 Milestone/Epic Markdown contexts, compact session-state validation, explicit
-Personal/Team persistence, and pure resume evaluation. Final M3 full-suite
-evidence is 316/316 under the available local Node v26.4.0 runtime.
+Personal/Team persistence, and pure resume evaluation. The focused M3 review
+hardening adds runtime validation for the Milestone envelope. Final M3
+full-suite evidence is 317/317 under the available local Node v26.4.0 runtime.
 `npm run build`, `npm run lint`, `npm run check:docs`, and `git diff --check` pass.
 The package declares Node 22.x; local Node 26 is not the declared runtime, so
 local results remain local evidence. M2 behavior remains local and
@@ -64,6 +65,9 @@ specific approval, bounded authority, and source-native read-back.
 
 ## Next bounded action
 
-Select the next bounded capability after M3 review; no follow-on slice is
-authorized by this local implementation state.
+Review and explicitly approve this focused M3 validation-hardening diff. After
+the source revision is stable in a commit, refresh Graphify and Understand
+Anything against that exact revision, then run the mapper gate before any
+publication decision. No M4 follow-on or external write is authorized by this
+local review state.
 
