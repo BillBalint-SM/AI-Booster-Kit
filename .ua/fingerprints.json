@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "gitCommitHash": "a08b2bc6daceffbddfab54f0ab8888f52f50a267",
-  "generatedAt": "2026-08-02T06:13:25.087Z",
+  "gitCommitHash": "38c4cd76cdc8c0ff5f7bf1bc2b144b1c278d1104",
+  "generatedAt": "2026-08-03T18:07:49.244Z",
   "files": {
     ".github/pull_request_template.md": {
       "filePath": ".github/pull_request_template.md",
@@ -35,7 +35,7 @@
     },
     "AGENTS.md": {
       "filePath": "AGENTS.md",
-      "contentHash": "9e1842579599f3a293c7e5edf59c5830db7938ab352a19f5e8b8458ce498727e",
+      "contentHash": "6c096de7c0d83639452b22b2f922f14717e79798d8d3b9bcf357a69590da35bb",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -436,37 +436,37 @@
     },
     "docs/project/current-state.md": {
       "filePath": "docs/project/current-state.md",
-      "contentHash": "fda95fe1e444b46892a6e90eaf84aa71a33e09a3bc03605d64dcad65d42f5274",
+      "contentHash": "bc6cf0421e70473f4cbea288f272cfbcc3408090b216d6d310eeafaacdf81c89",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 64,
+      "totalLines": 74,
       "hasStructuralAnalysis": true
     },
     "docs/project/documentation-map.md": {
       "filePath": "docs/project/documentation-map.md",
-      "contentHash": "22dc485aeadbb7a64d523f649a8a84a468439c66b1d475cc11911c82613d84a0",
+      "contentHash": "ddac6ce7f24f069e1fdddaf586d26e6ec3da80b23839200d83f336721cbcfa78",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 64,
+      "totalLines": 68,
       "hasStructuralAnalysis": true
     },
     "docs/project/roadmap.md": {
       "filePath": "docs/project/roadmap.md",
-      "contentHash": "ecfff142e12fe2ec4dea4f2c3ce796caef966c7d6538b66203de25d3d82d2529",
+      "contentHash": "66546829163cb523e6fc1c52a584c1b2aaeef770ca903b5c4e74bfd29cc49fb6",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 409,
+      "totalLines": 417,
       "hasStructuralAnalysis": true
     },
     "docs/runbooks/branching.md": {
       "filePath": "docs/runbooks/branching.md",
-      "contentHash": "be8bc0fc0ead2f49ab7df09abe771c4ae126b6dd62ef21d43724783d2148aeab",
+      "contentHash": "9aedee2f95a5c4b1a9fda860b106b6b4a663fc7fb52c271c5d502f504f02a659",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -1182,7 +1182,7 @@
     },
     "src/cli.ts": {
       "filePath": "src/cli.ts",
-      "contentHash": "6805a7eee0b9267532da0316048d0846f81afec56ea46382715f85c8868d6f04",
+      "contentHash": "3f91461d0ce1d16c9ff36e7538d118d41d000563ccf34567de25f23f75225b6b",
       "functions": [
         {
           "name": "runCli",
@@ -1200,7 +1200,7 @@
           ],
           "returnType": "Promise<number>",
           "exported": false,
-          "lineCount": 23
+          "lineCount": 29
         },
         {
           "name": "runQuickTask",
@@ -1237,6 +1237,167 @@
           "returnType": "Promise<number>",
           "exported": false,
           "lineCount": 44
+        },
+        {
+          "name": "runPrepareActivation",
+          "params": [
+            "argv"
+          ],
+          "returnType": "Promise<number>",
+          "exported": false,
+          "lineCount": 52
+        },
+        {
+          "name": "runSaveActivation",
+          "params": [
+            "argv"
+          ],
+          "returnType": "Promise<number>",
+          "exported": false,
+          "lineCount": 21
+        },
+        {
+          "name": "runValidateContext",
+          "params": [
+            "argv"
+          ],
+          "returnType": "Promise<number>",
+          "exported": false,
+          "lineCount": 12
+        },
+        {
+          "name": "runSaveContext",
+          "params": [
+            "argv"
+          ],
+          "returnType": "Promise<number>",
+          "exported": false,
+          "lineCount": 13
+        },
+        {
+          "name": "runSaveSession",
+          "params": [
+            "argv"
+          ],
+          "returnType": "Promise<number>",
+          "exported": false,
+          "lineCount": 13
+        },
+        {
+          "name": "runResumeSession",
+          "params": [
+            "argv"
+          ],
+          "returnType": "Promise<number>",
+          "exported": false,
+          "lineCount": 18
+        },
+        {
+          "name": "isSaveArguments",
+          "params": [
+            "argv"
+          ],
+          "returnType": "boolean",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "readContextSource",
+          "params": [
+            "path"
+          ],
+          "returnType": "Promise<string>",
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "readContextJson",
+          "params": [
+            "path",
+            "unreadableCode",
+            "invalidJsonCode"
+          ],
+          "returnType": "Promise<unknown>",
+          "exported": false,
+          "lineCount": 11
+        },
+        {
+          "name": "parseContextManifest",
+          "params": [
+            "value"
+          ],
+          "returnType": "{ milestonePath: string; epicPaths: readonly string[] }",
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "loadManifestContexts",
+          "params": [
+            "manifest"
+          ],
+          "returnType": "Promise<readonly WorkContext[]>",
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "parseResumeRuntime",
+          "params": [
+            "value"
+          ],
+          "returnType": "ResumeRuntime",
+          "exported": false,
+          "lineCount": 12
+        },
+        {
+          "name": "plainContextRecord",
+          "params": [
+            "value",
+            "label"
+          ],
+          "returnType": "Record<string, unknown>",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "requiredContextString",
+          "params": [
+            "value",
+            "label"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "nullableContextString",
+          "params": [
+            "value",
+            "label"
+          ],
+          "returnType": "string | null",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "contextStorageCode",
+          "params": [
+            "error",
+            "fallback"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "readActivationJson",
+          "params": [
+            "path",
+            "unreadableCode",
+            "invalidJsonCode"
+          ],
+          "returnType": "Promise<unknown>",
+          "exported": false,
+          "lineCount": 11
         },
         {
           "name": "activationErrorCode",
@@ -1359,6 +1520,24 @@
       "classes": [
         {
           "name": "CliError",
+          "methods": [
+            "constructor"
+          ],
+          "properties": [],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "ActivationCliError",
+          "methods": [
+            "constructor"
+          ],
+          "properties": [],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "ContextCliError",
           "methods": [
             "constructor"
           ],
@@ -1499,16 +1678,76 @@
           ]
         },
         {
+          "source": "./controller/activation-boundary.js",
+          "specifiers": [
+            "createActivationBoundaryPackage"
+          ]
+        },
+        {
+          "source": "./controller/activation-storage.js",
+          "specifiers": [
+            "saveActivationPackage"
+          ]
+        },
+        {
           "source": "./controller/types.js",
           "specifiers": [
             "ControllerActivationPackageError"
+          ]
+        },
+        {
+          "source": "./controller/types.js",
+          "specifiers": [
+            "ActivationBoundaryPackage",
+            "ActivationContextKind",
+            "RetentionScope",
+            "TuningRequest"
+          ]
+        },
+        {
+          "source": "./context/markdown.js",
+          "specifiers": [
+            "parseWorkContext"
+          ]
+        },
+        {
+          "source": "./context/resume.js",
+          "specifiers": [
+            "evaluateSessionResume"
+          ]
+        },
+        {
+          "source": "./context/storage.js",
+          "specifiers": [
+            "saveSessionState",
+            "saveWorkContext"
+          ]
+        },
+        {
+          "source": "./context/types.js",
+          "specifiers": [
+            "ContextError"
+          ]
+        },
+        {
+          "source": "./context/validation.js",
+          "specifiers": [
+            "validateSessionState"
+          ]
+        },
+        {
+          "source": "./context/types.js",
+          "specifiers": [
+            "ResumeRuntime",
+            "SessionState",
+            "WorkContext"
           ]
         }
       ],
       "exports": [
         "runCli"
       ],
-      "totalLines": 342,
+      "totalLines": 589,
       "hasStructuralAnalysis": true
     },
     "src/connectors/confluence.ts": {
@@ -1975,6 +2214,731 @@
       "totalLines": 140,
       "hasStructuralAnalysis": true
     },
+    "src/context/markdown.ts": {
+      "filePath": "src/context/markdown.ts",
+      "contentHash": "dd04992c33ac69cbd57cabd41044a61ca29b614f3a81507945858abdcce4e827",
+      "functions": [
+        {
+          "name": "parseWorkContext",
+          "params": [
+            "source",
+            "sourcePath"
+          ],
+          "returnType": "WorkContext",
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "serializeWorkContext",
+          "params": [
+            "context"
+          ],
+          "returnType": "string",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "parseMilestone",
+          "params": [
+            "metadata",
+            "sourcePath"
+          ],
+          "returnType": "MilestoneContext",
+          "exported": false,
+          "lineCount": 18
+        },
+        {
+          "name": "parseEpic",
+          "params": [
+            "metadata",
+            "sourcePath"
+          ],
+          "returnType": "EpicContext",
+          "exported": false,
+          "lineCount": 19
+        },
+        {
+          "name": "parseEnvelope",
+          "params": [
+            "metadata",
+            "sourcePath"
+          ],
+          "exported": false,
+          "lineCount": 13
+        },
+        {
+          "name": "milestoneMetadata",
+          "params": [
+            "context"
+          ],
+          "returnType": "Record<string, unknown>",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "epicMetadata",
+          "params": [
+            "context"
+          ],
+          "returnType": "Record<string, unknown>",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "orderedRecord",
+          "params": [
+            "context",
+            "keys"
+          ],
+          "returnType": "Record<string, unknown>",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "milestoneBody",
+          "params": [
+            "context"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "epicBody",
+          "params": [
+            "context"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "list",
+          "params": [
+            "values"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "extractFrontmatter",
+          "params": [
+            "source",
+            "sourcePath"
+          ],
+          "returnType": "{ yaml: string; body: string }",
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "validateBody",
+          "params": [
+            "body",
+            "kind",
+            "sourcePath"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 13
+        },
+        {
+          "name": "exactKeys",
+          "params": [
+            "metadata",
+            "expected",
+            "sourcePath"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "requireRecord",
+          "params": [
+            "value",
+            "field"
+          ],
+          "returnType": "Record<string, unknown>",
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "stringValue",
+          "params": [
+            "metadata",
+            "key",
+            "sourcePath"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "stringArray",
+          "params": [
+            "metadata",
+            "key",
+            "sourcePath"
+          ],
+          "returnType": "readonly string[]",
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "literal",
+          "params": [
+            "metadata",
+            "key",
+            "expected",
+            "sourcePath"
+          ],
+          "returnType": "T",
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "rejectExecutableMetadata",
+          "params": [
+            "metadata",
+            "sourcePath"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "escapeRegExp",
+          "params": [
+            "value"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "yaml",
+          "specifiers": [
+            "parseDocument",
+            "stringify"
+          ]
+        },
+        {
+          "source": "./types.js",
+          "specifiers": [
+            "ContextError"
+          ]
+        },
+        {
+          "source": "./types.js",
+          "specifiers": [
+            "ContextState",
+            "EpicContext",
+            "MilestoneContext",
+            "WorkContext"
+          ]
+        }
+      ],
+      "exports": [
+        "parseWorkContext",
+        "serializeWorkContext"
+      ],
+      "totalLines": 174,
+      "hasStructuralAnalysis": true
+    },
+    "src/context/resume.ts": {
+      "filePath": "src/context/resume.ts",
+      "contentHash": "4e1f2dc0703b8a987fb5a422eae888b9c2846a5dcfea35e723e964c386488a8f",
+      "functions": [
+        {
+          "name": "evaluateSessionResume",
+          "params": [
+            "state",
+            "contexts",
+            "runtime"
+          ],
+          "returnType": "ResumeResult",
+          "exported": true,
+          "lineCount": 32
+        },
+        {
+          "name": "resolveContexts",
+          "params": [
+            "state",
+            "contexts"
+          ],
+          "returnType": "{ milestone: MilestoneContext; epic: EpicContext | undefined } | { result: ResumeResult }",
+          "exported": false,
+          "lineCount": 14
+        },
+        {
+          "name": "validateSetup",
+          "params": [
+            "state",
+            "runtime"
+          ],
+          "returnType": "ResumeResult | undefined",
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "validateExecution",
+          "params": [
+            "state",
+            "runtime"
+          ],
+          "returnType": "ResumeResult | undefined",
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "stopped",
+          "params": [
+            "sessionId",
+            "reasons"
+          ],
+          "returnType": "ResumeResult",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "unknown",
+          "params": [
+            "sessionId",
+            "reasons"
+          ],
+          "returnType": "ResumeResult",
+          "exported": false,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "./types.js",
+          "specifiers": [
+            "ContextError"
+          ]
+        },
+        {
+          "source": "./validation.js",
+          "specifiers": [
+            "validateEpicContext",
+            "validateSessionState"
+          ]
+        },
+        {
+          "source": "./types.js",
+          "specifiers": [
+            "EpicContext",
+            "MilestoneContext",
+            "ResumeResult",
+            "ResumeRuntime",
+            "SessionState",
+            "WorkContext"
+          ]
+        }
+      ],
+      "exports": [
+        "evaluateSessionResume"
+      ],
+      "totalLines": 78,
+      "hasStructuralAnalysis": true
+    },
+    "src/context/storage.ts": {
+      "filePath": "src/context/storage.ts",
+      "contentHash": "e3cf56261683b52d10defc80d1ad2b809a05188edfed448342a86477f768bf6d",
+      "functions": [
+        {
+          "name": "saveWorkContext",
+          "params": [
+            "targetPath",
+            "context",
+            "repositoryRoot"
+          ],
+          "returnType": "Promise<ContextSaveResult>",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "saveSessionState",
+          "params": [
+            "targetPath",
+            "state",
+            "repositoryRoot"
+          ],
+          "returnType": "Promise<SessionSaveResult>",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "saveDocument",
+          "params": [
+            "targetPath",
+            "source",
+            "retention",
+            "repositoryRoot",
+            "identity",
+            "kind"
+          ],
+          "returnType": "Promise<{ retention: \"PERSONAL\" | \"TEAM\"; targetPath: string }>",
+          "exported": false,
+          "lineCount": 19
+        },
+        {
+          "name": "target",
+          "params": [
+            "targetPath",
+            "retention",
+            "repositoryRoot",
+            "kind"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "teamRoot",
+          "params": [
+            "repositoryRoot"
+          ],
+          "returnType": "Promise<string>",
+          "exported": false,
+          "lineCount": 11
+        },
+        {
+          "name": "validateTargetParent",
+          "params": [
+            "targetPath",
+            "repositoryRoot",
+            "kind"
+          ],
+          "returnType": "Promise<void>",
+          "exported": false,
+          "lineCount": 14
+        },
+        {
+          "name": "readExisting",
+          "params": [
+            "targetPath",
+            "kind"
+          ],
+          "returnType": "Promise<string | null>",
+          "exported": false,
+          "lineCount": 11
+        },
+        {
+          "name": "isWithin",
+          "params": [
+            "rootPath",
+            "childPath"
+          ],
+          "returnType": "boolean",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "hasCode",
+          "params": [
+            "error",
+            "code"
+          ],
+          "returnType": "boolean",
+          "exported": false,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:fs/promises",
+          "specifiers": [
+            "lstat",
+            "readFile",
+            "realpath",
+            "writeFile"
+          ]
+        },
+        {
+          "source": "node:path",
+          "specifiers": [
+            "dirname",
+            "isAbsolute",
+            "relative",
+            "resolve",
+            "sep"
+          ]
+        },
+        {
+          "source": "./markdown.js",
+          "specifiers": [
+            "parseWorkContext",
+            "serializeWorkContext"
+          ]
+        },
+        {
+          "source": "./types.js",
+          "specifiers": [
+            "ContextError"
+          ]
+        },
+        {
+          "source": "./validation.js",
+          "specifiers": [
+            "validateSessionState"
+          ]
+        },
+        {
+          "source": "./types.js",
+          "specifiers": [
+            "SessionState",
+            "WorkContext"
+          ]
+        }
+      ],
+      "exports": [
+        "saveWorkContext",
+        "saveSessionState"
+      ],
+      "totalLines": 115,
+      "hasStructuralAnalysis": true
+    },
+    "src/context/types.ts": {
+      "filePath": "src/context/types.ts",
+      "contentHash": "af7c7d15c832dc9e698d5d238b6f50842c707c6423a56189f4d4e5de6c882fe9",
+      "functions": [],
+      "classes": [
+        {
+          "name": "ContextError",
+          "methods": [
+            "constructor"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 6
+        }
+      ],
+      "imports": [
+        {
+          "source": "../controller/types.js",
+          "specifiers": [
+            "ContextReference",
+            "RetentionScope"
+          ]
+        }
+      ],
+      "exports": [
+        "ContextReference",
+        "RetentionScope",
+        "ContextError"
+      ],
+      "totalLines": 97,
+      "hasStructuralAnalysis": true
+    },
+    "src/context/validation.ts": {
+      "filePath": "src/context/validation.ts",
+      "contentHash": "7a49e5f4abddb896659347f6238724f5cc82aaa899c1b6dbd6a3c35b7b7d6db3",
+      "functions": [
+        {
+          "name": "validateMilestoneContext",
+          "params": [
+            "milestone",
+            "epics"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "validateEpicContext",
+          "params": [
+            "epic",
+            "milestone",
+            "knownWorkItemIds"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "validateMilestoneShape",
+          "params": [
+            "milestone"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "validateSessionState",
+          "params": [
+            "value"
+          ],
+          "returnType": "SessionState",
+          "exported": true,
+          "lineCount": 41
+        },
+        {
+          "name": "validateEpicShape",
+          "params": [
+            "epic"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "validateContextEnvelope",
+          "params": [
+            "context",
+            "expectedKind"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "assertNonEmpty",
+          "params": [
+            "value",
+            "label"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "assertUnique",
+          "params": [
+            "values",
+            "label"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "recordValue",
+          "params": [
+            "value",
+            "label"
+          ],
+          "returnType": "Record<string, unknown>",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "exactKeys",
+          "params": [
+            "record",
+            "expected",
+            "label"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "requiredString",
+          "params": [
+            "record",
+            "key",
+            "label"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "nullableString",
+          "params": [
+            "value",
+            "label"
+          ],
+          "returnType": "string | null",
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "literal",
+          "params": [
+            "record",
+            "key",
+            "expected",
+            "label"
+          ],
+          "returnType": "T",
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "stringList",
+          "params": [
+            "value",
+            "label"
+          ],
+          "returnType": "readonly string[]",
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "contextReferences",
+          "params": [
+            "value"
+          ],
+          "returnType": "readonly ContextReference[]",
+          "exported": false,
+          "lineCount": 15
+        },
+        {
+          "name": "recipeValue",
+          "params": [
+            "value"
+          ],
+          "returnType": "SessionState[\"recipe\"]",
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "executionValue",
+          "params": [
+            "value"
+          ],
+          "returnType": "SessionExecutionBinding | null",
+          "exported": false,
+          "lineCount": 11
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "./types.js",
+          "specifiers": [
+            "ContextError"
+          ]
+        },
+        {
+          "source": "./types.js",
+          "specifiers": [
+            "ContextReference",
+            "EpicContext",
+            "MilestoneContext",
+            "SessionExecutionBinding",
+            "SessionState"
+          ]
+        }
+      ],
+      "exports": [
+        "validateMilestoneContext",
+        "validateEpicContext",
+        "validateSessionState"
+      ],
+      "totalLines": 180,
+      "hasStructuralAnalysis": true
+    },
     "src/contract/compile.ts": {
       "filePath": "src/contract/compile.ts",
       "contentHash": "96f21f7fa8f7c1160f5ac03cf508b86797946334b720fba44c1ad57dbf99c75f",
@@ -2290,6 +3254,290 @@
       "totalLines": 427,
       "hasStructuralAnalysis": true
     },
+    "src/controller/activation-boundary.ts": {
+      "filePath": "src/controller/activation-boundary.ts",
+      "contentHash": "ee306775de3db86ae038501089106bba9e894df196328cb91217f4838b664f38",
+      "functions": [
+        {
+          "name": "createActivationBoundaryPackage",
+          "params": [
+            "input"
+          ],
+          "returnType": "ActivationBoundaryPackage",
+          "exported": true,
+          "lineCount": 41
+        },
+        {
+          "name": "validateInput",
+          "params": [
+            "value"
+          ],
+          "returnType": "ActivationBoundaryInput",
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "validateBasePackage",
+          "params": [
+            "value"
+          ],
+          "returnType": "QuickTaskActivationPackage",
+          "exported": false,
+          "lineCount": 13
+        },
+        {
+          "name": "validateRecipe",
+          "params": [
+            "value"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "validateIntent",
+          "params": [
+            "value"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "validateAgent",
+          "params": [
+            "value"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "validateActivationInput",
+          "params": [
+            "value"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "validateActivationValue",
+          "params": [
+            "value"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "validateActivationContext",
+          "params": [
+            "value"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "validateLinkDeclaration",
+          "params": [
+            "value",
+            "field"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "validateOutputContract",
+          "params": [
+            "value"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "validateOperations",
+          "params": [
+            "value"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "validateContext",
+          "params": [
+            "value"
+          ],
+          "returnType": "ContextReference",
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "validateRetention",
+          "params": [
+            "value"
+          ],
+          "returnType": "RetentionScope",
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "validateTuning",
+          "params": [
+            "value"
+          ],
+          "returnType": "TuningRequest",
+          "exported": false,
+          "lineCount": 11
+        },
+        {
+          "name": "validateSetupSnapshot",
+          "params": [
+            "value"
+          ],
+          "returnType": "ActivationSetupSnapshot",
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "plainRecord",
+          "params": [
+            "value",
+            "field",
+            "code"
+          ],
+          "returnType": "Record<string, unknown>",
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "exactKeys",
+          "params": [
+            "record",
+            "expected",
+            "field",
+            "code"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "allowedEnumerableDataKeys",
+          "params": [
+            "record",
+            "expected",
+            "field",
+            "code"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "literal",
+          "params": [
+            "record",
+            "field",
+            "expected",
+            "code"
+          ],
+          "returnType": "T",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "oneOf",
+          "params": [
+            "record",
+            "field",
+            "expected",
+            "code"
+          ],
+          "returnType": "T",
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "nonEmpty",
+          "params": [
+            "record",
+            "field",
+            "code"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "stringArray",
+          "params": [
+            "value",
+            "field",
+            "code"
+          ],
+          "returnType": "string[]",
+          "exported": false,
+          "lineCount": 39
+        },
+        {
+          "name": "hex64",
+          "params": [
+            "record",
+            "field",
+            "code"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "deepFreeze",
+          "params": [
+            "value"
+          ],
+          "returnType": "T",
+          "exported": false,
+          "lineCount": 10
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "./identity.js",
+          "specifiers": [
+            "activationPackageFingerprint"
+          ]
+        },
+        {
+          "source": "./types.js",
+          "specifiers": [
+            "ActivationPackageError"
+          ]
+        },
+        {
+          "source": "./types.js",
+          "specifiers": [
+            "ActivationBoundaryInput",
+            "ActivationBoundaryPackage",
+            "ActivationSetupSnapshot",
+            "ContextReference",
+            "QuickTaskActivationPackage",
+            "RetentionScope",
+            "TuningRequest"
+          ]
+        }
+      ],
+      "exports": [
+        "createActivationBoundaryPackage"
+      ],
+      "totalLines": 308,
+      "hasStructuralAnalysis": true
+    },
     "src/controller/activation-package.ts": {
       "filePath": "src/controller/activation-package.ts",
       "contentHash": "5acb613d28f5ebaca6742a434d3e6e10c8fc7be3490c0caa480cf70e00832de6",
@@ -2355,6 +3603,193 @@
         "createQuickTaskActivationPackage"
       ],
       "totalLines": 79,
+      "hasStructuralAnalysis": true
+    },
+    "src/controller/activation-storage.ts": {
+      "filePath": "src/controller/activation-storage.ts",
+      "contentHash": "f8e160ac13ed2cfb788c83b80d94f56a883220ecabcfcd0c68c71fdadd7ba954",
+      "functions": [
+        {
+          "name": "saveActivationPackage",
+          "params": [
+            "targetPath",
+            "packageValue",
+            "repositoryRoot"
+          ],
+          "returnType": "Promise<ActivationSaveResult>",
+          "exported": true,
+          "lineCount": 26
+        },
+        {
+          "name": "validatePackage",
+          "params": [
+            "value"
+          ],
+          "returnType": "PersistedRetention",
+          "exported": false,
+          "lineCount": 31
+        },
+        {
+          "name": "validateTarget",
+          "params": [
+            "targetPath",
+            "retention",
+            "repositoryRoot"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 15
+        },
+        {
+          "name": "validateTeamRoot",
+          "params": [
+            "repositoryRoot"
+          ],
+          "returnType": "Promise<string>",
+          "exported": false,
+          "lineCount": 13
+        },
+        {
+          "name": "validateTargetParent",
+          "params": [
+            "targetPath",
+            "repositoryRoot"
+          ],
+          "returnType": "Promise<void>",
+          "exported": false,
+          "lineCount": 16
+        },
+        {
+          "name": "assertResolvedWithin",
+          "params": [
+            "repositoryRoot",
+            "parentPath"
+          ],
+          "returnType": "Promise<void>",
+          "exported": false,
+          "lineCount": 11
+        },
+        {
+          "name": "isWithin",
+          "params": [
+            "rootPath",
+            "childPath"
+          ],
+          "returnType": "boolean",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "readExistingTarget",
+          "params": [
+            "targetPath"
+          ],
+          "returnType": "Promise<string | null>",
+          "exported": false,
+          "lineCount": 13
+        },
+        {
+          "name": "serializePackage",
+          "params": [
+            "packageValue"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "confirmExistingPackage",
+          "params": [
+            "targetPath",
+            "packageValue",
+            "retention",
+            "existingContent"
+          ],
+          "returnType": "ActivationSaveResult",
+          "exported": false,
+          "lineCount": 18
+        },
+        {
+          "name": "saveResult",
+          "params": [
+            "targetPath",
+            "packageId",
+            "retention"
+          ],
+          "returnType": "ActivationSaveResult",
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "stableJson",
+          "params": [
+            "value"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "hasCode",
+          "params": [
+            "error",
+            "code"
+          ],
+          "returnType": "boolean",
+          "exported": false,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:fs/promises",
+          "specifiers": [
+            "lstat",
+            "readFile",
+            "realpath",
+            "writeFile"
+          ]
+        },
+        {
+          "source": "node:path",
+          "specifiers": [
+            "dirname",
+            "isAbsolute",
+            "relative",
+            "resolve",
+            "sep"
+          ]
+        },
+        {
+          "source": "./activation-boundary.js",
+          "specifiers": [
+            "createActivationBoundaryPackage"
+          ]
+        },
+        {
+          "source": "./types.js",
+          "specifiers": [
+            "ActivationPackageError"
+          ]
+        },
+        {
+          "source": "./types.js",
+          "specifiers": [
+            "ActivationBoundaryPackage",
+            "ActivationSaveResult",
+            "ActivationSetupSnapshot",
+            "ContextReference",
+            "QuickTaskActivationPackage",
+            "RetentionScope",
+            "TuningRequest"
+          ]
+        }
+      ],
+      "exports": [
+        "saveActivationPackage"
+      ],
+      "totalLines": 200,
       "hasStructuralAnalysis": true
     },
     "src/controller/checkpoint.ts": {
@@ -3182,7 +4617,7 @@
     },
     "src/controller/identity.ts": {
       "filePath": "src/controller/identity.ts",
-      "contentHash": "8643dbd5d42bc8b3978eeedde52b21fb39f59a5a403c87788c2f0c8c5923795e",
+      "contentHash": "a05cc25e1f1cb004bdcc23fa3e53991fad88f10c70fcaea5181c9cc7797efade",
       "functions": [
         {
           "name": "requestFingerprint",
@@ -3197,6 +4632,15 @@
           "name": "recipeSignature",
           "params": [
             "recipe"
+          ],
+          "returnType": "string",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "activationPackageFingerprint",
+          "params": [
+            "value"
           ],
           "returnType": "string",
           "exported": true,
@@ -3270,10 +4714,11 @@
       "exports": [
         "requestFingerprint",
         "recipeSignature",
+        "activationPackageFingerprint",
         "patternId",
         "formationRecommendationId"
       ],
-      "totalLines": 33,
+      "totalLines": 37,
       "hasStructuralAnalysis": true
     },
     "src/controller/recipe.ts": {
@@ -3677,7 +5122,7 @@
     },
     "src/controller/types.ts": {
       "filePath": "src/controller/types.ts",
-      "contentHash": "5c4d7e99729e0e2c00876324e7d8feba0841a3cc23a8e9ca74117bf2842c6459",
+      "contentHash": "21a2fb1be6e22c33f9dfd0ec7f37542fd24cfcd27490443fe864ffcfefa87a2e",
       "functions": [],
       "classes": [
         {
@@ -3694,7 +5139,7 @@
       "exports": [
         "ControllerActivationPackageError"
       ],
-      "totalLines": 439,
+      "totalLines": 494,
       "hasStructuralAnalysis": true
     },
     "src/docs/links.ts": {
@@ -8570,6 +10015,172 @@
       "totalLines": 327,
       "hasStructuralAnalysis": true
     },
+    "test/context-markdown.test.ts": {
+      "filePath": "test/context-markdown.test.ts",
+      "contentHash": "7a8b82851ea87df366f3e7175d0fe6ce4670a23df91e36f49b32e32a2aba80aa",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "../src/context/markdown.js",
+          "specifiers": [
+            "parseWorkContext",
+            "serializeWorkContext"
+          ]
+        },
+        {
+          "source": "../src/context/types.js",
+          "specifiers": [
+            "EpicContext",
+            "MilestoneContext"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 77,
+      "hasStructuralAnalysis": true
+    },
+    "test/context-storage-cli.test.ts": {
+      "filePath": "test/context-storage-cli.test.ts",
+      "contentHash": "caf83b85d6f238d84fc8eb5ba791a4fb2a08139a4e38cdf04f7cbd561e1099a2",
+      "functions": [
+        {
+          "name": "withTemporaryDirectory",
+          "params": [
+            "run"
+          ],
+          "returnType": "Promise<T>",
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "runBuiltCli",
+          "params": [
+            "argv"
+          ],
+          "returnType": "Promise<{ code: number | null; stdout: string; stderr: string }>",
+          "exported": false,
+          "lineCount": 11
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "node:fs/promises",
+          "specifiers": [
+            "mkdtemp",
+            "mkdir",
+            "readFile",
+            "rm",
+            "writeFile"
+          ]
+        },
+        {
+          "source": "node:os",
+          "specifiers": [
+            "tmpdir"
+          ]
+        },
+        {
+          "source": "node:path",
+          "specifiers": [
+            "join",
+            "resolve"
+          ]
+        },
+        {
+          "source": "node:child_process",
+          "specifiers": [
+            "spawn"
+          ]
+        },
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "../src/context/markdown.js",
+          "specifiers": [
+            "serializeWorkContext"
+          ]
+        },
+        {
+          "source": "../src/context/storage.js",
+          "specifiers": [
+            "saveSessionState",
+            "saveWorkContext"
+          ]
+        },
+        {
+          "source": "../src/context/types.js",
+          "specifiers": [
+            "EpicContext",
+            "MilestoneContext",
+            "SessionState"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 125,
+      "hasStructuralAnalysis": true
+    },
+    "test/context-validation.test.ts": {
+      "filePath": "test/context-validation.test.ts",
+      "contentHash": "1fc960a9a1be367f65a58cf95e4c7803cb98d9addadf1845e3533ae7d1ec1278",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "../src/context/validation.js",
+          "specifiers": [
+            "validateEpicContext",
+            "validateMilestoneContext"
+          ]
+        },
+        {
+          "source": "../src/context/types.js",
+          "specifiers": [
+            "EpicContext",
+            "MilestoneContext"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 90,
+      "hasStructuralAnalysis": true
+    },
     "test/contract.test.ts": {
       "filePath": "test/contract.test.ts",
       "contentHash": "fc049b408d5b8ebed1d1c13849701d6fe04d040cd026ad3834767a4adb0d8516",
@@ -8630,6 +10241,176 @@
       ],
       "exports": [],
       "totalLines": 269,
+      "hasStructuralAnalysis": true
+    },
+    "test/controller-activation-boundary-cli.test.ts": {
+      "filePath": "test/controller-activation-boundary-cli.test.ts",
+      "contentHash": "4eaf46cc38ec0fd77eb9449ead75c6c82cd34e10a82fbe8bf30a4314eee0daea",
+      "functions": [
+        {
+          "name": "prepareArgs",
+          "params": [
+            "input",
+            "choice",
+            "tuning",
+            "retention",
+            "contextId",
+            "revision"
+          ],
+          "returnType": "string[]",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "invalidContextArgs",
+          "params": [
+            "input",
+            "choice",
+            "tuning"
+          ],
+          "returnType": "string[]",
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "preparePackage",
+          "params": [
+            "root",
+            "input",
+            "choice",
+            "tuning",
+            "retention",
+            "contextId"
+          ],
+          "returnType": "Promise<{ path: string; value: Record<string, any> }>",
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "assertStopped",
+          "params": [
+            "result",
+            "expectedCode"
+          ],
+          "returnType": "{ decision: string; error: { code: string; message: string } }",
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "withTemporaryDirectory",
+          "params": [
+            "run"
+          ],
+          "returnType": "Promise<T>",
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "runBuiltCli",
+          "params": [
+            "argv"
+          ],
+          "returnType": "Promise<{ code: number | null; stdout: string; stderr: string }>",
+          "exported": false,
+          "lineCount": 11
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "node:child_process",
+          "specifiers": [
+            "spawn"
+          ]
+        },
+        {
+          "source": "node:fs/promises",
+          "specifiers": [
+            "copyFile",
+            "mkdir",
+            "mkdtemp",
+            "readFile",
+            "readdir",
+            "rm",
+            "writeFile"
+          ]
+        },
+        {
+          "source": "node:os",
+          "specifiers": [
+            "tmpdir"
+          ]
+        },
+        {
+          "source": "node:path",
+          "specifiers": [
+            "join",
+            "resolve"
+          ]
+        },
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 225,
+      "hasStructuralAnalysis": true
+    },
+    "test/controller-activation-boundary.test.ts": {
+      "filePath": "test/controller-activation-boundary.test.ts",
+      "contentHash": "87df1d3f2207190291ae54d04db051575536669d44ffcc492c2cb9b0a02824e8",
+      "functions": [
+        {
+          "name": "assertActivationError",
+          "params": [
+            "fn",
+            "code",
+            "...unsafeValues"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 12
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "../src/controller/activation-boundary.js",
+          "specifiers": [
+            "createActivationBoundaryPackage"
+          ]
+        },
+        {
+          "source": "../src/controller/types.js",
+          "specifiers": [
+            "ActivationBoundaryInput",
+            "QuickTaskActivationPackage"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 397,
       "hasStructuralAnalysis": true
     },
     "test/controller-activation-package-cli.test.ts": {
@@ -8783,6 +10564,103 @@
       ],
       "exports": [],
       "totalLines": 135,
+      "hasStructuralAnalysis": true
+    },
+    "test/controller-activation-storage.test.ts": {
+      "filePath": "test/controller-activation-storage.test.ts",
+      "contentHash": "2b8ea7ec0abb5ab21a44e8967f2d739fe8eda8ede6d2d76d679456a58168ed40",
+      "functions": [
+        {
+          "name": "makePackage",
+          "params": [
+            "retention",
+            "change"
+          ],
+          "returnType": "ActivationBoundaryPackage",
+          "exported": false,
+          "lineCount": 14
+        },
+        {
+          "name": "withTemporaryDirectory",
+          "params": [
+            "run"
+          ],
+          "returnType": "Promise<T>",
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "assertStorageError",
+          "params": [
+            "run",
+            "code"
+          ],
+          "returnType": "Promise<void>",
+          "exported": false,
+          "lineCount": 7
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "node:fs/promises",
+          "specifiers": [
+            "mkdtemp",
+            "mkdir",
+            "readFile",
+            "readdir",
+            "rm",
+            "writeFile"
+          ]
+        },
+        {
+          "source": "node:os",
+          "specifiers": [
+            "tmpdir"
+          ]
+        },
+        {
+          "source": "node:path",
+          "specifiers": [
+            "join",
+            "resolve"
+          ]
+        },
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "../src/controller/activation-boundary.js",
+          "specifiers": [
+            "createActivationBoundaryPackage"
+          ]
+        },
+        {
+          "source": "../src/controller/activation-storage.js",
+          "specifiers": [
+            "saveActivationPackage"
+          ]
+        },
+        {
+          "source": "../src/controller/types.js",
+          "specifiers": [
+            "ActivationBoundaryPackage",
+            "QuickTaskActivationPackage",
+            "RetentionScope"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 218,
       "hasStructuralAnalysis": true
     },
     "test/controller-checkpoint.test.ts": {
@@ -9446,7 +11324,7 @@
     },
     "test/e2e.test.ts": {
       "filePath": "test/e2e.test.ts",
-      "contentHash": "18c6f2dad1ff3f0f6b3fc849e0d22b2ab57986a42d428d1296dfea4284966d0d",
+      "contentHash": "ff5290fc92b4ca92bdaab59b981d041110d3ed62f97fee7945b30efce6aa74ec",
       "functions": [
         {
           "name": "createOrchestrator",
@@ -9694,10 +11572,25 @@
           "specifiers": [
             "SyncOrchestrator"
           ]
+        },
+        {
+          "source": "../src/context/resume.js",
+          "specifiers": [
+            "evaluateSessionResume"
+          ]
+        },
+        {
+          "source": "../src/context/types.js",
+          "specifiers": [
+            "EpicContext",
+            "MilestoneContext",
+            "ResumeRuntime",
+            "SessionState"
+          ]
         }
       ],
       "exports": [],
-      "totalLines": 299,
+      "totalLines": 325,
       "hasStructuralAnalysis": true
     },
     "test/events.test.ts": {
@@ -11147,6 +13040,50 @@
       ],
       "exports": [],
       "totalLines": 149,
+      "hasStructuralAnalysis": true
+    },
+    "test/session-state.test.ts": {
+      "filePath": "test/session-state.test.ts",
+      "contentHash": "f2a9aa1c93a253df46904ca8396e6b764dc0cb24b0d3d8afb444208bf56c1f9c",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "../src/context/resume.js",
+          "specifiers": [
+            "evaluateSessionResume"
+          ]
+        },
+        {
+          "source": "../src/context/validation.js",
+          "specifiers": [
+            "validateSessionState"
+          ]
+        },
+        {
+          "source": "../src/context/types.js",
+          "specifiers": [
+            "EpicContext",
+            "MilestoneContext",
+            "ResumeRuntime",
+            "SessionState"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 92,
       "hasStructuralAnalysis": true
     },
     "tools/claude-context-integrity/test-verify.ps1": {

@@ -1,6 +1,6 @@
 {
   "scriptCompleted": true,
-  "contentDigest": "c08686995b44e4c0b012da10f2d760598ef5ff536678b7fbd577a3df8ffc0047",
+  "contentDigest": "6f5dcaf6f8dba03b2eed2e84a5ff089896b3dba9a153a5d78739ec346f6bba5d",
   "files": [
     {
       "path": ".github/pull_request_template.md",
@@ -251,19 +251,19 @@
     {
       "path": "docs/project/current-state.md",
       "language": "markdown",
-      "sizeLines": 63,
+      "sizeLines": 73,
       "fileCategory": "docs"
     },
     {
       "path": "docs/project/documentation-map.md",
       "language": "markdown",
-      "sizeLines": 63,
+      "sizeLines": 67,
       "fileCategory": "docs"
     },
     {
       "path": "docs/project/roadmap.md",
       "language": "markdown",
-      "sizeLines": 408,
+      "sizeLines": 416,
       "fileCategory": "docs"
     },
     {
@@ -401,7 +401,7 @@
     {
       "path": "src/cli.ts",
       "language": "typescript",
-      "sizeLines": 341,
+      "sizeLines": 588,
       "fileCategory": "code"
     },
     {
@@ -429,6 +429,36 @@
       "fileCategory": "code"
     },
     {
+      "path": "src/context/markdown.ts",
+      "language": "typescript",
+      "sizeLines": 173,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/context/resume.ts",
+      "language": "typescript",
+      "sizeLines": 77,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/context/storage.ts",
+      "language": "typescript",
+      "sizeLines": 114,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/context/types.ts",
+      "language": "typescript",
+      "sizeLines": 96,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/context/validation.ts",
+      "language": "typescript",
+      "sizeLines": 179,
+      "fileCategory": "code"
+    },
+    {
       "path": "src/contract/compile.ts",
       "language": "typescript",
       "sizeLines": 127,
@@ -447,9 +477,21 @@
       "fileCategory": "code"
     },
     {
+      "path": "src/controller/activation-boundary.ts",
+      "language": "typescript",
+      "sizeLines": 307,
+      "fileCategory": "code"
+    },
+    {
       "path": "src/controller/activation-package.ts",
       "language": "typescript",
       "sizeLines": 78,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/controller/activation-storage.ts",
+      "language": "typescript",
+      "sizeLines": 199,
       "fileCategory": "code"
     },
     {
@@ -491,7 +533,7 @@
     {
       "path": "src/controller/identity.ts",
       "language": "typescript",
-      "sizeLines": 32,
+      "sizeLines": 36,
       "fileCategory": "code"
     },
     {
@@ -515,7 +557,7 @@
     {
       "path": "src/controller/types.ts",
       "language": "typescript",
-      "sizeLines": 438,
+      "sizeLines": 493,
       "fileCategory": "code"
     },
     {
@@ -801,9 +843,39 @@
       "fileCategory": "code"
     },
     {
+      "path": "test/context-markdown.test.ts",
+      "language": "typescript",
+      "sizeLines": 76,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/context-storage-cli.test.ts",
+      "language": "typescript",
+      "sizeLines": 124,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/context-validation.test.ts",
+      "language": "typescript",
+      "sizeLines": 89,
+      "fileCategory": "code"
+    },
+    {
       "path": "test/contract.test.ts",
       "language": "typescript",
       "sizeLines": 268,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/controller-activation-boundary-cli.test.ts",
+      "language": "typescript",
+      "sizeLines": 224,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/controller-activation-boundary.test.ts",
+      "language": "typescript",
+      "sizeLines": 396,
       "fileCategory": "code"
     },
     {
@@ -816,6 +888,12 @@
       "path": "test/controller-activation-package.test.ts",
       "language": "typescript",
       "sizeLines": 134,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/controller-activation-storage.test.ts",
+      "language": "typescript",
+      "sizeLines": 217,
       "fileCategory": "code"
     },
     {
@@ -905,7 +983,7 @@
     {
       "path": "test/e2e.test.ts",
       "language": "typescript",
-      "sizeLines": 298,
+      "sizeLines": 324,
       "fileCategory": "code"
     },
     {
@@ -1095,6 +1173,12 @@
       "fileCategory": "code"
     },
     {
+      "path": "test/session-state.test.ts",
+      "language": "typescript",
+      "sizeLines": 91,
+      "fileCategory": "code"
+    },
+    {
       "path": "tools/claude-context-integrity/test-verify.ps1",
       "language": "powershell",
       "sizeLines": 120,
@@ -1239,15 +1323,15 @@
       "fileCategory": "docs"
     }
   ],
-  "totalFiles": 206,
-  "filteredByIgnore": 78,
+  "totalFiles": 220,
+  "filteredByIgnore": 81,
   "estimatedComplexity": "large",
   "stats": {
-    "filesScanned": 206,
+    "filesScanned": 220,
     "byCategory": {
       "docs": 56,
       "infra": 1,
-      "code": 122,
+      "code": 136,
       "config": 23,
       "markup": 2,
       "script": 2
@@ -1256,7 +1340,7 @@
       "markdown": 56,
       "yaml": 1,
       "unknown": 1,
-      "typescript": 116,
+      "typescript": 130,
       "json": 23,
       "css": 2,
       "javascript": 5,
