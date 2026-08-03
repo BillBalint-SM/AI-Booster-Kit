@@ -104,7 +104,7 @@ the bounded slice is present, not that the complete product vision is finished.
 | Quick Task Activation Package | `COMPLETE_WITH_LIMIT` | `src/controller/activation-package.ts`, `src/controller/activation-boundary.ts`, `src/controller/activation-storage.ts`, `src/cli.ts`, focused Controller/storage/CLI tests, and the approved design/plan | Preserve the host-agnostic boundary; host adaptation/execution and external publication remain separate. | `depends_on` Human Checkpoint |
 | Agent Framework Library and Recipe Controller v1 | `READY` within local recommendation-only scope | M1-A catalog/validator, M1-B scenario recognizer/recommendation, and five READY research/validation/refinement/implementation/debugging recipes with profile contracts provide the bounded foundation | Preserve the recommendation-only boundary; activation, tuning, persistence, iterative debugging tooling, and synchronization remain independent future tracks. | `depends_on` Controller; `enables` all later Agent tracks |
 | Activation, tuning, save-or-ephemeral choice | `COMPLETE_WITH_LIMIT` | M2 boundary builder, explicit Personal/Team saver, `prepare-activation`/`save-activation` CLI, positive/negative tests, full local suite, and current-HEAD Graphify refresh | UA must be refreshed against the same stable source revision before mapper freshness/publication can be `READY`; host adaptation/execution, durable session state, and external publication remain separate gates. | `depends_on` Library v1 |
-| Compact session state and optional storage | `NEXT` / `NOT EXECUTED` | Session-state principles are defined in the workflow contract | Persist only resumable state, never a full transcript by default. | `supports` activation and evolve |
+| Compact session state and optional storage | `COMPLETE_WITH_LIMIT` | `src/context/`, M3 Context CLI, focused tests, and PO-to-parallel-Epic resume evidence | Persist only resumable state, never a full transcript; host execution, automatic Git operations, and connectors remain separate. | `supports` activation and evolve |
 | Evaluation and `evolve` review | `LATER` / `NOT EXECUTED` | Accepted product direction and event vocabulary | Evaluate session outcomes and repeated `UNKNOWN` or +/- events; evolve one formation at a time. | `validates` active setup |
 | Debugging and iterative verification tooling | `LATER` / `NOT EXECUTED` | Product vision and debugging workflow direction | Build modify–run–verify probes and zero-configuration local context injection. | `supports` implementation and validation |
 | Jira–GitHub–Confluence lifecycle sync | `LATER` / `NOT EXECUTED` | Existing mapping/readiness contracts | Add only after internal contracts, evidence, consent, and read-back are strong; User opt-in. | `depends_on` Library, Controller, evidence, and authority model |
@@ -314,15 +314,18 @@ publication occurs. Mapper freshness remains `NOT_READY`: the local Graphify
 snapshot identifies `d570212…`, while the source mapper identifies
 `a08b2bc6…`; both require one stable source revision before publication.
 
-### Next — M3: Compact session state and optional storage
+### Complete with limit — M3: Compact session state and optional storage
 
-Allow a paused session to resume after days or weeks without accumulating dirty
-files or importing a full transcript into active context. Store only the
-canonical contract reference, goal, decisions, evidence pointers, unknowns,
-deviations, progress, and next action.
+Adds strict Milestone/Epic context Markdown, compact transcript-free session
+state, explicit Personal/Team persistence, and pure resume validation. A PO
+can share one Milestone context with parallel Epic contexts; each developer
+resumes only the referenced Epic and a changed Milestone revision stops both
+parallel resumes.
 
-**Exit evidence:** resumable session-state schema, retention rule, redaction
-behavior, stale-state detection, and a successful resume/stop test.
+**Exit evidence:** resumable session-state schema, retention and redaction
+rules, stale-state detection, explicit storage/CLI tests, and parallel-Epic
+isolation evidence. This remains `COMPLETE_WITH_LIMIT`: it has no host
+execution, connector, automatic Git operation, or transcript reconstruction.
 
 ### Later — M4: Evaluation and `evolve`
 
@@ -407,9 +410,7 @@ Roadmap evolution is expected, but it must be deliberate:
 - [Capability matrix](../../contract/capability-matrix.md) — capability and host
   projection boundaries.
 
-The next concrete delivery slice is **M3: Compact session state and optional
-storage**. The platform is useful already, but this routing statement does not
-approve external activation or publication: the roadmap keeps the next
-functional capability visible without turning future options into mandatory
-process.
+The next concrete delivery slice requires explicit selection after M3 review.
+The platform is useful already, but this routing statement does not approve
+external activation, publication, or automatic Git operations.
 
