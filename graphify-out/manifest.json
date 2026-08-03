@@ -275,9 +275,9 @@
     "semantic_hash": "31ab44f3631953516d26e08c33f17069"
   },
   "test/e2e.test.ts": {
-    "mtime": 1785770729.0952866,
-    "ast_hash": "2b7e27ee589fcb7fda547dde45d6e13f",
-    "semantic_hash": "2b7e27ee589fcb7fda547dde45d6e13f"
+    "mtime": 1785781690.7105017,
+    "ast_hash": "b523369f8ac2b17e3a998cd640ef6f6a",
+    "semantic_hash": "b523369f8ac2b17e3a998cd640ef6f6a"
   },
   "test/events.test.ts": {
     "mtime": 1785770729.0962863,
@@ -1005,14 +1005,14 @@
     "semantic_hash": "eb33ca70e755e1421b8860a02f0c6d0e"
   },
   "src/context/markdown.ts": {
-    "mtime": 1785770729.0609992,
-    "ast_hash": "5a7a8f4737321404490f6bde48b46dc5",
-    "semantic_hash": "5a7a8f4737321404490f6bde48b46dc5"
+    "mtime": 1785781394.487408,
+    "ast_hash": "53c2b064ef6959689ec4d568eb14db76",
+    "semantic_hash": "53c2b064ef6959689ec4d568eb14db76"
   },
   "src/context/resume.ts": {
-    "mtime": 1785770729.0609992,
-    "ast_hash": "cf46989f2d3be853270d48dcfedf4556",
-    "semantic_hash": "cf46989f2d3be853270d48dcfedf4556"
+    "mtime": 1785781690.7105017,
+    "ast_hash": "d444dd06687a85d9380def79d14659d0",
+    "semantic_hash": "d444dd06687a85d9380def79d14659d0"
   },
   "src/context/storage.ts": {
     "mtime": 1785770729.0609992,
@@ -1020,14 +1020,14 @@
     "semantic_hash": "ee3b694611ce6b5e013c9c901d4a637f"
   },
   "src/context/types.ts": {
-    "mtime": 1785770729.0619998,
-    "ast_hash": "7dcf3bb7d15aaf86c9d24ae5f166dae6",
-    "semantic_hash": "7dcf3bb7d15aaf86c9d24ae5f166dae6"
+    "mtime": 1785781386.4667678,
+    "ast_hash": "13e93b4efc20f478bbef541897264ee0",
+    "semantic_hash": "13e93b4efc20f478bbef541897264ee0"
   },
   "src/context/validation.ts": {
-    "mtime": 1785770892.8029578,
-    "ast_hash": "747f399accc9aaf4a09d84c97001388d",
-    "semantic_hash": "747f399accc9aaf4a09d84c97001388d"
+    "mtime": 1785781486.2878702,
+    "ast_hash": "1a3fbbde870ea84eb086bdf087c4a56e",
+    "semantic_hash": "1a3fbbde870ea84eb086bdf087c4a56e"
   },
   "src/controller/activation-boundary.ts": {
     "mtime": 1785770729.0629995,
@@ -1040,19 +1040,19 @@
     "semantic_hash": "80c822405b229dbbadfffcee88ed56ef"
   },
   "test/context-markdown.test.ts": {
-    "mtime": 1785770729.0872867,
-    "ast_hash": "cdd6099ca99b972926147a2637f5f656",
-    "semantic_hash": "cdd6099ca99b972926147a2637f5f656"
+    "mtime": 1785781502.358647,
+    "ast_hash": "88fcb1da30aac7dcc3607dc6087f0fde",
+    "semantic_hash": "88fcb1da30aac7dcc3607dc6087f0fde"
   },
   "test/context-storage-cli.test.ts": {
-    "mtime": 1785770729.0872867,
-    "ast_hash": "a032e0bbb0c049d952eb8dc4a2406d3d",
-    "semantic_hash": "a032e0bbb0c049d952eb8dc4a2406d3d"
+    "mtime": 1785781521.2819397,
+    "ast_hash": "0d536368e498687ce56c757969baf12d",
+    "semantic_hash": "0d536368e498687ce56c757969baf12d"
   },
   "test/context-validation.test.ts": {
-    "mtime": 1785770852.3623555,
-    "ast_hash": "3ed5adc0f9609129cbde87fa934fa94e",
-    "semantic_hash": "3ed5adc0f9609129cbde87fa934fa94e"
+    "mtime": 1785781508.3745494,
+    "ast_hash": "db7030c54c7d4b220f9b1b04134d7e88",
+    "semantic_hash": "db7030c54c7d4b220f9b1b04134d7e88"
   },
   "test/controller-activation-boundary-cli.test.ts": {
     "mtime": 1785770729.0892873,
@@ -1070,8 +1070,8 @@
     "semantic_hash": "0f9ee35371ab2dd8b272895ffff5faac"
   },
   "test/session-state.test.ts": {
-    "mtime": 1785770729.1122878,
-    "ast_hash": "c393692f76623e323c1625126bd2e699",
-    "semantic_hash": "c393692f76623e323c1625126bd2e699"
+    "mtime": 1785781829.5167935,
+    "ast_hash": "f6c986a2ea425c35e66595577a2b277a",
+    "semantic_hash": "f6c986a2ea425c35e66595577a2b277a"
   }
 }

@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "gitCommitHash": "38c4cd76cdc8c0ff5f7bf1bc2b144b1c278d1104",
-  "generatedAt": "2026-08-03T18:07:49.244Z",
+  "gitCommitHash": "c90fe0c300d0fb072554c0f82557831c8cabe2b5",
+  "generatedAt": "2026-08-03T19:07:20.385Z",
   "files": {
     ".github/pull_request_template.md": {
       "filePath": ".github/pull_request_template.md",
@@ -436,12 +436,12 @@
     },
     "docs/project/current-state.md": {
       "filePath": "docs/project/current-state.md",
-      "contentHash": "bc6cf0421e70473f4cbea288f272cfbcc3408090b216d6d310eeafaacdf81c89",
+      "contentHash": "1677ea7a4250df71c49b6aec7945cb84a91a1d206fca01081f649c1db909bb1f",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 74,
+      "totalLines": 78,
       "hasStructuralAnalysis": true
     },
     "docs/project/documentation-map.md": {
@@ -456,7 +456,7 @@
     },
     "docs/project/roadmap.md": {
       "filePath": "docs/project/roadmap.md",
-      "contentHash": "66546829163cb523e6fc1c52a584c1b2aaeef770ca903b5c4e74bfd29cc49fb6",
+      "contentHash": "e3abfe635f9705f588215d8b3e5f797f60e1b82659e8a39caa51d174ee752d8f",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -2216,7 +2216,7 @@
     },
     "src/context/markdown.ts": {
       "filePath": "src/context/markdown.ts",
-      "contentHash": "dd04992c33ac69cbd57cabd41044a61ca29b614f3a81507945858abdcce4e827",
+      "contentHash": "7a3d3c56efd5696ba0744fd7d8e70059f44caf6caf23b01b8f87abc56bc974cf",
       "functions": [
         {
           "name": "parseWorkContext",
@@ -2264,7 +2264,7 @@
             "sourcePath"
           ],
           "exported": false,
-          "lineCount": 13
+          "lineCount": 15
         },
         {
           "name": "milestoneMetadata",
@@ -2446,12 +2446,12 @@
         "parseWorkContext",
         "serializeWorkContext"
       ],
-      "totalLines": 174,
+      "totalLines": 176,
       "hasStructuralAnalysis": true
     },
     "src/context/resume.ts": {
       "filePath": "src/context/resume.ts",
-      "contentHash": "4e1f2dc0703b8a987fb5a422eae888b9c2846a5dcfea35e723e964c386488a8f",
+      "contentHash": "d890a920e15647173579360b198a27c845a9e67dfefee31e55a5c1acfb9e1b50",
       "functions": [
         {
           "name": "evaluateSessionResume",
@@ -2462,7 +2462,18 @@
           ],
           "returnType": "ResumeResult",
           "exported": true,
-          "lineCount": 32
+          "lineCount": 34
+        },
+        {
+          "name": "validateExecutionScope",
+          "params": [
+            "state",
+            "milestone",
+            "epic"
+          ],
+          "returnType": "ResumeResult | undefined",
+          "exported": false,
+          "lineCount": 15
         },
         {
           "name": "resolveContexts",
@@ -2545,7 +2556,7 @@
       "exports": [
         "evaluateSessionResume"
       ],
-      "totalLines": 78,
+      "totalLines": 96,
       "hasStructuralAnalysis": true
     },
     "src/context/storage.ts": {
@@ -2708,7 +2719,7 @@
     },
     "src/context/types.ts": {
       "filePath": "src/context/types.ts",
-      "contentHash": "af7c7d15c832dc9e698d5d238b6f50842c707c6423a56189f4d4e5de6c882fe9",
+      "contentHash": "29cd9bb93a4dd7ab72a9a161f1a2aebd24144a232920f0960f3cfdca874bd7be",
       "functions": [],
       "classes": [
         {
@@ -2735,12 +2746,12 @@
         "RetentionScope",
         "ContextError"
       ],
-      "totalLines": 97,
+      "totalLines": 108,
       "hasStructuralAnalysis": true
     },
     "src/context/validation.ts": {
       "filePath": "src/context/validation.ts",
-      "contentHash": "7a49e5f4abddb896659347f6238724f5cc82aaa899c1b6dbd6a3c35b7b7d6db3",
+      "contentHash": "caf1b1703da2c1ecf9d117634d881c610fb0a73911ca71193b8f63126b696b60",
       "functions": [
         {
           "name": "validateMilestoneContext",
@@ -2779,7 +2790,7 @@
           ],
           "returnType": "SessionState",
           "exported": true,
-          "lineCount": 41
+          "lineCount": 53
         },
         {
           "name": "validateEpicShape",
@@ -2798,7 +2809,7 @@
           ],
           "returnType": "void",
           "exported": false,
-          "lineCount": 9
+          "lineCount": 11
         },
         {
           "name": "assertNonEmpty",
@@ -2885,6 +2896,16 @@
           "lineCount": 6
         },
         {
+          "name": "sameStringList",
+          "params": [
+            "left",
+            "right"
+          ],
+          "returnType": "boolean",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
           "name": "contextReferences",
           "params": [
             "value"
@@ -2892,6 +2913,15 @@
           "returnType": "readonly ContextReference[]",
           "exported": false,
           "lineCount": 15
+        },
+        {
+          "name": "sessionExecutionScope",
+          "params": [
+            "value"
+          ],
+          "returnType": "SessionState[\"executionScope\"]",
+          "exported": false,
+          "lineCount": 9
         },
         {
           "name": "recipeValue",
@@ -2936,7 +2966,7 @@
         "validateEpicContext",
         "validateSessionState"
       ],
-      "totalLines": 180,
+      "totalLines": 208,
       "hasStructuralAnalysis": true
     },
     "src/contract/compile.ts": {
@@ -10017,7 +10047,7 @@
     },
     "test/context-markdown.test.ts": {
       "filePath": "test/context-markdown.test.ts",
-      "contentHash": "7a8b82851ea87df366f3e7175d0fe6ce4670a23df91e36f49b32e32a2aba80aa",
+      "contentHash": "2e276ba24046a0a21cd29fc6e800bc4cbb42d3ce84cb3ee88fab575f0b7901bb",
       "functions": [],
       "classes": [],
       "imports": [
@@ -10049,12 +10079,12 @@
         }
       ],
       "exports": [],
-      "totalLines": 77,
+      "totalLines": 81,
       "hasStructuralAnalysis": true
     },
     "test/context-storage-cli.test.ts": {
       "filePath": "test/context-storage-cli.test.ts",
-      "contentHash": "caf83b85d6f238d84fc8eb5ba791a4fb2a08139a4e38cdf04f7cbd561e1099a2",
+      "contentHash": "53918be65ecae5a03652b666962028c69321492288cb0b52fad309d10b51b5dc",
       "functions": [
         {
           "name": "withTemporaryDirectory",
@@ -10141,12 +10171,12 @@
         }
       ],
       "exports": [],
-      "totalLines": 125,
+      "totalLines": 126,
       "hasStructuralAnalysis": true
     },
     "test/context-validation.test.ts": {
       "filePath": "test/context-validation.test.ts",
-      "contentHash": "1fc960a9a1be367f65a58cf95e4c7803cb98d9addadf1845e3533ae7d1ec1278",
+      "contentHash": "87a2cbf83232742e0e62aebf1b805316342efd1437b7639c00c14ef48cc1d6b5",
       "functions": [],
       "classes": [],
       "imports": [
@@ -10178,7 +10208,7 @@
         }
       ],
       "exports": [],
-      "totalLines": 90,
+      "totalLines": 96,
       "hasStructuralAnalysis": true
     },
     "test/contract.test.ts": {
@@ -11324,7 +11354,7 @@
     },
     "test/e2e.test.ts": {
       "filePath": "test/e2e.test.ts",
-      "contentHash": "ff5290fc92b4ca92bdaab59b981d041110d3ed62f97fee7945b30efce6aa74ec",
+      "contentHash": "95a33d79a8408db65305e613b1ca3f9def1d9d493917d727980ecbfa0ebf5ef2",
       "functions": [
         {
           "name": "createOrchestrator",
@@ -13044,7 +13074,7 @@
     },
     "test/session-state.test.ts": {
       "filePath": "test/session-state.test.ts",
-      "contentHash": "f2a9aa1c93a253df46904ca8396e6b764dc0cb24b0d3d8afb444208bf56c1f9c",
+      "contentHash": "c634b6861d9d75817e9da3ec4062ec6dccfff1ba2c9aa936902395b7ebaf5720",
       "functions": [],
       "classes": [],
       "imports": [
@@ -13083,7 +13113,7 @@
         }
       ],
       "exports": [],
-      "totalLines": 92,
+      "totalLines": 111,
       "hasStructuralAnalysis": true
     },
     "tools/claude-context-integrity/test-verify.ps1": {

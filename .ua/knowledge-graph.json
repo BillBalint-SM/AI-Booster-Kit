@@ -16,8 +16,8 @@
       "GitHub Actions"
     ],
     "description": "AI Booster Kit is a modular, human-centred platform for choosing, tuning, validating, and reusing Agent or Multi-Agent capabilities without making Agent assistance mandatory. Note: this project has over 100 source files; consider scoping analysis to a subdirectory for faster results.",
-    "analyzedAt": "2026-08-03T18:07:35.779Z",
-    "gitCommitHash": "38c4cd76cdc8c0ff5f7bf1bc2b144b1c278d1104"
+    "analyzedAt": "2026-08-03T19:07:02.947Z",
+    "gitCommitHash": "c90fe0c300d0fb072554c0f82557831c8cabe2b5"
   },
   "nodes": [
     {
@@ -155,32 +155,6 @@
       "summary": "Deterministic document structure for README.md; Markdown headings are available for navigation.",
       "tags": [
         "documentation"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "file:cli.ts",
-      "type": "file",
-      "name": "cli.ts",
-      "filePath": "cli.ts",
-      "summary": "Deterministic structural map for cli.ts; functions, classes, exports, calls, and imports are available for navigation.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "function:cli.ts:main",
-      "type": "function",
-      "name": "main",
-      "filePath": "cli.ts",
-      "lineRange": [
-        4,
-        7
-      ],
-      "summary": "Defines main in cli.ts.",
-      "tags": [
-        "structural-extraction"
       ],
       "complexity": "simple"
     },
@@ -758,6 +732,343 @@
         "research"
       ],
       "complexity": "complex"
+    },
+    {
+      "id": "document:templates/hosts/claude-code-github-readonly-capability.md",
+      "type": "document",
+      "name": "claude-code-github-readonly-capability.md",
+      "filePath": "templates/hosts/claude-code-github-readonly-capability.md",
+      "summary": "Deterministic document structure for templates/hosts/claude-code-github-readonly-capability.md; Markdown headings are available for navigation.",
+      "tags": [
+        "documentation",
+        "templates-hosts"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:templates/hosts/codex-github-readonly-capability.md",
+      "type": "document",
+      "name": "codex-github-readonly-capability.md",
+      "filePath": "templates/hosts/codex-github-readonly-capability.md",
+      "summary": "Deterministic document structure for templates/hosts/codex-github-readonly-capability.md; Markdown headings are available for navigation.",
+      "tags": [
+        "documentation",
+        "templates-hosts"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:templates/hosts/cursor-github-readonly-capability.md",
+      "type": "document",
+      "name": "cursor-github-readonly-capability.md",
+      "filePath": "templates/hosts/cursor-github-readonly-capability.md",
+      "summary": "Deterministic document structure for templates/hosts/cursor-github-readonly-capability.md; Markdown headings are available for navigation.",
+      "tags": [
+        "documentation",
+        "templates-hosts"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:test/fixtures/ambiguous-mapping.md",
+      "type": "document",
+      "name": "ambiguous-mapping.md",
+      "filePath": "test/fixtures/ambiguous-mapping.md",
+      "summary": "Deterministic document structure for test/fixtures/ambiguous-mapping.md; Markdown headings are available for navigation.",
+      "tags": [
+        "documentation",
+        "test-fixtures"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:test/fixtures/controller/accept-recommendation.json",
+      "type": "config",
+      "name": "accept-recommendation.json",
+      "filePath": "test/fixtures/controller/accept-recommendation.json",
+      "summary": "Deterministic structural map for test/fixtures/controller/accept-recommendation.json; functions, classes, exports, calls, and imports are available for navigation.",
+      "tags": [
+        "structural-extraction",
+        "test-fixtures-controller"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:test/fixtures/controller/continue-without-agent.json",
+      "type": "config",
+      "name": "continue-without-agent.json",
+      "filePath": "test/fixtures/controller/continue-without-agent.json",
+      "summary": "Deterministic structural map for test/fixtures/controller/continue-without-agent.json; functions, classes, exports, calls, and imports are available for navigation.",
+      "tags": [
+        "structural-extraction",
+        "test-fixtures-controller"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:test/fixtures/controller/custom-tool-quick-task.json",
+      "type": "config",
+      "name": "custom-tool-quick-task.json",
+      "filePath": "test/fixtures/controller/custom-tool-quick-task.json",
+      "summary": "Deterministic structural map for test/fixtures/controller/custom-tool-quick-task.json; functions, classes, exports, calls, and imports are available for navigation.",
+      "tags": [
+        "structural-extraction",
+        "test-fixtures-controller"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:test/fixtures/controller/eligible-quick-task.json",
+      "type": "config",
+      "name": "eligible-quick-task.json",
+      "filePath": "test/fixtures/controller/eligible-quick-task.json",
+      "summary": "Deterministic structural map for test/fixtures/controller/eligible-quick-task.json; functions, classes, exports, calls, and imports are available for navigation.",
+      "tags": [
+        "structural-extraction",
+        "test-fixtures-controller"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:test/fixtures/controller/high-complexity-quick-task.json",
+      "type": "config",
+      "name": "high-complexity-quick-task.json",
+      "filePath": "test/fixtures/controller/high-complexity-quick-task.json",
+      "summary": "Deterministic structural map for test/fixtures/controller/high-complexity-quick-task.json; functions, classes, exports, calls, and imports are available for navigation.",
+      "tags": [
+        "structural-extraction",
+        "test-fixtures-controller"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:test/fixtures/controller/incomplete-quick-task.json",
+      "type": "config",
+      "name": "incomplete-quick-task.json",
+      "filePath": "test/fixtures/controller/incomplete-quick-task.json",
+      "summary": "Deterministic structural map for test/fixtures/controller/incomplete-quick-task.json; functions, classes, exports, calls, and imports are available for navigation.",
+      "tags": [
+        "structural-extraction",
+        "test-fixtures-controller"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:test/fixtures/controller/no-agent-quick-task.json",
+      "type": "config",
+      "name": "no-agent-quick-task.json",
+      "filePath": "test/fixtures/controller/no-agent-quick-task.json",
+      "summary": "Deterministic structural map for test/fixtures/controller/no-agent-quick-task.json; functions, classes, exports, calls, and imports are available for navigation.",
+      "tags": [
+        "structural-extraction",
+        "test-fixtures-controller"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:test/fixtures/controller/request-alternative.json",
+      "type": "config",
+      "name": "request-alternative.json",
+      "filePath": "test/fixtures/controller/request-alternative.json",
+      "summary": "Deterministic structural map for test/fixtures/controller/request-alternative.json; functions, classes, exports, calls, and imports are available for navigation.",
+      "tags": [
+        "structural-extraction",
+        "test-fixtures-controller"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:test/fixtures/invalid-milestone.md",
+      "type": "document",
+      "name": "invalid-milestone.md",
+      "filePath": "test/fixtures/invalid-milestone.md",
+      "summary": "Deterministic document structure for test/fixtures/invalid-milestone.md; Markdown headings are available for navigation.",
+      "tags": [
+        "documentation",
+        "test-fixtures"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:test/fixtures/project-profile.json",
+      "type": "config",
+      "name": "project-profile.json",
+      "filePath": "test/fixtures/project-profile.json",
+      "summary": "Deterministic structural map for test/fixtures/project-profile.json; functions, classes, exports, calls, and imports are available for navigation.",
+      "tags": [
+        "structural-extraction",
+        "test-fixtures"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:test/fixtures/readiness/not-ready.json",
+      "type": "config",
+      "name": "not-ready.json",
+      "filePath": "test/fixtures/readiness/not-ready.json",
+      "summary": "Deterministic structural map for test/fixtures/readiness/not-ready.json; functions, classes, exports, calls, and imports are available for navigation.",
+      "tags": [
+        "structural-extraction",
+        "test-fixtures-readiness"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:test/fixtures/readiness/ready.json",
+      "type": "config",
+      "name": "ready.json",
+      "filePath": "test/fixtures/readiness/ready.json",
+      "summary": "Deterministic structural map for test/fixtures/readiness/ready.json; functions, classes, exports, calls, and imports are available for navigation.",
+      "tags": [
+        "structural-extraction",
+        "test-fixtures-readiness"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:test/fixtures/readiness/stopped.json",
+      "type": "config",
+      "name": "stopped.json",
+      "filePath": "test/fixtures/readiness/stopped.json",
+      "summary": "Deterministic structural map for test/fixtures/readiness/stopped.json; functions, classes, exports, calls, and imports are available for navigation.",
+      "tags": [
+        "structural-extraction",
+        "test-fixtures-readiness"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:test/fixtures/readiness/unsafe-observation.json",
+      "type": "config",
+      "name": "unsafe-observation.json",
+      "filePath": "test/fixtures/readiness/unsafe-observation.json",
+      "summary": "Deterministic structural map for test/fixtures/readiness/unsafe-observation.json; functions, classes, exports, calls, and imports are available for navigation.",
+      "tags": [
+        "structural-extraction",
+        "test-fixtures-readiness"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:test/fixtures/valid-milestone.md",
+      "type": "document",
+      "name": "valid-milestone.md",
+      "filePath": "test/fixtures/valid-milestone.md",
+      "summary": "Deterministic document structure for test/fixtures/valid-milestone.md; Markdown headings are available for navigation.",
+      "tags": [
+        "documentation",
+        "test-fixtures"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "tsconfig.json",
+      "summary": "Deterministic structural map for tsconfig.json; functions, classes, exports, calls, and imports are available for navigation.",
+      "tags": [
+        "structural-extraction"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:website/.openai/hosting.json",
+      "type": "config",
+      "name": "hosting.json",
+      "filePath": "website/.openai/hosting.json",
+      "summary": "Deterministic structural map for website/.openai/hosting.json; functions, classes, exports, calls, and imports are available for navigation.",
+      "tags": [
+        "structural-extraction",
+        "website-openai"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:website/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "website/README.md",
+      "summary": "Deterministic document structure for website/README.md; Markdown headings are available for navigation.",
+      "tags": [
+        "documentation",
+        "website"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:website/drizzle/meta/_journal.json",
+      "type": "config",
+      "name": "_journal.json",
+      "filePath": "website/drizzle/meta/_journal.json",
+      "summary": "Deterministic structural map for website/drizzle/meta/_journal.json; functions, classes, exports, calls, and imports are available for navigation.",
+      "tags": [
+        "structural-extraction",
+        "website-drizzle-meta"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:website/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "website/package.json",
+      "summary": "Deterministic structural map for website/package.json; functions, classes, exports, calls, and imports are available for navigation.",
+      "tags": [
+        "structural-extraction",
+        "website"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:website/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "website/tsconfig.json",
+      "summary": "Deterministic structural map for website/tsconfig.json; functions, classes, exports, calls, and imports are available for navigation.",
+      "tags": [
+        "structural-extraction",
+        "website"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:workflows/team-delivery-loop.md",
+      "type": "document",
+      "name": "team-delivery-loop.md",
+      "filePath": "workflows/team-delivery-loop.md",
+      "summary": "Deterministic document structure for workflows/team-delivery-loop.md; Markdown headings are available for navigation.",
+      "tags": [
+        "documentation",
+        "workflows"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:cli.ts",
+      "type": "file",
+      "name": "cli.ts",
+      "filePath": "cli.ts",
+      "summary": "Deterministic structural map for cli.ts; functions, classes, exports, calls, and imports are available for navigation.",
+      "tags": [
+        "structural-extraction"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:cli.ts:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "cli.ts",
+      "lineRange": [
+        4,
+        7
+      ],
+      "summary": "Defines main in cli.ts.",
+      "tags": [
+        "structural-extraction"
+      ],
+      "complexity": "simple"
     },
     {
       "id": "file:scripts/check-doc-links.mjs",
@@ -2656,7 +2967,7 @@
       "filePath": "src/context/markdown.ts",
       "lineRange": [
         67,
-        79
+        81
       ],
       "summary": "Defines parseEnvelope in src/context/markdown.ts.",
       "tags": [
@@ -2670,8 +2981,8 @@
       "name": "milestoneMetadata",
       "filePath": "src/context/markdown.ts",
       "lineRange": [
-        81,
-        83
+        83,
+        85
       ],
       "summary": "Defines milestoneMetadata in src/context/markdown.ts.",
       "tags": [
@@ -2685,8 +2996,8 @@
       "name": "epicMetadata",
       "filePath": "src/context/markdown.ts",
       "lineRange": [
-        85,
-        87
+        87,
+        89
       ],
       "summary": "Defines epicMetadata in src/context/markdown.ts.",
       "tags": [
@@ -2700,8 +3011,8 @@
       "name": "orderedRecord",
       "filePath": "src/context/markdown.ts",
       "lineRange": [
-        89,
-        91
+        91,
+        93
       ],
       "summary": "Defines orderedRecord in src/context/markdown.ts.",
       "tags": [
@@ -2715,8 +3026,8 @@
       "name": "milestoneBody",
       "filePath": "src/context/markdown.ts",
       "lineRange": [
-        93,
-        95
+        95,
+        97
       ],
       "summary": "Defines milestoneBody in src/context/markdown.ts.",
       "tags": [
@@ -2730,8 +3041,8 @@
       "name": "epicBody",
       "filePath": "src/context/markdown.ts",
       "lineRange": [
-        97,
-        99
+        99,
+        101
       ],
       "summary": "Defines epicBody in src/context/markdown.ts.",
       "tags": [
@@ -2745,8 +3056,8 @@
       "name": "list",
       "filePath": "src/context/markdown.ts",
       "lineRange": [
-        101,
-        104
+        103,
+        106
       ],
       "summary": "Defines list in src/context/markdown.ts.",
       "tags": [
@@ -2760,8 +3071,8 @@
       "name": "extractFrontmatter",
       "filePath": "src/context/markdown.ts",
       "lineRange": [
-        106,
-        113
+        108,
+        115
       ],
       "summary": "Defines extractFrontmatter in src/context/markdown.ts.",
       "tags": [
@@ -2775,8 +3086,8 @@
       "name": "validateBody",
       "filePath": "src/context/markdown.ts",
       "lineRange": [
-        115,
-        127
+        117,
+        129
       ],
       "summary": "Defines validateBody in src/context/markdown.ts.",
       "tags": [
@@ -2790,8 +3101,8 @@
       "name": "exactKeys",
       "filePath": "src/context/markdown.ts",
       "lineRange": [
-        129,
-        134
+        131,
+        136
       ],
       "summary": "Defines exactKeys in src/context/markdown.ts.",
       "tags": [
@@ -2805,8 +3116,8 @@
       "name": "requireRecord",
       "filePath": "src/context/markdown.ts",
       "lineRange": [
-        136,
-        141
+        138,
+        143
       ],
       "summary": "Defines requireRecord in src/context/markdown.ts.",
       "tags": [
@@ -2820,8 +3131,8 @@
       "name": "stringValue",
       "filePath": "src/context/markdown.ts",
       "lineRange": [
-        143,
-        147
+        145,
+        149
       ],
       "summary": "Defines stringValue in src/context/markdown.ts.",
       "tags": [
@@ -2835,8 +3146,8 @@
       "name": "stringArray",
       "filePath": "src/context/markdown.ts",
       "lineRange": [
-        149,
-        155
+        151,
+        157
       ],
       "summary": "Defines stringArray in src/context/markdown.ts.",
       "tags": [
@@ -2850,8 +3161,8 @@
       "name": "literal",
       "filePath": "src/context/markdown.ts",
       "lineRange": [
-        157,
-        161
+        159,
+        163
       ],
       "summary": "Defines literal in src/context/markdown.ts.",
       "tags": [
@@ -2865,8 +3176,8 @@
       "name": "rejectExecutableMetadata",
       "filePath": "src/context/markdown.ts",
       "lineRange": [
-        163,
-        169
+        165,
+        171
       ],
       "summary": "Defines rejectExecutableMetadata in src/context/markdown.ts.",
       "tags": [
@@ -2880,8 +3191,8 @@
       "name": "escapeRegExp",
       "filePath": "src/context/markdown.ts",
       "lineRange": [
-        171,
-        173
+        173,
+        175
       ],
       "summary": "Defines escapeRegExp in src/context/markdown.ts.",
       "tags": [
@@ -2908,7 +3219,7 @@
       "filePath": "src/context/resume.ts",
       "lineRange": [
         5,
-        36
+        38
       ],
       "summary": "Defines evaluateSessionResume in src/context/resume.ts.",
       "tags": [
@@ -2917,13 +3228,28 @@
       "complexity": "simple"
     },
     {
+      "id": "function:src/context/resume.ts:validateExecutionScope",
+      "type": "function",
+      "name": "validateExecutionScope",
+      "filePath": "src/context/resume.ts",
+      "summary": "Defines validateExecutionScope in src/context/resume.ts.",
+      "tags": [
+        "structural-extraction"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        40,
+        54
+      ]
+    },
+    {
       "id": "function:src/context/resume.ts:resolveContexts",
       "type": "function",
       "name": "resolveContexts",
       "filePath": "src/context/resume.ts",
       "lineRange": [
-        38,
-        51
+        56,
+        69
       ],
       "summary": "Defines resolveContexts in src/context/resume.ts.",
       "tags": [
@@ -2937,8 +3263,8 @@
       "name": "validateSetup",
       "filePath": "src/context/resume.ts",
       "lineRange": [
-        53,
-        58
+        71,
+        76
       ],
       "summary": "Defines validateSetup in src/context/resume.ts.",
       "tags": [
@@ -2952,8 +3278,8 @@
       "name": "validateExecution",
       "filePath": "src/context/resume.ts",
       "lineRange": [
-        60,
-        69
+        78,
+        87
       ],
       "summary": "Defines validateExecution in src/context/resume.ts.",
       "tags": [
@@ -2967,8 +3293,8 @@
       "name": "stopped",
       "filePath": "src/context/resume.ts",
       "lineRange": [
-        71,
-        73
+        89,
+        91
       ],
       "summary": "Defines stopped in src/context/resume.ts.",
       "tags": [
@@ -2982,8 +3308,8 @@
       "name": "unknown",
       "filePath": "src/context/resume.ts",
       "lineRange": [
-        75,
-        77
+        93,
+        95
       ],
       "summary": "Defines unknown in src/context/resume.ts.",
       "tags": [
@@ -3156,8 +3482,8 @@
       "name": "ContextError",
       "filePath": "src/context/types.ts",
       "lineRange": [
-        91,
-        96
+        102,
+        107
       ],
       "summary": "Defines ContextError in src/context/types.ts.",
       "tags": [
@@ -3229,7 +3555,7 @@
       "filePath": "src/context/validation.ts",
       "lineRange": [
         39,
-        79
+        91
       ],
       "summary": "Defines validateSessionState in src/context/validation.ts.",
       "tags": [
@@ -3243,8 +3569,8 @@
       "name": "validateEpicShape",
       "filePath": "src/context/validation.ts",
       "lineRange": [
-        81,
-        86
+        93,
+        98
       ],
       "summary": "Defines validateEpicShape in src/context/validation.ts.",
       "tags": [
@@ -3258,8 +3584,8 @@
       "name": "validateContextEnvelope",
       "filePath": "src/context/validation.ts",
       "lineRange": [
-        88,
-        96
+        100,
+        110
       ],
       "summary": "Defines validateContextEnvelope in src/context/validation.ts.",
       "tags": [
@@ -3273,8 +3599,8 @@
       "name": "assertNonEmpty",
       "filePath": "src/context/validation.ts",
       "lineRange": [
-        98,
-        100
+        112,
+        114
       ],
       "summary": "Defines assertNonEmpty in src/context/validation.ts.",
       "tags": [
@@ -3288,8 +3614,8 @@
       "name": "assertUnique",
       "filePath": "src/context/validation.ts",
       "lineRange": [
-        102,
-        104
+        116,
+        118
       ],
       "summary": "Defines assertUnique in src/context/validation.ts.",
       "tags": [
@@ -3303,8 +3629,8 @@
       "name": "recordValue",
       "filePath": "src/context/validation.ts",
       "lineRange": [
-        106,
-        109
+        120,
+        123
       ],
       "summary": "Defines recordValue in src/context/validation.ts.",
       "tags": [
@@ -3318,8 +3644,8 @@
       "name": "exactKeys",
       "filePath": "src/context/validation.ts",
       "lineRange": [
-        111,
-        115
+        125,
+        129
       ],
       "summary": "Defines exactKeys in src/context/validation.ts.",
       "tags": [
@@ -3333,8 +3659,8 @@
       "name": "requiredString",
       "filePath": "src/context/validation.ts",
       "lineRange": [
-        117,
-        121
+        131,
+        135
       ],
       "summary": "Defines requiredString in src/context/validation.ts.",
       "tags": [
@@ -3348,8 +3674,8 @@
       "name": "nullableString",
       "filePath": "src/context/validation.ts",
       "lineRange": [
-        123,
-        127
+        137,
+        141
       ],
       "summary": "Defines nullableString in src/context/validation.ts.",
       "tags": [
@@ -3363,8 +3689,8 @@
       "name": "literal",
       "filePath": "src/context/validation.ts",
       "lineRange": [
-        129,
-        133
+        143,
+        147
       ],
       "summary": "Defines literal in src/context/validation.ts.",
       "tags": [
@@ -3378,8 +3704,8 @@
       "name": "stringList",
       "filePath": "src/context/validation.ts",
       "lineRange": [
-        135,
-        140
+        149,
+        154
       ],
       "summary": "Defines stringList in src/context/validation.ts.",
       "tags": [
@@ -3388,13 +3714,28 @@
       "complexity": "simple"
     },
     {
+      "id": "function:src/context/validation.ts:sameStringList",
+      "type": "function",
+      "name": "sameStringList",
+      "filePath": "src/context/validation.ts",
+      "summary": "Defines sameStringList in src/context/validation.ts.",
+      "tags": [
+        "structural-extraction"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        156,
+        158
+      ]
+    },
+    {
       "id": "function:src/context/validation.ts:contextReferences",
       "type": "function",
       "name": "contextReferences",
       "filePath": "src/context/validation.ts",
       "lineRange": [
-        142,
-        156
+        160,
+        174
       ],
       "summary": "Defines contextReferences in src/context/validation.ts.",
       "tags": [
@@ -3403,13 +3744,28 @@
       "complexity": "simple"
     },
     {
+      "id": "function:src/context/validation.ts:sessionExecutionScope",
+      "type": "function",
+      "name": "sessionExecutionScope",
+      "filePath": "src/context/validation.ts",
+      "summary": "Defines sessionExecutionScope in src/context/validation.ts.",
+      "tags": [
+        "structural-extraction"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        176,
+        184
+      ]
+    },
+    {
       "id": "function:src/context/validation.ts:recipeValue",
       "type": "function",
       "name": "recipeValue",
       "filePath": "src/context/validation.ts",
       "lineRange": [
-        158,
-        167
+        186,
+        195
       ],
       "summary": "Defines recipeValue in src/context/validation.ts.",
       "tags": [
@@ -3423,8 +3779,8 @@
       "name": "executionValue",
       "filePath": "src/context/validation.ts",
       "lineRange": [
-        169,
-        179
+        197,
+        207
       ],
       "summary": "Defines executionValue in src/context/validation.ts.",
       "tags": [
@@ -11158,42 +11514,6 @@
       "complexity": "simple"
     },
     {
-      "id": "document:templates/hosts/claude-code-github-readonly-capability.md",
-      "type": "document",
-      "name": "claude-code-github-readonly-capability.md",
-      "filePath": "templates/hosts/claude-code-github-readonly-capability.md",
-      "summary": "Deterministic document structure for templates/hosts/claude-code-github-readonly-capability.md; Markdown headings are available for navigation.",
-      "tags": [
-        "documentation",
-        "templates-hosts"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "document:templates/hosts/codex-github-readonly-capability.md",
-      "type": "document",
-      "name": "codex-github-readonly-capability.md",
-      "filePath": "templates/hosts/codex-github-readonly-capability.md",
-      "summary": "Deterministic document structure for templates/hosts/codex-github-readonly-capability.md; Markdown headings are available for navigation.",
-      "tags": [
-        "documentation",
-        "templates-hosts"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "document:templates/hosts/cursor-github-readonly-capability.md",
-      "type": "document",
-      "name": "cursor-github-readonly-capability.md",
-      "filePath": "templates/hosts/cursor-github-readonly-capability.md",
-      "summary": "Deterministic document structure for templates/hosts/cursor-github-readonly-capability.md; Markdown headings are available for navigation.",
-      "tags": [
-        "documentation",
-        "templates-hosts"
-      ],
-      "complexity": "simple"
-    },
-    {
       "id": "file:test/adapters.test.ts",
       "type": "file",
       "name": "adapters.test.ts",
@@ -11670,8 +11990,8 @@
       "name": "withTemporaryDirectory",
       "filePath": "test/context-storage-cli.test.ts",
       "lineRange": [
-        105,
-        112
+        106,
+        113
       ],
       "summary": "Defines withTemporaryDirectory in test/context-storage-cli.test.ts.",
       "tags": [
@@ -11685,8 +12005,8 @@
       "name": "runBuiltCli",
       "filePath": "test/context-storage-cli.test.ts",
       "lineRange": [
-        114,
-        124
+        115,
+        125
       ],
       "summary": "Defines runBuiltCli in test/context-storage-cli.test.ts.",
       "tags": [
@@ -12700,18 +13020,6 @@
       "complexity": "simple"
     },
     {
-      "id": "document:test/fixtures/ambiguous-mapping.md",
-      "type": "document",
-      "name": "ambiguous-mapping.md",
-      "filePath": "test/fixtures/ambiguous-mapping.md",
-      "summary": "Deterministic document structure for test/fixtures/ambiguous-mapping.md; Markdown headings are available for navigation.",
-      "tags": [
-        "documentation",
-        "test-fixtures"
-      ],
-      "complexity": "simple"
-    },
-    {
       "id": "file:test/fixtures/connector-server.ts",
       "type": "file",
       "name": "connector-server.ts",
@@ -12855,186 +13163,6 @@
       "summary": "Defines asRecord in test/fixtures/connector-server.ts.",
       "tags": [
         "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "config:test/fixtures/controller/accept-recommendation.json",
-      "type": "config",
-      "name": "accept-recommendation.json",
-      "filePath": "test/fixtures/controller/accept-recommendation.json",
-      "summary": "Deterministic structural map for test/fixtures/controller/accept-recommendation.json; functions, classes, exports, calls, and imports are available for navigation.",
-      "tags": [
-        "structural-extraction",
-        "test-fixtures-controller"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "config:test/fixtures/controller/continue-without-agent.json",
-      "type": "config",
-      "name": "continue-without-agent.json",
-      "filePath": "test/fixtures/controller/continue-without-agent.json",
-      "summary": "Deterministic structural map for test/fixtures/controller/continue-without-agent.json; functions, classes, exports, calls, and imports are available for navigation.",
-      "tags": [
-        "structural-extraction",
-        "test-fixtures-controller"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "config:test/fixtures/controller/custom-tool-quick-task.json",
-      "type": "config",
-      "name": "custom-tool-quick-task.json",
-      "filePath": "test/fixtures/controller/custom-tool-quick-task.json",
-      "summary": "Deterministic structural map for test/fixtures/controller/custom-tool-quick-task.json; functions, classes, exports, calls, and imports are available for navigation.",
-      "tags": [
-        "structural-extraction",
-        "test-fixtures-controller"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "config:test/fixtures/controller/eligible-quick-task.json",
-      "type": "config",
-      "name": "eligible-quick-task.json",
-      "filePath": "test/fixtures/controller/eligible-quick-task.json",
-      "summary": "Deterministic structural map for test/fixtures/controller/eligible-quick-task.json; functions, classes, exports, calls, and imports are available for navigation.",
-      "tags": [
-        "structural-extraction",
-        "test-fixtures-controller"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "config:test/fixtures/controller/high-complexity-quick-task.json",
-      "type": "config",
-      "name": "high-complexity-quick-task.json",
-      "filePath": "test/fixtures/controller/high-complexity-quick-task.json",
-      "summary": "Deterministic structural map for test/fixtures/controller/high-complexity-quick-task.json; functions, classes, exports, calls, and imports are available for navigation.",
-      "tags": [
-        "structural-extraction",
-        "test-fixtures-controller"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "config:test/fixtures/controller/incomplete-quick-task.json",
-      "type": "config",
-      "name": "incomplete-quick-task.json",
-      "filePath": "test/fixtures/controller/incomplete-quick-task.json",
-      "summary": "Deterministic structural map for test/fixtures/controller/incomplete-quick-task.json; functions, classes, exports, calls, and imports are available for navigation.",
-      "tags": [
-        "structural-extraction",
-        "test-fixtures-controller"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "config:test/fixtures/controller/no-agent-quick-task.json",
-      "type": "config",
-      "name": "no-agent-quick-task.json",
-      "filePath": "test/fixtures/controller/no-agent-quick-task.json",
-      "summary": "Deterministic structural map for test/fixtures/controller/no-agent-quick-task.json; functions, classes, exports, calls, and imports are available for navigation.",
-      "tags": [
-        "structural-extraction",
-        "test-fixtures-controller"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "config:test/fixtures/controller/request-alternative.json",
-      "type": "config",
-      "name": "request-alternative.json",
-      "filePath": "test/fixtures/controller/request-alternative.json",
-      "summary": "Deterministic structural map for test/fixtures/controller/request-alternative.json; functions, classes, exports, calls, and imports are available for navigation.",
-      "tags": [
-        "structural-extraction",
-        "test-fixtures-controller"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "document:test/fixtures/invalid-milestone.md",
-      "type": "document",
-      "name": "invalid-milestone.md",
-      "filePath": "test/fixtures/invalid-milestone.md",
-      "summary": "Deterministic document structure for test/fixtures/invalid-milestone.md; Markdown headings are available for navigation.",
-      "tags": [
-        "documentation",
-        "test-fixtures"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "config:test/fixtures/project-profile.json",
-      "type": "config",
-      "name": "project-profile.json",
-      "filePath": "test/fixtures/project-profile.json",
-      "summary": "Deterministic structural map for test/fixtures/project-profile.json; functions, classes, exports, calls, and imports are available for navigation.",
-      "tags": [
-        "structural-extraction",
-        "test-fixtures"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "config:test/fixtures/readiness/not-ready.json",
-      "type": "config",
-      "name": "not-ready.json",
-      "filePath": "test/fixtures/readiness/not-ready.json",
-      "summary": "Deterministic structural map for test/fixtures/readiness/not-ready.json; functions, classes, exports, calls, and imports are available for navigation.",
-      "tags": [
-        "structural-extraction",
-        "test-fixtures-readiness"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "config:test/fixtures/readiness/ready.json",
-      "type": "config",
-      "name": "ready.json",
-      "filePath": "test/fixtures/readiness/ready.json",
-      "summary": "Deterministic structural map for test/fixtures/readiness/ready.json; functions, classes, exports, calls, and imports are available for navigation.",
-      "tags": [
-        "structural-extraction",
-        "test-fixtures-readiness"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "config:test/fixtures/readiness/stopped.json",
-      "type": "config",
-      "name": "stopped.json",
-      "filePath": "test/fixtures/readiness/stopped.json",
-      "summary": "Deterministic structural map for test/fixtures/readiness/stopped.json; functions, classes, exports, calls, and imports are available for navigation.",
-      "tags": [
-        "structural-extraction",
-        "test-fixtures-readiness"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "config:test/fixtures/readiness/unsafe-observation.json",
-      "type": "config",
-      "name": "unsafe-observation.json",
-      "filePath": "test/fixtures/readiness/unsafe-observation.json",
-      "summary": "Deterministic structural map for test/fixtures/readiness/unsafe-observation.json; functions, classes, exports, calls, and imports are available for navigation.",
-      "tags": [
-        "structural-extraction",
-        "test-fixtures-readiness"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "document:test/fixtures/valid-milestone.md",
-      "type": "document",
-      "name": "valid-milestone.md",
-      "filePath": "test/fixtures/valid-milestone.md",
-      "summary": "Deterministic document structure for test/fixtures/valid-milestone.md; Markdown headings are available for navigation.",
-      "tags": [
-        "documentation",
-        "test-fixtures"
       ],
       "complexity": "simple"
     },
@@ -13723,41 +13851,6 @@
       "complexity": "simple"
     },
     {
-      "id": "config:tsconfig.json",
-      "type": "config",
-      "name": "tsconfig.json",
-      "filePath": "tsconfig.json",
-      "summary": "Deterministic structural map for tsconfig.json; functions, classes, exports, calls, and imports are available for navigation.",
-      "tags": [
-        "structural-extraction"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "config:website/.openai/hosting.json",
-      "type": "config",
-      "name": "hosting.json",
-      "filePath": "website/.openai/hosting.json",
-      "summary": "Deterministic structural map for website/.openai/hosting.json; functions, classes, exports, calls, and imports are available for navigation.",
-      "tags": [
-        "structural-extraction",
-        "website-openai"
-      ],
-      "complexity": "simple"
-    },
-    {
-      "id": "document:website/README.md",
-      "type": "document",
-      "name": "README.md",
-      "filePath": "website/README.md",
-      "summary": "Deterministic document structure for website/README.md; Markdown headings are available for navigation.",
-      "tags": [
-        "documentation",
-        "website"
-      ],
-      "complexity": "moderate"
-    },
-    {
       "id": "file:website/app/chatgpt-auth.ts",
       "type": "file",
       "name": "chatgpt-auth.ts",
@@ -13980,18 +14073,6 @@
       "complexity": "simple"
     },
     {
-      "id": "config:website/drizzle/meta/_journal.json",
-      "type": "config",
-      "name": "_journal.json",
-      "filePath": "website/drizzle/meta/_journal.json",
-      "summary": "Deterministic structural map for website/drizzle/meta/_journal.json; functions, classes, exports, calls, and imports are available for navigation.",
-      "tags": [
-        "structural-extraction",
-        "website-drizzle-meta"
-      ],
-      "complexity": "simple"
-    },
-    {
       "id": "file:website/eslint.config.mjs",
       "type": "file",
       "name": "eslint.config.mjs",
@@ -14085,18 +14166,6 @@
       "complexity": "simple"
     },
     {
-      "id": "config:website/package.json",
-      "type": "config",
-      "name": "package.json",
-      "filePath": "website/package.json",
-      "summary": "Deterministic structural map for website/package.json; functions, classes, exports, calls, and imports are available for navigation.",
-      "tags": [
-        "structural-extraction",
-        "website"
-      ],
-      "complexity": "simple"
-    },
-    {
       "id": "file:website/postcss.config.mjs",
       "type": "file",
       "name": "postcss.config.mjs",
@@ -14136,18 +14205,6 @@
       "complexity": "simple"
     },
     {
-      "id": "config:website/tsconfig.json",
-      "type": "config",
-      "name": "tsconfig.json",
-      "filePath": "website/tsconfig.json",
-      "summary": "Deterministic structural map for website/tsconfig.json; functions, classes, exports, calls, and imports are available for navigation.",
-      "tags": [
-        "structural-extraction",
-        "website"
-      ],
-      "complexity": "simple"
-    },
-    {
       "id": "file:website/vite.config.ts",
       "type": "file",
       "name": "vite.config.ts",
@@ -14170,18 +14227,6 @@
         "website-worker"
       ],
       "complexity": "simple"
-    },
-    {
-      "id": "document:workflows/team-delivery-loop.md",
-      "type": "document",
-      "name": "team-delivery-loop.md",
-      "filePath": "workflows/team-delivery-loop.md",
-      "summary": "Deterministic document structure for workflows/team-delivery-loop.md; Markdown headings are available for navigation.",
-      "tags": [
-        "documentation",
-        "workflows"
-      ],
-      "complexity": "moderate"
     }
   ],
   "edges": [
@@ -16329,6 +16374,13 @@
     },
     {
       "source": "file:src/context/resume.ts",
+      "target": "function:src/context/resume.ts:validateExecutionScope",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/context/resume.ts",
       "target": "function:src/context/resume.ts:resolveContexts",
       "type": "contains",
       "direction": "forward",
@@ -16392,6 +16444,13 @@
     },
     {
       "source": "function:src/context/resume.ts:evaluateSessionResume",
+      "target": "function:src/context/resume.ts:validateExecutionScope",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/context/resume.ts:evaluateSessionResume",
       "target": "function:src/context/resume.ts:validateSetup",
       "type": "calls",
       "direction": "forward",
@@ -16400,6 +16459,13 @@
     {
       "source": "function:src/context/resume.ts:evaluateSessionResume",
       "target": "function:src/context/resume.ts:validateExecution",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/context/resume.ts:validateExecutionScope",
+      "target": "function:src/context/resume.ts:stopped",
       "type": "calls",
       "direction": "forward",
       "weight": 0.8
@@ -16693,7 +16759,21 @@
     },
     {
       "source": "file:src/context/validation.ts",
+      "target": "function:src/context/validation.ts:sameStringList",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/context/validation.ts",
       "target": "function:src/context/validation.ts:contextReferences",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/context/validation.ts",
+      "target": "function:src/context/validation.ts:sessionExecutionScope",
       "type": "contains",
       "direction": "forward",
       "weight": 1
@@ -16826,6 +16906,20 @@
     },
     {
       "source": "function:src/context/validation.ts:validateSessionState",
+      "target": "function:src/context/validation.ts:literal",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/context/validation.ts:validateSessionState",
+      "target": "function:src/context/validation.ts:sessionExecutionScope",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/context/validation.ts:validateSessionState",
       "target": "function:src/context/validation.ts:recipeValue",
       "type": "calls",
       "direction": "forward",
@@ -16847,7 +16941,7 @@
     },
     {
       "source": "function:src/context/validation.ts:validateSessionState",
-      "target": "function:src/context/validation.ts:literal",
+      "target": "function:src/context/validation.ts:sameStringList",
       "type": "calls",
       "direction": "forward",
       "weight": 0.8
@@ -16911,6 +17005,41 @@
     {
       "source": "function:src/context/validation.ts:contextReferences",
       "target": "function:src/context/validation.ts:requiredString",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/context/validation.ts:sessionExecutionScope",
+      "target": "function:src/context/validation.ts:recordValue",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/context/validation.ts:sessionExecutionScope",
+      "target": "function:src/context/validation.ts:exactKeys",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/context/validation.ts:sessionExecutionScope",
+      "target": "function:src/context/validation.ts:literal",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/context/validation.ts:sessionExecutionScope",
+      "target": "function:src/context/validation.ts:requiredString",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/context/validation.ts:sessionExecutionScope",
+      "target": "function:src/context/validation.ts:stringList",
       "type": "calls",
       "direction": "forward",
       "weight": 0.8
@@ -29644,13 +29773,6 @@
     {
       "source": "file:website/examples/d1/app/api/notes/route.ts",
       "target": "file:website/examples/d1/db/schema.ts",
-      "type": "imports",
-      "direction": "forward",
-      "weight": 0.7
-    },
-    {
-      "source": "file:website/vite.config.ts",
-      "target": "config:website/.openai/hosting.json",
       "type": "imports",
       "direction": "forward",
       "weight": 0.7

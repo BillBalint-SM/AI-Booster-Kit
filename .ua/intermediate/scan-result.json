@@ -1,6 +1,6 @@
 {
   "scriptCompleted": true,
-  "contentDigest": "6f5dcaf6f8dba03b2eed2e84a5ff089896b3dba9a153a5d78739ec346f6bba5d",
+  "contentDigest": "2d14c62a8b888808bffd60fb4b091cb4c4b830f8b6e256ffe71709c3d43e99fd",
   "files": [
     {
       "path": ".github/pull_request_template.md",
@@ -251,7 +251,7 @@
     {
       "path": "docs/project/current-state.md",
       "language": "markdown",
-      "sizeLines": 73,
+      "sizeLines": 77,
       "fileCategory": "docs"
     },
     {
@@ -431,13 +431,13 @@
     {
       "path": "src/context/markdown.ts",
       "language": "typescript",
-      "sizeLines": 173,
+      "sizeLines": 175,
       "fileCategory": "code"
     },
     {
       "path": "src/context/resume.ts",
       "language": "typescript",
-      "sizeLines": 77,
+      "sizeLines": 95,
       "fileCategory": "code"
     },
     {
@@ -449,13 +449,13 @@
     {
       "path": "src/context/types.ts",
       "language": "typescript",
-      "sizeLines": 96,
+      "sizeLines": 107,
       "fileCategory": "code"
     },
     {
       "path": "src/context/validation.ts",
       "language": "typescript",
-      "sizeLines": 179,
+      "sizeLines": 207,
       "fileCategory": "code"
     },
     {
@@ -845,19 +845,19 @@
     {
       "path": "test/context-markdown.test.ts",
       "language": "typescript",
-      "sizeLines": 76,
+      "sizeLines": 80,
       "fileCategory": "code"
     },
     {
       "path": "test/context-storage-cli.test.ts",
       "language": "typescript",
-      "sizeLines": 124,
+      "sizeLines": 125,
       "fileCategory": "code"
     },
     {
       "path": "test/context-validation.test.ts",
       "language": "typescript",
-      "sizeLines": 89,
+      "sizeLines": 95,
       "fileCategory": "code"
     },
     {
@@ -1175,7 +1175,7 @@
     {
       "path": "test/session-state.test.ts",
       "language": "typescript",
-      "sizeLines": 91,
+      "sizeLines": 110,
       "fileCategory": "code"
     },
     {
