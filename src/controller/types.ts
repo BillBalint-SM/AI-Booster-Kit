@@ -366,6 +366,61 @@ export interface QuickTaskActivationInput {
   dependencies: LinkDeclaration;
 }
 
+export type RetentionScope = "EPHEMERAL" | "PERSONAL" | "TEAM";
+export type ActivationContextKind = "EPIC" | "MILESTONE";
+
+export interface ContextReference {
+  kind: ActivationContextKind;
+  contextId: string;
+  sourceRevision: string;
+}
+
+export type TuningRequest = { state: "NONE" } | { state: "REQUESTED"; change: string; rationale: string };
+
+export interface ActivationSetupSnapshot {
+  recipeId: string;
+  recipeVersion: string;
+  variantId: string;
+  fingerprint: string;
+}
+
+export interface ActivationBoundaryInput {
+  basePackage: QuickTaskActivationPackage;
+  context: ContextReference;
+  retention: RetentionScope;
+  tuning: TuningRequest;
+  setupSnapshot: ActivationSetupSnapshot;
+}
+
+export interface ActivationBoundaryPackage {
+  activationVersion: "2.0";
+  state: "ACTIVATION_PACKAGE_PREPARED";
+  packageId: string;
+  retention: RetentionScope;
+  context: ContextReference;
+  basePackage: QuickTaskActivationPackage;
+  tuning: TuningRequest;
+  setupSnapshot: ActivationSetupSnapshot;
+  rollback: {
+    state: "AVAILABLE";
+    restoreSetupFingerprint: string;
+  };
+  operations: {
+    packagePrepared: true;
+    hostActivationPerformed: false;
+    artifactGenerationPerformed: false;
+    persistencePerformed: false;
+  };
+}
+
+export interface ActivationSaveResult {
+  state: "PERSONAL_PACKAGE_SAVED" | "TEAM_PACKAGE_SAVED";
+  packageId: string;
+  retention: "PERSONAL" | "TEAM";
+  targetPath: string;
+  persistencePerformed: true;
+}
+
 export interface ActivationProfileContract {
   requiredSections: readonly string[];
   unknownPolicy: "PRESERVE_AS_UNKNOWN";

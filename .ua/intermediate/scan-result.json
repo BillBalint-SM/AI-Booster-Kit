@@ -1,6 +1,6 @@
 {
   "scriptCompleted": true,
-  "contentDigest": "21fd845352bbc70f2e86f27c2c9f3c0140a15a88a12ec0a345ebe31306cc1728",
+  "contentDigest": "c08686995b44e4c0b012da10f2d760598ef5ff536678b7fbd577a3df8ffc0047",
   "files": [
     {
       "path": ".github/pull_request_template.md",
@@ -251,7 +251,7 @@
     {
       "path": "docs/project/current-state.md",
       "language": "markdown",
-      "sizeLines": 62,
+      "sizeLines": 63,
       "fileCategory": "docs"
     },
     {
@@ -269,7 +269,7 @@
     {
       "path": "docs/runbooks/branching.md",
       "language": "markdown",
-      "sizeLines": 89,
+      "sizeLines": 91,
       "fileCategory": "docs"
     },
     {

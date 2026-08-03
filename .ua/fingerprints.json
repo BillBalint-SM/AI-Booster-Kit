@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "gitCommitHash": "a61101ef473ada13065ee67cc6a40a9a520a5652",
-  "generatedAt": "2026-08-02T05:33:39.683Z",
+  "gitCommitHash": "a08b2bc6daceffbddfab54f0ab8888f52f50a267",
+  "generatedAt": "2026-08-02T06:13:25.087Z",
   "files": {
     ".github/pull_request_template.md": {
       "filePath": ".github/pull_request_template.md",
@@ -35,7 +35,7 @@
     },
     "AGENTS.md": {
       "filePath": "AGENTS.md",
-      "contentHash": "6c096de7c0d83639452b22b2f922f14717e79798d8d3b9bcf357a69590da35bb",
+      "contentHash": "9e1842579599f3a293c7e5edf59c5830db7938ab352a19f5e8b8458ce498727e",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -436,17 +436,17 @@
     },
     "docs/project/current-state.md": {
       "filePath": "docs/project/current-state.md",
-      "contentHash": "ff483894f755b805ea8c1fa80780db1de9350433cd5f73cfe53e273402e724c6",
+      "contentHash": "fda95fe1e444b46892a6e90eaf84aa71a33e09a3bc03605d64dcad65d42f5274",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 63,
+      "totalLines": 64,
       "hasStructuralAnalysis": true
     },
     "docs/project/documentation-map.md": {
       "filePath": "docs/project/documentation-map.md",
-      "contentHash": "8b6daef4edaf0835b484ff60e03edacaa4821cfb794579c25926882c6d7bf7d4",
+      "contentHash": "22dc485aeadbb7a64d523f649a8a84a468439c66b1d475cc11911c82613d84a0",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -466,12 +466,12 @@
     },
     "docs/runbooks/branching.md": {
       "filePath": "docs/runbooks/branching.md",
-      "contentHash": "afc69c38affb6c8b17097545732b95776bc83a1cd5da478afb4ed3ff9179d526",
+      "contentHash": "be8bc0fc0ead2f49ab7df09abe771c4ae126b6dd62ef21d43724783d2148aeab",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 90,
+      "totalLines": 92,
       "hasStructuralAnalysis": true
     },
     "docs/runbooks/g2as-sandbox-readiness-certificate.md": {
