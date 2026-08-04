@@ -14,6 +14,8 @@ import { loadProjectProfile } from "../src/lifecycle/profile.js";
 import { runImplementationStartCheck } from "../src/lifecycle/start-check.js";
 import { finalizeMilestone } from "../src/planning/finalize.js";
 import { SyncOrchestrator } from "../src/orchestrator/sync.js";
+import { evaluateSessionResume } from "../src/context/resume.js";
+import type { EpicContext, MilestoneContext, ResumeRuntime, SessionState } from "../src/context/types.js";
 
 const profile = loadProjectProfile("test/fixtures/project-profile.json");
 const target = {
@@ -296,3 +298,27 @@ function runCli(args: string[]): Promise<{ exitCode: number; stdout: string; std
     child.on("close", (code) => resolve({ exitCode: code ?? 1, stdout, stderr }));
   });
 }
+
+test("e2e: one Milestone context isolates parallel Epic developer resumes and revision changes stop both", () => {
+  const m3Milestone: MilestoneContext = {
+    contextVersion: "1.0", kind: "MILESTONE", contextId: "milestone-context-m3", sourceRevision: "m3-revision-1", owner: "product-owner", retention: "TEAM", state: "ACCEPTED", readScope: "FULL_MILESTONE", writeAuthority: "ARTIFACT_OWNER_THROUGH_APPROVED_PR", milestoneId: "milestone-m3", canonicalArtifactId: "artifact-m3", projectVision: "Portable resumable work.", roadmap: "M3", scope: ["session context"], nonGoals: ["host execution"], decisions: ["share Milestone decisions"], forecast: ["two isolated Epics"], evidenceRefs: ["decision:m3"], unknowns: [], dependencies: ["contract:team-contract"], epicIds: ["epic-a", "epic-b"],
+  };
+  const makeEpic = (id: string, workItemId: string): EpicContext => ({
+    contextVersion: "1.0", kind: "EPIC", contextId: id, sourceRevision: "m3-revision-1", owner: "engineering", retention: "TEAM", state: "ACCEPTED", readScope: "FULL_MILESTONE", writeAuthority: "ARTIFACT_OWNER_THROUGH_APPROVED_PR", epicId: id, milestoneId: "milestone-m3", outcome: `Deliver ${id}.`, featureValue: `Value ${id}.`, scope: [id], nonGoals: ["cross-Epic changes"], workItemIds: [workItemId], acceptanceCriteria: ["resume is isolated"], decisions: ["use current context"], evidenceRefs: ["test:m3-e2e"], unknowns: [], dependencies: ["milestone:milestone-m3"],
+  });
+  const epicA = makeEpic("epic-a", "story-a");
+  const epicB = makeEpic("epic-b", "story-b");
+  const runtime: ResumeRuntime = { repository: "BillBalint-SM/AI-Booster-Kit", branch: "dev-m3-session-state", worktree: "C:/worktrees/m3", baseRevision: "a3df0d99", currentSetupFingerprint: "setup-m3" };
+  const makeDeveloperSession = (sessionId: string, epic: EpicContext, workItemId: string): SessionState => ({
+    sessionVersion: "1.0", sessionId, owner: "engineering", retention: "TEAM", readScope: "FULL_MILESTONE", executionScope: { kind: "EPIC", contextId: epic.contextId, workItemIds: [workItemId] }, writeAuthority: "ARTIFACT_OWNER_THROUGH_APPROVED_PR", contextReferences: [{ kind: "MILESTONE", contextId: "milestone-context-m3", sourceRevision: "m3-revision-1" }, { kind: "EPIC", contextId: epic.contextId, sourceRevision: "m3-revision-1" }], workItemIds: [workItemId], activationPackageId: "activation-m3", recipe: { recipeId: "bounded-implementation", recipeVersion: "0.1.0", variantId: "base" }, setupFingerprint: "setup-m3", status: "PAUSED", decisions: [], evidenceRefs: ["test:m3-e2e"], unknowns: [], deviations: [], dependencies: [], progress: [], nextAction: `Continue ${epic.contextId}.`, execution: { repository: "BillBalint-SM/AI-Booster-Kit", branch: "dev-m3-session-state", worktree: "C:/worktrees/m3", baseRevision: "a3df0d99" },
+  });
+  const developerA = makeDeveloperSession("session-a", epicA, "story-a");
+  const developerB = makeDeveloperSession("session-b", epicB, "story-b");
+
+  assert.equal(evaluateSessionResume(developerA, [m3Milestone, epicA, epicB], runtime).decision, "RESUME");
+  assert.equal(evaluateSessionResume(developerB, [m3Milestone, epicA, epicB], runtime).decision, "RESUME");
+  assert.equal(evaluateSessionResume(developerA, [m3Milestone, epicB], runtime).decision, "STOPPED");
+  assert.equal(evaluateSessionResume(developerA, [{ ...m3Milestone, sourceRevision: "m3-revision-2" }, epicA, epicB], runtime).decision, "STOPPED");
+  assert.equal(evaluateSessionResume(developerB, [{ ...m3Milestone, sourceRevision: "m3-revision-2" }, epicA, epicB], runtime).decision, "STOPPED");
+  assert.deepEqual(m3Milestone.decisions, ["share Milestone decisions"]);
+});
