@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "gitCommitHash": "0ba6076302441e951801a8caeebd3ec85f7266e7",
-  "generatedAt": "2026-08-04T09:14:25.202Z",
+  "gitCommitHash": "b2446a6fe9ebcc16032f2d13249cde9b4b28f140",
+  "generatedAt": "2026-08-04T16:28:21.763Z",
   "files": {
     ".github/pull_request_template.md": {
       "filePath": ".github/pull_request_template.md",
@@ -65,12 +65,12 @@
     },
     "README.md": {
       "filePath": "README.md",
-      "contentHash": "f7c50f03423f9a0ebc4bc034d715e1e3bd211c9e9816583dd564463637ced801",
+      "contentHash": "ae3b022edcaaa7cab27c808631911e748a7fe8b2bdedaf8141db7f67f684500d",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 77,
+      "totalLines": 76,
       "hasStructuralAnalysis": true
     },
     "cli.ts": {
@@ -436,12 +436,12 @@
     },
     "docs/project/current-state.md": {
       "filePath": "docs/project/current-state.md",
-      "contentHash": "09cf6b74bec3fec6752e22923aacc3826ac627a4fa284689ec5ad0c02c2091f9",
+      "contentHash": "85e3ca1981423e8d13a5374ff1da0cc4c540088ace13b8e85e85f715a4987e02",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 86,
+      "totalLines": 97,
       "hasStructuralAnalysis": true
     },
     "docs/project/documentation-map.md": {
@@ -456,12 +456,12 @@
     },
     "docs/project/roadmap.md": {
       "filePath": "docs/project/roadmap.md",
-      "contentHash": "2740e408c3d68a9e6a6e2550d80b18a2b9b0515dc18b8c374f280e67a9a3aa8d",
+      "contentHash": "7a3f58721c061f82964d341cc80e7034b41435861c4e20fe0007bb84a82bac2d",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 456,
+      "totalLines": 457,
       "hasStructuralAnalysis": true
     },
     "docs/runbooks/branching.md": {
@@ -506,7 +506,7 @@
     },
     "marketing/README.md": {
       "filePath": "marketing/README.md",
-      "contentHash": "3d97f0bb2c3f98757d5ae8f57dd35330eec0aed67d53e86bd8e27bf4bdca662e",
+      "contentHash": "03396033d4fae769e954a1b41b1ee0f5db2de84ed275e5be4cd6734054435e2a",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -516,7 +516,7 @@
     },
     "marketing/assets/README.md": {
       "filePath": "marketing/assets/README.md",
-      "contentHash": "fd8c24b9d3edb0558b9db5385f1ae087ba379afdb99d66b71f0107e489ecc9cf",
+      "contentHash": "5bd543950fc84abd3cc53b8ac03ec00c45da3a52fd99c5f60704f32a7d74eea6",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -526,7 +526,7 @@
     },
     "marketing/brand-prototype.md": {
       "filePath": "marketing/brand-prototype.md",
-      "contentHash": "e9899904b30d2d17128b934b209729ac5b2f1cb6cf9c246d3f45bfa323e876d7",
+      "contentHash": "730aeb9ea940d64c0788e22c56d00ab2c7ed50a2263ab39cc61bc96f0897bf70",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -536,7 +536,7 @@
     },
     "marketing/design/tokens.css": {
       "filePath": "marketing/design/tokens.css",
-      "contentHash": "a58393149ba02ddec5b9e9e596eab08d35a0cd9d5e6e00a51eaf8a61f65074f6",
+      "contentHash": "c674af5784309ee103719eea41eec8cb05c56c4dcd683c59232f9e8661bbde46",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -546,7 +546,7 @@
     },
     "marketing/design/tokens.json": {
       "filePath": "marketing/design/tokens.json",
-      "contentHash": "93dd33c5a8cea1b2a4d789e132bcb1a0c7e20432d1abdc54e071defd3043136b",
+      "contentHash": "1186955ed2ed30760182301eff1958ed08c9b3b0bc473887d8d2e9567172bc9d",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -556,7 +556,7 @@
     },
     "marketing/naming-screening.md": {
       "filePath": "marketing/naming-screening.md",
-      "contentHash": "1ca911a888997516b73d5a413aa0e4110448efb8e67cf1b5bd24b0518443b828",
+      "contentHash": "10c6f4537cad489155bd86dd56924ee2947924c0241fe7f1afef6e53bde7853a",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -566,7 +566,7 @@
     },
     "marketing/research/2026-08-02-evobisen-screen.json": {
       "filePath": "marketing/research/2026-08-02-evobisen-screen.json",
-      "contentHash": "02a5199306d6a7b2a19b438baf63245574ee2cdeecbd4047437135765134b3b4",
+      "contentHash": "db28b971295f8450292f31e8be1b7e1b94d0c423705ca11e7406834ff8cdde8e",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -1182,7 +1182,7 @@
     },
     "src/cli.ts": {
       "filePath": "src/cli.ts",
-      "contentHash": "ee56b7e74775a5cdba7f4d59f253d54df015bf4af7ce5e98762b5d1c443f12e8",
+      "contentHash": "fac42f676afbb92a5c78da72847c4e2f3b376c1f44be911c10f1a84d479226aa",
       "functions": [
         {
           "name": "runCli",
@@ -1346,7 +1346,7 @@
           ],
           "returnType": "ResumeRuntime",
           "exported": false,
-          "lineCount": 12
+          "lineCount": 13
         },
         {
           "name": "plainContextRecord",
@@ -1377,6 +1377,16 @@
           "returnType": "string | null",
           "exported": false,
           "lineCount": 4
+        },
+        {
+          "name": "contextStringList",
+          "params": [
+            "value",
+            "label"
+          ],
+          "returnType": "readonly string[]",
+          "exported": false,
+          "lineCount": 6
         },
         {
           "name": "contextStorageCode",
@@ -1748,7 +1758,7 @@
       "exports": [
         "runCli"
       ],
-      "totalLines": 590,
+      "totalLines": 598,
       "hasStructuralAnalysis": true
     },
     "src/connectors/confluence.ts": {
@@ -2259,7 +2269,7 @@
     },
     "src/context/markdown.ts": {
       "filePath": "src/context/markdown.ts",
-      "contentHash": "88ebee62cbf3463f955c1719d72ff5f92e0f90160a4a3a0ae28a02b039f48a7b",
+      "contentHash": "494f8440ed99a57945d11568fe85bddb25dbfbe432e87ae8e7094bfc78b54759",
       "functions": [
         {
           "name": "parseWorkContext",
@@ -2307,7 +2317,7 @@
             "sourcePath"
           ],
           "exported": false,
-          "lineCount": 15
+          "lineCount": 16
         },
         {
           "name": "milestoneMetadata",
@@ -2489,12 +2499,12 @@
         "parseWorkContext",
         "serializeWorkContext"
       ],
-      "totalLines": 177,
+      "totalLines": 178,
       "hasStructuralAnalysis": true
     },
     "src/context/resume.ts": {
       "filePath": "src/context/resume.ts",
-      "contentHash": "854ce635be2cfded3b4d9addfa71a59d7388be6c2735de934927d68bcdf1a040",
+      "contentHash": "1a1bdebf224927cf2f0cc4e6ddc1becd72e048292321673a121839c52862490f",
       "functions": [
         {
           "name": "evaluateSessionResume",
@@ -2505,7 +2515,19 @@
           ],
           "returnType": "ResumeResult",
           "exported": true,
-          "lineCount": 34
+          "lineCount": 38
+        },
+        {
+          "name": "validateEvidence",
+          "params": [
+            "state",
+            "milestone",
+            "epic",
+            "runtime"
+          ],
+          "returnType": "ResumeResult | undefined",
+          "exported": false,
+          "lineCount": 14
         },
         {
           "name": "validateExecutionScope",
@@ -2600,7 +2622,7 @@
       "exports": [
         "evaluateSessionResume"
       ],
-      "totalLines": 105,
+      "totalLines": 124,
       "hasStructuralAnalysis": true
     },
     "src/context/storage.ts": {
@@ -2859,7 +2881,7 @@
     },
     "src/context/types.ts": {
       "filePath": "src/context/types.ts",
-      "contentHash": "6b4aaaf20640576e09ef62bc088b370f93848865f2da38204efa11adeb66bef8",
+      "contentHash": "585feb900ede108ed37bec7ead9c4f3c6fffe9c05d7422aa04264482094cbfd2",
       "functions": [],
       "classes": [
         {
@@ -2867,9 +2889,11 @@
           "methods": [
             "constructor"
           ],
-          "properties": [],
+          "properties": [
+            "code"
+          ],
           "exported": true,
-          "lineCount": 6
+          "lineCount": 9
         }
       ],
       "imports": [
@@ -2886,12 +2910,12 @@
         "RetentionScope",
         "ContextError"
       ],
-      "totalLines": 109,
+      "totalLines": 113,
       "hasStructuralAnalysis": true
     },
     "src/context/validation.ts": {
       "filePath": "src/context/validation.ts",
-      "contentHash": "7080c559c4193372ef69b376bc5b32cc19851d027ee3d4ff3adfa5a7c85199c8",
+      "contentHash": "c9b0126284e86c55273a2839d95d57298f4f7760cc230624ef74ed8615cbadef",
       "functions": [
         {
           "name": "validateMilestoneContext",
@@ -2901,7 +2925,7 @@
           ],
           "returnType": "void",
           "exported": true,
-          "lineCount": 14
+          "lineCount": 15
         },
         {
           "name": "validateEpicContext",
@@ -2930,7 +2954,7 @@
           ],
           "returnType": "SessionState",
           "exported": true,
-          "lineCount": 53
+          "lineCount": 54
         },
         {
           "name": "validateEpicShape",
@@ -2950,6 +2974,15 @@
           "returnType": "void",
           "exported": false,
           "lineCount": 11
+        },
+        {
+          "name": "assertSafeSessionContent",
+          "params": [
+            "record"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 14
         },
         {
           "name": "assertNonEmpty",
@@ -3106,7 +3139,7 @@
         "validateEpicContext",
         "validateSessionState"
       ],
-      "totalLines": 209,
+      "totalLines": 226,
       "hasStructuralAnalysis": true
     },
     "src/contract/compile.ts": {
@@ -3777,7 +3810,7 @@
     },
     "src/controller/activation-storage.ts": {
       "filePath": "src/controller/activation-storage.ts",
-      "contentHash": "f8e160ac13ed2cfb788c83b80d94f56a883220ecabcfcd0c68c71fdadd7ba954",
+      "contentHash": "137bdbc72db13b326094ee30787ecb27f1d6acf8eca63826c226412ed93d9a59",
       "functions": [
         {
           "name": "saveActivationPackage",
@@ -3797,7 +3830,7 @@
           ],
           "returnType": "PersistedRetention",
           "exported": false,
-          "lineCount": 31
+          "lineCount": 32
         },
         {
           "name": "validateTarget",
@@ -3959,7 +3992,7 @@
       "exports": [
         "saveActivationPackage"
       ],
-      "totalLines": 200,
+      "totalLines": 201,
       "hasStructuralAnalysis": true
     },
     "src/controller/checkpoint.ts": {
@@ -5292,7 +5325,7 @@
     },
     "src/controller/types.ts": {
       "filePath": "src/controller/types.ts",
-      "contentHash": "21a2fb1be6e22c33f9dfd0ec7f37542fd24cfcd27490443fe864ffcfefa87a2e",
+      "contentHash": "99354940bd70116e67f256f393f9cc6e814c8bdab59a7bc36520211f6d4e6670",
       "functions": [],
       "classes": [
         {
@@ -5300,16 +5333,18 @@
           "methods": [
             "constructor"
           ],
-          "properties": [],
+          "properties": [
+            "code"
+          ],
           "exported": true,
-          "lineCount": 6
+          "lineCount": 9
         }
       ],
       "imports": [],
       "exports": [
         "ControllerActivationPackageError"
       ],
-      "totalLines": 494,
+      "totalLines": 497,
       "hasStructuralAnalysis": true
     },
     "src/docs/links.ts": {
@@ -10224,7 +10259,7 @@
     },
     "test/context-storage-cli.test.ts": {
       "filePath": "test/context-storage-cli.test.ts",
-      "contentHash": "1963340174cd7dd957dd90fea93d37afb30632afac7868b3cc3f67763a04de72",
+      "contentHash": "a9c3fc04d4720d632dc2367e344a5e686885799a8f4a14ba5951997bcc3ea132",
       "functions": [
         {
           "name": "withTemporaryDirectory",
@@ -10311,12 +10346,12 @@
         }
       ],
       "exports": [],
-      "totalLines": 126,
+      "totalLines": 136,
       "hasStructuralAnalysis": true
     },
     "test/context-validation.test.ts": {
       "filePath": "test/context-validation.test.ts",
-      "contentHash": "32278f2475470be5b6cace26c74a939815cd12a83ca79eddeed3ce5c402d990c",
+      "contentHash": "51082468fd034c26196edca608b295ccc15f957a8bc68a3279252bd6d915696d",
       "functions": [],
       "classes": [],
       "imports": [
@@ -10360,7 +10395,7 @@
         }
       ],
       "exports": [],
-      "totalLines": 109,
+      "totalLines": 110,
       "hasStructuralAnalysis": true
     },
     "test/contract.test.ts": {
@@ -10427,7 +10462,7 @@
     },
     "test/controller-activation-boundary-cli.test.ts": {
       "filePath": "test/controller-activation-boundary-cli.test.ts",
-      "contentHash": "4eaf46cc38ec0fd77eb9449ead75c6c82cd34e10a82fbe8bf30a4314eee0daea",
+      "contentHash": "5bb8ec438a6bb0cb95c43835e457968d04ba8f9fe40a252721510e78952197f1",
       "functions": [
         {
           "name": "prepareArgs",
@@ -11506,7 +11541,7 @@
     },
     "test/e2e.test.ts": {
       "filePath": "test/e2e.test.ts",
-      "contentHash": "8e60415581e0cbe183de2ec23bb3682f46ead901f1850569faa3162c3e985e2d",
+      "contentHash": "eff84006fce4fb863b45677461fb4945479cbcf5bfe940975463e951ebe71899",
       "functions": [
         {
           "name": "createOrchestrator",
@@ -13226,7 +13261,7 @@
     },
     "test/session-state.test.ts": {
       "filePath": "test/session-state.test.ts",
-      "contentHash": "5f2cf5ce2d29f8433e818d67aad6c95fbc7a9c2778fe4beaacebc8d91ed18d37",
+      "contentHash": "3836c39c3bfceee605fe44a5ca1f6f5231202de8e96617449f4ff69ce045cc41",
       "functions": [],
       "classes": [],
       "imports": [
@@ -13265,7 +13300,7 @@
         }
       ],
       "exports": [],
-      "totalLines": 128,
+      "totalLines": 140,
       "hasStructuralAnalysis": true
     },
     "test/team-delivery.test.ts": {

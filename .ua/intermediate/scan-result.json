@@ -1,6 +1,6 @@
 {
   "scriptCompleted": true,
-  "contentDigest": "38a419178d83a14133cc094a544eb4f0d7dcedf778339b40199c5051009b21d8",
+  "contentDigest": "3e4287633b7594afe30bfb38c389da960c6df94ec7ab3ee2dae4a82ac3524fc4",
   "files": [
     {
       "path": ".github/pull_request_template.md",
@@ -41,7 +41,7 @@
     {
       "path": "README.md",
       "language": "markdown",
-      "sizeLines": 76,
+      "sizeLines": 75,
       "fileCategory": "docs"
     },
     {
@@ -251,7 +251,7 @@
     {
       "path": "docs/project/current-state.md",
       "language": "markdown",
-      "sizeLines": 85,
+      "sizeLines": 96,
       "fileCategory": "docs"
     },
     {
@@ -263,7 +263,7 @@
     {
       "path": "docs/project/roadmap.md",
       "language": "markdown",
-      "sizeLines": 455,
+      "sizeLines": 456,
       "fileCategory": "docs"
     },
     {
@@ -401,7 +401,7 @@
     {
       "path": "src/cli.ts",
       "language": "typescript",
-      "sizeLines": 589,
+      "sizeLines": 597,
       "fileCategory": "code"
     },
     {
@@ -437,13 +437,13 @@
     {
       "path": "src/context/markdown.ts",
       "language": "typescript",
-      "sizeLines": 176,
+      "sizeLines": 177,
       "fileCategory": "code"
     },
     {
       "path": "src/context/resume.ts",
       "language": "typescript",
-      "sizeLines": 104,
+      "sizeLines": 123,
       "fileCategory": "code"
     },
     {
@@ -461,13 +461,13 @@
     {
       "path": "src/context/types.ts",
       "language": "typescript",
-      "sizeLines": 108,
+      "sizeLines": 112,
       "fileCategory": "code"
     },
     {
       "path": "src/context/validation.ts",
       "language": "typescript",
-      "sizeLines": 208,
+      "sizeLines": 225,
       "fileCategory": "code"
     },
     {
@@ -503,7 +503,7 @@
     {
       "path": "src/controller/activation-storage.ts",
       "language": "typescript",
-      "sizeLines": 199,
+      "sizeLines": 200,
       "fileCategory": "code"
     },
     {
@@ -569,7 +569,7 @@
     {
       "path": "src/controller/types.ts",
       "language": "typescript",
-      "sizeLines": 493,
+      "sizeLines": 496,
       "fileCategory": "code"
     },
     {
@@ -863,13 +863,13 @@
     {
       "path": "test/context-storage-cli.test.ts",
       "language": "typescript",
-      "sizeLines": 125,
+      "sizeLines": 135,
       "fileCategory": "code"
     },
     {
       "path": "test/context-validation.test.ts",
       "language": "typescript",
-      "sizeLines": 108,
+      "sizeLines": 109,
       "fileCategory": "code"
     },
     {
@@ -1187,7 +1187,7 @@
     {
       "path": "test/session-state.test.ts",
       "language": "typescript",
-      "sizeLines": 127,
+      "sizeLines": 139,
       "fileCategory": "code"
     },
     {
