@@ -5,14 +5,25 @@ short and must not become a second roadmap, transcript, or historical report.
 
 ## Branch and pull request
 
-`feature` is the active accumulation branch; its exact revision is verified by
-the work-state preflight at each delivery boundary.
-M2 was integrated through [PR #40](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/40),
-M3 through [PR #41](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/41), and
-the routing/mapper state through [PR #42](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/42).
-The prior `feature → main` promotion is [PR #39](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/39).
-Every next bounded slice must use a unique `dev-<scope>` branch and must not
-target `main` directly.
+The current published delivery state is `main`, equal to `origin/main`; its
+exact SHA, worktree, and pull-request status are verified by the work-state
+preflight at each delivery boundary. M2 was integrated through
+[PR #40](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/40), M3 through
+[PR #41](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/41), and the
+routing/mapper state through
+[PR #42](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/42). The later
+main promotions are [PR #43](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/43)
+(context and activation hardening),
+[PR #44](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/44) (Agent Profile
+library), [PR #45](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/45)
+(Agent–Role and Formation coverage), and
+[PR #46](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/46) (mapper
+refresh after that coverage).
+
+The next bounded slice must start from this synchronized `main` in a fresh
+feature stream, use a unique `dev-<scope>` branch, and follow the approved
+`dev → feature → main` delivery path. Historical or host-specific branches do
+not represent current canonical product state.
 
 ## Completed deliverable
 
@@ -27,7 +38,13 @@ debugging. M1-B adds deterministic scenario recognition and explainable,
 recommendation-only output with stable structural identity. The read-only
 `recommend-formation` CLI command exposes all five profile paths as `RECOMMEND`
 when all required profile input is present and preserves `UNKNOWN` otherwise,
-without changing Quick Task checkpoint or activation behavior.
+without changing Quick Task checkpoint or activation behavior. The user-facing
+Agent Profile library now exposes 24 selectable profiles without copying
+developer-instruction bodies. The Role catalog and Formation catalog add
+many-to-many Agent–Role coverage, isolated context assignments, and bindings
+for the six declared formations. The read-only `inspect-agent-library` and
+`list-agent-profiles` CLI paths expose these projections without activation or
+external writes.
 
 ## Validation
 
@@ -40,23 +57,21 @@ declared owner-approved-PR requirement for canonical artifacts. The local
 saver does not inspect Git history, branch ownership, or PR approval. The
 focused M3 review hardening adds runtime validation for the Milestone envelope
 and current execution scope. The current implementation full-suite evidence is
-334/334 under the available
-local Node v26.4.0 runtime.
-`npm run build`, `npm run lint`, `npm run check:docs`, and `git diff --check` pass.
+357/357 under the available local Node v26.4.0 runtime.
+`npm run build`, `npm run lint`, `npm run check:docs`,
+`npm run check:mappers`, and `git diff --check` pass.
 The package declares Node 22.x; local Node 26 is not the declared runtime, so
 local results remain local evidence. M2 behavior remains local and
 deterministic: no host runtime, generated host artifact, connector call,
 external read, Git operation, or publication is performed.
 
 The committed Graphify and Understand Anything snapshots identify the same
-stable source revision and previously passed `npm run check:mappers`. The
-refresh used Graphify code-only extraction and UA deterministic local structural
-extraction; no semantic-extraction backend or credentialed external analysis was
-invoked. The current worktree contains uncommitted source changes, so the
-mapper gate correctly reports `MAPPER_FRESHNESS=NOT_READY` until a reviewed
-stable revision is created. Its source revision, current HEAD relationship, and
-publication boundary remain governed by the mapper runbook and this
-current-state record.
+stable source revision `3a05a35586ad644f30d149f1fe259dd27130c6f4`; the current
+HEAD is `74105a270431c7d64f5995af6154130412ac1676`, and
+`MAPPER_FRESHNESS=READY`. The refresh used Graphify code-only extraction and UA
+deterministic local structural extraction; no semantic-extraction backend or
+credentialed external analysis was invoked. Mapper output remains a navigation
+projection, not an activation or publication authority.
 
 ## Known limit
 
@@ -73,10 +88,12 @@ execution, evaluation/evolve, debugging context injection, and lifecycle
 synchronization remain future work. M2 and the local M3 slice are
 `COMPLETE_WITH_LIMIT`: they never activate an Agent or perform external work.
 Mapper freshness remains commit-relative and is a navigation projection only.
-The committed M3 slice is published in the active `feature` stream; the current
-hardening changes remain local review state. No `feature →
-main` promotion is implied; the next delivery must start from synchronized
-`feature` on a new, uniquely named dev branch.
+The Agent Profile, Role, and Formation catalogs remain read-only product
+projections; host-specific `.codex/agents` prompt files are not canonical
+runtime activation and are intentionally outside the current main delivery.
+Host adaptation and native execution are not claimed by the current main
+state. Canonical artifact writes still require the owner-approved PR flow; the
+local saver does not enforce that authority.
 Mapper output remains a navigation projection; source, tests, and Git review
 remain authoritative.
 
@@ -88,9 +105,10 @@ specific approval, bounded authority, and source-native read-back.
 
 ## Next bounded action
 
-Create the next unique dev slice from synchronized `feature` for M4 design and
-Codex-first host-conformance planning after explicit scope selection. The M4
-slice must prove native loading/read-back and the execution boundary before any
-host activation; no external write or `feature → main` promotion is authorized
-by this state alone.
+Create the next feature stream from synchronized `main` for the approved M4-A
+design and Codex-first host-conformance planning. The M4-A slice must define
+native loading/read-back, scoped identity, effective tool boundaries, and the
+execution evidence contract before any host activation. No host activation,
+semantic-extraction backend, connector write, or automatic Git operation is
+authorized by this state alone.
 
