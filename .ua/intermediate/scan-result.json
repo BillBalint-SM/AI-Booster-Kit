@@ -1,6 +1,6 @@
 {
   "scriptCompleted": true,
-  "contentDigest": "21fd845352bbc70f2e86f27c2c9f3c0140a15a88a12ec0a345ebe31306cc1728",
+  "contentDigest": "3e4287633b7594afe30bfb38c389da960c6df94ec7ab3ee2dae4a82ac3524fc4",
   "files": [
     {
       "path": ".github/pull_request_template.md",
@@ -41,7 +41,7 @@
     {
       "path": "README.md",
       "language": "markdown",
-      "sizeLines": 74,
+      "sizeLines": 75,
       "fileCategory": "docs"
     },
     {
@@ -251,25 +251,25 @@
     {
       "path": "docs/project/current-state.md",
       "language": "markdown",
-      "sizeLines": 62,
+      "sizeLines": 96,
       "fileCategory": "docs"
     },
     {
       "path": "docs/project/documentation-map.md",
       "language": "markdown",
-      "sizeLines": 63,
+      "sizeLines": 67,
       "fileCategory": "docs"
     },
     {
       "path": "docs/project/roadmap.md",
       "language": "markdown",
-      "sizeLines": 408,
+      "sizeLines": 456,
       "fileCategory": "docs"
     },
     {
       "path": "docs/runbooks/branching.md",
       "language": "markdown",
-      "sizeLines": 89,
+      "sizeLines": 91,
       "fileCategory": "docs"
     },
     {
@@ -401,7 +401,7 @@
     {
       "path": "src/cli.ts",
       "language": "typescript",
-      "sizeLines": 341,
+      "sizeLines": 597,
       "fileCategory": "code"
     },
     {
@@ -429,6 +429,48 @@
       "fileCategory": "code"
     },
     {
+      "path": "src/context/identity.ts",
+      "language": "typescript",
+      "sizeLines": 12,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/context/markdown.ts",
+      "language": "typescript",
+      "sizeLines": 177,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/context/resume.ts",
+      "language": "typescript",
+      "sizeLines": 123,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/context/storage.ts",
+      "language": "typescript",
+      "sizeLines": 114,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/context/team-delivery.ts",
+      "language": "typescript",
+      "sizeLines": 91,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/context/types.ts",
+      "language": "typescript",
+      "sizeLines": 112,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/context/validation.ts",
+      "language": "typescript",
+      "sizeLines": 225,
+      "fileCategory": "code"
+    },
+    {
       "path": "src/contract/compile.ts",
       "language": "typescript",
       "sizeLines": 127,
@@ -447,9 +489,21 @@
       "fileCategory": "code"
     },
     {
+      "path": "src/controller/activation-boundary.ts",
+      "language": "typescript",
+      "sizeLines": 307,
+      "fileCategory": "code"
+    },
+    {
       "path": "src/controller/activation-package.ts",
       "language": "typescript",
       "sizeLines": 78,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/controller/activation-storage.ts",
+      "language": "typescript",
+      "sizeLines": 200,
       "fileCategory": "code"
     },
     {
@@ -491,7 +545,7 @@
     {
       "path": "src/controller/identity.ts",
       "language": "typescript",
-      "sizeLines": 32,
+      "sizeLines": 36,
       "fileCategory": "code"
     },
     {
@@ -515,7 +569,7 @@
     {
       "path": "src/controller/types.ts",
       "language": "typescript",
-      "sizeLines": 438,
+      "sizeLines": 496,
       "fileCategory": "code"
     },
     {
@@ -801,9 +855,39 @@
       "fileCategory": "code"
     },
     {
+      "path": "test/context-markdown.test.ts",
+      "language": "typescript",
+      "sizeLines": 81,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/context-storage-cli.test.ts",
+      "language": "typescript",
+      "sizeLines": 135,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/context-validation.test.ts",
+      "language": "typescript",
+      "sizeLines": 109,
+      "fileCategory": "code"
+    },
+    {
       "path": "test/contract.test.ts",
       "language": "typescript",
       "sizeLines": 268,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/controller-activation-boundary-cli.test.ts",
+      "language": "typescript",
+      "sizeLines": 224,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/controller-activation-boundary.test.ts",
+      "language": "typescript",
+      "sizeLines": 396,
       "fileCategory": "code"
     },
     {
@@ -816,6 +900,12 @@
       "path": "test/controller-activation-package.test.ts",
       "language": "typescript",
       "sizeLines": 134,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/controller-activation-storage.test.ts",
+      "language": "typescript",
+      "sizeLines": 217,
       "fileCategory": "code"
     },
     {
@@ -905,7 +995,7 @@
     {
       "path": "test/e2e.test.ts",
       "language": "typescript",
-      "sizeLines": 298,
+      "sizeLines": 324,
       "fileCategory": "code"
     },
     {
@@ -1095,6 +1185,18 @@
       "fileCategory": "code"
     },
     {
+      "path": "test/session-state.test.ts",
+      "language": "typescript",
+      "sizeLines": 139,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/team-delivery.test.ts",
+      "language": "typescript",
+      "sizeLines": 46,
+      "fileCategory": "code"
+    },
+    {
       "path": "tools/claude-context-integrity/test-verify.ps1",
       "language": "powershell",
       "sizeLines": 120,
@@ -1235,19 +1337,19 @@
     {
       "path": "workflows/team-delivery-loop.md",
       "language": "markdown",
-      "sizeLines": 158,
+      "sizeLines": 168,
       "fileCategory": "docs"
     }
   ],
-  "totalFiles": 206,
-  "filteredByIgnore": 78,
+  "totalFiles": 223,
+  "filteredByIgnore": 82,
   "estimatedComplexity": "large",
   "stats": {
-    "filesScanned": 206,
+    "filesScanned": 223,
     "byCategory": {
       "docs": 56,
       "infra": 1,
-      "code": 122,
+      "code": 139,
       "config": 23,
       "markup": 2,
       "script": 2
@@ -1256,7 +1358,7 @@
       "markdown": 56,
       "yaml": 1,
       "unknown": 1,
-      "typescript": 116,
+      "typescript": 133,
       "json": 23,
       "css": 2,
       "javascript": 5,

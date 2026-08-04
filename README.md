@@ -49,10 +49,11 @@ flowchart LR
 
 ## Product direction
 
-The next functional capability is the **Agent Framework Library and Recipe
-Controller v1**: a ready-to-use catalog of strongly characterized light and
-heavy formations. Automatic Jira–GitHub–Confluence synchronization is part of
-the long-term platform journey, but remains an optional later capability.
+The bounded Agent Framework Library and Recipe Controller foundation, M2
+activation boundary, and M3 context/session slice are implemented within local
+recommendation-only scope. The next bounded delivery is M4 design and
+Codex-first host-conformance planning. Automatic Jira–GitHub–Confluence
+synchronization remains an optional later capability.
 
 Read the [roadmap](docs/project/roadmap.md) for the complete reasoning and
 sequence. Read the [Team Delivery Loop](workflows/team-delivery-loop.md) for

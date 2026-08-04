@@ -87,6 +87,16 @@ Each workstream produces a handoff packet before transfer or fan-in with its ide
 
 Every Epic/Milestone fan-in has an `integration_owner`, a `review_owner`, an integration DoD, and a rollback plan. Agents may synthesize, test, or analyze handoffs; final integration acceptance remains human or team owned. Merge, publication, and external writes require their own explicit authority and are outside this workflow slice.
 
+The local M3 fan-in contract validates one handoff packet per linked Epic. Each
+packet carries `epicId`, `sourceRevision`, `owner`, `status`, delivered output,
+acceptance results, evidence references, unknowns, conflicts, and a next
+action. A packet may enter fan-in only with status `READY_FOR_FAN_IN`, matching
+the Milestone source revision, no unresolved unknowns, and no unresolved
+conflicts. `BLOCKED` and `STOPPED` packets fail closed. The contract also
+requires non-empty integration and review owners, integration DoD, and a
+rollback plan. This is a pure local validation boundary; it does not merge
+branches or verify GitHub/PR approval.
+
 ## 6. Controller recommendation and checkpoint
 
 The controller builds a concise recommendation brief with:

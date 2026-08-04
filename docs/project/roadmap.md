@@ -81,6 +81,13 @@ The roadmap uses the repository evidence vocabulary:
 | `UNKNOWN` | Evidence is insufficient; it must not be treated as safe or complete. |
 | `STOPPED` / `BLOCKED` | Work cannot proceed within the current scope or authority boundary. |
 
+Readiness is scope-relative. The roadmap may describe a local contract,
+recommendation-only behavior, package preparation, repository-file persistence,
+or pure resume as `READY` only when that scope is named explicitly. A row whose
+name still implies host execution, shared service storage, external authority,
+or synchronization remains `COMPLETE_WITH_LIMIT` until those larger behaviors
+have independent evidence.
+
 The views below answer different questions:
 
 - **Capability journey:** what the platform becomes over its lifetime.
@@ -101,19 +108,20 @@ the bounded slice is present, not that the complete product vision is finished.
 | Controller recommendation MVP | `COMPLETE_WITH_LIMIT` | `src/controller/`, `src/cli.ts`, formation catalog, scenario recommendation, five READY scenario recipes, and focused tests | Keep the ready Quick Task, research, validation, refinement, implementation, and debugging paths stable within recommendation-only scope. | `implements` Controller layer |
 | Human Checkpoint and Activation Intent | `COMPLETE_WITH_LIMIT` | `src/controller/checkpoint.ts`, `choice.ts`, `resolve.ts`, focused tests | Keep the checkpoint late, explicit, and side-effect-free until activation is separately authorized. | `depends_on` Controller; `protects` User consent |
 | Quick Task Clarifier/Validator recipe | `COMPLETE_WITH_LIMIT` | `contract/agent-library/quick-task-clarifier-validator.md` | Add more ready-to-use formations without changing this recipe implicitly. | `implements` first library entry |
-| Quick Task Activation Package | `COMPLETE_WITH_LIMIT` | `src/controller/activation-package.ts`, `src/cli.ts`, focused Controller tests, and the approved design/plan | Preserve the ephemeral, host-agnostic boundary; design host adaptation/execution or explicit package saving separately. | `depends_on` Human Checkpoint |
+| Quick Task Activation Package | `COMPLETE_WITH_LIMIT` | `src/controller/activation-package.ts`, `src/controller/activation-boundary.ts`, `src/controller/activation-storage.ts`, `src/cli.ts`, focused Controller/storage/CLI tests, and the approved design/plan | Preserve the host-agnostic boundary; host adaptation/execution and external publication remain separate. | `depends_on` Human Checkpoint |
 | Agent Framework Library and Recipe Controller v1 | `READY` within local recommendation-only scope | M1-A catalog/validator, M1-B scenario recognizer/recommendation, and five READY research/validation/refinement/implementation/debugging recipes with profile contracts provide the bounded foundation | Preserve the recommendation-only boundary; activation, tuning, persistence, iterative debugging tooling, and synchronization remain independent future tracks. | `depends_on` Controller; `enables` all later Agent tracks |
-| Activation, tuning, save-or-ephemeral choice | `NEXT` / `NOT EXECUTED` | Human checkpoint contract defines the boundary | Add explicit activation executor, tuning inputs, artifact lifecycle, and rollback. | `depends_on` Library v1 |
-| Compact session state and optional storage | `NEXT` / `NOT EXECUTED` | Session-state principles are defined in the workflow contract | Persist only resumable state, never a full transcript by default. | `supports` activation and evolve |
+| Activation, tuning, save-or-ephemeral choice | `COMPLETE_WITH_LIMIT` | M2 boundary builder, explicit Personal/Team saver, `prepare-activation`/`save-activation` CLI, positive/negative tests, full local suite, and the last stable-revision mapper refresh | Graphify and UA must identify the same stable source revision and `check:mappers` must pass; this is mapper freshness only, not M2, host-runtime, or publication readiness. Host adaptation/execution and external publication remain separate gates. | `depends_on` Library v1 |
+| Compact session state and optional storage | `COMPLETE_WITH_LIMIT` | `src/context/`, M3 Context CLI, focused tests, complete Milestone-bundle validation, PO-to-parallel-Epic resume evidence, and the explicit team scope contract | The team reads the complete Milestone bundle; each developer session executes only one Epic and its work items; canonical writes declare owner-approved PR authority but local storage does not enforce Git/PR approval. Host execution, automatic Git operations, and connectors remain separate. | `supports` activation and evolve |
 | Evaluation and `evolve` review | `LATER` / `NOT EXECUTED` | Accepted product direction and event vocabulary | Evaluate session outcomes and repeated `UNKNOWN` or +/- events; evolve one formation at a time. | `validates` active setup |
 | Debugging and iterative verification tooling | `LATER` / `NOT EXECUTED` | Product vision and debugging workflow direction | Build modify–run–verify probes and zero-configuration local context injection. | `supports` implementation and validation |
 | Jira–GitHub–Confluence lifecycle sync | `LATER` / `NOT EXECUTED` | Existing mapping/readiness contracts | Add only after internal contracts, evidence, consent, and read-back are strong; User opt-in. | `depends_on` Library, Controller, evidence, and authority model |
 
-The `NOW` item is intentionally the Agent Framework Library and Recipe
-Controller, not automatic cross-system synchronization. The library creates
-directly usable product value: a team can choose a suitable formation for
-refinement, research, planning, debugging, validation, or implementation before
-any connector is involved.
+The active delivery routing is maintained in `current-state.md`. The durable
+sequence above records the completed-with-limit M1, M2, and M3 slices and keeps
+M4 host activation planning separate from automatic cross-system
+synchronization. The library creates directly usable product value: a team can
+choose a suitable formation for refinement, research, planning, debugging,
+validation, or implementation before any connector is involved.
 
 ## 5. Product tracks and maturity
 
@@ -288,7 +296,7 @@ unknown condition.
 
 This sequence is intentionally outcome-oriented and has no calendar promise.
 
-### Now — M1: Agent Framework Library and Recipe Controller v1
+### Complete bounded slice — M1: Agent Framework Library and Recipe Controller v1
 
 Create the catalog and recipe contract, define light/heavy dimensions and
 prerequisites, add scenario recognition, and produce explainable
@@ -299,26 +307,50 @@ profiles are research, validation, refinement, implementation, and debugging.
 negative recommendation fixtures, and a reviewed implementation diff. This is
 READY only within local recommendation-only scope.
 
-### Next — M2: Activation and agent tuning boundary
+### Complete with limit — M2: Activation and agent tuning boundary
 
-Turn a User-approved intent into a scoped, host-agnostic activation/tuning
-artifact. Keep activation, generated files, saved packages, and external actions
-behind explicit boundaries.
+Turned a User-approved intent into a scoped, host-agnostic activation/tuning
+package with explicit save-or-ephemeral behavior. The local slice includes the
+pure boundary builder, rollback reference, Personal/Team storage, and strict
+CLI operations.
 
 **Exit evidence:** activation contract, one-at-a-time mutation rule, preserved
-prior setup, rollback test, and explicit save-versus-ephemeral behavior.
+prior setup, rollback test, explicit save-versus-ephemeral behavior, positive
+and negative tests, and M2-focused local evidence. The current full-suite count
+is maintained in `current-state.md`. This remains
+`COMPLETE_WITH_LIMIT` because no host runtime is activated and no external
+publication occurs. A passing mapper gate is a navigation freshness result;
+current branch and publication state remain operational facts in
+`current-state.md`.
 
-### Next — M3: Compact session state and optional storage
+### Complete with limit — M3: Compact session state and optional storage
 
-Allow a paused session to resume after days or weeks without accumulating dirty
-files or importing a full transcript into active context. Store only the
-canonical contract reference, goal, decisions, evidence pointers, unknowns,
-deviations, progress, and next action.
+Adds strict Milestone/Epic context Markdown, compact redaction-checked session
+state, explicit Personal/Team persistence, and pure resume validation. A PO
+can share one Milestone context with parallel Epic contexts; each developer
+resumes only the referenced Epic and a changed Milestone revision stops both
+parallel resumes.
 
-**Exit evidence:** resumable session-state schema, retention rule, redaction
-behavior, stale-state detection, and a successful resume/stop test.
+**Exit evidence:** resumable session-state schema, retention and redaction
+rules, complete Milestone-bundle validation, canonical artifact identity,
+explicit storage/CLI tests, parallel-Epic isolation, and pure handoff/fan-in
+evidence. This remains `COMPLETE_WITH_LIMIT`: it has no host execution,
+connector, automatic Git operation, PR approval enforcement, or transcript
+reconstruction.
 
-### Later — M4: Evaluation and `evolve`
+### Later — M4: Host Activation and Execution
+
+Activate one native host at a time, beginning with Codex, then Claude Code, then
+Cursor. Prove package consumption, scoped identity, effective tool boundary,
+structured results, timeout/partial failure, safe context injection, and
+host-observed read-back. This milestone is not satisfied by a declarative
+projection or a local event certificate.
+
+**Exit evidence:** independent host conformance and security evidence for each
+host, native loading/read-back, execution and failure contract, and explicit
+human approval at the activation boundary.
+
+### Later — M5: Evaluation and `evolve`
 
 Evaluate the session result and positive/negative events, including repeated
 `UNKNOWN` outcomes. A targeted `evolve` review may tune one formation at a time;
@@ -328,7 +360,7 @@ no implicit multi-framework modification is allowed.
 before/after evaluation that demonstrates a meaningful change or records `NO
 EVOLUTION` with a tooling/setup diagnosis.
 
-### Later — M5: Debugging and iterative verification toolkit
+### Later — M6: Debugging and iterative verification toolkit
 
 Provide methodology-driven modify–run–verify loops, log probes, debugging
 strategies, and zero-configuration local runtime context injection to shorten
@@ -337,7 +369,7 @@ the guess–verify loop to observe–fix.
 **Exit evidence:** reproducible probe contract, safe context boundary, failure
 classification, and tests for stale, missing, malformed, and unsafe context.
 
-### Later — M6: Optional Jira–GitHub–Confluence lifecycle sync
+### Later — M7: Optional Jira–GitHub–Confluence lifecycle sync
 
 Implement the mapper and read/write projections that surface documentation,
 structural elements, context-preserving flows, context-generating flows,
@@ -348,7 +380,7 @@ allowlisted write path, native link resolution, post-write read-back, duplicate
 rule, audit trail, and explicit User opt-in. Connector availability alone is not
 evidence of authority or correctness.
 
-### Continuous — M7: Capability expansion and quality evolution
+### Continuous — M8: Capability expansion and quality evolution
 
 Add new formations, host projections, debugging strategies, and sync adapters
 only as independently reviewable slices. Reuse the library contract and
@@ -369,6 +401,23 @@ The roadmap follows the project’s document discipline:
 - `plan.md`, `task.md`, `context.md`, `review.md`, `Milestone.md`, `Epic.md`,
   or `Task.md` are created separately only when they have an independent owner,
   lifecycle, and contribution to the Vision or Roadmap.
+
+### Roadmap and current-state synchronization
+
+- Update `docs/project/current-state.md` at the end of every delivery slice or
+  operational state change. It owns the current branch, revision, worktree,
+  PR, validation, mapper freshness, limits, and next bounded action.
+- Update this roadmap when a Milestone's scope, capability status, exit gate,
+  milestone order, or durable boundary changes. It is not updated for every
+  commit or implementation detail.
+- When a Milestone closes or changes status, update the roadmap and
+  `current-state.md` in the same delivery slice so the strategic and
+  operational views cannot diverge.
+- Keep commit SHAs, branch/PR details, test-run details, and temporary gate
+  observations in `current-state.md`; keep this roadmap focused on durable
+  capability and scope decisions.
+- Move superseded state and detailed evidence to `docs/history/`; do not keep
+  stale operational claims in the active roadmap.
 
 The roadmap itself is a strategic source, not a replacement for a workflow
 contract or session state. A roadmap item becomes executable only through a
@@ -401,8 +450,7 @@ Roadmap evolution is expected, but it must be deliberate:
 - [Capability matrix](../../contract/capability-matrix.md) — capability and host
   projection boundaries.
 
-The next concrete delivery slice is **M2: Activation and tuning boundary**.
+The next concrete delivery slice requires explicit selection after M3 review.
 The platform is useful already, but this routing statement does not approve
-implementation: the roadmap keeps the next functional capability visible
-without turning future options into mandatory process.
+external activation, publication, or automatic Git operations.
 

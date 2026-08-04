@@ -1,0 +1,123 @@
+import { ContextError } from "./types.js";
+import { validateEpicContext, validateMilestoneContext, validateSessionState } from "./validation.js";
+import type { EpicContext, MilestoneContext, ResumeResult, ResumeRuntime, SessionState, WorkContext } from "./types.js";
+
+export function evaluateSessionResume(state: SessionState, contexts: readonly WorkContext[], runtime: ResumeRuntime): ResumeResult {
+  let validated: SessionState;
+  try {
+    validated = validateSessionState(state);
+  } catch {
+    return stopped(state.sessionId, ["session state is malformed"]);
+  }
+  if (validated.status === "UNKNOWN") return unknown(validated.sessionId, ["session state is UNKNOWN"]);
+  if (validated.status === "STOPPED" || validated.status === "COMPLETE" || validated.status === "COMPLETE_WITH_LIMIT") {
+    return stopped(validated.sessionId, [`session status '${validated.status}' cannot resume`]);
+  }
+  if (validated.deviations.length > 0) return stopped(validated.sessionId, ["session contains unresolved deviations"]);
+  if (validated.unknowns.length > 0) return unknown(validated.sessionId, ["session contains unresolved unknowns"]);
+  if (validated.dependencies.some((dependency) => dependency.startsWith("UNKNOWN:"))) return unknown(validated.sessionId, ["a dependency remains unknown"]);
+
+  const current = resolveContexts(validated, contexts);
+  if ("result" in current) return current.result;
+  const { milestone, epic } = current;
+  if (milestone.state !== "ACCEPTED" || (epic !== undefined && epic.state !== "ACCEPTED")) return stopped(validated.sessionId, ["referenced context is not accepted and current"]);
+  try {
+    if (epic !== undefined) validateEpicContext(epic, milestone, epic.workItemIds);
+  } catch (error) {
+    if (error instanceof ContextError) return stopped(validated.sessionId, ["referenced context parent link is invalid"]);
+    throw error;
+  }
+  const evidenceResult = validateEvidence(validated, milestone, epic, runtime);
+  if (evidenceResult !== undefined) return evidenceResult;
+  const scopeResult = validateExecutionScope(validated, milestone, epic);
+  if (scopeResult !== undefined) return scopeResult;
+  if (epic !== undefined && validated.workItemIds.some((workItemId) => !epic.workItemIds.includes(workItemId))) {
+    return stopped(validated.sessionId, ["session work item is outside the referenced Epic"]);
+  }
+  const setupResult = validateSetup(validated, runtime);
+  if (setupResult !== undefined) return setupResult;
+  const executionResult = validateExecution(validated, runtime);
+  if (executionResult !== undefined) return executionResult;
+  return { decision: "RESUME", sessionId: validated.sessionId, nextAction: validated.nextAction, evidenceRefs: validated.evidenceRefs };
+}
+
+function validateEvidence(state: SessionState, milestone: MilestoneContext, epic: EpicContext | undefined, runtime: ResumeRuntime): ResumeResult | undefined {
+  const contexts = epic === undefined ? [milestone] : [milestone, epic];
+  const contextUnknowns = contexts.flatMap((context) => context.unknowns);
+  if (contextUnknowns.length > 0) return unknown(state.sessionId, ["a referenced context contains unresolved unknowns"]);
+  if (contexts.some((context) => context.dependencies.some((dependency) => dependency.startsWith("UNKNOWN:")))) {
+    return unknown(state.sessionId, ["a referenced context dependency remains unknown"]);
+  }
+  const requiredEvidence = [...new Set([...state.evidenceRefs, ...contexts.flatMap((context) => context.evidenceRefs)])];
+  if (requiredEvidence.length === 0 || requiredEvidence.some((reference) => !runtime.evidenceRefs.includes(reference))) {
+    return unknown(state.sessionId, ["required evidence is unavailable"]);
+  }
+  if (epic !== undefined && epic.acceptanceCriteria.length === 0) return stopped(state.sessionId, ["referenced Epic has no acceptance criteria"]);
+  return undefined;
+}
+
+function validateExecutionScope(state: SessionState, milestone: MilestoneContext, epic: EpicContext | undefined): ResumeResult | undefined {
+  if (state.executionScope.kind === "MILESTONE") {
+    if (epic !== undefined || state.executionScope.contextId !== milestone.contextId) {
+      return stopped(state.sessionId, ["Milestone execution scope does not match current context"]);
+    }
+    return undefined;
+  }
+  if (epic === undefined || state.executionScope.contextId !== epic.contextId) {
+    return stopped(state.sessionId, ["Epic execution scope does not match current context"]);
+  }
+  if (state.executionScope.workItemIds.some((workItemId) => !epic.workItemIds.includes(workItemId))) {
+    return stopped(state.sessionId, ["execution scope work item is outside the referenced Epic"]);
+  }
+  return undefined;
+}
+
+function resolveContexts(state: SessionState, contexts: readonly WorkContext[]): { milestone: MilestoneContext; epic: EpicContext | undefined } | { result: ResumeResult } {
+  const milestones = contexts.filter((context): context is MilestoneContext => context.kind === "MILESTONE");
+  const epics = contexts.filter((context): context is EpicContext => context.kind === "EPIC");
+  if (milestones.length !== 1) return { result: stopped(state.sessionId, ["resume context bundle must contain exactly one Milestone context"]) };
+  const references = new Map(contexts.map((context) => [`${context.kind}:${context.contextId}`, context]));
+  const milestoneReference = state.contextReferences.find((reference) => reference.kind === "MILESTONE");
+  if (milestoneReference === undefined) return { result: stopped(state.sessionId, ["Milestone context reference is missing"]) };
+  const milestone = references.get(`MILESTONE:${milestoneReference.contextId}`);
+  if (milestone === undefined || milestone.kind !== "MILESTONE") return { result: stopped(state.sessionId, ["Milestone context is missing"]) };
+  if (milestone.sourceRevision !== milestoneReference.sourceRevision) return { result: stopped(state.sessionId, ["Milestone context revision is stale"]) };
+  try {
+    validateMilestoneContext(milestone, epics);
+  } catch (error) {
+    if (error instanceof ContextError) return { result: stopped(state.sessionId, ["resume context bundle is invalid"]) };
+    throw error;
+  }
+  const epicReference = state.contextReferences.find((reference) => reference.kind === "EPIC");
+  if (epicReference === undefined) return { milestone, epic: undefined };
+  const epic = references.get(`EPIC:${epicReference.contextId}`);
+  if (epic === undefined || epic.kind !== "EPIC") return { result: stopped(state.sessionId, ["Epic context is missing"]) };
+  if (epic.sourceRevision !== epicReference.sourceRevision) return { result: stopped(state.sessionId, ["Epic context revision is stale"]) };
+  return { milestone, epic };
+}
+
+function validateSetup(state: SessionState, runtime: ResumeRuntime): ResumeResult | undefined {
+  if (state.setupFingerprint === null) return undefined;
+  if (runtime.currentSetupFingerprint === null) return unknown(state.sessionId, ["current setup fingerprint is unknown"]);
+  if (runtime.currentSetupFingerprint !== state.setupFingerprint) return stopped(state.sessionId, ["setup fingerprint changed"]);
+  return undefined;
+}
+
+function validateExecution(state: SessionState, runtime: ResumeRuntime): ResumeResult | undefined {
+  if (state.execution === null) return undefined;
+  const expected = state.execution;
+  const observed = [runtime.repository, runtime.branch, runtime.worktree, runtime.baseRevision];
+  if (observed.some((value) => value === null)) return unknown(state.sessionId, ["current execution binding is unknown"]);
+  if (runtime.repository !== expected.repository || runtime.branch !== expected.branch || runtime.worktree !== expected.worktree || runtime.baseRevision !== expected.baseRevision) {
+    return stopped(state.sessionId, ["execution binding changed"]);
+  }
+  return undefined;
+}
+
+function stopped(sessionId: string, reasons: readonly string[]): ResumeResult {
+  return { decision: "STOPPED", sessionId, reasons, preservedState: true };
+}
+
+function unknown(sessionId: string, reasons: readonly string[]): ResumeResult {
+  return { decision: "UNKNOWN", sessionId, reasons, preservedState: true };
+}
