@@ -1,6 +1,6 @@
 {
   "scriptCompleted": true,
-  "contentDigest": "780e3e441fc0eb3c7b25231be83ba2432ee121e92dbc58e088b648adac4b0958",
+  "contentDigest": "ca3ca363863c25c24e9b60f5d9a26081d96418e97ca14c829f15095a2dd0a72c",
   "files": [
     {
       "path": ".github/pull_request_template.md",
@@ -41,7 +41,7 @@
     {
       "path": "README.md",
       "language": "markdown",
-      "sizeLines": 74,
+      "sizeLines": 76,
       "fileCategory": "docs"
     },
     {
@@ -251,7 +251,7 @@
     {
       "path": "docs/project/current-state.md",
       "language": "markdown",
-      "sizeLines": 78,
+      "sizeLines": 85,
       "fileCategory": "docs"
     },
     {
@@ -263,7 +263,7 @@
     {
       "path": "docs/project/roadmap.md",
       "language": "markdown",
-      "sizeLines": 433,
+      "sizeLines": 455,
       "fileCategory": "docs"
     },
     {
@@ -401,7 +401,7 @@
     {
       "path": "src/cli.ts",
       "language": "typescript",
-      "sizeLines": 588,
+      "sizeLines": 589,
       "fileCategory": "code"
     },
     {
@@ -429,15 +429,21 @@
       "fileCategory": "code"
     },
     {
+      "path": "src/context/identity.ts",
+      "language": "typescript",
+      "sizeLines": 12,
+      "fileCategory": "code"
+    },
+    {
       "path": "src/context/markdown.ts",
       "language": "typescript",
-      "sizeLines": 175,
+      "sizeLines": 176,
       "fileCategory": "code"
     },
     {
       "path": "src/context/resume.ts",
       "language": "typescript",
-      "sizeLines": 95,
+      "sizeLines": 104,
       "fileCategory": "code"
     },
     {
@@ -447,15 +453,21 @@
       "fileCategory": "code"
     },
     {
+      "path": "src/context/team-delivery.ts",
+      "language": "typescript",
+      "sizeLines": 91,
+      "fileCategory": "code"
+    },
+    {
       "path": "src/context/types.ts",
       "language": "typescript",
-      "sizeLines": 107,
+      "sizeLines": 108,
       "fileCategory": "code"
     },
     {
       "path": "src/context/validation.ts",
       "language": "typescript",
-      "sizeLines": 207,
+      "sizeLines": 208,
       "fileCategory": "code"
     },
     {
@@ -845,7 +857,7 @@
     {
       "path": "test/context-markdown.test.ts",
       "language": "typescript",
-      "sizeLines": 80,
+      "sizeLines": 81,
       "fileCategory": "code"
     },
     {
@@ -857,7 +869,7 @@
     {
       "path": "test/context-validation.test.ts",
       "language": "typescript",
-      "sizeLines": 95,
+      "sizeLines": 108,
       "fileCategory": "code"
     },
     {
@@ -1175,7 +1187,13 @@
     {
       "path": "test/session-state.test.ts",
       "language": "typescript",
-      "sizeLines": 110,
+      "sizeLines": 127,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/team-delivery.test.ts",
+      "language": "typescript",
+      "sizeLines": 46,
       "fileCategory": "code"
     },
     {
@@ -1319,19 +1337,19 @@
     {
       "path": "workflows/team-delivery-loop.md",
       "language": "markdown",
-      "sizeLines": 158,
+      "sizeLines": 168,
       "fileCategory": "docs"
     }
   ],
-  "totalFiles": 220,
-  "filteredByIgnore": 81,
+  "totalFiles": 223,
+  "filteredByIgnore": 82,
   "estimatedComplexity": "large",
   "stats": {
-    "filesScanned": 220,
+    "filesScanned": 223,
     "byCategory": {
       "docs": 56,
       "infra": 1,
-      "code": 136,
+      "code": 139,
       "config": 23,
       "markup": 2,
       "script": 2
@@ -1340,7 +1358,7 @@
       "markdown": 56,
       "yaml": 1,
       "unknown": 1,
-      "typescript": 130,
+      "typescript": 133,
       "json": 23,
       "css": 2,
       "javascript": 5,

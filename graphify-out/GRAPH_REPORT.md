@@ -9,7 +9,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `43f717da`
+- Built from commit: `852ad41f`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -76,9 +76,9 @@
 - ContractDocument
 - page.tsx
 - layout.tsx
-- react-server-dom-webpack
 - eslint
-- eslint-config-next
+- drizzle-kit
+- react-server-dom-webpack
 - @tailwindcss/postcss
 - bootstrap.test.ts
 - @vitejs/plugin-react
@@ -278,7 +278,7 @@ Nodes (11): capabilityEvidence, manifest, assertRequest(), capabilityEvidence, c
 
 ### Community 39 - "devDependencies"
 Cohesion: 0.13
-Nodes (15): @cloudflare/vite-plugin, drizzle-kit, tailwindcss, @types/react, @types/react-dom, vinext, vite, devDependencies (+7 more)
+Nodes (15): @cloudflare/vite-plugin, eslint-config-next, tailwindcss, @types/react, @types/react-dom, vinext, vite, devDependencies (+7 more)
 
 ### Community 40 - "storage.ts"
 Cohesion: 0.22
