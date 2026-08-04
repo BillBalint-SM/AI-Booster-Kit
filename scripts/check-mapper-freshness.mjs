@@ -15,6 +15,23 @@ const publishedPaths = new Set([
   "graphify-out/manifest.json"
 ]);
 
+const mapperIrrelevantExactPaths = new Set([
+  "AGENTS.md",
+  "CLAUDE.md",
+  "README.md",
+  "package-lock.json",
+  "package.json",
+  "scripts/check-doc-links.mjs",
+  "scripts/check-mapper-freshness.mjs"
+]);
+
+function isMapperIrrelevantPath(filePath) {
+  return mapperIrrelevantExactPaths.has(filePath)
+    || (filePath.startsWith(".github/workflows/")
+      && (filePath.endsWith(".yml") || filePath.endsWith(".yaml")))
+    || (filePath.startsWith("docs/") && filePath.endsWith(".md"));
+}
+
 function runGit(args) {
   try {
     return execFileSync("git", args, {
@@ -64,7 +81,9 @@ function changedPathsSince(commit) {
 }
 
 function assertPublishedPaths(paths, source) {
-  const unexpected = paths.filter(filePath => !publishedPaths.has(filePath));
+  const unexpected = paths.filter(filePath => (
+    !publishedPaths.has(filePath) && !isMapperIrrelevantPath(filePath)
+  ));
   if (unexpected.length > 0) {
     throw new Error(`${source} contains source changes after mapper analysis: ${unexpected.join(", ")}`);
   }

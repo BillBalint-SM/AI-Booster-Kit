@@ -40,26 +40,34 @@ If Graphify is `STOPPED` or `NOT READY`, UA is `NOT_STARTED`. If UA fails after
 Graphify is ready, the Graphify result remains ready, but the combined mapper
 state is `PARTIAL`/`NOT READY` until both stages complete successfully.
 
-Run the preflight before publishing or relying on the snapshot:
+Run the freshness preflight before publishing or relying on a mapper snapshot.
+This is a snapshot-publication check, not a general documentation gate:
 
 ```powershell
 npm run check:mappers
 ```
 
-The check fails if source files changed after `sourceCommit`, if the two mapper
-revisions differ, or if the worktree contains an unexpected non-snapshot file.
+The check fails if mapper-dependent source files changed after `sourceCommit`,
+if the two snapshot revisions differ, or if the worktree contains an
+unexpected non-snapshot file. The checker has an explicit, narrow allowlist for
+Markdown documentation, workflow metadata, package metadata, and the
+documentation-link checker; all other paths remain fail-closed. Text-only
+documentation changes do not require a snapshot refresh or this check.
 
 ## Refresh sequence
 
-1. Implement and test a coherent change on a feature branch.
+1. Implement and test a coherent mapper-dependent change on a short-lived
+   delivery branch.
 2. Commit the source change so it has a stable source revision.
 3. Run Graphify first in code-only, local mode against that revision.
 4. Treat Graphify `READY` as the gate; on `STOPPED` or `NOT READY`, do not
    start UA.
 5. Run UA second with its broader code, documentation, and domain scope.
 6. Review both independent outputs and confirm their source SHAs match.
-7. Run `npm run check:mappers`.
-8. Commit and push only the published snapshot files with the feature branch.
+7. Run `npm run check:mappers` only when publishing the refreshed snapshot.
+8. After separate user approval for publication, commit and push only the
+   published snapshot files with the delivery branch. A passing freshness check
+   never authorizes commit, push, PR creation, or merge by itself.
 
 The source repository remains the technical truth. Mapper output is a
 versioned navigation projection and must not replace source, tests, or Git
