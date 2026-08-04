@@ -1,4 +1,4 @@
-import { assertDocumentationLinks } from "../dist/src/docs/links.js";
+import { assertDocumentationLinks } from "../src/docs/links.ts";
 
 try {
   await assertDocumentationLinks(process.cwd());

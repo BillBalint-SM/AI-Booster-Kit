@@ -23,10 +23,10 @@ This page is the repository’s thematic index. Start from the [root README](../
 | How should recurring team work run? | [`workflows/`](../../workflows/) | One-off session notes and host-specific instructions. |
 | What must an artifact or capability guarantee? | [`contract/`](../../contract/) | Runtime logs, historical reports, and connector payloads. |
 | How is a host or operation used? | [`docs/operations/`](../operations/) | Strategic decisions and duplicate workflow definitions. |
-| How is M2 activation prepared, saved, and invoked? | [M2 design](../superpowers/specs/2026-08-02-ai-booster-kit-m2-m3-activation-session-design.md), [M2 plan](../superpowers/plans/2026-08-02-ai-booster-kit-m2-activation-boundary.md), and the Controller CLI | Host execution, connector calls, and publication are outside this local boundary. |
+| How is M2 activation prepared, saved, and invoked? | [M2 design](../superpowers/specs/2026-08-02-ai-booster-kit-m2-m3-activation-session-design.md), [M2 plan](../superpowers/plans/2026-08-02-ai-booster-kit-m2-activation-boundary.md), and the Controller CLI | See the named activation contract and its evidence boundary. |
 | How are M3 contexts and compact session state validated or resumed? | [M2/M3 design](../superpowers/specs/2026-08-02-ai-booster-kit-m2-m3-activation-session-design.md), [M3 plan](../superpowers/plans/2026-08-03-ai-booster-kit-m3-session-context.md), and the Context CLI | Context remains source Markdown; host execution, automatic Git operations, and transcripts are outside this boundary. |
 | How is a repeatable check performed? | [`docs/runbooks/`](../runbooks/) | Permanent product requirements and current-state claims. |
-| How are main, feature, and dev branches synchronized? | [Three-level branching model](../runbooks/branching.md) | Unverified local cleanliness, stale branch assumptions, and implicit merge claims. |
+| How is a bounded dev slice synchronized with main? | [Lean branching model](../runbooks/branching.md) | Unverified local cleanliness, stale branch assumptions, and implicit merge claims. |
 | Why was a design chosen? | [`docs/superpowers/specs/`](../superpowers/specs/) | Active runtime context and mutable delivery status. |
 | In what order is approved work implemented? | [`docs/superpowers/plans/`](../superpowers/plans/) | A second roadmap or a current-state substitute. |
 | How is the product positioned and visually represented? | [`marketing/`](../../marketing/) | Delivery status, legal clearance, and unverified product claims. |
@@ -34,6 +34,9 @@ This page is the repository’s thematic index. Start from the [root README](../
 
 ## Active entry points
 
+- [Project System Map v1](../operations/project-system-map-v1.md) — first-round
+  read-only system map, Source-of-Truth matrix, workflow/dependency map,
+  redundancy ledger, and prioritized cleanup backlog.
 - [Quick Task Clarifier and Validator](../../contract/agent-library/quick-task-clarifier-validator.md) — first bounded Agent capability contract.
 - [Agent Formation Library catalog](../../contract/agent-library/formation-catalog.md) — scenario inventory, readiness states, prerequisites, and recommendation boundaries.
 - [Agent Role Library catalog](../../contract/agent-library/role-catalog.md) — project Role definitions, clean context contracts, handoff contracts, and global Agent–Role assignments.
@@ -43,11 +46,13 @@ This page is the repository’s thematic index. Start from the [root README](../
 - [Bounded Research recipe](../../contract/agent-library/bounded-research.md) — READY research profile, source boundary, and output contract.
 - [Bounded Implementation recipe](../../contract/agent-library/bounded-implementation.md) — READY implementation profile with verified-repository, accepted-plan, evidence, and rollback boundaries.
 - [Marketing prototype](../../marketing/README.md) — brand direction, naming screens, prototype design tokens, asset governance, and publication boundaries.
+- [Outcome & Operating Audit v1](../operations/outcome-operating-audit-v1.md) — source-backed product/market hypotheses, dependency map, rule audit, and the bounded MVP-slice candidate; it preserves `UNKNOWN` and does not replace the roadmap or current-state routing.
+- [Outcome & Operating Audit design](../superpowers/specs/2026-08-04-outcome-operating-audit-design.md) and [implementation plan](../superpowers/plans/2026-08-04-outcome-operating-audit.md) — reviewed intent and execution order for the current audit slice.
 - [Bounded Debugging recipe](../../contract/agent-library/bounded-debugging.md) — READY debugging profile with reproduction, root-cause, minimal-fix, regression-evidence, and fail-closed recovery boundaries.
-- The read-only `inspect-agent-library` CLI command joins the global Agent inventory, Role coverage matrix, and all Formation projections (with the first projection retained as a compatibility field); it performs no UA/Graphify sync or host activation.
-- [Three-level branching model](../runbooks/branching.md) — main/feature/dev roles, immediate next-dev flow, and feature-to-main promotion.
+- The read-only `inspect-agent-library` CLI command joins the global Agent inventory, Role coverage matrix, and all Formation projections (with the first projection retained as a compatibility field).
+- [Lean branching model](../runbooks/branching.md) — main and short-lived dev-slice flow with direct reviewed promotion.
 - The Controller exposes the local `activate-quick-task --input <request.json> --choice <choice.json> --profile <profile>` command, which issues an ephemeral host-agnostic package only after fresh evaluation and `ACTIVATION_INTENT`; see the approved [design](../superpowers/specs/2026-08-01-ai-booster-kit-quick-task-activation-package-design.md) and [implementation plan](../superpowers/plans/2026-08-01-ai-booster-kit-quick-task-activation-package.md), which remain review artifacts rather than default runtime context.
-- M2 adds `prepare-activation` for a pure host-agnostic activation package and `save-activation` for explicit Personal/Team JSON persistence; see the approved [activation/session design](../superpowers/specs/2026-08-02-ai-booster-kit-m2-m3-activation-session-design.md) and [M2 implementation plan](../superpowers/plans/2026-08-02-ai-booster-kit-m2-activation-boundary.md). These commands do not activate a host, call a connector, or perform Git publication.
+- M2 adds `prepare-activation` for a pure host-agnostic activation package and `save-activation` for explicit Personal/Team JSON persistence; see the approved [activation/session design](../superpowers/specs/2026-08-02-ai-booster-kit-m2-m3-activation-session-design.md) and [M2 implementation plan](../superpowers/plans/2026-08-02-ai-booster-kit-m2-activation-boundary.md).
 - M3 adds strict Milestone/Epic context Markdown and compact session state through `validate-context`, `save-context`, `save-session`, and `resume-session`; see the [M3 plan](../superpowers/plans/2026-08-03-ai-booster-kit-m3-session-context.md). Resume only evaluates caller-supplied evidence and never reconstructs a transcript or runs a host.
 - [Canonical artifact templates](../../contract/artifacts/canonical-work-artifact-template.md) — common artifact shape.
 - [Jira–Confluence–GitHub mapping contract](../../contract/mappings/jira-confluence-github.md) — future synchronization boundary.
