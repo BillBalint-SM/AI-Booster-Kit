@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "gitCommitHash": "852ad41f46ad2a90e9a2b01a93621a491f9dc1ad",
-  "generatedAt": "2026-08-04T09:03:23.691Z",
+  "gitCommitHash": "0ba6076302441e951801a8caeebd3ec85f7266e7",
+  "generatedAt": "2026-08-04T09:14:25.202Z",
   "files": {
     ".github/pull_request_template.md": {
       "filePath": ".github/pull_request_template.md",
@@ -65,7 +65,7 @@
     },
     "README.md": {
       "filePath": "README.md",
-      "contentHash": "23dc2c7d6f0791d79ab98a2e05c09eb4f5ebdfd7822a3f222e96cb83351491db",
+      "contentHash": "f7c50f03423f9a0ebc4bc034d715e1e3bd211c9e9816583dd564463637ced801",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -256,7 +256,7 @@
     },
     "contract/capability-matrix.md": {
       "filePath": "contract/capability-matrix.md",
-      "contentHash": "077cb014e2f7470a1599518b9a3a05d967fee6724652155d8f40ab6ac468d70a",
+      "contentHash": "66b62d242c78e0c334daddaa79f5fdcd75e78618773924acce4a446a17a0db4f",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -436,7 +436,7 @@
     },
     "docs/project/current-state.md": {
       "filePath": "docs/project/current-state.md",
-      "contentHash": "ee2dfdb29bb38cca0c547bd6e697fe1e32f2558692db9d5656fd905ba69431a0",
+      "contentHash": "09cf6b74bec3fec6752e22923aacc3826ac627a4fa284689ec5ad0c02c2091f9",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -456,7 +456,7 @@
     },
     "docs/project/roadmap.md": {
       "filePath": "docs/project/roadmap.md",
-      "contentHash": "7785fb10f3a24ea6db79d144418a4a5719fb735d444ef9bd48a61534b32f70aa",
+      "contentHash": "2740e408c3d68a9e6a6e2550d80b18a2b9b0515dc18b8c374f280e67a9a3aa8d",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -1182,7 +1182,7 @@
     },
     "src/cli.ts": {
       "filePath": "src/cli.ts",
-      "contentHash": "2a23057c71d650b8ae31de082f8671fd76d1d71cf9455269b05a1731a0777be4",
+      "contentHash": "ee56b7e74775a5cdba7f4d59f253d54df015bf4af7ce5e98762b5d1c443f12e8",
       "functions": [
         {
           "name": "runCli",
@@ -2217,7 +2217,7 @@
     },
     "src/context/identity.ts": {
       "filePath": "src/context/identity.ts",
-      "contentHash": "d6952da92b37ad1cfe0bc8d7c7057b5aa005ff1bb9bf7cd0b5dc068d57adc02a",
+      "contentHash": "429360e98257c01037416d68566e5ef2b74d11f52f2c32171326b7e0280fc877",
       "functions": [
         {
           "name": "validateCanonicalMilestoneArtifact",
@@ -2259,7 +2259,7 @@
     },
     "src/context/markdown.ts": {
       "filePath": "src/context/markdown.ts",
-      "contentHash": "b62d11441e5b0a78f9600693f51a15259471496fddf937caa178e2b33f1a375f",
+      "contentHash": "88ebee62cbf3463f955c1719d72ff5f92e0f90160a4a3a0ae28a02b039f48a7b",
       "functions": [
         {
           "name": "parseWorkContext",
@@ -2494,7 +2494,7 @@
     },
     "src/context/resume.ts": {
       "filePath": "src/context/resume.ts",
-      "contentHash": "fc3fb8a4191f3f7a121f1ffa2ea64a53a9b069b1dbd1e459e1521e62632ebe19",
+      "contentHash": "854ce635be2cfded3b4d9addfa71a59d7388be6c2735de934927d68bcdf1a040",
       "functions": [
         {
           "name": "evaluateSessionResume",
@@ -2763,7 +2763,7 @@
     },
     "src/context/team-delivery.ts": {
       "filePath": "src/context/team-delivery.ts",
-      "contentHash": "99f25e410d20ec9b8a2d5c66e0c727998e9110411d340f054c803860dd8923a1",
+      "contentHash": "f131db54031b19c0ca17a15af58543f4d4076af141046dccdabfc26a415ef8cb",
       "functions": [
         {
           "name": "validateTeamDeliveryFanIn",
@@ -2859,7 +2859,7 @@
     },
     "src/context/types.ts": {
       "filePath": "src/context/types.ts",
-      "contentHash": "18914516f3929c2ec3498992c712b2cc09103fb19f9062abe44d6f3c4c819236",
+      "contentHash": "6b4aaaf20640576e09ef62bc088b370f93848865f2da38204efa11adeb66bef8",
       "functions": [],
       "classes": [
         {
@@ -2891,7 +2891,7 @@
     },
     "src/context/validation.ts": {
       "filePath": "src/context/validation.ts",
-      "contentHash": "fa2bcd6beba9651834769746b87f13ad336d8bef320a9af3b275c0d484cbbf42",
+      "contentHash": "7080c559c4193372ef69b376bc5b32cc19851d027ee3d4ff3adfa5a7c85199c8",
       "functions": [
         {
           "name": "validateMilestoneContext",
@@ -10187,7 +10187,7 @@
     },
     "test/context-markdown.test.ts": {
       "filePath": "test/context-markdown.test.ts",
-      "contentHash": "09fed7daa5f9a9e090cc65712334b38b7c7ccfaf2042e9d85693bba9eb9b7e12",
+      "contentHash": "36bd0b3ba41c0caa346d29acf56a2db601817d2facf8708a4e5f9f31e0f89660",
       "functions": [],
       "classes": [],
       "imports": [
@@ -10224,7 +10224,7 @@
     },
     "test/context-storage-cli.test.ts": {
       "filePath": "test/context-storage-cli.test.ts",
-      "contentHash": "0f7cd10900dc1f924275b15736eac8febf27ef1a33e63225d5fa243313dac4a2",
+      "contentHash": "1963340174cd7dd957dd90fea93d37afb30632afac7868b3cc3f67763a04de72",
       "functions": [
         {
           "name": "withTemporaryDirectory",
@@ -10316,7 +10316,7 @@
     },
     "test/context-validation.test.ts": {
       "filePath": "test/context-validation.test.ts",
-      "contentHash": "ef831fbb44436511e4d88366410863ee71277a3fb1788b1dea82cc2584cca1a3",
+      "contentHash": "32278f2475470be5b6cace26c74a939815cd12a83ca79eddeed3ce5c402d990c",
       "functions": [],
       "classes": [],
       "imports": [
@@ -11506,7 +11506,7 @@
     },
     "test/e2e.test.ts": {
       "filePath": "test/e2e.test.ts",
-      "contentHash": "9fde2bd2bb121fcf19aa220b7a92a6ec621cadee143e0486c6ba2f2faf8e9b9b",
+      "contentHash": "8e60415581e0cbe183de2ec23bb3682f46ead901f1850569faa3162c3e985e2d",
       "functions": [
         {
           "name": "createOrchestrator",
@@ -13226,7 +13226,7 @@
     },
     "test/session-state.test.ts": {
       "filePath": "test/session-state.test.ts",
-      "contentHash": "97f35fc040ff8f5a72d2c40f8c73d298f5a242eee7f2439cbc8332688d8ee329",
+      "contentHash": "5f2cf5ce2d29f8433e818d67aad6c95fbc7a9c2778fe4beaacebc8d91ed18d37",
       "functions": [],
       "classes": [],
       "imports": [
@@ -13270,7 +13270,7 @@
     },
     "test/team-delivery.test.ts": {
       "filePath": "test/team-delivery.test.ts",
-      "contentHash": "a9baa60db5f0adada64828f499b287ff9513f0b08c757bd28b491f6a04c3583f",
+      "contentHash": "245451281636a2125428417cb6c794a2e0492342ed0c53e882940d1887f2a8d5",
       "functions": [
         {
           "name": "packet",
@@ -13858,7 +13858,7 @@
     },
     "workflows/team-delivery-loop.md": {
       "filePath": "workflows/team-delivery-loop.md",
-      "contentHash": "d0390f4e33989afdc59ffb5c0551e2a2e83638f012469f123c3b8de2a217020c",
+      "contentHash": "c4085a192babe01e625e38b40997636c27ef82341bd41e4e4eeeb96ff5f76c8b",
       "functions": [],
       "classes": [],
       "imports": [],
