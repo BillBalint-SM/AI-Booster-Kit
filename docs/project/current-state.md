@@ -5,7 +5,7 @@ short and must not become a second roadmap, transcript, or historical report.
 
 ## Branch and pull request
 
-The public website delivery was merged as [PR #13](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/13), the documentation structure and roadmap as [PR #14](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/14), the Activation Package state correction as [PR #15](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/15), M1-A as [PR #16](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/16), M1-B as [PR #18](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/18), the CLI integration as [PR #20](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/20), the first fully ready validation formation as [PR #22](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/22), the ready refinement formation as [PR #24](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/24), the documentation routing alignment as [PR #26](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/26), the mapper snapshot refresh as [PR #27](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/27), and the bounded implementation delivery as [PR #34](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/34). The bounded-debugging M1 slice was promoted through [PR #37](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/37). The three-level branching documentation and mapper refresh were delivered through [PR #38](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/38) and promoted to `main` through [PR #39](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/39). M2 was merged into `feature` through [PR #40](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/40); the local M3 context/session slice is active on `dev-m3-session-context-review` with no PR yet. This branch adds the focused Milestone-envelope validation hardening and explicit team-scope enforcement from the M3 review.
+The public website delivery was merged as [PR #13](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/13), the documentation structure and roadmap as [PR #14](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/14), the Activation Package state correction as [PR #15](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/15), M1-A as [PR #16](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/16), M1-B as [PR #18](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/18), the CLI integration as [PR #20](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/20), the first fully ready validation formation as [PR #22](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/22), the ready refinement formation as [PR #24](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/24), the documentation routing alignment as [PR #26](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/26), the mapper snapshot refresh as [PR #27](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/27), and the bounded implementation delivery as [PR #34](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/34). The bounded-debugging M1 slice was promoted through [PR #37](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/37). The three-level branching documentation and mapper refresh were delivered through [PR #38](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/38) and promoted to `main` through [PR #39](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/39). M2 was merged into `feature` through [PR #40](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/40). The current M3 context/session delivery slice is isolated on `dev-m3-session-context-review`; it is clean, mapper-ready, and intended for one PR into `feature`, never directly into `main`. This slice adds the focused Milestone-envelope validation hardening, explicit team-scope enforcement, and the refreshed mapper snapshots.
 
 ## Completed deliverable
 
@@ -40,15 +40,13 @@ local results remain local evidence. M2 behavior remains local and
 deterministic: no host runtime, generated host artifact, connector call,
 external read, Git operation, or publication is performed.
 
-The last committed Graphify and Understand Anything snapshots identify the
-same stable source revision and passed `npm run check:mappers`. The refresh
-used Graphify code-only extraction and UA deterministic local structural
-extraction; no semantic-extraction backend or credentialed external analysis
-was invoked. That checked-in mapper snapshot was `READY` for its last stable
-source revision; the current dirty worktree requires a post-commit refresh
-before mapper freshness can be claimed again. Its source revision, current
-HEAD relationship, and publication boundary remain governed by the mapper
-runbook and this current-state record.
+The committed Graphify and Understand Anything snapshots identify the same
+stable source revision and passed `npm run check:mappers`. The refresh used
+Graphify code-only extraction and UA deterministic local structural extraction;
+no semantic-extraction backend or credentialed external analysis was invoked.
+Mapper freshness is `READY` for the current stable source revision. Its source
+revision, current HEAD relationship, and publication boundary remain governed
+by the mapper runbook and this current-state record.
 
 ## Known limit
 
@@ -64,9 +62,10 @@ declared as owner-approved PR flow but is not locally enforced. Host adaptation 
 execution, evaluation/evolve, debugging context injection, and lifecycle
 synchronization remain future work. M2 and the local M3 slice are
 `COMPLETE_WITH_LIMIT`: they never activate an Agent or perform external work.
-Mapper freshness remains commit-relative: the last stable snapshot is valid,
-but it does not cover the current dirty worktree. This branch has no upstream
-publication, PR, or merge yet.
+Mapper freshness remains commit-relative and is a navigation projection only.
+The current dev slice is clean and has not yet been published or merged; the
+next branch action is the single reviewed `dev → feature` handoff. No `feature
+→ main` promotion is implied.
 Mapper output remains a navigation projection; source, tests, and Git review
 remain authoritative.
 
@@ -78,7 +77,9 @@ specific approval, bounded authority, and source-native read-back.
 
 ## Next bounded action
 
-Review and explicitly approve the M3 readiness-gap diff. After a separately
-approved stable commit, refresh Graphify, UA, and `check:mappers`. No M4
-follow-on or external write is authorized by this local review state.
+Publish the current M3 dev slice through one reviewed PR into `feature`, then
+fast-forward `feature` and create the next unique dev slice. The next roadmap
+milestone is M4 design and Codex-first host-conformance planning; no host
+activation, external write, or `feature → main` promotion is authorized by this
+state alone.
 
