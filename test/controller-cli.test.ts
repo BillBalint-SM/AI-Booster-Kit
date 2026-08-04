@@ -19,6 +19,34 @@ test("built controller CLI: emits one recommendation JSON object without writing
   assert.deepEqual(await readdir(root), before);
 });
 
+test("built Agent profile CLI: lists user-facing profiles without activation", async () => {
+  const result = await runBuiltCli(["list-agent-profiles"]);
+  const catalog = JSON.parse(result.stdout) as {
+    catalogId: string;
+    profiles: readonly { profileId: string; displayName: string; usageTopics: readonly string[]; workflowRoles: readonly string[] }[];
+  };
+
+  assert.equal(result.code, 0);
+  assert.equal(result.stderr, "");
+  assert.equal(catalog.catalogId, "agent-profile-library");
+  assert.equal(catalog.profiles.length, 24);
+  assert.equal(catalog.profiles.some((profile) => profile.profileId === "senior-developer"), false);
+  assert.equal(catalog.profiles.find((profile) => profile.profileId === "senior-full-stack-engineer")?.displayName, "Senior Full-Stack Engineer");
+  assert.deepEqual(
+    catalog.profiles.filter((profile) => profile.usageTopics.includes("planning")).map((profile) => profile.profileId),
+    [
+      "multi-agent-systems-architect",
+      "workflow-architect",
+      "software-architect",
+      "product-manager",
+      "senior-project-manager",
+      "sprint-prioritizer",
+      "technical-writer",
+    ],
+  );
+  assert.equal(catalog.profiles.find((profile) => profile.profileId === "code-reviewer")?.workflowRoles.includes("reviewer"), true);
+});
+
 test("built formation CLI: exposes a ready validation recommendation without writing artifacts", async () => {
   const root = await mkdtemp(join(tmpdir(), "ai-booster-controller-"));
   const input = join(root, "request.json");
