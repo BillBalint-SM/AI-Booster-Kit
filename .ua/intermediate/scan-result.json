@@ -1,6 +1,6 @@
 {
   "scriptCompleted": true,
-  "contentDigest": "b15c612a1ba846a0237972aa98593ef7de7b06ada61ac2f94cde78b661be944e",
+  "contentDigest": "780e3e441fc0eb3c7b25231be83ba2432ee121e92dbc58e088b648adac4b0958",
   "files": [
     {
       "path": ".github/pull_request_template.md",
@@ -251,7 +251,7 @@
     {
       "path": "docs/project/current-state.md",
       "language": "markdown",
-      "sizeLines": 80,
+      "sizeLines": 78,
       "fileCategory": "docs"
     },
     {

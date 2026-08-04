@@ -9,7 +9,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `e4642fbc`
+- Built from commit: `ae641020`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -27,30 +27,29 @@
 - sync.ts
 - types.ts
 - formation.ts
-- render.ts
 - e2e.test.ts
 - compilerOptions
+- ingest.ts
 - observations.ts
 - package.json
+- render.ts
 - markdown.ts
 - markdown.ts
 - request.ts
 - OutboxStore
 - controller-activation-package.test.ts
+- evaluateReadiness
 - types.ts
 - evaluate.ts
 - custom-tool-quick-task.json
 - no-agent-quick-task.json
 - validation.ts
-- ingest.ts
 - formation-recommendation.ts
 - readiness-cli.test.ts
 - eligible-quick-task.json
 - high-complexity-quick-task.json
 - outbox.ts
-- codex-mcp-adapter.ts
 - host-conformance.test.ts
-- evaluateReadiness
 - compilerOptions
 - manifest.ts
 - devDependencies
@@ -59,6 +58,7 @@
 - recipe.ts
 - envelope.ts
 - incomplete-quick-task.json
+- codex-mcp-adapter.ts
 - storage.ts
 - links.ts
 - check-mapper-freshness.mjs
@@ -77,7 +77,7 @@
 - layout.tsx
 - eslint
 - eslint-config-next
-- react-server-dom-webpack
+- drizzle-kit
 - @tailwindcss/postcss
 - bootstrap.test.ts
 - @vitejs/plugin-react
@@ -171,17 +171,17 @@ Nodes (24): ArtifactWriteAuthority, ContextEnvelope, ContextReadScope, ContextSt
 Cohesion: 0.11
 Nodes (27): acceptanceKeys, catalogKeys, entryKeys, extractFrontmatter(), FormationCatalogError, identityKeys, loadFormationCatalog(), parseFormationCatalog() (+19 more)
 
-### Community 13 - "render.ts"
-Cohesion: 0.14
-Nodes (27): ReadinessCertificate, writeReadinessCertificate(), capabilityStates, checkStates, decisions, diagnosticCodes, permittedActions, readPaths (+19 more)
-
-### Community 14 - "e2e.test.ts"
+### Community 13 - "e2e.test.ts"
 Cohesion: 0.09
 Nodes (20): artifact, children, concurrentEventForReplay(), contract, crossTenantEvent(), epics, event(), executionSet (+12 more)
 
-### Community 15 - "compilerOptions"
+### Community 14 - "compilerOptions"
 Cohesion: 0.07
 Nodes (28): dom, dom.iterable, esnext, **/*.mts, .next/dev/types/**/*.ts, next-env.d.ts, .next/types/**/*.ts, **/*.ts (+20 more)
+
+### Community 15 - "ingest.ts"
+Cohesion: 0.21
+Nodes (15): GithubCapabilityEvidence, GithubReadOnlyCapability, CodexMcpPreflightRequest, CodexMcpPreflightResult, createStoppedCertificate(), normalizeCapabilityEvidence(), runCodexMcpPreflight(), stoppedObservation() (+7 more)
 
 ### Community 16 - "observations.ts"
 Cohesion: 0.19
@@ -191,113 +191,113 @@ Nodes (25): bundleKeys, capabilityStates, checkStates, diagnosticCodes, observat
 Cohesion: 0.08
 Nodes (24): ajv, dependencies, ajv, yaml, devDependencies, @types/node, typescript, engines (+16 more)
 
-### Community 18 - "markdown.ts"
+### Community 18 - "render.ts"
+Cohesion: 0.14
+Nodes (27): ReadinessCertificate, writeReadinessCertificate(), capabilityStates, checkStates, decisions, diagnosticCodes, permittedActions, readPaths (+19 more)
+
+### Community 19 - "markdown.ts"
 Cohesion: 0.17
 Nodes (22): commonKeys, epicBody(), epicKeys, epicMetadata(), escapeRegExp(), exactKeys(), extractFrontmatter(), literal() (+14 more)
 
-### Community 19 - "markdown.ts"
+### Community 20 - "markdown.ts"
 Cohesion: 0.16
 Nodes (23): allowedCapabilityKeys, allowedMetadataKeys, canonicalBoardStatuses, canonicalVocabulary(), capabilityStates, extractFrontmatter(), isRecord(), normalizeWhitespace() (+15 more)
 
-### Community 20 - "request.ts"
+### Community 21 - "request.ts"
 Cohesion: 0.28
 Nodes (22): allowedKeys(), ControllerRequestError, exactKeys(), literal(), nonEmpty(), nonEmptyField(), oneOf(), parseContext() (+14 more)
 
-### Community 21 - "OutboxStore"
+### Community 22 - "OutboxStore"
 Cohesion: 0.18
 Nodes (10): assertRecordHistory(), isExistingPathError(), isMissingFileError(), isPermissionError(), OutboxStore, pathExists(), sameResult(), sameStableEvent() (+2 more)
 
-### Community 22 - "controller-activation-package.test.ts"
+### Community 23 - "controller-activation-package.test.ts"
 Cohesion: 0.12
 Nodes (19): activationInput(), commonInstructions, createQuickTaskActivationPackage(), parseActivationProfile(), profileDefinitions, stopConditions, acknowledgementRequired(), resolveCheckpoint() (+11 more)
 
-### Community 23 - "types.ts"
+### Community 24 - "evaluateReadiness"
+Cohesion: 0.15
+Nodes (12): CodexReadOnlyEvidenceAdapter, evaluateReadiness(), unique(), manifest, read(), readFixture(), readinessCapability, evaluateReadiness() (+4 more)
+
+### Community 25 - "types.ts"
 Cohesion: 0.17
 Nodes (20): AdapterDefinition, AdapterSafetyError, approvedImplementationStartEvidence, assertImplementationStartContext(), emitLocalEvent(), eventStates(), hasOnlyApprovedImplementationStartEvidence(), HostCapabilityReport (+12 more)
 
-### Community 24 - "evaluate.ts"
+### Community 26 - "evaluate.ts"
 Cohesion: 0.19
 Nodes (20): allowedObservedIds(), canonicalJson(), createCheck(), decide(), evaluateObservation(), evaluateSource(), expectedIds(), fieldsFor() (+12 more)
 
-### Community 25 - "custom-tool-quick-task.json"
+### Community 27 - "custom-tool-quick-task.json"
 Cohesion: 0.09
 Nodes (21): complexity, context, reference, state, dependencies, items, state, executionBoundary (+13 more)
 
-### Community 26 - "no-agent-quick-task.json"
+### Community 28 - "no-agent-quick-task.json"
 Cohesion: 0.09
 Nodes (21): complexity, context, reference, state, dependencies, items, state, executionBoundary (+13 more)
 
-### Community 27 - "validation.ts"
+### Community 29 - "validation.ts"
 Cohesion: 0.28
 Nodes (20): assertNonEmpty(), assertUnique(), contextReferences(), exactKeys(), executionValue(), literal(), nullableString(), recipeValue() (+12 more)
 
-### Community 28 - "ingest.ts"
-Cohesion: 0.20
-Nodes (16): GithubCapabilityEvidence, GithubReadOnlyCapability, CodexMcpPreflightRequest, CodexMcpPreflightResult, createStoppedCertificate(), normalizeCapabilityEvidence(), runCodexMcpPreflight(), stoppedObservation() (+8 more)
-
-### Community 29 - "formation-recommendation.ts"
+### Community 30 - "formation-recommendation.ts"
 Cohesion: 0.15
 Nodes (17): FormationRecommendationError, RecognizedScenario, recognizeScenario(), recommendation(), recommendFormation(), scenarioSignals, unknownRequestEvidence(), unresolvedPrerequisites() (+9 more)
 
-### Community 30 - "readiness-cli.test.ts"
+### Community 31 - "readiness-cli.test.ts"
 Cohesion: 0.12
 Nodes (9): ReadinessAdapter, readObservations(), runReadinessCertificate(), capabilityPath, manifestPath, readFixture(), readinessManifest, assertRejected() (+1 more)
 
-### Community 31 - "eligible-quick-task.json"
+### Community 32 - "eligible-quick-task.json"
 Cohesion: 0.10
 Nodes (19): complexity, context, reference, state, dependencies, items, state, executionBoundary (+11 more)
 
-### Community 32 - "high-complexity-quick-task.json"
+### Community 33 - "high-complexity-quick-task.json"
 Cohesion: 0.10
 Nodes (19): complexity, context, reference, state, dependencies, items, state, executionBoundary (+11 more)
 
-### Community 33 - "outbox.ts"
+### Community 34 - "outbox.ts"
 Cohesion: 0.16
 Nodes (18): CanonicalEvent, assertExactRecord(), ClaimRecord, claimRecordKeys, DurableClaimResult, EventRecord, eventRecordKeys, isNonEmptyString() (+10 more)
-
-### Community 34 - "codex-mcp-adapter.ts"
-Cohesion: 0.21
-Nodes (15): CodexMcpReadMappingError, CodexMcpReadSource, createCodexMcpReadAdapter(), exactRecord(), mapCodexMcpReadToObservationBundle(), observation(), recordField(), reject() (+7 more)
 
 ### Community 35 - "host-conformance.test.ts"
 Cohesion: 0.20
 Nodes (13): claudeCodeAdapter, codexAdapter, cursorAdapter, createLocalHostAdapter(), adapters, contract, eventInput(), startCheckInput() (+5 more)
 
-### Community 36 - "evaluateReadiness"
-Cohesion: 0.17
-Nodes (11): evaluateReadiness(), unique(), manifest, read(), readFixture(), readinessCapability, evaluateReadiness(), manifest (+3 more)
-
-### Community 37 - "compilerOptions"
+### Community 36 - "compilerOptions"
 Cohesion: 0.12
 Nodes (15): dist, .tmp-*, website, compilerOptions, exactOptionalPropertyTypes, module, moduleResolution, noUncheckedIndexedAccess (+7 more)
 
-### Community 38 - "manifest.ts"
+### Community 37 - "manifest.ts"
 Cohesion: 0.24
 Nodes (14): allowedOperations, canonicalJson(), capabilityKeys, githubScopeFingerprint(), loadGithubReadOnlyCapability(), parseGithubReadOnlyCapability(), prohibitedOperations, reject() (+6 more)
 
-### Community 39 - "devDependencies"
+### Community 38 - "devDependencies"
 Cohesion: 0.13
-Nodes (15): @cloudflare/vite-plugin, drizzle-kit, tailwindcss, @types/react, @types/react-dom, vinext, vite, devDependencies (+7 more)
+Nodes (15): @cloudflare/vite-plugin, react-server-dom-webpack, tailwindcss, @types/react, @types/react-dom, vinext, vite, devDependencies (+7 more)
 
-### Community 40 - "projections.ts"
+### Community 39 - "projections.ts"
 Cohesion: 0.21
 Nodes (13): canonicalAllowedOperations, canonicalProhibitedOperations, extractOperations(), hosts, hostSurfaces, parseGithubCapabilityTemplate(), renderGithubCapabilityTemplate(), requireCapabilityId() (+5 more)
 
-### Community 41 - "choice.ts"
+### Community 40 - "choice.ts"
 Cohesion: 0.23
 Nodes (12): allowedKeys(), commonKeys, ControllerCheckpointError, digest(), exactKeys(), nonEmpty(), oneOf(), parseCheckpointChoice() (+4 more)
 
-### Community 42 - "recipe.ts"
+### Community 41 - "recipe.ts"
 Cohesion: 0.22
 Nodes (11): controllerKeys, ControllerRecipeError, extractFrontmatter(), loadQuickTaskRecipe(), parseQuickTaskRecipe(), recipeKeys, requiredDor, requireExactArray() (+3 more)
 
-### Community 43 - "envelope.ts"
+### Community 42 - "envelope.ts"
 Cohesion: 0.29
 Nodes (13): CanonicalEventSource, assertRecord(), createCanonicalEvent(), createIdempotencyKey(), EventInput, eventKeys, inputKeys, isNonEmptyString() (+5 more)
 
-### Community 44 - "incomplete-quick-task.json"
+### Community 43 - "incomplete-quick-task.json"
 Cohesion: 0.14
 Nodes (13): complexity, dependencies, items, state, executionBoundary, goal, state, outcomeOwner (+5 more)
+
+### Community 44 - "codex-mcp-adapter.ts"
+Cohesion: 0.21
+Nodes (15): CodexMcpReadMappingError, CodexMcpReadSource, createCodexMcpReadAdapter(), exactRecord(), mapCodexMcpReadToObservationBundle(), observation(), recordField(), reject() (+7 more)
 
 ### Community 45 - "storage.ts"
 Cohesion: 0.30
