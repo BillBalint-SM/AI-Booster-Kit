@@ -310,9 +310,9 @@ CLI operations.
 prior setup, rollback test, explicit save-versus-ephemeral behavior, positive
 and negative tests, and a 304/304 full local suite. This remains
 `COMPLETE_WITH_LIMIT` because no host runtime is activated and no external
-publication occurs. Mapper freshness remains `NOT_READY`: the local Graphify
-snapshot identifies `d570212…`, while the source mapper identifies
-`a08b2bc6…`; both require one stable source revision before publication.
+publication occurs. The reviewed local Graphify and Understand Anything
+snapshot is now `READY` under the mapper runbook; current branch and
+publication state remain operational facts in `current-state.md`.
 
 ### Complete with limit — M3: Compact session state and optional storage
 
@@ -378,6 +378,23 @@ The roadmap follows the project’s document discipline:
 - `plan.md`, `task.md`, `context.md`, `review.md`, `Milestone.md`, `Epic.md`,
   or `Task.md` are created separately only when they have an independent owner,
   lifecycle, and contribution to the Vision or Roadmap.
+
+### Roadmap and current-state synchronization
+
+- Update `docs/project/current-state.md` at the end of every delivery slice or
+  operational state change. It owns the current branch, revision, worktree,
+  PR, validation, mapper freshness, limits, and next bounded action.
+- Update this roadmap when a Milestone's scope, capability status, exit gate,
+  milestone order, or durable boundary changes. It is not updated for every
+  commit or implementation detail.
+- When a Milestone closes or changes status, update the roadmap and
+  `current-state.md` in the same delivery slice so the strategic and
+  operational views cannot diverge.
+- Keep commit SHAs, branch/PR details, test-run details, and temporary gate
+  observations in `current-state.md`; keep this roadmap focused on durable
+  capability and scope decisions.
+- Move superseded state and detailed evidence to `docs/history/`; do not keep
+  stale operational claims in the active roadmap.
 
 The roadmap itself is a strategic source, not a replacement for a workflow
 contract or session state. A roadmap item becomes executable only through a
