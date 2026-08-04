@@ -1,6 +1,6 @@
 {
   "scriptCompleted": true,
-  "contentDigest": "ff3487ba219a49ec2439efa6ba6cac7d393be2dca70943569cc5d084e12e97e2",
+  "contentDigest": "b15c612a1ba846a0237972aa98593ef7de7b06ada61ac2f94cde78b661be944e",
   "files": [
     {
       "path": ".github/pull_request_template.md",
@@ -251,7 +251,7 @@
     {
       "path": "docs/project/current-state.md",
       "language": "markdown",
-      "sizeLines": 75,
+      "sizeLines": 80,
       "fileCategory": "docs"
     },
     {
@@ -263,7 +263,7 @@
     {
       "path": "docs/project/roadmap.md",
       "language": "markdown",
-      "sizeLines": 416,
+      "sizeLines": 433,
       "fileCategory": "docs"
     },
     {

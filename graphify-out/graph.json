@@ -482,7 +482,7 @@
       "source_file": "src/adapters/types.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 25,
+      "community": 23,
       "norm_label": "types.ts",
       "community_name": "types.ts",
       "id": "src_adapters_types"
@@ -493,7 +493,7 @@
       "source_file": "src/adapters/types.ts",
       "source_location": "L7",
       "_origin": "ast",
-      "community": 25,
+      "community": 23,
       "norm_label": "implementationstartcontext",
       "community_name": "types.ts",
       "id": "src_adapters_types_implementationstartcontext"
@@ -504,7 +504,7 @@
       "source_file": "src/adapters/types.ts",
       "source_location": "L12",
       "_origin": "ast",
-      "community": 25,
+      "community": 23,
       "norm_label": "hosteventinput",
       "community_name": "types.ts",
       "id": "src_adapters_types_hosteventinput"
@@ -515,7 +515,7 @@
       "source_file": "src/adapters/types.ts",
       "source_location": "L24",
       "_origin": "ast",
-      "community": 25,
+      "community": 23,
       "norm_label": "hostcapabilityreport",
       "community_name": "types.ts",
       "id": "src_adapters_types_hostcapabilityreport"
@@ -570,7 +570,7 @@
       "source_file": "src/adapters/types.ts",
       "source_location": "L39",
       "_origin": "ast",
-      "community": 25,
+      "community": 23,
       "norm_label": "adaptersafetyerror",
       "community_name": "types.ts",
       "id": "src_adapters_types_adaptersafetyerror"
@@ -581,7 +581,7 @@
       "source_file": "src/adapters/types.ts",
       "source_location": "L42",
       "_origin": "ast",
-      "community": 25,
+      "community": 23,
       "norm_label": ".constructor()",
       "community_name": "types.ts",
       "id": "src_adapters_types_adaptersafetyerror_constructor"
@@ -592,7 +592,7 @@
       "source_file": "src/adapters/types.ts",
       "source_location": "L49",
       "_origin": "ast",
-      "community": 25,
+      "community": 23,
       "norm_label": "adapterdefinition",
       "community_name": "types.ts",
       "id": "src_adapters_types_adapterdefinition"
@@ -603,7 +603,7 @@
       "source_file": "src/adapters/types.ts",
       "source_location": "L57",
       "_origin": "ast",
-      "community": 25,
+      "community": 23,
       "norm_label": "approvedimplementationstartevidence",
       "community_name": "types.ts",
       "id": "src_adapters_types_approvedimplementationstartevidence"
@@ -625,7 +625,7 @@
       "source_file": "src/adapters/types.ts",
       "source_location": "L86",
       "_origin": "ast",
-      "community": 25,
+      "community": 23,
       "norm_label": "emitlocalevent()",
       "community_name": "types.ts",
       "id": "src_adapters_types_emitlocalevent"
@@ -636,7 +636,7 @@
       "source_file": "src/adapters/types.ts",
       "source_location": "L114",
       "_origin": "ast",
-      "community": 25,
+      "community": 23,
       "norm_label": "assertimplementationstartcontext()",
       "community_name": "types.ts",
       "id": "src_adapters_types_assertimplementationstartcontext"
@@ -647,7 +647,7 @@
       "source_file": "src/adapters/types.ts",
       "source_location": "L148",
       "_origin": "ast",
-      "community": 25,
+      "community": 23,
       "norm_label": "isimplementationstartcontext()",
       "community_name": "types.ts",
       "id": "src_adapters_types_isimplementationstartcontext"
@@ -658,7 +658,7 @@
       "source_file": "src/adapters/types.ts",
       "source_location": "L153",
       "_origin": "ast",
-      "community": 25,
+      "community": 23,
       "norm_label": "isstartcheckinput()",
       "community_name": "types.ts",
       "id": "src_adapters_types_isstartcheckinput"
@@ -669,7 +669,7 @@
       "source_file": "src/adapters/types.ts",
       "source_location": "L163",
       "_origin": "ast",
-      "community": 25,
+      "community": 23,
       "norm_label": "isrecord()",
       "community_name": "types.ts",
       "id": "src_adapters_types_isrecord"
@@ -680,7 +680,7 @@
       "source_file": "src/adapters/types.ts",
       "source_location": "L170",
       "_origin": "ast",
-      "community": 25,
+      "community": 23,
       "norm_label": "isstringarray()",
       "community_name": "types.ts",
       "id": "src_adapters_types_isstringarray"
@@ -691,7 +691,7 @@
       "source_file": "src/adapters/types.ts",
       "source_location": "L174",
       "_origin": "ast",
-      "community": 25,
+      "community": 23,
       "norm_label": "isstringrecord()",
       "community_name": "types.ts",
       "id": "src_adapters_types_isstringrecord"
@@ -702,7 +702,7 @@
       "source_file": "src/adapters/types.ts",
       "source_location": "L178",
       "_origin": "ast",
-      "community": 25,
+      "community": 23,
       "norm_label": "isnonemptystring()",
       "community_name": "types.ts",
       "id": "src_adapters_types_isnonemptystring"
@@ -713,7 +713,7 @@
       "source_file": "src/adapters/types.ts",
       "source_location": "L182",
       "_origin": "ast",
-      "community": 25,
+      "community": 23,
       "norm_label": "hasonlyapprovedimplementationstartevidence()",
       "community_name": "types.ts",
       "id": "src_adapters_types_hasonlyapprovedimplementationstartevidence"
@@ -724,7 +724,7 @@
       "source_file": "src/adapters/types.ts",
       "source_location": "L186",
       "_origin": "ast",
-      "community": 25,
+      "community": 23,
       "norm_label": "eventstates()",
       "community_name": "types.ts",
       "id": "src_adapters_types_eventstates"
@@ -735,7 +735,7 @@
       "source_file": "src/capabilities/manifest.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 37,
+      "community": 38,
       "norm_label": "manifest.ts",
       "community_name": "manifest.ts",
       "id": "src_capabilities_manifest"
@@ -746,7 +746,7 @@
       "source_file": "src/capabilities/manifest.ts",
       "source_location": "L7",
       "_origin": "ast",
-      "community": 37,
+      "community": 38,
       "norm_label": "capabilitykeys",
       "community_name": "manifest.ts",
       "id": "src_capabilities_manifest_capabilitykeys"
@@ -757,7 +757,7 @@
       "source_file": "src/capabilities/manifest.ts",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 37,
+      "community": 38,
       "norm_label": "allowedoperations",
       "community_name": "manifest.ts",
       "id": "src_capabilities_manifest_allowedoperations"
@@ -768,7 +768,7 @@
       "source_file": "src/capabilities/manifest.ts",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 37,
+      "community": 38,
       "norm_label": "prohibitedoperations",
       "community_name": "manifest.ts",
       "id": "src_capabilities_manifest_prohibitedoperations"
@@ -779,7 +779,7 @@
       "source_file": "src/capabilities/manifest.ts",
       "source_location": "L10",
       "_origin": "ast",
-      "community": 37,
+      "community": 38,
       "norm_label": "requiredhosts",
       "community_name": "manifest.ts",
       "id": "src_capabilities_manifest_requiredhosts"
@@ -790,7 +790,7 @@
       "source_file": "src/capabilities/manifest.ts",
       "source_location": "L14",
       "_origin": "ast",
-      "community": 37,
+      "community": 38,
       "norm_label": "loadgithubreadonlycapability()",
       "community_name": "manifest.ts",
       "id": "src_capabilities_manifest_loadgithubreadonlycapability"
@@ -801,7 +801,7 @@
       "source_file": "src/capabilities/manifest.ts",
       "source_location": "L26",
       "_origin": "ast",
-      "community": 37,
+      "community": 38,
       "norm_label": "parsegithubreadonlycapability()",
       "community_name": "manifest.ts",
       "id": "src_capabilities_manifest_parsegithubreadonlycapability"
@@ -812,7 +812,7 @@
       "source_file": "src/capabilities/manifest.ts",
       "source_location": "L48",
       "_origin": "ast",
-      "community": 37,
+      "community": 38,
       "norm_label": "githubscopefingerprint()",
       "community_name": "manifest.ts",
       "id": "src_capabilities_manifest_githubscopefingerprint"
@@ -823,7 +823,7 @@
       "source_file": "src/capabilities/manifest.ts",
       "source_location": "L52",
       "_origin": "ast",
-      "community": 37,
+      "community": 38,
       "norm_label": "requirerecord()",
       "community_name": "manifest.ts",
       "id": "src_capabilities_manifest_requirerecord"
@@ -834,7 +834,7 @@
       "source_file": "src/capabilities/manifest.ts",
       "source_location": "L59",
       "_origin": "ast",
-      "community": 37,
+      "community": 38,
       "norm_label": "requireexactkeys()",
       "community_name": "manifest.ts",
       "id": "src_capabilities_manifest_requireexactkeys"
@@ -845,7 +845,7 @@
       "source_file": "src/capabilities/manifest.ts",
       "source_location": "L66",
       "_origin": "ast",
-      "community": 37,
+      "community": 38,
       "norm_label": "requireexactarray()",
       "community_name": "manifest.ts",
       "id": "src_capabilities_manifest_requireexactarray"
@@ -856,7 +856,7 @@
       "source_file": "src/capabilities/manifest.ts",
       "source_location": "L75",
       "_origin": "ast",
-      "community": 37,
+      "community": 38,
       "norm_label": "rejectunsafevalues()",
       "community_name": "manifest.ts",
       "id": "src_capabilities_manifest_rejectunsafevalues"
@@ -867,7 +867,7 @@
       "source_file": "src/capabilities/manifest.ts",
       "source_location": "L88",
       "_origin": "ast",
-      "community": 37,
+      "community": 38,
       "norm_label": "canonicaljson()",
       "community_name": "manifest.ts",
       "id": "src_capabilities_manifest_canonicaljson"
@@ -878,7 +878,7 @@
       "source_file": "src/capabilities/manifest.ts",
       "source_location": "L97",
       "_origin": "ast",
-      "community": 37,
+      "community": 38,
       "norm_label": "reject()",
       "community_name": "manifest.ts",
       "id": "src_capabilities_manifest_reject"
@@ -889,7 +889,7 @@
       "source_file": "src/capabilities/projections.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 39,
+      "community": 40,
       "norm_label": "projections.ts",
       "community_name": "projections.ts",
       "id": "src_capabilities_projections"
@@ -900,7 +900,7 @@
       "source_file": "src/capabilities/projections.ts",
       "source_location": "L7",
       "_origin": "ast",
-      "community": 39,
+      "community": 40,
       "norm_label": "hosts",
       "community_name": "projections.ts",
       "id": "src_capabilities_projections_hosts"
@@ -911,7 +911,7 @@
       "source_file": "src/capabilities/projections.ts",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 39,
+      "community": 40,
       "norm_label": "canonicalallowedoperations",
       "community_name": "projections.ts",
       "id": "src_capabilities_projections_canonicalallowedoperations"
@@ -922,7 +922,7 @@
       "source_file": "src/capabilities/projections.ts",
       "source_location": "L10",
       "_origin": "ast",
-      "community": 39,
+      "community": 40,
       "norm_label": "canonicalprohibitedoperations",
       "community_name": "projections.ts",
       "id": "src_capabilities_projections_canonicalprohibitedoperations"
@@ -933,7 +933,7 @@
       "source_file": "src/capabilities/projections.ts",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 39,
+      "community": 40,
       "norm_label": "hostsurfaces",
       "community_name": "projections.ts",
       "id": "src_capabilities_projections_hostsurfaces"
@@ -944,7 +944,7 @@
       "source_file": "src/capabilities/projections.ts",
       "source_location": "L17",
       "_origin": "ast",
-      "community": 39,
+      "community": 40,
       "norm_label": "rendergithubcapabilitytemplate()",
       "community_name": "projections.ts",
       "id": "src_capabilities_projections_rendergithubcapabilitytemplate"
@@ -955,7 +955,7 @@
       "source_file": "src/capabilities/projections.ts",
       "source_location": "L49",
       "_origin": "ast",
-      "community": 39,
+      "community": 40,
       "norm_label": "parsegithubcapabilitytemplate()",
       "community_name": "projections.ts",
       "id": "src_capabilities_projections_parsegithubcapabilitytemplate"
@@ -966,7 +966,7 @@
       "source_file": "src/capabilities/projections.ts",
       "source_location": "L84",
       "_origin": "ast",
-      "community": 39,
+      "community": 40,
       "norm_label": "extractoperations()",
       "community_name": "projections.ts",
       "id": "src_capabilities_projections_extractoperations"
@@ -977,7 +977,7 @@
       "source_file": "src/capabilities/projections.ts",
       "source_location": "L90",
       "_origin": "ast",
-      "community": 39,
+      "community": 40,
       "norm_label": "requirerecord()",
       "community_name": "projections.ts",
       "id": "src_capabilities_projections_requirerecord"
@@ -988,7 +988,7 @@
       "source_file": "src/capabilities/projections.ts",
       "source_location": "L95",
       "_origin": "ast",
-      "community": 39,
+      "community": 40,
       "norm_label": "requirecapabilityid()",
       "community_name": "projections.ts",
       "id": "src_capabilities_projections_requirecapabilityid"
@@ -999,7 +999,7 @@
       "source_file": "src/capabilities/projections.ts",
       "source_location": "L100",
       "_origin": "ast",
-      "community": 39,
+      "community": 40,
       "norm_label": "requireversion()",
       "community_name": "projections.ts",
       "id": "src_capabilities_projections_requireversion"
@@ -1010,7 +1010,7 @@
       "source_file": "src/capabilities/projections.ts",
       "source_location": "L105",
       "_origin": "ast",
-      "community": 39,
+      "community": 40,
       "norm_label": "requirehost()",
       "community_name": "projections.ts",
       "id": "src_capabilities_projections_requirehost"
@@ -1021,7 +1021,7 @@
       "source_file": "src/capabilities/projections.ts",
       "source_location": "L110",
       "_origin": "ast",
-      "community": 39,
+      "community": 40,
       "norm_label": "requirefingerprint()",
       "community_name": "projections.ts",
       "id": "src_capabilities_projections_requirefingerprint"
@@ -1032,7 +1032,7 @@
       "source_file": "src/capabilities/types.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 15,
+      "community": 28,
       "norm_label": "types.ts",
       "community_name": "ingest.ts",
       "id": "src_capabilities_types"
@@ -1043,7 +1043,7 @@
       "source_file": "src/capabilities/types.ts",
       "source_location": "L3",
       "_origin": "ast",
-      "community": 15,
+      "community": 28,
       "norm_label": "githubreadonlycapability",
       "community_name": "ingest.ts",
       "id": "src_capabilities_types_githubreadonlycapability"
@@ -1054,7 +1054,7 @@
       "source_file": "src/capabilities/types.ts",
       "source_location": "L12",
       "_origin": "ast",
-      "community": 25,
+      "community": 23,
       "norm_label": "hostcapabilitytemplate",
       "community_name": "types.ts",
       "id": "src_capabilities_types_hostcapabilitytemplate"
@@ -1065,7 +1065,7 @@
       "source_file": "src/capabilities/types.ts",
       "source_location": "L24",
       "_origin": "ast",
-      "community": 15,
+      "community": 28,
       "norm_label": "githubcapabilityevidence",
       "community_name": "ingest.ts",
       "id": "src_capabilities_types_githubcapabilityevidence"
@@ -1824,7 +1824,7 @@
       "source_file": "src/contract/markdown.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 20,
+      "community": 19,
       "norm_label": "markdown.ts",
       "community_name": "markdown.ts",
       "id": "src_contract_markdown"
@@ -1835,7 +1835,7 @@
       "source_file": "src/contract/markdown.ts",
       "source_location": "L7",
       "_origin": "ast",
-      "community": 25,
+      "community": 23,
       "norm_label": "agenthost",
       "community_name": "types.ts",
       "id": "src_contract_markdown_agenthost"
@@ -1846,7 +1846,7 @@
       "source_file": "src/contract/markdown.ts",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 25,
+      "community": 23,
       "norm_label": "capabilitystate",
       "community_name": "types.ts",
       "id": "src_contract_markdown_capabilitystate"
@@ -1890,7 +1890,7 @@
       "source_file": "src/contract/markdown.ts",
       "source_location": "L35",
       "_origin": "ast",
-      "community": 20,
+      "community": 19,
       "norm_label": "validationsummary",
       "community_name": "markdown.ts",
       "id": "src_contract_markdown_validationsummary"
@@ -1912,7 +1912,7 @@
       "source_file": "src/contract/markdown.ts",
       "source_location": "L51",
       "_origin": "ast",
-      "community": 20,
+      "community": 19,
       "norm_label": "allowedmetadatakeys",
       "community_name": "markdown.ts",
       "id": "src_contract_markdown_allowedmetadatakeys"
@@ -1923,7 +1923,7 @@
       "source_file": "src/contract/markdown.ts",
       "source_location": "L58",
       "_origin": "ast",
-      "community": 20,
+      "community": 19,
       "norm_label": "capabilitystates",
       "community_name": "markdown.ts",
       "id": "src_contract_markdown_capabilitystates"
@@ -1934,7 +1934,7 @@
       "source_file": "src/contract/markdown.ts",
       "source_location": "L66",
       "_origin": "ast",
-      "community": 20,
+      "community": 19,
       "norm_label": "allowedcapabilitykeys",
       "community_name": "markdown.ts",
       "id": "src_contract_markdown_allowedcapabilitykeys"
@@ -1945,7 +1945,7 @@
       "source_file": "src/contract/markdown.ts",
       "source_location": "L67",
       "_origin": "ast",
-      "community": 20,
+      "community": 19,
       "norm_label": "requiredvocabulary",
       "community_name": "markdown.ts",
       "id": "src_contract_markdown_requiredvocabulary"
@@ -1956,7 +1956,7 @@
       "source_file": "src/contract/markdown.ts",
       "source_location": "L78",
       "_origin": "ast",
-      "community": 20,
+      "community": 19,
       "norm_label": "canonicalboardstatuses",
       "community_name": "markdown.ts",
       "id": "src_contract_markdown_canonicalboardstatuses"
@@ -1978,7 +1978,7 @@
       "source_file": "src/contract/markdown.ts",
       "source_location": "L95",
       "_origin": "ast",
-      "community": 20,
+      "community": 19,
       "norm_label": "parsemarkdowncontract()",
       "community_name": "markdown.ts",
       "id": "src_contract_markdown_parsemarkdowncontract"
@@ -1989,7 +1989,7 @@
       "source_file": "src/contract/markdown.ts",
       "source_location": "L148",
       "_origin": "ast",
-      "community": 20,
+      "community": 19,
       "norm_label": "validatecontractpath()",
       "community_name": "markdown.ts",
       "id": "src_contract_markdown_validatecontractpath"
@@ -2000,7 +2000,7 @@
       "source_file": "src/contract/markdown.ts",
       "source_location": "L177",
       "_origin": "ast",
-      "community": 20,
+      "community": 19,
       "norm_label": "canonicalvocabulary()",
       "community_name": "markdown.ts",
       "id": "src_contract_markdown_canonicalvocabulary"
@@ -2011,7 +2011,7 @@
       "source_file": "src/contract/markdown.ts",
       "source_location": "L194",
       "_origin": "ast",
-      "community": 20,
+      "community": 19,
       "norm_label": "validatecontractdocument()",
       "community_name": "markdown.ts",
       "id": "src_contract_markdown_validatecontractdocument"
@@ -2022,7 +2022,7 @@
       "source_file": "src/contract/markdown.ts",
       "source_location": "L225",
       "_origin": "ast",
-      "community": 20,
+      "community": 19,
       "norm_label": "extractfrontmatter()",
       "community_name": "markdown.ts",
       "id": "src_contract_markdown_extractfrontmatter"
@@ -2033,7 +2033,7 @@
       "source_file": "src/contract/markdown.ts",
       "source_location": "L242",
       "_origin": "ast",
-      "community": 20,
+      "community": 19,
       "norm_label": "rejectadditionalfrontmatter()",
       "community_name": "markdown.ts",
       "id": "src_contract_markdown_rejectadditionalfrontmatter"
@@ -2044,7 +2044,7 @@
       "source_file": "src/contract/markdown.ts",
       "source_location": "L252",
       "_origin": "ast",
-      "community": 20,
+      "community": 19,
       "norm_label": "rejectexecutablemarkdown()",
       "community_name": "markdown.ts",
       "id": "src_contract_markdown_rejectexecutablemarkdown"
@@ -2055,7 +2055,7 @@
       "source_file": "src/contract/markdown.ts",
       "source_location": "L267",
       "_origin": "ast",
-      "community": 20,
+      "community": 19,
       "norm_label": "rejectunknownmetadata()",
       "community_name": "markdown.ts",
       "id": "src_contract_markdown_rejectunknownmetadata"
@@ -2066,7 +2066,7 @@
       "source_file": "src/contract/markdown.ts",
       "source_location": "L282",
       "_origin": "ast",
-      "community": 20,
+      "community": 19,
       "norm_label": "requiredstring()",
       "community_name": "markdown.ts",
       "id": "src_contract_markdown_requiredstring"
@@ -2077,7 +2077,7 @@
       "source_file": "src/contract/markdown.ts",
       "source_location": "L300",
       "_origin": "ast",
-      "community": 20,
+      "community": 19,
       "norm_label": "requiredstringarray()",
       "community_name": "markdown.ts",
       "id": "src_contract_markdown_requiredstringarray"
@@ -2088,7 +2088,7 @@
       "source_file": "src/contract/markdown.ts",
       "source_location": "L318",
       "_origin": "ast",
-      "community": 20,
+      "community": 19,
       "norm_label": "parsecapabilities()",
       "community_name": "markdown.ts",
       "id": "src_contract_markdown_parsecapabilities"
@@ -2099,7 +2099,7 @@
       "source_file": "src/contract/markdown.ts",
       "source_location": "L325",
       "_origin": "ast",
-      "community": 20,
+      "community": 19,
       "norm_label": "validatecapabilitydeclarations()",
       "community_name": "markdown.ts",
       "id": "src_contract_markdown_validatecapabilitydeclarations"
@@ -2110,7 +2110,7 @@
       "source_file": "src/contract/markdown.ts",
       "source_location": "L373",
       "_origin": "ast",
-      "community": 20,
+      "community": 19,
       "norm_label": "requiredstringat()",
       "community_name": "markdown.ts",
       "id": "src_contract_markdown_requiredstringat"
@@ -2121,7 +2121,7 @@
       "source_file": "src/contract/markdown.ts",
       "source_location": "L388",
       "_origin": "ast",
-      "community": 20,
+      "community": 19,
       "norm_label": "parsecontractsemantics()",
       "community_name": "markdown.ts",
       "id": "src_contract_markdown_parsecontractsemantics"
@@ -2132,7 +2132,7 @@
       "source_file": "src/contract/markdown.ts",
       "source_location": "L409",
       "_origin": "ast",
-      "community": 20,
+      "community": 19,
       "norm_label": "sectioncontent()",
       "community_name": "markdown.ts",
       "id": "src_contract_markdown_sectioncontent"
@@ -2143,7 +2143,7 @@
       "source_file": "src/contract/markdown.ts",
       "source_location": "L420",
       "_origin": "ast",
-      "community": 20,
+      "community": 19,
       "norm_label": "normalizewhitespace()",
       "community_name": "markdown.ts",
       "id": "src_contract_markdown_normalizewhitespace"
@@ -2154,7 +2154,7 @@
       "source_file": "src/contract/markdown.ts",
       "source_location": "L424",
       "_origin": "ast",
-      "community": 20,
+      "community": 19,
       "norm_label": "isrecord()",
       "community_name": "markdown.ts",
       "id": "src_contract_markdown_isrecord"
@@ -2165,7 +2165,7 @@
       "source_file": "src/controller/activation-package.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 23,
+      "community": 22,
       "norm_label": "activation-package.ts",
       "community_name": "controller-activation-package.test.ts",
       "id": "src_controller_activation_package"
@@ -2176,7 +2176,7 @@
       "source_file": "src/controller/activation-package.ts",
       "source_location": "L12",
       "_origin": "ast",
-      "community": 23,
+      "community": 22,
       "norm_label": "commoninstructions",
       "community_name": "controller-activation-package.test.ts",
       "id": "src_controller_activation_package_commoninstructions"
@@ -2187,7 +2187,7 @@
       "source_file": "src/controller/activation-package.ts",
       "source_location": "L18",
       "_origin": "ast",
-      "community": 23,
+      "community": 22,
       "norm_label": "stopconditions",
       "community_name": "controller-activation-package.test.ts",
       "id": "src_controller_activation_package_stopconditions"
@@ -2198,7 +2198,7 @@
       "source_file": "src/controller/activation-package.ts",
       "source_location": "L23",
       "_origin": "ast",
-      "community": 23,
+      "community": 22,
       "norm_label": "profiledefinitions",
       "community_name": "controller-activation-package.test.ts",
       "id": "src_controller_activation_package_profiledefinitions"
@@ -2209,7 +2209,7 @@
       "source_file": "src/controller/activation-package.ts",
       "source_location": "L42",
       "_origin": "ast",
-      "community": 23,
+      "community": 22,
       "norm_label": "parseactivationprofile()",
       "community_name": "controller-activation-package.test.ts",
       "id": "src_controller_activation_package_parseactivationprofile"
@@ -2220,7 +2220,7 @@
       "source_file": "src/controller/activation-package.ts",
       "source_location": "L48",
       "_origin": "ast",
-      "community": 23,
+      "community": 22,
       "norm_label": "createquicktaskactivationpackage()",
       "community_name": "controller-activation-package.test.ts",
       "id": "src_controller_activation_package_createquicktaskactivationpackage"
@@ -2231,7 +2231,7 @@
       "source_file": "src/controller/activation-package.ts",
       "source_location": "L66",
       "_origin": "ast",
-      "community": 23,
+      "community": 22,
       "norm_label": "activationinput()",
       "community_name": "controller-activation-package.test.ts",
       "id": "src_controller_activation_package_activationinput"
@@ -2275,7 +2275,7 @@
       "source_file": "src/controller/choice.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 40,
+      "community": 41,
       "norm_label": "choice.ts",
       "community_name": "choice.ts",
       "id": "src_controller_choice"
@@ -2286,7 +2286,7 @@
       "source_file": "src/controller/choice.ts",
       "source_location": "L3",
       "_origin": "ast",
-      "community": 40,
+      "community": 41,
       "norm_label": "commonkeys",
       "community_name": "choice.ts",
       "id": "src_controller_choice_commonkeys"
@@ -2297,7 +2297,7 @@
       "source_file": "src/controller/choice.ts",
       "source_location": "L5",
       "_origin": "ast",
-      "community": 40,
+      "community": 41,
       "norm_label": "controllercheckpointerror",
       "community_name": "choice.ts",
       "id": "src_controller_choice_controllercheckpointerror"
@@ -2308,7 +2308,7 @@
       "source_file": "src/controller/choice.ts",
       "source_location": "L6",
       "_origin": "ast",
-      "community": 40,
+      "community": 41,
       "norm_label": ".constructor()",
       "community_name": "choice.ts",
       "id": "src_controller_choice_controllercheckpointerror_constructor"
@@ -2319,7 +2319,7 @@
       "source_file": "src/controller/choice.ts",
       "source_location": "L12",
       "_origin": "ast",
-      "community": 40,
+      "community": 41,
       "norm_label": "parsecheckpointchoice()",
       "community_name": "choice.ts",
       "id": "src_controller_choice_parsecheckpointchoice"
@@ -2330,7 +2330,7 @@
       "source_file": "src/controller/choice.ts",
       "source_location": "L34",
       "_origin": "ast",
-      "community": 40,
+      "community": 41,
       "norm_label": "plainrecord()",
       "community_name": "choice.ts",
       "id": "src_controller_choice_plainrecord"
@@ -2341,7 +2341,7 @@
       "source_file": "src/controller/choice.ts",
       "source_location": "L39",
       "_origin": "ast",
-      "community": 40,
+      "community": 41,
       "norm_label": "exactkeys()",
       "community_name": "choice.ts",
       "id": "src_controller_choice_exactkeys"
@@ -2352,7 +2352,7 @@
       "source_file": "src/controller/choice.ts",
       "source_location": "L44",
       "_origin": "ast",
-      "community": 40,
+      "community": 41,
       "norm_label": "allowedkeys()",
       "community_name": "choice.ts",
       "id": "src_controller_choice_allowedkeys"
@@ -2363,7 +2363,7 @@
       "source_file": "src/controller/choice.ts",
       "source_location": "L51",
       "_origin": "ast",
-      "community": 40,
+      "community": 41,
       "norm_label": "requiredkeys()",
       "community_name": "choice.ts",
       "id": "src_controller_choice_requiredkeys"
@@ -2374,7 +2374,7 @@
       "source_file": "src/controller/choice.ts",
       "source_location": "L55",
       "_origin": "ast",
-      "community": 40,
+      "community": 41,
       "norm_label": "oneof()",
       "community_name": "choice.ts",
       "id": "src_controller_choice_oneof"
@@ -2385,7 +2385,7 @@
       "source_file": "src/controller/choice.ts",
       "source_location": "L61",
       "_origin": "ast",
-      "community": 40,
+      "community": 41,
       "norm_label": "digest()",
       "community_name": "choice.ts",
       "id": "src_controller_choice_digest"
@@ -2396,7 +2396,7 @@
       "source_file": "src/controller/choice.ts",
       "source_location": "L67",
       "_origin": "ast",
-      "community": 40,
+      "community": 41,
       "norm_label": "nonempty()",
       "community_name": "choice.ts",
       "id": "src_controller_choice_nonempty"
@@ -2847,7 +2847,7 @@
       "source_file": "src/controller/formation-recommendation.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 30,
+      "community": 29,
       "norm_label": "formation-recommendation.ts",
       "community_name": "formation-recommendation.ts",
       "id": "src_controller_formation_recommendation"
@@ -2858,7 +2858,7 @@
       "source_file": "src/controller/formation-recommendation.ts",
       "source_location": "L12",
       "_origin": "ast",
-      "community": 30,
+      "community": 29,
       "norm_label": "recognizedscenario",
       "community_name": "formation-recommendation.ts",
       "id": "src_controller_formation_recommendation_recognizedscenario"
@@ -2869,7 +2869,7 @@
       "source_file": "src/controller/formation-recommendation.ts",
       "source_location": "L14",
       "_origin": "ast",
-      "community": 30,
+      "community": 29,
       "norm_label": "scenariosignals",
       "community_name": "formation-recommendation.ts",
       "id": "src_controller_formation_recommendation_scenariosignals"
@@ -2880,7 +2880,7 @@
       "source_file": "src/controller/formation-recommendation.ts",
       "source_location": "L22",
       "_origin": "ast",
-      "community": 30,
+      "community": 29,
       "norm_label": "formationrecommendationerror",
       "community_name": "formation-recommendation.ts",
       "id": "src_controller_formation_recommendation_formationrecommendationerror"
@@ -2891,7 +2891,7 @@
       "source_file": "src/controller/formation-recommendation.ts",
       "source_location": "L23",
       "_origin": "ast",
-      "community": 30,
+      "community": 29,
       "norm_label": ".constructor()",
       "community_name": "formation-recommendation.ts",
       "id": "src_controller_formation_recommendation_formationrecommendationerror_constructor"
@@ -2902,7 +2902,7 @@
       "source_file": "src/controller/formation-recommendation.ts",
       "source_location": "L29",
       "_origin": "ast",
-      "community": 30,
+      "community": 29,
       "norm_label": "recommendformation()",
       "community_name": "formation-recommendation.ts",
       "id": "src_controller_formation_recommendation_recommendformation"
@@ -2913,7 +2913,7 @@
       "source_file": "src/controller/formation-recommendation.ts",
       "source_location": "L67",
       "_origin": "ast",
-      "community": 30,
+      "community": 29,
       "norm_label": "validaterequest()",
       "community_name": "formation-recommendation.ts",
       "id": "src_controller_formation_recommendation_validaterequest"
@@ -2924,7 +2924,7 @@
       "source_file": "src/controller/formation-recommendation.ts",
       "source_location": "L72",
       "_origin": "ast",
-      "community": 30,
+      "community": 29,
       "norm_label": "validatecatalog()",
       "community_name": "formation-recommendation.ts",
       "id": "src_controller_formation_recommendation_validatecatalog"
@@ -2935,7 +2935,7 @@
       "source_file": "src/controller/formation-recommendation.ts",
       "source_location": "L79",
       "_origin": "ast",
-      "community": 30,
+      "community": 29,
       "norm_label": "recognizescenario()",
       "community_name": "formation-recommendation.ts",
       "id": "src_controller_formation_recommendation_recognizescenario"
@@ -2946,7 +2946,7 @@
       "source_file": "src/controller/formation-recommendation.ts",
       "source_location": "L84",
       "_origin": "ast",
-      "community": 30,
+      "community": 29,
       "norm_label": "unresolvedprerequisites()",
       "community_name": "formation-recommendation.ts",
       "id": "src_controller_formation_recommendation_unresolvedprerequisites"
@@ -2957,7 +2957,7 @@
       "source_file": "src/controller/formation-recommendation.ts",
       "source_location": "L111",
       "_origin": "ast",
-      "community": 30,
+      "community": 29,
       "norm_label": "unknownrequestevidence()",
       "community_name": "formation-recommendation.ts",
       "id": "src_controller_formation_recommendation_unknownrequestevidence"
@@ -2968,7 +2968,7 @@
       "source_file": "src/controller/formation-recommendation.ts",
       "source_location": "L119",
       "_origin": "ast",
-      "community": 30,
+      "community": 29,
       "norm_label": "recommendation()",
       "community_name": "formation-recommendation.ts",
       "id": "src_controller_formation_recommendation_recommendation"
@@ -3232,7 +3232,7 @@
       "source_file": "src/controller/recipe.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 41,
+      "community": 42,
       "norm_label": "recipe.ts",
       "community_name": "recipe.ts",
       "id": "src_controller_recipe"
@@ -3243,7 +3243,7 @@
       "source_file": "src/controller/recipe.ts",
       "source_location": "L7",
       "_origin": "ast",
-      "community": 41,
+      "community": 42,
       "norm_label": "recipekeys",
       "community_name": "recipe.ts",
       "id": "src_controller_recipe_recipekeys"
@@ -3254,7 +3254,7 @@
       "source_file": "src/controller/recipe.ts",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 41,
+      "community": 42,
       "norm_label": "controllerkeys",
       "community_name": "recipe.ts",
       "id": "src_controller_recipe_controllerkeys"
@@ -3265,7 +3265,7 @@
       "source_file": "src/controller/recipe.ts",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 41,
+      "community": 42,
       "norm_label": "requireddor",
       "community_name": "recipe.ts",
       "id": "src_controller_recipe_requireddor"
@@ -3276,7 +3276,7 @@
       "source_file": "src/controller/recipe.ts",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 41,
+      "community": 42,
       "norm_label": "controllerrecipeerror",
       "community_name": "recipe.ts",
       "id": "src_controller_recipe_controllerrecipeerror"
@@ -3287,7 +3287,7 @@
       "source_file": "src/controller/recipe.ts",
       "source_location": "L12",
       "_origin": "ast",
-      "community": 41,
+      "community": 42,
       "norm_label": ".constructor()",
       "community_name": "recipe.ts",
       "id": "src_controller_recipe_controllerrecipeerror_constructor"
@@ -3298,7 +3298,7 @@
       "source_file": "src/controller/recipe.ts",
       "source_location": "L18",
       "_origin": "ast",
-      "community": 41,
+      "community": 42,
       "norm_label": "loadquicktaskrecipe()",
       "community_name": "recipe.ts",
       "id": "src_controller_recipe_loadquicktaskrecipe"
@@ -3309,7 +3309,7 @@
       "source_file": "src/controller/recipe.ts",
       "source_location": "L22",
       "_origin": "ast",
-      "community": 41,
+      "community": 42,
       "norm_label": "parsequicktaskrecipe()",
       "community_name": "recipe.ts",
       "id": "src_controller_recipe_parsequicktaskrecipe"
@@ -3320,7 +3320,7 @@
       "source_file": "src/controller/recipe.ts",
       "source_location": "L60",
       "_origin": "ast",
-      "community": 41,
+      "community": 42,
       "norm_label": "extractfrontmatter()",
       "community_name": "recipe.ts",
       "id": "src_controller_recipe_extractfrontmatter"
@@ -3331,7 +3331,7 @@
       "source_file": "src/controller/recipe.ts",
       "source_location": "L66",
       "_origin": "ast",
-      "community": 41,
+      "community": 42,
       "norm_label": "requirerecord()",
       "community_name": "recipe.ts",
       "id": "src_controller_recipe_requirerecord"
@@ -3342,7 +3342,7 @@
       "source_file": "src/controller/recipe.ts",
       "source_location": "L73",
       "_origin": "ast",
-      "community": 41,
+      "community": 42,
       "norm_label": "requireexactkeys()",
       "community_name": "recipe.ts",
       "id": "src_controller_recipe_requireexactkeys"
@@ -3353,7 +3353,7 @@
       "source_file": "src/controller/recipe.ts",
       "source_location": "L83",
       "_origin": "ast",
-      "community": 41,
+      "community": 42,
       "norm_label": "requireliteral()",
       "community_name": "recipe.ts",
       "id": "src_controller_recipe_requireliteral"
@@ -3364,7 +3364,7 @@
       "source_file": "src/controller/recipe.ts",
       "source_location": "L87",
       "_origin": "ast",
-      "community": 41,
+      "community": 42,
       "norm_label": "requireexactarray()",
       "community_name": "recipe.ts",
       "id": "src_controller_recipe_requireexactarray"
@@ -3375,7 +3375,7 @@
       "source_file": "src/controller/request.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 21,
+      "community": 20,
       "norm_label": "request.ts",
       "community_name": "request.ts",
       "id": "src_controller_request"
@@ -3386,7 +3386,7 @@
       "source_file": "src/controller/request.ts",
       "source_location": "L3",
       "_origin": "ast",
-      "community": 21,
+      "community": 20,
       "norm_label": "rootkeys",
       "community_name": "request.ts",
       "id": "src_controller_request_rootkeys"
@@ -3397,7 +3397,7 @@
       "source_file": "src/controller/request.ts",
       "source_location": "L5",
       "_origin": "ast",
-      "community": 21,
+      "community": 20,
       "norm_label": "controllerrequesterror",
       "community_name": "request.ts",
       "id": "src_controller_request_controllerrequesterror"
@@ -3408,7 +3408,7 @@
       "source_file": "src/controller/request.ts",
       "source_location": "L6",
       "_origin": "ast",
-      "community": 21,
+      "community": 20,
       "norm_label": ".constructor()",
       "community_name": "request.ts",
       "id": "src_controller_request_controllerrequesterror_constructor"
@@ -3419,7 +3419,7 @@
       "source_file": "src/controller/request.ts",
       "source_location": "L12",
       "_origin": "ast",
-      "community": 21,
+      "community": 20,
       "norm_label": "parsequicktaskrequest()",
       "community_name": "request.ts",
       "id": "src_controller_request_parsequicktaskrequest"
@@ -3430,7 +3430,7 @@
       "source_file": "src/controller/request.ts",
       "source_location": "L35",
       "_origin": "ast",
-      "community": 21,
+      "community": 20,
       "norm_label": "parseformationinput()",
       "community_name": "request.ts",
       "id": "src_controller_request_parseformationinput"
@@ -3441,7 +3441,7 @@
       "source_file": "src/controller/request.ts",
       "source_location": "L45",
       "_origin": "ast",
-      "community": 21,
+      "community": 20,
       "norm_label": "parseresearchformationinput()",
       "community_name": "request.ts",
       "id": "src_controller_request_parseresearchformationinput"
@@ -3452,7 +3452,7 @@
       "source_file": "src/controller/request.ts",
       "source_location": "L55",
       "_origin": "ast",
-      "community": 21,
+      "community": 20,
       "norm_label": "parsevalidationformationinput()",
       "community_name": "request.ts",
       "id": "src_controller_request_parsevalidationformationinput"
@@ -3463,7 +3463,7 @@
       "source_file": "src/controller/request.ts",
       "source_location": "L66",
       "_origin": "ast",
-      "community": 21,
+      "community": 20,
       "norm_label": "parserefinementformationinput()",
       "community_name": "request.ts",
       "id": "src_controller_request_parserefinementformationinput"
@@ -3474,7 +3474,7 @@
       "source_file": "src/controller/request.ts",
       "source_location": "L76",
       "_origin": "ast",
-      "community": 21,
+      "community": 20,
       "norm_label": "parsedebuggingformationinput()",
       "community_name": "request.ts",
       "id": "src_controller_request_parsedebuggingformationinput"
@@ -3485,7 +3485,7 @@
       "source_file": "src/controller/request.ts",
       "source_location": "L87",
       "_origin": "ast",
-      "community": 21,
+      "community": 20,
       "norm_label": "parseimplementationformationinput()",
       "community_name": "request.ts",
       "id": "src_controller_request_parseimplementationformationinput"
@@ -3496,7 +3496,7 @@
       "source_file": "src/controller/request.ts",
       "source_location": "L102",
       "_origin": "ast",
-      "community": 21,
+      "community": 20,
       "norm_label": "parsevalue()",
       "community_name": "request.ts",
       "id": "src_controller_request_parsevalue"
@@ -3507,7 +3507,7 @@
       "source_file": "src/controller/request.ts",
       "source_location": "L109",
       "_origin": "ast",
-      "community": 21,
+      "community": 20,
       "norm_label": "parsecontext()",
       "community_name": "request.ts",
       "id": "src_controller_request_parsecontext"
@@ -3518,7 +3518,7 @@
       "source_file": "src/controller/request.ts",
       "source_location": "L116",
       "_origin": "ast",
-      "community": 21,
+      "community": 20,
       "norm_label": "parselinks()",
       "community_name": "request.ts",
       "id": "src_controller_request_parselinks"
@@ -3529,7 +3529,7 @@
       "source_file": "src/controller/request.ts",
       "source_location": "L126",
       "_origin": "ast",
-      "community": 21,
+      "community": 20,
       "norm_label": "parsepreferences()",
       "community_name": "request.ts",
       "id": "src_controller_request_parsepreferences"
@@ -3540,7 +3540,7 @@
       "source_file": "src/controller/request.ts",
       "source_location": "L132",
       "_origin": "ast",
-      "community": 21,
+      "community": 20,
       "norm_label": "plainrecord()",
       "community_name": "request.ts",
       "id": "src_controller_request_plainrecord"
@@ -3551,7 +3551,7 @@
       "source_file": "src/controller/request.ts",
       "source_location": "L137",
       "_origin": "ast",
-      "community": 21,
+      "community": 20,
       "norm_label": "exactkeys()",
       "community_name": "request.ts",
       "id": "src_controller_request_exactkeys"
@@ -3562,7 +3562,7 @@
       "source_file": "src/controller/request.ts",
       "source_location": "L145",
       "_origin": "ast",
-      "community": 21,
+      "community": 20,
       "norm_label": "allowedkeys()",
       "community_name": "request.ts",
       "id": "src_controller_request_allowedkeys"
@@ -3573,7 +3573,7 @@
       "source_file": "src/controller/request.ts",
       "source_location": "L152",
       "_origin": "ast",
-      "community": 21,
+      "community": 20,
       "norm_label": "literal()",
       "community_name": "request.ts",
       "id": "src_controller_request_literal"
@@ -3584,7 +3584,7 @@
       "source_file": "src/controller/request.ts",
       "source_location": "L157",
       "_origin": "ast",
-      "community": 21,
+      "community": 20,
       "norm_label": "oneof()",
       "community_name": "request.ts",
       "id": "src_controller_request_oneof"
@@ -3595,7 +3595,7 @@
       "source_file": "src/controller/request.ts",
       "source_location": "L163",
       "_origin": "ast",
-      "community": 21,
+      "community": 20,
       "norm_label": "nonempty()",
       "community_name": "request.ts",
       "id": "src_controller_request_nonempty"
@@ -3606,7 +3606,7 @@
       "source_file": "src/controller/request.ts",
       "source_location": "L169",
       "_origin": "ast",
-      "community": 21,
+      "community": 20,
       "norm_label": "nonemptyfield()",
       "community_name": "request.ts",
       "id": "src_controller_request_nonemptyfield"
@@ -3617,7 +3617,7 @@
       "source_file": "src/controller/request.ts",
       "source_location": "L175",
       "_origin": "ast",
-      "community": 21,
+      "community": 20,
       "norm_label": "stringarray()",
       "community_name": "request.ts",
       "id": "src_controller_request_stringarray"
@@ -3628,7 +3628,7 @@
       "source_file": "src/controller/request.ts",
       "source_location": "L180",
       "_origin": "ast",
-      "community": 21,
+      "community": 20,
       "norm_label": "requiredstringarray()",
       "community_name": "request.ts",
       "id": "src_controller_request_requiredstringarray"
@@ -3639,7 +3639,7 @@
       "source_file": "src/controller/resolve.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 23,
+      "community": 22,
       "norm_label": "resolve.ts",
       "community_name": "controller-activation-package.test.ts",
       "id": "src_controller_resolve"
@@ -3650,7 +3650,7 @@
       "source_file": "src/controller/resolve.ts",
       "source_location": "L4",
       "_origin": "ast",
-      "community": 23,
+      "community": 22,
       "norm_label": "resolvecheckpoint()",
       "community_name": "controller-activation-package.test.ts",
       "id": "src_controller_resolve_resolvecheckpoint"
@@ -3661,7 +3661,7 @@
       "source_file": "src/controller/resolve.ts",
       "source_location": "L33",
       "_origin": "ast",
-      "community": 23,
+      "community": 22,
       "norm_label": "acknowledgementrequired()",
       "community_name": "controller-activation-package.test.ts",
       "id": "src_controller_resolve_acknowledgementrequired"
@@ -3903,7 +3903,7 @@
       "source_file": "src/domain/model.ts",
       "source_location": "L89",
       "_origin": "ast",
-      "community": 34,
+      "community": 33,
       "norm_label": "canonicalevent",
       "community_name": "outbox.ts",
       "id": "src_domain_model_canonicalevent"
@@ -3914,7 +3914,7 @@
       "source_file": "src/domain/model.ts",
       "source_location": "L104",
       "_origin": "ast",
-      "community": 42,
+      "community": 43,
       "norm_label": "canonicaleventsource",
       "community_name": "envelope.ts",
       "id": "src_domain_model_canonicaleventsource"
@@ -4222,7 +4222,7 @@
       "source_file": "src/events/envelope.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 42,
+      "community": 43,
       "norm_label": "envelope.ts",
       "community_name": "envelope.ts",
       "id": "src_events_envelope"
@@ -4233,7 +4233,7 @@
       "source_file": "src/events/envelope.ts",
       "source_location": "L6",
       "_origin": "ast",
-      "community": 42,
+      "community": 43,
       "norm_label": "eventinput",
       "community_name": "envelope.ts",
       "id": "src_events_envelope_eventinput"
@@ -4244,7 +4244,7 @@
       "source_file": "src/events/envelope.ts",
       "source_location": "L21",
       "_origin": "ast",
-      "community": 42,
+      "community": 43,
       "norm_label": "inputkeys",
       "community_name": "envelope.ts",
       "id": "src_events_envelope_inputkeys"
@@ -4255,7 +4255,7 @@
       "source_file": "src/events/envelope.ts",
       "source_location": "L22",
       "_origin": "ast",
-      "community": 42,
+      "community": 43,
       "norm_label": "eventkeys",
       "community_name": "envelope.ts",
       "id": "src_events_envelope_eventkeys"
@@ -4266,7 +4266,7 @@
       "source_file": "src/events/envelope.ts",
       "source_location": "L23",
       "_origin": "ast",
-      "community": 42,
+      "community": 43,
       "norm_label": "sourcekeys",
       "community_name": "envelope.ts",
       "id": "src_events_envelope_sourcekeys"
@@ -4277,7 +4277,7 @@
       "source_file": "src/events/envelope.ts",
       "source_location": "L25",
       "_origin": "ast",
-      "community": 42,
+      "community": 43,
       "norm_label": "createcanonicalevent()",
       "community_name": "envelope.ts",
       "id": "src_events_envelope_createcanonicalevent"
@@ -4288,7 +4288,7 @@
       "source_file": "src/events/envelope.ts",
       "source_location": "L36",
       "_origin": "ast",
-      "community": 42,
+      "community": 43,
       "norm_label": "validatecanonicalevent()",
       "community_name": "envelope.ts",
       "id": "src_events_envelope_validatecanonicalevent"
@@ -4299,7 +4299,7 @@
       "source_file": "src/events/envelope.ts",
       "source_location": "L54",
       "_origin": "ast",
-      "community": 42,
+      "community": 43,
       "norm_label": "validateeventinput()",
       "community_name": "envelope.ts",
       "id": "src_events_envelope_validateeventinput"
@@ -4310,7 +4310,7 @@
       "source_file": "src/events/envelope.ts",
       "source_location": "L59",
       "_origin": "ast",
-      "community": 42,
+      "community": 43,
       "norm_label": "validateeventfields()",
       "community_name": "envelope.ts",
       "id": "src_events_envelope_validateeventfields"
@@ -4321,7 +4321,7 @@
       "source_file": "src/events/envelope.ts",
       "source_location": "L79",
       "_origin": "ast",
-      "community": 42,
+      "community": 43,
       "norm_label": "pickeventinput()",
       "community_name": "envelope.ts",
       "id": "src_events_envelope_pickeventinput"
@@ -4332,7 +4332,7 @@
       "source_file": "src/events/envelope.ts",
       "source_location": "L83",
       "_origin": "ast",
-      "community": 42,
+      "community": 43,
       "norm_label": "createidempotencykey()",
       "community_name": "envelope.ts",
       "id": "src_events_envelope_createidempotencykey"
@@ -4343,7 +4343,7 @@
       "source_file": "src/events/envelope.ts",
       "source_location": "L97",
       "_origin": "ast",
-      "community": 42,
+      "community": 43,
       "norm_label": "assertrecord()",
       "community_name": "envelope.ts",
       "id": "src_events_envelope_assertrecord"
@@ -4354,7 +4354,7 @@
       "source_file": "src/events/envelope.ts",
       "source_location": "L108",
       "_origin": "ast",
-      "community": 42,
+      "community": 43,
       "norm_label": "isnonemptystring()",
       "community_name": "envelope.ts",
       "id": "src_events_envelope_isnonemptystring"
@@ -4365,7 +4365,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 34,
+      "community": 33,
       "norm_label": "outbox.ts",
       "community_name": "outbox.ts",
       "id": "src_events_outbox"
@@ -4376,7 +4376,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L7",
       "_origin": "ast",
-      "community": 34,
+      "community": 33,
       "norm_label": "syncstate",
       "community_name": "outbox.ts",
       "id": "src_events_outbox_syncstate"
@@ -4398,7 +4398,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L16",
       "_origin": "ast",
-      "community": 34,
+      "community": 33,
       "norm_label": "eventrecord",
       "community_name": "outbox.ts",
       "id": "src_events_outbox_eventrecord"
@@ -4409,7 +4409,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L17",
       "_origin": "ast",
-      "community": 34,
+      "community": 33,
       "norm_label": "resultrecord",
       "community_name": "outbox.ts",
       "id": "src_events_outbox_resultrecord"
@@ -4420,7 +4420,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L18",
       "_origin": "ast",
-      "community": 34,
+      "community": 33,
       "norm_label": "claimrecord",
       "community_name": "outbox.ts",
       "id": "src_events_outbox_claimrecord"
@@ -4431,7 +4431,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L19",
       "_origin": "ast",
-      "community": 34,
+      "community": 33,
       "norm_label": "outboxrecord",
       "community_name": "outbox.ts",
       "id": "src_events_outbox_outboxrecord"
@@ -4442,7 +4442,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L21",
       "_origin": "ast",
-      "community": 34,
+      "community": 33,
       "norm_label": "durableclaimresult",
       "community_name": "outbox.ts",
       "id": "src_events_outbox_durableclaimresult"
@@ -4453,7 +4453,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L26",
       "_origin": "ast",
-      "community": 34,
+      "community": 33,
       "norm_label": "resultkeys",
       "community_name": "outbox.ts",
       "id": "src_events_outbox_resultkeys"
@@ -4464,7 +4464,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L27",
       "_origin": "ast",
-      "community": 34,
+      "community": 33,
       "norm_label": "eventrecordkeys",
       "community_name": "outbox.ts",
       "id": "src_events_outbox_eventrecordkeys"
@@ -4475,7 +4475,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L28",
       "_origin": "ast",
-      "community": 34,
+      "community": 33,
       "norm_label": "resultrecordkeys",
       "community_name": "outbox.ts",
       "id": "src_events_outbox_resultrecordkeys"
@@ -4486,7 +4486,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L29",
       "_origin": "ast",
-      "community": 34,
+      "community": 33,
       "norm_label": "claimrecordkeys",
       "community_name": "outbox.ts",
       "id": "src_events_outbox_claimrecordkeys"
@@ -4497,7 +4497,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L30",
       "_origin": "ast",
-      "community": 34,
+      "community": 33,
       "norm_label": "terminalstates",
       "community_name": "outbox.ts",
       "id": "src_events_outbox_terminalstates"
@@ -4508,7 +4508,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L32",
       "_origin": "ast",
-      "community": 34,
+      "community": 33,
       "norm_label": "validatesyncresult()",
       "community_name": "outbox.ts",
       "id": "src_events_outbox_validatesyncresult"
@@ -4519,7 +4519,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L50",
       "_origin": "ast",
-      "community": 22,
+      "community": 21,
       "norm_label": "outboxstore",
       "community_name": "OutboxStore",
       "id": "src_events_outbox_outboxstore"
@@ -4530,7 +4530,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L54",
       "_origin": "ast",
-      "community": 22,
+      "community": 21,
       "norm_label": ".constructor()",
       "community_name": "OutboxStore",
       "id": "src_events_outbox_outboxstore_constructor"
@@ -4541,7 +4541,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L56",
       "_origin": "ast",
-      "community": 22,
+      "community": 21,
       "norm_label": ".append()",
       "community_name": "OutboxStore",
       "id": "src_events_outbox_outboxstore_append"
@@ -4552,7 +4552,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L71",
       "_origin": "ast",
-      "community": 22,
+      "community": 21,
       "norm_label": ".readpending()",
       "community_name": "OutboxStore",
       "id": "src_events_outbox_outboxstore_readpending"
@@ -4563,7 +4563,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L83",
       "_origin": "ast",
-      "community": 22,
+      "community": 21,
       "norm_label": ".readlatestresult()",
       "community_name": "OutboxStore",
       "id": "src_events_outbox_outboxstore_readlatestresult"
@@ -4574,7 +4574,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L90",
       "_origin": "ast",
-      "community": 22,
+      "community": 21,
       "norm_label": ".withdurableclaim()",
       "community_name": "OutboxStore",
       "id": "src_events_outbox_outboxstore_withdurableclaim"
@@ -4585,7 +4585,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L131",
       "_origin": "ast",
-      "community": 22,
+      "community": 21,
       "norm_label": ".markapplied()",
       "community_name": "OutboxStore",
       "id": "src_events_outbox_outboxstore_markapplied"
@@ -4596,7 +4596,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L148",
       "_origin": "ast",
-      "community": 22,
+      "community": 21,
       "norm_label": ".withserializedoperation()",
       "community_name": "OutboxStore",
       "id": "src_events_outbox_outboxstore_withserializedoperation"
@@ -4607,7 +4607,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L160",
       "_origin": "ast",
-      "community": 22,
+      "community": 21,
       "norm_label": ".readrecords()",
       "community_name": "OutboxStore",
       "id": "src_events_outbox_outboxstore_readrecords"
@@ -4618,7 +4618,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L171",
       "_origin": "ast",
-      "community": 22,
+      "community": 21,
       "norm_label": ".appendrecord()",
       "community_name": "OutboxStore",
       "id": "src_events_outbox_outboxstore_appendrecord"
@@ -4629,7 +4629,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L177",
       "_origin": "ast",
-      "community": 22,
+      "community": 21,
       "norm_label": ".appendclaimedevent()",
       "community_name": "OutboxStore",
       "id": "src_events_outbox_outboxstore_appendclaimedevent"
@@ -4640,7 +4640,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L187",
       "_origin": "ast",
-      "community": 22,
+      "community": 21,
       "norm_label": ".waitforclaimresult()",
       "community_name": "OutboxStore",
       "id": "src_events_outbox_outboxstore_waitforclaimresult"
@@ -4651,7 +4651,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L198",
       "_origin": "ast",
-      "community": 22,
+      "community": 21,
       "norm_label": ".waitforclaimpublication()",
       "community_name": "OutboxStore",
       "id": "src_events_outbox_outboxstore_waitforclaimpublication"
@@ -4662,7 +4662,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L210",
       "_origin": "ast",
-      "community": 22,
+      "community": 21,
       "norm_label": ".claimpath()",
       "community_name": "OutboxStore",
       "id": "src_events_outbox_outboxstore_claimpath"
@@ -4673,7 +4673,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L215",
       "_origin": "ast",
-      "community": 22,
+      "community": 21,
       "norm_label": ".stagingclaimpath()",
       "community_name": "OutboxStore",
       "id": "src_events_outbox_outboxstore_stagingclaimpath"
@@ -4684,7 +4684,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L220",
       "_origin": "ast",
-      "community": 34,
+      "community": 33,
       "norm_label": "parserecord()",
       "community_name": "outbox.ts",
       "id": "src_events_outbox_parserecord"
@@ -4695,7 +4695,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L225",
       "_origin": "ast",
-      "community": 34,
+      "community": 33,
       "norm_label": "validateoutboxrecord()",
       "community_name": "outbox.ts",
       "id": "src_events_outbox_validateoutboxrecord"
@@ -4706,7 +4706,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L247",
       "_origin": "ast",
-      "community": 22,
+      "community": 21,
       "norm_label": "assertrecordhistory()",
       "community_name": "OutboxStore",
       "id": "src_events_outbox_assertrecordhistory"
@@ -4717,7 +4717,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L270",
       "_origin": "ast",
-      "community": 22,
+      "community": 21,
       "norm_label": "samestableevent()",
       "community_name": "OutboxStore",
       "id": "src_events_outbox_samestableevent"
@@ -4728,7 +4728,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L275",
       "_origin": "ast",
-      "community": 22,
+      "community": 21,
       "norm_label": "sameresult()",
       "community_name": "OutboxStore",
       "id": "src_events_outbox_sameresult"
@@ -4739,7 +4739,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L276",
       "_origin": "ast",
-      "community": 22,
+      "community": 21,
       "norm_label": "stableserialize()",
       "community_name": "OutboxStore",
       "id": "src_events_outbox_stableserialize"
@@ -4750,7 +4750,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L284",
       "_origin": "ast",
-      "community": 34,
+      "community": 33,
       "norm_label": "assertexactrecord()",
       "community_name": "outbox.ts",
       "id": "src_events_outbox_assertexactrecord"
@@ -4761,7 +4761,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L289",
       "_origin": "ast",
-      "community": 34,
+      "community": 33,
       "norm_label": "isnonemptystring()",
       "community_name": "outbox.ts",
       "id": "src_events_outbox_isnonemptystring"
@@ -4772,7 +4772,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L290",
       "_origin": "ast",
-      "community": 34,
+      "community": 33,
       "norm_label": "issyncstate()",
       "community_name": "outbox.ts",
       "id": "src_events_outbox_issyncstate"
@@ -4783,7 +4783,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L291",
       "_origin": "ast",
-      "community": 22,
+      "community": 21,
       "norm_label": "ismissingfileerror()",
       "community_name": "OutboxStore",
       "id": "src_events_outbox_ismissingfileerror"
@@ -4794,7 +4794,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L292",
       "_origin": "ast",
-      "community": 22,
+      "community": 21,
       "norm_label": "isexistingpatherror()",
       "community_name": "OutboxStore",
       "id": "src_events_outbox_isexistingpatherror"
@@ -4805,7 +4805,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L293",
       "_origin": "ast",
-      "community": 22,
+      "community": 21,
       "norm_label": "ispermissionerror()",
       "community_name": "OutboxStore",
       "id": "src_events_outbox_ispermissionerror"
@@ -4816,7 +4816,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L294",
       "_origin": "ast",
-      "community": 22,
+      "community": 21,
       "norm_label": "pathexists()",
       "community_name": "OutboxStore",
       "id": "src_events_outbox_pathexists"
@@ -4827,7 +4827,7 @@
       "source_file": "src/events/outbox.ts",
       "source_location": "L295",
       "_origin": "ast",
-      "community": 22,
+      "community": 21,
       "norm_label": "waitforclaimpoll()",
       "community_name": "OutboxStore",
       "id": "src_events_outbox_waitforclaimpoll"
@@ -4915,7 +4915,7 @@
       "source_file": "src/evidence/codex-mcp-adapter.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 44,
+      "community": 34,
       "norm_label": "codex-mcp-adapter.ts",
       "community_name": "codex-mcp-adapter.ts",
       "id": "src_evidence_codex_mcp_adapter"
@@ -4926,7 +4926,7 @@
       "source_file": "src/evidence/codex-mcp-adapter.ts",
       "source_location": "L5",
       "_origin": "ast",
-      "community": 44,
+      "community": 34,
       "norm_label": "codexmcpreadsource",
       "community_name": "codex-mcp-adapter.ts",
       "id": "src_evidence_codex_mcp_adapter_codexmcpreadsource"
@@ -4937,7 +4937,7 @@
       "source_file": "src/evidence/codex-mcp-adapter.ts",
       "source_location": "L6",
       "_origin": "ast",
-      "community": 44,
+      "community": 34,
       "norm_label": ".read()",
       "community_name": "codex-mcp-adapter.ts",
       "id": "src_evidence_codex_mcp_adapter_codexmcpreadsource_read"
@@ -4948,7 +4948,7 @@
       "source_file": "src/evidence/codex-mcp-adapter.ts",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 44,
+      "community": 34,
       "norm_label": "codexmcpreadmappingerror",
       "community_name": "codex-mcp-adapter.ts",
       "id": "src_evidence_codex_mcp_adapter_codexmcpreadmappingerror"
@@ -4959,7 +4959,7 @@
       "source_file": "src/evidence/codex-mcp-adapter.ts",
       "source_location": "L10",
       "_origin": "ast",
-      "community": 44,
+      "community": 34,
       "norm_label": ".constructor()",
       "community_name": "codex-mcp-adapter.ts",
       "id": "src_evidence_codex_mcp_adapter_codexmcpreadmappingerror_constructor"
@@ -4970,7 +4970,7 @@
       "source_file": "src/evidence/codex-mcp-adapter.ts",
       "source_location": "L16",
       "_origin": "ast",
-      "community": 44,
+      "community": 34,
       "norm_label": "createcodexmcpreadadapter()",
       "community_name": "codex-mcp-adapter.ts",
       "id": "src_evidence_codex_mcp_adapter_createcodexmcpreadadapter"
@@ -4981,7 +4981,7 @@
       "source_file": "src/evidence/codex-mcp-adapter.ts",
       "source_location": "L23",
       "_origin": "ast",
-      "community": 44,
+      "community": 34,
       "norm_label": "mapcodexmcpreadtoobservationbundle()",
       "community_name": "codex-mcp-adapter.ts",
       "id": "src_evidence_codex_mcp_adapter_mapcodexmcpreadtoobservationbundle"
@@ -4992,7 +4992,7 @@
       "source_file": "src/evidence/codex-mcp-adapter.ts",
       "source_location": "L69",
       "_origin": "ast",
-      "community": 44,
+      "community": 34,
       "norm_label": "observation()",
       "community_name": "codex-mcp-adapter.ts",
       "id": "src_evidence_codex_mcp_adapter_observation"
@@ -5003,7 +5003,7 @@
       "source_file": "src/evidence/codex-mcp-adapter.ts",
       "source_location": "L89",
       "_origin": "ast",
-      "community": 44,
+      "community": 34,
       "norm_label": "exactrecord()",
       "community_name": "codex-mcp-adapter.ts",
       "id": "src_evidence_codex_mcp_adapter_exactrecord"
@@ -5014,7 +5014,7 @@
       "source_file": "src/evidence/codex-mcp-adapter.ts",
       "source_location": "L103",
       "_origin": "ast",
-      "community": 44,
+      "community": 34,
       "norm_label": "recordfield()",
       "community_name": "codex-mcp-adapter.ts",
       "id": "src_evidence_codex_mcp_adapter_recordfield"
@@ -5025,7 +5025,7 @@
       "source_file": "src/evidence/codex-mcp-adapter.ts",
       "source_location": "L110",
       "_origin": "ast",
-      "community": 44,
+      "community": 34,
       "norm_label": "stringpair()",
       "community_name": "codex-mcp-adapter.ts",
       "id": "src_evidence_codex_mcp_adapter_stringpair"
@@ -5036,7 +5036,7 @@
       "source_file": "src/evidence/codex-mcp-adapter.ts",
       "source_location": "L118",
       "_origin": "ast",
-      "community": 44,
+      "community": 34,
       "norm_label": "stringfield()",
       "community_name": "codex-mcp-adapter.ts",
       "id": "src_evidence_codex_mcp_adapter_stringfield"
@@ -5047,7 +5047,7 @@
       "source_file": "src/evidence/codex-mcp-adapter.ts",
       "source_location": "L123",
       "_origin": "ast",
-      "community": 44,
+      "community": 34,
       "norm_label": "reject()",
       "community_name": "codex-mcp-adapter.ts",
       "id": "src_evidence_codex_mcp_adapter_reject"
@@ -5377,7 +5377,7 @@
       "source_file": "src/evidence/codex-mcp-preflight.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 15,
+      "community": 28,
       "norm_label": "codex-mcp-preflight.ts",
       "community_name": "ingest.ts",
       "id": "src_evidence_codex_mcp_preflight"
@@ -5388,7 +5388,7 @@
       "source_file": "src/evidence/codex-mcp-preflight.ts",
       "source_location": "L15",
       "_origin": "ast",
-      "community": 15,
+      "community": 28,
       "norm_label": "codexmcppreflightrequest",
       "community_name": "ingest.ts",
       "id": "src_evidence_codex_mcp_preflight_codexmcppreflightrequest"
@@ -5399,7 +5399,7 @@
       "source_file": "src/evidence/codex-mcp-preflight.ts",
       "source_location": "L24",
       "_origin": "ast",
-      "community": 15,
+      "community": 28,
       "norm_label": "codexmcppreflightresult",
       "community_name": "ingest.ts",
       "id": "src_evidence_codex_mcp_preflight_codexmcppreflightresult"
@@ -5410,7 +5410,7 @@
       "source_file": "src/evidence/codex-mcp-preflight.ts",
       "source_location": "L29",
       "_origin": "ast",
-      "community": 15,
+      "community": 28,
       "norm_label": "runcodexmcppreflight()",
       "community_name": "ingest.ts",
       "id": "src_evidence_codex_mcp_preflight_runcodexmcppreflight"
@@ -5421,7 +5421,7 @@
       "source_file": "src/evidence/codex-mcp-preflight.ts",
       "source_location": "L60",
       "_origin": "ast",
-      "community": 15,
+      "community": 28,
       "norm_label": "normalizecapabilityevidence()",
       "community_name": "ingest.ts",
       "id": "src_evidence_codex_mcp_preflight_normalizecapabilityevidence"
@@ -5432,7 +5432,7 @@
       "source_file": "src/evidence/codex-mcp-preflight.ts",
       "source_location": "L97",
       "_origin": "ast",
-      "community": 15,
+      "community": 28,
       "norm_label": "createstoppedcertificate()",
       "community_name": "ingest.ts",
       "id": "src_evidence_codex_mcp_preflight_createstoppedcertificate"
@@ -5443,7 +5443,7 @@
       "source_file": "src/evidence/codex-mcp-preflight.ts",
       "source_location": "L130",
       "_origin": "ast",
-      "community": 15,
+      "community": 28,
       "norm_label": "stoppedobservation()",
       "community_name": "ingest.ts",
       "id": "src_evidence_codex_mcp_preflight_stoppedobservation"
@@ -5993,7 +5993,7 @@
       "source_file": "src/evidence/ingest.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 15,
+      "community": 28,
       "norm_label": "ingest.ts",
       "community_name": "ingest.ts",
       "id": "src_evidence_ingest"
@@ -6004,9 +6004,9 @@
       "source_file": "src/evidence/ingest.ts",
       "source_location": "L14",
       "_origin": "ast",
-      "community": 24,
+      "community": 28,
       "norm_label": "codexreadonlyevidenceadapter",
-      "community_name": "evaluateReadiness",
+      "community_name": "ingest.ts",
       "id": "src_evidence_ingest_codexreadonlyevidenceadapter"
     },
     {
@@ -6015,7 +6015,7 @@
       "source_file": "src/evidence/ingest.ts",
       "source_location": "L16",
       "_origin": "ast",
-      "community": 15,
+      "community": 28,
       "norm_label": ".read()",
       "community_name": "ingest.ts",
       "id": "src_evidence_ingest_codexreadonlyevidenceadapter_read"
@@ -6026,7 +6026,7 @@
       "source_file": "src/evidence/ingest.ts",
       "source_location": "L19",
       "_origin": "ast",
-      "community": 44,
+      "community": 34,
       "norm_label": "codexreadonlyevidence",
       "community_name": "codex-mcp-adapter.ts",
       "id": "src_evidence_ingest_codexreadonlyevidence"
@@ -6037,7 +6037,7 @@
       "source_file": "src/evidence/ingest.ts",
       "source_location": "L25",
       "_origin": "ast",
-      "community": 15,
+      "community": 28,
       "norm_label": "evidenceingestiondiagnosticcode",
       "community_name": "ingest.ts",
       "id": "src_evidence_ingest_evidenceingestiondiagnosticcode"
@@ -6048,7 +6048,7 @@
       "source_file": "src/evidence/ingest.ts",
       "source_location": "L26",
       "_origin": "ast",
-      "community": 15,
+      "community": 28,
       "norm_label": "evidenceingestionsource",
       "community_name": "ingest.ts",
       "id": "src_evidence_ingest_evidenceingestionsource"
@@ -6059,7 +6059,7 @@
       "source_file": "src/evidence/ingest.ts",
       "source_location": "L28",
       "_origin": "ast",
-      "community": 15,
+      "community": 28,
       "norm_label": "evidenceingestionerror",
       "community_name": "ingest.ts",
       "id": "src_evidence_ingest_evidenceingestionerror"
@@ -6070,7 +6070,7 @@
       "source_file": "src/evidence/ingest.ts",
       "source_location": "L32",
       "_origin": "ast",
-      "community": 15,
+      "community": 28,
       "norm_label": ".constructor()",
       "community_name": "ingest.ts",
       "id": "src_evidence_ingest_evidenceingestionerror_constructor"
@@ -6081,7 +6081,7 @@
       "source_file": "src/evidence/ingest.ts",
       "source_location": "L44",
       "_origin": "ast",
-      "community": 15,
+      "community": 28,
       "norm_label": "ingestcodexreadonlyevidence()",
       "community_name": "ingest.ts",
       "id": "src_evidence_ingest_ingestcodexreadonlyevidence"
@@ -6092,7 +6092,7 @@
       "source_file": "src/evidence/ingest.ts",
       "source_location": "L90",
       "_origin": "ast",
-      "community": 15,
+      "community": 28,
       "norm_label": "classifyreadfailure()",
       "community_name": "ingest.ts",
       "id": "src_evidence_ingest_classifyreadfailure"
@@ -6532,7 +6532,7 @@
       "source_file": "src/lifecycle/start-check.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 25,
+      "community": 23,
       "norm_label": "startcheckinput",
       "community_name": "types.ts",
       "id": "src_lifecycle_start_check_startcheckinput"
@@ -8303,7 +8303,7 @@
       "source_file": "src/readiness/evaluate.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 26,
+      "community": 24,
       "norm_label": "evaluate.ts",
       "community_name": "evaluate.ts",
       "id": "src_readiness_evaluate"
@@ -8314,7 +8314,7 @@
       "source_file": "src/readiness/evaluate.ts",
       "source_location": "L17",
       "_origin": "ast",
-      "community": 26,
+      "community": 24,
       "norm_label": "readinesscheck",
       "community_name": "evaluate.ts",
       "id": "src_readiness_evaluate_readinesscheck"
@@ -8325,7 +8325,7 @@
       "source_file": "src/readiness/evaluate.ts",
       "source_location": "L29",
       "_origin": "ast",
-      "community": 18,
+      "community": 13,
       "norm_label": "readinesscertificate",
       "community_name": "render.ts",
       "id": "src_readiness_evaluate_readinesscertificate"
@@ -8336,7 +8336,7 @@
       "source_file": "src/readiness/evaluate.ts",
       "source_location": "L42",
       "_origin": "ast",
-      "community": 26,
+      "community": 24,
       "norm_label": "sourcenames",
       "community_name": "evaluate.ts",
       "id": "src_readiness_evaluate_sourcenames"
@@ -8347,7 +8347,7 @@
       "source_file": "src/readiness/evaluate.ts",
       "source_location": "L43",
       "_origin": "ast",
-      "community": 26,
+      "community": 24,
       "norm_label": "permittedreadpaths",
       "community_name": "evaluate.ts",
       "id": "src_readiness_evaluate_permittedreadpaths"
@@ -8358,7 +8358,7 @@
       "source_file": "src/readiness/evaluate.ts",
       "source_location": "L45",
       "_origin": "ast",
-      "community": 24,
+      "community": 36,
       "norm_label": "evaluatereadiness()",
       "community_name": "evaluateReadiness",
       "id": "src_readiness_evaluate_evaluatereadiness"
@@ -8369,7 +8369,7 @@
       "source_file": "src/readiness/evaluate.ts",
       "source_location": "L68",
       "_origin": "ast",
-      "community": 26,
+      "community": 24,
       "norm_label": "evaluatesource()",
       "community_name": "evaluate.ts",
       "id": "src_readiness_evaluate_evaluatesource"
@@ -8380,7 +8380,7 @@
       "source_file": "src/readiness/evaluate.ts",
       "source_location": "L96",
       "_origin": "ast",
-      "community": 26,
+      "community": 24,
       "norm_label": "evaluateobservation()",
       "community_name": "evaluate.ts",
       "id": "src_readiness_evaluate_evaluateobservation"
@@ -8391,7 +8391,7 @@
       "source_file": "src/readiness/evaluate.ts",
       "source_location": "L134",
       "_origin": "ast",
-      "community": 26,
+      "community": 24,
       "norm_label": "createcheck()",
       "community_name": "evaluate.ts",
       "id": "src_readiness_evaluate_createcheck"
@@ -8402,7 +8402,7 @@
       "source_file": "src/readiness/evaluate.ts",
       "source_location": "L157",
       "_origin": "ast",
-      "community": 26,
+      "community": 24,
       "norm_label": "expectedids()",
       "community_name": "evaluate.ts",
       "id": "src_readiness_evaluate_expectedids"
@@ -8413,7 +8413,7 @@
       "source_file": "src/readiness/evaluate.ts",
       "source_location": "L181",
       "_origin": "ast",
-      "community": 26,
+      "community": 24,
       "norm_label": "allowedobservedids()",
       "community_name": "evaluate.ts",
       "id": "src_readiness_evaluate_allowedobservedids"
@@ -8424,7 +8424,7 @@
       "source_file": "src/readiness/evaluate.ts",
       "source_location": "L188",
       "_origin": "ast",
-      "community": 26,
+      "community": 24,
       "norm_label": "fieldsfor()",
       "community_name": "evaluate.ts",
       "id": "src_readiness_evaluate_fieldsfor"
@@ -8435,7 +8435,7 @@
       "source_file": "src/readiness/evaluate.ts",
       "source_location": "L195",
       "_origin": "ast",
-      "community": 26,
+      "community": 24,
       "norm_label": "matchesexpected()",
       "community_name": "evaluate.ts",
       "id": "src_readiness_evaluate_matchesexpected"
@@ -8446,7 +8446,7 @@
       "source_file": "src/readiness/evaluate.ts",
       "source_location": "L206",
       "_origin": "ast",
-      "community": 26,
+      "community": 24,
       "norm_label": "decide()",
       "community_name": "evaluate.ts",
       "id": "src_readiness_evaluate_decide"
@@ -8457,7 +8457,7 @@
       "source_file": "src/readiness/evaluate.ts",
       "source_location": "L212",
       "_origin": "ast",
-      "community": 26,
+      "community": 24,
       "norm_label": "muststop()",
       "community_name": "evaluate.ts",
       "id": "src_readiness_evaluate_muststop"
@@ -8468,7 +8468,7 @@
       "source_file": "src/readiness/evaluate.ts",
       "source_location": "L216",
       "_origin": "ast",
-      "community": 26,
+      "community": 24,
       "norm_label": "nextaction()",
       "community_name": "evaluate.ts",
       "id": "src_readiness_evaluate_nextaction"
@@ -8479,7 +8479,7 @@
       "source_file": "src/readiness/evaluate.ts",
       "source_location": "L226",
       "_origin": "ast",
-      "community": 26,
+      "community": 24,
       "norm_label": "fingerprint()",
       "community_name": "evaluate.ts",
       "id": "src_readiness_evaluate_fingerprint"
@@ -8490,7 +8490,7 @@
       "source_file": "src/readiness/evaluate.ts",
       "source_location": "L230",
       "_origin": "ast",
-      "community": 26,
+      "community": 24,
       "norm_label": "canonicaljson()",
       "community_name": "evaluate.ts",
       "id": "src_readiness_evaluate_canonicaljson"
@@ -8501,7 +8501,7 @@
       "source_file": "src/readiness/evaluate.ts",
       "source_location": "L239",
       "_origin": "ast",
-      "community": 24,
+      "community": 36,
       "norm_label": "unique()",
       "community_name": "evaluateReadiness",
       "id": "src_readiness_evaluate_unique"
@@ -8688,7 +8688,7 @@
       "source_file": "src/readiness/observations.ts",
       "source_location": "L13",
       "_origin": "ast",
-      "community": 26,
+      "community": 24,
       "norm_label": "readinessobservation",
       "community_name": "evaluate.ts",
       "id": "src_readiness_observations_readinessobservation"
@@ -8699,7 +8699,7 @@
       "source_file": "src/readiness/observations.ts",
       "source_location": "L25",
       "_origin": "ast",
-      "community": 44,
+      "community": 34,
       "norm_label": "readinessobservationbundle",
       "community_name": "codex-mcp-adapter.ts",
       "id": "src_readiness_observations_readinessobservationbundle"
@@ -8710,7 +8710,7 @@
       "source_file": "src/readiness/observations.ts",
       "source_location": "L31",
       "_origin": "ast",
-      "community": 31,
+      "community": 30,
       "norm_label": "readinessadapter",
       "community_name": "readiness-cli.test.ts",
       "id": "src_readiness_observations_readinessadapter"
@@ -8721,7 +8721,7 @@
       "source_file": "src/readiness/observations.ts",
       "source_location": "L32",
       "_origin": "ast",
-      "community": 31,
+      "community": 30,
       "norm_label": ".read()",
       "community_name": "readiness-cli.test.ts",
       "id": "src_readiness_observations_readinessadapter_read"
@@ -8842,7 +8842,7 @@
       "source_file": "src/readiness/observations.ts",
       "source_location": "L79",
       "_origin": "ast",
-      "community": 31,
+      "community": 30,
       "norm_label": "readobservations()",
       "community_name": "readiness-cli.test.ts",
       "id": "src_readiness_observations_readobservations"
@@ -9018,7 +9018,7 @@
       "source_file": "src/readiness/output.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 18,
+      "community": 13,
       "norm_label": "output.ts",
       "community_name": "render.ts",
       "id": "src_readiness_output"
@@ -9029,7 +9029,7 @@
       "source_file": "src/readiness/output.ts",
       "source_location": "L10",
       "_origin": "ast",
-      "community": 15,
+      "community": 28,
       "norm_label": "readinesscertificateoutputpaths",
       "community_name": "ingest.ts",
       "id": "src_readiness_output_readinesscertificateoutputpaths"
@@ -9040,7 +9040,7 @@
       "source_file": "src/readiness/output.ts",
       "source_location": "L15",
       "_origin": "ast",
-      "community": 18,
+      "community": 13,
       "norm_label": "writereadinesscertificate()",
       "community_name": "render.ts",
       "id": "src_readiness_output_writereadinesscertificate"
@@ -9051,7 +9051,7 @@
       "source_file": "src/readiness/render.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 18,
+      "community": 13,
       "norm_label": "render.ts",
       "community_name": "render.ts",
       "id": "src_readiness_render"
@@ -9062,7 +9062,7 @@
       "source_file": "src/readiness/render.ts",
       "source_location": "L4",
       "_origin": "ast",
-      "community": 26,
+      "community": 24,
       "norm_label": "saferenderedcheck",
       "community_name": "evaluate.ts",
       "id": "src_readiness_render_saferenderedcheck"
@@ -9073,7 +9073,7 @@
       "source_file": "src/readiness/render.ts",
       "source_location": "L15",
       "_origin": "ast",
-      "community": 18,
+      "community": 13,
       "norm_label": "saferenderedcertificate",
       "community_name": "render.ts",
       "id": "src_readiness_render_saferenderedcertificate"
@@ -9084,7 +9084,7 @@
       "source_file": "src/readiness/render.ts",
       "source_location": "L28",
       "_origin": "ast",
-      "community": 18,
+      "community": 13,
       "norm_label": "sourcenames",
       "community_name": "render.ts",
       "id": "src_readiness_render_sourcenames"
@@ -9095,7 +9095,7 @@
       "source_file": "src/readiness/render.ts",
       "source_location": "L29",
       "_origin": "ast",
-      "community": 18,
+      "community": 13,
       "norm_label": "decisions",
       "community_name": "render.ts",
       "id": "src_readiness_render_decisions"
@@ -9106,7 +9106,7 @@
       "source_file": "src/readiness/render.ts",
       "source_location": "L30",
       "_origin": "ast",
-      "community": 18,
+      "community": 13,
       "norm_label": "checkstates",
       "community_name": "render.ts",
       "id": "src_readiness_render_checkstates"
@@ -9117,7 +9117,7 @@
       "source_file": "src/readiness/render.ts",
       "source_location": "L31",
       "_origin": "ast",
-      "community": 18,
+      "community": 13,
       "norm_label": "readpaths",
       "community_name": "render.ts",
       "id": "src_readiness_render_readpaths"
@@ -9128,7 +9128,7 @@
       "source_file": "src/readiness/render.ts",
       "source_location": "L32",
       "_origin": "ast",
-      "community": 18,
+      "community": 13,
       "norm_label": "capabilitystates",
       "community_name": "render.ts",
       "id": "src_readiness_render_capabilitystates"
@@ -9139,7 +9139,7 @@
       "source_file": "src/readiness/render.ts",
       "source_location": "L33",
       "_origin": "ast",
-      "community": 18,
+      "community": 13,
       "norm_label": "diagnosticcodes",
       "community_name": "render.ts",
       "id": "src_readiness_render_diagnosticcodes"
@@ -9150,7 +9150,7 @@
       "source_file": "src/readiness/render.ts",
       "source_location": "L37",
       "_origin": "ast",
-      "community": 18,
+      "community": 13,
       "norm_label": "permittedactions",
       "community_name": "render.ts",
       "id": "src_readiness_render_permittedactions"
@@ -9161,7 +9161,7 @@
       "source_file": "src/readiness/render.ts",
       "source_location": "L47",
       "_origin": "ast",
-      "community": 18,
+      "community": 13,
       "norm_label": "rendercertificatejson()",
       "community_name": "render.ts",
       "id": "src_readiness_render_rendercertificatejson"
@@ -9172,7 +9172,7 @@
       "source_file": "src/readiness/render.ts",
       "source_location": "L51",
       "_origin": "ast",
-      "community": 18,
+      "community": 13,
       "norm_label": "rendercertificatemarkdown()",
       "community_name": "render.ts",
       "id": "src_readiness_render_rendercertificatemarkdown"
@@ -9183,7 +9183,7 @@
       "source_file": "src/readiness/render.ts",
       "source_location": "L87",
       "_origin": "ast",
-      "community": 18,
+      "community": 13,
       "norm_label": "tosaferenderedcertificate()",
       "community_name": "render.ts",
       "id": "src_readiness_render_tosaferenderedcertificate"
@@ -9194,7 +9194,7 @@
       "source_file": "src/readiness/render.ts",
       "source_location": "L119",
       "_origin": "ast",
-      "community": 18,
+      "community": 13,
       "norm_label": "requirechecks()",
       "community_name": "render.ts",
       "id": "src_readiness_render_requirechecks"
@@ -9205,7 +9205,7 @@
       "source_file": "src/readiness/render.ts",
       "source_location": "L137",
       "_origin": "ast",
-      "community": 18,
+      "community": 13,
       "norm_label": "requirecheck()",
       "community_name": "render.ts",
       "id": "src_readiness_render_requirecheck"
@@ -9216,7 +9216,7 @@
       "source_file": "src/readiness/render.ts",
       "source_location": "L163",
       "_origin": "ast",
-      "community": 18,
+      "community": 13,
       "norm_label": "requireunchangedsystems()",
       "community_name": "render.ts",
       "id": "src_readiness_render_requireunchangedsystems"
@@ -9227,7 +9227,7 @@
       "source_file": "src/readiness/render.ts",
       "source_location": "L178",
       "_origin": "ast",
-      "community": 18,
+      "community": 13,
       "norm_label": "requiredecisionoptions()",
       "community_name": "render.ts",
       "id": "src_readiness_render_requiredecisionoptions"
@@ -9238,7 +9238,7 @@
       "source_file": "src/readiness/render.ts",
       "source_location": "L192",
       "_origin": "ast",
-      "community": 18,
+      "community": 13,
       "norm_label": "requirecorrelationid()",
       "community_name": "render.ts",
       "id": "src_readiness_render_requirecorrelationid"
@@ -9249,7 +9249,7 @@
       "source_file": "src/readiness/render.ts",
       "source_location": "L198",
       "_origin": "ast",
-      "community": 18,
+      "community": 13,
       "norm_label": "requireisotimestamp()",
       "community_name": "render.ts",
       "id": "src_readiness_render_requireisotimestamp"
@@ -9260,7 +9260,7 @@
       "source_file": "src/readiness/render.ts",
       "source_location": "L209",
       "_origin": "ast",
-      "community": 18,
+      "community": 13,
       "norm_label": "requirefingerprint()",
       "community_name": "render.ts",
       "id": "src_readiness_render_requirefingerprint"
@@ -9271,7 +9271,7 @@
       "source_file": "src/readiness/render.ts",
       "source_location": "L215",
       "_origin": "ast",
-      "community": 18,
+      "community": 13,
       "norm_label": "requirepermittedaction()",
       "community_name": "render.ts",
       "id": "src_readiness_render_requirepermittedaction"
@@ -9282,7 +9282,7 @@
       "source_file": "src/readiness/render.ts",
       "source_location": "L223",
       "_origin": "ast",
-      "community": 18,
+      "community": 13,
       "norm_label": "rendercheckrow()",
       "community_name": "render.ts",
       "id": "src_readiness_render_rendercheckrow"
@@ -9293,7 +9293,7 @@
       "source_file": "src/readiness/render.ts",
       "source_location": "L227",
       "_origin": "ast",
-      "community": 18,
+      "community": 13,
       "norm_label": "rejectunsafecertificate()",
       "community_name": "render.ts",
       "id": "src_readiness_render_rejectunsafecertificate"
@@ -9304,7 +9304,7 @@
       "source_file": "src/readiness/run.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 31,
+      "community": 30,
       "norm_label": "run.ts",
       "community_name": "readiness-cli.test.ts",
       "id": "src_readiness_run"
@@ -9315,7 +9315,7 @@
       "source_file": "src/readiness/run.ts",
       "source_location": "L6",
       "_origin": "ast",
-      "community": 31,
+      "community": 30,
       "norm_label": "runreadinesscertificate()",
       "community_name": "readiness-cli.test.ts",
       "id": "src_readiness_run_runreadinesscertificate"
@@ -9326,7 +9326,7 @@
       "source_file": "src/readiness/types.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 26,
+      "community": 24,
       "norm_label": "types.ts",
       "community_name": "evaluate.ts",
       "id": "src_readiness_types"
@@ -9337,7 +9337,7 @@
       "source_file": "src/readiness/types.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 26,
+      "community": 24,
       "norm_label": "sourcename",
       "community_name": "evaluate.ts",
       "id": "src_readiness_types_sourcename"
@@ -9348,7 +9348,7 @@
       "source_file": "src/readiness/types.ts",
       "source_location": "L2",
       "_origin": "ast",
-      "community": 26,
+      "community": 24,
       "norm_label": "checkstate",
       "community_name": "evaluate.ts",
       "id": "src_readiness_types_checkstate"
@@ -9359,7 +9359,7 @@
       "source_file": "src/readiness/types.ts",
       "source_location": "L3",
       "_origin": "ast",
-      "community": 18,
+      "community": 13,
       "norm_label": "certificatedecision",
       "community_name": "render.ts",
       "id": "src_readiness_types_certificatedecision"
@@ -9370,7 +9370,7 @@
       "source_file": "src/readiness/types.ts",
       "source_location": "L4",
       "_origin": "ast",
-      "community": 26,
+      "community": 24,
       "norm_label": "readpath",
       "community_name": "evaluate.ts",
       "id": "src_readiness_types_readpath"
@@ -9381,7 +9381,7 @@
       "source_file": "src/readiness/types.ts",
       "source_location": "L6",
       "_origin": "ast",
-      "community": 15,
+      "community": 28,
       "norm_label": "g2asreadinessmanifest",
       "community_name": "ingest.ts",
       "id": "src_readiness_types_g2asreadinessmanifest"
@@ -9480,7 +9480,7 @@
       "source_file": "test/capabilities-manifest.test.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 37,
+      "community": 38,
       "norm_label": "capabilities-manifest.test.ts",
       "community_name": "manifest.ts",
       "id": "test_capabilities_manifest_test"
@@ -9491,7 +9491,7 @@
       "source_file": "test/capabilities-manifest.test.ts",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 37,
+      "community": 38,
       "norm_label": "validmanifest",
       "community_name": "manifest.ts",
       "id": "test_capabilities_manifest_test_validmanifest"
@@ -9502,7 +9502,7 @@
       "source_file": "test/capabilities-projections.test.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 39,
+      "community": 40,
       "norm_label": "capabilities-projections.test.ts",
       "community_name": "projections.ts",
       "id": "test_capabilities_projections_test"
@@ -9513,7 +9513,7 @@
       "source_file": "test/capabilities-projections.test.ts",
       "source_location": "L10",
       "_origin": "ast",
-      "community": 39,
+      "community": 40,
       "norm_label": "capability",
       "community_name": "projections.ts",
       "id": "test_capabilities_projections_test_capability"
@@ -9524,7 +9524,7 @@
       "source_file": "test/codex-mcp-adapter.test.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 44,
+      "community": 34,
       "norm_label": "codex-mcp-adapter.test.ts",
       "community_name": "codex-mcp-adapter.ts",
       "id": "test_codex_mcp_adapter_test"
@@ -9535,7 +9535,7 @@
       "source_file": "test/codex-mcp-adapter.test.ts",
       "source_location": "L13",
       "_origin": "ast",
-      "community": 44,
+      "community": 34,
       "norm_label": "manifest",
       "community_name": "codex-mcp-adapter.ts",
       "id": "test_codex_mcp_adapter_test_manifest"
@@ -9546,7 +9546,7 @@
       "source_file": "test/codex-mcp-adapter.test.ts",
       "source_location": "L54",
       "_origin": "ast",
-      "community": 44,
+      "community": 34,
       "norm_label": "read()",
       "community_name": "codex-mcp-adapter.ts",
       "id": "test_codex_mcp_adapter_test_read"
@@ -9557,7 +9557,7 @@
       "source_file": "test/codex-mcp-adapter.test.ts",
       "source_location": "L68",
       "_origin": "ast",
-      "community": 44,
+      "community": 34,
       "norm_label": "mcpread()",
       "community_name": "codex-mcp-adapter.ts",
       "id": "test_codex_mcp_adapter_test_mcpread"
@@ -10063,7 +10063,7 @@
       "source_file": "test/controller-activation-package.test.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 23,
+      "community": 22,
       "norm_label": "controller-activation-package.test.ts",
       "community_name": "controller-activation-package.test.ts",
       "id": "test_controller_activation_package_test"
@@ -10074,7 +10074,7 @@
       "source_file": "test/controller-activation-package.test.ts",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 23,
+      "community": 22,
       "norm_label": "recipe",
       "community_name": "controller-activation-package.test.ts",
       "id": "test_controller_activation_package_test_recipe"
@@ -10085,7 +10085,7 @@
       "source_file": "test/controller-activation-package.test.ts",
       "source_location": "L16",
       "_origin": "ast",
-      "community": 23,
+      "community": 22,
       "norm_label": "request",
       "community_name": "controller-activation-package.test.ts",
       "id": "test_controller_activation_package_test_request"
@@ -10096,7 +10096,7 @@
       "source_file": "test/controller-activation-package.test.ts",
       "source_location": "L121",
       "_origin": "ast",
-      "community": 23,
+      "community": 22,
       "norm_label": "acceptedchoice()",
       "community_name": "controller-activation-package.test.ts",
       "id": "test_controller_activation_package_test_acceptedchoice"
@@ -10107,7 +10107,7 @@
       "source_file": "test/controller-activation-package.test.ts",
       "source_location": "L130",
       "_origin": "ast",
-      "community": 23,
+      "community": 22,
       "norm_label": "acceptedintent()",
       "community_name": "controller-activation-package.test.ts",
       "id": "test_controller_activation_package_test_acceptedintent"
@@ -10151,7 +10151,7 @@
       "source_file": "test/controller-choice.test.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 40,
+      "community": 41,
       "norm_label": "controller-choice.test.ts",
       "community_name": "choice.ts",
       "id": "test_controller_choice_test"
@@ -10162,7 +10162,7 @@
       "source_file": "test/controller-choice.test.ts",
       "source_location": "L6",
       "_origin": "ast",
-      "community": 40,
+      "community": 41,
       "norm_label": "fingerprint",
       "community_name": "choice.ts",
       "id": "test_controller_choice_test_fingerprint"
@@ -10173,7 +10173,7 @@
       "source_file": "test/controller-choice.test.ts",
       "source_location": "L7",
       "_origin": "ast",
-      "community": 40,
+      "community": 41,
       "norm_label": "signature",
       "community_name": "choice.ts",
       "id": "test_controller_choice_test_signature"
@@ -10261,7 +10261,7 @@
       "source_file": "test/controller-formation-recommendation.test.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 30,
+      "community": 29,
       "norm_label": "controller-formation-recommendation.test.ts",
       "community_name": "formation-recommendation.ts",
       "id": "test_controller_formation_recommendation_test"
@@ -10272,7 +10272,7 @@
       "source_file": "test/controller-formation-recommendation.test.ts",
       "source_location": "L10",
       "_origin": "ast",
-      "community": 30,
+      "community": 29,
       "norm_label": "baserequest",
       "community_name": "formation-recommendation.ts",
       "id": "test_controller_formation_recommendation_test_baserequest"
@@ -10305,7 +10305,7 @@
       "source_file": "test/controller-recipe.test.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 41,
+      "community": 42,
       "norm_label": "controller-recipe.test.ts",
       "community_name": "recipe.ts",
       "id": "test_controller_recipe_test"
@@ -10514,7 +10514,7 @@
       "source_file": "test/evidence-ingestion.test.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 24,
+      "community": 36,
       "norm_label": "evidence-ingestion.test.ts",
       "community_name": "evaluateReadiness",
       "id": "test_evidence_ingestion_test"
@@ -10525,7 +10525,7 @@
       "source_file": "test/evidence-ingestion.test.ts",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 24,
+      "community": 36,
       "norm_label": "manifest",
       "community_name": "evaluateReadiness",
       "id": "test_evidence_ingestion_test_manifest"
@@ -10536,7 +10536,7 @@
       "source_file": "test/evidence-ingestion.test.ts",
       "source_location": "L29",
       "_origin": "ast",
-      "community": 24,
+      "community": 36,
       "norm_label": "read()",
       "community_name": "evaluateReadiness",
       "id": "test_evidence_ingestion_test_read"
@@ -10547,7 +10547,7 @@
       "source_file": "test/evidence-ingestion.test.ts",
       "source_location": "L111",
       "_origin": "ast",
-      "community": 24,
+      "community": 36,
       "norm_label": "readfixture()",
       "community_name": "evaluateReadiness",
       "id": "test_evidence_ingestion_test_readfixture"
@@ -10558,7 +10558,7 @@
       "source_file": "test/evidence-ingestion.test.ts",
       "source_location": "L115",
       "_origin": "ast",
-      "community": 24,
+      "community": 36,
       "norm_label": "replaceobservation()",
       "community_name": "evaluateReadiness",
       "id": "test_evidence_ingestion_test_replaceobservation"
@@ -10767,7 +10767,7 @@
       "source_file": "test/fixtures/controller/custom-tool-quick-task.json",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 27,
+      "community": 25,
       "norm_label": "custom-tool-quick-task.json",
       "community_name": "custom-tool-quick-task.json",
       "id": "test_fixtures_controller_custom_tool_quick_task"
@@ -10778,7 +10778,7 @@
       "source_file": "test/fixtures/controller/custom-tool-quick-task.json",
       "source_location": "L2",
       "_origin": "ast",
-      "community": 27,
+      "community": 25,
       "norm_label": "requestversion",
       "community_name": "custom-tool-quick-task.json",
       "id": "test_fixtures_controller_custom_tool_quick_task_requestversion"
@@ -10789,7 +10789,7 @@
       "source_file": "test/fixtures/controller/custom-tool-quick-task.json",
       "source_location": "L3",
       "_origin": "ast",
-      "community": 27,
+      "community": 25,
       "norm_label": "workitemtype",
       "community_name": "custom-tool-quick-task.json",
       "id": "test_fixtures_controller_custom_tool_quick_task_workitemtype"
@@ -10800,7 +10800,7 @@
       "source_file": "test/fixtures/controller/custom-tool-quick-task.json",
       "source_location": "L4",
       "_origin": "ast",
-      "community": 27,
+      "community": 25,
       "norm_label": "goal",
       "community_name": "custom-tool-quick-task.json",
       "id": "test_fixtures_controller_custom_tool_quick_task_goal"
@@ -10811,7 +10811,7 @@
       "source_file": "test/fixtures/controller/custom-tool-quick-task.json",
       "source_location": "L5",
       "_origin": "ast",
-      "community": 27,
+      "community": 25,
       "norm_label": "outcomeowner",
       "community_name": "custom-tool-quick-task.json",
       "id": "test_fixtures_controller_custom_tool_quick_task_outcomeowner"
@@ -10822,7 +10822,7 @@
       "source_file": "test/fixtures/controller/custom-tool-quick-task.json",
       "source_location": "L6",
       "_origin": "ast",
-      "community": 27,
+      "community": 25,
       "norm_label": "complexity",
       "community_name": "custom-tool-quick-task.json",
       "id": "test_fixtures_controller_custom_tool_quick_task_complexity"
@@ -10833,7 +10833,7 @@
       "source_file": "test/fixtures/controller/custom-tool-quick-task.json",
       "source_location": "L7",
       "_origin": "ast",
-      "community": 27,
+      "community": 25,
       "norm_label": "executionboundary",
       "community_name": "custom-tool-quick-task.json",
       "id": "test_fixtures_controller_custom_tool_quick_task_executionboundary"
@@ -10844,7 +10844,7 @@
       "source_file": "test/fixtures/controller/custom-tool-quick-task.json",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 27,
+      "community": 25,
       "norm_label": "value",
       "community_name": "custom-tool-quick-task.json",
       "id": "test_fixtures_controller_custom_tool_quick_task_value"
@@ -10855,7 +10855,7 @@
       "source_file": "test/fixtures/controller/custom-tool-quick-task.json",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 27,
+      "community": 25,
       "norm_label": "state",
       "community_name": "custom-tool-quick-task.json",
       "id": "test_fixtures_controller_custom_tool_quick_task_value_state"
@@ -10866,7 +10866,7 @@
       "source_file": "test/fixtures/controller/custom-tool-quick-task.json",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 27,
+      "community": 25,
       "norm_label": "statement",
       "community_name": "custom-tool-quick-task.json",
       "id": "test_fixtures_controller_custom_tool_quick_task_value_statement"
@@ -10877,7 +10877,7 @@
       "source_file": "test/fixtures/controller/custom-tool-quick-task.json",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 27,
+      "community": 25,
       "norm_label": "context",
       "community_name": "custom-tool-quick-task.json",
       "id": "test_fixtures_controller_custom_tool_quick_task_context"
@@ -10888,7 +10888,7 @@
       "source_file": "test/fixtures/controller/custom-tool-quick-task.json",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 27,
+      "community": 25,
       "norm_label": "state",
       "community_name": "custom-tool-quick-task.json",
       "id": "test_fixtures_controller_custom_tool_quick_task_context_state"
@@ -10899,7 +10899,7 @@
       "source_file": "test/fixtures/controller/custom-tool-quick-task.json",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 27,
+      "community": 25,
       "norm_label": "reference",
       "community_name": "custom-tool-quick-task.json",
       "id": "test_fixtures_controller_custom_tool_quick_task_context_reference"
@@ -10910,7 +10910,7 @@
       "source_file": "test/fixtures/controller/custom-tool-quick-task.json",
       "source_location": "L10",
       "_origin": "ast",
-      "community": 27,
+      "community": 25,
       "norm_label": "relations",
       "community_name": "custom-tool-quick-task.json",
       "id": "test_fixtures_controller_custom_tool_quick_task_relations"
@@ -10921,7 +10921,7 @@
       "source_file": "test/fixtures/controller/custom-tool-quick-task.json",
       "source_location": "L10",
       "_origin": "ast",
-      "community": 27,
+      "community": 25,
       "norm_label": "state",
       "community_name": "custom-tool-quick-task.json",
       "id": "test_fixtures_controller_custom_tool_quick_task_relations_state"
@@ -10932,7 +10932,7 @@
       "source_file": "test/fixtures/controller/custom-tool-quick-task.json",
       "source_location": "L10",
       "_origin": "ast",
-      "community": 27,
+      "community": 25,
       "norm_label": "items",
       "community_name": "custom-tool-quick-task.json",
       "id": "test_fixtures_controller_custom_tool_quick_task_relations_items"
@@ -10943,7 +10943,7 @@
       "source_file": "test/fixtures/controller/custom-tool-quick-task.json",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 27,
+      "community": 25,
       "norm_label": "dependencies",
       "community_name": "custom-tool-quick-task.json",
       "id": "test_fixtures_controller_custom_tool_quick_task_dependencies"
@@ -10954,7 +10954,7 @@
       "source_file": "test/fixtures/controller/custom-tool-quick-task.json",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 27,
+      "community": 25,
       "norm_label": "state",
       "community_name": "custom-tool-quick-task.json",
       "id": "test_fixtures_controller_custom_tool_quick_task_dependencies_state"
@@ -10965,7 +10965,7 @@
       "source_file": "test/fixtures/controller/custom-tool-quick-task.json",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 27,
+      "community": 25,
       "norm_label": "state",
       "community_name": "custom-tool-quick-task.json",
       "id": "test_fixtures_controller_custom_tool_quick_task_json_state"
@@ -10976,7 +10976,7 @@
       "source_file": "test/fixtures/controller/custom-tool-quick-task.json",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 27,
+      "community": 25,
       "norm_label": "items",
       "community_name": "custom-tool-quick-task.json",
       "id": "test_fixtures_controller_custom_tool_quick_task_dependencies_items"
@@ -10987,7 +10987,7 @@
       "source_file": "test/fixtures/controller/custom-tool-quick-task.json",
       "source_location": "L12",
       "_origin": "ast",
-      "community": 27,
+      "community": 25,
       "norm_label": "preferences",
       "community_name": "custom-tool-quick-task.json",
       "id": "test_fixtures_controller_custom_tool_quick_task_preferences"
@@ -10998,7 +10998,7 @@
       "source_file": "test/fixtures/controller/custom-tool-quick-task.json",
       "source_location": "L12",
       "_origin": "ast",
-      "community": 27,
+      "community": 25,
       "norm_label": "continuation",
       "community_name": "custom-tool-quick-task.json",
       "id": "test_fixtures_controller_custom_tool_quick_task_preferences_continuation"
@@ -11009,7 +11009,7 @@
       "source_file": "test/fixtures/controller/eligible-quick-task.json",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 32,
+      "community": 31,
       "norm_label": "eligible-quick-task.json",
       "community_name": "eligible-quick-task.json",
       "id": "test_fixtures_controller_eligible_quick_task"
@@ -11020,7 +11020,7 @@
       "source_file": "test/fixtures/controller/eligible-quick-task.json",
       "source_location": "L2",
       "_origin": "ast",
-      "community": 32,
+      "community": 31,
       "norm_label": "requestversion",
       "community_name": "eligible-quick-task.json",
       "id": "test_fixtures_controller_eligible_quick_task_requestversion"
@@ -11031,7 +11031,7 @@
       "source_file": "test/fixtures/controller/eligible-quick-task.json",
       "source_location": "L3",
       "_origin": "ast",
-      "community": 32,
+      "community": 31,
       "norm_label": "workitemtype",
       "community_name": "eligible-quick-task.json",
       "id": "test_fixtures_controller_eligible_quick_task_workitemtype"
@@ -11042,7 +11042,7 @@
       "source_file": "test/fixtures/controller/eligible-quick-task.json",
       "source_location": "L4",
       "_origin": "ast",
-      "community": 32,
+      "community": 31,
       "norm_label": "goal",
       "community_name": "eligible-quick-task.json",
       "id": "test_fixtures_controller_eligible_quick_task_goal"
@@ -11053,7 +11053,7 @@
       "source_file": "test/fixtures/controller/eligible-quick-task.json",
       "source_location": "L5",
       "_origin": "ast",
-      "community": 32,
+      "community": 31,
       "norm_label": "outcomeowner",
       "community_name": "eligible-quick-task.json",
       "id": "test_fixtures_controller_eligible_quick_task_outcomeowner"
@@ -11064,7 +11064,7 @@
       "source_file": "test/fixtures/controller/eligible-quick-task.json",
       "source_location": "L6",
       "_origin": "ast",
-      "community": 32,
+      "community": 31,
       "norm_label": "complexity",
       "community_name": "eligible-quick-task.json",
       "id": "test_fixtures_controller_eligible_quick_task_complexity"
@@ -11075,7 +11075,7 @@
       "source_file": "test/fixtures/controller/eligible-quick-task.json",
       "source_location": "L7",
       "_origin": "ast",
-      "community": 32,
+      "community": 31,
       "norm_label": "executionboundary",
       "community_name": "eligible-quick-task.json",
       "id": "test_fixtures_controller_eligible_quick_task_executionboundary"
@@ -11086,7 +11086,7 @@
       "source_file": "test/fixtures/controller/eligible-quick-task.json",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 32,
+      "community": 31,
       "norm_label": "value",
       "community_name": "eligible-quick-task.json",
       "id": "test_fixtures_controller_eligible_quick_task_value"
@@ -11097,7 +11097,7 @@
       "source_file": "test/fixtures/controller/eligible-quick-task.json",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 32,
+      "community": 31,
       "norm_label": "state",
       "community_name": "eligible-quick-task.json",
       "id": "test_fixtures_controller_eligible_quick_task_value_state"
@@ -11108,7 +11108,7 @@
       "source_file": "test/fixtures/controller/eligible-quick-task.json",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 32,
+      "community": 31,
       "norm_label": "statement",
       "community_name": "eligible-quick-task.json",
       "id": "test_fixtures_controller_eligible_quick_task_value_statement"
@@ -11119,7 +11119,7 @@
       "source_file": "test/fixtures/controller/eligible-quick-task.json",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 32,
+      "community": 31,
       "norm_label": "context",
       "community_name": "eligible-quick-task.json",
       "id": "test_fixtures_controller_eligible_quick_task_context"
@@ -11130,7 +11130,7 @@
       "source_file": "test/fixtures/controller/eligible-quick-task.json",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 32,
+      "community": 31,
       "norm_label": "state",
       "community_name": "eligible-quick-task.json",
       "id": "test_fixtures_controller_eligible_quick_task_context_state"
@@ -11141,7 +11141,7 @@
       "source_file": "test/fixtures/controller/eligible-quick-task.json",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 32,
+      "community": 31,
       "norm_label": "reference",
       "community_name": "eligible-quick-task.json",
       "id": "test_fixtures_controller_eligible_quick_task_context_reference"
@@ -11152,7 +11152,7 @@
       "source_file": "test/fixtures/controller/eligible-quick-task.json",
       "source_location": "L10",
       "_origin": "ast",
-      "community": 32,
+      "community": 31,
       "norm_label": "relations",
       "community_name": "eligible-quick-task.json",
       "id": "test_fixtures_controller_eligible_quick_task_relations"
@@ -11163,7 +11163,7 @@
       "source_file": "test/fixtures/controller/eligible-quick-task.json",
       "source_location": "L10",
       "_origin": "ast",
-      "community": 32,
+      "community": 31,
       "norm_label": "state",
       "community_name": "eligible-quick-task.json",
       "id": "test_fixtures_controller_eligible_quick_task_relations_state"
@@ -11174,7 +11174,7 @@
       "source_file": "test/fixtures/controller/eligible-quick-task.json",
       "source_location": "L10",
       "_origin": "ast",
-      "community": 32,
+      "community": 31,
       "norm_label": "items",
       "community_name": "eligible-quick-task.json",
       "id": "test_fixtures_controller_eligible_quick_task_relations_items"
@@ -11185,7 +11185,7 @@
       "source_file": "test/fixtures/controller/eligible-quick-task.json",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 32,
+      "community": 31,
       "norm_label": "dependencies",
       "community_name": "eligible-quick-task.json",
       "id": "test_fixtures_controller_eligible_quick_task_dependencies"
@@ -11196,7 +11196,7 @@
       "source_file": "test/fixtures/controller/eligible-quick-task.json",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 32,
+      "community": 31,
       "norm_label": "state",
       "community_name": "eligible-quick-task.json",
       "id": "test_fixtures_controller_eligible_quick_task_dependencies_state"
@@ -11207,7 +11207,7 @@
       "source_file": "test/fixtures/controller/eligible-quick-task.json",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 32,
+      "community": 31,
       "norm_label": "state",
       "community_name": "eligible-quick-task.json",
       "id": "test_fixtures_controller_eligible_quick_task_json_state"
@@ -11218,7 +11218,7 @@
       "source_file": "test/fixtures/controller/eligible-quick-task.json",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 32,
+      "community": 31,
       "norm_label": "items",
       "community_name": "eligible-quick-task.json",
       "id": "test_fixtures_controller_eligible_quick_task_dependencies_items"
@@ -11229,7 +11229,7 @@
       "source_file": "test/fixtures/controller/high-complexity-quick-task.json",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 33,
+      "community": 32,
       "norm_label": "high-complexity-quick-task.json",
       "community_name": "high-complexity-quick-task.json",
       "id": "test_fixtures_controller_high_complexity_quick_task"
@@ -11240,7 +11240,7 @@
       "source_file": "test/fixtures/controller/high-complexity-quick-task.json",
       "source_location": "L2",
       "_origin": "ast",
-      "community": 33,
+      "community": 32,
       "norm_label": "requestversion",
       "community_name": "high-complexity-quick-task.json",
       "id": "test_fixtures_controller_high_complexity_quick_task_requestversion"
@@ -11251,7 +11251,7 @@
       "source_file": "test/fixtures/controller/high-complexity-quick-task.json",
       "source_location": "L3",
       "_origin": "ast",
-      "community": 33,
+      "community": 32,
       "norm_label": "workitemtype",
       "community_name": "high-complexity-quick-task.json",
       "id": "test_fixtures_controller_high_complexity_quick_task_workitemtype"
@@ -11262,7 +11262,7 @@
       "source_file": "test/fixtures/controller/high-complexity-quick-task.json",
       "source_location": "L4",
       "_origin": "ast",
-      "community": 33,
+      "community": 32,
       "norm_label": "goal",
       "community_name": "high-complexity-quick-task.json",
       "id": "test_fixtures_controller_high_complexity_quick_task_goal"
@@ -11273,7 +11273,7 @@
       "source_file": "test/fixtures/controller/high-complexity-quick-task.json",
       "source_location": "L5",
       "_origin": "ast",
-      "community": 33,
+      "community": 32,
       "norm_label": "outcomeowner",
       "community_name": "high-complexity-quick-task.json",
       "id": "test_fixtures_controller_high_complexity_quick_task_outcomeowner"
@@ -11284,7 +11284,7 @@
       "source_file": "test/fixtures/controller/high-complexity-quick-task.json",
       "source_location": "L6",
       "_origin": "ast",
-      "community": 33,
+      "community": 32,
       "norm_label": "complexity",
       "community_name": "high-complexity-quick-task.json",
       "id": "test_fixtures_controller_high_complexity_quick_task_complexity"
@@ -11295,7 +11295,7 @@
       "source_file": "test/fixtures/controller/high-complexity-quick-task.json",
       "source_location": "L7",
       "_origin": "ast",
-      "community": 33,
+      "community": 32,
       "norm_label": "executionboundary",
       "community_name": "high-complexity-quick-task.json",
       "id": "test_fixtures_controller_high_complexity_quick_task_executionboundary"
@@ -11306,7 +11306,7 @@
       "source_file": "test/fixtures/controller/high-complexity-quick-task.json",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 33,
+      "community": 32,
       "norm_label": "value",
       "community_name": "high-complexity-quick-task.json",
       "id": "test_fixtures_controller_high_complexity_quick_task_value"
@@ -11317,7 +11317,7 @@
       "source_file": "test/fixtures/controller/high-complexity-quick-task.json",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 33,
+      "community": 32,
       "norm_label": "state",
       "community_name": "high-complexity-quick-task.json",
       "id": "test_fixtures_controller_high_complexity_quick_task_value_state"
@@ -11328,7 +11328,7 @@
       "source_file": "test/fixtures/controller/high-complexity-quick-task.json",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 33,
+      "community": 32,
       "norm_label": "statement",
       "community_name": "high-complexity-quick-task.json",
       "id": "test_fixtures_controller_high_complexity_quick_task_value_statement"
@@ -11339,7 +11339,7 @@
       "source_file": "test/fixtures/controller/high-complexity-quick-task.json",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 33,
+      "community": 32,
       "norm_label": "context",
       "community_name": "high-complexity-quick-task.json",
       "id": "test_fixtures_controller_high_complexity_quick_task_context"
@@ -11350,7 +11350,7 @@
       "source_file": "test/fixtures/controller/high-complexity-quick-task.json",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 33,
+      "community": 32,
       "norm_label": "state",
       "community_name": "high-complexity-quick-task.json",
       "id": "test_fixtures_controller_high_complexity_quick_task_context_state"
@@ -11361,7 +11361,7 @@
       "source_file": "test/fixtures/controller/high-complexity-quick-task.json",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 33,
+      "community": 32,
       "norm_label": "reference",
       "community_name": "high-complexity-quick-task.json",
       "id": "test_fixtures_controller_high_complexity_quick_task_context_reference"
@@ -11372,7 +11372,7 @@
       "source_file": "test/fixtures/controller/high-complexity-quick-task.json",
       "source_location": "L10",
       "_origin": "ast",
-      "community": 33,
+      "community": 32,
       "norm_label": "relations",
       "community_name": "high-complexity-quick-task.json",
       "id": "test_fixtures_controller_high_complexity_quick_task_relations"
@@ -11383,7 +11383,7 @@
       "source_file": "test/fixtures/controller/high-complexity-quick-task.json",
       "source_location": "L10",
       "_origin": "ast",
-      "community": 33,
+      "community": 32,
       "norm_label": "state",
       "community_name": "high-complexity-quick-task.json",
       "id": "test_fixtures_controller_high_complexity_quick_task_relations_state"
@@ -11394,7 +11394,7 @@
       "source_file": "test/fixtures/controller/high-complexity-quick-task.json",
       "source_location": "L10",
       "_origin": "ast",
-      "community": 33,
+      "community": 32,
       "norm_label": "items",
       "community_name": "high-complexity-quick-task.json",
       "id": "test_fixtures_controller_high_complexity_quick_task_relations_items"
@@ -11405,7 +11405,7 @@
       "source_file": "test/fixtures/controller/high-complexity-quick-task.json",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 33,
+      "community": 32,
       "norm_label": "dependencies",
       "community_name": "high-complexity-quick-task.json",
       "id": "test_fixtures_controller_high_complexity_quick_task_dependencies"
@@ -11416,7 +11416,7 @@
       "source_file": "test/fixtures/controller/high-complexity-quick-task.json",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 33,
+      "community": 32,
       "norm_label": "state",
       "community_name": "high-complexity-quick-task.json",
       "id": "test_fixtures_controller_high_complexity_quick_task_dependencies_state"
@@ -11427,7 +11427,7 @@
       "source_file": "test/fixtures/controller/high-complexity-quick-task.json",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 33,
+      "community": 32,
       "norm_label": "state",
       "community_name": "high-complexity-quick-task.json",
       "id": "test_fixtures_controller_high_complexity_quick_task_json_state"
@@ -11438,7 +11438,7 @@
       "source_file": "test/fixtures/controller/high-complexity-quick-task.json",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 33,
+      "community": 32,
       "norm_label": "items",
       "community_name": "high-complexity-quick-task.json",
       "id": "test_fixtures_controller_high_complexity_quick_task_dependencies_items"
@@ -11449,7 +11449,7 @@
       "source_file": "test/fixtures/controller/incomplete-quick-task.json",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 43,
+      "community": 44,
       "norm_label": "incomplete-quick-task.json",
       "community_name": "incomplete-quick-task.json",
       "id": "test_fixtures_controller_incomplete_quick_task"
@@ -11460,7 +11460,7 @@
       "source_file": "test/fixtures/controller/incomplete-quick-task.json",
       "source_location": "L2",
       "_origin": "ast",
-      "community": 43,
+      "community": 44,
       "norm_label": "requestversion",
       "community_name": "incomplete-quick-task.json",
       "id": "test_fixtures_controller_incomplete_quick_task_requestversion"
@@ -11471,7 +11471,7 @@
       "source_file": "test/fixtures/controller/incomplete-quick-task.json",
       "source_location": "L3",
       "_origin": "ast",
-      "community": 43,
+      "community": 44,
       "norm_label": "workitemtype",
       "community_name": "incomplete-quick-task.json",
       "id": "test_fixtures_controller_incomplete_quick_task_workitemtype"
@@ -11482,7 +11482,7 @@
       "source_file": "test/fixtures/controller/incomplete-quick-task.json",
       "source_location": "L4",
       "_origin": "ast",
-      "community": 43,
+      "community": 44,
       "norm_label": "goal",
       "community_name": "incomplete-quick-task.json",
       "id": "test_fixtures_controller_incomplete_quick_task_goal"
@@ -11493,7 +11493,7 @@
       "source_file": "test/fixtures/controller/incomplete-quick-task.json",
       "source_location": "L5",
       "_origin": "ast",
-      "community": 43,
+      "community": 44,
       "norm_label": "outcomeowner",
       "community_name": "incomplete-quick-task.json",
       "id": "test_fixtures_controller_incomplete_quick_task_outcomeowner"
@@ -11504,7 +11504,7 @@
       "source_file": "test/fixtures/controller/incomplete-quick-task.json",
       "source_location": "L6",
       "_origin": "ast",
-      "community": 43,
+      "community": 44,
       "norm_label": "complexity",
       "community_name": "incomplete-quick-task.json",
       "id": "test_fixtures_controller_incomplete_quick_task_complexity"
@@ -11515,7 +11515,7 @@
       "source_file": "test/fixtures/controller/incomplete-quick-task.json",
       "source_location": "L7",
       "_origin": "ast",
-      "community": 43,
+      "community": 44,
       "norm_label": "executionboundary",
       "community_name": "incomplete-quick-task.json",
       "id": "test_fixtures_controller_incomplete_quick_task_executionboundary"
@@ -11526,7 +11526,7 @@
       "source_file": "test/fixtures/controller/incomplete-quick-task.json",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 43,
+      "community": 44,
       "norm_label": "relations",
       "community_name": "incomplete-quick-task.json",
       "id": "test_fixtures_controller_incomplete_quick_task_relations"
@@ -11537,7 +11537,7 @@
       "source_file": "test/fixtures/controller/incomplete-quick-task.json",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 43,
+      "community": 44,
       "norm_label": "state",
       "community_name": "incomplete-quick-task.json",
       "id": "test_fixtures_controller_incomplete_quick_task_relations_state"
@@ -11548,7 +11548,7 @@
       "source_file": "test/fixtures/controller/incomplete-quick-task.json",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 43,
+      "community": 44,
       "norm_label": "items",
       "community_name": "incomplete-quick-task.json",
       "id": "test_fixtures_controller_incomplete_quick_task_relations_items"
@@ -11559,7 +11559,7 @@
       "source_file": "test/fixtures/controller/incomplete-quick-task.json",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 43,
+      "community": 44,
       "norm_label": "dependencies",
       "community_name": "incomplete-quick-task.json",
       "id": "test_fixtures_controller_incomplete_quick_task_dependencies"
@@ -11570,7 +11570,7 @@
       "source_file": "test/fixtures/controller/incomplete-quick-task.json",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 43,
+      "community": 44,
       "norm_label": "state",
       "community_name": "incomplete-quick-task.json",
       "id": "test_fixtures_controller_incomplete_quick_task_dependencies_state"
@@ -11581,7 +11581,7 @@
       "source_file": "test/fixtures/controller/incomplete-quick-task.json",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 43,
+      "community": 44,
       "norm_label": "state",
       "community_name": "incomplete-quick-task.json",
       "id": "test_fixtures_controller_incomplete_quick_task_json_state"
@@ -11592,7 +11592,7 @@
       "source_file": "test/fixtures/controller/incomplete-quick-task.json",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 43,
+      "community": 44,
       "norm_label": "items",
       "community_name": "incomplete-quick-task.json",
       "id": "test_fixtures_controller_incomplete_quick_task_dependencies_items"
@@ -11603,7 +11603,7 @@
       "source_file": "test/fixtures/controller/no-agent-quick-task.json",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 28,
+      "community": 26,
       "norm_label": "no-agent-quick-task.json",
       "community_name": "no-agent-quick-task.json",
       "id": "test_fixtures_controller_no_agent_quick_task"
@@ -11614,7 +11614,7 @@
       "source_file": "test/fixtures/controller/no-agent-quick-task.json",
       "source_location": "L2",
       "_origin": "ast",
-      "community": 28,
+      "community": 26,
       "norm_label": "requestversion",
       "community_name": "no-agent-quick-task.json",
       "id": "test_fixtures_controller_no_agent_quick_task_requestversion"
@@ -11625,7 +11625,7 @@
       "source_file": "test/fixtures/controller/no-agent-quick-task.json",
       "source_location": "L3",
       "_origin": "ast",
-      "community": 28,
+      "community": 26,
       "norm_label": "workitemtype",
       "community_name": "no-agent-quick-task.json",
       "id": "test_fixtures_controller_no_agent_quick_task_workitemtype"
@@ -11636,7 +11636,7 @@
       "source_file": "test/fixtures/controller/no-agent-quick-task.json",
       "source_location": "L4",
       "_origin": "ast",
-      "community": 28,
+      "community": 26,
       "norm_label": "goal",
       "community_name": "no-agent-quick-task.json",
       "id": "test_fixtures_controller_no_agent_quick_task_goal"
@@ -11647,7 +11647,7 @@
       "source_file": "test/fixtures/controller/no-agent-quick-task.json",
       "source_location": "L5",
       "_origin": "ast",
-      "community": 28,
+      "community": 26,
       "norm_label": "outcomeowner",
       "community_name": "no-agent-quick-task.json",
       "id": "test_fixtures_controller_no_agent_quick_task_outcomeowner"
@@ -11658,7 +11658,7 @@
       "source_file": "test/fixtures/controller/no-agent-quick-task.json",
       "source_location": "L6",
       "_origin": "ast",
-      "community": 28,
+      "community": 26,
       "norm_label": "complexity",
       "community_name": "no-agent-quick-task.json",
       "id": "test_fixtures_controller_no_agent_quick_task_complexity"
@@ -11669,7 +11669,7 @@
       "source_file": "test/fixtures/controller/no-agent-quick-task.json",
       "source_location": "L7",
       "_origin": "ast",
-      "community": 28,
+      "community": 26,
       "norm_label": "executionboundary",
       "community_name": "no-agent-quick-task.json",
       "id": "test_fixtures_controller_no_agent_quick_task_executionboundary"
@@ -11680,7 +11680,7 @@
       "source_file": "test/fixtures/controller/no-agent-quick-task.json",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 28,
+      "community": 26,
       "norm_label": "value",
       "community_name": "no-agent-quick-task.json",
       "id": "test_fixtures_controller_no_agent_quick_task_value"
@@ -11691,7 +11691,7 @@
       "source_file": "test/fixtures/controller/no-agent-quick-task.json",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 28,
+      "community": 26,
       "norm_label": "state",
       "community_name": "no-agent-quick-task.json",
       "id": "test_fixtures_controller_no_agent_quick_task_value_state"
@@ -11702,7 +11702,7 @@
       "source_file": "test/fixtures/controller/no-agent-quick-task.json",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 28,
+      "community": 26,
       "norm_label": "statement",
       "community_name": "no-agent-quick-task.json",
       "id": "test_fixtures_controller_no_agent_quick_task_value_statement"
@@ -11713,7 +11713,7 @@
       "source_file": "test/fixtures/controller/no-agent-quick-task.json",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 28,
+      "community": 26,
       "norm_label": "context",
       "community_name": "no-agent-quick-task.json",
       "id": "test_fixtures_controller_no_agent_quick_task_context"
@@ -11724,7 +11724,7 @@
       "source_file": "test/fixtures/controller/no-agent-quick-task.json",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 28,
+      "community": 26,
       "norm_label": "state",
       "community_name": "no-agent-quick-task.json",
       "id": "test_fixtures_controller_no_agent_quick_task_context_state"
@@ -11735,7 +11735,7 @@
       "source_file": "test/fixtures/controller/no-agent-quick-task.json",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 28,
+      "community": 26,
       "norm_label": "reference",
       "community_name": "no-agent-quick-task.json",
       "id": "test_fixtures_controller_no_agent_quick_task_context_reference"
@@ -11746,7 +11746,7 @@
       "source_file": "test/fixtures/controller/no-agent-quick-task.json",
       "source_location": "L10",
       "_origin": "ast",
-      "community": 28,
+      "community": 26,
       "norm_label": "relations",
       "community_name": "no-agent-quick-task.json",
       "id": "test_fixtures_controller_no_agent_quick_task_relations"
@@ -11757,7 +11757,7 @@
       "source_file": "test/fixtures/controller/no-agent-quick-task.json",
       "source_location": "L10",
       "_origin": "ast",
-      "community": 28,
+      "community": 26,
       "norm_label": "state",
       "community_name": "no-agent-quick-task.json",
       "id": "test_fixtures_controller_no_agent_quick_task_relations_state"
@@ -11768,7 +11768,7 @@
       "source_file": "test/fixtures/controller/no-agent-quick-task.json",
       "source_location": "L10",
       "_origin": "ast",
-      "community": 28,
+      "community": 26,
       "norm_label": "items",
       "community_name": "no-agent-quick-task.json",
       "id": "test_fixtures_controller_no_agent_quick_task_relations_items"
@@ -11779,7 +11779,7 @@
       "source_file": "test/fixtures/controller/no-agent-quick-task.json",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 28,
+      "community": 26,
       "norm_label": "dependencies",
       "community_name": "no-agent-quick-task.json",
       "id": "test_fixtures_controller_no_agent_quick_task_dependencies"
@@ -11790,7 +11790,7 @@
       "source_file": "test/fixtures/controller/no-agent-quick-task.json",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 28,
+      "community": 26,
       "norm_label": "state",
       "community_name": "no-agent-quick-task.json",
       "id": "test_fixtures_controller_no_agent_quick_task_dependencies_state"
@@ -11801,7 +11801,7 @@
       "source_file": "test/fixtures/controller/no-agent-quick-task.json",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 28,
+      "community": 26,
       "norm_label": "state",
       "community_name": "no-agent-quick-task.json",
       "id": "test_fixtures_controller_no_agent_quick_task_json_state"
@@ -11812,7 +11812,7 @@
       "source_file": "test/fixtures/controller/no-agent-quick-task.json",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 28,
+      "community": 26,
       "norm_label": "items",
       "community_name": "no-agent-quick-task.json",
       "id": "test_fixtures_controller_no_agent_quick_task_dependencies_items"
@@ -11823,7 +11823,7 @@
       "source_file": "test/fixtures/controller/no-agent-quick-task.json",
       "source_location": "L12",
       "_origin": "ast",
-      "community": 28,
+      "community": 26,
       "norm_label": "preferences",
       "community_name": "no-agent-quick-task.json",
       "id": "test_fixtures_controller_no_agent_quick_task_preferences"
@@ -11834,7 +11834,7 @@
       "source_file": "test/fixtures/controller/no-agent-quick-task.json",
       "source_location": "L12",
       "_origin": "ast",
-      "community": 28,
+      "community": 26,
       "norm_label": "continuation",
       "community_name": "no-agent-quick-task.json",
       "id": "test_fixtures_controller_no_agent_quick_task_preferences_continuation"
@@ -12285,7 +12285,7 @@
       "source_file": "test/readiness-capability.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 24,
+      "community": 36,
       "norm_label": "readiness-capability.ts",
       "community_name": "evaluateReadiness",
       "id": "test_readiness_capability"
@@ -12296,7 +12296,7 @@
       "source_file": "test/readiness-capability.ts",
       "source_location": "L3",
       "_origin": "ast",
-      "community": 24,
+      "community": 36,
       "norm_label": "readinesscapability",
       "community_name": "evaluateReadiness",
       "id": "test_readiness_capability_readinesscapability"
@@ -12307,7 +12307,7 @@
       "source_file": "test/readiness-cli.test.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 31,
+      "community": 30,
       "norm_label": "readiness-cli.test.ts",
       "community_name": "readiness-cli.test.ts",
       "id": "test_readiness_cli_test"
@@ -12318,7 +12318,7 @@
       "source_file": "test/readiness-cli.test.ts",
       "source_location": "L13",
       "_origin": "ast",
-      "community": 31,
+      "community": 30,
       "norm_label": "manifestpath",
       "community_name": "readiness-cli.test.ts",
       "id": "test_readiness_cli_test_manifestpath"
@@ -12329,7 +12329,7 @@
       "source_file": "test/readiness-cli.test.ts",
       "source_location": "L14",
       "_origin": "ast",
-      "community": 31,
+      "community": 30,
       "norm_label": "capabilitypath",
       "community_name": "readiness-cli.test.ts",
       "id": "test_readiness_cli_test_capabilitypath"
@@ -12340,7 +12340,7 @@
       "source_file": "test/readiness-cli.test.ts",
       "source_location": "L15",
       "_origin": "ast",
-      "community": 31,
+      "community": 30,
       "norm_label": "readinessmanifest",
       "community_name": "readiness-cli.test.ts",
       "id": "test_readiness_cli_test_readinessmanifest"
@@ -12351,7 +12351,7 @@
       "source_file": "test/readiness-cli.test.ts",
       "source_location": "L32",
       "_origin": "ast",
-      "community": 31,
+      "community": 30,
       "norm_label": "read()",
       "community_name": "readiness-cli.test.ts",
       "id": "test_readiness_cli_test_read"
@@ -12362,7 +12362,7 @@
       "source_file": "test/readiness-cli.test.ts",
       "source_location": "L134",
       "_origin": "ast",
-      "community": 31,
+      "community": 30,
       "norm_label": "readfixture()",
       "community_name": "readiness-cli.test.ts",
       "id": "test_readiness_cli_test_readfixture"
@@ -12373,7 +12373,7 @@
       "source_file": "test/readiness-cli.test.ts",
       "source_location": "L138",
       "_origin": "ast",
-      "community": 31,
+      "community": 30,
       "norm_label": "runbuiltcli()",
       "community_name": "readiness-cli.test.ts",
       "id": "test_readiness_cli_test_runbuiltcli"
@@ -12384,7 +12384,7 @@
       "source_file": "test/readiness-evaluate.test.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 24,
+      "community": 36,
       "norm_label": "readiness-evaluate.test.ts",
       "community_name": "evaluateReadiness",
       "id": "test_readiness_evaluate_test"
@@ -12395,7 +12395,7 @@
       "source_file": "test/readiness-evaluate.test.ts",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 24,
+      "community": 36,
       "norm_label": "evaluatereadiness()",
       "community_name": "evaluateReadiness",
       "id": "test_readiness_evaluate_test_evaluatereadiness"
@@ -12406,7 +12406,7 @@
       "source_file": "test/readiness-evaluate.test.ts",
       "source_location": "L15",
       "_origin": "ast",
-      "community": 24,
+      "community": 36,
       "norm_label": "manifest",
       "community_name": "evaluateReadiness",
       "id": "test_readiness_evaluate_test_manifest"
@@ -12417,7 +12417,7 @@
       "source_file": "test/readiness-evaluate.test.ts",
       "source_location": "L215",
       "_origin": "ast",
-      "community": 24,
+      "community": 36,
       "norm_label": "readbundle()",
       "community_name": "evaluateReadiness",
       "id": "test_readiness_evaluate_test_readbundle"
@@ -12428,7 +12428,7 @@
       "source_file": "test/readiness-evaluate.test.ts",
       "source_location": "L220",
       "_origin": "ast",
-      "community": 24,
+      "community": 36,
       "norm_label": "replaceobservation()",
       "community_name": "evaluateReadiness",
       "id": "test_readiness_evaluate_test_replaceobservation"
@@ -12439,7 +12439,7 @@
       "source_file": "test/readiness-evaluate.test.ts",
       "source_location": "L231",
       "_origin": "ast",
-      "community": 24,
+      "community": 36,
       "norm_label": "replaceobservedid()",
       "community_name": "evaluateReadiness",
       "id": "test_readiness_evaluate_test_replaceobservedid"
@@ -12450,7 +12450,7 @@
       "source_file": "test/readiness-evaluate.test.ts",
       "source_location": "L245",
       "_origin": "ast",
-      "community": 24,
+      "community": 36,
       "norm_label": "reorderobservation()",
       "community_name": "evaluateReadiness",
       "id": "test_readiness_evaluate_test_reorderobservation"
@@ -12494,7 +12494,7 @@
       "source_file": "test/readiness-observations.test.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 31,
+      "community": 30,
       "norm_label": "readiness-observations.test.ts",
       "community_name": "readiness-cli.test.ts",
       "id": "test_readiness_observations_test"
@@ -12505,7 +12505,7 @@
       "source_file": "test/readiness-observations.test.ts",
       "source_location": "L12",
       "_origin": "ast",
-      "community": 31,
+      "community": 30,
       "norm_label": "manifest",
       "community_name": "readiness-cli.test.ts",
       "id": "test_readiness_observations_test_manifest"
@@ -12516,7 +12516,7 @@
       "source_file": "test/readiness-observations.test.ts",
       "source_location": "L216",
       "_origin": "ast",
-      "community": 31,
+      "community": 30,
       "norm_label": "read()",
       "community_name": "readiness-cli.test.ts",
       "id": "test_readiness_observations_test_read"
@@ -12527,7 +12527,7 @@
       "source_file": "test/readiness-observations.test.ts",
       "source_location": "L231",
       "_origin": "ast",
-      "community": 31,
+      "community": 30,
       "norm_label": "readfixture()",
       "community_name": "readiness-cli.test.ts",
       "id": "test_readiness_observations_test_readfixture"
@@ -12538,7 +12538,7 @@
       "source_file": "test/readiness-observations.test.ts",
       "source_location": "L235",
       "_origin": "ast",
-      "community": 31,
+      "community": 30,
       "norm_label": "assertrejected()",
       "community_name": "readiness-cli.test.ts",
       "id": "test_readiness_observations_test_assertrejected"
@@ -12549,7 +12549,7 @@
       "source_file": "test/readiness-observations.test.ts",
       "source_location": "L242",
       "_origin": "ast",
-      "community": 31,
+      "community": 30,
       "norm_label": "withschemacorrection()",
       "community_name": "readiness-cli.test.ts",
       "id": "test_readiness_observations_test_withschemacorrection"
@@ -12560,7 +12560,7 @@
       "source_file": "test/readiness-observations.test.ts",
       "source_location": "L269",
       "_origin": "ast",
-      "community": 31,
+      "community": 30,
       "norm_label": "withobservedid()",
       "community_name": "readiness-cli.test.ts",
       "id": "test_readiness_observations_test_withobservedid"
@@ -12571,7 +12571,7 @@
       "source_file": "test/readiness-observations.test.ts",
       "source_location": "L285",
       "_origin": "ast",
-      "community": 31,
+      "community": 30,
       "norm_label": "withoutobservedid()",
       "community_name": "readiness-cli.test.ts",
       "id": "test_readiness_observations_test_withoutobservedid"
@@ -12582,7 +12582,7 @@
       "source_file": "test/readiness-render.test.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 18,
+      "community": 13,
       "norm_label": "readiness-render.test.ts",
       "community_name": "render.ts",
       "id": "test_readiness_render_test"
@@ -12593,7 +12593,7 @@
       "source_file": "test/readiness-render.test.ts",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 18,
+      "community": 13,
       "norm_label": "manifest",
       "community_name": "render.ts",
       "id": "test_readiness_render_test_manifest"
@@ -12604,7 +12604,7 @@
       "source_file": "test/readiness-render.test.ts",
       "source_location": "L109",
       "_origin": "ast",
-      "community": 18,
+      "community": 13,
       "norm_label": "readbundle()",
       "community_name": "render.ts",
       "id": "test_readiness_render_test_readbundle"
@@ -12615,7 +12615,7 @@
       "source_file": "test/readiness-render.test.ts",
       "source_location": "L114",
       "_origin": "ast",
-      "community": 18,
+      "community": 13,
       "norm_label": "escaperegularexpression()",
       "community_name": "render.ts",
       "id": "test_readiness_render_test_escaperegularexpression"
@@ -12626,7 +12626,7 @@
       "source_file": "test/readiness-render.test.ts",
       "source_location": "L118",
       "_origin": "ast",
-      "community": 18,
+      "community": 13,
       "norm_label": "createmaliciousstringobject()",
       "community_name": "render.ts",
       "id": "test_readiness_render_test_createmaliciousstringobject"
@@ -12725,7 +12725,7 @@
       "source_file": "tsconfig.json",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 36,
+      "community": 37,
       "norm_label": "tsconfig.json",
       "community_name": "compilerOptions",
       "id": "tsconfig"
@@ -12736,7 +12736,7 @@
       "source_file": "tsconfig.json",
       "source_location": "L2",
       "_origin": "ast",
-      "community": 36,
+      "community": 37,
       "norm_label": "compileroptions",
       "community_name": "compilerOptions",
       "id": "tsconfig_compileroptions"
@@ -12747,7 +12747,7 @@
       "source_file": "tsconfig.json",
       "source_location": "L3",
       "_origin": "ast",
-      "community": 36,
+      "community": 37,
       "norm_label": "target",
       "community_name": "compilerOptions",
       "id": "tsconfig_compileroptions_target"
@@ -12758,7 +12758,7 @@
       "source_file": "tsconfig.json",
       "source_location": "L4",
       "_origin": "ast",
-      "community": 36,
+      "community": 37,
       "norm_label": "module",
       "community_name": "compilerOptions",
       "id": "tsconfig_compileroptions_module"
@@ -12769,7 +12769,7 @@
       "source_file": "tsconfig.json",
       "source_location": "L5",
       "_origin": "ast",
-      "community": 36,
+      "community": 37,
       "norm_label": "moduleresolution",
       "community_name": "compilerOptions",
       "id": "tsconfig_compileroptions_moduleresolution"
@@ -12780,7 +12780,7 @@
       "source_file": "tsconfig.json",
       "source_location": "L6",
       "_origin": "ast",
-      "community": 36,
+      "community": 37,
       "norm_label": "strict",
       "community_name": "compilerOptions",
       "id": "tsconfig_compileroptions_strict"
@@ -12791,7 +12791,7 @@
       "source_file": "tsconfig.json",
       "source_location": "L7",
       "_origin": "ast",
-      "community": 36,
+      "community": 37,
       "norm_label": "nouncheckedindexedaccess",
       "community_name": "compilerOptions",
       "id": "tsconfig_compileroptions_nouncheckedindexedaccess"
@@ -12802,7 +12802,7 @@
       "source_file": "tsconfig.json",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 36,
+      "community": 37,
       "norm_label": "exactoptionalpropertytypes",
       "community_name": "compilerOptions",
       "id": "tsconfig_compileroptions_exactoptionalpropertytypes"
@@ -12813,7 +12813,7 @@
       "source_file": "tsconfig.json",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 36,
+      "community": 37,
       "norm_label": "rootdir",
       "community_name": "compilerOptions",
       "id": "tsconfig_compileroptions_rootdir"
@@ -12824,7 +12824,7 @@
       "source_file": "tsconfig.json",
       "source_location": "L10",
       "_origin": "ast",
-      "community": 36,
+      "community": 37,
       "norm_label": "outdir",
       "community_name": "compilerOptions",
       "id": "tsconfig_compileroptions_outdir"
@@ -12835,7 +12835,7 @@
       "source_file": "tsconfig.json",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 36,
+      "community": 37,
       "norm_label": "skiplibcheck",
       "community_name": "compilerOptions",
       "id": "tsconfig_compileroptions_skiplibcheck"
@@ -12846,7 +12846,7 @@
       "source_file": "tsconfig.json",
       "source_location": "L13",
       "_origin": "ast",
-      "community": 36,
+      "community": 37,
       "norm_label": "exclude",
       "community_name": "compilerOptions",
       "id": "tsconfig_exclude"
@@ -12857,7 +12857,7 @@
       "source_file": "tsconfig.json",
       "source_location": "L13",
       "_origin": "ast",
-      "community": 36,
+      "community": 37,
       "norm_label": "dist",
       "community_name": "compilerOptions",
       "id": "ref_dist"
@@ -12868,7 +12868,7 @@
       "source_file": "tsconfig.json",
       "source_location": "L13",
       "_origin": "ast",
-      "community": 36,
+      "community": 37,
       "norm_label": ".tmp-*",
       "community_name": "compilerOptions",
       "id": "ref_tmp"
@@ -12879,7 +12879,7 @@
       "source_file": "tsconfig.json",
       "source_location": "L13",
       "_origin": "ast",
-      "community": 36,
+      "community": 37,
       "norm_label": "node_modules",
       "community_name": "compilerOptions",
       "id": "tsconfig_json_ref_node_modules"
@@ -12890,7 +12890,7 @@
       "source_file": "tsconfig.json",
       "source_location": "L13",
       "_origin": "ast",
-      "community": 36,
+      "community": 37,
       "norm_label": "website",
       "community_name": "compilerOptions",
       "id": "ref_website"
@@ -13484,7 +13484,7 @@
       "source_file": "website/package.json",
       "source_location": "L22",
       "_origin": "ast",
-      "community": 38,
+      "community": 39,
       "norm_label": "devdependencies",
       "community_name": "devDependencies",
       "id": "website_package_devdependencies"
@@ -13495,7 +13495,7 @@
       "source_file": "website/package.json",
       "source_location": "L23",
       "_origin": "ast",
-      "community": 38,
+      "community": 39,
       "norm_label": "@cloudflare/vite-plugin",
       "community_name": "devDependencies",
       "id": "website_package_devdependencies_cloudflare_vite_plugin"
@@ -13506,7 +13506,7 @@
       "source_file": "website/package.json",
       "source_location": "L23",
       "_origin": "ast",
-      "community": 38,
+      "community": 39,
       "norm_label": "@cloudflare/vite-plugin",
       "community_name": "devDependencies",
       "id": "cloudflare_vite_plugin"
@@ -13561,7 +13561,7 @@
       "source_file": "website/package.json",
       "source_location": "L26",
       "_origin": "ast",
-      "community": 38,
+      "community": 39,
       "norm_label": "@types/react",
       "community_name": "devDependencies",
       "id": "website_package_devdependencies_types_react"
@@ -13572,7 +13572,7 @@
       "source_file": "website/package.json",
       "source_location": "L26",
       "_origin": "ast",
-      "community": 38,
+      "community": 39,
       "norm_label": "@types/react",
       "community_name": "devDependencies",
       "id": "types_react"
@@ -13583,7 +13583,7 @@
       "source_file": "website/package.json",
       "source_location": "L27",
       "_origin": "ast",
-      "community": 38,
+      "community": 39,
       "norm_label": "@types/react-dom",
       "community_name": "devDependencies",
       "id": "website_package_devdependencies_types_react_dom"
@@ -13594,7 +13594,7 @@
       "source_file": "website/package.json",
       "source_location": "L27",
       "_origin": "ast",
-      "community": 38,
+      "community": 39,
       "norm_label": "@types/react-dom",
       "community_name": "devDependencies",
       "id": "types_react_dom"
@@ -13649,7 +13649,7 @@
       "source_file": "website/package.json",
       "source_location": "L30",
       "_origin": "ast",
-      "community": 38,
+      "community": 39,
       "norm_label": "drizzle-kit",
       "community_name": "devDependencies",
       "id": "website_package_devdependencies_drizzle_kit"
@@ -13660,7 +13660,7 @@
       "source_file": "website/package.json",
       "source_location": "L30",
       "_origin": "ast",
-      "community": 38,
+      "community": 39,
       "norm_label": "drizzle-kit",
       "community_name": "devDependencies",
       "id": "drizzle_kit"
@@ -13671,7 +13671,7 @@
       "source_file": "website/package.json",
       "source_location": "L31",
       "_origin": "ast",
-      "community": 65,
+      "community": 64,
       "norm_label": "eslint",
       "community_name": "eslint",
       "id": "website_package_devdependencies_eslint"
@@ -13682,7 +13682,7 @@
       "source_file": "website/package.json",
       "source_location": "L31",
       "_origin": "ast",
-      "community": 65,
+      "community": 64,
       "norm_label": "eslint",
       "community_name": "eslint",
       "id": "eslint"
@@ -13693,7 +13693,7 @@
       "source_file": "website/package.json",
       "source_location": "L32",
       "_origin": "ast",
-      "community": 64,
+      "community": 65,
       "norm_label": "eslint-config-next",
       "community_name": "eslint-config-next",
       "id": "website_package_devdependencies_eslint_config_next"
@@ -13704,7 +13704,7 @@
       "source_file": "website/package.json",
       "source_location": "L32",
       "_origin": "ast",
-      "community": 64,
+      "community": 65,
       "norm_label": "eslint-config-next",
       "community_name": "eslint-config-next",
       "id": "eslint_config_next"
@@ -13737,7 +13737,7 @@
       "source_file": "website/package.json",
       "source_location": "L34",
       "_origin": "ast",
-      "community": 38,
+      "community": 39,
       "norm_label": "tailwindcss",
       "community_name": "devDependencies",
       "id": "website_package_devdependencies_tailwindcss"
@@ -13748,7 +13748,7 @@
       "source_file": "website/package.json",
       "source_location": "L34",
       "_origin": "ast",
-      "community": 38,
+      "community": 39,
       "norm_label": "tailwindcss",
       "community_name": "devDependencies",
       "id": "tailwindcss"
@@ -13781,7 +13781,7 @@
       "source_file": "website/package.json",
       "source_location": "L36",
       "_origin": "ast",
-      "community": 38,
+      "community": 39,
       "norm_label": "vinext",
       "community_name": "devDependencies",
       "id": "website_package_devdependencies_vinext"
@@ -13792,7 +13792,7 @@
       "source_file": "website/package.json",
       "source_location": "L36",
       "_origin": "ast",
-      "community": 38,
+      "community": 39,
       "norm_label": "vinext",
       "community_name": "devDependencies",
       "id": "vinext"
@@ -13803,7 +13803,7 @@
       "source_file": "website/package.json",
       "source_location": "L37",
       "_origin": "ast",
-      "community": 38,
+      "community": 39,
       "norm_label": "vite",
       "community_name": "devDependencies",
       "id": "website_package_devdependencies_vite"
@@ -13814,7 +13814,7 @@
       "source_file": "website/package.json",
       "source_location": "L37",
       "_origin": "ast",
-      "community": 38,
+      "community": 39,
       "norm_label": "vite",
       "community_name": "devDependencies",
       "id": "vite"
@@ -13902,7 +13902,7 @@
       "source_file": "website/tsconfig.json",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 14,
+      "community": 15,
       "norm_label": "tsconfig.json",
       "community_name": "compilerOptions",
       "id": "website_tsconfig"
@@ -13913,7 +13913,7 @@
       "source_file": "website/tsconfig.json",
       "source_location": "L2",
       "_origin": "ast",
-      "community": 14,
+      "community": 15,
       "norm_label": "compileroptions",
       "community_name": "compilerOptions",
       "id": "website_tsconfig_compileroptions"
@@ -13924,7 +13924,7 @@
       "source_file": "website/tsconfig.json",
       "source_location": "L3",
       "_origin": "ast",
-      "community": 14,
+      "community": 15,
       "norm_label": "target",
       "community_name": "compilerOptions",
       "id": "website_tsconfig_compileroptions_target"
@@ -13935,7 +13935,7 @@
       "source_file": "website/tsconfig.json",
       "source_location": "L4",
       "_origin": "ast",
-      "community": 14,
+      "community": 15,
       "norm_label": "lib",
       "community_name": "compilerOptions",
       "id": "website_tsconfig_compileroptions_lib"
@@ -13946,7 +13946,7 @@
       "source_file": "website/tsconfig.json",
       "source_location": "L4",
       "_origin": "ast",
-      "community": 14,
+      "community": 15,
       "norm_label": "dom",
       "community_name": "compilerOptions",
       "id": "ref_dom"
@@ -13957,7 +13957,7 @@
       "source_file": "website/tsconfig.json",
       "source_location": "L4",
       "_origin": "ast",
-      "community": 14,
+      "community": 15,
       "norm_label": "dom.iterable",
       "community_name": "compilerOptions",
       "id": "ref_dom_iterable"
@@ -13968,7 +13968,7 @@
       "source_file": "website/tsconfig.json",
       "source_location": "L4",
       "_origin": "ast",
-      "community": 14,
+      "community": 15,
       "norm_label": "esnext",
       "community_name": "compilerOptions",
       "id": "ref_esnext"
@@ -13979,7 +13979,7 @@
       "source_file": "website/tsconfig.json",
       "source_location": "L5",
       "_origin": "ast",
-      "community": 14,
+      "community": 15,
       "norm_label": "allowjs",
       "community_name": "compilerOptions",
       "id": "website_tsconfig_compileroptions_allowjs"
@@ -13990,7 +13990,7 @@
       "source_file": "website/tsconfig.json",
       "source_location": "L6",
       "_origin": "ast",
-      "community": 14,
+      "community": 15,
       "norm_label": "skiplibcheck",
       "community_name": "compilerOptions",
       "id": "website_tsconfig_compileroptions_skiplibcheck"
@@ -14001,7 +14001,7 @@
       "source_file": "website/tsconfig.json",
       "source_location": "L7",
       "_origin": "ast",
-      "community": 14,
+      "community": 15,
       "norm_label": "strict",
       "community_name": "compilerOptions",
       "id": "website_tsconfig_compileroptions_strict"
@@ -14012,7 +14012,7 @@
       "source_file": "website/tsconfig.json",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 14,
+      "community": 15,
       "norm_label": "noemit",
       "community_name": "compilerOptions",
       "id": "website_tsconfig_compileroptions_noemit"
@@ -14023,7 +14023,7 @@
       "source_file": "website/tsconfig.json",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 14,
+      "community": 15,
       "norm_label": "esmoduleinterop",
       "community_name": "compilerOptions",
       "id": "website_tsconfig_compileroptions_esmoduleinterop"
@@ -14034,7 +14034,7 @@
       "source_file": "website/tsconfig.json",
       "source_location": "L10",
       "_origin": "ast",
-      "community": 14,
+      "community": 15,
       "norm_label": "module",
       "community_name": "compilerOptions",
       "id": "website_tsconfig_compileroptions_module"
@@ -14045,7 +14045,7 @@
       "source_file": "website/tsconfig.json",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 14,
+      "community": 15,
       "norm_label": "moduleresolution",
       "community_name": "compilerOptions",
       "id": "website_tsconfig_compileroptions_moduleresolution"
@@ -14056,7 +14056,7 @@
       "source_file": "website/tsconfig.json",
       "source_location": "L12",
       "_origin": "ast",
-      "community": 14,
+      "community": 15,
       "norm_label": "resolvejsonmodule",
       "community_name": "compilerOptions",
       "id": "website_tsconfig_compileroptions_resolvejsonmodule"
@@ -14067,7 +14067,7 @@
       "source_file": "website/tsconfig.json",
       "source_location": "L13",
       "_origin": "ast",
-      "community": 14,
+      "community": 15,
       "norm_label": "isolatedmodules",
       "community_name": "compilerOptions",
       "id": "website_tsconfig_compileroptions_isolatedmodules"
@@ -14078,7 +14078,7 @@
       "source_file": "website/tsconfig.json",
       "source_location": "L14",
       "_origin": "ast",
-      "community": 14,
+      "community": 15,
       "norm_label": "jsx",
       "community_name": "compilerOptions",
       "id": "website_tsconfig_compileroptions_jsx"
@@ -14089,7 +14089,7 @@
       "source_file": "website/tsconfig.json",
       "source_location": "L15",
       "_origin": "ast",
-      "community": 14,
+      "community": 15,
       "norm_label": "incremental",
       "community_name": "compilerOptions",
       "id": "website_tsconfig_compileroptions_incremental"
@@ -14100,7 +14100,7 @@
       "source_file": "website/tsconfig.json",
       "source_location": "L16",
       "_origin": "ast",
-      "community": 14,
+      "community": 15,
       "norm_label": "plugins",
       "community_name": "compilerOptions",
       "id": "website_tsconfig_compileroptions_plugins"
@@ -14111,7 +14111,7 @@
       "source_file": "website/tsconfig.json",
       "source_location": "L21",
       "_origin": "ast",
-      "community": 14,
+      "community": 15,
       "norm_label": "paths",
       "community_name": "compilerOptions",
       "id": "website_tsconfig_compileroptions_paths"
@@ -14122,7 +14122,7 @@
       "source_file": "website/tsconfig.json",
       "source_location": "L25",
       "_origin": "ast",
-      "community": 14,
+      "community": 15,
       "norm_label": "include",
       "community_name": "compilerOptions",
       "id": "website_tsconfig_include"
@@ -14133,7 +14133,7 @@
       "source_file": "website/tsconfig.json",
       "source_location": "L25",
       "_origin": "ast",
-      "community": 14,
+      "community": 15,
       "norm_label": "next-env.d.ts",
       "community_name": "compilerOptions",
       "id": "ref_next_env_d_ts"
@@ -14144,7 +14144,7 @@
       "source_file": "website/tsconfig.json",
       "source_location": "L25",
       "_origin": "ast",
-      "community": 14,
+      "community": 15,
       "norm_label": "**/*.ts",
       "community_name": "compilerOptions",
       "id": "ref_ts"
@@ -14155,7 +14155,7 @@
       "source_file": "website/tsconfig.json",
       "source_location": "L25",
       "_origin": "ast",
-      "community": 14,
+      "community": 15,
       "norm_label": "**/*.tsx",
       "community_name": "compilerOptions",
       "id": "ref_tsx"
@@ -14166,7 +14166,7 @@
       "source_file": "website/tsconfig.json",
       "source_location": "L25",
       "_origin": "ast",
-      "community": 14,
+      "community": 15,
       "norm_label": ".next/types/**/*.ts",
       "community_name": "compilerOptions",
       "id": "ref_next_types_ts"
@@ -14177,7 +14177,7 @@
       "source_file": "website/tsconfig.json",
       "source_location": "L25",
       "_origin": "ast",
-      "community": 14,
+      "community": 15,
       "norm_label": ".next/dev/types/**/*.ts",
       "community_name": "compilerOptions",
       "id": "ref_next_dev_types_ts"
@@ -14188,7 +14188,7 @@
       "source_file": "website/tsconfig.json",
       "source_location": "L25",
       "_origin": "ast",
-      "community": 14,
+      "community": 15,
       "norm_label": "**/*.mts",
       "community_name": "compilerOptions",
       "id": "ref_mts"
@@ -14199,7 +14199,7 @@
       "source_file": "website/tsconfig.json",
       "source_location": "L33",
       "_origin": "ast",
-      "community": 14,
+      "community": 15,
       "norm_label": "exclude",
       "community_name": "compilerOptions",
       "id": "website_tsconfig_exclude"
@@ -14210,7 +14210,7 @@
       "source_file": "website/tsconfig.json",
       "source_location": "L33",
       "_origin": "ast",
-      "community": 14,
+      "community": 15,
       "norm_label": "node_modules",
       "community_name": "compilerOptions",
       "id": "website_tsconfig_json_ref_node_modules"
@@ -15563,7 +15563,7 @@
       "source_file": "src/controller/identity.ts",
       "source_location": "L21",
       "_origin": "ast",
-      "community": 30,
+      "community": 29,
       "norm_label": "formationrecommendationid()",
       "community_name": "formation-recommendation.ts",
       "id": "src_controller_identity_formationrecommendationid"
@@ -15640,7 +15640,7 @@
       "source_file": "src/controller/types.ts",
       "source_location": "L17",
       "_origin": "ast",
-      "community": 30,
+      "community": 29,
       "norm_label": "formationscenario",
       "community_name": "formation-recommendation.ts",
       "id": "src_controller_types_formationscenario"
@@ -15706,7 +15706,7 @@
       "source_file": "src/controller/types.ts",
       "source_location": "L24",
       "_origin": "ast",
-      "community": 30,
+      "community": 29,
       "norm_label": "formationcatalog",
       "community_name": "formation-recommendation.ts",
       "id": "src_controller_types_formationcatalog"
@@ -15717,7 +15717,7 @@
       "source_file": "src/controller/types.ts",
       "source_location": "L31",
       "_origin": "ast",
-      "community": 30,
+      "community": 29,
       "norm_label": "formationentry",
       "community_name": "formation-recommendation.ts",
       "id": "src_controller_types_formationentry"
@@ -15728,7 +15728,7 @@
       "source_file": "src/controller/types.ts",
       "source_location": "L64",
       "_origin": "ast",
-      "community": 30,
+      "community": 29,
       "norm_label": "formationrecommendationdecision",
       "community_name": "formation-recommendation.ts",
       "id": "src_controller_types_formationrecommendationdecision"
@@ -15739,7 +15739,7 @@
       "source_file": "src/controller/types.ts",
       "source_location": "L66",
       "_origin": "ast",
-      "community": 30,
+      "community": 29,
       "norm_label": "formationrecommendation",
       "community_name": "formation-recommendation.ts",
       "id": "src_controller_types_formationrecommendation"
@@ -15926,7 +15926,7 @@
       "source_file": "src/controller/types.ts",
       "source_location": "L302",
       "_origin": "ast",
-      "community": 23,
+      "community": 22,
       "norm_label": "checkpointchoiceinput",
       "community_name": "controller-activation-package.test.ts",
       "id": "src_controller_types_checkpointchoiceinput"
@@ -15937,7 +15937,7 @@
       "source_file": "src/controller/types.ts",
       "source_location": "L321",
       "_origin": "ast",
-      "community": 23,
+      "community": 22,
       "norm_label": "controllerintent",
       "community_name": "controller-activation-package.test.ts",
       "id": "src_controller_types_controllerintent"
@@ -15948,7 +15948,7 @@
       "source_file": "src/controller/types.ts",
       "source_location": "L357",
       "_origin": "ast",
-      "community": 23,
+      "community": 22,
       "norm_label": "activationprofile",
       "community_name": "controller-activation-package.test.ts",
       "id": "src_controller_types_activationprofile"
@@ -15959,7 +15959,7 @@
       "source_file": "src/controller/types.ts",
       "source_location": "L358",
       "_origin": "ast",
-      "community": 23,
+      "community": 22,
       "norm_label": "activationintent",
       "community_name": "controller-activation-package.test.ts",
       "id": "src_controller_types_activationintent"
@@ -15970,7 +15970,7 @@
       "source_file": "src/controller/types.ts",
       "source_location": "L360",
       "_origin": "ast",
-      "community": 23,
+      "community": 22,
       "norm_label": "quicktaskactivationinput",
       "community_name": "controller-activation-package.test.ts",
       "id": "src_controller_types_quicktaskactivationinput"
@@ -16069,7 +16069,7 @@
       "source_file": "src/controller/types.ts",
       "source_location": "L424",
       "_origin": "ast",
-      "community": 23,
+      "community": 22,
       "norm_label": "activationprofilecontract",
       "community_name": "controller-activation-package.test.ts",
       "id": "src_controller_types_activationprofilecontract"
@@ -16091,7 +16091,7 @@
       "source_file": "src/controller/types.ts",
       "source_location": "L458",
       "_origin": "ast",
-      "community": 23,
+      "community": 22,
       "norm_label": "controlleractivationpackageerror",
       "community_name": "controller-activation-package.test.ts",
       "id": "src_controller_types_controlleractivationpackageerror"
@@ -16102,7 +16102,7 @@
       "source_file": "src/controller/types.ts",
       "source_location": "L459",
       "_origin": "ast",
-      "community": 23,
+      "community": 22,
       "norm_label": ".constructor()",
       "community_name": "controller-activation-package.test.ts",
       "id": "src_controller_types_controlleractivationpackageerror_constructor"
@@ -16322,7 +16322,7 @@
       "source_file": "src/context/markdown.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 19,
+      "community": 18,
       "norm_label": "markdown.ts",
       "community_name": "markdown.ts",
       "id": "src_context_markdown"
@@ -16333,7 +16333,7 @@
       "source_file": "src/context/markdown.ts",
       "source_location": "L6",
       "_origin": "ast",
-      "community": 19,
+      "community": 18,
       "norm_label": "commonkeys",
       "community_name": "markdown.ts",
       "id": "src_context_markdown_commonkeys"
@@ -16344,7 +16344,7 @@
       "source_file": "src/context/markdown.ts",
       "source_location": "L7",
       "_origin": "ast",
-      "community": 19,
+      "community": 18,
       "norm_label": "milestonekeys",
       "community_name": "markdown.ts",
       "id": "src_context_markdown_milestonekeys"
@@ -16355,7 +16355,7 @@
       "source_file": "src/context/markdown.ts",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 19,
+      "community": 18,
       "norm_label": "epickeys",
       "community_name": "markdown.ts",
       "id": "src_context_markdown_epickeys"
@@ -16366,7 +16366,7 @@
       "source_file": "src/context/markdown.ts",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 19,
+      "community": 18,
       "norm_label": "parseworkcontext()",
       "community_name": "markdown.ts",
       "id": "src_context_markdown_parseworkcontext"
@@ -16377,7 +16377,7 @@
       "source_file": "src/context/markdown.ts",
       "source_location": "L23",
       "_origin": "ast",
-      "community": 19,
+      "community": 18,
       "norm_label": "serializeworkcontext()",
       "community_name": "markdown.ts",
       "id": "src_context_markdown_serializeworkcontext"
@@ -16388,7 +16388,7 @@
       "source_file": "src/context/markdown.ts",
       "source_location": "L28",
       "_origin": "ast",
-      "community": 19,
+      "community": 18,
       "norm_label": "parsemilestone()",
       "community_name": "markdown.ts",
       "id": "src_context_markdown_parsemilestone"
@@ -16399,7 +16399,7 @@
       "source_file": "src/context/markdown.ts",
       "source_location": "L47",
       "_origin": "ast",
-      "community": 19,
+      "community": 18,
       "norm_label": "parseepic()",
       "community_name": "markdown.ts",
       "id": "src_context_markdown_parseepic"
@@ -16410,7 +16410,7 @@
       "source_file": "src/context/markdown.ts",
       "source_location": "L67",
       "_origin": "ast",
-      "community": 19,
+      "community": 18,
       "norm_label": "parseenvelope()",
       "community_name": "markdown.ts",
       "id": "src_context_markdown_parseenvelope"
@@ -16421,7 +16421,7 @@
       "source_file": "src/context/markdown.ts",
       "source_location": "L83",
       "_origin": "ast",
-      "community": 19,
+      "community": 18,
       "norm_label": "milestonemetadata()",
       "community_name": "markdown.ts",
       "id": "src_context_markdown_milestonemetadata"
@@ -16432,7 +16432,7 @@
       "source_file": "src/context/markdown.ts",
       "source_location": "L87",
       "_origin": "ast",
-      "community": 19,
+      "community": 18,
       "norm_label": "epicmetadata()",
       "community_name": "markdown.ts",
       "id": "src_context_markdown_epicmetadata"
@@ -16443,7 +16443,7 @@
       "source_file": "src/context/markdown.ts",
       "source_location": "L91",
       "_origin": "ast",
-      "community": 19,
+      "community": 18,
       "norm_label": "orderedrecord()",
       "community_name": "markdown.ts",
       "id": "src_context_markdown_orderedrecord"
@@ -16454,7 +16454,7 @@
       "source_file": "src/context/markdown.ts",
       "source_location": "L95",
       "_origin": "ast",
-      "community": 19,
+      "community": 18,
       "norm_label": "milestonebody()",
       "community_name": "markdown.ts",
       "id": "src_context_markdown_milestonebody"
@@ -16465,7 +16465,7 @@
       "source_file": "src/context/markdown.ts",
       "source_location": "L99",
       "_origin": "ast",
-      "community": 19,
+      "community": 18,
       "norm_label": "epicbody()",
       "community_name": "markdown.ts",
       "id": "src_context_markdown_epicbody"
@@ -16476,7 +16476,7 @@
       "source_file": "src/context/markdown.ts",
       "source_location": "L103",
       "_origin": "ast",
-      "community": 19,
+      "community": 18,
       "norm_label": "list()",
       "community_name": "markdown.ts",
       "id": "src_context_markdown_list"
@@ -16487,7 +16487,7 @@
       "source_file": "src/context/markdown.ts",
       "source_location": "L108",
       "_origin": "ast",
-      "community": 19,
+      "community": 18,
       "norm_label": "extractfrontmatter()",
       "community_name": "markdown.ts",
       "id": "src_context_markdown_extractfrontmatter"
@@ -16498,7 +16498,7 @@
       "source_file": "src/context/markdown.ts",
       "source_location": "L117",
       "_origin": "ast",
-      "community": 19,
+      "community": 18,
       "norm_label": "validatebody()",
       "community_name": "markdown.ts",
       "id": "src_context_markdown_validatebody"
@@ -16509,7 +16509,7 @@
       "source_file": "src/context/markdown.ts",
       "source_location": "L131",
       "_origin": "ast",
-      "community": 19,
+      "community": 18,
       "norm_label": "exactkeys()",
       "community_name": "markdown.ts",
       "id": "src_context_markdown_exactkeys"
@@ -16520,7 +16520,7 @@
       "source_file": "src/context/markdown.ts",
       "source_location": "L138",
       "_origin": "ast",
-      "community": 19,
+      "community": 18,
       "norm_label": "requirerecord()",
       "community_name": "markdown.ts",
       "id": "src_context_markdown_requirerecord"
@@ -16531,7 +16531,7 @@
       "source_file": "src/context/markdown.ts",
       "source_location": "L145",
       "_origin": "ast",
-      "community": 19,
+      "community": 18,
       "norm_label": "stringvalue()",
       "community_name": "markdown.ts",
       "id": "src_context_markdown_stringvalue"
@@ -16542,7 +16542,7 @@
       "source_file": "src/context/markdown.ts",
       "source_location": "L151",
       "_origin": "ast",
-      "community": 19,
+      "community": 18,
       "norm_label": "stringarray()",
       "community_name": "markdown.ts",
       "id": "src_context_markdown_stringarray"
@@ -16553,7 +16553,7 @@
       "source_file": "src/context/markdown.ts",
       "source_location": "L159",
       "_origin": "ast",
-      "community": 19,
+      "community": 18,
       "norm_label": "literal()",
       "community_name": "markdown.ts",
       "id": "src_context_markdown_literal"
@@ -16564,7 +16564,7 @@
       "source_file": "src/context/markdown.ts",
       "source_location": "L165",
       "_origin": "ast",
-      "community": 19,
+      "community": 18,
       "norm_label": "rejectexecutablemetadata()",
       "community_name": "markdown.ts",
       "id": "src_context_markdown_rejectexecutablemetadata"
@@ -16575,7 +16575,7 @@
       "source_file": "src/context/markdown.ts",
       "source_location": "L173",
       "_origin": "ast",
-      "community": 19,
+      "community": 18,
       "norm_label": "escaperegexp()",
       "community_name": "markdown.ts",
       "id": "src_context_markdown_escaperegexp"
@@ -16850,7 +16850,7 @@
       "source_file": "src/context/validation.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 29,
+      "community": 27,
       "norm_label": "validation.ts",
       "community_name": "validation.ts",
       "id": "src_context_validation"
@@ -16861,7 +16861,7 @@
       "source_file": "src/context/validation.ts",
       "source_location": "L4",
       "_origin": "ast",
-      "community": 29,
+      "community": 27,
       "norm_label": "sessionkeys",
       "community_name": "validation.ts",
       "id": "src_context_validation_sessionkeys"
@@ -16872,7 +16872,7 @@
       "source_file": "src/context/validation.ts",
       "source_location": "L7",
       "_origin": "ast",
-      "community": 29,
+      "community": 27,
       "norm_label": "validatemilestonecontext()",
       "community_name": "validation.ts",
       "id": "src_context_validation_validatemilestonecontext"
@@ -16883,7 +16883,7 @@
       "source_file": "src/context/validation.ts",
       "source_location": "L22",
       "_origin": "ast",
-      "community": 29,
+      "community": 27,
       "norm_label": "validateepiccontext()",
       "community_name": "validation.ts",
       "id": "src_context_validation_validateepiccontext"
@@ -16894,7 +16894,7 @@
       "source_file": "src/context/validation.ts",
       "source_location": "L33",
       "_origin": "ast",
-      "community": 29,
+      "community": 27,
       "norm_label": "validatemilestoneshape()",
       "community_name": "validation.ts",
       "id": "src_context_validation_validatemilestoneshape"
@@ -16905,7 +16905,7 @@
       "source_file": "src/context/validation.ts",
       "source_location": "L39",
       "_origin": "ast",
-      "community": 29,
+      "community": 27,
       "norm_label": "validatesessionstate()",
       "community_name": "validation.ts",
       "id": "src_context_validation_validatesessionstate"
@@ -16916,7 +16916,7 @@
       "source_file": "src/context/validation.ts",
       "source_location": "L93",
       "_origin": "ast",
-      "community": 29,
+      "community": 27,
       "norm_label": "validateepicshape()",
       "community_name": "validation.ts",
       "id": "src_context_validation_validateepicshape"
@@ -16927,7 +16927,7 @@
       "source_file": "src/context/validation.ts",
       "source_location": "L100",
       "_origin": "ast",
-      "community": 29,
+      "community": 27,
       "norm_label": "validatecontextenvelope()",
       "community_name": "validation.ts",
       "id": "src_context_validation_validatecontextenvelope"
@@ -16938,7 +16938,7 @@
       "source_file": "src/context/validation.ts",
       "source_location": "L112",
       "_origin": "ast",
-      "community": 29,
+      "community": 27,
       "norm_label": "assertnonempty()",
       "community_name": "validation.ts",
       "id": "src_context_validation_assertnonempty"
@@ -16949,7 +16949,7 @@
       "source_file": "src/context/validation.ts",
       "source_location": "L116",
       "_origin": "ast",
-      "community": 29,
+      "community": 27,
       "norm_label": "assertunique()",
       "community_name": "validation.ts",
       "id": "src_context_validation_assertunique"
@@ -16960,7 +16960,7 @@
       "source_file": "src/context/validation.ts",
       "source_location": "L120",
       "_origin": "ast",
-      "community": 29,
+      "community": 27,
       "norm_label": "recordvalue()",
       "community_name": "validation.ts",
       "id": "src_context_validation_recordvalue"
@@ -16971,7 +16971,7 @@
       "source_file": "src/context/validation.ts",
       "source_location": "L125",
       "_origin": "ast",
-      "community": 29,
+      "community": 27,
       "norm_label": "exactkeys()",
       "community_name": "validation.ts",
       "id": "src_context_validation_exactkeys"
@@ -16982,7 +16982,7 @@
       "source_file": "src/context/validation.ts",
       "source_location": "L131",
       "_origin": "ast",
-      "community": 29,
+      "community": 27,
       "norm_label": "requiredstring()",
       "community_name": "validation.ts",
       "id": "src_context_validation_requiredstring"
@@ -16993,7 +16993,7 @@
       "source_file": "src/context/validation.ts",
       "source_location": "L137",
       "_origin": "ast",
-      "community": 29,
+      "community": 27,
       "norm_label": "nullablestring()",
       "community_name": "validation.ts",
       "id": "src_context_validation_nullablestring"
@@ -17004,7 +17004,7 @@
       "source_file": "src/context/validation.ts",
       "source_location": "L143",
       "_origin": "ast",
-      "community": 29,
+      "community": 27,
       "norm_label": "literal()",
       "community_name": "validation.ts",
       "id": "src_context_validation_literal"
@@ -17015,7 +17015,7 @@
       "source_file": "src/context/validation.ts",
       "source_location": "L149",
       "_origin": "ast",
-      "community": 29,
+      "community": 27,
       "norm_label": "stringlist()",
       "community_name": "validation.ts",
       "id": "src_context_validation_stringlist"
@@ -17026,7 +17026,7 @@
       "source_file": "src/context/validation.ts",
       "source_location": "L156",
       "_origin": "ast",
-      "community": 29,
+      "community": 27,
       "norm_label": "samestringlist()",
       "community_name": "validation.ts",
       "id": "src_context_validation_samestringlist"
@@ -17037,7 +17037,7 @@
       "source_file": "src/context/validation.ts",
       "source_location": "L160",
       "_origin": "ast",
-      "community": 29,
+      "community": 27,
       "norm_label": "contextreferences()",
       "community_name": "validation.ts",
       "id": "src_context_validation_contextreferences"
@@ -17048,7 +17048,7 @@
       "source_file": "src/context/validation.ts",
       "source_location": "L176",
       "_origin": "ast",
-      "community": 29,
+      "community": 27,
       "norm_label": "sessionexecutionscope()",
       "community_name": "validation.ts",
       "id": "src_context_validation_sessionexecutionscope"
@@ -17059,7 +17059,7 @@
       "source_file": "src/context/validation.ts",
       "source_location": "L186",
       "_origin": "ast",
-      "community": 29,
+      "community": 27,
       "norm_label": "recipevalue()",
       "community_name": "validation.ts",
       "id": "src_context_validation_recipevalue"
@@ -17070,7 +17070,7 @@
       "source_file": "src/context/validation.ts",
       "source_location": "L197",
       "_origin": "ast",
-      "community": 29,
+      "community": 27,
       "norm_label": "executionvalue()",
       "community_name": "validation.ts",
       "id": "src_context_validation_executionvalue"
@@ -17213,7 +17213,7 @@
       "source_file": "test/e2e.test.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 13,
+      "community": 14,
       "norm_label": "e2e.test.ts",
       "community_name": "e2e.test.ts",
       "id": "test_e2e_test"
@@ -17224,7 +17224,7 @@
       "source_file": "test/e2e.test.ts",
       "source_location": "L20",
       "_origin": "ast",
-      "community": 13,
+      "community": 14,
       "norm_label": "profile",
       "community_name": "e2e.test.ts",
       "id": "test_e2e_test_profile"
@@ -17235,7 +17235,7 @@
       "source_file": "test/e2e.test.ts",
       "source_location": "L21",
       "_origin": "ast",
-      "community": 13,
+      "community": 14,
       "norm_label": "target",
       "community_name": "e2e.test.ts",
       "id": "test_e2e_test_target"
@@ -17246,7 +17246,7 @@
       "source_file": "test/e2e.test.ts",
       "source_location": "L34",
       "_origin": "ast",
-      "community": 13,
+      "community": 14,
       "norm_label": "contract",
       "community_name": "e2e.test.ts",
       "id": "test_e2e_test_contract"
@@ -17257,7 +17257,7 @@
       "source_file": "test/e2e.test.ts",
       "source_location": "L43",
       "_origin": "ast",
-      "community": 13,
+      "community": 14,
       "norm_label": "artifact",
       "community_name": "e2e.test.ts",
       "id": "test_e2e_test_artifact"
@@ -17268,7 +17268,7 @@
       "source_file": "test/e2e.test.ts",
       "source_location": "L46",
       "_origin": "ast",
-      "community": 13,
+      "community": 14,
       "norm_label": "milestone",
       "community_name": "e2e.test.ts",
       "id": "test_e2e_test_milestone"
@@ -17279,7 +17279,7 @@
       "source_file": "test/e2e.test.ts",
       "source_location": "L47",
       "_origin": "ast",
-      "community": 13,
+      "community": 14,
       "norm_label": "epics",
       "community_name": "e2e.test.ts",
       "id": "test_e2e_test_epics"
@@ -17290,7 +17290,7 @@
       "source_file": "test/e2e.test.ts",
       "source_location": "L51",
       "_origin": "ast",
-      "community": 13,
+      "community": 14,
       "norm_label": "children",
       "community_name": "e2e.test.ts",
       "id": "test_e2e_test_children"
@@ -17301,7 +17301,7 @@
       "source_file": "test/e2e.test.ts",
       "source_location": "L56",
       "_origin": "ast",
-      "community": 13,
+      "community": 14,
       "norm_label": "executionset",
       "community_name": "e2e.test.ts",
       "id": "test_e2e_test_executionset"
@@ -17312,7 +17312,7 @@
       "source_file": "test/e2e.test.ts",
       "source_location": "L196",
       "_origin": "ast",
-      "community": 13,
+      "community": 14,
       "norm_label": "createorchestrator()",
       "community_name": "e2e.test.ts",
       "id": "test_e2e_test_createorchestrator"
@@ -17323,7 +17323,7 @@
       "source_file": "test/e2e.test.ts",
       "source_location": "L209",
       "_origin": "ast",
-      "community": 13,
+      "community": 14,
       "norm_label": "implementationstartedevent()",
       "community_name": "e2e.test.ts",
       "id": "test_e2e_test_implementationstartedevent"
@@ -17334,7 +17334,7 @@
       "source_file": "test/e2e.test.ts",
       "source_location": "L213",
       "_origin": "ast",
-      "community": 13,
+      "community": 14,
       "norm_label": "reviewevent()",
       "community_name": "e2e.test.ts",
       "id": "test_e2e_test_reviewevent"
@@ -17345,7 +17345,7 @@
       "source_file": "test/e2e.test.ts",
       "source_location": "L214",
       "_origin": "ast",
-      "community": 13,
+      "community": 14,
       "norm_label": "timeoutevent()",
       "community_name": "e2e.test.ts",
       "id": "test_e2e_test_timeoutevent"
@@ -17356,7 +17356,7 @@
       "source_file": "test/e2e.test.ts",
       "source_location": "L215",
       "_origin": "ast",
-      "community": 13,
+      "community": 14,
       "norm_label": "concurrenteventforreplay()",
       "community_name": "e2e.test.ts",
       "id": "test_e2e_test_concurrenteventforreplay"
@@ -17367,7 +17367,7 @@
       "source_file": "test/e2e.test.ts",
       "source_location": "L216",
       "_origin": "ast",
-      "community": 13,
+      "community": 14,
       "norm_label": "pendingclaimevent()",
       "community_name": "e2e.test.ts",
       "id": "test_e2e_test_pendingclaimevent"
@@ -17378,7 +17378,7 @@
       "source_file": "test/e2e.test.ts",
       "source_location": "L217",
       "_origin": "ast",
-      "community": 13,
+      "community": 14,
       "norm_label": "mismatchevent()",
       "community_name": "e2e.test.ts",
       "id": "test_e2e_test_mismatchevent"
@@ -17389,7 +17389,7 @@
       "source_file": "test/e2e.test.ts",
       "source_location": "L218",
       "_origin": "ast",
-      "community": 13,
+      "community": 14,
       "norm_label": "targetmismatchevent()",
       "community_name": "e2e.test.ts",
       "id": "test_e2e_test_targetmismatchevent"
@@ -17400,7 +17400,7 @@
       "source_file": "test/e2e.test.ts",
       "source_location": "L219",
       "_origin": "ast",
-      "community": 13,
+      "community": 14,
       "norm_label": "crosstenantevent()",
       "community_name": "e2e.test.ts",
       "id": "test_e2e_test_crosstenantevent"
@@ -17411,7 +17411,7 @@
       "source_file": "test/e2e.test.ts",
       "source_location": "L220",
       "_origin": "ast",
-      "community": 13,
+      "community": 14,
       "norm_label": "unsafeevidenceevent()",
       "community_name": "e2e.test.ts",
       "id": "test_e2e_test_unsafeevidenceevent"
@@ -17422,7 +17422,7 @@
       "source_file": "test/e2e.test.ts",
       "source_location": "L222",
       "_origin": "ast",
-      "community": 13,
+      "community": 14,
       "norm_label": "event()",
       "community_name": "e2e.test.ts",
       "id": "test_e2e_test_event"
@@ -17433,7 +17433,7 @@
       "source_file": "test/e2e.test.ts",
       "source_location": "L226",
       "_origin": "ast",
-      "community": 13,
+      "community": 14,
       "norm_label": "startcheckinput()",
       "community_name": "e2e.test.ts",
       "id": "test_e2e_test_startcheckinput"
@@ -17444,7 +17444,7 @@
       "source_file": "test/e2e.test.ts",
       "source_location": "L230",
       "_origin": "ast",
-      "community": 13,
+      "community": 14,
       "norm_label": "memoryjiragateway",
       "community_name": "e2e.test.ts",
       "id": "test_e2e_test_memoryjiragateway"
@@ -17455,7 +17455,7 @@
       "source_file": "test/e2e.test.ts",
       "source_location": "L238",
       "_origin": "ast",
-      "community": 13,
+      "community": 14,
       "norm_label": ".signalapplystarted()",
       "community_name": "e2e.test.ts",
       "id": "test_e2e_test_memoryjiragateway_signalapplystarted"
@@ -17466,7 +17466,7 @@
       "source_file": "test/e2e.test.ts",
       "source_location": "L239",
       "_origin": "ast",
-      "community": 13,
+      "community": 14,
       "norm_label": ".constructor()",
       "community_name": "e2e.test.ts",
       "id": "test_e2e_test_memoryjiragateway_constructor"
@@ -17477,7 +17477,7 @@
       "source_file": "test/e2e.test.ts",
       "source_location": "L242",
       "_origin": "ast",
-      "community": 13,
+      "community": 14,
       "norm_label": ".applyprojection()",
       "community_name": "e2e.test.ts",
       "id": "test_e2e_test_memoryjiragateway_applyprojection"
@@ -17488,7 +17488,7 @@
       "source_file": "test/e2e.test.ts",
       "source_location": "L253",
       "_origin": "ast",
-      "community": 13,
+      "community": 14,
       "norm_label": ".waitforapply()",
       "community_name": "e2e.test.ts",
       "id": "test_e2e_test_memoryjiragateway_waitforapply"
@@ -17499,7 +17499,7 @@
       "source_file": "test/e2e.test.ts",
       "source_location": "L254",
       "_origin": "ast",
-      "community": 13,
+      "community": 14,
       "norm_label": ".releaseapply()",
       "community_name": "e2e.test.ts",
       "id": "test_e2e_test_memoryjiragateway_releaseapply"
@@ -17510,7 +17510,7 @@
       "source_file": "test/e2e.test.ts",
       "source_location": "L255",
       "_origin": "ast",
-      "community": 13,
+      "community": 14,
       "norm_label": ".readback()",
       "community_name": "e2e.test.ts",
       "id": "test_e2e_test_memoryjiragateway_readback"
@@ -17521,7 +17521,7 @@
       "source_file": "test/e2e.test.ts",
       "source_location": "L274",
       "_origin": "ast",
-      "community": 13,
+      "community": 14,
       "norm_label": "withoutbox()",
       "community_name": "e2e.test.ts",
       "id": "test_e2e_test_withoutbox"
@@ -17532,7 +17532,7 @@
       "source_file": "test/e2e.test.ts",
       "source_location": "L279",
       "_origin": "ast",
-      "community": 13,
+      "community": 14,
       "norm_label": "witheventfile()",
       "community_name": "e2e.test.ts",
       "id": "test_e2e_test_witheventfile"
@@ -17543,7 +17543,7 @@
       "source_file": "test/e2e.test.ts",
       "source_location": "L290",
       "_origin": "ast",
-      "community": 13,
+      "community": 14,
       "norm_label": "runcli()",
       "community_name": "e2e.test.ts",
       "id": "test_e2e_test_runcli"
@@ -59336,5 +59336,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "5e61018b84bd551bc860f1b8c9c2eeef36fdf669"
+  "built_at_commit": "e4642fbce441ed3c1c1386a67106cc883cb31cbd"
 }
