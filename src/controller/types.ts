@@ -19,7 +19,15 @@ export type FormationWeight = "light" | "medium" | "heavy";
 export type FormationComplexity = "low" | "medium" | "high";
 export type FormationTopology = "single-agent" | "sequential" | "parallel-fan-out-fan-in";
 export type FormationRole = "clarifier" | "validator" | "human-checkpoint" | "researcher" | "evidence-manager" | "reviewer" | "planner" | "implementer" | "debugger";
+export type FormationAgentBindingMode = "lead" | "contributor" | "reviewer" | "fallback";
 export type FormationRelationKind = "implements" | "depends_on" | "blocks" | "validates" | "parallel_to" | "related_to";
+
+export interface FormationAgentBinding {
+  roleId: string;
+  agentId: string;
+  mode: FormationAgentBindingMode;
+  contextKey: string;
+}
 
 export interface FormationCatalog {
   catalogId: "agent-formation-library";
@@ -37,6 +45,7 @@ export interface FormationEntry {
   complexity: FormationComplexity;
   topology: FormationTopology;
   roles: readonly FormationRole[];
+  agentBindings: readonly FormationAgentBinding[];
   requiredInput: readonly string[];
   expectedOutput: readonly string[];
   acceptance: {
