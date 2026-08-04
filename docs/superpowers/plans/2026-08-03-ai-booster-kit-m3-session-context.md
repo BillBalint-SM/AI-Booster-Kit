@@ -23,11 +23,12 @@ stored session state that resumes only after current context and runtime checks.
   `validate-context`, `save-context`, `save-session`, and `resume-session`.
 - [x] Add PO-to-two-Epic isolation evidence: each developer resumes only the
   referenced Epic and a changed Milestone revision stops both resumes.
-- [x] Add the team scope contract: full Milestone read visibility, one-Epic
-  execution scope for developers, and artifact-owner approval through PR for
-  canonical changes.
+- [x] Add the team scope contract: full Milestone-bundle read visibility,
+  one-Epic execution scope for developers, and declared artifact-owner
+  approval through PR for canonical changes. Local storage does not enforce
+  Git/PR approval.
 - [x] Run the complete repository quality gates, review the diff and authority
-  boundaries, then leave the result uncommitted for explicit review.
+  boundaries, then leave the branch unpromoted for explicit review.
 
 ## Acceptance evidence
 

@@ -27,7 +27,7 @@ import { parseWorkContext } from "./context/markdown.js";
 import { evaluateSessionResume } from "./context/resume.js";
 import { saveSessionState, saveWorkContext } from "./context/storage.js";
 import { ContextError } from "./context/types.js";
-import { validateSessionState } from "./context/validation.js";
+import { validateMilestoneContext, validateSessionState } from "./context/validation.js";
 import type { ResumeRuntime, SessionState, WorkContext } from "./context/types.js";
 
 const helpText = `Usage: npm run cli -- <command>
@@ -389,6 +389,7 @@ async function loadManifestContexts(manifest: { milestonePath: string; epicPaths
   if (milestone.kind !== "MILESTONE") throw new ContextError("context manifest Milestone path does not contain a Milestone-context");
   const epics = await Promise.all(manifest.epicPaths.map(async (path) => parseWorkContext(await readContextSource(path), "manifest Epic context")));
   if (epics.some((context) => context.kind !== "EPIC")) throw new ContextError("context manifest Epic path does not contain an Epic-context");
+  validateMilestoneContext(milestone, epics.filter((context): context is Extract<WorkContext, { kind: "EPIC" }> => context.kind === "EPIC"));
   return [milestone, ...epics];
 }
 

@@ -99,10 +99,12 @@ bounded to one delivery context:
 - A PO or planning session uses `executionScope: MILESTONE` with no work items.
   A developer or implementation session uses `executionScope: EPIC` with one
   Epic ID and only that Epic's Story/Task/Bug IDs.
-- `writeAuthority: ARTIFACT_OWNER_THROUGH_APPROVED_PR` means the PO or named
-  artifact-owner owns canonical Milestone/Epic changes. Developers and agents
-  may propose changes on their own branch, but a canonical team artifact is
-  changed only through review and owner approval in the repository flow.
+- `writeAuthority: ARTIFACT_OWNER_THROUGH_APPROVED_PR` declares that the PO or
+  named artifact-owner owns canonical Milestone/Epic changes. Developers and
+  agents may propose changes on their own branch, but a canonical team artifact
+  is changed only through review and owner approval in the repository flow. The
+  local M3 saver records the required authority and repository-relative boundary;
+  it does not inspect Git history, branch ownership, or PR approval.
 
 The validator and resume decision enforce the declared scope against the
 current context. A missing, foreign, stale, or contradictory scope stops the

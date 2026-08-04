@@ -15,6 +15,7 @@ const milestone: MilestoneContext = {
   readScope: "FULL_MILESTONE",
   writeAuthority: "ARTIFACT_OWNER_THROUGH_APPROVED_PR",
   milestoneId: "milestone-m3",
+  canonicalArtifactId: "artifact-m3",
   projectVision: "Make AI work resumable without retaining transcripts.",
   roadmap: "M3 compact session context.",
   scope: ["Context contracts", "Local resume validation"],

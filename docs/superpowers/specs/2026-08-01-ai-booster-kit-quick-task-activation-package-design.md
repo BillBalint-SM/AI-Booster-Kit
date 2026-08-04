@@ -1,6 +1,6 @@
 # AI Booster Kit Quick Task Activation Package Design
 
-**Status:** Approved design, pending written-spec review. Implementation has not started.
+**Status:** Implemented bounded local package slice; written-spec review remains the source-of-truth check.
 
 **Goal:** Add an explicit local command that turns a freshly validated Quick Task `ACTIVATION_INTENT` into a host-agnostic, ephemeral Agent Activation Package without writing files, persisting session state, or claiming that a host has started an Agent.
 

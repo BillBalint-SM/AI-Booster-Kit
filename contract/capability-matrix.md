@@ -8,9 +8,9 @@ The compiler must not silently enable or rewrite undeclared capabilities.
 
 | Capability | Codex | Claude Code | Cursor | Initial limitation |
 | --- | --- | --- | --- | --- |
-| Canonical contract reading | supported | unknown | unknown | Host-specific loading and validation are not yet conformance-tested. |
-| Native adapter projection | supported_with_limits | unsupported | unsupported | Only the Codex projection is bootstrapped; other hosts require verified adapters. |
-| Local conformance checks | supported_with_limits | unsupported | unsupported | Cross-host equivalence is not established until later conformance tasks. |
+| Canonical contract reading | supported_with_limits | unknown | unknown | The local parser/compiler path is bounded; native host loading and validation remain unverified. |
+| Native adapter projection | supported_with_limits | supported_with_limits | supported_with_limits | These are deterministic local projections only; native host behavior remains unverified. |
+| Local conformance checks | supported_with_limits | supported_with_limits | supported_with_limits | These checks cover local structural/canonical-event equivalence, not native execution or security. |
 | Jira/Confluence/GitHub synchronization | unsupported | unsupported | unsupported | No connector implementation or external authorization exists in the bootstrap. |
 | External write allowlist enforcement | unsupported | unsupported | unsupported | Must fail closed until the sync layer implements the mapping contract. |
 

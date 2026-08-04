@@ -27,10 +27,12 @@ without changing Quick Task checkpoint or activation behavior.
 The local M2 boundary, explicit storage, and CLI suites pass. M3 adds strict
 Milestone/Epic Markdown contexts, compact session-state validation, explicit
 Personal/Team persistence, pure resume evaluation, and the team scope contract:
-full Milestone read, one-Epic execution for developer sessions, and
-owner-approved PR writes for canonical artifacts. The focused M3 review
-hardening adds runtime validation for the Milestone envelope and current
-execution scope. Final M3 full-suite evidence is 318/318 under the available
+full Milestone-bundle read, one-Epic execution for developer sessions, and a
+declared owner-approved-PR requirement for canonical artifacts. The local
+saver does not inspect Git history, branch ownership, or PR approval. The
+focused M3 review hardening adds runtime validation for the Milestone envelope
+and current execution scope. The current implementation full-suite evidence is
+325/325 under the available
 local Node v26.4.0 runtime.
 `npm run build`, `npm run lint`, `npm run check:docs`, and `git diff --check` pass.
 The package declares Node 22.x; local Node 26 is not the declared runtime, so
@@ -42,9 +44,11 @@ The last committed Graphify and Understand Anything snapshots identify the
 same stable source revision and passed `npm run check:mappers`. The refresh
 used Graphify code-only extraction and UA deterministic local structural
 extraction; no semantic-extraction backend or credentialed external analysis
-was invoked. The checked-in mapper snapshot is `READY`; its source revision,
-current HEAD relationship, and publication boundary remain governed by the
-mapper runbook and this current-state record.
+was invoked. That checked-in mapper snapshot was `READY` for its last stable
+source revision; the current dirty worktree requires a post-commit refresh
+before mapper freshness can be claimed again. Its source revision, current
+HEAD relationship, and publication boundary remain governed by the mapper
+runbook and this current-state record.
 
 ## Known limit
 
@@ -54,13 +58,15 @@ one-at-a-time tuning data, preserved setup/rollback references,
 Ephemeral/Personal/Team retention, safe Personal/Team JSON persistence, and
 strict `prepare-activation`/`save-activation` CLI operations. M3 now adds
 strict context source Markdown, compact transcript-free session state, explicit
-context/session persistence, full-Milestone-read/one-Epic-execution scope
-enforcement, and pure resume decisions. Host adaptation and
+context/session persistence, full-Milestone-bundle-read/one-Epic-execution
+scope validation, and pure resume decisions. Canonical artifact authority is
+declared as owner-approved PR flow but is not locally enforced. Host adaptation and
 execution, evaluation/evolve, debugging context injection, and lifecycle
 synchronization remain future work. M2 and the local M3 slice are
 `COMPLETE_WITH_LIMIT`: they never activate an Agent or perform external work.
-Mapper freshness remains commit-relative: the current local snapshot is fresh
-and valid, but this branch has no upstream publication, PR, or merge yet.
+Mapper freshness remains commit-relative: the last stable snapshot is valid,
+but it does not cover the current dirty worktree. This branch has no upstream
+publication, PR, or merge yet.
 Mapper output remains a navigation projection; source, tests, and Git review
 remain authoritative.
 
@@ -72,7 +78,7 @@ specific approval, bounded authority, and source-native read-back.
 
 ## Next bounded action
 
-Review and explicitly approve the M3 source, documentation, and mapper
-commits. No M4 follow-on or external write is authorized by this local review
-state.
+Review and explicitly approve the M3 readiness-gap diff. After a separately
+approved stable commit, refresh Graphify, UA, and `check:mappers`. No M4
+follow-on or external write is authorized by this local review state.
 

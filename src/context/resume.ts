@@ -1,5 +1,5 @@
 import { ContextError } from "./types.js";
-import { validateEpicContext, validateSessionState } from "./validation.js";
+import { validateEpicContext, validateMilestoneContext, validateSessionState } from "./validation.js";
 import type { EpicContext, MilestoneContext, ResumeResult, ResumeRuntime, SessionState, WorkContext } from "./types.js";
 
 export function evaluateSessionResume(state: SessionState, contexts: readonly WorkContext[], runtime: ResumeRuntime): ResumeResult {
@@ -54,12 +54,21 @@ function validateExecutionScope(state: SessionState, milestone: MilestoneContext
 }
 
 function resolveContexts(state: SessionState, contexts: readonly WorkContext[]): { milestone: MilestoneContext; epic: EpicContext | undefined } | { result: ResumeResult } {
+  const milestones = contexts.filter((context): context is MilestoneContext => context.kind === "MILESTONE");
+  const epics = contexts.filter((context): context is EpicContext => context.kind === "EPIC");
+  if (milestones.length !== 1) return { result: stopped(state.sessionId, ["resume context bundle must contain exactly one Milestone context"]) };
   const references = new Map(contexts.map((context) => [`${context.kind}:${context.contextId}`, context]));
   const milestoneReference = state.contextReferences.find((reference) => reference.kind === "MILESTONE");
   if (milestoneReference === undefined) return { result: stopped(state.sessionId, ["Milestone context reference is missing"]) };
   const milestone = references.get(`MILESTONE:${milestoneReference.contextId}`);
   if (milestone === undefined || milestone.kind !== "MILESTONE") return { result: stopped(state.sessionId, ["Milestone context is missing"]) };
   if (milestone.sourceRevision !== milestoneReference.sourceRevision) return { result: stopped(state.sessionId, ["Milestone context revision is stale"]) };
+  try {
+    validateMilestoneContext(milestone, epics);
+  } catch (error) {
+    if (error instanceof ContextError) return { result: stopped(state.sessionId, ["resume context bundle is invalid"]) };
+    throw error;
+  }
   const epicReference = state.contextReferences.find((reference) => reference.kind === "EPIC");
   if (epicReference === undefined) return { milestone, epic: undefined };
   const epic = references.get(`EPIC:${epicReference.contextId}`);

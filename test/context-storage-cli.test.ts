@@ -10,7 +10,7 @@ import { saveSessionState, saveWorkContext } from "../src/context/storage.js";
 import type { EpicContext, MilestoneContext, SessionState } from "../src/context/types.js";
 
 const milestone: MilestoneContext = {
-  contextVersion: "1.0", kind: "MILESTONE", contextId: "milestone-context-m3", sourceRevision: "rev-m3-1", owner: "product-owner", retention: "PERSONAL", state: "ACCEPTED", readScope: "FULL_MILESTONE", writeAuthority: "ARTIFACT_OWNER_THROUGH_APPROVED_PR", milestoneId: "milestone-m3",
+  contextVersion: "1.0", kind: "MILESTONE", contextId: "milestone-context-m3", sourceRevision: "rev-m3-1", owner: "product-owner", retention: "PERSONAL", state: "ACCEPTED", readScope: "FULL_MILESTONE", writeAuthority: "ARTIFACT_OWNER_THROUGH_APPROVED_PR", milestoneId: "milestone-m3", canonicalArtifactId: "artifact-m3",
   projectVision: "Make AI work resumable.", roadmap: "M3 compact session context.", scope: ["Context contracts"], nonGoals: ["Host execution"], decisions: ["Contexts are Markdown source artifacts."], forecast: ["One bounded M3 delivery."], evidenceRefs: ["decision:m3-approved"], unknowns: [], dependencies: ["contract:team-contract"], epicIds: ["epic-context-parser"],
 };
 

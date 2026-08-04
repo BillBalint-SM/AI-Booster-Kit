@@ -4,7 +4,7 @@ import { ContextError } from "./types.js";
 import type { ContextState, EpicContext, MilestoneContext, WorkContext } from "./types.js";
 
 const commonKeys = ["contextVersion", "kind", "contextId", "sourceRevision", "owner", "retention", "state", "readScope", "writeAuthority"] as const;
-const milestoneKeys = [...commonKeys, "milestoneId", "projectVision", "roadmap", "scope", "nonGoals", "decisions", "forecast", "evidenceRefs", "unknowns", "dependencies", "epicIds"] as const;
+const milestoneKeys = [...commonKeys, "milestoneId", "canonicalArtifactId", "projectVision", "roadmap", "scope", "nonGoals", "decisions", "forecast", "evidenceRefs", "unknowns", "dependencies", "epicIds"] as const;
 const epicKeys = [...commonKeys, "epicId", "milestoneId", "outcome", "featureValue", "scope", "nonGoals", "workItemIds", "acceptanceCriteria", "decisions", "evidenceRefs", "unknowns", "dependencies"] as const;
 const executablePattern = /\b(?:npm|node|bash|powershell|pwsh|curl|wget|python|script|hook|plugin|mcp)\b/i;
 
@@ -31,6 +31,7 @@ function parseMilestone(metadata: Record<string, unknown>, sourcePath: string): 
     ...parseEnvelope(metadata, sourcePath),
     kind: "MILESTONE",
     milestoneId: stringValue(metadata, "milestoneId", sourcePath),
+    canonicalArtifactId: stringValue(metadata, "canonicalArtifactId", sourcePath),
     projectVision: stringValue(metadata, "projectVision", sourcePath),
     roadmap: stringValue(metadata, "roadmap", sourcePath),
     scope: stringArray(metadata, "scope", sourcePath),

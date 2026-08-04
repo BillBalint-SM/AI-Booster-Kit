@@ -2,6 +2,8 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 
 import { validateEpicContext, validateMilestoneContext } from "../src/context/validation.js";
+import { validateCanonicalMilestoneArtifact } from "../src/context/identity.js";
+import type { CanonicalWorkArtifact } from "../src/domain/model.js";
 import type { EpicContext, MilestoneContext } from "../src/context/types.js";
 
 const milestone: MilestoneContext = {
@@ -15,6 +17,7 @@ const milestone: MilestoneContext = {
   readScope: "FULL_MILESTONE",
   writeAuthority: "ARTIFACT_OWNER_THROUGH_APPROVED_PR",
   milestoneId: "milestone-m3",
+  canonicalArtifactId: "artifact-m3",
   projectVision: "Make AI work resumable without retaining transcripts.",
   roadmap: "M3 compact session context.",
   scope: ["Context contracts"],
@@ -92,4 +95,14 @@ test("context validation: rejects a stale or malformed Milestone envelope before
   assert.throws(() => validateMilestoneContext({ ...milestone, state: "STALE" }, epics), /Context rejected/);
   assert.throws(() => validateMilestoneContext({ ...milestone, sourceRevision: "" }, epics), /Context rejected/);
   assert.throws(() => validateMilestoneContext({ ...milestone, retention: "SHARED" } as unknown as MilestoneContext, epics), /Context rejected/);
+});
+
+test("context identity: requires the canonical Milestone artifact and parent to match", () => {
+  const artifact: CanonicalWorkArtifact = {
+    artifactId: "artifact-m3", milestoneId: "milestone-m3", vision: "Portable resume.", scope: ["M3"], nonGoals: ["host execution"], requirements: ["bundle validation"], implementationPlan: ["validate"], testPlan: ["context tests"], acceptanceCriteria: ["identity matches"], reviewPoints: ["owner review"], decisions: ["local only"], evidenceRefs: [], unknowns: [], dependencies: [], projectContext: "M3", currentState: "Accepted",
+  };
+
+  assert.doesNotThrow(() => validateCanonicalMilestoneArtifact(milestone, artifact));
+  assert.throws(() => validateCanonicalMilestoneArtifact({ ...milestone, canonicalArtifactId: "other-artifact" }, artifact), /Context rejected/);
+  assert.throws(() => validateCanonicalMilestoneArtifact({ ...milestone, milestoneId: "other-milestone" }, artifact), /Context rejected/);
 });

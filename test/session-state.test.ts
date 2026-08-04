@@ -6,7 +6,7 @@ import { validateSessionState } from "../src/context/validation.js";
 import type { EpicContext, MilestoneContext, ResumeRuntime, SessionState } from "../src/context/types.js";
 
 const milestone: MilestoneContext = {
-  contextVersion: "1.0", kind: "MILESTONE", contextId: "milestone-context-m3", sourceRevision: "rev-m3-1", owner: "product-owner", retention: "TEAM", state: "ACCEPTED", readScope: "FULL_MILESTONE", writeAuthority: "ARTIFACT_OWNER_THROUGH_APPROVED_PR", milestoneId: "milestone-m3",
+  contextVersion: "1.0", kind: "MILESTONE", contextId: "milestone-context-m3", sourceRevision: "rev-m3-1", owner: "product-owner", retention: "TEAM", state: "ACCEPTED", readScope: "FULL_MILESTONE", writeAuthority: "ARTIFACT_OWNER_THROUGH_APPROVED_PR", milestoneId: "milestone-m3", canonicalArtifactId: "artifact-m3",
   projectVision: "Make AI work resumable without retaining transcripts.", roadmap: "M3 compact session context.", scope: ["Context contracts"], nonGoals: ["Host execution"], decisions: ["Contexts are Markdown source artifacts."], forecast: ["One bounded M3 delivery."], evidenceRefs: ["decision:m3-approved"], unknowns: [], dependencies: ["contract:team-contract"], epicIds: ["epic-context-parser"],
 };
 
@@ -71,7 +71,7 @@ test("session state: resumes matching PO and developer state without replaying a
   };
 
   assert.deepEqual(validateSessionState(developerSession), developerSession);
-  assert.deepEqual(evaluateSessionResume(poSession, [milestone], { ...runtime, repository: null, branch: null, worktree: null, baseRevision: null, currentSetupFingerprint: null }), {
+  assert.deepEqual(evaluateSessionResume(poSession, [milestone, epic], { ...runtime, repository: null, branch: null, worktree: null, baseRevision: null, currentSetupFingerprint: null }), {
     decision: "RESUME",
     sessionId: "session-m3-po",
     nextAction: "Review the linked Epic contexts.",
@@ -107,4 +107,21 @@ test("session scope: exposes full Milestone read while constraining execution to
   assert.throws(() => validateSessionState({ ...scopedSession, executionScope: { ...scopedSession.executionScope, workItemIds: ["foreign-work-item"] } }), /Context rejected/);
   assert.throws(() => validateSessionState({ ...scopedSession, readScope: "EPIC_ONLY" }), /Context rejected/);
   assert.equal(evaluateSessionResume(scopedSession, [milestone, { ...epic, workItemIds: ["different-story"] }], runtime).decision, "STOPPED");
+});
+
+test("session bundle: stops when a linked sibling Epic is missing", () => {
+  const milestoneWithSibling = { ...milestone, epicIds: [epic.epicId, "epic-sibling"] };
+
+  assert.equal(evaluateSessionResume(developerSession, [milestoneWithSibling, epic], runtime).decision, "STOPPED");
+});
+
+test("session bundle: stops when a linked Epic is duplicated", () => {
+  assert.equal(evaluateSessionResume(developerSession, [milestone, epic, { ...epic }], runtime).decision, "STOPPED");
+});
+
+test("session bundle: stops when a linked sibling Epic has a foreign Milestone parent", () => {
+  const milestoneWithSibling = { ...milestone, epicIds: [epic.epicId, "epic-sibling"] };
+  const foreignSibling = { ...epic, contextId: "epic-sibling", epicId: "epic-sibling", milestoneId: "foreign-milestone" };
+
+  assert.equal(evaluateSessionResume(developerSession, [milestoneWithSibling, epic, foreignSibling], runtime).decision, "STOPPED");
 });

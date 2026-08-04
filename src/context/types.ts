@@ -24,6 +24,7 @@ export interface ContextEnvelope {
 export interface MilestoneContext extends ContextEnvelope {
   kind: "MILESTONE";
   milestoneId: string;
+  canonicalArtifactId: string;
   projectVision: string;
   roadmap: string;
   scope: readonly string[];

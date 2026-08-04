@@ -33,6 +33,7 @@ export function validateEpicContext(epic: EpicContext, milestone: MilestoneConte
 function validateMilestoneShape(milestone: MilestoneContext): void {
   validateContextEnvelope(milestone, "MILESTONE");
   assertNonEmpty(milestone.milestoneId, "Milestone identifier");
+  assertNonEmpty(milestone.canonicalArtifactId, "Milestone canonical artifact identifier");
   assertUnique(milestone.epicIds, "Milestone Epic reference");
 }
 
