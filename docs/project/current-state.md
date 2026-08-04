@@ -42,10 +42,9 @@ The last committed Graphify and Understand Anything snapshots identify the
 same stable source revision and passed `npm run check:mappers`. The refresh
 used Graphify code-only extraction and UA deterministic local structural
 extraction; no semantic-extraction backend or credentialed external analysis
-was invoked. The current working tree contains the approved roadmap/state
-synchronization documentation edit, so mapper freshness is temporarily
-`NOT_READY` until that source change is committed and the two-stage refresh is
-repeated.
+was invoked. The checked-in mapper snapshot is `READY`; its source revision,
+current HEAD relationship, and publication boundary remain governed by the
+mapper runbook and this current-state record.
 
 ## Known limit
 
@@ -73,8 +72,7 @@ specific approval, bounded authority, and source-native read-back.
 
 ## Next bounded action
 
-Review and explicitly approve the roadmap/state synchronization edit. After
-explicit commit approval, commit the documentation change, rerun Graphify → UA
-→ `check:mappers`, and then review the M3 source and mapper commits. No M4
-follow-on or external write is authorized by this local review state.
+Review and explicitly approve the M3 source, documentation, and mapper
+commits. No M4 follow-on or external write is authorized by this local review
+state.
 
