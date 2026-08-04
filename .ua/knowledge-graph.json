@@ -14,8 +14,8 @@
     ],
     "frameworks": [],
     "description": "AI Booster Kit Platform structural snapshot.",
-    "analyzedAt": "2026-08-04T16:55:36.439Z",
-    "gitCommitHash": "f5c0179737992a5840488a6a230c6dcd7db1d3fb"
+    "analyzedAt": "2026-08-04T18:36:18.022Z",
+    "gitCommitHash": "3a05a35586ad644f30d149f1fe259dd27130c6f4"
   },
   "nodes": [
     {
@@ -199,18 +199,6 @@
       "complexity": "moderate"
     },
     {
-      "id": "document:contract/agent-library/formation-catalog.md",
-      "type": "document",
-      "name": "formation-catalog.md",
-      "filePath": "contract/agent-library/formation-catalog.md",
-      "summary": "Structural file node for contract/agent-library/formation-catalog.md; 173 lines.",
-      "tags": [
-        "docs",
-        "markdown"
-      ],
-      "complexity": "moderate"
-    },
-    {
       "id": "document:contract/agent-library/quick-task-clarifier-validator.md",
       "type": "document",
       "name": "quick-task-clarifier-validator.md",
@@ -360,18 +348,6 @@
       "name": "atlassian-oauth-read-only-preflight.md",
       "filePath": "docs/gate-2/atlassian-oauth-read-only-preflight.md",
       "summary": "Structural file node for docs/gate-2/atlassian-oauth-read-only-preflight.md; 83 lines.",
-      "tags": [
-        "docs",
-        "markdown"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "document:docs/operations/agent-operating-model.md",
-      "type": "document",
-      "name": "agent-operating-model.md",
-      "filePath": "docs/operations/agent-operating-model.md",
-      "summary": "Structural file node for docs/operations/agent-operating-model.md; 158 lines.",
       "tags": [
         "docs",
         "markdown"
@@ -960,18 +936,6 @@
       "name": "formation-recommendation.ts",
       "filePath": "src/controller/formation-recommendation.ts",
       "summary": "Structural file node for src/controller/formation-recommendation.ts; 141 lines.",
-      "tags": [
-        "code",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "file:src/controller/formation.ts",
-      "type": "file",
-      "name": "formation.ts",
-      "filePath": "src/controller/formation.ts",
-      "summary": "Structural file node for src/controller/formation.ts; 186 lines.",
       "tags": [
         "code",
         "typescript"
@@ -1728,18 +1692,6 @@
       "name": "controller-formation-recommendation.test.ts",
       "filePath": "test/controller-formation-recommendation.test.ts",
       "summary": "Structural file node for test/controller-formation-recommendation.test.ts; 277 lines.",
-      "tags": [
-        "code",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "file:test/controller-formation.test.ts",
-      "type": "file",
-      "name": "controller-formation.test.ts",
-      "filePath": "test/controller-formation.test.ts",
-      "summary": "Structural file node for test/controller-formation.test.ts; 153 lines.",
       "tags": [
         "code",
         "typescript"
@@ -4680,186 +4632,6 @@
       "name": "FormationRecommendationError",
       "filePath": "src/controller/formation-recommendation.ts",
       "summary": "Class FormationRecommendationError extracted structurally from src/controller/formation-recommendation.ts.",
-      "tags": [
-        "class",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/controller/formation.ts:loadFormationCatalog",
-      "type": "function",
-      "name": "loadFormationCatalog",
-      "filePath": "src/controller/formation.ts",
-      "summary": "Function loadFormationCatalog extracted structurally from src/controller/formation.ts (lines 31-33).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/controller/formation.ts:parseFormationCatalog",
-      "type": "function",
-      "name": "parseFormationCatalog",
-      "filePath": "src/controller/formation.ts",
-      "summary": "Function parseFormationCatalog extracted structurally from src/controller/formation.ts (lines 35-67).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/controller/formation.ts:parseFormationEntry",
-      "type": "function",
-      "name": "parseFormationEntry",
-      "filePath": "src/controller/formation.ts",
-      "summary": "Function parseFormationEntry extracted structurally from src/controller/formation.ts (lines 69-113).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/controller/formation.ts:parseRelation",
-      "type": "function",
-      "name": "parseRelation",
-      "filePath": "src/controller/formation.ts",
-      "summary": "Function parseRelation extracted structurally from src/controller/formation.ts (lines 115-123).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/controller/formation.ts:extractFrontmatter",
-      "type": "function",
-      "name": "extractFrontmatter",
-      "filePath": "src/controller/formation.ts",
-      "summary": "Function extractFrontmatter extracted structurally from src/controller/formation.ts (lines 125-129).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/controller/formation.ts:requireRecord",
-      "type": "function",
-      "name": "requireRecord",
-      "filePath": "src/controller/formation.ts",
-      "summary": "Function requireRecord extracted structurally from src/controller/formation.ts (lines 131-136).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/controller/formation.ts:requireExactKeys",
-      "type": "function",
-      "name": "requireExactKeys",
-      "filePath": "src/controller/formation.ts",
-      "summary": "Function requireExactKeys extracted structurally from src/controller/formation.ts (lines 138-146).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/controller/formation.ts:requireNonEmptyString",
-      "type": "function",
-      "name": "requireNonEmptyString",
-      "filePath": "src/controller/formation.ts",
-      "summary": "Function requireNonEmptyString extracted structurally from src/controller/formation.ts (lines 148-151).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/controller/formation.ts:requireNullableString",
-      "type": "function",
-      "name": "requireNullableString",
-      "filePath": "src/controller/formation.ts",
-      "summary": "Function requireNullableString extracted structurally from src/controller/formation.ts (lines 153-156).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/controller/formation.ts:requireNonEmptyList",
-      "type": "function",
-      "name": "requireNonEmptyList",
-      "filePath": "src/controller/formation.ts",
-      "summary": "Function requireNonEmptyList extracted structurally from src/controller/formation.ts (lines 158-161).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/controller/formation.ts:requireNonEmptyStringList",
-      "type": "function",
-      "name": "requireNonEmptyStringList",
-      "filePath": "src/controller/formation.ts",
-      "summary": "Function requireNonEmptyStringList extracted structurally from src/controller/formation.ts (lines 163-169).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/controller/formation.ts:requireEnum",
-      "type": "function",
-      "name": "requireEnum",
-      "filePath": "src/controller/formation.ts",
-      "summary": "Function requireEnum extracted structurally from src/controller/formation.ts (lines 171-174).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/controller/formation.ts:requireEnumList",
-      "type": "function",
-      "name": "requireEnumList",
-      "filePath": "src/controller/formation.ts",
-      "summary": "Function requireEnumList extracted structurally from src/controller/formation.ts (lines 176-182).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/controller/formation.ts:requireLiteral",
-      "type": "function",
-      "name": "requireLiteral",
-      "filePath": "src/controller/formation.ts",
-      "summary": "Function requireLiteral extracted structurally from src/controller/formation.ts (lines 184-186).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "class:src/controller/formation.ts:FormationCatalogError",
-      "type": "class",
-      "name": "FormationCatalogError",
-      "filePath": "src/controller/formation.ts",
-      "summary": "Class FormationCatalogError extracted structurally from src/controller/formation.ts.",
       "tags": [
         "class",
         "typescript"
@@ -9451,18 +9223,6 @@
       "complexity": "moderate"
     },
     {
-      "id": "function:test/controller-formation.test.ts:catalogSource",
-      "type": "function",
-      "name": "catalogSource",
-      "filePath": "test/controller-formation.test.ts",
-      "summary": "Function catalogSource extracted structurally from test/controller-formation.test.ts (lines 35-42).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
       "id": "function:test/controller-request.test.ts:fixture",
       "type": "function",
       "name": "fixture",
@@ -11143,42 +10903,6 @@
       "complexity": "moderate"
     },
     {
-      "id": "file:src/controller/types.ts",
-      "type": "file",
-      "name": "types.ts",
-      "filePath": "src/controller/types.ts",
-      "summary": "Structural file node for src/controller/types.ts; 496 lines.",
-      "tags": [
-        "code",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "class:src/controller/types.ts:ControllerActivationPackageError",
-      "type": "class",
-      "name": "ControllerActivationPackageError",
-      "filePath": "src/controller/types.ts",
-      "summary": "Class ControllerActivationPackageError extracted structurally from src/controller/types.ts.",
-      "tags": [
-        "class",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "document:README.md",
-      "type": "document",
-      "name": "README.md",
-      "filePath": "README.md",
-      "summary": "Structural file node for README.md; 75 lines.",
-      "tags": [
-        "docs",
-        "markdown"
-      ],
-      "complexity": "moderate"
-    },
-    {
       "id": "file:test/context-storage-cli.test.ts",
       "type": "file",
       "name": "context-storage-cli.test.ts",
@@ -11563,522 +11287,6 @@
       "complexity": "moderate"
     },
     {
-      "id": "document:docs/project/documentation-map.md",
-      "type": "document",
-      "name": "documentation-map.md",
-      "filePath": "docs/project/documentation-map.md",
-      "summary": "Structural file node for docs/project/documentation-map.md; 68 lines.",
-      "tags": [
-        "docs",
-        "markdown"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "file:src/cli.ts",
-      "type": "file",
-      "name": "cli.ts",
-      "filePath": "src/cli.ts",
-      "summary": "Structural file node for src/cli.ts; 612 lines.",
-      "tags": [
-        "code",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/cli.ts:runCli",
-      "type": "function",
-      "name": "runCli",
-      "filePath": "src/cli.ts",
-      "summary": "Function runCli extracted structurally from src/cli.ts (lines 55-65).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/cli.ts:dispatchCli",
-      "type": "function",
-      "name": "dispatchCli",
-      "filePath": "src/cli.ts",
-      "summary": "Function dispatchCli extracted structurally from src/cli.ts (lines 67-96).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/cli.ts:runQuickTask",
-      "type": "function",
-      "name": "runQuickTask",
-      "filePath": "src/cli.ts",
-      "summary": "Function runQuickTask extracted structurally from src/cli.ts (lines 98-118).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/cli.ts:runFormationRecommendation",
-      "type": "function",
-      "name": "runFormationRecommendation",
-      "filePath": "src/cli.ts",
-      "summary": "Function runFormationRecommendation extracted structurally from src/cli.ts (lines 120-141).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/cli.ts:runListAgentProfiles",
-      "type": "function",
-      "name": "runListAgentProfiles",
-      "filePath": "src/cli.ts",
-      "summary": "Function runListAgentProfiles extracted structurally from src/cli.ts (lines 143-153).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/cli.ts:runResolveCheckpoint",
-      "type": "function",
-      "name": "runResolveCheckpoint",
-      "filePath": "src/cli.ts",
-      "summary": "Function runResolveCheckpoint extracted structurally from src/cli.ts (lines 155-189).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/cli.ts:runActivateQuickTask",
-      "type": "function",
-      "name": "runActivateQuickTask",
-      "filePath": "src/cli.ts",
-      "summary": "Function runActivateQuickTask extracted structurally from src/cli.ts (lines 191-234).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/cli.ts:runPrepareActivation",
-      "type": "function",
-      "name": "runPrepareActivation",
-      "filePath": "src/cli.ts",
-      "summary": "Function runPrepareActivation extracted structurally from src/cli.ts (lines 236-287).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/cli.ts:runSaveActivation",
-      "type": "function",
-      "name": "runSaveActivation",
-      "filePath": "src/cli.ts",
-      "summary": "Function runSaveActivation extracted structurally from src/cli.ts (lines 289-309).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/cli.ts:runValidateContext",
-      "type": "function",
-      "name": "runValidateContext",
-      "filePath": "src/cli.ts",
-      "summary": "Function runValidateContext extracted structurally from src/cli.ts (lines 311-322).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/cli.ts:runSaveContext",
-      "type": "function",
-      "name": "runSaveContext",
-      "filePath": "src/cli.ts",
-      "summary": "Function runSaveContext extracted structurally from src/cli.ts (lines 324-336).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/cli.ts:runSaveSession",
-      "type": "function",
-      "name": "runSaveSession",
-      "filePath": "src/cli.ts",
-      "summary": "Function runSaveSession extracted structurally from src/cli.ts (lines 338-350).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/cli.ts:runResumeSession",
-      "type": "function",
-      "name": "runResumeSession",
-      "filePath": "src/cli.ts",
-      "summary": "Function runResumeSession extracted structurally from src/cli.ts (lines 352-369).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/cli.ts:isSaveArguments",
-      "type": "function",
-      "name": "isSaveArguments",
-      "filePath": "src/cli.ts",
-      "summary": "Function isSaveArguments extracted structurally from src/cli.ts (lines 371-373).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/cli.ts:readContextSource",
-      "type": "function",
-      "name": "readContextSource",
-      "filePath": "src/cli.ts",
-      "summary": "Function readContextSource extracted structurally from src/cli.ts (lines 375-380).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/cli.ts:readContextJson",
-      "type": "function",
-      "name": "readContextJson",
-      "filePath": "src/cli.ts",
-      "summary": "Function readContextJson extracted structurally from src/cli.ts (lines 382-392).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/cli.ts:parseContextManifest",
-      "type": "function",
-      "name": "parseContextManifest",
-      "filePath": "src/cli.ts",
-      "summary": "Function parseContextManifest extracted structurally from src/cli.ts (lines 394-400).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/cli.ts:loadManifestContexts",
-      "type": "function",
-      "name": "loadManifestContexts",
-      "filePath": "src/cli.ts",
-      "summary": "Function loadManifestContexts extracted structurally from src/cli.ts (lines 402-409).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/cli.ts:parseResumeRuntime",
-      "type": "function",
-      "name": "parseResumeRuntime",
-      "filePath": "src/cli.ts",
-      "summary": "Function parseResumeRuntime extracted structurally from src/cli.ts (lines 411-423).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/cli.ts:plainContextRecord",
-      "type": "function",
-      "name": "plainContextRecord",
-      "filePath": "src/cli.ts",
-      "summary": "Function plainContextRecord extracted structurally from src/cli.ts (lines 425-428).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/cli.ts:requiredContextString",
-      "type": "function",
-      "name": "requiredContextString",
-      "filePath": "src/cli.ts",
-      "summary": "Function requiredContextString extracted structurally from src/cli.ts (lines 430-433).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/cli.ts:nullableContextString",
-      "type": "function",
-      "name": "nullableContextString",
-      "filePath": "src/cli.ts",
-      "summary": "Function nullableContextString extracted structurally from src/cli.ts (lines 435-438).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/cli.ts:contextStringList",
-      "type": "function",
-      "name": "contextStringList",
-      "filePath": "src/cli.ts",
-      "summary": "Function contextStringList extracted structurally from src/cli.ts (lines 440-445).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/cli.ts:contextStorageCode",
-      "type": "function",
-      "name": "contextStorageCode",
-      "filePath": "src/cli.ts",
-      "summary": "Function contextStorageCode extracted structurally from src/cli.ts (lines 447-449).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/cli.ts:readActivationJson",
-      "type": "function",
-      "name": "readActivationJson",
-      "filePath": "src/cli.ts",
-      "summary": "Function readActivationJson extracted structurally from src/cli.ts (lines 451-461).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/cli.ts:activationErrorCode",
-      "type": "function",
-      "name": "activationErrorCode",
-      "filePath": "src/cli.ts",
-      "summary": "Function activationErrorCode extracted structurally from src/cli.ts (lines 463-468).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/cli.ts:stoppedController",
-      "type": "function",
-      "name": "stoppedController",
-      "filePath": "src/cli.ts",
-      "summary": "Function stoppedController extracted structurally from src/cli.ts (lines 470-473).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/cli.ts:runValidate",
-      "type": "function",
-      "name": "runValidate",
-      "filePath": "src/cli.ts",
-      "summary": "Function runValidate extracted structurally from src/cli.ts (lines 475-486).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/cli.ts:runFinalize",
-      "type": "function",
-      "name": "runFinalize",
-      "filePath": "src/cli.ts",
-      "summary": "Function runFinalize extracted structurally from src/cli.ts (lines 488-498).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/cli.ts:runSync",
-      "type": "function",
-      "name": "runSync",
-      "filePath": "src/cli.ts",
-      "summary": "Function runSync extracted structurally from src/cli.ts (lines 500-514).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/cli.ts:runConformance",
-      "type": "function",
-      "name": "runConformance",
-      "filePath": "src/cli.ts",
-      "summary": "Function runConformance extracted structurally from src/cli.ts (lines 516-528).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/cli.ts:runReadiness",
-      "type": "function",
-      "name": "runReadiness",
-      "filePath": "src/cli.ts",
-      "summary": "Function runReadiness extracted structurally from src/cli.ts (lines 530-557).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/cli.ts:createLocalObservationAdapter",
-      "type": "function",
-      "name": "createLocalObservationAdapter",
-      "filePath": "src/cli.ts",
-      "summary": "Function createLocalObservationAdapter extracted structurally from src/cli.ts (lines 559-565).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/cli.ts:readinessExitCode",
-      "type": "function",
-      "name": "readinessExitCode",
-      "filePath": "src/cli.ts",
-      "summary": "Function readinessExitCode extracted structurally from src/cli.ts (lines 567-571).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/cli.ts:parseSafeEvent",
-      "type": "function",
-      "name": "parseSafeEvent",
-      "filePath": "src/cli.ts",
-      "summary": "Function parseSafeEvent extracted structurally from src/cli.ts (lines 573-587).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/cli.ts:readLocalFile",
-      "type": "function",
-      "name": "readLocalFile",
-      "filePath": "src/cli.ts",
-      "summary": "Function readLocalFile extracted structurally from src/cli.ts (lines 589-594).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/cli.ts:isSystemError",
-      "type": "function",
-      "name": "isSystemError",
-      "filePath": "src/cli.ts",
-      "summary": "Function isSystemError extracted structurally from src/cli.ts (lines 608-608).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "function:src/cli.ts:writeError",
-      "type": "function",
-      "name": "writeError",
-      "filePath": "src/cli.ts",
-      "summary": "Function writeError extracted structurally from src/cli.ts (lines 610-612).",
-      "tags": [
-        "function",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "class:src/cli.ts:CliError",
-      "type": "class",
-      "name": "CliError",
-      "filePath": "src/cli.ts",
-      "summary": "Class CliError extracted structurally from src/cli.ts.",
-      "tags": [
-        "class",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "class:src/cli.ts:ActivationCliError",
-      "type": "class",
-      "name": "ActivationCliError",
-      "filePath": "src/cli.ts",
-      "summary": "Class ActivationCliError extracted structurally from src/cli.ts.",
-      "tags": [
-        "class",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
-      "id": "class:src/cli.ts:ContextCliError",
-      "type": "class",
-      "name": "ContextCliError",
-      "filePath": "src/cli.ts",
-      "summary": "Class ContextCliError extracted structurally from src/cli.ts.",
-      "tags": [
-        "class",
-        "typescript"
-      ],
-      "complexity": "moderate"
-    },
-    {
       "id": "file:src/controller/agent-profile.ts",
       "type": "file",
       "name": "agent-profile.ts",
@@ -12303,6 +11511,1314 @@
       "tags": [
         "function",
         "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "README.md",
+      "summary": "Structural file node for README.md; 79 lines.",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:contract/agent-library/formation-catalog.md",
+      "type": "document",
+      "name": "formation-catalog.md",
+      "filePath": "contract/agent-library/formation-catalog.md",
+      "summary": "Structural file node for contract/agent-library/formation-catalog.md; 267 lines.",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:contract/agent-library/role-catalog.md",
+      "type": "document",
+      "name": "role-catalog.md",
+      "filePath": "contract/agent-library/role-catalog.md",
+      "summary": "Structural file node for contract/agent-library/role-catalog.md; 312 lines.",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:docs/operations/agent-operating-model.md",
+      "type": "document",
+      "name": "agent-operating-model.md",
+      "filePath": "docs/operations/agent-operating-model.md",
+      "summary": "Structural file node for docs/operations/agent-operating-model.md; 173 lines.",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:docs/project/documentation-map.md",
+      "type": "document",
+      "name": "documentation-map.md",
+      "filePath": "docs/project/documentation-map.md",
+      "summary": "Structural file node for docs/project/documentation-map.md; 70 lines.",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:test/fixtures/agents/invalid/malformed.toml",
+      "type": "config",
+      "name": "malformed.toml",
+      "filePath": "test/fixtures/agents/invalid/malformed.toml",
+      "summary": "Structural file node for test/fixtures/agents/invalid/malformed.toml; 2 lines.",
+      "tags": [
+        "config",
+        "toml"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:test/fixtures/agents/invalid/missing-description.toml",
+      "type": "config",
+      "name": "missing-description.toml",
+      "filePath": "test/fixtures/agents/invalid/missing-description.toml",
+      "summary": "Structural file node for test/fixtures/agents/invalid/missing-description.toml; 2 lines.",
+      "tags": [
+        "config",
+        "toml"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:test/fixtures/agents/invalid/missing-name.toml",
+      "type": "config",
+      "name": "missing-name.toml",
+      "filePath": "test/fixtures/agents/invalid/missing-name.toml",
+      "summary": "Structural file node for test/fixtures/agents/invalid/missing-name.toml; 2 lines.",
+      "tags": [
+        "config",
+        "toml"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:test/fixtures/formation-agent-bindings-incomplete.md",
+      "type": "document",
+      "name": "formation-agent-bindings-incomplete.md",
+      "filePath": "test/fixtures/formation-agent-bindings-incomplete.md",
+      "summary": "Structural file node for test/fixtures/formation-agent-bindings-incomplete.md; 39 lines.",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:test/fixtures/formation-agent-bindings.md",
+      "type": "document",
+      "name": "formation-agent-bindings.md",
+      "filePath": "test/fixtures/formation-agent-bindings.md",
+      "summary": "Structural file node for test/fixtures/formation-agent-bindings.md; 43 lines.",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:test/fixtures/roles.md",
+      "type": "document",
+      "name": "roles.md",
+      "filePath": "test/fixtures/roles.md",
+      "summary": "Structural file node for test/fixtures/roles.md; 45 lines.",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/cli.ts",
+      "type": "file",
+      "name": "cli.ts",
+      "filePath": "src/cli.ts",
+      "summary": "Structural file node for src/cli.ts; 644 lines.",
+      "tags": [
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/cli.ts:runCli",
+      "type": "function",
+      "name": "runCli",
+      "filePath": "src/cli.ts",
+      "summary": "Function runCli extracted structurally from src/cli.ts (lines 58-68).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/cli.ts:dispatchCli",
+      "type": "function",
+      "name": "dispatchCli",
+      "filePath": "src/cli.ts",
+      "summary": "Function dispatchCli extracted structurally from src/cli.ts (lines 70-100).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/cli.ts:runQuickTask",
+      "type": "function",
+      "name": "runQuickTask",
+      "filePath": "src/cli.ts",
+      "summary": "Function runQuickTask extracted structurally from src/cli.ts (lines 102-122).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/cli.ts:runFormationRecommendation",
+      "type": "function",
+      "name": "runFormationRecommendation",
+      "filePath": "src/cli.ts",
+      "summary": "Function runFormationRecommendation extracted structurally from src/cli.ts (lines 124-145).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/cli.ts:runListAgentProfiles",
+      "type": "function",
+      "name": "runListAgentProfiles",
+      "filePath": "src/cli.ts",
+      "summary": "Function runListAgentProfiles extracted structurally from src/cli.ts (lines 147-157).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/cli.ts:runInspectAgentLibrary",
+      "type": "function",
+      "name": "runInspectAgentLibrary",
+      "filePath": "src/cli.ts",
+      "summary": "Function runInspectAgentLibrary extracted structurally from src/cli.ts (lines 159-185).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/cli.ts:runResolveCheckpoint",
+      "type": "function",
+      "name": "runResolveCheckpoint",
+      "filePath": "src/cli.ts",
+      "summary": "Function runResolveCheckpoint extracted structurally from src/cli.ts (lines 187-221).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/cli.ts:runActivateQuickTask",
+      "type": "function",
+      "name": "runActivateQuickTask",
+      "filePath": "src/cli.ts",
+      "summary": "Function runActivateQuickTask extracted structurally from src/cli.ts (lines 223-266).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/cli.ts:runPrepareActivation",
+      "type": "function",
+      "name": "runPrepareActivation",
+      "filePath": "src/cli.ts",
+      "summary": "Function runPrepareActivation extracted structurally from src/cli.ts (lines 268-319).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/cli.ts:runSaveActivation",
+      "type": "function",
+      "name": "runSaveActivation",
+      "filePath": "src/cli.ts",
+      "summary": "Function runSaveActivation extracted structurally from src/cli.ts (lines 321-341).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/cli.ts:runValidateContext",
+      "type": "function",
+      "name": "runValidateContext",
+      "filePath": "src/cli.ts",
+      "summary": "Function runValidateContext extracted structurally from src/cli.ts (lines 343-354).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/cli.ts:runSaveContext",
+      "type": "function",
+      "name": "runSaveContext",
+      "filePath": "src/cli.ts",
+      "summary": "Function runSaveContext extracted structurally from src/cli.ts (lines 356-368).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/cli.ts:runSaveSession",
+      "type": "function",
+      "name": "runSaveSession",
+      "filePath": "src/cli.ts",
+      "summary": "Function runSaveSession extracted structurally from src/cli.ts (lines 370-382).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/cli.ts:runResumeSession",
+      "type": "function",
+      "name": "runResumeSession",
+      "filePath": "src/cli.ts",
+      "summary": "Function runResumeSession extracted structurally from src/cli.ts (lines 384-401).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/cli.ts:isSaveArguments",
+      "type": "function",
+      "name": "isSaveArguments",
+      "filePath": "src/cli.ts",
+      "summary": "Function isSaveArguments extracted structurally from src/cli.ts (lines 403-405).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/cli.ts:readContextSource",
+      "type": "function",
+      "name": "readContextSource",
+      "filePath": "src/cli.ts",
+      "summary": "Function readContextSource extracted structurally from src/cli.ts (lines 407-412).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/cli.ts:readContextJson",
+      "type": "function",
+      "name": "readContextJson",
+      "filePath": "src/cli.ts",
+      "summary": "Function readContextJson extracted structurally from src/cli.ts (lines 414-424).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/cli.ts:parseContextManifest",
+      "type": "function",
+      "name": "parseContextManifest",
+      "filePath": "src/cli.ts",
+      "summary": "Function parseContextManifest extracted structurally from src/cli.ts (lines 426-432).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/cli.ts:loadManifestContexts",
+      "type": "function",
+      "name": "loadManifestContexts",
+      "filePath": "src/cli.ts",
+      "summary": "Function loadManifestContexts extracted structurally from src/cli.ts (lines 434-441).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/cli.ts:parseResumeRuntime",
+      "type": "function",
+      "name": "parseResumeRuntime",
+      "filePath": "src/cli.ts",
+      "summary": "Function parseResumeRuntime extracted structurally from src/cli.ts (lines 443-455).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/cli.ts:plainContextRecord",
+      "type": "function",
+      "name": "plainContextRecord",
+      "filePath": "src/cli.ts",
+      "summary": "Function plainContextRecord extracted structurally from src/cli.ts (lines 457-460).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/cli.ts:requiredContextString",
+      "type": "function",
+      "name": "requiredContextString",
+      "filePath": "src/cli.ts",
+      "summary": "Function requiredContextString extracted structurally from src/cli.ts (lines 462-465).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/cli.ts:nullableContextString",
+      "type": "function",
+      "name": "nullableContextString",
+      "filePath": "src/cli.ts",
+      "summary": "Function nullableContextString extracted structurally from src/cli.ts (lines 467-470).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/cli.ts:contextStringList",
+      "type": "function",
+      "name": "contextStringList",
+      "filePath": "src/cli.ts",
+      "summary": "Function contextStringList extracted structurally from src/cli.ts (lines 472-477).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/cli.ts:contextStorageCode",
+      "type": "function",
+      "name": "contextStorageCode",
+      "filePath": "src/cli.ts",
+      "summary": "Function contextStorageCode extracted structurally from src/cli.ts (lines 479-481).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/cli.ts:readActivationJson",
+      "type": "function",
+      "name": "readActivationJson",
+      "filePath": "src/cli.ts",
+      "summary": "Function readActivationJson extracted structurally from src/cli.ts (lines 483-493).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/cli.ts:activationErrorCode",
+      "type": "function",
+      "name": "activationErrorCode",
+      "filePath": "src/cli.ts",
+      "summary": "Function activationErrorCode extracted structurally from src/cli.ts (lines 495-500).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/cli.ts:stoppedController",
+      "type": "function",
+      "name": "stoppedController",
+      "filePath": "src/cli.ts",
+      "summary": "Function stoppedController extracted structurally from src/cli.ts (lines 502-505).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/cli.ts:runValidate",
+      "type": "function",
+      "name": "runValidate",
+      "filePath": "src/cli.ts",
+      "summary": "Function runValidate extracted structurally from src/cli.ts (lines 507-518).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/cli.ts:runFinalize",
+      "type": "function",
+      "name": "runFinalize",
+      "filePath": "src/cli.ts",
+      "summary": "Function runFinalize extracted structurally from src/cli.ts (lines 520-530).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/cli.ts:runSync",
+      "type": "function",
+      "name": "runSync",
+      "filePath": "src/cli.ts",
+      "summary": "Function runSync extracted structurally from src/cli.ts (lines 532-546).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/cli.ts:runConformance",
+      "type": "function",
+      "name": "runConformance",
+      "filePath": "src/cli.ts",
+      "summary": "Function runConformance extracted structurally from src/cli.ts (lines 548-560).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/cli.ts:runReadiness",
+      "type": "function",
+      "name": "runReadiness",
+      "filePath": "src/cli.ts",
+      "summary": "Function runReadiness extracted structurally from src/cli.ts (lines 562-589).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/cli.ts:createLocalObservationAdapter",
+      "type": "function",
+      "name": "createLocalObservationAdapter",
+      "filePath": "src/cli.ts",
+      "summary": "Function createLocalObservationAdapter extracted structurally from src/cli.ts (lines 591-597).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/cli.ts:readinessExitCode",
+      "type": "function",
+      "name": "readinessExitCode",
+      "filePath": "src/cli.ts",
+      "summary": "Function readinessExitCode extracted structurally from src/cli.ts (lines 599-603).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/cli.ts:parseSafeEvent",
+      "type": "function",
+      "name": "parseSafeEvent",
+      "filePath": "src/cli.ts",
+      "summary": "Function parseSafeEvent extracted structurally from src/cli.ts (lines 605-619).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/cli.ts:readLocalFile",
+      "type": "function",
+      "name": "readLocalFile",
+      "filePath": "src/cli.ts",
+      "summary": "Function readLocalFile extracted structurally from src/cli.ts (lines 621-626).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/cli.ts:isSystemError",
+      "type": "function",
+      "name": "isSystemError",
+      "filePath": "src/cli.ts",
+      "summary": "Function isSystemError extracted structurally from src/cli.ts (lines 640-640).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/cli.ts:writeError",
+      "type": "function",
+      "name": "writeError",
+      "filePath": "src/cli.ts",
+      "summary": "Function writeError extracted structurally from src/cli.ts (lines 642-644).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:src/cli.ts:CliError",
+      "type": "class",
+      "name": "CliError",
+      "filePath": "src/cli.ts",
+      "summary": "Class CliError extracted structurally from src/cli.ts.",
+      "tags": [
+        "class",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:src/cli.ts:ActivationCliError",
+      "type": "class",
+      "name": "ActivationCliError",
+      "filePath": "src/cli.ts",
+      "summary": "Class ActivationCliError extracted structurally from src/cli.ts.",
+      "tags": [
+        "class",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:src/cli.ts:ContextCliError",
+      "type": "class",
+      "name": "ContextCliError",
+      "filePath": "src/cli.ts",
+      "summary": "Class ContextCliError extracted structurally from src/cli.ts.",
+      "tags": [
+        "class",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/controller/agent-inventory.ts",
+      "type": "file",
+      "name": "agent-inventory.ts",
+      "filePath": "src/controller/agent-inventory.ts",
+      "summary": "Structural file node for src/controller/agent-inventory.ts; 100 lines.",
+      "tags": [
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/controller/agent-inventory.ts:loadAgentInventory",
+      "type": "function",
+      "name": "loadAgentInventory",
+      "filePath": "src/controller/agent-inventory.ts",
+      "summary": "Function loadAgentInventory extracted structurally from src/controller/agent-inventory.ts (lines 29-70).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/controller/agent-inventory.ts:parseAgentDefinition",
+      "type": "function",
+      "name": "parseAgentDefinition",
+      "filePath": "src/controller/agent-inventory.ts",
+      "summary": "Function parseAgentDefinition extracted structurally from src/controller/agent-inventory.ts (lines 72-81).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/controller/agent-inventory.ts:parseTomlString",
+      "type": "function",
+      "name": "parseTomlString",
+      "filePath": "src/controller/agent-inventory.ts",
+      "summary": "Function parseTomlString extracted structurally from src/controller/agent-inventory.ts (lines 83-94).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/controller/agent-inventory.ts:normalizeAgentId",
+      "type": "function",
+      "name": "normalizeAgentId",
+      "filePath": "src/controller/agent-inventory.ts",
+      "summary": "Function normalizeAgentId extracted structurally from src/controller/agent-inventory.ts (lines 96-100).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:src/controller/agent-inventory.ts:AgentInventoryError",
+      "type": "class",
+      "name": "AgentInventoryError",
+      "filePath": "src/controller/agent-inventory.ts",
+      "summary": "Class AgentInventoryError extracted structurally from src/controller/agent-inventory.ts.",
+      "tags": [
+        "class",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/controller/agent-role.ts",
+      "type": "file",
+      "name": "agent-role.ts",
+      "filePath": "src/controller/agent-role.ts",
+      "summary": "Structural file node for src/controller/agent-role.ts; 354 lines.",
+      "tags": [
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/controller/agent-role.ts:loadRoleCatalog",
+      "type": "function",
+      "name": "loadRoleCatalog",
+      "filePath": "src/controller/agent-role.ts",
+      "summary": "Function loadRoleCatalog extracted structurally from src/controller/agent-role.ts (lines 124-132).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/controller/agent-role.ts:parseRoleCatalog",
+      "type": "function",
+      "name": "parseRoleCatalog",
+      "filePath": "src/controller/agent-role.ts",
+      "summary": "Function parseRoleCatalog extracted structurally from src/controller/agent-role.ts (lines 134-152).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/controller/agent-role.ts:analyzeAgentRoleCoverage",
+      "type": "function",
+      "name": "analyzeAgentRoleCoverage",
+      "filePath": "src/controller/agent-role.ts",
+      "summary": "Function analyzeAgentRoleCoverage extracted structurally from src/controller/agent-role.ts (lines 154-219).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/controller/agent-role.ts:projectFormation",
+      "type": "function",
+      "name": "projectFormation",
+      "filePath": "src/controller/agent-role.ts",
+      "summary": "Function projectFormation extracted structurally from src/controller/agent-role.ts (lines 221-253).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/controller/agent-role.ts:parseRole",
+      "type": "function",
+      "name": "parseRole",
+      "filePath": "src/controller/agent-role.ts",
+      "summary": "Function parseRole extracted structurally from src/controller/agent-role.ts (lines 255-283).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/controller/agent-role.ts:parseAssignment",
+      "type": "function",
+      "name": "parseAssignment",
+      "filePath": "src/controller/agent-role.ts",
+      "summary": "Function parseAssignment extracted structurally from src/controller/agent-role.ts (lines 285-296).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/controller/agent-role.ts:extractFrontmatter",
+      "type": "function",
+      "name": "extractFrontmatter",
+      "filePath": "src/controller/agent-role.ts",
+      "summary": "Function extractFrontmatter extracted structurally from src/controller/agent-role.ts (lines 298-302).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/controller/agent-role.ts:requireRecord",
+      "type": "function",
+      "name": "requireRecord",
+      "filePath": "src/controller/agent-role.ts",
+      "summary": "Function requireRecord extracted structurally from src/controller/agent-role.ts (lines 304-307).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/controller/agent-role.ts:requireExactKeys",
+      "type": "function",
+      "name": "requireExactKeys",
+      "filePath": "src/controller/agent-role.ts",
+      "summary": "Function requireExactKeys extracted structurally from src/controller/agent-role.ts (lines 309-314).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/controller/agent-role.ts:requireNonEmptyList",
+      "type": "function",
+      "name": "requireNonEmptyList",
+      "filePath": "src/controller/agent-role.ts",
+      "summary": "Function requireNonEmptyList extracted structurally from src/controller/agent-role.ts (lines 316-319).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/controller/agent-role.ts:requireNonEmptyStringList",
+      "type": "function",
+      "name": "requireNonEmptyStringList",
+      "filePath": "src/controller/agent-role.ts",
+      "summary": "Function requireNonEmptyStringList extracted structurally from src/controller/agent-role.ts (lines 321-325).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/controller/agent-role.ts:requireStringList",
+      "type": "function",
+      "name": "requireStringList",
+      "filePath": "src/controller/agent-role.ts",
+      "summary": "Function requireStringList extracted structurally from src/controller/agent-role.ts (lines 327-330).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/controller/agent-role.ts:requireNonEmptyString",
+      "type": "function",
+      "name": "requireNonEmptyString",
+      "filePath": "src/controller/agent-role.ts",
+      "summary": "Function requireNonEmptyString extracted structurally from src/controller/agent-role.ts (lines 332-335).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/controller/agent-role.ts:requireEnum",
+      "type": "function",
+      "name": "requireEnum",
+      "filePath": "src/controller/agent-role.ts",
+      "summary": "Function requireEnum extracted structurally from src/controller/agent-role.ts (lines 337-340).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/controller/agent-role.ts:requireEnumList",
+      "type": "function",
+      "name": "requireEnumList",
+      "filePath": "src/controller/agent-role.ts",
+      "summary": "Function requireEnumList extracted structurally from src/controller/agent-role.ts (lines 342-346).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/controller/agent-role.ts:requireLiteral",
+      "type": "function",
+      "name": "requireLiteral",
+      "filePath": "src/controller/agent-role.ts",
+      "summary": "Function requireLiteral extracted structurally from src/controller/agent-role.ts (lines 348-350).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/controller/agent-role.ts:uniqueSorted",
+      "type": "function",
+      "name": "uniqueSorted",
+      "filePath": "src/controller/agent-role.ts",
+      "summary": "Function uniqueSorted extracted structurally from src/controller/agent-role.ts (lines 352-354).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:src/controller/agent-role.ts:AgentRoleCatalogError",
+      "type": "class",
+      "name": "AgentRoleCatalogError",
+      "filePath": "src/controller/agent-role.ts",
+      "summary": "Class AgentRoleCatalogError extracted structurally from src/controller/agent-role.ts.",
+      "tags": [
+        "class",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/controller/formation.ts",
+      "type": "file",
+      "name": "formation.ts",
+      "filePath": "src/controller/formation.ts",
+      "summary": "Structural file node for src/controller/formation.ts; 219 lines.",
+      "tags": [
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/controller/formation.ts:loadFormationCatalog",
+      "type": "function",
+      "name": "loadFormationCatalog",
+      "filePath": "src/controller/formation.ts",
+      "summary": "Function loadFormationCatalog extracted structurally from src/controller/formation.ts (lines 33-35).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/controller/formation.ts:parseFormationCatalog",
+      "type": "function",
+      "name": "parseFormationCatalog",
+      "filePath": "src/controller/formation.ts",
+      "summary": "Function parseFormationCatalog extracted structurally from src/controller/formation.ts (lines 37-69).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/controller/formation.ts:parseFormationEntry",
+      "type": "function",
+      "name": "parseFormationEntry",
+      "filePath": "src/controller/formation.ts",
+      "summary": "Function parseFormationEntry extracted structurally from src/controller/formation.ts (lines 71-134).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/controller/formation.ts:parseAgentBinding",
+      "type": "function",
+      "name": "parseAgentBinding",
+      "filePath": "src/controller/formation.ts",
+      "summary": "Function parseAgentBinding extracted structurally from src/controller/formation.ts (lines 136-146).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/controller/formation.ts:parseRelation",
+      "type": "function",
+      "name": "parseRelation",
+      "filePath": "src/controller/formation.ts",
+      "summary": "Function parseRelation extracted structurally from src/controller/formation.ts (lines 148-156).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/controller/formation.ts:extractFrontmatter",
+      "type": "function",
+      "name": "extractFrontmatter",
+      "filePath": "src/controller/formation.ts",
+      "summary": "Function extractFrontmatter extracted structurally from src/controller/formation.ts (lines 158-162).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/controller/formation.ts:requireRecord",
+      "type": "function",
+      "name": "requireRecord",
+      "filePath": "src/controller/formation.ts",
+      "summary": "Function requireRecord extracted structurally from src/controller/formation.ts (lines 164-169).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/controller/formation.ts:requireExactKeys",
+      "type": "function",
+      "name": "requireExactKeys",
+      "filePath": "src/controller/formation.ts",
+      "summary": "Function requireExactKeys extracted structurally from src/controller/formation.ts (lines 171-179).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/controller/formation.ts:requireNonEmptyString",
+      "type": "function",
+      "name": "requireNonEmptyString",
+      "filePath": "src/controller/formation.ts",
+      "summary": "Function requireNonEmptyString extracted structurally from src/controller/formation.ts (lines 181-184).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/controller/formation.ts:requireNullableString",
+      "type": "function",
+      "name": "requireNullableString",
+      "filePath": "src/controller/formation.ts",
+      "summary": "Function requireNullableString extracted structurally from src/controller/formation.ts (lines 186-189).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/controller/formation.ts:requireNonEmptyList",
+      "type": "function",
+      "name": "requireNonEmptyList",
+      "filePath": "src/controller/formation.ts",
+      "summary": "Function requireNonEmptyList extracted structurally from src/controller/formation.ts (lines 191-194).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/controller/formation.ts:requireNonEmptyStringList",
+      "type": "function",
+      "name": "requireNonEmptyStringList",
+      "filePath": "src/controller/formation.ts",
+      "summary": "Function requireNonEmptyStringList extracted structurally from src/controller/formation.ts (lines 196-202).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/controller/formation.ts:requireEnum",
+      "type": "function",
+      "name": "requireEnum",
+      "filePath": "src/controller/formation.ts",
+      "summary": "Function requireEnum extracted structurally from src/controller/formation.ts (lines 204-207).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/controller/formation.ts:requireEnumList",
+      "type": "function",
+      "name": "requireEnumList",
+      "filePath": "src/controller/formation.ts",
+      "summary": "Function requireEnumList extracted structurally from src/controller/formation.ts (lines 209-215).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/controller/formation.ts:requireLiteral",
+      "type": "function",
+      "name": "requireLiteral",
+      "filePath": "src/controller/formation.ts",
+      "summary": "Function requireLiteral extracted structurally from src/controller/formation.ts (lines 217-219).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:src/controller/formation.ts:FormationCatalogError",
+      "type": "class",
+      "name": "FormationCatalogError",
+      "filePath": "src/controller/formation.ts",
+      "summary": "Class FormationCatalogError extracted structurally from src/controller/formation.ts.",
+      "tags": [
+        "class",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/controller/types.ts",
+      "type": "file",
+      "name": "types.ts",
+      "filePath": "src/controller/types.ts",
+      "summary": "Structural file node for src/controller/types.ts; 505 lines.",
+      "tags": [
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:src/controller/types.ts:ControllerActivationPackageError",
+      "type": "class",
+      "name": "ControllerActivationPackageError",
+      "filePath": "src/controller/types.ts",
+      "summary": "Class ControllerActivationPackageError extracted structurally from src/controller/types.ts.",
+      "tags": [
+        "class",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:test/controller-agent-inventory.test.ts",
+      "type": "file",
+      "name": "controller-agent-inventory.test.ts",
+      "filePath": "test/controller-agent-inventory.test.ts",
+      "summary": "Structural file node for test/controller-agent-inventory.test.ts; 68 lines.",
+      "tags": [
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:test/controller-agent-library-cli.test.ts",
+      "type": "file",
+      "name": "controller-agent-library-cli.test.ts",
+      "filePath": "test/controller-agent-library-cli.test.ts",
+      "summary": "Structural file node for test/controller-agent-library-cli.test.ts; 89 lines.",
+      "tags": [
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:test/controller-agent-library-cli.test.ts:runBuiltCli",
+      "type": "function",
+      "name": "runBuiltCli",
+      "filePath": "test/controller-agent-library-cli.test.ts",
+      "summary": "Function runBuiltCli extracted structurally from test/controller-agent-library-cli.test.ts (lines 79-89).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:test/controller-agent-role.test.ts",
+      "type": "file",
+      "name": "controller-agent-role.test.ts",
+      "filePath": "test/controller-agent-role.test.ts",
+      "summary": "Structural file node for test/controller-agent-role.test.ts; 160 lines.",
+      "tags": [
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:test/controller-agent-role.test.ts:report",
+      "type": "function",
+      "name": "report",
+      "filePath": "test/controller-agent-role.test.ts",
+      "summary": "Function report extracted structurally from test/controller-agent-role.test.ts (lines 78-81).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:test/controller-formation.test.ts",
+      "type": "file",
+      "name": "controller-formation.test.ts",
+      "filePath": "test/controller-formation.test.ts",
+      "summary": "Structural file node for test/controller-formation.test.ts; 177 lines.",
+      "tags": [
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:test/controller-formation.test.ts:catalogSource",
+      "type": "function",
+      "name": "catalogSource",
+      "filePath": "test/controller-formation.test.ts",
+      "summary": "Function catalogSource extracted structurally from test/controller-formation.test.ts (lines 40-47).",
+      "tags": [
+        "function",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:test/fixtures/agents/duplicate/first.toml",
+      "type": "config",
+      "name": "first.toml",
+      "filePath": "test/fixtures/agents/duplicate/first.toml",
+      "summary": "Structural file node for test/fixtures/agents/duplicate/first.toml; 2 lines.",
+      "tags": [
+        "config",
+        "toml"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:test/fixtures/agents/duplicate/second.toml",
+      "type": "config",
+      "name": "second.toml",
+      "filePath": "test/fixtures/agents/duplicate/second.toml",
+      "summary": "Structural file node for test/fixtures/agents/duplicate/second.toml; 2 lines.",
+      "tags": [
+        "config",
+        "toml"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:test/fixtures/agents/valid/alpha.toml",
+      "type": "config",
+      "name": "alpha.toml",
+      "filePath": "test/fixtures/agents/valid/alpha.toml",
+      "summary": "Structural file node for test/fixtures/agents/valid/alpha.toml; 3 lines.",
+      "tags": [
+        "config",
+        "toml"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:test/fixtures/agents/valid/beta.toml",
+      "type": "config",
+      "name": "beta.toml",
+      "filePath": "test/fixtures/agents/valid/beta.toml",
+      "summary": "Structural file node for test/fixtures/agents/valid/beta.toml; 3 lines.",
+      "tags": [
+        "config",
+        "toml"
       ],
       "complexity": "moderate"
     }
@@ -26423,6 +26939,426 @@
     {
       "source": "file:test/controller-agent-profile.test.ts",
       "target": "function:test/controller-agent-profile.test.ts:catalogSource",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/cli.ts",
+      "target": "function:src/cli.ts:runInspectAgentLibrary",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "function:src/cli.ts:dispatchCli",
+      "target": "function:src/cli.ts:runInspectAgentLibrary",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/cli.ts:runInspectAgentLibrary",
+      "target": "function:src/cli.ts:stoppedController",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/controller/agent-inventory.ts",
+      "target": "function:src/controller/agent-inventory.ts:loadAgentInventory",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/agent-inventory.ts",
+      "target": "function:src/controller/agent-inventory.ts:parseAgentDefinition",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/agent-inventory.ts",
+      "target": "function:src/controller/agent-inventory.ts:parseTomlString",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/agent-inventory.ts",
+      "target": "function:src/controller/agent-inventory.ts:normalizeAgentId",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/agent-inventory.ts",
+      "target": "class:src/controller/agent-inventory.ts:AgentInventoryError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "function:src/controller/agent-inventory.ts:loadAgentInventory",
+      "target": "function:src/controller/agent-inventory.ts:parseAgentDefinition",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/controller/agent-inventory.ts:parseAgentDefinition",
+      "target": "function:src/controller/agent-inventory.ts:parseTomlString",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/controller/agent-inventory.ts:parseAgentDefinition",
+      "target": "function:src/controller/agent-inventory.ts:normalizeAgentId",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/controller/agent-role.ts",
+      "target": "function:src/controller/agent-role.ts:loadRoleCatalog",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/agent-role.ts",
+      "target": "function:src/controller/agent-role.ts:parseRoleCatalog",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/agent-role.ts",
+      "target": "function:src/controller/agent-role.ts:analyzeAgentRoleCoverage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/agent-role.ts",
+      "target": "function:src/controller/agent-role.ts:projectFormation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/agent-role.ts",
+      "target": "function:src/controller/agent-role.ts:parseRole",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/agent-role.ts",
+      "target": "function:src/controller/agent-role.ts:parseAssignment",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/agent-role.ts",
+      "target": "function:src/controller/agent-role.ts:extractFrontmatter",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/agent-role.ts",
+      "target": "function:src/controller/agent-role.ts:requireRecord",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/agent-role.ts",
+      "target": "function:src/controller/agent-role.ts:requireExactKeys",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/agent-role.ts",
+      "target": "function:src/controller/agent-role.ts:requireNonEmptyList",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/agent-role.ts",
+      "target": "function:src/controller/agent-role.ts:requireNonEmptyStringList",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/agent-role.ts",
+      "target": "function:src/controller/agent-role.ts:requireStringList",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/agent-role.ts",
+      "target": "function:src/controller/agent-role.ts:requireNonEmptyString",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/agent-role.ts",
+      "target": "function:src/controller/agent-role.ts:requireEnum",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/agent-role.ts",
+      "target": "function:src/controller/agent-role.ts:requireEnumList",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/agent-role.ts",
+      "target": "function:src/controller/agent-role.ts:requireLiteral",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/agent-role.ts",
+      "target": "function:src/controller/agent-role.ts:uniqueSorted",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/agent-role.ts",
+      "target": "class:src/controller/agent-role.ts:AgentRoleCatalogError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "function:src/controller/agent-role.ts:loadRoleCatalog",
+      "target": "function:src/controller/agent-role.ts:parseRoleCatalog",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/controller/agent-role.ts:parseRoleCatalog",
+      "target": "function:src/controller/agent-role.ts:extractFrontmatter",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/controller/agent-role.ts:parseRoleCatalog",
+      "target": "function:src/controller/agent-role.ts:requireRecord",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/controller/agent-role.ts:parseRoleCatalog",
+      "target": "function:src/controller/agent-role.ts:requireExactKeys",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/controller/agent-role.ts:parseRoleCatalog",
+      "target": "function:src/controller/agent-role.ts:requireLiteral",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/controller/agent-role.ts:parseRoleCatalog",
+      "target": "function:src/controller/agent-role.ts:requireNonEmptyList",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/controller/agent-role.ts:parseRoleCatalog",
+      "target": "function:src/controller/agent-role.ts:parseRole",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/controller/agent-role.ts:parseRoleCatalog",
+      "target": "function:src/controller/agent-role.ts:parseAssignment",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/controller/agent-role.ts:analyzeAgentRoleCoverage",
+      "target": "function:src/controller/agent-role.ts:uniqueSorted",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/controller/agent-role.ts:projectFormation",
+      "target": "function:src/controller/agent-role.ts:uniqueSorted",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/controller/agent-role.ts:parseRole",
+      "target": "function:src/controller/agent-role.ts:requireRecord",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/controller/agent-role.ts:parseRole",
+      "target": "function:src/controller/agent-role.ts:requireExactKeys",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/controller/agent-role.ts:parseRole",
+      "target": "function:src/controller/agent-role.ts:requireEnumList",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/controller/agent-role.ts:parseRole",
+      "target": "function:src/controller/agent-role.ts:requireNonEmptyString",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/controller/agent-role.ts:parseRole",
+      "target": "function:src/controller/agent-role.ts:requireNonEmptyStringList",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/controller/agent-role.ts:parseRole",
+      "target": "function:src/controller/agent-role.ts:requireStringList",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/controller/agent-role.ts:parseAssignment",
+      "target": "function:src/controller/agent-role.ts:requireRecord",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/controller/agent-role.ts:parseAssignment",
+      "target": "function:src/controller/agent-role.ts:requireExactKeys",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/controller/agent-role.ts:parseAssignment",
+      "target": "function:src/controller/agent-role.ts:requireNonEmptyString",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/controller/agent-role.ts:parseAssignment",
+      "target": "function:src/controller/agent-role.ts:requireEnum",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/controller/agent-role.ts:requireNonEmptyStringList",
+      "target": "function:src/controller/agent-role.ts:requireNonEmptyList",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/controller/agent-role.ts:requireEnumList",
+      "target": "function:src/controller/agent-role.ts:requireNonEmptyStringList",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/controller/formation.ts",
+      "target": "function:src/controller/formation.ts:parseAgentBinding",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/controller/formation.ts",
+      "target": "class:src/controller/formation.ts:FormationCatalogError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "function:src/controller/formation.ts:parseFormationEntry",
+      "target": "function:src/controller/formation.ts:parseAgentBinding",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/controller/formation.ts:parseAgentBinding",
+      "target": "function:src/controller/formation.ts:requireRecord",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/controller/formation.ts:parseAgentBinding",
+      "target": "function:src/controller/formation.ts:requireExactKeys",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/controller/formation.ts:parseAgentBinding",
+      "target": "function:src/controller/formation.ts:requireNonEmptyString",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/controller/formation.ts:parseAgentBinding",
+      "target": "function:src/controller/formation.ts:requireEnum",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:test/controller-agent-library-cli.test.ts",
+      "target": "function:test/controller-agent-library-cli.test.ts:runBuiltCli",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:test/controller-agent-role.test.ts",
+      "target": "function:test/controller-agent-role.test.ts:report",
       "type": "contains",
       "direction": "forward",
       "weight": 1

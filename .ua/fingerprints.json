@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "gitCommitHash": "f5c0179737992a5840488a6a230c6dcd7db1d3fb",
-  "generatedAt": "2026-08-04T16:55:36.974Z",
+  "gitCommitHash": "3a05a35586ad644f30d149f1fe259dd27130c6f4",
+  "generatedAt": "2026-08-04T18:36:18.644Z",
   "files": {
     ".github/pull_request_template.md": {
       "filePath": ".github/pull_request_template.md",
@@ -65,12 +65,12 @@
     },
     "README.md": {
       "filePath": "README.md",
-      "contentHash": "f5abe5d401445aa9ff85a8ccf5f1f01d199f8cc1057ac516eb111bd5e7afa3fb",
+      "contentHash": "012e9e10e0a289b4ab5a3c9fd208297aff521a6f34a15e25a09032e2c81f5dc1",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 76,
+      "totalLines": 80,
       "hasStructuralAnalysis": true
     },
     "cli.ts": {
@@ -196,12 +196,12 @@
     },
     "contract/agent-library/formation-catalog.md": {
       "filePath": "contract/agent-library/formation-catalog.md",
-      "contentHash": "9ae80fb1a8520e357aa9a3724e2153a1f5fef590691c2eff63ea7acfd33b00f6",
+      "contentHash": "119fda1a3ebfedd87359e94d61bab2437e639bce406955b33dcc53f66322bf15",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 174,
+      "totalLines": 268,
       "hasStructuralAnalysis": true
     },
     "contract/agent-library/quick-task-clarifier-validator.md": {
@@ -212,6 +212,16 @@
       "imports": [],
       "exports": [],
       "totalLines": 111,
+      "hasStructuralAnalysis": true
+    },
+    "contract/agent-library/role-catalog.md": {
+      "filePath": "contract/agent-library/role-catalog.md",
+      "contentHash": "449e2c43adf72010a058907f129cde330f2f6483d0f4cbc743dfd536664b52e2",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 313,
       "hasStructuralAnalysis": true
     },
     "contract/artifacts/canonical-work-artifact-template.md": {
@@ -336,12 +346,12 @@
     },
     "docs/operations/agent-operating-model.md": {
       "filePath": "docs/operations/agent-operating-model.md",
-      "contentHash": "426ba6b1f3d0a8cb4e7070258dcda742ae5b1603e7a84d8d15b8fab64f37ab45",
+      "contentHash": "c2bf939e0e547c1381aeb3c9a71a3cd8ee9bd013a204c09e39a9f741e71e5f3f",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 159,
+      "totalLines": 174,
       "hasStructuralAnalysis": true
     },
     "docs/operations/codex-conformance-remediation-v2.md": {
@@ -456,12 +466,12 @@
     },
     "docs/project/documentation-map.md": {
       "filePath": "docs/project/documentation-map.md",
-      "contentHash": "306c1759c21327591a8df6849e4e31052c44bb313223d475c85e2930fd002bec",
+      "contentHash": "33eaab72f70ae2b00d963a5733bf835ae477849de118bd0924ab35c1f15bdbf2",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 69,
+      "totalLines": 71,
       "hasStructuralAnalysis": true
     },
     "docs/project/roadmap.md": {
@@ -1192,7 +1202,7 @@
     },
     "src/cli.ts": {
       "filePath": "src/cli.ts",
-      "contentHash": "e9254267eaccaa785b9cc28e22861f15ecb0ffe20f59d13de276e230fd70a948",
+      "contentHash": "9430d9815892710efb7d7dc9d519fcd18a5a9621945b852b9f447815865d7965",
       "functions": [
         {
           "name": "runCli",
@@ -1210,7 +1220,7 @@
           ],
           "returnType": "Promise<number>",
           "exported": false,
-          "lineCount": 30
+          "lineCount": 31
         },
         {
           "name": "runQuickTask",
@@ -1238,6 +1248,15 @@
           "returnType": "Promise<number>",
           "exported": false,
           "lineCount": 11
+        },
+        {
+          "name": "runInspectAgentLibrary",
+          "params": [
+            "argv"
+          ],
+          "returnType": "Promise<number>",
+          "exported": false,
+          "lineCount": 27
         },
         {
           "name": "runResolveCheckpoint",
@@ -1687,6 +1706,22 @@
           ]
         },
         {
+          "source": "./controller/agent-inventory.js",
+          "specifiers": [
+            "AgentInventoryError",
+            "loadAgentInventory"
+          ]
+        },
+        {
+          "source": "./controller/agent-role.js",
+          "specifiers": [
+            "AgentRoleCatalogError",
+            "analyzeAgentRoleCoverage",
+            "loadRoleCatalog",
+            "projectFormation"
+          ]
+        },
+        {
           "source": "./controller/choice.js",
           "specifiers": [
             "ControllerCheckpointError",
@@ -1784,7 +1819,7 @@
       "exports": [
         "runCli"
       ],
-      "totalLines": 613,
+      "totalLines": 645,
       "hasStructuralAnalysis": true
     },
     "src/connectors/confluence.ts": {
@@ -4021,6 +4056,94 @@
       "totalLines": 201,
       "hasStructuralAnalysis": true
     },
+    "src/controller/agent-inventory.ts": {
+      "filePath": "src/controller/agent-inventory.ts",
+      "contentHash": "b7882c3bf6b87ea4776d049d3775f04ff313926a5cb96c20098c25c5410c5c03",
+      "functions": [
+        {
+          "name": "loadAgentInventory",
+          "params": [
+            "sourceDirectory"
+          ],
+          "returnType": "Promise<AgentInventory>",
+          "exported": true,
+          "lineCount": 42
+        },
+        {
+          "name": "parseAgentDefinition",
+          "params": [
+            "source",
+            "sourcePath",
+            "sourceSha256"
+          ],
+          "returnType": "AgentDefinition",
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "parseTomlString",
+          "params": [
+            "source",
+            "key",
+            "sourcePath"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 12
+        },
+        {
+          "name": "normalizeAgentId",
+          "params": [
+            "value",
+            "sourcePath"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 5
+        }
+      ],
+      "classes": [
+        {
+          "name": "AgentInventoryError",
+          "methods": [
+            "constructor"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 6
+        }
+      ],
+      "imports": [
+        {
+          "source": "node:crypto",
+          "specifiers": [
+            "createHash"
+          ]
+        },
+        {
+          "source": "node:fs/promises",
+          "specifiers": [
+            "readdir",
+            "readFile"
+          ]
+        },
+        {
+          "source": "node:path",
+          "specifiers": [
+            "basename",
+            "extname",
+            "join"
+          ]
+        }
+      ],
+      "exports": [
+        "AgentInventoryError",
+        "loadAgentInventory",
+        "parseAgentDefinition"
+      ],
+      "totalLines": 101,
+      "hasStructuralAnalysis": true
+    },
     "src/controller/agent-profile.ts": {
       "filePath": "src/controller/agent-profile.ts",
       "contentHash": "b187f7a4d800a5ad30058848e3a0b6a3d564481bfca4beb75254dc2ed937ca36",
@@ -4199,6 +4322,229 @@
         "parseAgentProfileCatalog"
       ],
       "totalLines": 193,
+      "hasStructuralAnalysis": true
+    },
+    "src/controller/agent-role.ts": {
+      "filePath": "src/controller/agent-role.ts",
+      "contentHash": "653d1125107ced953a20c6af978994e9335fd9cb0e671ca47f0ad022bb9968a6",
+      "functions": [
+        {
+          "name": "loadRoleCatalog",
+          "params": [
+            "sourcePath"
+          ],
+          "returnType": "Promise<RoleCatalog>",
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "parseRoleCatalog",
+          "params": [
+            "source",
+            "sourcePath"
+          ],
+          "returnType": "RoleCatalog",
+          "exported": true,
+          "lineCount": 19
+        },
+        {
+          "name": "analyzeAgentRoleCoverage",
+          "params": [
+            "inventory",
+            "catalog"
+          ],
+          "returnType": "AgentRoleCoverageReport",
+          "exported": true,
+          "lineCount": 66
+        },
+        {
+          "name": "projectFormation",
+          "params": [
+            "inventory",
+            "catalog",
+            "formation"
+          ],
+          "returnType": "FormationProjection",
+          "exported": true,
+          "lineCount": 33
+        },
+        {
+          "name": "parseRole",
+          "params": [
+            "value",
+            "index"
+          ],
+          "returnType": "RoleDefinition",
+          "exported": false,
+          "lineCount": 29
+        },
+        {
+          "name": "parseAssignment",
+          "params": [
+            "value",
+            "index"
+          ],
+          "returnType": "RoleAssignment",
+          "exported": false,
+          "lineCount": 12
+        },
+        {
+          "name": "extractFrontmatter",
+          "params": [
+            "source",
+            "sourcePath"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "requireRecord",
+          "params": [
+            "value",
+            "field"
+          ],
+          "returnType": "Record<string, unknown>",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "requireExactKeys",
+          "params": [
+            "record",
+            "expected",
+            "field"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "requireNonEmptyList",
+          "params": [
+            "value",
+            "field"
+          ],
+          "returnType": "readonly unknown[]",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "requireNonEmptyStringList",
+          "params": [
+            "value",
+            "field"
+          ],
+          "returnType": "readonly string[]",
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "requireStringList",
+          "params": [
+            "value",
+            "field"
+          ],
+          "returnType": "readonly string[]",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "requireNonEmptyString",
+          "params": [
+            "value",
+            "field"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "requireEnum",
+          "params": [
+            "value",
+            "allowed",
+            "field",
+            "description"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "requireEnumList",
+          "params": [
+            "value",
+            "allowed",
+            "field",
+            "description"
+          ],
+          "returnType": "readonly string[]",
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "requireLiteral",
+          "params": [
+            "record",
+            "field",
+            "expected",
+            "location"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "uniqueSorted",
+          "params": [
+            "values"
+          ],
+          "returnType": "string[]",
+          "exported": false,
+          "lineCount": 3
+        }
+      ],
+      "classes": [
+        {
+          "name": "AgentRoleCatalogError",
+          "methods": [
+            "constructor"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 6
+        }
+      ],
+      "imports": [
+        {
+          "source": "node:fs/promises",
+          "specifiers": [
+            "readFile"
+          ]
+        },
+        {
+          "source": "yaml",
+          "specifiers": [
+            "parseDocument"
+          ]
+        },
+        {
+          "source": "./agent-inventory.js",
+          "specifiers": [
+            "AgentDefinition",
+            "AgentInventory"
+          ]
+        }
+      ],
+      "exports": [
+        "AgentRoleCatalogError",
+        "loadRoleCatalog",
+        "parseRoleCatalog",
+        "analyzeAgentRoleCoverage",
+        "projectFormation"
+      ],
+      "totalLines": 355,
       "hasStructuralAnalysis": true
     },
     "src/controller/checkpoint.ts": {
@@ -4827,7 +5173,7 @@
     },
     "src/controller/formation.ts": {
       "filePath": "src/controller/formation.ts",
-      "contentHash": "de65e4ffd1bc16f4aba62f19e41551c982e399ba981b6fddfd749ba02116646f",
+      "contentHash": "f62d1f568b7c72aca979755cd65ae5dc1607372a71393512f18c157f3a24c57e",
       "functions": [
         {
           "name": "loadFormationCatalog",
@@ -4856,7 +5202,18 @@
           ],
           "returnType": "FormationEntry",
           "exported": false,
-          "lineCount": 45
+          "lineCount": 64
+        },
+        {
+          "name": "parseAgentBinding",
+          "params": [
+            "value",
+            "field",
+            "index"
+          ],
+          "returnType": "{ roleId: string; agentId: string; mode: FormationAgentBindingMode; contextKey: string }",
+          "exported": false,
+          "lineCount": 11
         },
         {
           "name": "parseRelation",
@@ -5005,6 +5362,7 @@
           "source": "./types.js",
           "specifiers": [
             "FormationCatalog",
+            "FormationAgentBindingMode",
             "FormationComplexity",
             "FormationEntry",
             "FormationEntryStatus",
@@ -5021,7 +5379,7 @@
         "loadFormationCatalog",
         "parseFormationCatalog"
       ],
-      "totalLines": 187,
+      "totalLines": 220,
       "hasStructuralAnalysis": true
     },
     "src/controller/identity.ts": {
@@ -5531,7 +5889,7 @@
     },
     "src/controller/types.ts": {
       "filePath": "src/controller/types.ts",
-      "contentHash": "de9c3ecd37a84ff82dd6c9a07b746df4a7a4611f25118f96e850b74cdecefaf2",
+      "contentHash": "6c790bb682581f3bd5c01f4a8faa7d30702b0446f7c30462bc2f7f54af924a34",
       "functions": [],
       "classes": [
         {
@@ -5550,7 +5908,7 @@
       "exports": [
         "ControllerActivationPackageError"
       ],
-      "totalLines": 497,
+      "totalLines": 506,
       "hasStructuralAnalysis": true
     },
     "src/docs/links.ts": {
@@ -11086,6 +11444,101 @@
       "totalLines": 218,
       "hasStructuralAnalysis": true
     },
+    "test/controller-agent-inventory.test.ts": {
+      "filePath": "test/controller-agent-inventory.test.ts",
+      "contentHash": "973e9ab58f8ab31c1b6f65ee7e4f7b1db9e9940fa036db1e29ce664c7787d6ea",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "node:fs/promises",
+          "specifiers": [
+            "mkdtemp"
+          ]
+        },
+        {
+          "source": "node:os",
+          "specifiers": [
+            "tmpdir"
+          ]
+        },
+        {
+          "source": "node:path",
+          "specifiers": [
+            "join",
+            "resolve"
+          ]
+        },
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "../src/controller/agent-inventory.js",
+          "specifiers": [
+            "AgentInventoryError",
+            "loadAgentInventory",
+            "parseAgentDefinition"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 69,
+      "hasStructuralAnalysis": true
+    },
+    "test/controller-agent-library-cli.test.ts": {
+      "filePath": "test/controller-agent-library-cli.test.ts",
+      "contentHash": "1801a192b1e1de9adccd5437c5686460a9a93934eaeb26192efd38b26f7f6480",
+      "functions": [
+        {
+          "name": "runBuiltCli",
+          "params": [
+            "argv"
+          ],
+          "returnType": "Promise<{ code: number | null; stdout: string; stderr: string }>",
+          "exported": false,
+          "lineCount": 11
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "node:child_process",
+          "specifiers": [
+            "spawn"
+          ]
+        },
+        {
+          "source": "node:path",
+          "specifiers": [
+            "resolve"
+          ]
+        },
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 90,
+      "hasStructuralAnalysis": true
+    },
     "test/controller-agent-profile.test.ts": {
       "filePath": "test/controller-agent-profile.test.ts",
       "contentHash": "5a93a2aede6bb8423ade1f0970fae03f761946536e780ecd9b8a58ca556da585",
@@ -11124,6 +11577,54 @@
       ],
       "exports": [],
       "totalLines": 105,
+      "hasStructuralAnalysis": true
+    },
+    "test/controller-agent-role.test.ts": {
+      "filePath": "test/controller-agent-role.test.ts",
+      "contentHash": "59d696ddddbe399220f1f64b44ea4dac9aa13877663d60750ac879792d484324",
+      "functions": [
+        {
+          "name": "report",
+          "params": [
+            "source"
+          ],
+          "returnType": "AgentRoleCoverageReport",
+          "exported": false,
+          "lineCount": 4
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "../src/controller/agent-role.js",
+          "specifiers": [
+            "analyzeAgentRoleCoverage",
+            "parseRoleCatalog",
+            "AgentRoleCoverageReport",
+            "RoleCatalog"
+          ]
+        },
+        {
+          "source": "../src/controller/agent-inventory.js",
+          "specifiers": [
+            "AgentInventory"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 161,
       "hasStructuralAnalysis": true
     },
     "test/controller-checkpoint.test.ts": {
@@ -11214,7 +11715,7 @@
     },
     "test/controller-cli.test.ts": {
       "filePath": "test/controller-cli.test.ts",
-      "contentHash": "9ade45c2c61b49a0e90687ca65fd7b1e964b08435a7a82e654106c460a7d5bbd",
+      "contentHash": "63510a93f145ddbad4eb57a15764fe61b15a8ced724034e5573758e1e5b22261",
       "functions": [
         {
           "name": "runBuiltCli",
@@ -11444,7 +11945,7 @@
     },
     "test/controller-formation.test.ts": {
       "filePath": "test/controller-formation.test.ts",
-      "contentHash": "400b9949b69a8ee6fd1980ed712e8bc0e263fd80ac5266ca82ace7e8bcb7eb7e",
+      "contentHash": "4a3a9fb0905938f76a2747cfd451fc8a4493df450d9ae63c6152309dd0ccc59b",
       "functions": [
         {
           "name": "catalogSource",
@@ -11479,7 +11980,7 @@
         }
       ],
       "exports": [],
-      "totalLines": 154,
+      "totalLines": 178,
       "hasStructuralAnalysis": true
     },
     "test/controller-recipe.test.ts": {
@@ -12287,6 +12788,76 @@
       "totalLines": 200,
       "hasStructuralAnalysis": true
     },
+    "test/fixtures/agents/duplicate/first.toml": {
+      "filePath": "test/fixtures/agents/duplicate/first.toml",
+      "contentHash": "a55ed13c43e033ec76b997318b85fbce6509143cccbb303d095b5e22108751df",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 3,
+      "hasStructuralAnalysis": true
+    },
+    "test/fixtures/agents/duplicate/second.toml": {
+      "filePath": "test/fixtures/agents/duplicate/second.toml",
+      "contentHash": "1d352bef5f8d1fed5a2542b6956cb71e3deca33369457380742829c1ea6f976d",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 3,
+      "hasStructuralAnalysis": true
+    },
+    "test/fixtures/agents/invalid/malformed.toml": {
+      "filePath": "test/fixtures/agents/invalid/malformed.toml",
+      "contentHash": "7db924026a7c68791448d4989b9949c6d5525041cbb97aa1f276c3f27a647fc0",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 3,
+      "hasStructuralAnalysis": true
+    },
+    "test/fixtures/agents/invalid/missing-description.toml": {
+      "filePath": "test/fixtures/agents/invalid/missing-description.toml",
+      "contentHash": "b3a0141eb8cbf53f8f4f420fab26b1032d247fb7e955329528f67c070942b503",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 3,
+      "hasStructuralAnalysis": true
+    },
+    "test/fixtures/agents/invalid/missing-name.toml": {
+      "filePath": "test/fixtures/agents/invalid/missing-name.toml",
+      "contentHash": "66c1b0b84fd41e84d232a53f8d10e2015d21f2b179ce7c4f4b1c0c4b76b457bd",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 3,
+      "hasStructuralAnalysis": true
+    },
+    "test/fixtures/agents/valid/alpha.toml": {
+      "filePath": "test/fixtures/agents/valid/alpha.toml",
+      "contentHash": "efea807ecb3b8df68b47aeab9ff6228fa666d0e230c349e4550e3d5e56f49926",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 4,
+      "hasStructuralAnalysis": true
+    },
+    "test/fixtures/agents/valid/beta.toml": {
+      "filePath": "test/fixtures/agents/valid/beta.toml",
+      "contentHash": "c0cdafccd01aefbe37984bf36c8822a4f646da1a5bfe998d89629b6fffeb49f9",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 4,
+      "hasStructuralAnalysis": true
+    },
     "test/fixtures/ambiguous-mapping.md": {
       "filePath": "test/fixtures/ambiguous-mapping.md",
       "contentHash": "c21d8678ad66c3b4f1e086fb0b70df8cca72066b1452584341c3cd66326b0552",
@@ -12487,6 +13058,26 @@
       "totalLines": 7,
       "hasStructuralAnalysis": true
     },
+    "test/fixtures/formation-agent-bindings-incomplete.md": {
+      "filePath": "test/fixtures/formation-agent-bindings-incomplete.md",
+      "contentHash": "2b687f8edbc91c813257023f01a9b9507ec41560afba26e1e64a7a06356ca14d",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 40,
+      "hasStructuralAnalysis": true
+    },
+    "test/fixtures/formation-agent-bindings.md": {
+      "filePath": "test/fixtures/formation-agent-bindings.md",
+      "contentHash": "a20b2025cbf67bfce6bb7a095af528b3a01cf524fc65046ba62b678300813b7b",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 44,
+      "hasStructuralAnalysis": true
+    },
     "test/fixtures/invalid-milestone.md": {
       "filePath": "test/fixtures/invalid-milestone.md",
       "contentHash": "614039d30b79592c3b9e4b5448bd56adb0364c347f5616187c516f8d0db61464",
@@ -12545,6 +13136,16 @@
       "imports": [],
       "exports": [],
       "totalLines": 7,
+      "hasStructuralAnalysis": true
+    },
+    "test/fixtures/roles.md": {
+      "filePath": "test/fixtures/roles.md",
+      "contentHash": "907f37ef437efe5f566be77eba83860b3c2335636ca874f0b5bff4dff93ddd70",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 46,
       "hasStructuralAnalysis": true
     },
     "test/fixtures/valid-milestone.md": {
