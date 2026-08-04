@@ -36,6 +36,7 @@ This page is the repository’s thematic index. Start from the [root README](../
 
 - [Quick Task Clarifier and Validator](../../contract/agent-library/quick-task-clarifier-validator.md) — first bounded Agent capability contract.
 - [Agent Formation Library catalog](../../contract/agent-library/formation-catalog.md) — scenario inventory, readiness states, prerequisites, and recommendation boundaries.
+- [User-facing Agent Profile Library](../../contract/agent-library/agent-profile-catalog.md) — selectable declarative profiles; recommendation-only and not native host activation. The read-only `list-agent-profiles` CLI command exposes this catalog.
 - [Bounded Validation recipe](../../contract/agent-library/bounded-validation.md) — READY validation profile and output contract.
 - [Bounded Refinement recipe](../../contract/agent-library/bounded-refinement.md) — READY refinement profile and output contract.
 - [Bounded Research recipe](../../contract/agent-library/bounded-research.md) — READY research profile, source boundary, and output contract.

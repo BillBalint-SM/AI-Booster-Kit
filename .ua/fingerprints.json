@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "gitCommitHash": "b2446a6fe9ebcc16032f2d13249cde9b4b28f140",
-  "generatedAt": "2026-08-04T16:28:21.763Z",
+  "gitCommitHash": "f5c0179737992a5840488a6a230c6dcd7db1d3fb",
+  "generatedAt": "2026-08-04T16:55:36.974Z",
   "files": {
     ".github/pull_request_template.md": {
       "filePath": ".github/pull_request_template.md",
@@ -65,7 +65,7 @@
     },
     "README.md": {
       "filePath": "README.md",
-      "contentHash": "ae3b022edcaaa7cab27c808631911e748a7fe8b2bdedaf8141db7f67f684500d",
+      "contentHash": "f5abe5d401445aa9ff85a8ccf5f1f01d199f8cc1057ac516eb111bd5e7afa3fb",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -132,6 +132,16 @@
       "imports": [],
       "exports": [],
       "totalLines": 40,
+      "hasStructuralAnalysis": true
+    },
+    "contract/agent-library/agent-profile-catalog.md": {
+      "filePath": "contract/agent-library/agent-profile-catalog.md",
+      "contentHash": "3d25aadca115eb393d92e06a3fc8c7ac431946858dd6e5ce57e7c10dcda475b4",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 364,
       "hasStructuralAnalysis": true
     },
     "contract/agent-library/bounded-debugging.md": {
@@ -436,7 +446,7 @@
     },
     "docs/project/current-state.md": {
       "filePath": "docs/project/current-state.md",
-      "contentHash": "85e3ca1981423e8d13a5374ff1da0cc4c540088ace13b8e85e85f715a4987e02",
+      "contentHash": "f30e10c7170b3dcbd89acd2c7eac8c932c5e9e391d6beda0996505bffff97781",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -446,17 +456,17 @@
     },
     "docs/project/documentation-map.md": {
       "filePath": "docs/project/documentation-map.md",
-      "contentHash": "ddac6ce7f24f069e1fdddaf586d26e6ec3da80b23839200d83f336721cbcfa78",
+      "contentHash": "306c1759c21327591a8df6849e4e31052c44bb313223d475c85e2930fd002bec",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 68,
+      "totalLines": 69,
       "hasStructuralAnalysis": true
     },
     "docs/project/roadmap.md": {
       "filePath": "docs/project/roadmap.md",
-      "contentHash": "7a3f58721c061f82964d341cc80e7034b41435861c4e20fe0007bb84a82bac2d",
+      "contentHash": "5695d6da95a447f393ae00ce7d96e5f073f21e812520ba83fe8526b0cd02a28d",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -1182,7 +1192,7 @@
     },
     "src/cli.ts": {
       "filePath": "src/cli.ts",
-      "contentHash": "fac42f676afbb92a5c78da72847c4e2f3b376c1f44be911c10f1a84d479226aa",
+      "contentHash": "e9254267eaccaa785b9cc28e22861f15ecb0ffe20f59d13de276e230fd70a948",
       "functions": [
         {
           "name": "runCli",
@@ -1200,7 +1210,7 @@
           ],
           "returnType": "Promise<number>",
           "exported": false,
-          "lineCount": 29
+          "lineCount": 30
         },
         {
           "name": "runQuickTask",
@@ -1219,6 +1229,15 @@
           "returnType": "Promise<number>",
           "exported": false,
           "lineCount": 22
+        },
+        {
+          "name": "runListAgentProfiles",
+          "params": [
+            "argv"
+          ],
+          "returnType": "Promise<number>",
+          "exported": false,
+          "lineCount": 11
         },
         {
           "name": "runResolveCheckpoint",
@@ -1661,6 +1680,13 @@
           ]
         },
         {
+          "source": "./controller/agent-profile.js",
+          "specifiers": [
+            "AgentProfileCatalogError",
+            "loadAgentProfileCatalog"
+          ]
+        },
+        {
           "source": "./controller/choice.js",
           "specifiers": [
             "ControllerCheckpointError",
@@ -1758,7 +1784,7 @@
       "exports": [
         "runCli"
       ],
-      "totalLines": 598,
+      "totalLines": 613,
       "hasStructuralAnalysis": true
     },
     "src/connectors/confluence.ts": {
@@ -2269,7 +2295,7 @@
     },
     "src/context/markdown.ts": {
       "filePath": "src/context/markdown.ts",
-      "contentHash": "494f8440ed99a57945d11568fe85bddb25dbfbe432e87ae8e7094bfc78b54759",
+      "contentHash": "747920a91110cc504fb16060a98b6b99997a6a8e23af2cc33742cf627c2373ef",
       "functions": [
         {
           "name": "parseWorkContext",
@@ -2504,7 +2530,7 @@
     },
     "src/context/resume.ts": {
       "filePath": "src/context/resume.ts",
-      "contentHash": "1a1bdebf224927cf2f0cc4e6ddc1becd72e048292321673a121839c52862490f",
+      "contentHash": "2ce905f1496d877bff7f97190816dac65b8a85488c276834bc0d9289906d2f15",
       "functions": [
         {
           "name": "evaluateSessionResume",
@@ -2881,7 +2907,7 @@
     },
     "src/context/types.ts": {
       "filePath": "src/context/types.ts",
-      "contentHash": "585feb900ede108ed37bec7ead9c4f3c6fffe9c05d7422aa04264482094cbfd2",
+      "contentHash": "552f7ddd5e320f95f4cebb5309ec6ece26bdf24f33220573f86dc7246b8620a7",
       "functions": [],
       "classes": [
         {
@@ -2915,7 +2941,7 @@
     },
     "src/context/validation.ts": {
       "filePath": "src/context/validation.ts",
-      "contentHash": "c9b0126284e86c55273a2839d95d57298f4f7760cc230624ef74ed8615cbadef",
+      "contentHash": "afb7228decede6c2c2bb3abb1c0a8a8f55bcf77816fdbe25e58dbb03d24854ea",
       "functions": [
         {
           "name": "validateMilestoneContext",
@@ -3810,7 +3836,7 @@
     },
     "src/controller/activation-storage.ts": {
       "filePath": "src/controller/activation-storage.ts",
-      "contentHash": "137bdbc72db13b326094ee30787ecb27f1d6acf8eca63826c226412ed93d9a59",
+      "contentHash": "c78a5ce29589fd748bd3c726f0c8a099100223d806b66e4e6b0cc7a99d31f3ac",
       "functions": [
         {
           "name": "saveActivationPackage",
@@ -3993,6 +4019,186 @@
         "saveActivationPackage"
       ],
       "totalLines": 201,
+      "hasStructuralAnalysis": true
+    },
+    "src/controller/agent-profile.ts": {
+      "filePath": "src/controller/agent-profile.ts",
+      "contentHash": "b187f7a4d800a5ad30058848e3a0b6a3d564481bfca4beb75254dc2ed937ca36",
+      "functions": [
+        {
+          "name": "loadAgentProfileCatalog",
+          "params": [
+            "sourcePath"
+          ],
+          "returnType": "Promise<AgentProfileCatalog>",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "parseAgentProfileCatalog",
+          "params": [
+            "source",
+            "sourcePath"
+          ],
+          "returnType": "AgentProfileCatalog",
+          "exported": true,
+          "lineCount": 28
+        },
+        {
+          "name": "parseProfile",
+          "params": [
+            "value",
+            "index"
+          ],
+          "returnType": "AgentProfile",
+          "exported": false,
+          "lineCount": 21
+        },
+        {
+          "name": "extractFrontmatter",
+          "params": [
+            "source",
+            "sourcePath"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "requireRecord",
+          "params": [
+            "value",
+            "field"
+          ],
+          "returnType": "Record<string, unknown>",
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "requireExactKeys",
+          "params": [
+            "record",
+            "expected",
+            "field"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "requireNonEmptyString",
+          "params": [
+            "value",
+            "field"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "requireNonEmptyList",
+          "params": [
+            "value",
+            "field"
+          ],
+          "returnType": "readonly unknown[]",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "requireNonEmptyStringList",
+          "params": [
+            "value",
+            "field"
+          ],
+          "returnType": "readonly string[]",
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "requireEnumList",
+          "params": [
+            "value",
+            "allowed",
+            "field",
+            "description"
+          ],
+          "returnType": "readonly string[]",
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "requireLiteralValue",
+          "params": [
+            "value",
+            "expected",
+            "field"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "requireLiteral",
+          "params": [
+            "record",
+            "field",
+            "expected",
+            "location"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "requireBoolean",
+          "params": [
+            "value",
+            "expected",
+            "field"
+          ],
+          "returnType": "true",
+          "exported": false,
+          "lineCount": 4
+        }
+      ],
+      "classes": [
+        {
+          "name": "AgentProfileCatalogError",
+          "methods": [
+            "constructor"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 6
+        }
+      ],
+      "imports": [
+        {
+          "source": "node:fs/promises",
+          "specifiers": [
+            "readFile"
+          ]
+        },
+        {
+          "source": "yaml",
+          "specifiers": [
+            "parseDocument"
+          ]
+        },
+        {
+          "source": "./types.js",
+          "specifiers": [
+            "FormationRole"
+          ]
+        }
+      ],
+      "exports": [
+        "AgentProfileCatalogError",
+        "loadAgentProfileCatalog",
+        "parseAgentProfileCatalog"
+      ],
+      "totalLines": 193,
       "hasStructuralAnalysis": true
     },
     "src/controller/checkpoint.ts": {
@@ -5325,7 +5531,7 @@
     },
     "src/controller/types.ts": {
       "filePath": "src/controller/types.ts",
-      "contentHash": "99354940bd70116e67f256f393f9cc6e814c8bdab59a7bc36520211f6d4e6670",
+      "contentHash": "de9c3ecd37a84ff82dd6c9a07b746df4a7a4611f25118f96e850b74cdecefaf2",
       "functions": [],
       "classes": [
         {
@@ -10259,7 +10465,7 @@
     },
     "test/context-storage-cli.test.ts": {
       "filePath": "test/context-storage-cli.test.ts",
-      "contentHash": "a9c3fc04d4720d632dc2367e344a5e686885799a8f4a14ba5951997bcc3ea132",
+      "contentHash": "3b578dc7a4638ccb364ad00cac495cd93f4df56dba5912c79999adc831636f32",
       "functions": [
         {
           "name": "withTemporaryDirectory",
@@ -10351,7 +10557,7 @@
     },
     "test/context-validation.test.ts": {
       "filePath": "test/context-validation.test.ts",
-      "contentHash": "51082468fd034c26196edca608b295ccc15f957a8bc68a3279252bd6d915696d",
+      "contentHash": "6aa5255f04d7dbb082cc56845db59177b726e7a3444bbc81d51caaadab1178a4",
       "functions": [],
       "classes": [],
       "imports": [
@@ -10462,7 +10668,7 @@
     },
     "test/controller-activation-boundary-cli.test.ts": {
       "filePath": "test/controller-activation-boundary-cli.test.ts",
-      "contentHash": "5bb8ec438a6bb0cb95c43835e457968d04ba8f9fe40a252721510e78952197f1",
+      "contentHash": "3cb2fd0e790e146f008f73274ebd9900febcebb5265cf96febfda48125aee2a3",
       "functions": [
         {
           "name": "prepareArgs",
@@ -10880,6 +11086,46 @@
       "totalLines": 218,
       "hasStructuralAnalysis": true
     },
+    "test/controller-agent-profile.test.ts": {
+      "filePath": "test/controller-agent-profile.test.ts",
+      "contentHash": "5a93a2aede6bb8423ade1f0970fae03f761946536e780ecd9b8a58ca556da585",
+      "functions": [
+        {
+          "name": "catalogSource",
+          "params": [
+            "profile"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 8
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "../src/controller/agent-profile.js",
+          "specifiers": [
+            "loadAgentProfileCatalog",
+            "parseAgentProfileCatalog"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 105,
+      "hasStructuralAnalysis": true
+    },
     "test/controller-checkpoint.test.ts": {
       "filePath": "test/controller-checkpoint.test.ts",
       "contentHash": "2b9b986b2b6e39eb9b38137c5d4d8386b7d370cf70418c8967061a035ef7de3c",
@@ -10968,7 +11214,7 @@
     },
     "test/controller-cli.test.ts": {
       "filePath": "test/controller-cli.test.ts",
-      "contentHash": "c697dd497aabc628fbf31572c20762e65b84f5e93749ba3c0f2103d11a33a49f",
+      "contentHash": "9ade45c2c61b49a0e90687ca65fd7b1e964b08435a7a82e654106c460a7d5bbd",
       "functions": [
         {
           "name": "runBuiltCli",
@@ -11024,7 +11270,7 @@
         }
       ],
       "exports": [],
-      "totalLines": 298,
+      "totalLines": 326,
       "hasStructuralAnalysis": true
     },
     "test/controller-debugging-recipe.test.ts": {
@@ -11541,7 +11787,7 @@
     },
     "test/e2e.test.ts": {
       "filePath": "test/e2e.test.ts",
-      "contentHash": "eff84006fce4fb863b45677461fb4945479cbcf5bfe940975463e951ebe71899",
+      "contentHash": "56339b61b5042fcb94da61936932c99cae7cb5ba4ace27b58774eb9b22d538f9",
       "functions": [
         {
           "name": "createOrchestrator",
@@ -13261,7 +13507,7 @@
     },
     "test/session-state.test.ts": {
       "filePath": "test/session-state.test.ts",
-      "contentHash": "3836c39c3bfceee605fe44a5ca1f6f5231202de8e96617449f4ff69ce045cc41",
+      "contentHash": "48a06f7963b56c9ae1cead6634e47ee77f1164b3c2cf2cbcfbd81f34277df7c1",
       "functions": [],
       "classes": [],
       "imports": [

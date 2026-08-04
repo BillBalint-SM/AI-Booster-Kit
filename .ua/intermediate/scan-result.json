@@ -1,6 +1,6 @@
 {
   "scriptCompleted": true,
-  "contentDigest": "3e4287633b7594afe30bfb38c389da960c6df94ec7ab3ee2dae4a82ac3524fc4",
+  "contentDigest": "09aec973904a9dcb58b10b6f7432be143dc1912168d178c3897ba7a1ba8fd772",
   "files": [
     {
       "path": ".github/pull_request_template.md",
@@ -66,6 +66,12 @@
       "path": "contract/adapters/cursor.md",
       "language": "markdown",
       "sizeLines": 39,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "contract/agent-library/agent-profile-catalog.md",
+      "language": "markdown",
+      "sizeLines": 363,
       "fileCategory": "docs"
     },
     {
@@ -257,7 +263,7 @@
     {
       "path": "docs/project/documentation-map.md",
       "language": "markdown",
-      "sizeLines": 67,
+      "sizeLines": 68,
       "fileCategory": "docs"
     },
     {
@@ -401,7 +407,7 @@
     {
       "path": "src/cli.ts",
       "language": "typescript",
-      "sizeLines": 597,
+      "sizeLines": 612,
       "fileCategory": "code"
     },
     {
@@ -504,6 +510,12 @@
       "path": "src/controller/activation-storage.ts",
       "language": "typescript",
       "sizeLines": 200,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/controller/agent-profile.ts",
+      "language": "typescript",
+      "sizeLines": 192,
       "fileCategory": "code"
     },
     {
@@ -909,6 +921,12 @@
       "fileCategory": "code"
     },
     {
+      "path": "test/controller-agent-profile.test.ts",
+      "language": "typescript",
+      "sizeLines": 104,
+      "fileCategory": "code"
+    },
+    {
       "path": "test/controller-checkpoint.test.ts",
       "language": "typescript",
       "sizeLines": 54,
@@ -923,7 +941,7 @@
     {
       "path": "test/controller-cli.test.ts",
       "language": "typescript",
-      "sizeLines": 297,
+      "sizeLines": 325,
       "fileCategory": "code"
     },
     {
@@ -1341,24 +1359,24 @@
       "fileCategory": "docs"
     }
   ],
-  "totalFiles": 223,
+  "totalFiles": 226,
   "filteredByIgnore": 82,
   "estimatedComplexity": "large",
   "stats": {
-    "filesScanned": 223,
+    "filesScanned": 226,
     "byCategory": {
-      "docs": 56,
+      "docs": 57,
       "infra": 1,
-      "code": 139,
+      "code": 141,
       "config": 23,
       "markup": 2,
       "script": 2
     },
     "byLanguage": {
-      "markdown": 56,
+      "markdown": 57,
       "yaml": 1,
       "unknown": 1,
-      "typescript": 133,
+      "typescript": 135,
       "json": 23,
       "css": 2,
       "javascript": 5,

@@ -15,6 +15,7 @@ import { createQuickTaskActivationPackage, parseActivationProfile } from "./cont
 import { evaluateQuickTask, ControllerEvaluationError } from "./controller/evaluate.js";
 import { FormationCatalogError, loadFormationCatalog } from "./controller/formation.js";
 import { FormationRecommendationError, recommendFormation } from "./controller/formation-recommendation.js";
+import { AgentProfileCatalogError, loadAgentProfileCatalog } from "./controller/agent-profile.js";
 import { ControllerCheckpointError, parseCheckpointChoice } from "./controller/choice.js";
 import { ControllerRecipeError, loadQuickTaskRecipe } from "./controller/recipe.js";
 import { ControllerRequestError, parseQuickTaskRequest } from "./controller/request.js";
@@ -40,6 +41,7 @@ Commands:
   readiness     Generate a local G2AS Sandbox Readiness Certificate
   quick-task    Recommend the local Quick Task recipe
   recommend-formation  Recommend a catalog formation without activation
+  list-agent-profiles  List user-facing Agent profiles without activation
   resolve-checkpoint  Resolve an explicit local Quick Task checkpoint
   activate-quick-task  Issue an ephemeral Quick Task Activation Package
   prepare-activation  Prepare an explicit M2 activation package
@@ -80,6 +82,7 @@ async function dispatchCli(argv: readonly string[]): Promise<number> {
   if (command === "readiness") return runReadiness(argv.slice(1));
   if (command === "quick-task") return runQuickTask(argv.slice(1));
   if (command === "recommend-formation") return runFormationRecommendation(argv.slice(1));
+  if (command === "list-agent-profiles") return runListAgentProfiles(argv.slice(1));
   if (command === "resolve-checkpoint") return runResolveCheckpoint(argv.slice(1));
   if (command === "activate-quick-task") return runActivateQuickTask(argv.slice(1));
   if (command === "prepare-activation") return runPrepareActivation(argv.slice(1));
@@ -133,6 +136,18 @@ async function runFormationRecommendation(argv: readonly string[]): Promise<numb
   } catch (error) {
     if (error instanceof ControllerRequestError) return stoppedController("FORMATION_REQUEST_VALIDATION_FAILED", "The formation recommendation request was rejected", 3);
     if (error instanceof FormationCatalogError || error instanceof FormationRecommendationError) return stoppedController("FORMATION_RECOMMENDATION_FAILED", "The formation recommendation stopped safely", 3);
+    throw error;
+  }
+}
+
+async function runListAgentProfiles(argv: readonly string[]): Promise<number> {
+  if (argv.length !== 0) return stoppedController("COMMAND_CONFIGURATION_INVALID", "list-agent-profiles does not accept arguments", 4);
+  try {
+    const catalog = await loadAgentProfileCatalog("contract/agent-library/agent-profile-catalog.md");
+    process.stdout.write(`${JSON.stringify(catalog)}\n`);
+    return 0;
+  } catch (error) {
+    if (error instanceof AgentProfileCatalogError) return stoppedController("AGENT_PROFILE_CATALOG_INVALID", "The Agent profile catalog stopped safely", 3);
     throw error;
   }
 }
