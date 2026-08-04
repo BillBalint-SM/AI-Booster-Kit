@@ -83,6 +83,21 @@ Every handoff should contain:
 
 The handoff must be sufficient for a fresh agent to continue without relying on hidden conversation memory.
 
+## Role packets and Agent reuse
+
+The Role is the stable outcome contract; the Agent is a capability source that
+may fill one or more Roles. A clean Role packet contains only the five declared
+layers—`IDENTITY`, `ROLE`, `TASK`, `EVIDENCE`, and `HANDOFF`—plus the named
+shared artifacts. The same Agent may serve multiple Roles only with distinct
+`contextKey` values. Several Agents may fulfill one Role, but exactly one
+`lead` owns its Role artifact; contributors and reviewers hand off evidence
+through the declared contract instead of sharing a hidden transcript.
+
+The read-only `inspect-agent-library` projection validates these boundaries
+against the global Agent inventory, the Role catalog, and a Formation entry.
+Unknown Agents, unknown Roles, duplicate bindings, context collisions, missing
+leads, and invalid handoff references remain visible as `NOT_READY` findings.
+
 ## Context hygiene and anti-hallucination rules
 
 - Start each bounded task from a clean context packet.

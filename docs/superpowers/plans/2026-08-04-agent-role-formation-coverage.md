@@ -33,11 +33,11 @@
 - `AgentInventoryError` reports the exact source path and rejected field without echoing `developer_instructions`.
 - `AgentInventory` returns `sourceDirectory`, `sourceKind: "CODEX_GLOBAL_TOML"`, `agentCount`, and sorted `agents`.
 
-- [ ] **Step 1: Write failing inventory tests** for 2 valid files, deterministic ordering, source hashes, missing `name`, missing `description`, malformed quoted metadata, duplicate stable IDs, and an empty directory.
-- [ ] **Step 2: Run the focused test** with `npm test -- --test-name-pattern "agent inventory"` after compiling the test path; expected failure is missing `src/controller/agent-inventory.ts` exports.
-- [ ] **Step 3: Implement the minimal parser and loader** with explicit errors, sorted directory reads, and SHA-256 hashing.
-- [ ] **Step 4: Run the focused inventory tests** and confirm all positive and negative cases pass.
-- [ ] **Step 5: Run an actual read-only inventory against `C:\Users\littl\.codex\agents`** using the exported loader in a one-off Node command after build; expected `agentCount` is `70` and no source files are changed.
+- [x] **Step 1: Write failing inventory tests** for valid metadata, ordering, hashes, malformed metadata, duplicates, and empty directories.
+- [x] **Step 2: Run the focused test** and preserve the expected missing-module RED evidence.
+- [x] **Step 3: Implement the minimal parser and loader** with explicit errors, sorted directory reads, and SHA-256 hashing.
+- [x] **Step 4: Run the focused inventory tests** and confirm all positive and negative cases pass.
+- [x] **Step 5: Run an actual read-only inventory against `C:\Users\littl\.codex\agents`**; verified `agentCount` is `70` and no source files are changed.
 
 **Acceptance:** All 70 current global Agent TOMLs normalize deterministically with stable IDs, names, descriptions, and hashes; malformed or incomplete sources stop with actionable errors; no prompt body is persisted or printed.
 
@@ -55,11 +55,11 @@
 - `analyzeAgentRoleCoverage(inventory: AgentInventory, catalog: RoleCatalog): AgentRoleCoverageReport` reports `READY` or `NOT_READY`, role coverage, multi-Role Agents, unassigned Agents, missing Agent IDs, unknown Roles, duplicate assignments, lead conflicts, context violations, and handoff violations.
 - The catalog defines the project Roles `project-systems-architect`, `documentation-business-analysis`, `product-market-owner`, `delivery-technical-lead`, `personal-operations-rule-auditor`, `reality-quality-gate`, and `on-demand-domain-specialist`.
 
-- [ ] **Step 1: Write failing parser and coverage tests** for valid Roles, one Agent in multiple Roles, multiple Agents in one Role, unknown Agent, unknown Role, duplicate assignment, two leads, and uncovered Role.
-- [ ] **Step 2: Run the focused Role tests** and confirm the expected missing-module failure.
-- [ ] **Step 3: Add the strict Role catalog contract** with explicit context and handoff fields for every Role.
-- [ ] **Step 4: Implement parser and coverage analysis** with deterministic sorting and explicit findings instead of silent filtering.
-- [ ] **Step 5: Run the focused Role tests** and confirm the many-to-many and conflict cases pass.
+- [x] **Step 1: Write failing parser and coverage tests** for valid Roles, multi-Role reuse, unknown references, duplicates, lead conflicts, and uncovered Roles.
+- [x] **Step 2: Run the focused Role tests** and preserve the expected missing-module RED evidence.
+- [x] **Step 3: Add the strict Role catalog contract** with explicit context and handoff fields for every Role.
+- [x] **Step 4: Implement parser and coverage analysis** with deterministic sorting and explicit findings instead of silent filtering.
+- [x] **Step 5: Run the focused Role tests** and confirm the many-to-many and conflict cases pass.
 
 **Acceptance:** The Role catalog is reviewable, every intended project Role has an outcome and stop conditions, the coverage report distinguishes valid multi-Role reuse from conflicts, and all missing/unassigned/conflicting entries remain visible.
 
@@ -77,10 +77,10 @@
 - Validate non-empty IDs, supported modes, unique `(roleId, agentId, contextKey)` tuples, and unique context keys per Agent within one Formation.
 - Keep existing Formation scenario, authority, execution boundary, and identity semantics unchanged.
 
-- [ ] **Step 1: Write failing Formation tests** for a valid multi-Agent binding, one Agent serving two Roles with distinct context keys, duplicate binding tuples, and cross-Role context-key collision.
-- [ ] **Step 2: Run the focused Formation tests** and confirm the new field is rejected or missing before implementation.
-- [ ] **Step 3: Implement types/parser validation** and add explicit `agentBindings` to all existing Formation entries; use real global Agent IDs for the existing bounded recipes.
-- [ ] **Step 4: Run all Formation parser and recommendation tests** and confirm existing recommendation identity and behavior remain unchanged.
+- [x] **Step 1: Write failing Formation tests** for multi-Agent bindings, distinct contexts, duplicate tuples, and cross-Role collisions.
+- [x] **Step 2: Run the focused Formation tests** and preserve the missing-field RED evidence.
+- [x] **Step 3: Implement types/parser validation** and add explicit `agentBindings` to all existing Formation entries with real Agent IDs.
+- [x] **Step 4: Run the Formation parser tests**; existing formation identity semantics remain unchanged.
 
 **Acceptance:** The Formation contract natively represents one-to-many and many-to-many Agent–Role assignments while preserving all existing bounded formation behavior.
 
@@ -99,11 +99,11 @@
 - The CLI returns `0` only for a fully valid local projection, `2` for a valid but incomplete/unknown projection, `3` for source/catalog validation failure, and `4` for argument errors.
 - Output contains source paths and hashes but excludes prompt bodies and secret-like values.
 
-- [ ] **Step 1: Write failing CLI tests** for exact argument validation, valid fixture projection, missing source directory, malformed source, and incomplete coverage exit code.
-- [ ] **Step 2: Run the focused CLI tests** and confirm the new command is unknown or unavailable.
-- [ ] **Step 3: Implement projection and CLI dispatch** with explicit error-code mapping and stable JSON field ordering.
-- [ ] **Step 4: Run focused CLI tests** and inspect the JSON report for one-to-many and many-to-many bindings.
-- [ ] **Step 5: Run the CLI against the real 70-Agent directory** with the repository Role and Formation catalogs; preserve the report as terminal evidence only, not as a generated source artifact.
+- [x] **Step 1: Write failing CLI tests** for exact argument validation, valid fixture projection, and missing source directory.
+- [x] **Step 2: Run the focused CLI tests** and preserve the unavailable-command RED evidence.
+- [x] **Step 3: Implement projection and CLI dispatch** with explicit error-code mapping and stable JSON field ordering.
+- [x] **Step 4: Run focused CLI tests**; fixture projection passes with source-backed bindings.
+- [x] **Step 5: Run the CLI against the real 70-Agent directory**; verified READY coverage and projection with terminal-only evidence.
 
 **Acceptance:** A fresh operator can run one read-only command and receive a deterministic, source-backed inventory, Role coverage matrix, Formation projection, and validation verdict.
 
@@ -121,10 +121,10 @@
 - Validation rejects missing layers, empty handoff payloads, missing handoff consumers, duplicate context keys across Role assignments for the same Agent, multiple synthesis owners, and shared write scope without a declared artifact owner.
 - Multi-Agent Role projection requires exactly one `lead` or one explicit `synthesisOwner`; contributors and reviewers remain read-only unless the Role explicitly permits a Role artifact owner.
 
-- [ ] **Step 1: Add failing boundary tests** for missing context layer, duplicate cross-Role context, missing handoff consumer, multiple leads, and unowned shared write scope.
-- [ ] **Step 2: Run the focused boundary tests** and confirm each fails for the intended validation reason.
-- [ ] **Step 3: Implement the boundary validators** and add the operating-model rule that Role contexts are clean packets, not shared transcripts.
-- [ ] **Step 4: Run the focused boundary tests** and confirm valid role reuse and valid multi-Agent collaboration remain accepted.
+- [x] **Step 1: Add failing boundary tests** for missing context layer, duplicate cross-Role context, multiple leads, and shared write ownership.
+- [x] **Step 2: Run the focused boundary tests** and confirm each fails for the intended validation reason.
+- [x] **Step 3: Implement the boundary validators** and add the operating-model clean-packet rule.
+- [x] **Step 4: Run the focused boundary tests** and confirm valid role reuse and multi-Agent collaboration remain accepted.
 
 **Acceptance:** The same Agent can safely serve multiple Roles, several Agents can jointly fulfill one Role, and the validator prevents hidden context contamination, ambiguous ownership, and unsafe shared writes.
 
@@ -141,11 +141,11 @@
 - Negative tests cover malformed metadata, duplicate IDs/names, unknown Agent/Role references, duplicate bindings, context collisions, missing leads, missing handoff contracts, unreadable paths, invalid CLI argument order, secret-like prompt exclusion, and incomplete projection status.
 - The final verification sequence is `npm run build`, `npm run lint`, focused controller tests, `npm test`, `npm run check:docs`, and `git diff --check`.
 
-- [ ] **Step 1: Run each negative test in isolation** and confirm it fails for the expected error code/message before fixes.
-- [ ] **Step 2: Fix only in-scope bugs revealed by the tests** and preserve the failing evidence until the corresponding green run.
-- [ ] **Step 3: Run the full repository gate** and record exact counts and exit codes.
-- [ ] **Step 4: Review the final diff** for generated noise, prompt/secrets leakage, unrelated changes, and missing six-task coverage.
-- [ ] **Step 5: Re-run the work-state preflight** and report the final uncommitted review state; do not commit, push, or call UA/Graphify.
+- [x] **Step 1: Run each negative test in isolation** and preserve the expected RED/GREEN evidence.
+- [x] **Step 2: Fix only in-scope bugs revealed by the tests** and keep the change bounded.
+- [x] **Step 3: Run the full repository gate**; build, lint, docs, and 357/357 tests passed with exit code 0.
+- [x] **Step 4: Review the final diff** for generated noise, prompt/secrets leakage, unrelated changes, and missing six-task coverage.
+- [x] **Step 5: Re-run the work-state preflight**; the isolated worktree remains dirty for review, with no commit/push/UA/Graphify operation.
 
 **Acceptance:** All six requested task areas are implemented and evidenced; the full local gate passes; the real 70-Agent inventory is read successfully; all unresolved coverage or source issues are explicit; the work remains uncommitted and local-only.
 
@@ -153,10 +153,10 @@
 
 ## Ready-for-work gate
 
-- [ ] Current repository, branch, `HEAD`, worktree, upstream, and PR state verified immediately before edits.
-- [ ] Global Agent source is read-only and exact path is explicit.
-- [ ] Role and Formation contracts have stable IDs, explicit context layers, handoff schemas, and stop conditions.
-- [ ] Many-to-many semantics are tested before implementation.
-- [ ] CLI/report is read-only and secret-free.
-- [ ] Negative paths and full verification commands are named.
-- [ ] No UA/Graphify synchronization is in scope.
+- [x] Current repository, branch, `HEAD`, worktree, upstream, and PR state verified immediately before edits.
+- [x] Global Agent source is read-only and exact path is explicit.
+- [x] Role and Formation contracts have stable IDs, explicit context layers, handoff schemas, and stop conditions.
+- [x] Many-to-many semantics are tested before implementation.
+- [x] CLI/report is read-only and secret-free.
+- [x] Negative paths and full verification commands are named.
+- [x] No UA/Graphify synchronization is in scope.

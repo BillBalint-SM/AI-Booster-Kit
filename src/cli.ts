@@ -16,6 +16,8 @@ import { evaluateQuickTask, ControllerEvaluationError } from "./controller/evalu
 import { FormationCatalogError, loadFormationCatalog } from "./controller/formation.js";
 import { FormationRecommendationError, recommendFormation } from "./controller/formation-recommendation.js";
 import { AgentProfileCatalogError, loadAgentProfileCatalog } from "./controller/agent-profile.js";
+import { AgentInventoryError, loadAgentInventory } from "./controller/agent-inventory.js";
+import { AgentRoleCatalogError, analyzeAgentRoleCoverage, loadRoleCatalog, projectFormation } from "./controller/agent-role.js";
 import { ControllerCheckpointError, parseCheckpointChoice } from "./controller/choice.js";
 import { ControllerRecipeError, loadQuickTaskRecipe } from "./controller/recipe.js";
 import { ControllerRequestError, parseQuickTaskRequest } from "./controller/request.js";
@@ -42,6 +44,7 @@ Commands:
   quick-task    Recommend the local Quick Task recipe
   recommend-formation  Recommend a catalog formation without activation
   list-agent-profiles  List user-facing Agent profiles without activation
+  inspect-agent-library  Read-only global Agent, Role, and Formation projection
   resolve-checkpoint  Resolve an explicit local Quick Task checkpoint
   activate-quick-task  Issue an ephemeral Quick Task Activation Package
   prepare-activation  Prepare an explicit M2 activation package
@@ -83,6 +86,7 @@ async function dispatchCli(argv: readonly string[]): Promise<number> {
   if (command === "quick-task") return runQuickTask(argv.slice(1));
   if (command === "recommend-formation") return runFormationRecommendation(argv.slice(1));
   if (command === "list-agent-profiles") return runListAgentProfiles(argv.slice(1));
+  if (command === "inspect-agent-library") return runInspectAgentLibrary(argv.slice(1));
   if (command === "resolve-checkpoint") return runResolveCheckpoint(argv.slice(1));
   if (command === "activate-quick-task") return runActivateQuickTask(argv.slice(1));
   if (command === "prepare-activation") return runPrepareActivation(argv.slice(1));
@@ -148,6 +152,34 @@ async function runListAgentProfiles(argv: readonly string[]): Promise<number> {
     return 0;
   } catch (error) {
     if (error instanceof AgentProfileCatalogError) return stoppedController("AGENT_PROFILE_CATALOG_INVALID", "The Agent profile catalog stopped safely", 3);
+    throw error;
+  }
+}
+
+async function runInspectAgentLibrary(argv: readonly string[]): Promise<number> {
+  if (
+    argv[0] !== "--source-dir" || argv[1] === undefined ||
+    argv[2] !== "--role-catalog" || argv[3] === undefined ||
+    argv[4] !== "--formation-catalog" || argv[5] === undefined ||
+    argv.length !== 6
+  ) {
+    return stoppedController("COMMAND_CONFIGURATION_INVALID", "inspect-agent-library requires exactly --source-dir <path> --role-catalog <path> --formation-catalog <path>", 4);
+  }
+
+  try {
+    const inventory = await loadAgentInventory(argv[1]);
+    const roleCatalog = await loadRoleCatalog(argv[3]);
+    const formationCatalog = await loadFormationCatalog(argv[5]);
+    const coverage = analyzeAgentRoleCoverage(inventory, roleCatalog);
+    const projections = formationCatalog.formations.map((formation) => projectFormation(inventory, roleCatalog, formation));
+    const projection = projections[0];
+    if (projection === undefined) return stoppedController("AGENT_LIBRARY_INSPECTION_FAILED", "The formation catalog did not contain a projection target", 3);
+    process.stdout.write(`${JSON.stringify({ inventory, coverage, projection, projections })}\n`);
+    return coverage.status === "READY" && projections.every((candidate) => candidate.status === "READY") ? 0 : 2;
+  } catch (error) {
+    if (error instanceof AgentInventoryError || error instanceof AgentRoleCatalogError || error instanceof FormationCatalogError) {
+      return stoppedController("AGENT_LIBRARY_INSPECTION_FAILED", "The read-only Agent library inspection stopped safely", 3);
+    }
     throw error;
   }
 }

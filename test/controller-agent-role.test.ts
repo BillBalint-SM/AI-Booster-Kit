@@ -89,6 +89,12 @@ test("role catalog: parses roles, context layers, handoffs, and assignments", ()
   assert.equal(catalog.roles[0]?.contextContract.isolated, true);
 });
 
+test("role catalog: rejects a context contract that omits a required layer", () => {
+  const source = validCatalogSource.replace("layers: [IDENTITY, ROLE, TASK, EVIDENCE, HANDOFF]", "layers: [IDENTITY, ROLE, TASK, EVIDENCE]");
+
+  assert.throws(() => parseRoleCatalog(source, "fixtures/roles.md"), /contextContract\.layers.*must include/);
+});
+
 test("role coverage: accepts one Agent in multiple Roles with isolated contexts", () => {
   const result = report();
 
@@ -113,15 +119,23 @@ test("role coverage: reports an unknown Role reference", () => {
 });
 
 test("role coverage: reports duplicate assignments and lead conflicts", () => {
-  const duplicate = validCatalogSource.replace(
-    "  - roleId: validator\n    agentId: beta",
-    "  - roleId: planner\n    agentId: alpha\n    mode: lead\n    contextKey: planner-alpha-duplicate\n    writeScope: ROLE_ARTIFACT\n  - roleId: validator\n    agentId: beta",
+  const source = validCatalogSource.replace(
+    "    contextKey: validator-beta\n    writeScope: ROLE_ARTIFACT\n---",
+    "    contextKey: validator-beta\n    writeScope: ROLE_ARTIFACT\n  - roleId: planner\n    agentId: alpha\n    mode: lead\n    contextKey: planner-alpha\n    writeScope: ROLE_ARTIFACT\n---",
   );
-  const result = report(duplicate.replace("  - roleId: planner\n    agentId: alpha\n    mode: lead\n    contextKey: planner-alpha-duplicate", "  - roleId: planner\n    agentId: alpha\n    mode: lead\n    contextKey: planner-alpha\n    writeScope: ROLE_ARTIFACT"));
+  const result = report(source);
 
   assert.equal(result.status, "NOT_READY");
   assert.equal(result.duplicateAssignments.length > 0, true);
   assert.equal(result.leadConflicts.length > 0, true);
+});
+
+test("role coverage: reports shared write scope without a lead", () => {
+  const source = validCatalogSource.replace("    mode: lead\n    contextKey: planner-alpha", "    mode: contributor\n    contextKey: planner-alpha");
+  const result = report(source);
+
+  assert.equal(result.status, "NOT_READY");
+  assert.match(result.sharedWriteViolations.join(";"), /planner:ROLE_ARTIFACT/);
 });
 
 test("role coverage: reports context collisions and missing handoff consumers", () => {

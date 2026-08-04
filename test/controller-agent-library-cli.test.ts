@@ -44,6 +44,38 @@ test("built Agent library CLI: stops unreadable source directories without writi
   assert.match(result.stdout, /AGENT_LIBRARY_INSPECTION_FAILED/);
 });
 
+test("built Agent library CLI: stops malformed source metadata safely", async () => {
+  const result = await runBuiltCli([
+    "inspect-agent-library",
+    "--source-dir",
+    resolve("test/fixtures/agents/invalid"),
+    "--role-catalog",
+    resolve("test/fixtures/roles.md"),
+    "--formation-catalog",
+    resolve("test/fixtures/formation-agent-bindings.md"),
+  ]);
+
+  assert.equal(result.code, 3);
+  assert.match(result.stdout, /AGENT_LIBRARY_INSPECTION_FAILED/);
+});
+
+test("built Agent library CLI: returns incomplete projection status without writing", async () => {
+  const result = await runBuiltCli([
+    "inspect-agent-library",
+    "--source-dir",
+    resolve("test/fixtures/agents/valid"),
+    "--role-catalog",
+    resolve("test/fixtures/roles.md"),
+    "--formation-catalog",
+    resolve("test/fixtures/formation-agent-bindings-incomplete.md"),
+  ]);
+
+  const report = JSON.parse(result.stdout) as { projection: { status: string; unknownRoleIds: readonly string[] } };
+  assert.equal(result.code, 2);
+  assert.equal(report.projection.status, "NOT_READY");
+  assert.deepEqual(report.projection.unknownRoleIds, ["debugger"]);
+});
+
 function runBuiltCli(argv: readonly string[]): Promise<{ code: number | null; stdout: string; stderr: string }> {
   return new Promise((resolveResult, reject) => {
     const child = spawn(process.execPath, ["dist/cli.js", ...argv], { stdio: ["ignore", "pipe", "pipe"] });

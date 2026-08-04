@@ -36,6 +36,7 @@ This page is the repository’s thematic index. Start from the [root README](../
 
 - [Quick Task Clarifier and Validator](../../contract/agent-library/quick-task-clarifier-validator.md) — first bounded Agent capability contract.
 - [Agent Formation Library catalog](../../contract/agent-library/formation-catalog.md) — scenario inventory, readiness states, prerequisites, and recommendation boundaries.
+- [Agent Role Library catalog](../../contract/agent-library/role-catalog.md) — project Role definitions, clean context contracts, handoff contracts, and global Agent–Role assignments.
 - [User-facing Agent Profile Library](../../contract/agent-library/agent-profile-catalog.md) — selectable declarative profiles; recommendation-only and not native host activation. The read-only `list-agent-profiles` CLI command exposes this catalog.
 - [Bounded Validation recipe](../../contract/agent-library/bounded-validation.md) — READY validation profile and output contract.
 - [Bounded Refinement recipe](../../contract/agent-library/bounded-refinement.md) — READY refinement profile and output contract.
@@ -43,6 +44,7 @@ This page is the repository’s thematic index. Start from the [root README](../
 - [Bounded Implementation recipe](../../contract/agent-library/bounded-implementation.md) — READY implementation profile with verified-repository, accepted-plan, evidence, and rollback boundaries.
 - [Marketing prototype](../../marketing/README.md) — brand direction, naming screens, prototype design tokens, asset governance, and publication boundaries.
 - [Bounded Debugging recipe](../../contract/agent-library/bounded-debugging.md) — READY debugging profile with reproduction, root-cause, minimal-fix, regression-evidence, and fail-closed recovery boundaries.
+- The read-only `inspect-agent-library` CLI command joins the global Agent inventory, Role coverage matrix, and all Formation projections (with the first projection retained as a compatibility field); it performs no UA/Graphify sync or host activation.
 - [Three-level branching model](../runbooks/branching.md) — main/feature/dev roles, immediate next-dev flow, and feature-to-main promotion.
 - The Controller exposes the local `activate-quick-task --input <request.json> --choice <choice.json> --profile <profile>` command, which issues an ephemeral host-agnostic package only after fresh evaluation and `ACTIVATION_INTENT`; see the approved [design](../superpowers/specs/2026-08-01-ai-booster-kit-quick-task-activation-package-design.md) and [implementation plan](../superpowers/plans/2026-08-01-ai-booster-kit-quick-task-activation-package.md), which remain review artifacts rather than default runtime context.
 - M2 adds `prepare-activation` for a pure host-agnostic activation package and `save-activation` for explicit Personal/Team JSON persistence; see the approved [activation/session design](../superpowers/specs/2026-08-02-ai-booster-kit-m2-m3-activation-session-design.md) and [M2 implementation plan](../superpowers/plans/2026-08-02-ai-booster-kit-m2-activation-boundary.md). These commands do not activate a host, call a connector, or perform Git publication.

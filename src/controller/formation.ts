@@ -4,6 +4,7 @@ import { parseDocument } from "yaml";
 
 import type {
   FormationCatalog,
+  FormationAgentBindingMode,
   FormationComplexity,
   FormationEntry,
   FormationEntryStatus,
@@ -15,11 +16,12 @@ import type {
 } from "./types.js";
 
 const catalogKeys = ["catalogId", "catalogVersion", "status", "formations"] as const;
-const entryKeys = ["formationId", "version", "status", "scenario", "weight", "complexity", "topology", "roles", "requiredInput", "expectedOutput", "acceptance", "relations", "prerequisites", "recovery", "identity", "recipePath", "executionBoundary", "authority"] as const;
+const entryKeys = ["formationId", "version", "status", "scenario", "weight", "complexity", "topology", "roles", "agentBindings", "requiredInput", "expectedOutput", "acceptance", "relations", "prerequisites", "recovery", "identity", "recipePath", "executionBoundary", "authority"] as const;
 const acceptanceKeys = ["criteria", "evidence"] as const;
 const relationKeys = ["kind", "target"] as const;
 const recoveryKeys = ["preserve", "stopConditions"] as const;
 const identityKeys = ["key", "pattern"] as const;
+const agentBindingKeys = ["roleId", "agentId", "mode", "contextKey"] as const;
 
 export class FormationCatalogError extends Error {
   public constructor(field: string, message: string) {
@@ -72,6 +74,24 @@ function parseFormationEntry(value: unknown, index: number): FormationEntry {
   requireExactKeys(entry, entryKeys, field);
   const acceptance = requireRecord(entry.acceptance, `${field}.acceptance`);
   requireExactKeys(acceptance, acceptanceKeys, `${field}.acceptance`);
+  const agentBindings = requireNonEmptyList(entry.agentBindings, `${field}.agentBindings`).map((value, bindingIndex) => parseAgentBinding(value, field, bindingIndex));
+  const bindingTuples = new Set<string>();
+  const contextRolesByAgent = new Map<string, Map<string, Set<string>>>();
+  for (const [bindingIndex, binding] of agentBindings.entries()) {
+    const tuple = `${binding.roleId}|${binding.agentId}|${binding.contextKey}`;
+    if (bindingTuples.has(tuple)) {
+      throw new FormationCatalogError(`${field}.agentBindings[${bindingIndex}]`, `duplicates ${tuple}`);
+    }
+    bindingTuples.add(tuple);
+    const contexts = contextRolesByAgent.get(binding.agentId) ?? new Map<string, Set<string>>();
+    const roles = contexts.get(binding.contextKey) ?? new Set<string>();
+    roles.add(binding.roleId);
+    contexts.set(binding.contextKey, roles);
+    contextRolesByAgent.set(binding.agentId, contexts);
+    if (roles.size > 1) {
+      throw new FormationCatalogError(`${field}.agentBindings[${bindingIndex}].contextKey`, `is reused by Agent ${binding.agentId} across multiple roles`);
+    }
+  }
   const relations = requireNonEmptyList(entry.relations, `${field}.relations`).map((value, relationIndex) => parseRelation(value, field, relationIndex));
   const recovery = requireRecord(entry.recovery, `${field}.recovery`);
   requireExactKeys(recovery, recoveryKeys, `${field}.recovery`);
@@ -90,6 +110,7 @@ function parseFormationEntry(value: unknown, index: number): FormationEntry {
     complexity: requireEnum(entry.complexity, ["low", "medium", "high"], `${field}.complexity`, "low, medium, or high") as FormationComplexity,
     topology: requireEnum(entry.topology, ["single-agent", "sequential", "parallel-fan-out-fan-in"], `${field}.topology`, "a supported topology") as FormationTopology,
     roles: requireEnumList(entry.roles, ["clarifier", "validator", "human-checkpoint", "researcher", "evidence-manager", "reviewer", "planner", "implementer", "debugger"], `${field}.roles`, "a supported role") as readonly FormationRole[],
+    agentBindings,
     requiredInput: requireNonEmptyStringList(entry.requiredInput, `${field}.requiredInput`),
     expectedOutput: requireNonEmptyStringList(entry.expectedOutput, `${field}.expectedOutput`),
     acceptance: {
@@ -109,6 +130,18 @@ function parseFormationEntry(value: unknown, index: number): FormationEntry {
     recipePath,
     executionBoundary: requireEnum(entry.executionBoundary, ["LOCAL_ONLY"], `${field}.executionBoundary`, "LOCAL_ONLY") as "LOCAL_ONLY",
     authority: requireEnum(entry.authority, ["RECOMMENDATION_ONLY"], `${field}.authority`, "RECOMMENDATION_ONLY") as "RECOMMENDATION_ONLY",
+  };
+}
+
+function parseAgentBinding(value: unknown, field: string, index: number): { roleId: string; agentId: string; mode: FormationAgentBindingMode; contextKey: string } {
+  const bindingField = `${field}.agentBindings[${index}]`;
+  const binding = requireRecord(value, bindingField);
+  requireExactKeys(binding, agentBindingKeys, bindingField);
+  return {
+    roleId: requireNonEmptyString(binding.roleId, `${bindingField}.roleId`),
+    agentId: requireNonEmptyString(binding.agentId, `${bindingField}.agentId`),
+    mode: requireEnum(binding.mode, ["lead", "contributor", "reviewer", "fallback"], `${bindingField}.mode`, "lead, contributor, reviewer, or fallback") as FormationAgentBindingMode,
+    contextKey: requireNonEmptyString(binding.contextKey, `${bindingField}.contextKey`),
   };
 }
 

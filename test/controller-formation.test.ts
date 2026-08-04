@@ -30,6 +30,11 @@ const validEntry = `
     recipePath: null
     executionBoundary: LOCAL_ONLY
     authority: RECOMMENDATION_ONLY
+    agentBindings:
+      - roleId: validator
+        agentId: beta
+        mode: lead
+        contextKey: validator-beta
 `;
 
 function catalogSource(entry: string): string {
@@ -47,6 +52,25 @@ test("formation catalog: parses a complete entry with stable identity", () => {
   assert.equal(catalog.catalogId, "agent-formation-library");
   assert.equal(catalog.formations[0]?.formationId, "test-formation");
   assert.equal(catalog.formations[0]?.identity.key, "test-formation");
+  assert.deepEqual(catalog.formations[0]?.agentBindings, [{ roleId: "validator", agentId: "beta", mode: "lead", contextKey: "validator-beta" }]);
+});
+
+test("formation catalog: rejects duplicate Agent-Role binding tuples", () => {
+  const source = catalogSource(validEntry.replace(
+    "        contextKey: validator-beta\n",
+    "        contextKey: validator-beta\n      - roleId: validator\n        agentId: beta\n        mode: lead\n        contextKey: validator-beta\n",
+  ));
+
+  assert.throws(() => parseFormationCatalog(source, "fixtures/catalog.md"), /agentBindings\[1\].*duplicates/);
+});
+
+test("formation catalog: rejects cross-Role context reuse for one Agent", () => {
+  const source = catalogSource(validEntry.replace(
+    "        contextKey: validator-beta\n",
+    "        contextKey: validator-beta\n      - roleId: planner\n        agentId: beta\n        mode: contributor\n        contextKey: validator-beta\n",
+  ));
+
+  assert.throws(() => parseFormationCatalog(source, "fixtures/catalog.md"), /agentBindings\[1\].*contextKey/);
 });
 
 test("formation catalog: loads the six declared M1-A entries", async () => {

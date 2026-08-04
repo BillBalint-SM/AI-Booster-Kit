@@ -11,6 +11,19 @@ formations:
     complexity: low
     topology: single-agent
     roles: [clarifier, validator, human-checkpoint]
+    agentBindings:
+      - roleId: clarifier
+        agentId: agents-orchestrator
+        mode: lead
+        contextKey: quick-task-clarifier
+      - roleId: validator
+        agentId: testing-reality-checker
+        mode: reviewer
+        contextKey: quick-task-validator
+      - roleId: human-checkpoint
+        agentId: project-manager-senior
+        mode: fallback
+        contextKey: quick-task-human-checkpoint
     requiredInput: [goal, scope, context, constraints, required-evidence]
     expectedOutput: [task-contract, recommendation-or-no-agent, evidence-record]
     acceptance:
@@ -37,6 +50,23 @@ formations:
     complexity: medium
     topology: parallel-fan-out-fan-in
     roles: [researcher, evidence-manager, reviewer, human-checkpoint]
+    agentBindings:
+      - roleId: researcher
+        agentId: product-trend-researcher
+        mode: lead
+        contextKey: bounded-research-researcher
+      - roleId: evidence-manager
+        agentId: engineering-technical-writer
+        mode: contributor
+        contextKey: bounded-research-evidence
+      - roleId: reviewer
+        agentId: testing-reality-checker
+        mode: reviewer
+        contextKey: bounded-research-review
+      - roleId: human-checkpoint
+        agentId: project-manager-senior
+        mode: fallback
+        contextKey: bounded-research-human-checkpoint
     requiredInput: [goal, scope, source-allowlist, evidence-standard]
     expectedOutput: [source-backed-brief, uncertainty-register, recommendation-or-stop]
     acceptance:
@@ -63,6 +93,19 @@ formations:
     complexity: low
     topology: sequential
     roles: [planner, reviewer, human-checkpoint]
+    agentBindings:
+      - roleId: planner
+        agentId: product-manager
+        mode: lead
+        contextKey: bounded-refinement-planner
+      - roleId: reviewer
+        agentId: business-strategist
+        mode: reviewer
+        contextKey: bounded-refinement-review
+      - roleId: human-checkpoint
+        agentId: project-manager-senior
+        mode: fallback
+        contextKey: bounded-refinement-human-checkpoint
     requiredInput: [goal, current-scope, constraints, open-questions]
     expectedOutput: [refined-scope, acceptance-criteria, decision-record]
     acceptance:
@@ -89,6 +132,23 @@ formations:
     complexity: high
     topology: sequential
     roles: [planner, implementer, validator, human-checkpoint]
+    agentBindings:
+      - roleId: planner
+        agentId: project-manager-senior
+        mode: lead
+        contextKey: bounded-implementation-planner
+      - roleId: implementer
+        agentId: engineering-senior-developer
+        mode: contributor
+        contextKey: bounded-implementation-builder
+      - roleId: validator
+        agentId: engineering-code-reviewer
+        mode: reviewer
+        contextKey: bounded-implementation-validation
+      - roleId: human-checkpoint
+        agentId: project-manager-senior
+        mode: fallback
+        contextKey: bounded-implementation-human-checkpoint
     requiredInput: [goal, repository, repository-state, acceptance-criteria, test-strategy, accepted-plan, rollback-boundary]
     expectedOutput: [reviewable-diff, test-evidence, residual-risk-record]
     acceptance:
@@ -115,6 +175,23 @@ formations:
     complexity: medium
     topology: sequential
     roles: [debugger, validator, reviewer, human-checkpoint]
+    agentBindings:
+      - roleId: debugger
+        agentId: specialized-codebase-archaeologist
+        mode: lead
+        contextKey: bounded-debugging-debugger
+      - roleId: validator
+        agentId: testing-test-results-analyzer
+        mode: reviewer
+        contextKey: bounded-debugging-validation
+      - roleId: reviewer
+        agentId: engineering-code-reviewer
+        mode: reviewer
+        contextKey: bounded-debugging-review
+      - roleId: human-checkpoint
+        agentId: project-manager-senior
+        mode: fallback
+        contextKey: bounded-debugging-human-checkpoint
     requiredInput: [symptom, reproduction, expected-behavior, environment]
     expectedOutput: [root-cause-record, minimal-fix, regression-evidence]
     acceptance:
@@ -141,6 +218,23 @@ formations:
     complexity: medium
     topology: sequential
     roles: [validator, evidence-manager, reviewer, human-checkpoint]
+    agentBindings:
+      - roleId: validator
+        agentId: testing-reality-checker
+        mode: lead
+        contextKey: bounded-validation-validator
+      - roleId: evidence-manager
+        agentId: testing-test-results-analyzer
+        mode: contributor
+        contextKey: bounded-validation-evidence
+      - roleId: reviewer
+        agentId: engineering-code-reviewer
+        mode: reviewer
+        contextKey: bounded-validation-review
+      - roleId: human-checkpoint
+        agentId: project-manager-senior
+        mode: fallback
+        contextKey: bounded-validation-human-checkpoint
     requiredInput: [claim, acceptance-criteria, evidence-sources, known-limits]
     expectedOutput: [validation-result, evidence-map, explicit-stop-or-pass]
     acceptance:

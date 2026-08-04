@@ -55,6 +55,10 @@ recommendation-only scope. The next bounded delivery is M4 design and
 Codex-first host-conformance planning. Automatic Jira–GitHub–Confluence
 synchronization remains an optional later capability.
 
+The read-only Agent library inspection command projects the global Agent TOML
+inventory into the Role and Formation contracts without copying prompt bodies:
+`npm run cli -- inspect-agent-library --source-dir <path> --role-catalog <path> --formation-catalog <path>`.
+
 Read the [roadmap](docs/project/roadmap.md) for the complete reasoning and
 sequence. Read the [Team Delivery Loop](workflows/team-delivery-loop.md) for
 the canonical team workflow.

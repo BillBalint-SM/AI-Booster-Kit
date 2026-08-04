@@ -158,28 +158,21 @@ export function analyzeAgentRoleCoverage(inventory: AgentInventory, catalog: Rol
   const unknownRoleIds = uniqueSorted(catalog.assignments.filter((assignment) => !roleIds.has(assignment.roleId)).map((assignment) => assignment.roleId));
   const duplicateAssignments: string[] = [];
   const assignmentKeys = new Set<string>();
-  const contextKeysByAgent = new Map<string, Map<string, string>>();
+  const contextRolesByAgent = new Map<string, Map<string, Set<string>>>();
   for (const assignment of catalog.assignments) {
     const assignmentKey = `${assignment.roleId}|${assignment.agentId}|${assignment.contextKey}`;
     if (assignmentKeys.has(assignmentKey)) duplicateAssignments.push(assignmentKey);
     assignmentKeys.add(assignmentKey);
-    const contextKeys = contextKeysByAgent.get(assignment.agentId) ?? new Map<string, string>();
-    const previousRole = contextKeys.get(assignment.contextKey);
-    if (previousRole !== undefined && previousRole !== assignment.roleId) contextKeysByAgent.set(assignment.agentId, new Map(contextKeys).set(`${assignment.contextKey}|${assignment.roleId}`, previousRole));
-    contextKeys.set(assignment.contextKey, assignment.roleId);
-    contextKeysByAgent.set(assignment.agentId, contextKeys);
+    const contextRoles = contextRolesByAgent.get(assignment.agentId) ?? new Map<string, Set<string>>();
+    const roles = contextRoles.get(assignment.contextKey) ?? new Set<string>();
+    roles.add(assignment.roleId);
+    contextRoles.set(assignment.contextKey, roles);
+    contextRolesByAgent.set(assignment.agentId, contextRoles);
   }
 
-  const contextViolations = uniqueSorted([...contextKeysByAgent.entries()].flatMap(([agentId, contexts]) => {
-    const roleByContext = new Map<string, Set<string>>();
-    for (const [key, roleId] of contexts.entries()) {
-      const contextKey = key.split("|", 1)[0] ?? key;
-      const roles = roleByContext.get(contextKey) ?? new Set<string>();
-      roles.add(roleId);
-      roleByContext.set(contextKey, roles);
-    }
-    return [...roleByContext.entries()].filter(([, roles]) => roles.size > 1).map(([contextKey, roles]) => `${agentId}:${contextKey}:${[...roles].sort().join(",")}`);
-  }));
+  const contextViolations = uniqueSorted([...contextRolesByAgent.entries()].flatMap(([agentId, contexts]) => [...contexts.entries()]
+    .filter(([, roles]) => roles.size > 1)
+    .map(([contextKey, roles]) => `${agentId}:${contextKey}:${[...roles].sort().join(",")}`)));
 
   const roleCoverage = catalog.roles.map((role) => {
     const assignments = catalog.assignments.filter((assignment) => assignment.roleId === role.roleId);
@@ -230,16 +223,21 @@ export function projectFormation(inventory: AgentInventory, catalog: RoleCatalog
   const roleIds = new Set(catalog.roles.map((role) => role.roleId));
   const missingAgentIds = uniqueSorted(formation.agentBindings.filter((binding) => !agentById.has(binding.agentId)).map((binding) => binding.agentId));
   const unknownRoleIds = uniqueSorted(formation.agentBindings.filter((binding) => !roleIds.has(binding.roleId)).map((binding) => binding.roleId));
-  const catalogAssignmentKeys = new Set(catalog.assignments.map((assignment) => `${assignment.roleId}|${assignment.agentId}|${assignment.contextKey}`));
-  const unmappedBindingKeys = uniqueSorted(formation.agentBindings.filter((binding) => !catalogAssignmentKeys.has(`${binding.roleId}|${binding.agentId}|${binding.contextKey}`)).map((binding) => `${binding.roleId}|${binding.agentId}|${binding.contextKey}`));
-  const contextKeysByAgent = new Map<string, Set<string>>();
+  const catalogAgentRoleKeys = new Set(catalog.assignments.map((assignment) => `${assignment.roleId}|${assignment.agentId}`));
+  const unmappedBindingKeys = uniqueSorted(formation.agentBindings.filter((binding) => !catalogAgentRoleKeys.has(`${binding.roleId}|${binding.agentId}`)).map((binding) => `${binding.roleId}|${binding.agentId}`));
+  const contextRolesByAgent = new Map<string, Map<string, Set<string>>>();
   const contextViolations: string[] = [];
   const bindings: ProjectedFormationBinding[] = [];
   for (const binding of formation.agentBindings) {
-    const existing = contextKeysByAgent.get(binding.agentId) ?? new Set<string>();
-    if (existing.has(binding.contextKey)) contextViolations.push(`${binding.agentId}:${binding.contextKey}`);
-    existing.add(binding.contextKey);
-    contextKeysByAgent.set(binding.agentId, existing);
+    const contexts = contextRolesByAgent.get(binding.agentId) ?? new Map<string, Set<string>>();
+    const roles = contexts.get(binding.contextKey) ?? new Set<string>();
+    roles.add(binding.roleId);
+    contexts.set(binding.contextKey, roles);
+    contextRolesByAgent.set(binding.agentId, contexts);
+    if (roles.size > 1) contextViolations.push(`${binding.agentId}:${binding.contextKey}:${[...roles].sort().join(",")}`);
+    if (roles.size === 1 && formation.agentBindings.filter((candidate) => candidate.agentId === binding.agentId && candidate.contextKey === binding.contextKey).length > 1) {
+      contextViolations.push(`${binding.agentId}:${binding.contextKey}`);
+    }
     const agent = agentById.get(binding.agentId);
     if (agent !== undefined) bindings.push({ ...binding, sourcePath: agent.sourcePath, sourceSha256: agent.sourceSha256 });
   }
