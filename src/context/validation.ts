@@ -10,6 +10,7 @@ export function validateMilestoneContext(milestone: MilestoneContext, epics: rea
   for (const epic of epics) {
     validateEpicShape(epic);
     if (epic.milestoneId !== milestone.milestoneId) throw new ContextError(`Epic '${epic.epicId}' must have Milestone parent '${milestone.milestoneId}'`);
+    if (epic.sourceRevision !== milestone.sourceRevision) throw new ContextError(`Epic '${epic.epicId}' source revision does not match Milestone revision`);
     if (epicIds.has(epic.epicId)) throw new ContextError(`Epic '${epic.epicId}' is duplicated`);
     epicIds.add(epic.epicId);
   }
@@ -43,6 +44,7 @@ export function validateSessionState(value: unknown): SessionState {
     if (secretFieldPattern.test(key)) throw new ContextError("session state must not retain transcript or credential-shaped fields");
   }
   exactKeys(record, sessionKeys, "session state");
+  assertSafeSessionContent(record);
   const references = contextReferences(record.contextReferences);
   const workItemIds = stringList(record.workItemIds, "session state workItemIds");
   const readScope = literal(record, "readScope", ["FULL_MILESTONE"], "session state");
@@ -108,6 +110,21 @@ function validateContextEnvelope(context: { contextVersion: unknown; kind: unkno
   assertNonEmpty(context.contextId, `${expectedKind} context identifier`);
   assertNonEmpty(context.sourceRevision, `${expectedKind} source revision`);
   assertNonEmpty(context.owner, `${expectedKind} owner`);
+}
+
+function assertSafeSessionContent(record: Record<string, unknown>): void {
+  const sensitiveContentPattern = /(?:^|[\s:=])(?:transcript|prompt|secret|token|credential|cookie|password|api[_-]?key)(?:$|[\s:=])/i;
+  const visit = (value: unknown): void => {
+    if (typeof value === "string" && sensitiveContentPattern.test(value)) throw new ContextError("session state must not retain transcript or credential-shaped content");
+    if (Array.isArray(value)) {
+      for (const item of value) visit(item);
+      return;
+    }
+    if (value !== null && typeof value === "object") {
+      for (const child of Object.values(value)) visit(child);
+    }
+  };
+  visit(record);
 }
 
 function assertNonEmpty(value: unknown, label: string): void {

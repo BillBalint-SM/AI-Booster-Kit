@@ -456,9 +456,12 @@ export interface QuickTaskActivationPackage {
 }
 
 export class ControllerActivationPackageError extends Error {
+  public readonly code: string;
+
   public constructor(code: string, message: string) {
     super(`${code}: ${message}.`);
     this.name = "ControllerActivationPackageError";
+    this.code = code;
   }
 }
 

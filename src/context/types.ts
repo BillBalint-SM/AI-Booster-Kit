@@ -94,6 +94,7 @@ export interface ResumeRuntime {
   worktree: string | null;
   baseRevision: string | null;
   currentSetupFingerprint: string | null;
+  evidenceRefs: readonly string[];
 }
 
 export type ResumeResult =
@@ -101,8 +102,11 @@ export type ResumeResult =
   | { decision: "STOPPED" | "UNKNOWN"; sessionId: string; reasons: readonly string[]; preservedState: true };
 
 export class ContextError extends Error {
+  public readonly code: string | undefined;
+
   public constructor(message: string) {
     super(`Context rejected: ${message}.`);
     this.name = "ContextError";
+    this.code = /^[A-Z][A-Z0-9_]*$/.test(message) ? message : undefined;
   }
 }

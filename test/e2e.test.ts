@@ -308,7 +308,7 @@ test("e2e: one Milestone context isolates parallel Epic developer resumes and re
   });
   const epicA = makeEpic("epic-a", "story-a");
   const epicB = makeEpic("epic-b", "story-b");
-  const runtime: ResumeRuntime = { repository: "BillBalint-SM/AI-Booster-Kit", branch: "dev-m3-session-state", worktree: "C:/worktrees/m3", baseRevision: "a3df0d99", currentSetupFingerprint: "setup-m3" };
+  const runtime: ResumeRuntime = { repository: "BillBalint-SM/AI-Booster-Kit", branch: "dev-m3-session-state", worktree: "C:/worktrees/m3", baseRevision: "a3df0d99", currentSetupFingerprint: "setup-m3", evidenceRefs: ["decision:m3", "test:m3-e2e"] };
   const makeDeveloperSession = (sessionId: string, epic: EpicContext, workItemId: string): SessionState => ({
     sessionVersion: "1.0", sessionId, owner: "engineering", retention: "TEAM", readScope: "FULL_MILESTONE", executionScope: { kind: "EPIC", contextId: epic.contextId, workItemIds: [workItemId] }, writeAuthority: "ARTIFACT_OWNER_THROUGH_APPROVED_PR", contextReferences: [{ kind: "MILESTONE", contextId: "milestone-context-m3", sourceRevision: "m3-revision-1" }, { kind: "EPIC", contextId: epic.contextId, sourceRevision: "m3-revision-1" }], workItemIds: [workItemId], activationPackageId: "activation-m3", recipe: { recipeId: "bounded-implementation", recipeVersion: "0.1.0", variantId: "base" }, setupFingerprint: "setup-m3", status: "PAUSED", decisions: [], evidenceRefs: ["test:m3-e2e"], unknowns: [], deviations: [], dependencies: [], progress: [], nextAction: `Continue ${epic.contextId}.`, execution: { repository: "BillBalint-SM/AI-Booster-Kit", branch: "dev-m3-session-state", worktree: "C:/worktrees/m3", baseRevision: "a3df0d99" },
   });

@@ -60,7 +60,8 @@ function validatePackage(value: ActivationBoundaryPackage): PersistedRetention {
       setupSnapshot: candidate.setupSnapshot as ActivationSetupSnapshot,
     });
     if (stableJson(rebuilt) !== stableJson(value)) throw new Error("the activation package identity is inconsistent");
-  } catch {
+  } catch (error) {
+    if (error instanceof ActivationPackageError) throw error;
     throw new ActivationPackageError("ACTIVATION_PACKAGE_INVALID", "the activation package contract is invalid");
   }
   return candidate.retention;

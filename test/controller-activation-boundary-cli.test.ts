@@ -169,7 +169,7 @@ test("built M2 CLI: rejects a malformed package before creating a target", async
     }), "utf8");
 
     const result = await runBuiltCli(["save-activation", "--input", packagePath, "--target", target]);
-    assertStopped(result, "ACTIVATION_PACKAGE_INVALID");
+    assertStopped(result, "ACTIVATION_BASE_PACKAGE_INVALID");
     assert.equal(result.stderr, "");
     await assert.rejects(() => readFile(target, "utf8"));
   });

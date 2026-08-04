@@ -69,6 +69,7 @@ function parseEnvelope(metadata: Record<string, unknown>, sourcePath: string) {
   const retention = literal(metadata, "retention", ["EPHEMERAL", "PERSONAL", "TEAM"], sourcePath);
   const state = literal(metadata, "state", ["DRAFT", "ACCEPTED", "STALE", "SUPERSEDED"], sourcePath);
   if (literal(metadata, "contextVersion", ["1.0"], sourcePath) !== "1.0") throw new ContextError(`${sourcePath} contextVersion is invalid`);
+  if (state === "STALE" || state === "SUPERSEDED") throw new ContextError(`${sourcePath} context is not current and usable`);
   return {
     contextVersion: "1.0" as const,
     contextId: stringValue(metadata, "contextId", sourcePath),

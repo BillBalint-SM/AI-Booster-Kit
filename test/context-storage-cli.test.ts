@@ -71,7 +71,7 @@ test("built M3 CLI: validates, saves, and resumes only explicit local artifacts"
     await writeFile(epicPath, serializeWorkContext(epic), "utf8");
     await writeFile(sessionPath, JSON.stringify(session), "utf8");
     await writeFile(manifestPath, JSON.stringify({ milestonePath, epicPaths: [epicPath] }), "utf8");
-    await writeFile(runtimePath, JSON.stringify({ repository: null, branch: null, worktree: null, baseRevision: null, currentSetupFingerprint: null }), "utf8");
+    await writeFile(runtimePath, JSON.stringify({ repository: null, branch: null, worktree: null, baseRevision: null, currentSetupFingerprint: null, evidenceRefs: ["decision:m3-approved", "test:context-markdown", "test:context-storage"] }), "utf8");
 
     const validation = await runBuiltCli(["validate-context", "--input", milestonePath]);
     assert.equal(validation.code, 0);
@@ -92,7 +92,9 @@ test("built M3 CLI: validates, saves, and resumes only explicit local artifacts"
 test("built M3 CLI: stops malformed, stale, and broadened input without echoing local paths", async () => {
   await withTemporaryDirectory(async (root) => {
     const sessionPath = join(root, "session.json");
+    const staleContextPath = join(root, "stale-context.md");
     await writeFile(sessionPath, JSON.stringify({ ...session, nextAction: "" }), "utf8");
+    await writeFile(staleContextPath, serializeWorkContext({ ...milestone, state: "STALE" }), "utf8");
     const result = await runBuiltCli(["save-session", "--input", sessionPath, "--target", join(root, "unused.json")]);
     assert.notEqual(result.code, 0);
     const stopped = JSON.parse(result.stdout) as { decision: string; error: { code: string; message: string } };
@@ -100,6 +102,14 @@ test("built M3 CLI: stops malformed, stale, and broadened input without echoing 
     assert.equal(stopped.error.code, "CONTEXT_SESSION_INVALID");
     assert.equal(result.stdout.includes(root), false);
     assert.equal(result.stderr, "");
+
+    const validation = await runBuiltCli(["validate-context", "--input", staleContextPath]);
+    assert.equal(validation.code, 3);
+    assert.equal(JSON.parse(validation.stdout).error.code, "CONTEXT_VALIDATION_FAILED");
+
+    const save = await runBuiltCli(["save-context", "--input", staleContextPath, "--target", join(root, "stale-saved.md")]);
+    assert.equal(save.code, 3);
+    assert.equal(JSON.parse(save.stdout).error.code, "CONTEXT_VALIDATION_FAILED");
   });
 });
 

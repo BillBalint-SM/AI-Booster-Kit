@@ -21,6 +21,7 @@ const runtime: ResumeRuntime = {
   worktree: "C:/worktrees/dev-m3-session-state",
   baseRevision: "a3df0d995af84d16908f365cc43e20c6ccd5ce7d",
   currentSetupFingerprint: "setup-m3-1",
+  evidenceRefs: ["decision:m3-approved", "test:context-markdown"],
 };
 
 const developerSession: SessionState = {
@@ -88,8 +89,19 @@ test("session state: stops stale or contradictory state and preserves unknown ru
   assert.equal(evaluateSessionResume({ ...developerSession, dependencies: ["UNKNOWN: external dependency"] }, [milestone, epic], runtime).decision, "UNKNOWN");
 });
 
+test("session bundle: stops stale linked Epics and unknown or deviated state", () => {
+  const milestoneWithSibling = { ...milestone, epicIds: [epic.epicId, "epic-sibling"] };
+  const staleSibling = { ...epic, contextId: "epic-sibling", epicId: "epic-sibling", sourceRevision: "rev-m3-stale", workItemIds: ["story-sibling"] };
+
+  assert.equal(evaluateSessionResume(developerSession, [milestoneWithSibling, epic, staleSibling], runtime).decision, "STOPPED");
+  assert.equal(evaluateSessionResume({ ...developerSession, unknowns: ["missing evidence"] }, [milestone, epic], runtime).decision, "UNKNOWN");
+  assert.equal(evaluateSessionResume({ ...developerSession, deviations: ["scope changed"] }, [milestone, epic], runtime).decision, "STOPPED");
+  assert.equal(evaluateSessionResume(developerSession, [milestone, epic], { ...runtime, evidenceRefs: [] }).decision, "UNKNOWN");
+});
+
 test("session state: rejects transcript-shaped, incomplete, and cross-Epic input before resume", () => {
   assert.throws(() => validateSessionState({ ...developerSession, transcript: "do not retain" }), /Context rejected/);
+  assert.throws(() => validateSessionState({ ...developerSession, decisions: ["prompt: do not retain raw input"] }), /Context rejected/);
   assert.throws(() => validateSessionState({ ...developerSession, nextAction: "" }), /Context rejected/);
   assert.throws(() => validateSessionState({ ...developerSession, contextReferences: [developerSession.contextReferences[0]!] }), /Context rejected/);
 });

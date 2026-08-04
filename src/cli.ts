@@ -395,7 +395,7 @@ async function loadManifestContexts(manifest: { milestonePath: string; epicPaths
 
 function parseResumeRuntime(value: unknown): ResumeRuntime {
   const record = plainContextRecord(value, "resume runtime");
-  const expected = ["repository", "branch", "worktree", "baseRevision", "currentSetupFingerprint"];
+  const expected = ["repository", "branch", "worktree", "baseRevision", "currentSetupFingerprint", "evidenceRefs"];
   if (Object.keys(record).length !== expected.length || expected.some((key) => !Object.hasOwn(record, key))) throw new ContextError("resume runtime fields are invalid");
   return {
     repository: nullableContextString(record.repository, "resume runtime repository"),
@@ -403,6 +403,7 @@ function parseResumeRuntime(value: unknown): ResumeRuntime {
     worktree: nullableContextString(record.worktree, "resume runtime worktree"),
     baseRevision: nullableContextString(record.baseRevision, "resume runtime baseRevision"),
     currentSetupFingerprint: nullableContextString(record.currentSetupFingerprint, "resume runtime currentSetupFingerprint"),
+    evidenceRefs: contextStringList(record.evidenceRefs, "resume runtime evidenceRefs"),
   };
 }
 
@@ -421,8 +422,15 @@ function nullableContextString(value: unknown, label: string): string | null {
   return requiredContextString(value, label);
 }
 
+function contextStringList(value: unknown, label: string): readonly string[] {
+  if (!Array.isArray(value) || value.some((item) => typeof item !== "string" || item.trim() === "") || new Set(value).size !== value.length) {
+    throw new ContextError(`${label} must be a unique list of non-empty strings`);
+  }
+  return value;
+}
+
 function contextStorageCode(error: ContextError, fallback: string): string {
-  return /^Context rejected: ([A-Z_]+)/.exec(error.message)?.[1] ?? fallback;
+  return error.code ?? fallback;
 }
 
 async function readActivationJson(path: string, unreadableCode: string, invalidJsonCode: string): Promise<unknown> {
@@ -438,7 +446,7 @@ async function readActivationJson(path: string, unreadableCode: string, invalidJ
 }
 
 function activationErrorCode(error: Error): string {
-  if (error instanceof ControllerActivationPackageError) return error.message.split(":", 1)[0] ?? "ACTIVATION_PACKAGE_FAILED";
+  if (error instanceof ControllerActivationPackageError) return error.code;
   const checkpointCode = /^Quick Task checkpoint rejected: ([A-Z_]+)/.exec(error.message)?.[1];
   if (checkpointCode !== undefined) return checkpointCode;
   return "CONTROLLER_VALIDATION_FAILED";

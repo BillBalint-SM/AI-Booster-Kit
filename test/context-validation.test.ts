@@ -94,6 +94,7 @@ test("context validation: rejects broken parent, duplicate Epic, unknown link, a
 test("context validation: rejects a stale or malformed Milestone envelope before linking Epics", () => {
   assert.throws(() => validateMilestoneContext({ ...milestone, state: "STALE" }, epics), /Context rejected/);
   assert.throws(() => validateMilestoneContext({ ...milestone, sourceRevision: "" }, epics), /Context rejected/);
+  assert.throws(() => validateMilestoneContext(milestone, [{ ...epics[0]!, sourceRevision: "stale-epic-revision" }, epics[1]!]), /Context rejected/);
   assert.throws(() => validateMilestoneContext({ ...milestone, retention: "SHARED" } as unknown as MilestoneContext, epics), /Context rejected/);
 });
 

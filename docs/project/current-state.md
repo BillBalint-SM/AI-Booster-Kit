@@ -5,7 +5,14 @@ short and must not become a second roadmap, transcript, or historical report.
 
 ## Branch and pull request
 
-The public website delivery was merged as [PR #13](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/13), the documentation structure and roadmap as [PR #14](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/14), the Activation Package state correction as [PR #15](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/15), M1-A as [PR #16](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/16), M1-B as [PR #18](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/18), the CLI integration as [PR #20](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/20), the first fully ready validation formation as [PR #22](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/22), the ready refinement formation as [PR #24](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/24), the documentation routing alignment as [PR #26](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/26), the mapper snapshot refresh as [PR #27](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/27), and the bounded implementation delivery as [PR #34](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/34). The bounded-debugging M1 slice was promoted through [PR #37](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/37). The three-level branching documentation and mapper refresh were delivered through [PR #38](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/38) and promoted to `main` through [PR #39](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/39). M2 was merged into `feature` through [PR #40](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/40). The M3 context/session delivery slice was merged into `feature` through [PR #41](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/41). `feature` remains the active accumulation branch; every next bounded slice must use a unique `dev-<scope>` branch and must not target `main` directly.
+`feature` is the active accumulation branch; its exact revision is verified by
+the work-state preflight at each delivery boundary.
+M2 was integrated through [PR #40](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/40),
+M3 through [PR #41](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/41), and
+the routing/mapper state through [PR #42](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/42).
+The prior `feature → main` promotion is [PR #39](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/39).
+Every next bounded slice must use a unique `dev-<scope>` branch and must not
+target `main` directly.
 
 ## Completed deliverable
 
@@ -25,14 +32,15 @@ without changing Quick Task checkpoint or activation behavior.
 ## Validation
 
 The local M2 boundary, explicit storage, and CLI suites pass. M3 adds strict
-Milestone/Epic Markdown contexts, compact session-state validation, explicit
+Milestone/Epic Markdown contexts, compact session-state validation with
+explicit runtime evidence checks, explicit
 Personal/Team persistence, pure resume evaluation, and the team scope contract:
 full Milestone-bundle read, one-Epic execution for developer sessions, and a
 declared owner-approved-PR requirement for canonical artifacts. The local
 saver does not inspect Git history, branch ownership, or PR approval. The
 focused M3 review hardening adds runtime validation for the Milestone envelope
 and current execution scope. The current implementation full-suite evidence is
-325/325 under the available
+334/334 under the available
 local Node v26.4.0 runtime.
 `npm run build`, `npm run lint`, `npm run check:docs`, and `git diff --check` pass.
 The package declares Node 22.x; local Node 26 is not the declared runtime, so
@@ -41,12 +49,14 @@ deterministic: no host runtime, generated host artifact, connector call,
 external read, Git operation, or publication is performed.
 
 The committed Graphify and Understand Anything snapshots identify the same
-stable source revision and passed `npm run check:mappers`. The refresh used
-Graphify code-only extraction and UA deterministic local structural extraction;
-no semantic-extraction backend or credentialed external analysis was invoked.
-Mapper freshness is `READY` for the current stable source revision. Its source
-revision, current HEAD relationship, and publication boundary remain governed
-by the mapper runbook and this current-state record.
+stable source revision and previously passed `npm run check:mappers`. The
+refresh used Graphify code-only extraction and UA deterministic local structural
+extraction; no semantic-extraction backend or credentialed external analysis was
+invoked. The current worktree contains uncommitted source changes, so the
+mapper gate correctly reports `MAPPER_FRESHNESS=NOT_READY` until a reviewed
+stable revision is created. Its source revision, current HEAD relationship, and
+publication boundary remain governed by the mapper runbook and this
+current-state record.
 
 ## Known limit
 
@@ -55,7 +65,7 @@ paths. M2 now provides a pure `ACTIVATION_PACKAGE_PREPARED` boundary, explicit
 one-at-a-time tuning data, preserved setup/rollback references,
 Ephemeral/Personal/Team retention, safe Personal/Team JSON persistence, and
 strict `prepare-activation`/`save-activation` CLI operations. M3 now adds
-strict context source Markdown, compact transcript-free session state, explicit
+strict context source Markdown, compact redaction-checked session state, explicit
 context/session persistence, full-Milestone-bundle-read/one-Epic-execution
 scope validation, and pure resume decisions. Canonical artifact authority is
 declared as owner-approved PR flow but is not locally enforced. Host adaptation and
@@ -63,7 +73,8 @@ execution, evaluation/evolve, debugging context injection, and lifecycle
 synchronization remain future work. M2 and the local M3 slice are
 `COMPLETE_WITH_LIMIT`: they never activate an Agent or perform external work.
 Mapper freshness remains commit-relative and is a navigation projection only.
-The M3 slice is now published in the active `feature` stream. No `feature →
+The committed M3 slice is published in the active `feature` stream; the current
+hardening changes remain local review state. No `feature →
 main` promotion is implied; the next delivery must start from synchronized
 `feature` on a new, uniquely named dev branch.
 Mapper output remains a navigation projection; source, tests, and Git review

@@ -13,6 +13,8 @@ export function evaluateSessionResume(state: SessionState, contexts: readonly Wo
   if (validated.status === "STOPPED" || validated.status === "COMPLETE" || validated.status === "COMPLETE_WITH_LIMIT") {
     return stopped(validated.sessionId, [`session status '${validated.status}' cannot resume`]);
   }
+  if (validated.deviations.length > 0) return stopped(validated.sessionId, ["session contains unresolved deviations"]);
+  if (validated.unknowns.length > 0) return unknown(validated.sessionId, ["session contains unresolved unknowns"]);
   if (validated.dependencies.some((dependency) => dependency.startsWith("UNKNOWN:"))) return unknown(validated.sessionId, ["a dependency remains unknown"]);
 
   const current = resolveContexts(validated, contexts);
@@ -25,6 +27,8 @@ export function evaluateSessionResume(state: SessionState, contexts: readonly Wo
     if (error instanceof ContextError) return stopped(validated.sessionId, ["referenced context parent link is invalid"]);
     throw error;
   }
+  const evidenceResult = validateEvidence(validated, milestone, epic, runtime);
+  if (evidenceResult !== undefined) return evidenceResult;
   const scopeResult = validateExecutionScope(validated, milestone, epic);
   if (scopeResult !== undefined) return scopeResult;
   if (epic !== undefined && validated.workItemIds.some((workItemId) => !epic.workItemIds.includes(workItemId))) {
@@ -35,6 +39,21 @@ export function evaluateSessionResume(state: SessionState, contexts: readonly Wo
   const executionResult = validateExecution(validated, runtime);
   if (executionResult !== undefined) return executionResult;
   return { decision: "RESUME", sessionId: validated.sessionId, nextAction: validated.nextAction, evidenceRefs: validated.evidenceRefs };
+}
+
+function validateEvidence(state: SessionState, milestone: MilestoneContext, epic: EpicContext | undefined, runtime: ResumeRuntime): ResumeResult | undefined {
+  const contexts = epic === undefined ? [milestone] : [milestone, epic];
+  const contextUnknowns = contexts.flatMap((context) => context.unknowns);
+  if (contextUnknowns.length > 0) return unknown(state.sessionId, ["a referenced context contains unresolved unknowns"]);
+  if (contexts.some((context) => context.dependencies.some((dependency) => dependency.startsWith("UNKNOWN:")))) {
+    return unknown(state.sessionId, ["a referenced context dependency remains unknown"]);
+  }
+  const requiredEvidence = [...new Set([...state.evidenceRefs, ...contexts.flatMap((context) => context.evidenceRefs)])];
+  if (requiredEvidence.length === 0 || requiredEvidence.some((reference) => !runtime.evidenceRefs.includes(reference))) {
+    return unknown(state.sessionId, ["required evidence is unavailable"]);
+  }
+  if (epic !== undefined && epic.acceptanceCriteria.length === 0) return stopped(state.sessionId, ["referenced Epic has no acceptance criteria"]);
+  return undefined;
 }
 
 function validateExecutionScope(state: SessionState, milestone: MilestoneContext, epic: EpicContext | undefined): ResumeResult | undefined {
