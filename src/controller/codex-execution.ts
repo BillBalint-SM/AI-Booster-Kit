@@ -208,7 +208,7 @@ function validateCodexCommand(value: string | undefined): string {
   if (command.trim() === "" || command.includes("\0") || /[\r\n]/u.test(command)) {
     throw new CodexExecutionError("CODEX_COMMAND_INVALID", "the native Codex executable is invalid");
   }
-  if (process.platform === "win32" && /\.(?:cmd|bat|ps1)$/iu.test(command.trim())) {
+  if (/\.(?:cmd|bat|ps1)$/iu.test(command.trim())) {
     throw new CodexExecutionError("CODEX_COMMAND_NOT_NATIVE", "the first slice accepts a native executable, not a shell or PowerShell wrapper");
   }
   return command.trim();
