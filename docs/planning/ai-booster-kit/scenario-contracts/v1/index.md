@@ -8,7 +8,7 @@
 - Runtime basis: `PARTIAL` — reusable primitives exist in the `main` baseline.
 - End-to-end runtime: `NOT_EXECUTED` — the Controller does not yet launch these complete flows.
 - Unsupported runtime steps: `DESIGN_ONLY` or `NOT_EXECUTED` as marked in each contract.
-- Owner identity: `NOT_EXECUTED` — the local alias store is specified but not implemented in `main`.
+- Owner identity integration: `NOT_EXECUTED` — these scenario flows do not yet invoke the local alias store automatically.
 - Planning session confirmation: shared understanding confirmed by User on 2026-08-06.
 
 This package is a design and User-test artifact. It does not change runtime code, create external issues, attach files to GitHub/Jira, create Bugs, or apply fixes.
@@ -75,7 +75,7 @@ The status layers must not be collapsed:
 user_facing_contract: READY_WITH_LIMIT
 runtime_basis: PARTIAL
 end_to_end_runtime: NOT_EXECUTED
-owner_identity: NOT_EXECUTED
+owner_identity_integration: NOT_EXECUTED
 ```
 
 Other statuses have these meanings:
@@ -96,7 +96,7 @@ Other statuses have these meanings:
 
 ## Owner identity contract
 
-The first use asks for a display name/local alias and stores it as the default. Later sessions silently reuse it. A change requires explicit `reconfigure owner`; a missing or invalid config may be requested again.
+The local Owner Identity mechanism, when available in the integrated runtime, asks for a display name/local alias on first use and then silently reuses it. A change requires explicit `reconfigure owner`; a missing or invalid config may be requested again. This scenario package does not yet invoke that runtime automatically, so the session/handoff integration remains `NOT_EXECUTED`.
 
 Logical cross-platform shape:
 
@@ -131,6 +131,6 @@ The `main` baseline contains reusable primitives but not the complete User-facin
 - fan-in validation exists in `src/context/team-delivery.ts`, while Feature identity, Feature proposal/confirmation, and Controller flow are missing;
 - bounded refinement and implementation recipes exist, while the Decision Brief, Milestone/Epic-ready package, and technical handoff entry point are missing;
 - bounded validation/debugging recipes and `validation`/`debugging` formations exist, while the three-round exact verification contract is missing;
-- owner alias storage and `owner-identity.json` support are absent.
+- scenario-specific owner alias capture and handoff integration are absent, even when the separate Owner Identity runtime is available.
 
 Therefore, the contracts are ready for manual User testing with visible limits, but no document claims end-to-end runtime execution.

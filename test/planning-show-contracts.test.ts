@@ -21,7 +21,7 @@ test("planning-show scenario contracts: catalog and contracts expose the approve
   assert.match(indexText, /Contract status:\s*`READY_WITH_LIMIT`/);
   assert.match(indexText, /Runtime basis:\s*`PARTIAL`/);
   assert.match(indexText, /End-to-end runtime:\s*`NOT_EXECUTED`/);
-  assert.match(indexText, /Owner identity:\s*`NOT_EXECUTED`/);
+  assert.match(indexText, /Owner identity integration:\s*`NOT_EXECUTED`/);
   assert.match(indexText, /This package is a design and User-test artifact\./);
   assert.match(indexText, /It does not change runtime code, create external issues, attach files to GitHub\/Jira, create Bugs, or apply fixes\./);
 
