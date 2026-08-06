@@ -1,4 +1,5 @@
 import { readFile } from "node:fs/promises";
+import { createInterface } from "node:readline/promises";
 
 import { claudeCodeAdapter } from "./adapters/claude-code.js";
 import { codexAdapter } from "./adapters/codex.js";
@@ -32,6 +33,11 @@ import { saveSessionState, saveWorkContext } from "./context/storage.js";
 import { ContextError } from "./context/types.js";
 import { validateMilestoneContext, validateSessionState } from "./context/validation.js";
 import type { ResumeRuntime, SessionState, WorkContext } from "./context/types.js";
+import { bootstrapOwnerIdentity } from "./controller/owner-identity-bootstrap.js";
+import { resolveUserLocalPath } from "./owner-identity/path.js";
+import { createFileOwnerIdentityStorage } from "./owner-identity/storage.js";
+import { ensureOwnerIdentity, reconfigureOwner } from "./owner-identity/state.js";
+import type { OwnerIdentityState, OwnerIdentityStorage, OwnerIdentityUnavailableReason } from "./owner-identity/types.js";
 
 const helpText = `Usage: npm run cli -- <command>
 
@@ -43,6 +49,7 @@ Commands:
   readiness     Generate a local G2AS Sandbox Readiness Certificate
   quick-task    Recommend the local Quick Task recipe
   recommend-formation  Recommend a catalog formation without activation
+  owner-identity setup|reconfigure  Configure the local attribution alias
   list-agent-profiles  List user-facing Agent profiles without activation
   inspect-agent-library  Read-only global Agent, Role, and Formation projection
   resolve-checkpoint  Resolve an explicit local Quick Task checkpoint
@@ -84,7 +91,8 @@ async function dispatchCli(argv: readonly string[]): Promise<number> {
   if (command === "conformance") return runConformance(argv.slice(1));
   if (command === "readiness") return runReadiness(argv.slice(1));
   if (command === "quick-task") return runQuickTask(argv.slice(1));
-  if (command === "recommend-formation") return runFormationRecommendation(argv.slice(1));
+  if (command === "recommend-formation") return runFormationRecommendationWithOwnerIdentity(argv);
+  if (command === "owner-identity") return runOwnerIdentity(argv.slice(1));
   if (command === "list-agent-profiles") return runListAgentProfiles(argv.slice(1));
   if (command === "inspect-agent-library") return runInspectAgentLibrary(argv.slice(1));
   if (command === "resolve-checkpoint") return runResolveCheckpoint(argv.slice(1));
@@ -97,6 +105,96 @@ async function dispatchCli(argv: readonly string[]): Promise<number> {
   if (command === "resume-session") return runResumeSession(argv.slice(1));
 
   throw new CliError("CONFIGURATION_ERROR", 4);
+}
+
+async function runFormationRecommendationWithOwnerIdentity(argv: readonly string[]): Promise<number> {
+  await bootstrapOwnerIdentity(argv, createRuntimeOwnerIdentityStorage(), requestOwnerAlias);
+  return runFormationRecommendation(argv.slice(1));
+}
+
+async function runOwnerIdentity(argv: readonly string[]): Promise<number> {
+  if (argv.length !== 1 || (argv[0] !== "setup" && argv[0] !== "reconfigure")) {
+    return stoppedController("COMMAND_CONFIGURATION_INVALID", "owner-identity requires exactly setup or reconfigure", 4);
+  }
+
+  const storage = createRuntimeOwnerIdentityStorage();
+  const state = argv[0] === "setup"
+    ? await ensureOwnerIdentity(storage, requestOwnerAlias)
+    : await reconfigureOwner(storage, requestOwnerAlias);
+  process.stdout.write(`${JSON.stringify({ status: state.status, nextAction: ownerIdentityNextAction(state) })}\n`);
+  return ownerIdentityExitCode(state);
+}
+
+function createRuntimeOwnerIdentityStorage(): OwnerIdentityStorage {
+  const path = resolveUserLocalPath({ platform: process.platform, env: process.env });
+  if (path.status === "UNAVAILABLE") return createUnavailableOwnerIdentityStorage(path.reason);
+  const userLocalRoot = process.env.LOCALAPPDATA;
+  if (typeof userLocalRoot !== "string") return createUnavailableOwnerIdentityStorage("OWNER_IDENTITY_LOCAL_PATH_MISSING");
+  return createFileOwnerIdentityStorage(path.path, userLocalRoot);
+}
+
+function createUnavailableOwnerIdentityStorage(reason: OwnerIdentityUnavailableReason): OwnerIdentityStorage {
+  return {
+    read: async () => ({ status: "UNAVAILABLE", reason }),
+    save: async () => ({ status: "UNAVAILABLE", reason }),
+    replace: async () => ({ status: "UNAVAILABLE", reason }),
+  };
+}
+
+function ownerIdentityExitCode(state: OwnerIdentityState): 0 | 2 | 3 {
+  if (state.status === "SET") return 0;
+  if (state.status === "EMPTY") return 2;
+  return 3;
+}
+
+function ownerIdentityNextAction(state: OwnerIdentityState): string {
+  if (state.status === "SET") return "OWNER_IDENTITY_READY";
+  if (state.status === "EMPTY") return "OWNER_IDENTITY_OPTIONAL_RETRY";
+  if (state.status === "INVALID") return "OWNER_IDENTITY_RECONFIGURE_WITH_VALID_ALIAS";
+  if (state.status === "CONFLICT") return "OWNER_IDENTITY_RESOLVE_CONFLICT";
+  return "OWNER_IDENTITY_STORAGE_REMEDIATION";
+}
+
+async function requestOwnerAlias(): Promise<string | null> {
+  if (process.stdin.isTTY === true) return requestTerminalOwnerAlias();
+  return requestPipedOwnerAlias();
+}
+
+async function requestTerminalOwnerAlias(): Promise<string | null> {
+  const terminal = createInterface({ input: process.stdin, output: process.stdout });
+  try {
+    return await terminal.question("Owner alias (optional): ");
+  } catch {
+    return null;
+  } finally {
+    terminal.close();
+  }
+}
+
+async function requestPipedOwnerAlias(): Promise<string | null> {
+  return new Promise<string | null>((resolveAlias) => {
+    let source = "";
+    let settled = false;
+    const finish = (alias: string | null): void => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timeout);
+      process.stdin.off("data", onData);
+      process.stdin.off("end", onEnd);
+      process.stdin.pause();
+      resolveAlias(alias);
+    };
+    const onData = (chunk: Buffer): void => {
+      source += chunk.toString("utf8");
+      const lineBreak = source.search(/\r?\n/);
+      if (lineBreak !== -1) finish(source.slice(0, lineBreak));
+    };
+    const onEnd = (): void => { finish(source); };
+    const timeout = setTimeout(() => { finish(null); }, 50);
+    process.stdin.on("data", onData);
+    process.stdin.once("end", onEnd);
+    process.stdin.resume();
+  });
 }
 
 async function runQuickTask(argv: readonly string[]): Promise<number> {

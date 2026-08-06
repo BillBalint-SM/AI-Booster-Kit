@@ -41,6 +41,7 @@ This page is the repository’s thematic index. Start from the [root README](../
 - [Agent Formation Library catalog](../../contract/agent-library/formation-catalog.md) — scenario inventory, readiness states, prerequisites, and recommendation boundaries.
 - [Agent Role Library catalog](../../contract/agent-library/role-catalog.md) — project Role definitions, clean context contracts, handoff contracts, and global Agent–Role assignments.
 - [User-facing Agent Profile Library](../../contract/agent-library/agent-profile-catalog.md) — selectable declarative profiles; recommendation-only and not native host activation. The read-only `list-agent-profiles` CLI command exposes this catalog.
+- [Owner Identity v1](../../contract/owner-identity.md) — Windows-only, user-local display-alias attribution; `owner-identity setup|reconfigure` and the non-blocking `recommend-formation` pre-session gate are the executable v1 surface.
 - [Bounded Validation recipe](../../contract/agent-library/bounded-validation.md) — READY validation profile and output contract.
 - [Bounded Refinement recipe](../../contract/agent-library/bounded-refinement.md) — READY refinement profile and output contract.
 - [Bounded Research recipe](../../contract/agent-library/bounded-research.md) — READY research profile, source boundary, and output contract.
