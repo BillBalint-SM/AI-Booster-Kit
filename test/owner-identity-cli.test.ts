@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
-import { copyFile, mkdtemp, readFile, rm } from "node:fs/promises";
+import { copyFile, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { test } from "node:test";
@@ -35,18 +35,21 @@ test("owner identity bootstrap entry: prompts only for the normal recommend-form
 });
 
 test("built owner identity CLI: rejects malformed command usage and forbidden raw alias arguments without echo", async () => {
-  const missingSubcommand = await runBuiltCli(["owner-identity"], process.env, null);
-  const forbiddenAlias = await runBuiltCli(["owner-identity", "setup", "--alias", "do-not-accept-this"], process.env, null);
-  const missingOutput = parseLastJsonLine(missingSubcommand.stdout) as { decision: string; error: { code: string } };
-  const forbiddenOutput = parseLastJsonLine(forbiddenAlias.stdout) as { decision: string; error: { code: string } };
+  await withTemporaryDirectory(async (root) => {
+    const environment = { ...process.env, LOCALAPPDATA: join(root, "synthetic-localappdata") };
+    const missingSubcommand = await runBuiltCli(["owner-identity"], environment, null);
+    const forbiddenAlias = await runBuiltCli(["owner-identity", "setup", "--alias", "do-not-accept-this"], environment, null);
+    const missingOutput = parseLastJsonLine(missingSubcommand.stdout) as { decision: string; error: { code: string } };
+    const forbiddenOutput = parseLastJsonLine(forbiddenAlias.stdout) as { decision: string; error: { code: string } };
 
-  assert.equal(missingSubcommand.code, 4);
-  assert.equal(missingOutput.decision, "STOPPED");
-  assert.equal(missingOutput.error.code, "COMMAND_CONFIGURATION_INVALID");
-  assert.equal(forbiddenAlias.code, 4);
-  assert.equal(forbiddenOutput.error.code, "COMMAND_CONFIGURATION_INVALID");
-  assert.equal(forbiddenAlias.stdout.includes("do-not-accept-this"), false);
-  assert.equal(forbiddenAlias.stderr.includes("do-not-accept-this"), false);
+    assert.equal(missingSubcommand.code, 4);
+    assert.equal(missingOutput.decision, "STOPPED");
+    assert.equal(missingOutput.error.code, "COMMAND_CONFIGURATION_INVALID");
+    assert.equal(forbiddenAlias.code, 4);
+    assert.equal(forbiddenOutput.error.code, "COMMAND_CONFIGURATION_INVALID");
+    assert.equal(forbiddenAlias.stdout.includes("do-not-accept-this"), false);
+    assert.equal(forbiddenAlias.stderr.includes("do-not-accept-this"), false);
+  });
 });
 
 test("built owner identity CLI: setup and reconfigure map exit codes without exposing raw alias or user-local path", async () => {
@@ -83,6 +86,22 @@ test("built owner identity CLI: empty explicit setup returns EMPTY and does not 
     assert.equal(setup.code, 2);
     assert.equal((parseLastJsonLine(setup.stdout) as { status: string }).status, "EMPTY");
     await assert.rejects(() => readFile(savedPath, "utf8"));
+  });
+});
+
+test("built owner identity CLI: unavailable user-local target returns exit 3 with no repository fallback", async () => {
+  await withTemporaryDirectory(async (root) => {
+    const localAppDataFile = join(root, "synthetic-localappdata-file");
+    await writeFile(localAppDataFile, "occupied\n", "utf8");
+    const environment = { ...process.env, LOCALAPPDATA: localAppDataFile };
+    const setup = await runBuiltCli(["owner-identity", "setup"], environment, "Unavailable Alias\n");
+    const output = parseLastJsonLine(setup.stdout) as { status: string };
+
+    assert.equal(setup.code, 3);
+    assert.equal(output.status, "UNAVAILABLE");
+    assert.equal(setup.stdout.includes("Unavailable Alias"), false);
+    assert.equal(setup.stdout.includes(root), false);
+    await assert.rejects(() => readFile(join(root, "AI Booster Kit", "owner-identity.json"), "utf8"));
   });
 });
 

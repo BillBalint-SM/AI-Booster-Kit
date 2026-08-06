@@ -6,7 +6,7 @@ import { test } from "node:test";
 
 import { resolveUserLocalPath } from "../src/owner-identity/path.js";
 import { createFileOwnerIdentityStorage } from "../src/owner-identity/storage.js";
-import { ensureOwnerIdentity, reconfigureOwner, toAttributionActor } from "../src/owner-identity/state.js";
+import { ensureOwnerIdentity, reconfigureOwner, toAttributionActor, withOwnerIdentityActor } from "../src/owner-identity/state.js";
 import { validateOwnerAlias } from "../src/owner-identity/validation.js";
 
 test("owner identity path: resolves the exact Windows LOCALAPPDATA target and marks unsupported hosts unavailable", () => {
@@ -146,9 +146,14 @@ test("owner identity storage: same concurrent valid save reuses and different co
       conflictStorage.save("Alpha Alias"),
       conflictStorage.save("Beta Alias"),
     ]);
+    const persisted = JSON.parse(await readFile(join(root, "conflict", "AI Booster Kit", "owner-identity.json"), "utf8")) as { version: number; ownerAlias: string };
+    const expectedAlias = first.status === "SET" ? "Alpha Alias" : "Beta Alias";
+    const rejectedAlias = first.status === "CONFLICT" ? "Alpha Alias" : "Beta Alias";
 
     assert.equal([first.status, second.status].filter((status) => status === "SET").length, 1);
     assert.equal([first.status, second.status].filter((status) => status === "CONFLICT").length, 1);
+    assert.deepEqual(persisted, { version: 1, ownerAlias: expectedAlias });
+    assert.notEqual(persisted.ownerAlias, rejectedAlias);
   });
 });
 
@@ -215,6 +220,39 @@ test("owner identity attribution: exposes the alias snapshot or Alias empty", as
 
     assert.equal(toAttributionActor(missing), "Alias empty");
     assert.equal(toAttributionActor(current), "Snapshot Alias");
+  });
+});
+
+test("owner identity attribution helper: returns an actor snapshot and does not silently mutate the original input", async () => {
+  await withTemporaryDirectory(async (root) => {
+    const storage = createFileOwnerIdentityStorage(join(root, "AI Booster Kit", "owner-identity.json"));
+    const emptyState = await ensureOwnerIdentity(storage, async () => null);
+    await reconfigureOwner(storage, async () => "Snapshot Alias");
+    const setState = await ensureOwnerIdentity(storage, async () => "Should Not Prompt");
+    const original = {
+      actor: "Original Actor",
+      eventType: "implementation_started",
+      metadata: { stable: true },
+    };
+
+    const emptyResult = withOwnerIdentityActor(original, emptyState);
+    const setResult = withOwnerIdentityActor(original, setState);
+
+    assert.deepEqual(emptyResult, {
+      actor: "Alias empty",
+      eventType: "implementation_started",
+      metadata: { stable: true },
+    });
+    assert.deepEqual(setResult, {
+      actor: "Snapshot Alias",
+      eventType: "implementation_started",
+      metadata: { stable: true },
+    });
+    assert.deepEqual(original, {
+      actor: "Original Actor",
+      eventType: "implementation_started",
+      metadata: { stable: true },
+    });
   });
 });
 
