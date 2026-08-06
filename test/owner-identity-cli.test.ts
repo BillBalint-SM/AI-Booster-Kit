@@ -8,6 +8,8 @@ import { test } from "node:test";
 import { bootstrapOwnerIdentity } from "../src/controller/owner-identity-bootstrap.js";
 import { createFileOwnerIdentityStorage } from "../src/owner-identity/storage.js";
 
+const isWindowsHost = process.platform === "win32";
+
 test("owner identity bootstrap entry: prompts only for the normal recommend-formation start", async () => {
   await withTemporaryDirectory(async (root) => {
     const storage = createFileOwnerIdentityStorage(join(root, "AI Booster Kit", "owner-identity.json"), root);
@@ -52,7 +54,7 @@ test("built owner identity CLI: rejects malformed command usage and forbidden ra
   });
 });
 
-test("built owner identity CLI: setup and reconfigure map exit codes without exposing raw alias or user-local path", async () => {
+test("built owner identity CLI: Windows setup and reconfigure map exit codes without exposing raw alias or user-local path", { skip: !isWindowsHost }, async () => {
   await withTemporaryDirectory(async (root) => {
     const environment = { ...process.env, LOCALAPPDATA: root };
     const setup = await runBuiltCli(["owner-identity", "setup"], environment, "Árvíztűrő Tükörfúrógép\n");
@@ -77,7 +79,7 @@ test("built owner identity CLI: setup and reconfigure map exit codes without exp
   });
 });
 
-test("built owner identity CLI: empty explicit setup returns EMPTY and does not persist a profile", async () => {
+test("built owner identity CLI: Windows empty explicit setup returns EMPTY and does not persist a profile", { skip: !isWindowsHost }, async () => {
   await withTemporaryDirectory(async (root) => {
     const environment = { ...process.env, LOCALAPPDATA: root };
     const setup = await runBuiltCli(["owner-identity", "setup"], environment, "\n");
@@ -85,6 +87,25 @@ test("built owner identity CLI: empty explicit setup returns EMPTY and does not 
 
     assert.equal(setup.code, 2);
     assert.equal((parseLastJsonLine(setup.stdout) as { status: string }).status, "EMPTY");
+    await assert.rejects(() => readFile(savedPath, "utf8"));
+  });
+});
+
+test("built owner identity CLI: unsupported hosts return UNAVAILABLE without persisting a profile", { skip: isWindowsHost }, async () => {
+  await withTemporaryDirectory(async (root) => {
+    const environment = { ...process.env, LOCALAPPDATA: root };
+    const setup = await runBuiltCli(["owner-identity", "setup"], environment, "Unavailable Alias\n");
+    const reconfigure = await runBuiltCli(["owner-identity", "reconfigure"], environment, "Another Alias\n");
+    const savedPath = join(root, "AI Booster Kit", "owner-identity.json");
+
+    assert.equal(setup.code, 3);
+    assert.equal((parseLastJsonLine(setup.stdout) as { status: string }).status, "UNAVAILABLE");
+    assert.equal(reconfigure.code, 3);
+    assert.equal((parseLastJsonLine(reconfigure.stdout) as { status: string }).status, "UNAVAILABLE");
+    assert.equal(setup.stdout.includes("Unavailable Alias"), false);
+    assert.equal(reconfigure.stdout.includes("Another Alias"), false);
+    assert.equal(setup.stdout.includes(root), false);
+    assert.equal(reconfigure.stdout.includes(root), false);
     await assert.rejects(() => readFile(savedPath, "utf8"));
   });
 });
@@ -142,10 +163,16 @@ test("built recommend-formation CLI: continues after EMPTY and reuses a saved pr
     assert.equal((parseLastJsonLine(first.stdout) as { decision: string }).decision, "RECOMMEND");
     assert.equal(second.code, 0);
     assert.equal((parseLastJsonLine(second.stdout) as { decision: string }).decision, "RECOMMEND");
-    assert.deepEqual(
-      JSON.parse(await readFile(join(savedLocalAppData, "AI Booster Kit", "owner-identity.json"), "utf8")),
-      { version: 1, ownerAlias: "Új Tulajdonos" },
-    );
+    const savedPath = join(savedLocalAppData, "AI Booster Kit", "owner-identity.json");
+
+    if (isWindowsHost) {
+      assert.deepEqual(
+        JSON.parse(await readFile(savedPath, "utf8")),
+        { version: 1, ownerAlias: "Új Tulajdonos" },
+      );
+    } else {
+      await assert.rejects(() => readFile(savedPath, "utf8"));
+    }
   });
 });
 
