@@ -6,9 +6,12 @@ import type { OwnerIdentityProfile, OwnerIdentityReadResult, OwnerIdentityStorag
 import { validateOwnerAlias } from "./validation.js";
 
 const writeQueues = new Map<string, Promise<void>>();
+const lockFileName = ".owner-identity.lock";
+const lockAttemptCount = 40;
+const lockRetryMilliseconds = 25;
 
-export function createFileOwnerIdentityStorage(targetPath: string): OwnerIdentityStorage {
-  const target = normalizeTarget(targetPath);
+export function createFileOwnerIdentityStorage(targetPath: string, userLocalRoot: string): OwnerIdentityStorage {
+  const target = normalizeTarget(targetPath, userLocalRoot);
 
   return {
     read: async () => readProfile(target),
@@ -20,7 +23,9 @@ export function createFileOwnerIdentityStorage(targetPath: string): OwnerIdentit
 async function readProfile(target: StorageTarget): Promise<OwnerIdentityReadResult> {
   if (target.status === "INVALID") return unavailable();
   const parentStatus = await inspectParent(target.parent);
-  if (parentStatus === "MISSING") return { status: "MISSING" };
+  if (parentStatus === "MISSING") {
+    return (await existingAncestryIsSafe(target.parent)) ? { status: "MISSING" } : unavailable();
+  }
   if (parentStatus === "UNAVAILABLE") return unavailable();
 
   try {
@@ -41,18 +46,20 @@ async function saveNewProfile(target: StorageTarget, ownerAliasInput: string): P
   const prepared = await prepareParent(target.parent);
   if (!prepared) return unavailable();
 
-  const existing = await readProfile(target);
-  if (existing.status === "UNAVAILABLE") return existing;
-  if (existing.status === "SET") {
-    if (existing.profile.ownerAlias === validation.ownerAlias) {
-      return { status: "SET", profile: existing.profile, persistencePerformed: false };
+  return withFileLock(target, async () => {
+    const existing = await readProfile(target);
+    if (existing.status === "UNAVAILABLE") return existing;
+    if (existing.status === "SET") {
+      if (existing.profile.ownerAlias === validation.ownerAlias) {
+        return { status: "SET", profile: existing.profile, persistencePerformed: false };
+      }
+      return { status: "CONFLICT", reason: "OWNER_IDENTITY_WRITE_CONFLICT" };
     }
-    return { status: "CONFLICT", reason: "OWNER_IDENTITY_WRITE_CONFLICT" };
-  }
 
-  const profile: OwnerIdentityProfile = { version: 1, ownerAlias: validation.ownerAlias };
-  if (!(await persistAtomically(target.path, profile))) return unavailable();
-  return { status: "SET", profile, persistencePerformed: true };
+    const profile: OwnerIdentityProfile = { version: 1, ownerAlias: validation.ownerAlias };
+    if (!(await persistAtomically(target.path, profile))) return unavailable();
+    return { status: "SET", profile, persistencePerformed: true };
+  });
 }
 
 async function replaceProfile(target: StorageTarget, ownerAliasInput: string): Promise<OwnerIdentityWriteResult> {
@@ -63,15 +70,17 @@ async function replaceProfile(target: StorageTarget, ownerAliasInput: string): P
   const prepared = await prepareParent(target.parent);
   if (!prepared) return unavailable();
 
-  const existing = await readProfile(target);
-  if (existing.status === "UNAVAILABLE") return existing;
-  if (existing.status === "SET" && existing.profile.ownerAlias === validation.ownerAlias) {
-    return { status: "SET", profile: existing.profile, persistencePerformed: false };
-  }
+  return withFileLock(target, async () => {
+    const existing = await readProfile(target);
+    if (existing.status === "UNAVAILABLE") return existing;
+    if (existing.status === "SET" && existing.profile.ownerAlias === validation.ownerAlias) {
+      return { status: "SET", profile: existing.profile, persistencePerformed: false };
+    }
 
-  const profile: OwnerIdentityProfile = { version: 1, ownerAlias: validation.ownerAlias };
-  if (!(await persistAtomically(target.path, profile))) return unavailable();
-  return { status: "SET", profile, persistencePerformed: true };
+    const profile: OwnerIdentityProfile = { version: 1, ownerAlias: validation.ownerAlias };
+    if (!(await persistAtomically(target.path, profile))) return unavailable();
+    return { status: "SET", profile, persistencePerformed: true };
+  });
 }
 
 function parseProfile(source: string): OwnerIdentityReadResult {
@@ -114,9 +123,21 @@ async function persistAtomically(targetPath: string, profile: OwnerIdentityProfi
     temporaryCreated = false;
     return true;
   } catch {
+    if (!temporaryCreated) return false;
+    const removed = await removeTemporaryFile(temporaryPath);
+    temporaryCreated = !removed;
     return false;
   } finally {
-    if (temporaryCreated) await rm(temporaryPath, { force: true }).catch(() => undefined);
+    if (temporaryCreated) await removeTemporaryFile(temporaryPath);
+  }
+}
+
+async function removeTemporaryFile(temporaryPath: string): Promise<boolean> {
+  try {
+    await rm(temporaryPath, { force: true });
+    return true;
+  } catch {
+    return false;
   }
 }
 
@@ -172,23 +193,71 @@ async function serializeWrite<T>(target: StorageTarget, action: () => Promise<T>
   }
 }
 
+async function withFileLock(target: Extract<StorageTarget, { status: "VALID" }>, action: () => Promise<OwnerIdentityWriteResult>): Promise<OwnerIdentityWriteResult> {
+  const lock = await acquireFileLock(join(target.parent, lockFileName));
+  if (lock === null) return unavailable();
+
+  let result: OwnerIdentityWriteResult;
+  try {
+    result = await action();
+  } catch {
+    result = unavailable();
+  }
+  const released = await releaseFileLock(lock);
+  return released ? result : unavailable();
+}
+
+async function acquireFileLock(lockPath: string): Promise<string | null> {
+  for (let attempt = 0; attempt < lockAttemptCount; attempt += 1) {
+    try {
+      const handle = await open(lockPath, "wx", 0o600);
+      await handle.close();
+      return lockPath;
+    } catch (error) {
+      if (!hasCode(error, "EEXIST")) return null;
+      await delay(lockRetryMilliseconds);
+    }
+  }
+  return null;
+}
+
+async function releaseFileLock(lockPath: string): Promise<boolean> {
+  try {
+    await rm(lockPath);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+async function delay(milliseconds: number): Promise<void> {
+  await new Promise<void>((resolveDelay) => { setTimeout(resolveDelay, milliseconds); });
+}
+
 type StorageTarget =
   | { status: "VALID"; path: string; parent: string; original: string }
   | { status: "INVALID"; original: string };
 
-function normalizeTarget(targetPath: string): StorageTarget {
+function normalizeTarget(targetPath: string, userLocalRoot: string): StorageTarget {
   if (
     typeof targetPath !== "string" ||
     targetPath.trim() === "" ||
     targetPath.includes("\0") ||
     !isAbsolute(targetPath) ||
-    targetPath.replaceAll("\\", "/").split("/").includes("..")
+    targetPath.replaceAll("\\", "/").split("/").includes("..") ||
+    typeof userLocalRoot !== "string" ||
+    userLocalRoot.trim() === "" ||
+    userLocalRoot.includes("\0") ||
+    !isAbsolute(userLocalRoot) ||
+    userLocalRoot.replaceAll("\\", "/").split("/").includes("..")
   ) {
     return { status: "INVALID", original: typeof targetPath === "string" ? targetPath : "" };
   }
   const path = resolve(targetPath);
+  const root = resolve(userLocalRoot);
   const parent = dirname(path);
-  if (basename(path) !== "owner-identity.json" || basename(parent) !== "AI Booster Kit") {
+  const expectedPath = join(root, "AI Booster Kit", "owner-identity.json");
+  if (!samePath(path, expectedPath) || basename(path) !== "owner-identity.json" || basename(parent) !== "AI Booster Kit") {
     return { status: "INVALID", original: targetPath };
   }
   return { status: "VALID", path, parent, original: targetPath };

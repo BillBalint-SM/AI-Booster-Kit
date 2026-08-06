@@ -23,7 +23,7 @@ The UTF-8 JSON document contains exactly these fields:
 
 Only version `1` is accepted. Malformed JSON, extra or missing fields, an invalid stored alias, and unknown versions are preserved and reported with logical non-echoing reason codes. A later valid setup may replace an invalid profile.
 
-Persistence creates only the resolved user-local parent path, rejects traversal and directory, symlink, or non-regular targets, writes and flushes a temporary file in the same directory, and atomically renames it into place. A failed replacement preserves the original profile. Competing same-content writes reuse the stored profile; competing different-content setup writes return `CONFLICT`.
+The storage factory receives both the resolved target and the explicit user-local root, and rejects every target other than that root's exact `AI Booster Kit/owner-identity.json` path. Persistence creates only this resolved user-local parent path, rejects traversal and directory, symlink, or non-regular targets, writes and flushes a temporary file in the same directory, and atomically renames it into place. A failed replacement preserves the original profile. A bounded same-directory filesystem lock coordinates concurrent processes: lock contention reports `UNAVAILABLE`; once acquired, same-content writes reuse the stored profile and different-content setup writes return `CONFLICT`.
 
 ## Alias validation and privacy
 
@@ -43,4 +43,4 @@ CLI output may expose only logical status and next action. Explicit setup and re
 
 ## Non-goals
 
-Owner Identity does not change `src/controller/identity.ts`, rewrite historical events, grant authority, configure credentials, identify a machine or repository, provide macOS/Linux storage paths, implement installer integration, or wire process stdin and CLI dispatch in the host-independent core.
+Owner Identity does not change `src/controller/identity.ts`, rewrite historical events, grant authority, configure credentials, identify a machine or repository, provide macOS/Linux storage paths, or implement installer integration. The host-independent core remains independent of process stdin and CLI dispatch; the baseline CLI provides that runtime adapter.

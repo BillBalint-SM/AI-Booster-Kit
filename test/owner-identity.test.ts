@@ -55,7 +55,7 @@ test("owner identity validation: trims valid Unicode aliases and rejects unsafe 
 
 test("owner identity bootstrap: prompts once on a missing profile, saves valid input, and reuses the next start without prompting", async () => {
   await withTemporaryDirectory(async (root) => {
-    const storage = createFileOwnerIdentityStorage(join(root, "AI Booster Kit", "owner-identity.json"));
+    const storage = createStorage(root);
     let prompts = 0;
 
     const first = await ensureOwnerIdentity(storage, async () => {
@@ -84,8 +84,8 @@ test("owner identity bootstrap: prompts once on a missing profile, saves valid i
 
 test("owner identity bootstrap: cancel or empty input returns EMPTY, uses Alias empty, and does not persist an empty profile", async () => {
   await withTemporaryDirectory(async (root) => {
-    const cancelledStorage = createFileOwnerIdentityStorage(join(root, "cancelled", "AI Booster Kit", "owner-identity.json"));
-    const emptyStorage = createFileOwnerIdentityStorage(join(root, "empty", "AI Booster Kit", "owner-identity.json"));
+    const cancelledStorage = createStorage(join(root, "cancelled"));
+    const emptyStorage = createStorage(join(root, "empty"));
 
     const cancelled = await ensureOwnerIdentity(cancelledStorage, async () => null);
     const empty = await ensureOwnerIdentity(emptyStorage, async () => "   ");
@@ -104,7 +104,7 @@ test("owner identity bootstrap: cancel or empty input returns EMPTY, uses Alias 
 test("owner identity storage: malformed and unknown-version files are preserved, reported invalid, and re-prompted", async () => {
   await withTemporaryDirectory(async (root) => {
     const target = join(root, "AI Booster Kit", "owner-identity.json");
-    const storage = createFileOwnerIdentityStorage(target);
+    const storage = createFileOwnerIdentityStorage(target, root);
     await mkdir(join(root, "AI Booster Kit"), { recursive: true });
     await writeFile(target, "{\"version\":1", "utf8");
 
@@ -128,7 +128,7 @@ test("owner identity storage: malformed and unknown-version files are preserved,
 
 test("owner identity storage: same concurrent valid save reuses and different concurrent save conflicts", async () => {
   await withTemporaryDirectory(async (root) => {
-    const sameStorage = createFileOwnerIdentityStorage(join(root, "same", "AI Booster Kit", "owner-identity.json"));
+    const sameStorage = createStorage(join(root, "same"));
     const [sameLeft, sameRight] = await Promise.all([
       sameStorage.save("Reuse Alias"),
       sameStorage.save("Reuse Alias"),
@@ -141,7 +141,7 @@ test("owner identity storage: same concurrent valid save reuses and different co
       profile: { version: 1, ownerAlias: "Reuse Alias" },
     });
 
-    const conflictStorage = createFileOwnerIdentityStorage(join(root, "conflict", "AI Booster Kit", "owner-identity.json"));
+    const conflictStorage = createStorage(join(root, "conflict"));
     const [first, second] = await Promise.all([
       conflictStorage.save("Alpha Alias"),
       conflictStorage.save("Beta Alias"),
@@ -159,7 +159,7 @@ test("owner identity storage: same concurrent valid save reuses and different co
 
 test("owner identity reconfigure: changes only future state and failed reconfigure preserves the previous profile", async () => {
   await withTemporaryDirectory(async (root) => {
-    const storage = createFileOwnerIdentityStorage(join(root, "AI Booster Kit", "owner-identity.json"));
+    const storage = createStorage(root);
 
     await ensureOwnerIdentity(storage, async () => "Initial Alias");
     const changed = await reconfigureOwner(storage, async () => "Updated Alias");
@@ -185,14 +185,21 @@ test("owner identity reconfigure: changes only future state and failed reconfigu
 
 test("owner identity availability: directory, symlink, and unavailable targets remain UNAVAILABLE with no fallback write", async () => {
   await withTemporaryDirectory(async (root) => {
-    const directoryTarget = join(root, "directory-target");
-    await mkdir(directoryTarget);
+    const directoryRoot = join(root, "directory-root");
+    const directoryTarget = join(directoryRoot, "AI Booster Kit", "owner-identity.json");
+    await mkdir(directoryTarget, { recursive: true });
     const linkType = process.platform === "win32" ? "junction" : "dir";
-    const symlinkTarget = join(root, "symlink-target");
-    await symlink(directoryTarget, symlinkTarget, linkType);
+    const symlinkRoot = join(root, "symlink-root");
+    const symlinkDestination = join(root, "symlink-destination");
+    const fileRoot = join(root, "file-root");
+    await mkdir(symlinkRoot);
+    await mkdir(symlinkDestination);
+    await symlink(symlinkDestination, join(symlinkRoot, "AI Booster Kit"), linkType);
+    await writeFile(fileRoot, "occupied\n", "utf8");
 
-    const directoryStorage = createFileOwnerIdentityStorage(directoryTarget);
-    const symlinkStorage = createFileOwnerIdentityStorage(symlinkTarget);
+    const directoryStorage = createStorage(directoryRoot);
+    const symlinkStorage = createStorage(symlinkRoot);
+    const fileStorage = createStorage(fileRoot);
 
     const directoryState = await ensureOwnerIdentity(directoryStorage, async () => {
       throw new Error("directory target should not prompt");
@@ -200,20 +207,26 @@ test("owner identity availability: directory, symlink, and unavailable targets r
     const symlinkState = await ensureOwnerIdentity(symlinkStorage, async () => {
       throw new Error("symlink target should not prompt");
     });
+    const fileState = await ensureOwnerIdentity(fileStorage, async () => {
+      throw new Error("file root should not prompt");
+    });
     const unavailable = resolveUserLocalPath({ platform: "darwin", env: {} });
 
     assert.equal(directoryState.status, "UNAVAILABLE");
     assert.equal(directoryState.actor, "Alias empty");
     assert.equal(symlinkState.status, "UNAVAILABLE");
     assert.equal(symlinkState.actor, "Alias empty");
+    assert.equal(fileState.status, "UNAVAILABLE");
+    assert.equal(fileState.prompted, false);
     assert.equal(unavailable.status, "UNAVAILABLE");
-    assert.deepEqual((await readdir(root)).sort(), ["directory-target", "symlink-target"]);
+    await assert.rejects(() => readFile(join(symlinkDestination, "owner-identity.json"), "utf8"));
+    assert.deepEqual((await readdir(root)).sort(), ["directory-root", "file-root", "symlink-destination", "symlink-root"]);
   });
 });
 
 test("owner identity attribution: exposes the alias snapshot or Alias empty", async () => {
   await withTemporaryDirectory(async (root) => {
-    const storage = createFileOwnerIdentityStorage(join(root, "AI Booster Kit", "owner-identity.json"));
+    const storage = createStorage(root);
     const missing = await ensureOwnerIdentity(storage, async () => null);
     await reconfigureOwner(storage, async () => "Snapshot Alias");
     const current = await ensureOwnerIdentity(storage, async () => "Should Not Prompt");
@@ -225,7 +238,7 @@ test("owner identity attribution: exposes the alias snapshot or Alias empty", as
 
 test("owner identity attribution helper: returns an actor snapshot and does not silently mutate the original input", async () => {
   await withTemporaryDirectory(async (root) => {
-    const storage = createFileOwnerIdentityStorage(join(root, "AI Booster Kit", "owner-identity.json"));
+    const storage = createStorage(root);
     const emptyState = await ensureOwnerIdentity(storage, async () => null);
     await reconfigureOwner(storage, async () => "Snapshot Alias");
     const setState = await ensureOwnerIdentity(storage, async () => "Should Not Prompt");
@@ -255,6 +268,37 @@ test("owner identity attribution helper: returns an actor snapshot and does not 
     });
   });
 });
+
+test("owner identity storage: only the explicit user-local root may contain the profile", async () => {
+  await withTemporaryDirectory(async (root) => {
+    const userLocalRoot = join(root, "local-app-data");
+    const outsideRoot = join(root, "outside-root");
+    const storage = createFileOwnerIdentityStorage(join(outsideRoot, "AI Booster Kit", "owner-identity.json"), userLocalRoot);
+
+    const state = await ensureOwnerIdentity(storage, async () => "Outside Root Alias");
+
+    assert.equal(state.status, "UNAVAILABLE");
+    await assert.rejects(() => readFile(join(outsideRoot, "AI Booster Kit", "owner-identity.json"), "utf8"));
+  });
+});
+
+test("owner identity storage: a held same-directory lock returns UNAVAILABLE without replacing the profile", async () => {
+  await withTemporaryDirectory(async (root) => {
+    const storage = createStorage(root);
+    const parent = join(root, "AI Booster Kit");
+    await mkdir(parent, { recursive: true });
+    await writeFile(join(parent, ".owner-identity.lock"), "held\n", "utf8");
+
+    const result = await storage.save("Locked Alias");
+
+    assert.equal(result.status, "UNAVAILABLE");
+    assert.deepEqual(await storage.read(), { status: "MISSING" });
+  });
+});
+
+function createStorage(userLocalRoot: string) {
+  return createFileOwnerIdentityStorage(join(userLocalRoot, "AI Booster Kit", "owner-identity.json"), userLocalRoot);
+}
 
 async function withTemporaryDirectory<T>(run: (directory: string) => Promise<T>): Promise<T> {
   const directory = await mkdtemp(join(tmpdir(), "owner-identity-red-"));

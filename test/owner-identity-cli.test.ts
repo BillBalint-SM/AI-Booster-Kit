@@ -1,8 +1,8 @@
 import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
-import { copyFile, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
-import { join, resolve } from "node:path";
+import { join } from "node:path";
 import { test } from "node:test";
 
 import { bootstrapOwnerIdentity } from "../src/controller/owner-identity-bootstrap.js";
@@ -10,7 +10,7 @@ import { createFileOwnerIdentityStorage } from "../src/owner-identity/storage.js
 
 test("owner identity bootstrap entry: prompts only for the normal recommend-formation start", async () => {
   await withTemporaryDirectory(async (root) => {
-    const storage = createFileOwnerIdentityStorage(join(root, "AI Booster Kit", "owner-identity.json"));
+    const storage = createFileOwnerIdentityStorage(join(root, "AI Booster Kit", "owner-identity.json"), root);
     let prompts = 0;
 
     const help = await bootstrapOwnerIdentity(["--help"], storage, async () => {
@@ -108,7 +108,25 @@ test("built owner identity CLI: unavailable user-local target returns exit 3 wit
 test("built recommend-formation CLI: continues after EMPTY and reuses a saved profile on later starts", async () => {
   await withTemporaryDirectory(async (root) => {
     const input = join(root, "request.json");
-    await copyFile(resolve("test/fixtures/controller/eligible-quick-task.json"), input);
+    await writeFile(input, JSON.stringify({
+      requestVersion: "1.0",
+      workItemType: "Quick Task",
+      goal: "Validate the Owner Identity platform-start gate.",
+      outcomeOwner: "delivery-team",
+      complexity: "LOW",
+      executionBoundary: "LOCAL_ONLY",
+      value: { state: "KNOWN", statement: "A reusable local platform session." },
+      context: { state: "CURRENT", reference: "owner-identity-v1" },
+      relations: { state: "ABSENT", items: [] },
+      dependencies: { state: "ABSENT", items: [] },
+      formationInput: {
+        scenario: "validation",
+        claim: "The Owner Identity session gate completes without blocking the platform session.",
+        acceptanceCriteria: ["the platform session continues after Alias empty"],
+        evidenceSources: ["built CLI test output"],
+        knownLimits: ["only Windows user-local storage is implemented in v1"],
+      },
+    }), "utf8");
 
     const emptyEnvironment = { ...process.env, LOCALAPPDATA: join(root, "empty-profile-root") };
     const emptyResult = await runBuiltCli(["recommend-formation", "--input", input], emptyEnvironment, "\n");
