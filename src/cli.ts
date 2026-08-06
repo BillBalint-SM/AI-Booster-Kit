@@ -25,8 +25,16 @@ import { ControllerRequestError, parseQuickTaskRequest } from "./controller/requ
 import { resolveCheckpoint } from "./controller/resolve.js";
 import { createActivationBoundaryPackage } from "./controller/activation-boundary.js";
 import { saveActivationPackage } from "./controller/activation-storage.js";
+import { CodexExecutionError, executeCodexActivation } from "./controller/codex-execution.js";
+import {
+  CODEX_WINDOWS_MAX_TIMEOUT_MS,
+  CodexWindowsConformanceError,
+  runCodexWindowsConformance,
+  type CodexWindowsProbeProfile,
+} from "./controller/codex-windows-conformance.js";
 import { ControllerActivationPackageError } from "./controller/types.js";
 import type { ActivationBoundaryPackage, ActivationContextKind, RetentionScope, TuningRequest } from "./controller/types.js";
+import type { CodexExecutionRequest } from "./controller/codex-execution.js";
 import { parseWorkContext } from "./context/markdown.js";
 import { evaluateSessionResume } from "./context/resume.js";
 import { saveSessionState, saveWorkContext } from "./context/storage.js";
@@ -56,6 +64,8 @@ Commands:
   activate-quick-task  Issue an ephemeral Quick Task Activation Package
   prepare-activation  Prepare an explicit M2 activation package
   save-activation     Save an explicit Personal or Team activation package
+  execute-activation  Execute one local Codex read-only activation (native executable or codex.js)
+  codex-windows-conformance  Diagnose native Windows Codex child-process conformance (read-only)
   validate-context    Validate an explicit Milestone or Epic context artifact
   save-context        Save an explicit Personal or Team context artifact
   save-session        Save an explicit Personal or Team compact session state
@@ -99,6 +109,8 @@ async function dispatchCli(argv: readonly string[]): Promise<number> {
   if (command === "activate-quick-task") return runActivateQuickTask(argv.slice(1));
   if (command === "prepare-activation") return runPrepareActivation(argv.slice(1));
   if (command === "save-activation") return runSaveActivation(argv.slice(1));
+  if (command === "execute-activation") return runExecuteActivation(argv.slice(1));
+  if (command === "codex-windows-conformance") return runCodexWindowsConformanceCli(argv.slice(1));
   if (command === "validate-context") return runValidateContext(argv.slice(1));
   if (command === "save-context") return runSaveContext(argv.slice(1));
   if (command === "save-session") return runSaveSession(argv.slice(1));
@@ -436,6 +448,132 @@ async function runSaveActivation(argv: readonly string[]): Promise<number> {
     if (error instanceof ControllerActivationPackageError) return stoppedController(activationErrorCode(error), "Activation package saving stopped safely", 3);
     throw error;
   }
+}
+
+async function runExecuteActivation(argv: readonly string[]): Promise<number> {
+  if (
+    argv[0] !== "--input" || argv[1] === undefined ||
+    argv[2] !== "--source" || argv[3] === undefined ||
+    argv[4] !== "--workdir" || argv[5] === undefined ||
+    argv[6] !== "--timeout-ms" || argv[7] === undefined ||
+    (argv.length !== 8 && argv.length !== 10) ||
+    (argv.length === 10 && (argv[8] !== "--codex-command" || argv[9] === undefined))
+  ) {
+    return stoppedController("COMMAND_CONFIGURATION_INVALID", "execute-activation requires the exact activation arguments", 4);
+  }
+
+  const timeoutMs = Number(argv[7]);
+  if (!Number.isInteger(timeoutMs) || timeoutMs <= 0) {
+    return stoppedController("CODEX_TIMEOUT_INVALID", "execute-activation requires a positive integer timeout", 4);
+  }
+
+  try {
+    const packageInput = await readActivationJson(argv[1], "ACTIVATION_PACKAGE_PATH_UNREADABLE", "ACTIVATION_PACKAGE_JSON_INVALID");
+    const request: CodexExecutionRequest = {
+      activationPackage: packageInput,
+      sourcePath: argv[3],
+      workdir: argv[5],
+      timeoutMs,
+    };
+    const codexCommand = argv[9];
+    if (codexCommand !== undefined) request.codexCommand = codexCommand;
+    const result = await executeCodexActivation(request);
+    process.stdout.write(`${JSON.stringify(result)}\n`);
+    return result.state === "COMPLETED" ? 0 : 3;
+  } catch (error) {
+    if (error instanceof ActivationCliError) return stoppedController(error.code, "Activation package input processing stopped safely", error.exitCode);
+    if (error instanceof ControllerActivationPackageError) return stoppedController(activationErrorCode(error), "Activation execution stopped safely", 3);
+    if (error instanceof CodexExecutionError) return stoppedController(error.code, "Codex activation input processing stopped safely", codexInputExitCode(error.code));
+    throw error;
+  }
+}
+
+async function runCodexWindowsConformanceCli(argv: readonly string[]): Promise<number> {
+  if (
+    argv[0] !== "--workdir" || argv[1] === undefined ||
+    argv[2] !== "--timeout-ms" || argv[3] === undefined ||
+    argv[4] !== "--profile" || argv[5] === undefined
+  ) {
+    return stoppedController("COMMAND_CONFIGURATION_INVALID", "codex-windows-conformance requires the exact diagnostic arguments", 4);
+  }
+
+  const timeoutMs = Number(argv[3]);
+  if (!Number.isInteger(timeoutMs) || timeoutMs <= 0 || timeoutMs > CODEX_WINDOWS_MAX_TIMEOUT_MS) {
+    return stoppedController("CODEX_TIMEOUT_INVALID", "codex-windows-conformance requires a positive bounded timeout", 4);
+  }
+  if (!isCodexWindowsProbeProfile(argv[5])) {
+    return stoppedController("CODEX_PROFILE_INVALID", "codex-windows-conformance requires a supported native Windows profile", 4);
+  }
+
+  let index = 6;
+  let codexCommand: string | undefined;
+  let codexHome: string | undefined;
+  if (argv[index] === "--codex-command" && argv[index + 1] !== undefined) {
+    codexCommand = argv[index + 1];
+    index += 2;
+  }
+  if (argv[index] === "--codex-home" && argv[index + 1] !== undefined) {
+    codexHome = argv[index + 1];
+    index += 2;
+  }
+  if (index !== argv.length) {
+    return stoppedController("COMMAND_CONFIGURATION_INVALID", "codex-windows-conformance accepts each optional path pair at most once", 4);
+  }
+
+  try {
+    const request = {
+      workdir: argv[1],
+      timeoutMs,
+      profile: argv[5],
+      ...(codexCommand === undefined ? {} : { codexCommand }),
+      ...(codexHome === undefined ? {} : { codexHome }),
+    };
+    const result = await runCodexWindowsConformance(request);
+    process.stdout.write(`${JSON.stringify(result)}\n`);
+    return result.state === "COMPLETED" ? 0 : 3;
+  } catch (error) {
+    if (error instanceof CodexWindowsConformanceError) {
+      return stoppedController(error.code, "Windows Codex conformance stopped safely", codexWindowsInputExitCode(error.code));
+    }
+    if (error instanceof CodexExecutionError) {
+      return stoppedController(error.code, "Codex command validation stopped safely", codexInputExitCode(error.code));
+    }
+    throw error;
+  }
+}
+
+function isCodexWindowsProbeProfile(value: string): value is CodexWindowsProbeProfile {
+  return value === "current" || value === "elevated" || value === "unelevated" || value === "isolated";
+}
+
+function codexWindowsInputExitCode(code: string): 3 | 4 {
+  const configurationCodes = new Set([
+    "COMMAND_CONFIGURATION_INVALID",
+    "CODEX_PROFILE_INVALID",
+    "CODEX_TIMEOUT_INVALID",
+    "CODEX_WORKDIR_INVALID",
+    "CODEX_SECRET_PATH_FORBIDDEN",
+  ]);
+  return configurationCodes.has(code) ? 4 : 3;
+}
+
+function codexInputExitCode(code: string): 3 | 4 {
+  const configurationCodes = new Set([
+    "CODEX_SOURCE_PATH_REQUIRED",
+    "CODEX_WORKDIR_REQUIRED",
+    "CODEX_TIMEOUT_INVALID",
+    "CODEX_COMMAND_INVALID",
+    "CODEX_COMMAND_NOT_NATIVE",
+    "CODEX_COMMAND_SCRIPT_INVALID",
+    "CODEX_WORKDIR_INVALID",
+    "CODEX_SOURCE_OUTSIDE_WORKDIR",
+    "CODEX_SOURCE_SYMLINK_FORBIDDEN",
+    "CODEX_SOURCE_NOT_FILE",
+    "CODEX_SOURCE_TOO_LARGE",
+    "CODEX_SOURCE_UNREADABLE",
+    "CODEX_TEMP_WORKSPACE_UNAVAILABLE",
+  ]);
+  return configurationCodes.has(code) ? 4 : 3;
 }
 
 async function runValidateContext(argv: readonly string[]): Promise<number> {

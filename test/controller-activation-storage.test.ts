@@ -5,7 +5,7 @@ import { join, resolve } from "node:path";
 import { test } from "node:test";
 
 import { createActivationBoundaryPackage } from "../src/controller/activation-boundary.js";
-import { saveActivationPackage } from "../src/controller/activation-storage.js";
+import { saveActivationPackage, validateActivationPackage } from "../src/controller/activation-storage.js";
 import type { ActivationBoundaryPackage, QuickTaskActivationPackage, RetentionScope } from "../src/controller/types.js";
 
 const basePackage: QuickTaskActivationPackage = {
@@ -50,6 +50,16 @@ const basePackage: QuickTaskActivationPackage = {
     persistencePerformed: false,
   },
 };
+
+test("activation validation: accepts a prepared package and rejects forged identity", () => {
+  const packageValue = makePackage("PERSONAL", "Validate the reusable package.");
+
+  assert.deepEqual(validateActivationPackage(packageValue), packageValue);
+  assert.throws(
+    () => validateActivationPackage({ ...packageValue, packageId: "forged" }),
+    (error: unknown) => error instanceof Error && error.message.startsWith("ACTIVATION_PACKAGE_INVALID: "),
+  );
+});
 
 test("activation storage: writes one Personal JSON document and is idempotent", async () => {
   await withTemporaryDirectory(async (directory) => {

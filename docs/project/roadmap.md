@@ -112,14 +112,17 @@ the bounded slice is present, not that the complete product vision is finished.
 | Agent Framework Library and Recipe Controller v1 | `READY` within local recommendation-only scope | M1-A catalog/validator, M1-B scenario recognizer/recommendation, and five READY research/validation/refinement/implementation/debugging recipes with profile contracts provide the bounded foundation | Preserve the recommendation-only boundary; activation, tuning, persistence, iterative debugging tooling, and synchronization remain independent future tracks. | `depends_on` Controller; `enables` all later Agent tracks |
 | Activation, tuning, save-or-ephemeral choice | `COMPLETE_WITH_LIMIT` | M2 boundary builder, explicit Personal/Team saver, `prepare-activation`/`save-activation` CLI, positive/negative tests, and local evidence | Snapshot freshness is checked only when a mapper-dependent publication is being prepared; it is not a general documentation gate. Host adaptation/execution and external publication remain separate capability tracks. | `depends_on` Library v1 |
 | Compact session state and optional storage | `COMPLETE_WITH_LIMIT` | `src/context/`, M3 Context CLI, focused tests, complete Milestone-bundle validation, PO-to-parallel-Epic resume evidence, and the explicit team scope contract | The team reads the complete Milestone bundle; each developer session executes only one Epic and its work items; canonical writes declare owner-approved PR authority but local storage does not enforce Git/PR approval. Host execution, automatic Git operations, and connectors remain separate. | `supports` activation and evolve |
+| Planning-Show contracts | `READY_WITH_LIMIT` | `skills/planning-show/` and three User-facing scenario contracts | The reusable contracts work as a skill-flow; complete Controller runtime orchestration is `NOT_EXECUTED`. | `supports` planning and handoff |
+| Owner Identity v1 | `COMPLETE_WITH_LIMIT` | Windows user-local alias contract, non-blocking pre-session gate, and focused tests | Windows-only attribution; no authentication, authorization, or automatic scenario-handoff integration. | `supports` history attribution |
+| M4 Codex local execution and Windows conformance | `COMPLETE_WITH_LIMIT` | `codex-execution`, `codex-windows-conformance`, explicit CLI commands, and focused tests | Only the bounded local process contract is proven. Native Windows process creation and host security enforcement remain separately evidenced or `UNKNOWN`. | `depends_on` Activation Package |
 | Evaluation and `evolve` review | `LATER` / `NOT EXECUTED` | Accepted product direction and event vocabulary | Evaluate session outcomes and repeated `UNKNOWN` or +/- events; evolve one formation at a time. | `validates` active setup |
 | Debugging and iterative verification tooling | `LATER` / `NOT EXECUTED` | Product vision and debugging workflow direction | Build modify–run–verify probes and zero-configuration local context injection. | `supports` implementation and validation |
 | Jira–GitHub–Confluence lifecycle sync | `LATER` / `NOT EXECUTED` | Existing mapping/readiness contracts | Add only after internal contracts, evidence, consent, and read-back are strong; User opt-in. | `depends_on` Library, Controller, evidence, and authority model |
 
 The active delivery routing is maintained in `current-state.md`. The durable
-sequence above records the completed-with-limit M1, M2, and M3 slices and keeps
-M4 host activation planning separate from automatic cross-system
-synchronization. The library creates directly usable product value: a team can
+sequence above records the completed-with-limit M1, M2, M3, and bounded M4
+slices while keeping host conformance and automatic cross-system synchronization
+separate. The library creates directly usable product value: a team can
 choose a suitable formation for refinement, research, planning, debugging,
 validation, or implementation before any connector is involved.
 
@@ -335,17 +338,19 @@ evidence. This remains `COMPLETE_WITH_LIMIT`: it has no host execution,
 connector, automatic Git operation, PR approval enforcement, or transcript
 reconstruction.
 
-### Later — M4: Host Activation and Execution
+### Complete with limit — M4: Codex local execution and Windows conformance
 
-Activate one native host at a time, beginning with Codex, then Claude Code, then
-Cursor. Prove package consumption, scoped identity, effective tool boundary,
-structured results, timeout/partial failure, safe context injection, and
-host-observed read-back. This milestone is not satisfied by a declarative
-projection or a local event certificate.
+`execute-activation` validates one v2 Activation Package, reads one explicit
+local source within an explicit workdir, and invokes only a native Codex
+command with `shell:false`, `--sandbox read-only`, `--ephemeral`, bounded
+output, no retry, and a fixed structured response contract.
+`codex-windows-conformance` separately audits and classifies the fixed native
+Windows smoke without mutating configuration, policy, ACLs, or connectors.
 
-**Exit evidence:** independent host conformance and security evidence for each
-host, native loading/read-back, execution and failure contract, and explicit
-human approval at the activation boundary.
+**Exit evidence:** positive and negative controller/CLI tests for package,
+path, command, timeout, output, malformed-result, secret-path, and
+host-blocker cases. This is not a native Windows capability pass: a supported
+host profile still needs its own read-back evidence and explicit approval.
 
 ### Later — M5: Evaluation and `evolve`
 

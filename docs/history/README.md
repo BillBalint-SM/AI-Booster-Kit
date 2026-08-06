@@ -8,3 +8,4 @@ Archive evidence is immutable historical context, not a default instruction or c
 - [Gate 2 results and next steps](gate-2/gate-2-results-and-next-steps.md)
 - [Gate 2 pilot evidence](gate-2/g2ai-pilot-evidence.md)
 - [Host conformance evidence](host-conformance/agent-testing-status-2026-07-28.md)
+- [Planning-Show and Owner Identity main-release handoff](main-release-v1/2026-08-06-planning-show-owner-identity-handoff.md)
