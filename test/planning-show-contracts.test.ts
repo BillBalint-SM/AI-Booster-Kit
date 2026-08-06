@@ -12,10 +12,11 @@ const CONTRACT_FILES = [
 ];
 
 test("planning-show scenario contracts: catalog and contracts expose the approved boundaries without prohibited data", async () => {
-  const [indexText, ...contractTexts] = await Promise.all([
+  const [indexText, contract01Text, contract02Text, contract03Text] = (await Promise.all([
     readNormalizedText(CONTRACT_INDEX),
     ...CONTRACT_FILES.map((path) => readNormalizedText(path)),
-  ]);
+  ])) as [string, string, string, string];
+  const contractTexts = [contract01Text, contract02Text, contract03Text];
 
   assert.match(indexText, /Contract status:\s*`READY_WITH_LIMIT`/);
   assert.match(indexText, /Runtime basis:\s*`PARTIAL`/);
@@ -62,6 +63,30 @@ test("planning-show scenario contracts: catalog and contracts expose the approve
   }
 
   assertNoProhibitedData(indexText);
+
+  assert.match(
+    contract03Text,
+    /session_status:\s*DONE \| STOPPED \| UNKNOWN \| CONFLICT \| SCOPE_CHANGE/,
+  );
+  assert.match(contract03Text, /`CONFLICT` never becomes fan-in\/`DONE`/);
+  assert.match(
+    contract03Text,
+    /`SCOPE_CHANGE` preserves the prior decision and requires explicit PO\/PM re-confirmation/,
+  );
+  assert.match(contract03Text, /^## Delegation visibility rule$/m);
+  assert.match(
+    contract03Text,
+    /Reviewer and PO\/PM responsibilities may be explicitly delegated by the User, but only for the named decision or current verification session\./,
+  );
+  assert.match(
+    contract03Text,
+    /requested_by_alias\s+delegated_role\s+scope\s+decision\s+timestamp/s,
+  );
+  assert.match(contract03Text, /`timestamp` must be ISO 8601 with timezone\./);
+  assert.match(
+    contract03Text,
+    /Do not record credential, token, account, or other secret-bearing data in the delegation snapshot\./i,
+  );
 });
 
 async function readNormalizedText(path: string): Promise<string> {

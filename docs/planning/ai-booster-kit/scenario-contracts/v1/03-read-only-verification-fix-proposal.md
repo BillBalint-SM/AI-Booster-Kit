@@ -70,6 +70,24 @@ Produce a traceable verification result that separates:
 | Environment details | Optional | Absence must not block when the question remains probeable. |
 | Current owner alias | Yes | Ask on first use, then reuse user-local alias. |
 
+## Delegation visibility rule
+
+Reviewer and PO/PM responsibilities may be explicitly delegated by the User, but only for the named decision or current verification session. Record delegation visibility with exactly these fields and nothing more:
+
+```text
+requested_by_alias
+delegated_role
+scope
+decision
+timestamp
+```
+
+Requirements:
+
+- `timestamp` must be ISO 8601 with timezone.
+- The recorded scope must stay limited to the named decision/session.
+- Do not record credential, token, account, or other secret-bearing data in the delegation snapshot.
+
 ## Process
 
 ### 1. Establish the read-only boundary
@@ -111,12 +129,16 @@ The Agent may use the output of a previous round to refine the next read-only pr
 The session-level result always keeps these fields separate:
 
 ```text
-session_status: DONE | STOPPED | UNKNOWN
+session_status: DONE | STOPPED | UNKNOWN | CONFLICT | SCOPE_CHANGE
 observed_behavior: PASS | FAIL | UNKNOWN
 fix_execution: NOT_EXECUTED
 ```
 
 `session_status: DONE` means the verification session completed its bounded work. It does not mean the system was fixed. A `FAIL` observation may still produce a `DONE` session when the evidence-backed proposal is complete; the unexecuted fix remains explicit.
+
+`session_status: CONFLICT` means the evidence sources materially disagree and the conflict remains unresolved inside the bounded read-only scope. `CONFLICT` never becomes fan-in/`DONE`; it stays explicit until a separately bounded follow-up resolves the contradiction.
+
+`session_status: SCOPE_CHANGE` means the evidence-backed next step would change the original decision, goal, scope, Feature, or acceptance boundary. `SCOPE_CHANGE` preserves the prior decision and requires explicit PO/PM re-confirmation before any new branch or downstream handoff proceeds as changed scope.
 
 ### 5. Milestone/Epic handoff relation
 
@@ -128,6 +150,8 @@ After the third unsuccessful, conflicted, or uncertain round:
 
 - use `STOPPED` when the safe limit was reached or further probing would require a new authority/scope;
 - use `UNKNOWN` when evidence is insufficient to decide;
+- preserve `CONFLICT` when contradictory evidence remains unresolved;
+- preserve `SCOPE_CHANGE` when the bounded read-only result would alter the prior decision or scope and re-confirmation has not yet occurred;
 - preserve all round records and create an explicit next action;
 - never hide the limit by claiming PASS or executed fix.
 
@@ -181,7 +205,7 @@ The session produces:
 6. evidence-backed fix proposal;
 7. `session_status`, `observed_behavior`, and `fix_execution`;
 8. conflicts, unknowns, scope-change impact, and next action;
-9. owner alias snapshot and optional reviewer result;
+9. owner alias snapshot, optional reviewer result, and optional scope-limited delegation snapshot;
 10. no external write claim.
 
 ## Acceptance criteria
@@ -192,7 +216,10 @@ The session produces:
 - Every round separates facts, evidence, inference, proposal, limits, and next action.
 - `fix_execution` is always `NOT_EXECUTED` in this contract.
 - A completed session may be `DONE` even when `observed_behavior` is `FAIL`, provided the bounded evidence-backed proposal is complete.
+- `CONFLICT` is an allowed final result and never becomes fan-in/`DONE`.
+- `SCOPE_CHANGE` is an allowed final result, preserves the prior decision, and requires PO/PM re-confirmation before changed-scope continuation.
 - A third-round failure, conflict, or unknown result becomes `STOPPED` or `UNKNOWN`, never a false PASS.
+- Delegation visibility, when present, is limited to `requested_by_alias`, `delegated_role`, `scope`, `decision`, and `timestamp` (ISO 8601 with timezone), with no credential data.
 - No file, external system, Bug, or implementation change is performed.
 
 ## Stop conditions
