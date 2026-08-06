@@ -34,12 +34,20 @@ developer-instruction bodies. The Role catalog and Formation catalog add
 many-to-many Agent–Role coverage, isolated context assignments, and bindings
 for the six declared formations. The read-only `inspect-agent-library` and
 `list-agent-profiles` CLI paths expose these projections without activation or
-external writes.
+external writes. Planning-Show adds three immediately usable, User-facing
+planning, technical-handoff, and read-only-verification contracts; its complete
+Controller runtime remains `NOT_EXECUTED`. Owner Identity v1 adds a Windows
+user-local display-alias profile and non-blocking `recommend-formation`
+pre-session gate. M4 adds `execute-activation`, which consumes one validated
+activation package and one explicit local source through a bounded Codex
+read-only/ephemeral process contract, plus the separate
+`codex-windows-conformance` diagnostic.
 
 ## Validation
 
-The current local implementation evidence is 357/357 under Node v26.4.0;
-`npm run check:docs` and `git diff --check` pass on synchronized `main`.
+The current local implementation evidence is 401 pass / 1 intentional
+Windows-only skip under Node v26.4.0; `npm run check:docs` and `git diff
+--check` pass in the release worktree before publication.
 Mapper freshness is recorded separately for the committed snapshot below; it
 is not a general documentation-change gate.
 The package declares Node 22.x, so these remain local results rather than
@@ -59,9 +67,12 @@ projection, not an activation or publication authority.
 
 The five scenario profiles are READY only as bounded M1 recommendation paths;
 M2 activation-package preparation/storage and M3 context/session/resume remain
-`COMPLETE_WITH_LIMIT`. Host adaptation/execution, evaluation/evolve, debugging
-context injection, and lifecycle synchronization remain future work. Optional
-synchronization remains a separate capability track. Canonical artifact authority is declared as owner-approved PR
+`COMPLETE_WITH_LIMIT`. M4 proves only the local Codex process contract:
+host-specific security enforcement, native Windows process creation, Desktop
+host behavior, Claude/Cursor conformance, evaluation/evolve, debugging context
+injection, and lifecycle synchronization remain unproven or future work.
+Planning-Show has no complete Controller runtime yet, and Owner Identity is
+Windows-only. Canonical artifact authority is declared as owner-approved PR
 flow but is not locally enforced. Agent Profile, Role, and Formation catalogs
 are read-only projections; host-specific `.codex/agents` prompt files are not
 canonical runtime activation and remain outside `main`. Mapper output is a
@@ -75,14 +86,10 @@ approval, bounded authority, and source-native read-back.
 
 ## Next bounded action
 
-Observe one real bounded work task for the [Personal Operations & Rule
-Audit](../operations/outcome-operating-audit-v1.md#first-gate-personal-operations--rule-auditor)
-without adding a permanent tracking ceremony. Record interruptions,
-context-switches, time/energy cost, and the result against the remaining
-`UNKNOWN` habit rows. Apply only evidence-backed simplifications; then the
-audit may convert the human-owned vision into an explicit product/market
-hypothesis and one evidence-gated MVP slice. It must preserve `UNKNOWN` when
-product, market, payment, user, or personal-work evidence is absent; it must
-not claim a market-ready product from documentation or local tests. No
-automatic publication is inferred from this state alone.
+Run one separately authorized, read-only native Codex Windows conformance
+probe and preserve its bounded evidence. In parallel, use the
+[Outcome-to-MVP Contract Brief](../operations/outcome-to-mvp-contract-brief-v1.md)
+on one real owner task; preserve `UNKNOWN` for product, market, payment, user,
+or production claims that lack evidence. Neither action authorizes external
+writes or a broader host capability claim.
 

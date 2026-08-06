@@ -12,15 +12,19 @@ export async function saveActivationPackage(
   packageValue: ActivationBoundaryPackage,
   repositoryRoot: string | undefined,
 ): Promise<ActivationSaveResult> {
-  const retention = validatePackage(packageValue);
+  const validatedPackage = validateActivationPackage(packageValue);
+  if (validatedPackage.retention === "EPHEMERAL") {
+    throw new ActivationPackageError("ACTIVATION_EPHEMERAL_PERSISTENCE_FORBIDDEN", "an Ephemeral package cannot be persisted");
+  }
+  const retention: PersistedRetention = validatedPackage.retention;
   const normalizedRoot = retention === "TEAM" ? await validateTeamRoot(repositoryRoot) : undefined;
   const normalizedTarget = validateTarget(targetPath, retention, normalizedRoot);
 
   await validateTargetParent(normalizedTarget, normalizedRoot);
-  const content = serializePackage(packageValue);
+  const content = serializePackage(validatedPackage);
   const existingContent = await readExistingTarget(normalizedTarget);
 
-  if (existingContent !== null) return confirmExistingPackage(normalizedTarget, packageValue, retention, existingContent);
+  if (existingContent !== null) return confirmExistingPackage(normalizedTarget, validatedPackage, retention, existingContent);
 
   try {
     await writeFile(normalizedTarget, content, { encoding: "utf8", flag: "wx" });
@@ -28,13 +32,13 @@ export async function saveActivationPackage(
     if (!hasCode(error, "EEXIST")) throw new ActivationPackageError("ACTIVATION_TARGET_INVALID", "the explicit target could not be written");
     const racedContent = await readExistingTarget(normalizedTarget);
     if (racedContent === null) throw new ActivationPackageError("ACTIVATION_TARGET_INVALID", "the explicit target could not be read after a write conflict");
-    return confirmExistingPackage(normalizedTarget, packageValue, retention, racedContent);
+    return confirmExistingPackage(normalizedTarget, validatedPackage, retention, racedContent);
   }
 
-  return saveResult(normalizedTarget, packageValue.packageId, retention);
+  return saveResult(normalizedTarget, validatedPackage.packageId, retention);
 }
 
-function validatePackage(value: ActivationBoundaryPackage): PersistedRetention {
+export function validateActivationPackage(value: unknown): ActivationBoundaryPackage {
   if (value === null || typeof value !== "object" || Array.isArray(value)) {
     throw new ActivationPackageError("ACTIVATION_PACKAGE_INVALID", "the activation package must be an object");
   }
@@ -45,10 +49,7 @@ function validatePackage(value: ActivationBoundaryPackage): PersistedRetention {
   if (candidate.packageId === undefined || typeof candidate.packageId !== "string" || candidate.packageId.trim() === "") {
     throw new ActivationPackageError("ACTIVATION_PACKAGE_INVALID", "the activation package identity is invalid");
   }
-  if (candidate.retention === "EPHEMERAL") {
-    throw new ActivationPackageError("ACTIVATION_EPHEMERAL_PERSISTENCE_FORBIDDEN", "an Ephemeral package cannot be persisted");
-  }
-  if (candidate.retention !== "PERSONAL" && candidate.retention !== "TEAM") {
+  if (candidate.retention !== "EPHEMERAL" && candidate.retention !== "PERSONAL" && candidate.retention !== "TEAM") {
     throw new ActivationPackageError("ACTIVATION_PACKAGE_INVALID", "the activation package retention is invalid");
   }
   try {
@@ -64,7 +65,7 @@ function validatePackage(value: ActivationBoundaryPackage): PersistedRetention {
     if (error instanceof ActivationPackageError) throw error;
     throw new ActivationPackageError("ACTIVATION_PACKAGE_INVALID", "the activation package contract is invalid");
   }
-  return candidate.retention;
+  return value as ActivationBoundaryPackage;
 }
 
 function validateTarget(targetPath: string, retention: PersistedRetention, repositoryRoot: string | undefined): string {
