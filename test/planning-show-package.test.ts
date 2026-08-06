@@ -6,8 +6,6 @@ import { test } from "node:test";
 
 const PACKAGED_SKILL_PATH = resolve("skills/planning-show/SKILL.md");
 const PACKAGED_POLICY_PATH = resolve("skills/planning-show/agents/openai.yaml");
-const APPROVED_SKILL_SOURCE_PATH = "C:/Users/littl/.agents/skills/planning-show/SKILL.md";
-const APPROVED_POLICY_SOURCE_PATH = "C:/Users/littl/.agents/skills/planning-show/agents/openai.yaml";
 
 const APPROVED_SKILL_SHA256 = "dae31783a1f2682b6e967e3c8e447e65e8f112698dbb71ab720d0430b51f694b";
 const APPROVED_POLICY_SHA256 = "f944f1a5d661fbf772b47ab4818b76d24a66e115cbdc5ac5821df91fcc9d424e";
@@ -15,15 +13,9 @@ const APPROVED_POLICY_SHA256 = "f944f1a5d661fbf772b47ab4818b76d24a66e115cbdc5ac5
 test("planning-show package matches the approved skill source and policy without introducing prohibited data", async () => {
   const packagedSkill = await readNormalizedText(PACKAGED_SKILL_PATH);
   const packagedPolicy = await readNormalizedText(PACKAGED_POLICY_PATH);
-  const sourceSkill = await readNormalizedText(APPROVED_SKILL_SOURCE_PATH);
-  const sourcePolicy = await readNormalizedText(APPROVED_POLICY_SOURCE_PATH);
 
   assert.equal(sha256(packagedSkill), APPROVED_SKILL_SHA256);
   assert.equal(sha256(packagedPolicy), APPROVED_POLICY_SHA256);
-  assert.equal(sha256(sourceSkill), APPROVED_SKILL_SHA256);
-  assert.equal(sha256(sourcePolicy), APPROVED_POLICY_SHA256);
-  assert.equal(packagedSkill, sourceSkill);
-  assert.equal(packagedPolicy, sourcePolicy);
 
   assert.ok(
     packagedSkill.startsWith(
