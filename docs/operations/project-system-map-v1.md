@@ -281,7 +281,7 @@ scope, or apply a compensating write.
 
 ### P2 — later evidence and hardening
 
-10. Prove declared Node 22 CI separately from local Node 26 evidence.
+10. Prove declared Node 26 CI separately from local Node 26 evidence.
 11. Prove host loading, identity, effective tool boundaries, activation, and
     read-back before any native execution claim.
 12. Prove optional Jira/Confluence/GitHub reads/writes only with an exact

@@ -54,7 +54,7 @@ test("formation recommendation: promotes the linked debugging recipe to RECOMMEN
       symptom: "The parser rejects a valid frontmatter document.",
       reproduction: ["Run the focused parser test with the valid fixture."],
       expectedBehavior: "The parser accepts the valid fixture.",
-      environment: ["AI Booster Kit verified local revision", "Node 22 test runtime"],
+      environment: ["AI Booster Kit verified local revision", "Node 26 test runtime"],
     },
   }, await loadFormationCatalog(catalogPath));
   assert.equal(recommendation.decision, "RECOMMEND");
@@ -171,7 +171,7 @@ test("formation recommendation: promotes the linked validation recipe to RECOMME
       claim: "The local contract is valid.",
       acceptanceCriteria: ["all contract checks pass"],
       evidenceSources: ["local test output"],
-      knownLimits: ["Node 22 CI is the exact runtime gate"],
+      knownLimits: ["Node 26 CI is the declared runtime line"],
     },
   }, await loadFormationCatalog(catalogPath));
 

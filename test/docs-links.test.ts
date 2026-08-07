@@ -37,7 +37,7 @@ test("GitHub metadata: provides the approved read-only review contract", async (
   assert.match(workflow, /pull_request:/);
   assert.match(workflow, /^  push:\n    branches: \[main\]$/m);
   assert.match(workflow, /contents: read/);
-  assert.match(workflow, /node-version: 22/);
+  assert.match(workflow, /node-version: 26/);
   assert.match(workflow, /npm ci/);
   assert.match(workflow, /npm run lint/);
   assert.match(workflow, /npm run check:docs/);

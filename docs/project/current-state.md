@@ -41,19 +41,27 @@ user-local display-alias profile and non-blocking `recommend-formation`
 pre-session gate. M4 adds `execute-activation`, which consumes one validated
 activation package and one explicit local source through a bounded Codex
 read-only/ephemeral process contract, plus the separate
-`codex-windows-conformance` diagnostic.
+`codex-windows-conformance` diagnostic. The deterministic Agent-Agnostic
+Execution Contract Kernel is now complete in local review state: immutable
+read-only execution envelopes, bounded DAG and repair validation, exact task
+and Result Envelope admission, Personal hash-chained runs and content-hashed
+artifacts, fail-closed resume, final handoffs, comparison, and nine
+model-free CLI commands. It has not started an agent or contacted an external
+model.
 
 ## Validation
 
-The current local implementation evidence is 401 pass / 1 intentional
-Windows-only skip under Node v26.4.0; `npm run check:docs` and `git diff
---check` pass in the release worktree before publication.
+The current local implementation evidence is 421 pass / 1 intentional
+Windows-only skip under Node v26.7.0. The deterministic Kernel and reference
+adapter have 20 focused execution tests; `npm run lint`, `npm test`, `npm run
+check:docs`, and `git diff --check` pass in the review worktree before
+publication.
 Mapper freshness is recorded separately for the committed snapshot below; it
 is not a general documentation-change gate.
-The package declares Node 22.x, so these remain local results rather than
-declared-runtime or production proof. Controller, M1, M2, and M3 behavior is
-local and deterministic; external behavior is not established by this local
-evidence.
+The package declares Node 26.x. Local results establish compatibility with the
+current local Node 26 runtime, not CI or production proof. Controller, M1, M2,
+and M3 behavior is local and deterministic; external behavior is not
+established by this local evidence.
 
 The committed Graphify and Understand Anything snapshots identify the same
 stable source revision `20ed6dc401b31c3075c1c16933c404537fe075f2`; the
@@ -71,6 +79,10 @@ M2 activation-package preparation/storage and M3 context/session/resume remain
 host-specific security enforcement, native Windows process creation, Desktop
 host behavior, Claude/Cursor conformance, evaluation/evolve, debugging context
 injection, and lifecycle synchronization remain unproven or future work.
+The Kernel proves a local, deterministic contract only; its Codex-native
+Multi-Agent Pipeline reference run, host evidence, and any comparison outcome
+remain `NOT_EXECUTED`. The package declares Node 22.x, while this evidence was
+collected under Node 26 and is not declared-runtime proof.
 Planning-Show has no complete Controller runtime yet, and Owner Identity is
 Windows-only. Canonical artifact authority is declared as owner-approved PR
 flow but is not locally enforced. Agent Profile, Role, and Formation catalogs
@@ -86,10 +98,9 @@ approval, bounded authority, and source-native read-back.
 
 ## Next bounded action
 
-Run one separately authorized, read-only native Codex Windows conformance
-probe and preserve its bounded evidence. In parallel, use the
-[Outcome-to-MVP Contract Brief](../operations/outcome-to-mvp-contract-brief-v1.md)
-on one real owner task; preserve `UNKNOWN` for product, market, payment, user,
-or production claims that lack evidence. Neither action authorizes external
-writes or a broader host capability claim.
+On a compatible Node 22 runtime, execute the separately planned, read-only
+Codex-native Multi-Agent Pipeline reference run through the Kernel, then run
+the bounded strong-single-agent comparison. Preserve `NOT_EXECUTED` if the
+required host evidence or runtime remains unavailable. Neither action
+authorizes external writes, model APIs, or a broader host capability claim.
 

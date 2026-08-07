@@ -45,7 +45,7 @@ test("quick task request: parses the validation profile and rejects incomplete p
     claim: "The local contract is valid.",
     acceptanceCriteria: ["all contract checks pass"],
     evidenceSources: ["local test output"],
-    knownLimits: ["Node 22 CI is the exact runtime gate"],
+    knownLimits: ["Node 26 CI is the declared runtime line"],
   };
   const request = parseQuickTaskRequest(value);
 
@@ -126,7 +126,7 @@ test("quick task request: parses the debugging profile and rejects empty fields"
     symptom: "The parser rejects a valid frontmatter document.",
     reproduction: ["Run the focused parser test with the valid fixture."],
     expectedBehavior: "The valid fixture parses without an error.",
-    environment: ["AI Booster Kit verified local revision", "Node 22 test runtime"],
+    environment: ["AI Booster Kit verified local revision", "Node 26 test runtime"],
   };
   const request = parseQuickTaskRequest({ ...value, formationInput });
 

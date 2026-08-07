@@ -46,6 +46,17 @@ import { resolveUserLocalPath } from "./owner-identity/path.js";
 import { createFileOwnerIdentityStorage } from "./owner-identity/storage.js";
 import { ensureOwnerIdentity, reconfigureOwner } from "./owner-identity/state.js";
 import type { OwnerIdentityState, OwnerIdentityStorage, OwnerIdentityUnavailableReason } from "./owner-identity/types.js";
+import {
+  runAcceptExecutionResult,
+  runCheckExecutionResume,
+  runCompareExecutionRuns,
+  runFinalizeExecution,
+  runPrepareExecution,
+  runPrepareExecutionNode,
+  runProposeExecutionRepair,
+  runRecordExecutionDispatch,
+  runStopExecution,
+} from "./execution/cli.js";
 
 const helpText = `Usage: npm run cli -- <command>
 
@@ -70,6 +81,15 @@ Commands:
   save-context        Save an explicit Personal or Team context artifact
   save-session        Save an explicit Personal or Team compact session state
   resume-session      Evaluate an explicit compact session state without writes
+  prepare-execution   Create one bounded Personal execution run from stdin JSON
+  prepare-execution-node  Create a read-only task packet for one ready node
+  record-execution-dispatch  Record one already-authorized native dispatch
+  accept-execution-result  Validate and record one Result Envelope from stdin JSON
+  propose-execution-repair  Validate one bounded repair proposal from stdin JSON
+  stop-execution      Record an allowlisted stopped or unknown execution state
+  check-execution-resume  Evaluate explicit host evidence without writes
+  finalize-execution  Store one validated final handoff from stdin JSON
+  compare-execution-runs  Compare two validated final execution runs
 `;
 
 export async function runCli(argv: readonly string[]): Promise<number> {
@@ -115,6 +135,15 @@ async function dispatchCli(argv: readonly string[]): Promise<number> {
   if (command === "save-context") return runSaveContext(argv.slice(1));
   if (command === "save-session") return runSaveSession(argv.slice(1));
   if (command === "resume-session") return runResumeSession(argv.slice(1));
+  if (command === "prepare-execution") return runPrepareExecution(argv.slice(1), process.stdin);
+  if (command === "prepare-execution-node") return runPrepareExecutionNode(argv.slice(1));
+  if (command === "record-execution-dispatch") return runRecordExecutionDispatch(argv.slice(1));
+  if (command === "accept-execution-result") return runAcceptExecutionResult(argv.slice(1), process.stdin);
+  if (command === "propose-execution-repair") return runProposeExecutionRepair(argv.slice(1), process.stdin);
+  if (command === "stop-execution") return runStopExecution(argv.slice(1));
+  if (command === "check-execution-resume") return runCheckExecutionResume(argv.slice(1));
+  if (command === "finalize-execution") return runFinalizeExecution(argv.slice(1), process.stdin);
+  if (command === "compare-execution-runs") return runCompareExecutionRuns(argv.slice(1));
 
   throw new CliError("CONFIGURATION_ERROR", 4);
 }
