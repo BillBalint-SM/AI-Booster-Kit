@@ -179,6 +179,7 @@ export interface ExecutionContextArtifact {
 export interface PreparedExecutionNode {
   taskPacket: ExecutionTaskPacket;
   contextArtifacts: readonly ExecutionContextArtifact[];
+  resultTemplate: ExecutionResultEnvelope;
 }
 
 export interface ExecutionResultEnvelope {

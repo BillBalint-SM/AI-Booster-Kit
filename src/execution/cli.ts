@@ -3,7 +3,7 @@ import { readFile } from "node:fs/promises";
 import { compareExecutionRuns } from "./compare.js";
 import { finalizeExecutionRun, renderFinalExecutionHandoffMarkdown, validateFinalExecutionHandoff } from "./finalize.js";
 import { applyExecutionGraphMutation, createExecutionGraph, transitionExecutionNode } from "./graph.js";
-import { buildExecutionTaskPacket, parseExecutionResult, validateResultForNode } from "./handoff.js";
+import { buildExecutionResultTemplate, buildExecutionTaskPacket, parseExecutionResult, validateResultForNode } from "./handoff.js";
 import { createExecutionEvent } from "./ledger.js";
 import { evaluateExecutionResume } from "./resume.js";
 import { appendRunEvent, createPersonalExecutionRun, loadExecutionRun, saveAcceptedResult, saveFinalExecutionHandoff, saveGraphSnapshot } from "./storage.js";
@@ -13,6 +13,7 @@ import type { ExecutionGraphDraft, ExecutionResumeRuntime, GraphMutationProposal
 
 const configurationCode = "EXECUTION_COMMAND_CONFIGURATION_INVALID";
 const stopCodes = ["CODEX_SPAWN_FAILED", "CODEX_WAIT_TIMEOUT", "USER_CANCELLED", "HOST_THREAD_UNKNOWN"] as const;
+const resultRejectionCodes = ["EXECUTION_INPUT_JSON_INVALID", "EXECUTION_RESULT_FIELDS_INVALID", "EXECUTION_RESULT_TOO_LARGE", "EXECUTION_RESULT_FOREIGN", "EXECUTION_RESULT_STALE", "EXECUTION_RESULT_EVIDENCE_INVALID", "EXECUTION_RESULT_SCOPE_VIOLATION", "EXECUTION_RESULT_CONTENT_FORBIDDEN"] as const;
 
 export async function runPrepareExecution(argv: readonly string[], input: NodeJS.ReadableStream): Promise<number> {
   return runExecutionCommand(async () => {
@@ -33,7 +34,7 @@ export async function runPrepareExecutionNode(argv: readonly string[]): Promise<
     const run = await loadExecutionRun(runPath.first);
     const contextArtifacts = contextArtifactsForNode(run, runPath.second);
     const taskPacket = buildExecutionTaskPacket(run.envelope, run.graph, runPath.second, contextArtifacts.map((artifact) => artifact.artifactRef));
-    write({ taskPacket, contextArtifacts });
+    write({ taskPacket, contextArtifacts, resultTemplate: buildExecutionResultTemplate(taskPacket) });
     return 0;
   });
 }
@@ -48,7 +49,7 @@ export async function runRecordExecutionDispatch(argv: readonly string[]): Promi
     if (node === undefined || node.state !== "READY" || (node.type !== "AGENT_TASK" && node.type !== "SYNTHESIS")) throw new ExecutionContractError("EXECUTION_DISPATCH_INVALID", "execution node is not dispatchable");
     const packet = buildExecutionTaskPacket(run.envelope, run.graph, node.nodeId, contextArtifactsForNode(run, node.nodeId).map((artifact) => artifact.artifactRef));
     if (packet.taskId !== argv[5] || !validThreadReference(node.type, argv[7])) throw new ExecutionContractError("EXECUTION_DISPATCH_INVALID", "execution dispatch identity is invalid");
-    const event = nextNodeEvent(run, "NODE_DISPATCHED", node.nodeId, "READY", "RUNNING", packet.taskId, argv[7], []);
+    const event = nextNodeEvent(run, "NODE_DISPATCHED", node.nodeId, "READY", "RUNNING", packet.taskId, argv[7], [], null);
     await appendRunEvent(run.runDirectory, event);
     await saveGraphSnapshot(run.runDirectory, transitionExecutionNode(run.graph, { nodeId: node.nodeId, from: "READY", to: "RUNNING" }, run.envelope));
     write({ state: "RUNNING", nodeId: node.nodeId });
@@ -66,14 +67,53 @@ export async function runAcceptExecutionResult(argv: readonly string[], input: N
     if (node === undefined || node.state !== "RUNNING") throw new ExecutionContractError("EXECUTION_RESULT_STATE_INVALID", "execution result does not target a running node");
     validateResultForNode(result, run.envelope, run.graph, node.nodeId);
     const threadRef = dispatchedThreadRef(run, node.nodeId);
-    await appendRunEvent(run.runDirectory, nextNodeEvent(run, "NODE_RESULT_RECEIVED", node.nodeId, "RUNNING", "RESULT_RECEIVED", result.taskId, threadRef, []));
+    await appendRunEvent(run.runDirectory, nextNodeEvent(run, "NODE_RESULT_RECEIVED", node.nodeId, "RUNNING", "RESULT_RECEIVED", result.taskId, threadRef, [], null));
     const receivedGraph = transitionExecutionNode(run.graph, { nodeId: node.nodeId, from: "RUNNING", to: "RESULT_RECEIVED" }, run.envelope);
     await saveGraphSnapshot(run.runDirectory, receivedGraph);
     const artifact = await saveAcceptedResult(run.runDirectory, result);
     const receivedRun = await loadExecutionRun(run.runDirectory);
-    await appendRunEvent(receivedRun.runDirectory, nextNodeEvent(receivedRun, "NODE_RESULT_ACCEPTED", node.nodeId, "RESULT_RECEIVED", "SUCCEEDED", result.taskId, null, [artifact.artifactId]));
+    await appendRunEvent(receivedRun.runDirectory, nextNodeEvent(receivedRun, "NODE_RESULT_ACCEPTED", node.nodeId, "RESULT_RECEIVED", "SUCCEEDED", result.taskId, null, [artifact.artifactId], null));
     await saveGraphSnapshot(receivedRun.runDirectory, transitionExecutionNode(receivedGraph, { nodeId: node.nodeId, from: "RESULT_RECEIVED", to: "SUCCEEDED" }, receivedRun.envelope));
     write({ state: "SUCCEEDED", nodeId: node.nodeId });
+    return 0;
+  });
+}
+
+export async function runRejectExecutionResult(argv: readonly string[]): Promise<number> {
+  return runExecutionCommand(async () => {
+    if (argv[0] !== "--run" || argv[1] === undefined || argv[2] !== "--node" || argv[3] === undefined || argv[4] !== "--task" || argv[5] === undefined || argv[6] !== "--code" || argv[7] === undefined || argv.length !== 8 || !resultRejectionCodes.includes(argv[7] as typeof resultRejectionCodes[number])) {
+      return configurationFailure();
+    }
+    const run = await loadExecutionRun(argv[1]);
+    const node = run.graph.nodes.find((entry) => entry.nodeId === argv[3]);
+    if (node === undefined || node.state !== "RUNNING") throw new ExecutionContractError("EXECUTION_REJECTION_INVALID", "execution result rejection does not target a running node");
+    const dispatch = dispatchedEvent(run, node.nodeId);
+    if (dispatch.taskId !== argv[5]) throw new ExecutionContractError("EXECUTION_REJECTION_INVALID", "execution result rejection task identity is invalid");
+
+    const rejection = nextNodeEvent(run, "NODE_RESULT_REJECTED", node.nodeId, "RUNNING", "REJECTED", dispatch.taskId, dispatch.threadRef, [], argv[7]);
+    await appendRunEvent(run.runDirectory, rejection);
+    await saveGraphSnapshot(run.runDirectory, transitionExecutionNode(run.graph, { nodeId: node.nodeId, from: "RUNNING", to: "REJECTED" }, run.envelope));
+
+    const rejectedRun = await loadExecutionRun(run.runDirectory);
+    const stopped = createExecutionEvent(
+      {
+        runId: rejectedRun.envelope.runId,
+        eventType: "RUN_STOPPED",
+        nodeId: null,
+        beforeState: rejectedRun.checkpoint.runState,
+        afterState: "STOPPED",
+        graphRevision: rejectedRun.graph.graphRevision,
+        evidenceRefs: [],
+        taskId: null,
+        threadRef: null,
+        reasonCode: argv[7],
+      },
+      rejectedRun.events.length + 1,
+      rejectedRun.checkpoint.lastEventHash,
+      new Date().toISOString(),
+    );
+    await appendRunEvent(rejectedRun.runDirectory, stopped);
+    write({ state: "STOPPED", nodeId: node.nodeId, code: argv[7] });
     return 0;
   });
 }
@@ -195,16 +235,17 @@ function contextArtifactsForNode(run: LoadedExecutionRun, nodeId: string): reado
 
 function nextNodeEvent(
   run: LoadedExecutionRun,
-  eventType: "NODE_DISPATCHED" | "NODE_RESULT_RECEIVED" | "NODE_RESULT_ACCEPTED",
+  eventType: "NODE_DISPATCHED" | "NODE_RESULT_RECEIVED" | "NODE_RESULT_ACCEPTED" | "NODE_RESULT_REJECTED",
   nodeId: string,
   beforeState: "READY" | "RUNNING" | "RESULT_RECEIVED",
-  afterState: "RUNNING" | "RESULT_RECEIVED" | "SUCCEEDED",
+  afterState: "RUNNING" | "RESULT_RECEIVED" | "SUCCEEDED" | "REJECTED",
   taskId: string,
   threadRef: string | null,
   evidenceRefs: readonly string[],
+  reasonCode: string | null,
 ) {
   return createExecutionEvent(
-    { runId: run.envelope.runId, eventType, nodeId, beforeState, afterState, graphRevision: run.graph.graphRevision, evidenceRefs, taskId, threadRef, reasonCode: null },
+    { runId: run.envelope.runId, eventType, nodeId, beforeState, afterState, graphRevision: run.graph.graphRevision, evidenceRefs, taskId, threadRef, reasonCode },
     run.events.length + 1,
     run.checkpoint.lastEventHash,
     new Date().toISOString(),
@@ -212,9 +253,13 @@ function nextNodeEvent(
 }
 
 function dispatchedThreadRef(run: LoadedExecutionRun, nodeId: string): string {
+  return dispatchedEvent(run, nodeId).threadRef;
+}
+
+function dispatchedEvent(run: LoadedExecutionRun, nodeId: string): { taskId: string; threadRef: string } {
   const event = [...run.events].reverse().find((candidate) => candidate.eventType === "NODE_DISPATCHED" && candidate.nodeId === nodeId);
-  if (event?.threadRef === null || event?.threadRef === undefined) throw new ExecutionContractError("EXECUTION_RESULT_STATE_INVALID", "execution result lacks a dispatch thread reference");
-  return event.threadRef;
+  if (event?.threadRef === null || event?.threadRef === undefined || event.taskId === null) throw new ExecutionContractError("EXECUTION_RESULT_STATE_INVALID", "execution result lacks a dispatch identity");
+  return { taskId: event.taskId, threadRef: event.threadRef };
 }
 
 function validThreadReference(nodeType: "AGENT_TASK" | "SYNTHESIS", threadRef: string): boolean {

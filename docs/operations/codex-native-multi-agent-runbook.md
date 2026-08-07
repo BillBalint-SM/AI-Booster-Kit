@@ -16,9 +16,9 @@ comparison, write-capable workflow, or cross-session resume proof.
 
 The Kernel commands are `prepare-execution`, `prepare-execution-node`,
 `record-execution-dispatch`, `accept-execution-result`,
-`propose-execution-repair`, `stop-execution`, `check-execution-resume`,
-`finalize-execution`, and `compare-execution-runs`. The preparation command
-is:
+`reject-execution-result`, `propose-execution-repair`, `stop-execution`,
+`check-execution-resume`, `finalize-execution`, and
+`compare-execution-runs`. The preparation command is:
 
 ```powershell
 node scripts/create-codex-native-reference-preparation.mjs --mode MULTI_AGENT --run-id <run-id> --source-revision <sha> --repository-locator 'AI Booster Kit'
@@ -68,8 +68,13 @@ not repository functions. No worker may spawn another agent.
 
 Every worker and checker response is one Result Envelope JSON object and no
 surrounding prose. The main task pipes it unchanged to
-`accept-execution-result`. A malformed, foreign, stale, oversized, or rejected
-object stops the affected run; it is never edited into compliance.
+`accept-execution-result`. If validation rejects that object, the main task
+must call `reject-execution-result` with the exact returned allowlisted error
+code and the dispatched node and task identity. The Kernel then records one
+`NODE_RESULT_REJECTED` event, transitions that node to `REJECTED`, records the
+matching terminal run event, and stores no raw response or result artifact. A
+malformed, foreign, stale, oversized, or rejected object stops the affected
+run; it is never edited into compliance.
 
 ## Dispatch and spawn failures
 

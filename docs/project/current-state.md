@@ -45,15 +45,14 @@ read-only/ephemeral process contract, plus the separate
 Execution Contract Kernel is now complete in local review state: immutable
 read-only execution envelopes, bounded DAG and repair validation, exact task
 and Result Envelope admission, Personal hash-chained runs and content-hashed
-artifacts, fail-closed resume, final handoffs, comparison, and nine
-model-free CLI commands. It has not started an agent or contacted an external
-model.
+artifacts, fail-closed resume, final handoffs, comparison, and ten
+model-free CLI commands. It contains no external model integration.
 
 ## Validation
 
-The current local implementation evidence is 421 pass / 1 intentional
+The current local implementation evidence is 423 pass / 1 intentional
 Windows-only skip under Node v26.7.0. The deterministic Kernel and reference
-adapter have 20 focused execution tests; `npm run lint`, `npm test`, `npm run
+adapter have 22 focused execution tests; `npm run lint`, `npm test`, `npm run
 check:docs`, and `git diff --check` pass in the review worktree before
 publication.
 Mapper freshness is recorded separately for the committed snapshot below; it
@@ -79,10 +78,12 @@ M2 activation-package preparation/storage and M3 context/session/resume remain
 host-specific security enforcement, native Windows process creation, Desktop
 host behavior, Claude/Cursor conformance, evaluation/evolve, debugging context
 injection, and lifecycle synchronization remain unproven or future work.
-The Kernel proves a local, deterministic contract only; its Codex-native
-Multi-Agent Pipeline reference run, host evidence, and any comparison outcome
-remain `NOT_EXECUTED`. The package declares Node 22.x, while this evidence was
-collected under Node 26 and is not declared-runtime proof.
+The Kernel proves a local, deterministic contract only. The first Personal-only
+Codex-native Multi-Agent Pipeline attempt stopped during Result Envelope
+admission and stored no result artifact; its repeated reference run, host
+evidence, and comparison outcome remain `NOT_EXECUTED`. The package declares
+Node 26.x, and this local evidence establishes compatibility with the current
+Node 26 runtime only, not CI or production proof.
 Planning-Show has no complete Controller runtime yet, and Owner Identity is
 Windows-only. Canonical artifact authority is declared as owner-approved PR
 flow but is not locally enforced. Agent Profile, Role, and Formation catalogs
@@ -98,9 +99,10 @@ approval, bounded authority, and source-native read-back.
 
 ## Next bounded action
 
-On a compatible Node 22 runtime, execute the separately planned, read-only
-Codex-native Multi-Agent Pipeline reference run through the Kernel, then run
-the bounded strong-single-agent comparison. Preserve `NOT_EXECUTED` if the
-required host evidence or runtime remains unavailable. Neither action
-authorizes external writes, model APIs, or a broader host capability claim.
+After the repaired source is committed locally, execute the separately planned,
+read-only Codex-native Multi-Agent Pipeline reference run through the Kernel on
+a compatible Node 26 runtime, then run the bounded strong-single-agent
+comparison. Preserve `NOT_EXECUTED` if the required host evidence or runtime
+remains unavailable. Neither action authorizes external writes, model APIs, or
+a broader host capability claim.
 

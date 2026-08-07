@@ -33,6 +33,7 @@ const eventTypes = [
 ] as const satisfies readonly ExecutionEventType[];
 const nodeStates = ["PENDING", "READY", "RUNNING", "RESULT_RECEIVED", "SUCCEEDED", "REJECTED", "STOPPED", "UNKNOWN"] as const satisfies readonly ExecutionNodeState[];
 const runStates = ["PREPARED", "READY", "RUNNING", "WAITING_FOR_HUMAN", "COMPLETE", "COMPLETE_WITH_LIMIT", "STOPPED", "UNKNOWN"] as const satisfies readonly ExecutionRunState[];
+const reasonCodePattern = /^[A-Z][A-Z0-9_]{2,79}$/;
 const eventInputKeys = ["runId", "eventType", "nodeId", "beforeState", "afterState", "graphRevision", "evidenceRefs", "taskId", "threadRef", "reasonCode"] as const;
 const eventKeys = ["eventVersion", "sequence", "recordedAt", "previousEventHash", ...eventInputKeys, "eventHash"] as const;
 const checkpointKeys = [
@@ -192,7 +193,7 @@ function eventInputFromRecord(record: Record<string, unknown>): ExecutionEventIn
     evidenceRefs: identifierList(record.evidenceRefs, ledgerCode, "execution event evidence references are invalid"),
     taskId: nullableIdentifier(record.taskId, ledgerCode, "execution event task identifier is invalid"),
     threadRef: nullableString(record.threadRef, ledgerCode, "execution event thread reference is invalid"),
-    reasonCode: nullableIdentifier(record.reasonCode, ledgerCode, "execution event reason code is invalid"),
+    reasonCode: nullableReasonCode(record.reasonCode, ledgerCode, "execution event reason code is invalid"),
   };
   assertSafeExecutionContent(parsed);
   assertEventSemantics(parsed);
@@ -227,7 +228,7 @@ function assertEventSemantics(event: ExecutionEventInput): void {
     NODE_DISPATCHED: ["READY", "RUNNING"],
     NODE_RESULT_RECEIVED: ["RUNNING", "RESULT_RECEIVED"],
     NODE_RESULT_ACCEPTED: ["RESULT_RECEIVED", "SUCCEEDED"],
-    NODE_RESULT_REJECTED: ["RESULT_RECEIVED", "REJECTED"],
+    NODE_RESULT_REJECTED: ["RUNNING", "REJECTED"],
     NODE_STOPPED: ["RUNNING", "STOPPED"],
   };
   const expectedNodeTransition = nodeTransitionTypes[event.eventType];
@@ -284,6 +285,12 @@ function identifierValue(value: unknown, code: string, message: string): string 
 
 function nullableIdentifier(value: unknown, code: string, message: string): string | null {
   return value === null ? null : identifierValue(value, code, message);
+}
+
+function nullableReasonCode(value: unknown, code: string, message: string): string | null {
+  if (value === null) return null;
+  if (typeof value !== "string" || !reasonCodePattern.test(value)) throw new ExecutionContractError(code, message);
+  return value;
 }
 
 function nullableString(value: unknown, code: string, message: string): string | null {

@@ -54,6 +54,7 @@ import {
   runPrepareExecution,
   runPrepareExecutionNode,
   runProposeExecutionRepair,
+  runRejectExecutionResult,
   runRecordExecutionDispatch,
   runStopExecution,
 } from "./execution/cli.js";
@@ -85,6 +86,7 @@ Commands:
   prepare-execution-node  Create a read-only task packet for one ready node
   record-execution-dispatch  Record one already-authorized native dispatch
   accept-execution-result  Validate and record one Result Envelope from stdin JSON
+  reject-execution-result  Record one rejected Result Envelope without storing its raw content
   propose-execution-repair  Validate one bounded repair proposal from stdin JSON
   stop-execution      Record an allowlisted stopped or unknown execution state
   check-execution-resume  Evaluate explicit host evidence without writes
@@ -139,6 +141,7 @@ async function dispatchCli(argv: readonly string[]): Promise<number> {
   if (command === "prepare-execution-node") return runPrepareExecutionNode(argv.slice(1));
   if (command === "record-execution-dispatch") return runRecordExecutionDispatch(argv.slice(1));
   if (command === "accept-execution-result") return runAcceptExecutionResult(argv.slice(1), process.stdin);
+  if (command === "reject-execution-result") return runRejectExecutionResult(argv.slice(1));
   if (command === "propose-execution-repair") return runProposeExecutionRepair(argv.slice(1), process.stdin);
   if (command === "stop-execution") return runStopExecution(argv.slice(1));
   if (command === "check-execution-resume") return runCheckExecutionResume(argv.slice(1));

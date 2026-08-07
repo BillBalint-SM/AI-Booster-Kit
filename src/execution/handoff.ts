@@ -59,6 +59,26 @@ export function buildExecutionTaskPacket(
   };
 }
 
+export function buildExecutionResultTemplate(packet: ExecutionTaskPacket): ExecutionResultEnvelope {
+  return {
+    resultVersion: "1.0",
+    runId: packet.runId,
+    taskId: packet.taskId,
+    nodeId: packet.nodeId,
+    envelopeHash: packet.envelopeHash,
+    graphRevision: packet.graphRevision,
+    status: "READY_FOR_VALIDATION",
+    summary: "Replace this template text with a non-empty scoped summary.",
+    claims: [],
+    artifactRefs: [],
+    evidenceRefs: [],
+    unknowns: [],
+    conflicts: [],
+    followupRequest: null,
+    observedLimits: [],
+  };
+}
+
 export function parseExecutionResult(value: unknown, maxResultBytes: number): ExecutionResultEnvelope {
   const record = plainRecord(value, resultFieldsCode, "execution result must be a plain object");
   exactKeys(record, ["resultVersion", "runId", "taskId", "nodeId", "envelopeHash", "graphRevision", "status", "summary", "claims", "artifactRefs", "evidenceRefs", "unknowns", "conflicts", "followupRequest", "observedLimits"], resultFieldsCode, "execution result fields are invalid");

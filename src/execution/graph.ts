@@ -21,7 +21,7 @@ const identifierPattern = /^[a-z0-9][a-z0-9-]{2,79}$/;
 const transitions: Readonly<Record<ExecutionNodeState, readonly ExecutionNodeState[]>> = {
   PENDING: ["READY"],
   READY: ["RUNNING"],
-  RUNNING: ["RESULT_RECEIVED", "STOPPED", "UNKNOWN"],
+  RUNNING: ["RESULT_RECEIVED", "REJECTED", "STOPPED", "UNKNOWN"],
   RESULT_RECEIVED: ["SUCCEEDED", "REJECTED"],
   SUCCEEDED: [],
   REJECTED: [],
