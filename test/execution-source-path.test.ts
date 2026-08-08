@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdir, rm, symlink } from "node:fs/promises";
+import { mkdir, realpath, rm, symlink } from "node:fs/promises";
 import { join } from "node:path";
 import { test } from "node:test";
 
@@ -21,6 +21,7 @@ test("source path scope resolves the database-bound whole worktree without an im
     workspaceRoot: fixture.workspaceRoot,
     appDataRoot: fixture.appDataRoot,
   });
+  const canonicalWorkspaceRoot = await realpath(fixture.workspaceRoot);
 
   const resolved = await resolveExecutionSourcePathScope({
     platform: process.platform,
@@ -31,7 +32,7 @@ test("source path scope resolves the database-bound whole worktree without an im
 
   assert.deepEqual(resolved, {
     state: "RESOLVED",
-    workspaceRoot: fixture.workspaceRoot,
+    workspaceRoot: canonicalWorkspaceRoot,
     workspaceIdentityDigest: location.workspaceIdentityDigest,
     workspaceMatchesExpected: true,
     auditedPaths: ["."],
