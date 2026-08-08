@@ -4,6 +4,7 @@ import type { ExecutionNodeState, ExecutionRunState } from "./types.js";
 export const executionReasonCodes = [
   "COMMAND_ARGUMENTS_INVALID",
   "INPUT_JSON_INVALID",
+  "COMMAND_INPUT_TOO_LARGE",
   "ENVELOPE_INVALID",
   "GRAPH_INVALID",
   "TARGET_ALREADY_EXISTS",
@@ -12,9 +13,13 @@ export const executionReasonCodes = [
   "WORKSPACE_IDENTITY_MISMATCH",
   "SOURCE_UNREADABLE",
   "HOST_PROFILE_UNSUPPORTED",
+  "HOST_CAPABILITY_UNSUPPORTED",
   "HOST_CAPABILITY_UNKNOWN",
   "HOST_INSTRUCTION_STATE_UNKNOWN",
   "AUTHORITY_NOT_PROVEN",
+  "AUTHORITY_STATE_UNKNOWN",
+  "HOST_SESSION_IDENTITY_MISMATCH",
+  "HOST_SESSION_IDENTITY_UNKNOWN",
   "SPAWN_REJECTED",
   "SPAWN_FAILED_CONFIRMED",
   "SPAWN_OUTCOME_UNKNOWN",
@@ -178,8 +183,12 @@ function definitionFor(code: ExecutionReasonCode): ExecutionReasonDefinition {
     return definition(code, "SOURCE", "HOST", unknown ? "AMBIGUOUS" : "KNOWN_PRESENT", unknown ? "MARK_UNKNOWN" : "STOP_KNOWN", unknown ? "RECONCILE_ONLY" : "NEVER", unknown ? "RECONCILE" : "SELECT_NEW_RUN", ["workspaceIdentity", "expectedSourceRevision", "observedSourceRevision"]);
   }
   if (hostCodes.has(code)) {
-    const known = code === "HOST_PROFILE_UNSUPPORTED" || code === "AUTHORITY_NOT_PROVEN";
-    return definition(code, "HOST", "HOST", known ? "KNOWN_PRESENT" : "AMBIGUOUS", known ? "STOP_KNOWN" : "MARK_UNKNOWN", known ? "NEVER" : "RECONCILE_ONLY", known ? "PROVIDE_AUTHORITY" : "RECONCILE", ["hostProfileId", "observedAt"]);
+    const known = code === "HOST_PROFILE_UNSUPPORTED"
+      || code === "HOST_CAPABILITY_UNSUPPORTED"
+      || code === "AUTHORITY_NOT_PROVEN"
+      || code === "HOST_SESSION_IDENTITY_MISMATCH";
+    const selectNewRun = code === "HOST_CAPABILITY_UNSUPPORTED" || code === "HOST_SESSION_IDENTITY_MISMATCH";
+    return definition(code, "HOST", "HOST", known ? "KNOWN_PRESENT" : "AMBIGUOUS", known ? "STOP_KNOWN" : "MARK_UNKNOWN", known ? "NEVER" : "RECONCILE_ONLY", selectNewRun ? "SELECT_NEW_RUN" : known ? "PROVIDE_AUTHORITY" : "RECONCILE", ["hostProfileId", "observedAt"]);
   }
   if (spawnCodes.has(code)) {
     const knownAbsent = code === "SPAWN_REJECTED" || code === "SPAWN_FAILED_CONFIRMED";
@@ -337,9 +346,9 @@ function dispositionResults(disposition: ExecutionDisposition): Pick<ExecutionRe
   return { requiredNodeResult: null, optionalNodeResult: null, requiredRunResult: null, optionalRunResult: null };
 }
 
-const preparationCodes = new Set<ExecutionReasonCode>(["COMMAND_ARGUMENTS_INVALID", "INPUT_JSON_INVALID", "ENVELOPE_INVALID", "GRAPH_INVALID", "TARGET_ALREADY_EXISTS"]);
+const preparationCodes = new Set<ExecutionReasonCode>(["COMMAND_ARGUMENTS_INVALID", "INPUT_JSON_INVALID", "COMMAND_INPUT_TOO_LARGE", "ENVELOPE_INVALID", "GRAPH_INVALID", "TARGET_ALREADY_EXISTS"]);
 const sourceCodes = new Set<ExecutionReasonCode>(["SOURCE_REVISION_MISMATCH", "WORKTREE_DIRTY_IN_SCOPE", "WORKSPACE_IDENTITY_MISMATCH", "SOURCE_UNREADABLE"]);
-const hostCodes = new Set<ExecutionReasonCode>(["HOST_PROFILE_UNSUPPORTED", "HOST_CAPABILITY_UNKNOWN", "HOST_INSTRUCTION_STATE_UNKNOWN", "AUTHORITY_NOT_PROVEN"]);
+const hostCodes = new Set<ExecutionReasonCode>(["HOST_PROFILE_UNSUPPORTED", "HOST_CAPABILITY_UNSUPPORTED", "HOST_CAPABILITY_UNKNOWN", "HOST_INSTRUCTION_STATE_UNKNOWN", "AUTHORITY_NOT_PROVEN", "AUTHORITY_STATE_UNKNOWN", "HOST_SESSION_IDENTITY_MISMATCH", "HOST_SESSION_IDENTITY_UNKNOWN"]);
 const spawnCodes = new Set<ExecutionReasonCode>(["SPAWN_REJECTED", "SPAWN_FAILED_CONFIRMED", "SPAWN_OUTCOME_UNKNOWN", "AGENT_ID_MISSING", "AGENT_ID_MISMATCH", "WRONG_AGENT_ROUTE", "UNAUTHORIZED_DELEGATION"]);
 const dispatchCodes = new Set<ExecutionReasonCode>(["DISPATCH_BUDGET_EXHAUSTED", "PARALLELISM_EXHAUSTED", "DISPATCH_IDENTITY_CONFLICT", "DISPATCH_OUTCOME_UNKNOWN", "DUPLICATE_DISPATCH", "LATE_RESULT", "DUPLICATE_RESULT"]);
 const resultCodes = new Set<ExecutionReasonCode>(["RESULT_TOO_LARGE", "RESULT_JSON_INVALID", "RESULT_FIELDS_INVALID", "RESULT_FOREIGN", "RESULT_STALE", "RESULT_STATUS_STOPPED", "RESULT_STATUS_UNKNOWN", "RESULT_IDENTITY_UNRESOLVED", "RESULT_CONFLICT"]);

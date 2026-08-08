@@ -17,6 +17,21 @@ export interface ExecutionWorkspaceStorageLocation {
   databasePath: string;
 }
 
+export interface ObserveExecutionWorkspaceIdentityRequest {
+  platform: NodeJS.Platform;
+  workspaceRoot: string;
+}
+
+export type ExecutionWorkspaceIdentityObservation =
+  | {
+      state: "OBSERVED";
+      workspaceRoot: string;
+      workspaceId: string;
+      workspaceIdentityDigest: string;
+    }
+  | { state: "UNKNOWN"; reason: "UNAVAILABLE" }
+  | { state: "REJECTED"; reason: "INVALID_PATH" | "SYMLINK_BOUNDARY" };
+
 const invalidCode = "EXECUTION_WORKSPACE_STORAGE_INVALID";
 
 export async function resolveExecutionWorkspaceStorage(
@@ -28,24 +43,63 @@ export async function resolveExecutionWorkspaceStorage(
   if (request.platform === "win32" && (isUncPath(request.workspaceRoot) || isUncPath(request.appDataRoot))) {
     invalid("workspace storage does not permit UNC paths");
   }
-  const workspaceRoot = await absoluteRegularDirectory(request.workspaceRoot, "workspace root");
+  const workspaceObservation = await observeExecutionWorkspaceIdentity({
+    platform: request.platform,
+    workspaceRoot: request.workspaceRoot,
+  });
+  if (workspaceObservation.state !== "OBSERVED") {
+    invalid(workspaceObservation.reason === "SYMLINK_BOUNDARY"
+      ? "workspace root cannot be a symbolic link or reparse point"
+      : "workspace root is invalid or unavailable");
+  }
+  const workspaceRoot = workspaceObservation.workspaceRoot;
   const appDataRoot = await absoluteRegularDirectory(request.appDataRoot, "application data root");
   if (pathsOverlap(workspaceRoot, appDataRoot)) invalid("workspace and application data roots must not overlap");
 
+  const applicationDirectory = request.platform === "win32" ? "AI Booster Kit" : "ai-booster-kit";
+  const storageDirectory = join(appDataRoot, applicationDirectory, "execution-workspaces", workspaceObservation.workspaceId);
+  if (!isDescendant(appDataRoot, storageDirectory)) invalid("workspace storage path escapes application data root");
+
+  return {
+    workspaceId: workspaceObservation.workspaceId,
+    workspaceIdentityDigest: workspaceObservation.workspaceIdentityDigest,
+    storageDirectory,
+    databasePath: join(storageDirectory, "execution.sqlite"),
+  };
+}
+
+export async function observeExecutionWorkspaceIdentity(
+  request: ObserveExecutionWorkspaceIdentityRequest,
+): Promise<ExecutionWorkspaceIdentityObservation> {
+  if (request.platform !== process.platform || !["win32", "linux", "darwin"].includes(request.platform)) {
+    return { state: "REJECTED", reason: "INVALID_PATH" };
+  }
+  if (!isAbsolute(request.workspaceRoot) || (request.platform === "win32" && isUncPath(request.workspaceRoot))) {
+    return { state: "REJECTED", reason: "INVALID_PATH" };
+  }
+  let details;
+  try {
+    details = await lstat(request.workspaceRoot);
+  } catch {
+    return { state: "UNKNOWN", reason: "UNAVAILABLE" };
+  }
+  if (details.isSymbolicLink()) return { state: "REJECTED", reason: "SYMLINK_BOUNDARY" };
+  if (!details.isDirectory()) return { state: "REJECTED", reason: "INVALID_PATH" };
+  let workspaceRoot: string;
+  try {
+    workspaceRoot = await realpath(request.workspaceRoot);
+  } catch {
+    return { state: "UNKNOWN", reason: "UNAVAILABLE" };
+  }
   const normalizedWorkspace = normalizedIdentityPath(workspaceRoot, request.platform);
   const workspaceIdentityDigest = createHash("sha256")
     .update(`execution-workspace-v1\0${request.platform}\0${normalizedWorkspace}`, "utf8")
     .digest("hex");
-  const workspaceId = workspaceIdentityDigest.slice(0, 32);
-  const applicationDirectory = request.platform === "win32" ? "AI Booster Kit" : "ai-booster-kit";
-  const storageDirectory = join(appDataRoot, applicationDirectory, "execution-workspaces", workspaceId);
-  if (!isDescendant(appDataRoot, storageDirectory)) invalid("workspace storage path escapes application data root");
-
   return {
-    workspaceId,
+    state: "OBSERVED",
+    workspaceRoot,
+    workspaceId: workspaceIdentityDigest.slice(0, 32),
     workspaceIdentityDigest,
-    storageDirectory,
-    databasePath: join(storageDirectory, "execution.sqlite"),
   };
 }
 

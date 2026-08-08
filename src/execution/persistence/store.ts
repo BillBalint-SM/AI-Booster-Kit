@@ -221,6 +221,7 @@ export function materializeTransactionalExecutionRunRows(
 
   const base: TransactionalLoadedExecutionRun = {
     workspaceId: session.workspaceId,
+    workspaceIdentityDigest: session.workspaceIdentityDigest,
     databasePath: session.databasePath,
     runId,
     controllerId: rows.controller.controller_id,

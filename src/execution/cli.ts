@@ -3,6 +3,13 @@ import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 
 import { operationalReasonForContractError, rejectedExecutionCommand } from "./command-outcome.js";
+import { currentCodexHostSessionObservation } from "./binding/codex-host-observer.js";
+import { createExecutionHostReceipt, parseExecutionHostReceipt } from "./binding/host-receipt.js";
+import { executionBindingPolicy, parseExecutionBindingPolicy } from "./binding/policy.js";
+import { assembleExecutionDispatchReadiness } from "./binding/readiness.js";
+import { observeExecutionSource } from "./binding/source-observer.js";
+import type { HostCapabilityObservation, HostEvidenceReceipt } from "./binding/types.js";
+import { readBoundedJsonInput } from "./cli-input.js";
 import { compareExecutionRuns } from "./compare.js";
 import { validateFinalExecutionHandoff } from "./finalize.js";
 import { createExecutionGraph } from "./graph.js";
@@ -29,6 +36,7 @@ import type { ExecutionStoreSession } from "./persistence/session.js";
 import { createTransactionalExecutionRun, loadTransactionalExecutionRun } from "./persistence/store.js";
 import { evaluateExecutionResume } from "./resume.js";
 import { currentExecutionProcessRuntimeObservation } from "./runtime-receipt.js";
+import { executionPersistencePolicy, parseExecutionPersistencePolicy } from "./runtime-policy.js";
 import { assertExecutionRunMutable } from "./semantics.js";
 import { ExecutionContractError } from "./types.js";
 import type {
@@ -44,6 +52,8 @@ import { createExecutionEnvelope } from "./validation.js";
 const configurationCode = "EXECUTION_COMMAND_CONFIGURATION_INVALID";
 const stopCodes = ["CODEX_SPAWN_FAILED", "CODEX_WAIT_TIMEOUT", "USER_CANCELLED", "HOST_THREAD_UNKNOWN"] as const;
 const resultRejectionCodes = ["EXECUTION_INPUT_JSON_INVALID", "EXECUTION_RESULT_FIELDS_INVALID", "EXECUTION_RESULT_TOO_LARGE", "EXECUTION_RESULT_FOREIGN", "EXECUTION_RESULT_STALE", "EXECUTION_RESULT_EVIDENCE_INVALID", "EXECUTION_RESULT_SCOPE_VIOLATION", "EXECUTION_RESULT_CONTENT_FORBIDDEN"] as const;
+const bindingPolicy = parseExecutionBindingPolicy(executionBindingPolicy);
+const commandInputLimit = parseExecutionPersistencePolicy(executionPersistencePolicy).storagePolicy.limits.maxCommandInputBytes;
 
 export async function runPrepareExecution(argv: readonly string[], input: NodeJS.ReadableStream): Promise<number> {
   return runExecutionCommand(async () => {
@@ -53,10 +63,14 @@ export async function runPrepareExecution(argv: readonly string[], input: NodeJS
       || argv[4] !== "--controller-id" || argv[5] === undefined
       || argv.length !== 6
     ) return configurationFailure();
-    const request = prepareRequest(await readJsonInput(input));
+    const request = prepareRequest(await readBoundedJsonInput(input, commandInputLimit));
     const envelope = createExecutionEnvelope(request.envelope);
     const graph = createExecutionGraph(request.graph, envelope);
     const observedAt = new Date().toISOString();
+    const hostSession = currentCodexHostSessionObservation(observedAt);
+    if (hostSession.hostSessionId === null) {
+      throw new ExecutionContractError("HOST_SESSION_IDENTITY_UNKNOWN", "Codex task identity is unavailable for execution preparation");
+    }
     const session = await openExecutionStoreSession({
       workspaceRoot: argv[1],
       appDataRoot: argv[3],
@@ -64,7 +78,7 @@ export async function runPrepareExecution(argv: readonly string[], input: NodeJS
       kernelRevision: envelope.sourceRevision.slice(0, 40),
       dependencyLockPath: resolve("package-lock.json"),
       sessionId: `cli-${randomUUID()}`,
-      hostSessionId: `cli-host-${randomUUID()}`,
+      hostSessionId: hostSession.hostSessionId,
       observedAt,
     });
     try {
@@ -98,6 +112,93 @@ export async function runPrepareExecutionNode(argv: readonly string[]): Promise<
   });
 }
 
+export async function runCreateExecutionHostReceipt(
+  argv: readonly string[],
+  input: NodeJS.ReadableStream,
+): Promise<number> {
+  return runExecutionCommand(async () => {
+    const locator = readPrefix(argv);
+    if (locator === null || locator.rest.length !== 0) return configurationFailure();
+    const request = hostReceiptInput(await readBoundedJsonInput(input, bindingPolicy.maxHostEvidenceInputBytes));
+    return withReadRun(locator, (session) => {
+      const run = loadTransactionalExecutionRun(session, locator.runId);
+      const hostSession = currentCodexHostSessionObservation(request.observedAt);
+      const receipt = createExecutionHostReceipt({
+        hostProfileId: request.hostProfileId,
+        hostSessionId: hostSession.hostSessionId,
+        capabilities: request.capabilities,
+        observedAt: request.observedAt,
+      }, {
+        controllerId: run.controllerId,
+        runtimeReceiptId: run.runtimeReceiptId,
+      }, bindingPolicy);
+      write(receipt);
+      return 0;
+    });
+  });
+}
+
+export async function runInspectExecutionDispatchReadiness(
+  argv: readonly string[],
+  input: NodeJS.ReadableStream,
+): Promise<number> {
+  return runExecutionCommand(async () => {
+    const locator = readPrefix(argv);
+    if (
+      locator === null
+      || locator.rest[0] !== "--node"
+      || locator.rest[1] === undefined
+      || locator.rest.length !== 2
+    ) return configurationFailure();
+    const nodeId = locator.rest[1];
+    const inputValue = readinessInput(await readBoundedJsonInput(input, bindingPolicy.maxReadinessInputBytes));
+    const session = openReadOnlyExecutionStoreSessionForRun({
+      databasePath: locator.databasePath,
+      runId: locator.runId,
+      runtime: currentExecutionProcessRuntimeObservation(),
+    });
+    try {
+      const run = loadTransactionalExecutionRun(session, locator.runId);
+      const hostReceipt = parseExecutionHostReceipt(inputValue.hostReceipt, bindingPolicy);
+      const currentHost = currentCodexHostSessionObservation(inputValue.observedAt);
+      if (currentHost.hostSessionId !== hostReceipt.hostSessionId) {
+        throw new ExecutionContractError("HOST_SESSION_IDENTITY_MISMATCH", "host receipt does not belong to the current Codex task");
+      }
+      const node = run.graph.nodes.find((candidate) => candidate.nodeId === nodeId);
+      if (node === undefined) throw new ExecutionContractError("EXECUTION_DISPATCH_READINESS_INVALID", "selected execution node does not exist");
+      const sourceRequests = sourceInputsForNode(inputValue.sources, node.sourceIds);
+      const sourceObservations = [];
+      for (const sourceId of [...node.sourceIds].sort(asciiCompare)) {
+        const source = run.envelope.sources.find((candidate) => candidate.sourceId === sourceId);
+        const sourceInput = sourceRequests.find((candidate) => candidate.sourceId === sourceId);
+        if (source === undefined || sourceInput === undefined) {
+          throw new ExecutionContractError("EXECUTION_DISPATCH_READINESS_INVALID", "selected node source binding is incomplete");
+        }
+        sourceObservations.push(await observeExecutionSource({
+          sourceId,
+          platform: process.platform,
+          workspaceRoot: sourceInput.workspaceRoot,
+          expectedSourceRevision: source.sourceRevision,
+          auditedPaths: sourceInput.auditedPaths,
+          observedAt: inputValue.observedAt,
+        }, { workspaceIdentityDigest: run.workspaceIdentityDigest }, bindingPolicy));
+      }
+      const readinessReceipt = assembleExecutionDispatchReadiness({
+        run,
+        runtimeReceipt: session.runtimeReceipt,
+        nodeId,
+        hostReceipt,
+        sourceObservations,
+        observedAt: inputValue.observedAt,
+      }, bindingPolicy);
+      write({ hostReceipt, sourceObservations, readinessReceipt });
+      return readinessReceipt.state === "READY" ? 0 : 2;
+    } finally {
+      closeExecutionStoreSession(session);
+    }
+  });
+}
+
 export async function runRecordExecutionDispatch(argv: readonly string[]): Promise<number> {
   return runExecutionCommand(async () => {
     const locator = mutablePrefix(argv);
@@ -118,7 +219,7 @@ export async function runAcceptExecutionResult(argv: readonly string[], input: N
   return runExecutionCommand(async () => {
     const locator = mutablePrefix(argv);
     if (locator === null || locator.rest.length !== 0) return configurationFailure();
-    const value = await readJsonInput(input) as ExecutionResultEnvelope;
+    const value = await readBoundedJsonInput(input, commandInputLimit) as ExecutionResultEnvelope;
     return withMutableRun(locator, (session) => {
       const run = loadTransactionalExecutionRun(session, locator.runId);
       assertExecutionRunMutable(run.checkpoint.runState);
@@ -185,7 +286,7 @@ export async function runProposeExecutionRepair(argv: readonly string[], input: 
   return runExecutionCommand(async () => {
     const locator = mutablePrefix(argv);
     if (locator === null || locator.rest.length !== 0) return configurationFailure();
-    const proposal = await readJsonInput(input) as GraphMutationProposal;
+    const proposal = await readBoundedJsonInput(input, commandInputLimit) as GraphMutationProposal;
     return withMutableRun(locator, (session) => {
       const run = loadTransactionalExecutionRun(session, locator.runId);
       assertExecutionRunMutable(run.checkpoint.runState);
@@ -230,7 +331,7 @@ export async function runFinalizeExecution(argv: readonly string[], input: NodeJ
   return runExecutionCommand(async () => {
     const locator = mutablePrefix(argv);
     if (locator === null || locator.rest.length !== 0) return configurationFailure();
-    const handoffValue = await readJsonInput(input);
+    const handoffValue = await readBoundedJsonInput(input, commandInputLimit);
     return withMutableRun(locator, (session) => {
       const run = loadTransactionalExecutionRun(session, locator.runId);
       assertExecutionRunMutable(run.checkpoint.runState);
@@ -377,16 +478,6 @@ function resultRejectionReason(code: typeof resultRejectionCodes[number]): Execu
   return reasons[code];
 }
 
-async function readJsonInput(input: NodeJS.ReadableStream): Promise<unknown> {
-  let source = "";
-  for await (const chunk of input) source += Buffer.from(chunk).toString("utf8");
-  try {
-    return JSON.parse(source) as unknown;
-  } catch {
-    throw new ExecutionContractError("EXECUTION_INPUT_JSON_INVALID", "execution input is not valid JSON");
-  }
-}
-
 async function readRuntime(path: string): Promise<ExecutionResumeRuntime> {
   try {
     return JSON.parse(await readFile(path, "utf8")) as ExecutionResumeRuntime;
@@ -414,4 +505,95 @@ function configurationFailure(): number {
 
 function write(value: unknown): void {
   process.stdout.write(`${JSON.stringify(value)}\n`);
+}
+
+interface HostReceiptInput {
+  hostProfileId: string;
+  capabilities: readonly HostCapabilityObservation[];
+  observedAt: string;
+}
+
+interface ReadinessSourceInput {
+  sourceId: string;
+  workspaceRoot: string;
+  auditedPaths: readonly string[];
+}
+
+interface ReadinessInput {
+  hostReceipt: HostEvidenceReceipt;
+  sources: readonly ReadinessSourceInput[];
+  observedAt: string;
+}
+
+function hostReceiptInput(value: unknown): HostReceiptInput {
+  const record = inputRecord(value, ["hostProfileId", "capabilities", "observedAt"], "host receipt input");
+  if (typeof record.hostProfileId !== "string" || !Array.isArray(record.capabilities) || typeof record.observedAt !== "string") {
+    throw new ExecutionContractError("EXECUTION_HOST_RECEIPT_INVALID", "host receipt input fields are invalid");
+  }
+  return {
+    hostProfileId: record.hostProfileId,
+    capabilities: record.capabilities as HostCapabilityObservation[],
+    observedAt: record.observedAt,
+  };
+}
+
+function readinessInput(value: unknown): ReadinessInput {
+  const record = inputRecord(value, ["hostReceipt", "sources", "observedAt"], "readiness input");
+  if (!Array.isArray(record.sources) || typeof record.observedAt !== "string") {
+    throw new ExecutionContractError("EXECUTION_DISPATCH_READINESS_INVALID", "readiness input fields are invalid");
+  }
+  const sources = record.sources.map((sourceValue) => {
+    const source = inputRecord(sourceValue, ["sourceId", "workspaceRoot", "auditedPaths"], "readiness source input");
+    if (
+      typeof source.sourceId !== "string"
+      || typeof source.workspaceRoot !== "string"
+      || !Array.isArray(source.auditedPaths)
+      || source.auditedPaths.some((path) => typeof path !== "string")
+    ) {
+      throw new ExecutionContractError("EXECUTION_DISPATCH_READINESS_INVALID", "readiness source input fields are invalid");
+    }
+    return {
+      sourceId: source.sourceId,
+      workspaceRoot: source.workspaceRoot,
+      auditedPaths: source.auditedPaths as string[],
+    };
+  });
+  return {
+    hostReceipt: record.hostReceipt as HostEvidenceReceipt,
+    sources,
+    observedAt: record.observedAt,
+  };
+}
+
+function sourceInputsForNode(
+  values: readonly ReadinessSourceInput[],
+  expectedSourceIds: readonly string[],
+): readonly ReadinessSourceInput[] {
+  const actualIds = values.map((value) => value.sourceId).sort(asciiCompare);
+  const expectedIds = [...expectedSourceIds].sort(asciiCompare);
+  if (
+    values.length !== expectedIds.length
+    || new Set(actualIds).size !== actualIds.length
+    || actualIds.some((sourceId, index) => sourceId !== expectedIds[index])
+  ) {
+    throw new ExecutionContractError("EXECUTION_DISPATCH_READINESS_INVALID", "readiness source inputs are incomplete, duplicated, or foreign");
+  }
+  return values;
+}
+
+function inputRecord(value: unknown, keys: readonly string[], label: string): Record<string, unknown> {
+  if (value === null || typeof value !== "object" || Array.isArray(value) || Object.getPrototypeOf(value) !== Object.prototype) {
+    throw new ExecutionContractError("EXECUTION_INPUT_JSON_INVALID", `${label} must be a plain object`);
+  }
+  const record = value as Record<string, unknown>;
+  const actual = Object.keys(record).sort(asciiCompare);
+  const expected = [...keys].sort(asciiCompare);
+  if (actual.length !== expected.length || actual.some((key, index) => key !== expected[index])) {
+    throw new ExecutionContractError("EXECUTION_INPUT_JSON_INVALID", `${label} fields are invalid`);
+  }
+  return record;
+}
+
+function asciiCompare(first: string, second: string): number {
+  return first < second ? -1 : first > second ? 1 : 0;
 }

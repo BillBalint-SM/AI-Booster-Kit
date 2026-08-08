@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-booster-kit.local/contracts/execution/binding-policy.schema.json",
+  "title": "Execution source and host binding policy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "policyVersion",
+    "policyId",
+    "gitCommandTimeoutMs",
+    "maxGitOutputBytes",
+    "maxAuditedPaths",
+    "maxAuditedPathBytes",
+    "maxTotalAuditedPathBytes",
+    "maxHostEvidenceInputBytes",
+    "maxReadinessInputBytes",
+    "requiredHostCapabilities",
+    "admittedHostProfiles"
+  ],
+  "properties": {
+    "policyVersion": { "const": "1.0" },
+    "policyId": { "const": "execution-binding-policy-v1" },
+    "gitCommandTimeoutMs": { "type": "integer", "minimum": 1 },
+    "maxGitOutputBytes": { "type": "integer", "minimum": 1 },
+    "maxAuditedPaths": { "type": "integer", "minimum": 1 },
+    "maxAuditedPathBytes": { "type": "integer", "minimum": 1 },
+    "maxTotalAuditedPathBytes": { "type": "integer", "minimum": 1 },
+    "maxHostEvidenceInputBytes": { "type": "integer", "minimum": 1 },
+    "maxReadinessInputBytes": { "type": "integer", "minimum": 1 },
+    "requiredHostCapabilities": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "BIND_WORKSPACE",
+          "INTERRUPT_AGENT",
+          "OBSERVE_AGENT_IDENTITY",
+          "SPAWN_AGENT",
+          "WAIT_AGENT"
+        ]
+      }
+    },
+    "admittedHostProfiles": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 1,
+      "uniqueItems": true,
+      "items": { "const": "CODEX_APP_NATIVE_V1" }
+    }
+  }
+}

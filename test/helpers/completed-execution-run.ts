@@ -18,6 +18,7 @@ import type {
   ExecutionResultEnvelope,
   FinalExecutionHandoff,
   LoadedExecutionRun,
+  TransactionalLoadedExecutionRun,
 } from "../../src/execution/types.js";
 import { createExecutionEnvelope } from "../../src/execution/validation.js";
 
@@ -27,7 +28,7 @@ export async function createCompletedExecutionRun(
   root: string,
   envelopeInput: ExecutionEnvelopeInput,
   graphDraft: ExecutionGraphDraft,
-): Promise<LoadedExecutionRun> {
+): Promise<TransactionalLoadedExecutionRun> {
   const workspaceRoot = join(root, "workspace");
   const appDataRoot = join(root, "app-data");
   await mkdir(workspaceRoot, { recursive: true });
@@ -68,11 +69,11 @@ export async function createCompletedExecutionRun(
 
 function completeNode(
   session: Parameters<typeof commitExecutionGraphTransition>[0],
-  initial: LoadedExecutionRun,
+  initial: TransactionalLoadedExecutionRun,
   envelope: ExecutionEnvelope,
   node: ExecutionNode,
   counter: number,
-): LoadedExecutionRun {
+): TransactionalLoadedExecutionRun {
   const predecessorIds = new Set(initial.graph.edges.filter((edge) => edge.toNodeId === node.nodeId).map((edge) => edge.fromNodeId));
   const contextRefs = initial.artifacts.filter((artifact) => artifact.nodeId !== null && predecessorIds.has(artifact.nodeId));
   const packet = buildExecutionTaskPacket(envelope, initial.graph, node.nodeId, contextRefs);

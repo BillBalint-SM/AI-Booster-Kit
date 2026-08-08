@@ -4,7 +4,10 @@ import { tmpdir } from "node:os";
 import { join, relative } from "node:path";
 import { test } from "node:test";
 
-import { resolveExecutionWorkspaceStorage } from "../src/execution/workspace-storage.js";
+import {
+  observeExecutionWorkspaceIdentity,
+  resolveExecutionWorkspaceStorage,
+} from "../src/execution/workspace-storage.js";
 
 test("workspace storage resolution is deterministic, contained, and read-only", async (context) => {
   const root = await realpath(await mkdtemp(join(tmpdir(), "execution-workspace-storage-")));
@@ -95,4 +98,32 @@ test("workspace storage rejects Windows UNC roots before filesystem access", asy
     }),
     /EXECUTION_WORKSPACE_STORAGE_INVALID/u,
   );
+});
+
+test("workspace identity observer reuses storage normalization and tags unavailable and linked roots", async (context) => {
+  const root = await realpath(await mkdtemp(join(tmpdir(), "execution-workspace-observer-")));
+  context.after(() => rm(root, { recursive: true, force: true }));
+  const workspaceRoot = join(root, "workspace");
+  const appDataRoot = join(root, "local-data");
+  const missingRoot = join(root, "missing");
+  const linkedRoot = join(root, "linked");
+  await mkdir(workspaceRoot);
+  await mkdir(appDataRoot);
+  await symlink(workspaceRoot, linkedRoot, process.platform === "win32" ? "junction" : "dir");
+  const storage = await resolveExecutionWorkspaceStorage({ platform: process.platform, workspaceRoot, appDataRoot });
+
+  assert.deepEqual(await observeExecutionWorkspaceIdentity({ platform: process.platform, workspaceRoot }), {
+    state: "OBSERVED",
+    workspaceRoot,
+    workspaceId: storage.workspaceId,
+    workspaceIdentityDigest: storage.workspaceIdentityDigest,
+  });
+  assert.deepEqual(await observeExecutionWorkspaceIdentity({ platform: process.platform, workspaceRoot: missingRoot }), {
+    state: "UNKNOWN",
+    reason: "UNAVAILABLE",
+  });
+  assert.deepEqual(await observeExecutionWorkspaceIdentity({ platform: process.platform, workspaceRoot: linkedRoot }), {
+    state: "REJECTED",
+    reason: "SYMLINK_BOUNDARY",
+  });
 });

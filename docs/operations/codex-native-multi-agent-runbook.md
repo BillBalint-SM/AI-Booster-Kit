@@ -2,19 +2,22 @@
 
 ## Purpose and current boundary
 
-This runbook operates the local, model-free execution persistence layer and
-defines the stop gate before a Codex-native single-agent versus multi-agent
-reference run. The approved
+This runbook operates the local, model-free execution persistence and
+source/worktree plus host-evidence binding layers. It defines the stop gate
+before Codex-native dispatch and a single-agent versus multi-agent reference
+run. The approved
 [transactional persistence design](../superpowers/specs/2026-08-08-transactional-persistence-runtime-binding-design.md),
 [implementation plan](../superpowers/plans/2026-08-08-transactional-persistence-runtime-binding.md),
-and [persistence policy](../../contract/execution/persistence-policy.json) are
-the canonical requirements.
+[persistence policy](../../contract/execution/persistence-policy.json),
+[binding design](../superpowers/specs/2026-08-08-source-worktree-host-evidence-binding-design.md),
+and [binding policy](../../contract/execution/binding-policy.json) are the
+canonical requirements.
 
-The persistence layer does not dispatch an agent. `record-execution-dispatch`
+The binding layer returns a digest-bound `READY`, `STOPPED`, or `UNKNOWN`
+inspection result without dispatching an agent. `record-execution-dispatch`
 still rejects single-phase host evidence, and `stop-execution` still rejects an
-unverified stop. Native Dispatch and a new immutable-revision reference run
-remain stopped until the complete runtime matrix is green on the accepted
-revision.
+unverified stop. Two-phase Dispatch, verified cancellation, and the new
+immutable-revision reference run remain later bounded work.
 
 ## Practical operating contract
 
@@ -81,6 +84,68 @@ over-limit operation fails before a durable mutation or rolls back completely;
 the runbook does not duplicate those numeric limits.
 
 ## Developer CLI surface
+
+### Read-only host and source readiness
+
+Create a host receipt from one exact read-only run locator:
+
+```powershell
+$hostInput | node dist/cli.js create-execution-host-receipt `
+  --database <database> --run <run-id>
+```
+
+`$hostInput` is one bounded JSON object containing only `hostProfileId`, the
+complete capability observations, and a canonical `observedAt` timestamp. The
+CLI reads the current Codex task identity directly from the allowlisted
+`CODEX_THREAD_ID`, validates its UUID shape, immediately domain-hashes it, and
+binds the digest to the canonical controller and stored runtime receipt. The
+raw task ID is never an argument, output, receipt field, log value, or error
+value. Capability input is a controller observation; it is not worker
+self-attestation or proof of a sandbox/security boundary.
+
+Inspect one prepared node with a previously created host receipt and an
+explicit source scope:
+
+```powershell
+$readinessInput | node dist/cli.js inspect-execution-dispatch-readiness `
+  --database <database> --run <run-id> --node <node-id>
+```
+
+`$readinessInput` has exactly `hostReceipt`, `sources`, and `observedAt`. Every
+source entry has exactly `sourceId`, transient absolute `workspaceRoot`, and a
+non-empty `auditedPaths` list. There is no implicit source scope. Use
+`auditedPaths: ["."]` for the complete worktree; otherwise supply only
+canonical slash-normalized repository-relative literal paths. The CLI derives
+the expected source revision, workspace identity, task ID, envelope hash,
+graph revision, controller, and runtime receipt from canonical loaded state.
+It does not accept those identities from stdin.
+
+The inspection opens SQLite read-only, reobserves Git with fixed no-shell,
+no-optional-lock commands, verifies the current Codex session against the host
+receipt, creates one source observation per node source, and returns the host
+receipt, source observations, and `DispatchReadinessReceipt`. Absolute paths,
+Git output, filenames, raw host values, prompts, transcripts, and repository
+content do not cross the canonical output boundary.
+
+Exit status and remediation are closed:
+
+- `0` means `READY`: all required bindings match and the audited scope is
+  clean. `READY` performs no dispatch, persists no intent or receipt, consumes
+  no budget, and grants no authority.
+- `2` means `STOPPED` or `UNKNOWN`. For `STOPPED`, preserve the receipt and
+  select the exact bound run/worktree/revision or provide the missing approved
+  authority; do not retry against a widened scope. For `UNKNOWN`, establish
+  the missing source, session, capability, authority, or instruction
+  observation and run a new inspection. Neither state authorizes dispatch.
+- `3` is a sanitized structural or contract rejection and `4` is a sanitized
+  command-configuration/unreadable-target rejection. Correct the bounded input
+  or exact locator; rejected content is not echoed and no fallback path is
+  selected.
+
+A legacy runtime receipt whose host session is not a normalized 64-hex Codex
+session digest remains `UNKNOWN`. This slice does not upgrade or rewrite
+legacy runs. A newly proven current session that differs from the stored
+session is `STOPPED`, not a migration or retry signal.
 
 Read-only task preparation:
 
@@ -158,6 +223,18 @@ unchanged. There is no conversion, rename, annotation, or deletion command.
 
 ## Verification and reference-run stop gate
 
+The binding acceptance criteria map to executable behavior by exact test name:
+
+| Criterion | Primary executable evidence |
+| --- | --- |
+| Policy, limits, and stable identity | `binding policy parses the approved exact contract and produces one stable digest`; `binding policy rejects unknown, missing, duplicate, and invalid bounded values` |
+| Direct host-session privacy and uncertainty | `Codex host observer domain-binds a canonical UUID without retaining the raw value`; `Codex host observer preserves absent and malformed task identity as UNKNOWN` |
+| Complete canonical host evidence | `host receipt deterministically normalizes the complete capability set`; `host receipt parser rejects every identity and evidence tamper`; `host receipt rejects raw host, tool, path, and sensitive content without echoing it` |
+| Explicit contained source scope | `source path scope resolves the database-bound whole worktree without an implicit default`; `source path scope rejects traversal, absolute, wildcard, non-canonical, duplicate, and mixed whole-worktree input`; `source path scope rejects linked roots and audited junction ancestors` |
+| Bounded real Git observation | `bounded process rejects either stream one byte over and reports confirmed closure`; `source observer classifies real Git dirty records and ignores excluded or ignored paths`; `source observer distinguishes revision, workspace, and worktree identities`; `source observation leaves Git head, index, config, and status unchanged` |
+| Total deterministic readiness | `dispatch readiness deterministically binds a real loaded run, task, host, and source without mutation`; `dispatch readiness applies STOPPED over UNKNOWN over READY with complete sorted reasons`; `readiness parser rejects state, identity, reason, ordering, field, and byte tampering` |
+| Read-only CLI and input boundary | `bounded JSON reader handles empty, UTF-8 chunks, exact limits, overflow destruction, and stream errors`; `binding CLI produces READY from a real immutable run and changes neither SQLite nor Git`; `binding CLI preserves STOPPED and UNKNOWN across real source and host boundaries`; `single-phase dispatch and unverified stop remain protocol violations without mutation` |
+
 Local verification is:
 
 ```powershell
@@ -174,11 +251,12 @@ on Ubuntu and Windows. The lane environment variable is only an expected value;
 the runtime test compares it with the independently observed and persisted
 receipt.
 
-Do not begin Native Dispatch or the immutable-revision Codex-native reference
-run unless both runtime lanes pass on both operating systems, the implementation
-revision is immutable, and crash, recovery, backup, migration, staging restore,
-legacy import, quota, forbidden-content, and no-legacy-write checks are green.
-Missing evidence remains `NOT EXECUTED`, `UNKNOWN`, `STOPPED`, or `PARTIAL`.
+Do not begin two-phase Native Dispatch or the immutable-revision Codex-native
+reference run unless both runtime lanes pass on both operating systems, the
+implementation revision is immutable, the complete binding receipt is
+`READY`, and crash, recovery, backup, migration, staging restore, legacy
+import, quota, forbidden-content, and no-legacy-write checks are green. Missing
+evidence remains `NOT EXECUTED`, `UNKNOWN`, `STOPPED`, or `PARTIAL`.
 
 The later reference run remains Personal-only, read-only with respect to the
 audited source, and entirely inside the Codex app. It uses no external model,

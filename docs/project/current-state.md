@@ -1,129 +1,83 @@
 # Current delivery state
 
-This is the operational routing source for the repository. It is intentionally
-short and must not become a second roadmap, transcript, or historical report.
+This is the sole operational routing source for the repository. Historical
+delivery evidence remains under `docs/history/` and the reviewed design/plan
+artifacts; this file records only the current actionable state.
 
 ## Branch and pull request
 
-The current published delivery state is `main`, equal to `origin/main`.
-Exact branch, HEAD, worktree, upstream, and pull-request state are verified by
-the work-state preflight at each delivery boundary; this routing file does not
-duplicate the detailed status history.
+The published baseline is `main` / `origin/main` at
+`daae4ee413b6de47777a43ca091efba97da0ac00`.
 
-The transactional-persistence slice is under review in draft pull request
-[#53](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/53). It is not part
-of the published `main` state until separately approved and merged.
-
-The next bounded slice must start from this synchronized `main` in a fresh,
-unique `dev-<scope>` branch and follow the lean reviewed-slice path to `main`.
-Historical or host-specific branches do not represent current canonical
-product state.
+Source/worktree and host-evidence binding is local review state on
+`dev-source-host-binding`, based on that exact revision. The worktree contains
+the expected uncommitted Slice 1 diff, tracks `origin/main`, and has no pull
+request. No commit, push, publication, or merge is authorized by this state.
 
 ## Completed deliverable
 
-The repository has a contract-first foundation, the Team Delivery Loop, the
-Controller recommendation MVP, the Human Checkpoint and Activation Intent
-boundary, the first Quick Task capability contract, the ephemeral Quick Task
-Activation Package command, and the public-facing website surface. M1-A now
-adds the strict [formation catalog](../../contract/agent-library/formation-catalog.md)
-contract and TypeScript validator with one ready Quick Task entry and five READY
-scenario profiles: research, validation, refinement, implementation, and
-debugging. M1-B adds deterministic scenario recognition and explainable,
-recommendation-only output with stable structural identity. The read-only
-`recommend-formation` CLI command exposes all five profile paths as `RECOMMEND`
-when all required profile input is present and preserves `UNKNOWN` otherwise,
-without changing Quick Task checkpoint or activation behavior. The user-facing
-Agent Profile library now exposes 24 selectable profiles without copying
-developer-instruction bodies. The Role catalog and Formation catalog add
-many-to-many Agent–Role coverage, isolated context assignments, and bindings
-for the six declared formations. The read-only `inspect-agent-library` and
-`list-agent-profiles` CLI paths expose these projections without activation or
-external writes. Planning-Show adds three immediately usable, User-facing
-planning, technical-handoff, and read-only-verification contracts; its complete
-Controller runtime remains `NOT_EXECUTED`. Owner Identity v1 adds a Windows
-user-local display-alias profile and non-blocking `recommend-formation`
-pre-session gate. M4 adds `execute-activation`, which consumes one validated
-activation package and one explicit local source through a bounded Codex
-read-only/ephemeral process contract, plus the separate
-`codex-windows-conformance` diagnostic. The deterministic Agent-Agnostic
-Execution Contract Kernel now includes its v2 semantics core: v1 is historical
-read-only state, v2 is the only mutable contract, operational reasons come from
-one closed registry, graph and ledger transitions share one deterministic
-authority, worker `STOPPED` and `UNKNOWN` results cannot become success, and
-rejected CLI operations prove zero mutation. The existing bounded DAG,
-Personal hash-chained run, evidence-shape, final handoff, and comparison
-behavior remains model-free and local.
-The review slice adds the local transactional persistence kernel: explicit
-runtime admission and receipts, normalized workspace storage, real SQLite
-transactions, controller fencing, atomic event/projection/result persistence,
-deterministic finalization, restart and crash audits, explicit recovery,
-verified backup and staging restore, forward migration admission, immutable
-legacy import, quotas, and a single CLI/Kernel cutover without dual-write.
+The local Slice 1 implementation adds one agent-agnostic read-only admission
+answer immediately before a future dispatch. It binds a freshly prepared task
+to the canonical run, graph, controller, runtime receipt, direct Codex session
+digest, exact Git repository/worktree/workspace identities, immutable source
+revision, and explicit audited paths. The result is a deterministic canonical
+`DispatchReadinessReceipt` in exactly one state: `READY`, `STOPPED`, or
+`UNKNOWN`.
+
+The implementation includes exact policy/schema limits, bounded no-shell Git
+observation, path/symlink/junction containment, canonical host and source
+evidence, complete reason precedence, bounded UTF-8 JSON input, and two
+read-only CLI commands. `READY` does not dispatch, persist an intent/receipt,
+consume budget, or grant authority. The legacy single-phase dispatch and stop
+commands still reject without mutation.
 
 ## Validation
 
-The current local implementation evidence under Node v26.7.0 is 554 pass / 1
-intentional platform-specific skip. The transactional persistence gate has
-111 focused passing tests. `npm run lint`, `npm test`, `npm run check:docs`,
-`npm audit --audit-level=low`, and `git diff --check` pass in the review
-worktree.
-Mapper freshness is recorded separately for the committed snapshot below; it
-is not a general documentation-change gate.
-GitHub CI against implementation revision
-`5c1ed21807b9a41aa0347c47f9fdefb48c10a572` passes on Ubuntu and Windows in
-both the Node 24 LTS `AUTHORITATIVE` lane and the Node 26
-`CONFORMANCE_ONLY` lane; the website and documentation jobs also pass. This is
-cross-platform CI evidence, not production-host or live-connector proof.
+On the observed Windows host (Node `v26.7.0`, Git
+`2.55.0.windows.3`, runtime lane `CONFORMANCE_ONLY`):
 
-The committed Graphify and Understand Anything snapshots identify the same
-stable source revision `20ed6dc401b31c3075c1c16933c404537fe075f2`; the
-commit-relative freshness is `READY`. The refresh used Graphify code-only
-extraction and UA
-deterministic local structural extraction; no semantic-extraction backend or
-credentialed external analysis was invoked. Mapper output remains a navigation
-projection, not an activation or publication authority.
+- `npm ci` and `npm audit` completed with 0 vulnerabilities;
+- `npm run lint`, `npm run build`, `npm run check:docs`, and
+  `git diff --check` passed;
+- `npm run test:execution-storage` passed 112/112;
+- `npm test` passed 598 tests with 1 intentional existing
+  platform-specific skip and 0 failures;
+- real Git and real SQLite E2E tests proved the new inspection paths do not
+  mutate repository state or database bytes.
+
+The canonical binding policy digest is
+`f67e15ffb174f31cfd76a42332d6fd1bf3aabd6b79868c3ee502bcaac09acf62`.
+The checked-in policy and schema file SHA-256 values are respectively
+`2578c5165b79b224bfc0b0930ba3875c9199c388f8d24a076133934ddc8174ee`
+and
+`0e14b43b148a1c9f18124f10ca21c1895b047925effac92330e682a60dce1bd4`.
+
+GitHub CI is `NOT EXECUTED` for this uncommitted review state. No Ubuntu,
+Node 24 authoritative-lane, website, or documentation result is claimed for
+the Slice 1 diff.
 
 ## Known limit
 
-The five scenario profiles are READY only as bounded M1 recommendation paths;
-M2 activation-package preparation/storage and M3 context/session/resume remain
-`COMPLETE_WITH_LIMIT`. M4 proves only the local Codex process contract:
-host-specific security enforcement, native Windows process creation, Desktop
-host behavior, Claude/Cursor conformance, evaluation/evolve, debugging context
-injection, and lifecycle synchronization remain unproven or future work.
-The Kernel proves a local, deterministic contract only. The first Personal-only
-Codex-native Multi-Agent Pipeline attempt stopped during Result Envelope
-admission and stored no result artifact; its repeated reference run, host
-evidence, and comparison outcome remain `NOT_EXECUTED`. The package declares
-Node 24 LTS as the authoritative persistence lane and Node 26 as
-conformance-only. Production-host behavior remains unproven. Active restore
-activation is intentionally absent: restore creates and verifies a staging
-database only. Source/worktree and host binding, two-phase dispatch, verified
-cancellation, evidence resolution, and the subsequent host-bound reference run
-remain unimplemented. The legacy single-phase dispatch and stop commands
-therefore reject without mutation under v2 instead of fabricating host
-evidence.
-Planning-Show has no complete Controller runtime yet, and Owner Identity is
-Windows-only. Canonical artifact authority is declared as owner-approved PR
-flow but is not locally enforced. Agent Profile, Role, and Formation catalogs
-are read-only projections; host-specific `.codex/agents` prompt files are not
-canonical runtime activation and remain outside `main`. Mapper output is a
-commit-relative navigation projection; source, tests, and Git review remain
-authoritative.
+This slice observes normal host behavior; it does not prove sandbox,
+instruction-precedence, credential, plugin, or permission security boundaries.
+Only `CODEX_APP_NATIVE_V1` is admitted. Legacy or unavailable host-session
+identity remains `UNKNOWN`; a proven different current session is `STOPPED`.
+Network worktrees, external models/APIs/connectors, Team synchronization,
+evidence resolution, two-phase dispatch, verified cancellation, retry,
+reconciliation, and the repeated Codex-native Multi-Agent Pipeline reference
+run are not implemented by this slice.
 
 ## Open stop
 
-Any consequential operation requires an exact target, operation-specific
-approval, bounded authority, and source-native read-back.
+No worker was spawned and no dispatch intent, receipt, graph transition, or
+external write was created during this delivery. Any publication, merge, live
+operation, or other consequential action requires fresh exact approval.
 
 ## Next bounded action
 
-Review draft pull request
-[#53](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/53). Merge remains a
-separate consequential decision. After an accepted immutable revision, the
-next dependency-ordered slices are Source/Worktree and Host Evidence binding,
-then two-phase Dispatch and verified cancellation, before the repeated
-read-only Codex-native Multi-Agent Pipeline reference run. No external model
-API, cloud service, encryption claim, live connector write, or broader host
-capability is established by this slice.
-
+Review the complete local diff. After separately authorized commit/publication
+and green Node 24 authoritative plus Node 26 conformance CI on Ubuntu and
+Windows, begin Slice 2: atomic two-phase Dispatch with budget reservation,
+verified Codex-native activation identity, and verified cancellation. The
+subsequent reference run remains stopped until that contract is accepted and
+green.

@@ -285,7 +285,9 @@ export interface LoadedExecutionRun extends ExecutionRunLocator, ExecutionRunVie
   runtimeReceiptId: string;
 }
 
-export interface TransactionalLoadedExecutionRun extends LoadedExecutionRun {}
+export interface TransactionalLoadedExecutionRun extends LoadedExecutionRun {
+  workspaceIdentityDigest: string;
+}
 
 export interface ExecutionResumeRuntime {
   sourceRevision: string;

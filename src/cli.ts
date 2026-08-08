@@ -50,7 +50,9 @@ import {
   runAcceptExecutionResult,
   runCheckExecutionResume,
   runCompareExecutionRuns,
+  runCreateExecutionHostReceipt,
   runFinalizeExecution,
+  runInspectExecutionDispatchReadiness,
   runPrepareExecution,
   runPrepareExecutionNode,
   runProposeExecutionRepair,
@@ -84,6 +86,8 @@ Commands:
   resume-session      Evaluate an explicit compact session state without writes
   prepare-execution   Create one transactional run with --workspace, --app-data-root, and --controller-id
   prepare-execution-node  Read one --database/--run and create a task packet
+  create-execution-host-receipt  Read one --database/--run and create bounded host evidence
+  inspect-execution-dispatch-readiness  Read one --database/--run/--node and inspect bounded readiness
   record-execution-dispatch  Reject unsupported single-phase dispatch recording
   accept-execution-result  Commit one Result Envelope with explicit controller and fencing token
   reject-execution-result  Commit one rejection with explicit controller and fencing token
@@ -139,6 +143,8 @@ async function dispatchCli(argv: readonly string[]): Promise<number> {
   if (command === "resume-session") return runResumeSession(argv.slice(1));
   if (command === "prepare-execution") return runPrepareExecution(argv.slice(1), process.stdin);
   if (command === "prepare-execution-node") return runPrepareExecutionNode(argv.slice(1));
+  if (command === "create-execution-host-receipt") return runCreateExecutionHostReceipt(argv.slice(1), process.stdin);
+  if (command === "inspect-execution-dispatch-readiness") return runInspectExecutionDispatchReadiness(argv.slice(1), process.stdin);
   if (command === "record-execution-dispatch") return runRecordExecutionDispatch(argv.slice(1));
   if (command === "accept-execution-result") return runAcceptExecutionResult(argv.slice(1), process.stdin);
   if (command === "reject-execution-result") return runRejectExecutionResult(argv.slice(1));

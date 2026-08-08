@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
-import { mkdir, mkdtemp, rm } from "node:fs/promises";
+import { mkdir, mkdtemp, readdir, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { test } from "node:test";
@@ -28,6 +28,9 @@ interface CliLocator {
   lane: "AUTHORITATIVE" | "CONFORMANCE_ONLY";
 }
 
+const cliThreadId = "11111111-2222-4333-8444-555555555555";
+const cliHostSessionDigest = "a3c84fa3b1ac6935d23090caa53a392f6c4d858fc28595a49c88001215ca2c24";
+
 test("prepare-execution returns the transactional locator, controller fence, runtime receipt, and observed lane", async () => {
   await withTemporaryDirectory(async (root) => {
     const prepared = await prepareExecution(root);
@@ -38,10 +41,29 @@ test("prepare-execution returns the transactional locator, controller fence, run
     assert.equal(prepared.fencingToken, 1);
     assert.ok(["AUTHORITATIVE", "CONFORMANCE_ONLY"].includes(prepared.lane));
     assert.match(prepared.databasePath, /execution\.sqlite$/u);
+    assert.equal(readRuntimeHostSession(prepared), cliHostSessionDigest);
 
     const packet = await prepareNode(prepared, "audit-controller");
     assert.equal(packet.nodeId, "audit-controller");
   });
+});
+
+test("prepare-execution rejects absent or malformed Codex task identity before database creation", async () => {
+  for (const invalidThreadId of [undefined, "not-a-uuid"]) {
+    await withTemporaryDirectory(async (root) => {
+      const workspace = join(root, "workspace");
+      const appData = join(root, "app-data");
+      await mkdir(workspace);
+      await mkdir(appData);
+      const response = await runBuiltCliWithThreadId([
+        "prepare-execution", "--workspace", workspace, "--app-data-root", appData, "--controller-id", "cli-controller-001",
+      ], JSON.stringify({ envelope: referenceEnvelopeInput, graph: referenceGraphDraft }), invalidThreadId);
+
+      assert.equal(response.code, 3, `${response.stdout}${response.stderr}`);
+      assert.equal(response.stdout.includes(invalidThreadId ?? "CODEX_THREAD_ID"), false);
+      assert.deepEqual(await readdir(appData), []);
+    });
+  }
 });
 
 test("accept-execution-result performs one transactional result commit and malformed input changes nothing", async () => {
@@ -168,6 +190,17 @@ function readRun(locator: CliLocator): LoadedExecutionRun {
   }
 }
 
+function readRuntimeHostSession(locator: CliLocator): string {
+  const session = openReadOnlyExecutionStoreSessionForRun({
+    databasePath: locator.databasePath, runId: locator.runId, runtime: currentExecutionProcessRuntimeObservation(),
+  });
+  try {
+    return session.runtimeReceipt.hostSessionId;
+  } finally {
+    closeExecutionStoreSession(session);
+  }
+}
+
 function authority(run: LoadedExecutionRun): ExecutionMutationAuthority {
   return {
     controllerId: run.controllerId, fencingToken: run.fencingToken, runtimeReceiptId: run.runtimeReceiptId,
@@ -206,8 +239,15 @@ function terminalWorkerResult(
 }
 
 function runBuiltCli(argv: readonly string[], stdin: string | null): Promise<{ code: number | null; stdout: string; stderr: string }> {
+  return runBuiltCliWithThreadId(argv, stdin, cliThreadId);
+}
+
+function runBuiltCliWithThreadId(argv: readonly string[], stdin: string | null, threadId: string | undefined): Promise<{ code: number | null; stdout: string; stderr: string }> {
   return new Promise((resolveResult, rejectResult) => {
-    const child = spawn(process.execPath, ["dist/cli.js", ...argv], { cwd: process.cwd(), stdio: ["pipe", "pipe", "pipe"] });
+    const env = { ...process.env };
+    if (threadId === undefined) delete env.CODEX_THREAD_ID;
+    else env.CODEX_THREAD_ID = threadId;
+    const child = spawn(process.execPath, ["dist/cli.js", ...argv], { cwd: process.cwd(), env, stdio: ["pipe", "pipe", "pipe"] });
     let stdout = "";
     let stderr = "";
     child.stdout.on("data", (chunk: Buffer) => { stdout += chunk.toString("utf8"); });

@@ -11,6 +11,7 @@ import {
 const expectedReasonCodes = [
   "COMMAND_ARGUMENTS_INVALID",
   "INPUT_JSON_INVALID",
+  "COMMAND_INPUT_TOO_LARGE",
   "ENVELOPE_INVALID",
   "GRAPH_INVALID",
   "TARGET_ALREADY_EXISTS",
@@ -19,9 +20,13 @@ const expectedReasonCodes = [
   "WORKSPACE_IDENTITY_MISMATCH",
   "SOURCE_UNREADABLE",
   "HOST_PROFILE_UNSUPPORTED",
+  "HOST_CAPABILITY_UNSUPPORTED",
   "HOST_CAPABILITY_UNKNOWN",
   "HOST_INSTRUCTION_STATE_UNKNOWN",
   "AUTHORITY_NOT_PROVEN",
+  "AUTHORITY_STATE_UNKNOWN",
+  "HOST_SESSION_IDENTITY_MISMATCH",
+  "HOST_SESSION_IDENTITY_UNKNOWN",
   "SPAWN_REJECTED",
   "SPAWN_FAILED_CONFIRMED",
   "SPAWN_OUTCOME_UNKNOWN",
@@ -130,6 +135,35 @@ test("execution reason registry is closed and every definition is actionable", (
   assert.equal(executionReason("RESULT_STATUS_STOPPED").disposition, "STOP_KNOWN");
   assert.equal(executionReason("RESULT_STATUS_UNKNOWN").disposition, "MARK_UNKNOWN");
   assert.equal(executionReason("COMMAND_ARGUMENTS_INVALID").disposition, "REJECT_INPUT");
+  assert.deepEqual(
+    [
+      executionReason("COMMAND_INPUT_TOO_LARGE").determinacy,
+      executionReason("COMMAND_INPUT_TOO_LARGE").disposition,
+      executionReason("HOST_CAPABILITY_UNSUPPORTED").determinacy,
+      executionReason("HOST_CAPABILITY_UNSUPPORTED").disposition,
+      executionReason("AUTHORITY_NOT_PROVEN").determinacy,
+      executionReason("AUTHORITY_NOT_PROVEN").disposition,
+      executionReason("AUTHORITY_STATE_UNKNOWN").determinacy,
+      executionReason("AUTHORITY_STATE_UNKNOWN").disposition,
+      executionReason("HOST_SESSION_IDENTITY_MISMATCH").determinacy,
+      executionReason("HOST_SESSION_IDENTITY_MISMATCH").disposition,
+      executionReason("HOST_SESSION_IDENTITY_UNKNOWN").determinacy,
+      executionReason("HOST_SESSION_IDENTITY_UNKNOWN").disposition,
+      executionReason("HOST_CAPABILITY_UNSUPPORTED").operatorAction,
+      executionReason("AUTHORITY_NOT_PROVEN").operatorAction,
+      executionReason("HOST_SESSION_IDENTITY_MISMATCH").operatorAction,
+      executionReason("HOST_SESSION_IDENTITY_UNKNOWN").operatorAction,
+    ],
+    [
+      "KNOWN_ABSENT", "REJECT_INPUT",
+      "KNOWN_PRESENT", "STOP_KNOWN",
+      "KNOWN_PRESENT", "STOP_KNOWN",
+      "AMBIGUOUS", "MARK_UNKNOWN",
+      "KNOWN_PRESENT", "STOP_KNOWN",
+      "AMBIGUOUS", "MARK_UNKNOWN",
+      "SELECT_NEW_RUN", "PROVIDE_AUTHORITY", "SELECT_NEW_RUN", "RECONCILE",
+    ],
+  );
   assert.deepEqual(
     {
       phase: executionReason("STALE_FENCING_TOKEN").phase,

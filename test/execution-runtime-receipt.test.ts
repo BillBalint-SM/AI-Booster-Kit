@@ -93,7 +93,7 @@ function validReceiptRequest() {
     storagePolicyId: policy.storagePolicy.policyId,
     storagePolicySha256: policy.storagePolicy.policyDigest,
     sessionId: "session-20260808-001",
-    hostSessionId: "codex-session-20260808-001",
+    hostSessionId: "a3c84fa3b1ac6935d23090caa53a392f6c4d858fc28595a49c88001215ca2c24",
     observedAt: "2026-08-08T13:30:00.000Z",
   };
 }
