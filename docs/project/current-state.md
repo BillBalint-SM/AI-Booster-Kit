@@ -105,10 +105,19 @@ approval, bounded authority, and source-native read-back.
 
 ## Next bounded action
 
-Fix the transactional persistence invariant and stable Node runtime binding as
-the next bounded design and implementation dependency. Only after those
-contracts are reviewable may the Input/CLI, Source/Worktree, Host Evidence,
-two-phase Dispatch, and generated conformance slices proceed toward a repeated
-read-only Codex-native Multi-Agent Pipeline reference run. No external write,
-model API, or broader host capability is authorized by this routing decision.
+Review the approved
+[transactional persistence and stable runtime binding design](../superpowers/specs/2026-08-08-transactional-persistence-runtime-binding-design.md)
+and its separate
+[file-and-test-level implementation plan](../superpowers/plans/2026-08-08-transactional-persistence-runtime-binding.md),
+then choose the authorized execution mode. The plan orders twelve test-driven,
+independently reviewable tasks: policy and runtime admission, receipt and
+workspace identity, the SQLite boundary, run bootstrap, fencing, atomic
+results, finalization, recovery and crash evidence, backup and migration,
+immutable legacy import, one explicit consumer cutover, and the cross-platform
+closure gate. No runtime behavior is implemented by either planning artifact.
+Only after the complete dependency passes may the Input/CLI, Source/Worktree,
+Host Evidence, two-phase Dispatch, and generated conformance slices proceed
+toward a repeated read-only Codex-native Multi-Agent Pipeline reference run.
+No external write, model API, cloud service, encryption claim, commit,
+publication, or broader host capability is authorized by this routing update.
 

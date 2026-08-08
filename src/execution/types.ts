@@ -254,14 +254,21 @@ export interface ExecutionCheckpoint {
   lastEventHash: string;
 }
 
-export interface PersonalExecutionRun {
-  runDirectory: string;
+export interface ExecutionRunLocator {
+  databasePath: string;
+  workspaceId: string;
+  runId: string;
+}
+
+export interface PersonalExecutionRun extends ExecutionRunLocator {
+  controllerId: string;
+  fencingToken: number;
+  runtimeReceiptId: string;
   checkpoint: ExecutionCheckpoint;
   lastEventHash: string;
 }
 
-export interface LoadedExecutionRun {
-  runDirectory: string;
+export interface ExecutionRunView {
   envelope: ExecutionEnvelope;
   graph: ExecutionGraph;
   events: readonly ExecutionEvent[];
@@ -271,6 +278,14 @@ export interface LoadedExecutionRun {
   acceptedResults: readonly ExecutionResultEnvelope[];
   finalHandoff: FinalExecutionHandoff | null;
 }
+
+export interface LoadedExecutionRun extends ExecutionRunLocator, ExecutionRunView {
+  controllerId: string;
+  fencingToken: number;
+  runtimeReceiptId: string;
+}
+
+export interface TransactionalLoadedExecutionRun extends LoadedExecutionRun {}
 
 export interface ExecutionResumeRuntime {
   sourceRevision: string;

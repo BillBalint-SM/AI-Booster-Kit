@@ -37,18 +37,46 @@ test("GitHub metadata: provides the approved read-only review contract", async (
   assert.match(workflow, /pull_request:/);
   assert.match(workflow, /^  push:\n    branches: \[main\]$/m);
   assert.match(workflow, /contents: read/);
-  assert.match(workflow, /node-version: 26/);
+  for (const matrixEntry of [
+    "          - os: ubuntu-latest\n            node: 24\n            lane: AUTHORITATIVE",
+    "          - os: windows-latest\n            node: 24\n            lane: AUTHORITATIVE",
+    "          - os: ubuntu-latest\n            node: 26\n            lane: CONFORMANCE_ONLY",
+    "          - os: windows-latest\n            node: 26\n            lane: CONFORMANCE_ONLY",
+  ]) {
+    assert.ok(workflow.includes(matrixEntry));
+  }
+  assert.ok(workflow.includes("node-version: ${{ matrix.node }}"));
+  assert.match(workflow, /^          node-version: 24$/m);
+  assert.ok(workflow.includes("EXECUTION_EXPECTED_RUNTIME_LANE: ${{ matrix.lane }}"));
+  assert.ok(
+    workflow.includes(
+      "run: node --input-type=module -e \"const { observeExecutionSqliteDriver } = await import('./dist/src/execution/persistence/sqlite-adapter.js'); console.log(JSON.stringify(await observeExecutionSqliteDriver()));\"",
+    ),
+  );
   assert.match(workflow, /npm ci/);
   assert.match(workflow, /npm run lint/);
   assert.match(workflow, /npm run check:docs/);
   assert.match(workflow, /npm test/);
   assert.deepEqual(
     [...workflow.matchAll(/^\s*- uses:\s+([^\s]+)\s*$/gm)].map((match) => match[1]),
-    ["actions/checkout@v6", "actions/setup-node@v7"],
+    [
+      "actions/checkout@v6",
+      "actions/setup-node@v7",
+      "actions/checkout@v6",
+      "actions/setup-node@v7",
+    ],
   );
   assert.deepEqual(
     [...workflow.matchAll(/^\s*- run:\s+(.+)$/gm)].map((match) => match[1]),
-    ["npm ci", "npm run lint", "npm run check:docs", "npm test"],
+    [
+      "npm ci",
+      "npm run lint",
+      "npm run build",
+      "npm run test:execution-storage",
+      "npm test",
+      "npm ci",
+      "npm run check:docs",
+    ],
   );
   assert.doesNotMatch(workflow, /\bwrite(?:-all)?\b/i);
   assert.doesNotMatch(workflow, /^\s*secrets\s*:/im);

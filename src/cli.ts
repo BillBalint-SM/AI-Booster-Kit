@@ -82,16 +82,16 @@ Commands:
   save-context        Save an explicit Personal or Team context artifact
   save-session        Save an explicit Personal or Team compact session state
   resume-session      Evaluate an explicit compact session state without writes
-  prepare-execution   Create one bounded Personal execution run from stdin JSON
-  prepare-execution-node  Create a read-only task packet for one ready node
-  record-execution-dispatch  Record one already-authorized native dispatch
-  accept-execution-result  Validate and record one Result Envelope from stdin JSON
-  reject-execution-result  Record one rejected Result Envelope without storing its raw content
-  propose-execution-repair  Validate one bounded repair proposal from stdin JSON
-  stop-execution      Record an allowlisted stopped or unknown execution state
-  check-execution-resume  Evaluate explicit host evidence without writes
-  finalize-execution  Store one validated final handoff from stdin JSON
-  compare-execution-runs  Compare two validated final execution runs
+  prepare-execution   Create one transactional run with --workspace, --app-data-root, and --controller-id
+  prepare-execution-node  Read one --database/--run and create a task packet
+  record-execution-dispatch  Reject unsupported single-phase dispatch recording
+  accept-execution-result  Commit one Result Envelope with explicit controller and fencing token
+  reject-execution-result  Commit one rejection with explicit controller and fencing token
+  propose-execution-repair  Commit one bounded repair with explicit controller and fencing token
+  stop-execution      Reject unsupported unverified stop recording
+  check-execution-resume  Evaluate one --database/--run against explicit host evidence
+  finalize-execution  Commit one final handoff with explicit controller and fencing token
+  compare-execution-runs  Compare explicit single/multi database and run locators
 `;
 
 export async function runCli(argv: readonly string[]): Promise<number> {

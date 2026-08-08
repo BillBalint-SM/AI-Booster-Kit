@@ -1,18 +1,45 @@
+import { randomUUID } from "node:crypto";
 import { readFile } from "node:fs/promises";
+import { resolve } from "node:path";
 
 import { operationalReasonForContractError, rejectedExecutionCommand } from "./command-outcome.js";
 import { compareExecutionRuns } from "./compare.js";
-import { finalizeExecutionRun, renderFinalExecutionHandoffMarkdown, validateFinalExecutionHandoff } from "./finalize.js";
-import { applyExecutionGraphMutation, createExecutionGraph, transitionExecutionNode } from "./graph.js";
-import { buildExecutionResultTemplate, buildExecutionTaskPacket, parseExecutionResult, routeExecutionResultStatus, validateResultForNode } from "./handoff.js";
-import { createExecutionEvent } from "./ledger.js";
+import { validateFinalExecutionHandoff } from "./finalize.js";
+import { createExecutionGraph } from "./graph.js";
+import { buildExecutionResultTemplate, buildExecutionTaskPacket } from "./handoff.js";
+import {
+  commitFinalExecutionHandoff,
+} from "./persistence/finalization.js";
+import {
+  commitExecutionGraphMutation,
+} from "./persistence/mutations.js";
+import type { ExecutionMutationAuthority } from "./persistence/mutations.js";
+import {
+  commitAcceptedExecutionResult,
+  commitRejectedExecutionResult,
+  commitTerminalExecutionResult,
+} from "./persistence/results.js";
+import {
+  closeExecutionStoreSession,
+  openExecutionStoreSession,
+  openMutableExecutionStoreSessionForRun,
+  openReadOnlyExecutionStoreSessionForRun,
+} from "./persistence/session.js";
+import type { ExecutionStoreSession } from "./persistence/session.js";
+import { createTransactionalExecutionRun, loadTransactionalExecutionRun } from "./persistence/store.js";
 import { evaluateExecutionResume } from "./resume.js";
+import { currentExecutionProcessRuntimeObservation } from "./runtime-receipt.js";
 import { assertExecutionRunMutable } from "./semantics.js";
-import { appendRunEvent, createPersonalExecutionRun, loadExecutionRun, saveAcceptedResult, saveFinalExecutionHandoff, saveGraphSnapshot } from "./storage.js";
-import { createExecutionEnvelope } from "./validation.js";
 import { ExecutionContractError } from "./types.js";
+import type {
+  ExecutionGraphDraft,
+  ExecutionResultEnvelope,
+  ExecutionResumeRuntime,
+  GraphMutationProposal,
+  LoadedExecutionRun,
+} from "./types.js";
 import type { ExecutionReasonCode } from "./reasons.js";
-import type { ExecutionGraphDraft, ExecutionNode, ExecutionResultEnvelope, ExecutionResumeRuntime, GraphMutationProposal, LoadedExecutionRun } from "./types.js";
+import { createExecutionEnvelope } from "./validation.js";
 
 const configurationCode = "EXECUTION_COMMAND_CONFIGURATION_INVALID";
 const stopCodes = ["CODEX_SPAWN_FAILED", "CODEX_WAIT_TIMEOUT", "USER_CANCELLED", "HOST_THREAD_UNKNOWN"] as const;
@@ -20,23 +47,52 @@ const resultRejectionCodes = ["EXECUTION_INPUT_JSON_INVALID", "EXECUTION_RESULT_
 
 export async function runPrepareExecution(argv: readonly string[], input: NodeJS.ReadableStream): Promise<number> {
   return runExecutionCommand(async () => {
-    if (argv[0] !== "--personal-root" || argv[1] === undefined || argv.length !== 2) return configurationFailure();
+    if (
+      argv[0] !== "--workspace" || argv[1] === undefined
+      || argv[2] !== "--app-data-root" || argv[3] === undefined
+      || argv[4] !== "--controller-id" || argv[5] === undefined
+      || argv.length !== 6
+    ) return configurationFailure();
     const request = prepareRequest(await readJsonInput(input));
     const envelope = createExecutionEnvelope(request.envelope);
     const graph = createExecutionGraph(request.graph, envelope);
-    await createPersonalExecutionRun(argv[1], envelope, graph, new Date().toISOString());
-    write({ state: "READY", runId: envelope.runId });
-    return 0;
+    const observedAt = new Date().toISOString();
+    const session = await openExecutionStoreSession({
+      workspaceRoot: argv[1],
+      appDataRoot: argv[3],
+      runtime: currentExecutionProcessRuntimeObservation(),
+      kernelRevision: envelope.sourceRevision.slice(0, 40),
+      dependencyLockPath: resolve("package-lock.json"),
+      sessionId: `cli-${randomUUID()}`,
+      hostSessionId: `cli-host-${randomUUID()}`,
+      observedAt,
+    });
+    try {
+      const run = createTransactionalExecutionRun(session, { controllerId: argv[5], envelope, graph, recordedAt: observedAt });
+      write({
+        state: "READY",
+        workspaceId: run.workspaceId,
+        databasePath: run.databasePath,
+        runId: run.runId,
+        controllerId: run.controllerId,
+        fencingToken: run.fencingToken,
+        runtimeReceiptId: run.runtimeReceiptId,
+        lane: session.runtimeReceipt.lane,
+      });
+      return 0;
+    } finally {
+      closeExecutionStoreSession(session);
+    }
   });
 }
 
 export async function runPrepareExecutionNode(argv: readonly string[]): Promise<number> {
   return runExecutionCommand(async () => {
-    const runPath = requiredPair(argv, "--run", "--node");
-    if (runPath === null) return configurationFailure();
-    const run = await loadExecutionRun(runPath.first);
-    const contextArtifacts = contextArtifactsForNode(run, runPath.second);
-    const taskPacket = buildExecutionTaskPacket(run.envelope, run.graph, runPath.second, contextArtifacts.map((artifact) => artifact.artifactRef));
+    const locator = readPrefix(argv);
+    if (locator === null || locator.rest[0] !== "--node" || locator.rest[1] === undefined || locator.rest.length !== 2) return configurationFailure();
+    const run = withReadRun(locator, (session) => loadTransactionalExecutionRun(session, locator.runId));
+    const contextArtifacts = contextArtifactsForNode(run, locator.rest[1]);
+    const taskPacket = buildExecutionTaskPacket(run.envelope, run.graph, locator.rest[1], contextArtifacts.map((artifact) => artifact.artifactRef));
     write({ taskPacket, contextArtifacts, resultTemplate: buildExecutionResultTemplate(taskPacket) });
     return 0;
   });
@@ -44,178 +100,127 @@ export async function runPrepareExecutionNode(argv: readonly string[]): Promise<
 
 export async function runRecordExecutionDispatch(argv: readonly string[]): Promise<number> {
   return runExecutionCommand(async () => {
-    if (argv[0] !== "--run" || argv[1] === undefined || argv[2] !== "--node" || argv[3] === undefined || argv[4] !== "--task" || argv[5] === undefined || argv[6] !== "--thread-ref" || argv[7] === undefined || argv.length !== 8) {
-      return configurationFailure();
-    }
-    const run = await loadExecutionRun(argv[1]);
-    assertExecutionRunMutable(run.checkpoint.runState);
-    throw new ExecutionContractError("OPERATOR_PROTOCOL_VIOLATION", "single-phase dispatch recording is unsupported by execution contract v2");
+    const locator = mutablePrefix(argv);
+    if (
+      locator === null || locator.rest[0] !== "--node" || locator.rest[1] === undefined
+      || locator.rest[2] !== "--task" || locator.rest[3] === undefined
+      || locator.rest[4] !== "--thread-ref" || locator.rest[5] === undefined
+      || locator.rest.length !== 6
+    ) return configurationFailure();
+    return withMutableRun(locator, (session) => {
+      assertExecutionRunMutable(loadTransactionalExecutionRun(session, locator.runId).checkpoint.runState);
+      throw new ExecutionContractError("OPERATOR_PROTOCOL_VIOLATION", "single-phase dispatch recording is unsupported by execution contract v2");
+    });
   });
 }
 
 export async function runAcceptExecutionResult(argv: readonly string[], input: NodeJS.ReadableStream): Promise<number> {
   return runExecutionCommand(async () => {
-    const runDirectory = requiredSingleValue(argv, "--run");
-    if (runDirectory === null) return configurationFailure();
-    const run = await loadExecutionRun(runDirectory);
-    assertExecutionRunMutable(run.checkpoint.runState);
-    const result = parseExecutionResult(await readJsonInput(input), run.envelope.budget.maxResultBytes);
-    const node = run.graph.nodes.find((entry) => entry.nodeId === result.nodeId);
-    if (node === undefined || node.state !== "RUNNING") throw new ExecutionContractError("EXECUTION_RESULT_STATE_INVALID", "execution result does not target a running node");
-    validateResultForNode(result, run.envelope, run.graph, node.nodeId);
-    if (result.status !== "READY_FOR_VALIDATION") return recordTerminalWorkerResult(run, node, result);
-    const threadRef = dispatchedThreadRef(run, node.nodeId);
-    await appendRunEvent(run.runDirectory, nextNodeEvent(run, "NODE_RESULT_RECEIVED", node.nodeId, "RUNNING", "RESULT_RECEIVED", result.taskId, threadRef, [], null));
-    const receivedGraph = transitionExecutionNode(run.graph, { nodeId: node.nodeId, from: "RUNNING", to: "RESULT_RECEIVED" }, run.envelope);
-    await saveGraphSnapshot(run.runDirectory, receivedGraph);
-    const artifact = await saveAcceptedResult(run.runDirectory, result);
-    const receivedRun = await loadExecutionRun(run.runDirectory);
-    await appendRunEvent(receivedRun.runDirectory, nextNodeEvent(receivedRun, "NODE_RESULT_ACCEPTED", node.nodeId, "RESULT_RECEIVED", "SUCCEEDED", result.taskId, null, [artifact.artifactId], null));
-    await saveGraphSnapshot(receivedRun.runDirectory, transitionExecutionNode(receivedGraph, { nodeId: node.nodeId, from: "RESULT_RECEIVED", to: "SUCCEEDED" }, receivedRun.envelope));
-    write({ state: "SUCCEEDED", nodeId: node.nodeId });
-    return 0;
+    const locator = mutablePrefix(argv);
+    if (locator === null || locator.rest.length !== 0) return configurationFailure();
+    const value = await readJsonInput(input) as ExecutionResultEnvelope;
+    return withMutableRun(locator, (session) => {
+      const run = loadTransactionalExecutionRun(session, locator.runId);
+      assertExecutionRunMutable(run.checkpoint.runState);
+      const threadRef = dispatchedThreadRef(run, value.nodeId);
+      if (value.status === "READY_FOR_VALIDATION") {
+        const accepted = commitAcceptedExecutionResult(session, {
+          runId: locator.runId,
+          authority: authority(locator, run),
+          result: value,
+          threadRef,
+          recordedAt: new Date().toISOString(),
+        });
+        write({ state: accepted.run.checkpoint.runState, nodeId: value.nodeId, artifact: accepted.artifact });
+        return 0;
+      }
+      const terminal = commitTerminalExecutionResult(session, {
+        runId: locator.runId,
+        authority: authority(locator, run),
+        result: value,
+        threadRef,
+        recordedAt: new Date().toISOString(),
+      });
+      write({ state: terminal.checkpoint.runState, nodeId: value.nodeId, code: value.reasonCode });
+      return terminal.checkpoint.runState === "UNKNOWN" ? 2 : 0;
+    });
   });
-}
-
-async function recordTerminalWorkerResult(
-  run: LoadedExecutionRun,
-  node: ExecutionNode,
-  result: ExecutionResultEnvelope,
-): Promise<number> {
-  if (result.status === "READY_FOR_VALIDATION" || result.reasonCode === null) {
-    throw new ExecutionContractError("OPERATOR_PROTOCOL_VIOLATION", "terminal worker result routing requires a terminal status reason");
-  }
-  const decision = routeExecutionResultStatus(result.status, node.required, node.state, run.checkpoint.runState);
-  if ((decision.nextNodeState !== "STOPPED" && decision.nextNodeState !== "UNKNOWN") || decision.nextRunState === null) {
-    throw new ExecutionContractError("OPERATOR_PROTOCOL_VIOLATION", "terminal worker result produced an invalid transition decision");
-  }
-  const nodeEventType = decision.nextNodeState === "STOPPED" ? "NODE_STOPPED" : "NODE_UNKNOWN";
-  const threadRef = dispatchedThreadRef(run, node.nodeId);
-  await appendRunEvent(
-    run.runDirectory,
-    nextNodeEvent(run, nodeEventType, node.nodeId, "RUNNING", decision.nextNodeState, result.taskId, threadRef, [], result.reasonCode),
-  );
-  const terminalGraph = transitionExecutionNode(run.graph, { nodeId: node.nodeId, from: "RUNNING", to: decision.nextNodeState }, run.envelope);
-  await saveGraphSnapshot(run.runDirectory, terminalGraph);
-
-  if (decision.nextRunState !== run.checkpoint.runState) {
-    const nodeTerminalRun = await loadExecutionRun(run.runDirectory);
-    const runEventType = decision.nextRunState === "STOPPED" ? "RUN_STOPPED" : "RUN_UNKNOWN";
-    const runEvent = createExecutionEvent(
-      {
-        runId: nodeTerminalRun.envelope.runId,
-        eventType: runEventType,
-        nodeId: null,
-        beforeState: nodeTerminalRun.checkpoint.runState,
-        afterState: decision.nextRunState,
-        graphRevision: nodeTerminalRun.graph.graphRevision,
-        evidenceRefs: [],
-        taskId: null,
-        threadRef: null,
-        reasonCode: result.reasonCode,
-      },
-      nodeTerminalRun.events.length + 1,
-      nodeTerminalRun.checkpoint.lastEventHash,
-      new Date().toISOString(),
-    );
-    await appendRunEvent(nodeTerminalRun.runDirectory, runEvent);
-  }
-
-  write({ state: decision.nextRunState, nodeId: node.nodeId, code: result.reasonCode });
-  return decision.nextRunState === "UNKNOWN" ? 2 : 0;
 }
 
 export async function runRejectExecutionResult(argv: readonly string[]): Promise<number> {
   return runExecutionCommand(async () => {
-    if (argv[0] !== "--run" || argv[1] === undefined || argv[2] !== "--node" || argv[3] === undefined || argv[4] !== "--task" || argv[5] === undefined || argv[6] !== "--code" || argv[7] === undefined || argv.length !== 8 || !resultRejectionCodes.includes(argv[7] as typeof resultRejectionCodes[number])) {
-      return configurationFailure();
-    }
-    const run = await loadExecutionRun(argv[1]);
-    assertExecutionRunMutable(run.checkpoint.runState);
-    const node = run.graph.nodes.find((entry) => entry.nodeId === argv[3]);
-    if (node === undefined || node.state !== "RUNNING") throw new ExecutionContractError("EXECUTION_REJECTION_INVALID", "execution result rejection does not target a running node");
-    const dispatch = dispatchedEvent(run, node.nodeId);
-    if (dispatch.taskId !== argv[5]) throw new ExecutionContractError("EXECUTION_REJECTION_INVALID", "execution result rejection task identity is invalid");
-    const reasonCode = resultRejectionReason(argv[7] as typeof resultRejectionCodes[number]);
-
-    const rejection = nextNodeEvent(run, "NODE_RESULT_REJECTED", node.nodeId, "RUNNING", "REJECTED", dispatch.taskId, dispatch.threadRef, [], reasonCode);
-    await appendRunEvent(run.runDirectory, rejection);
-    await saveGraphSnapshot(run.runDirectory, transitionExecutionNode(run.graph, { nodeId: node.nodeId, from: "RUNNING", to: "REJECTED" }, run.envelope));
-
-    const rejectedRun = await loadExecutionRun(run.runDirectory);
-    const stopped = createExecutionEvent(
-      {
-        runId: rejectedRun.envelope.runId,
-        eventType: "RUN_STOPPED",
-        nodeId: null,
-        beforeState: rejectedRun.checkpoint.runState,
-        afterState: "STOPPED",
-        graphRevision: rejectedRun.graph.graphRevision,
-        evidenceRefs: [],
-        taskId: null,
-        threadRef: null,
+    const locator = mutablePrefix(argv);
+    if (
+      locator === null || locator.rest[0] !== "--node" || locator.rest[1] === undefined
+      || locator.rest[2] !== "--task" || locator.rest[3] === undefined
+      || locator.rest[4] !== "--code" || locator.rest[5] === undefined
+      || locator.rest.length !== 6
+      || !resultRejectionCodes.includes(locator.rest[5] as typeof resultRejectionCodes[number])
+    ) return configurationFailure();
+    const nodeId = locator.rest[1];
+    const taskId = locator.rest[3];
+    const rejectionCode = locator.rest[5] as typeof resultRejectionCodes[number];
+    return withMutableRun(locator, (session) => {
+      const run = loadTransactionalExecutionRun(session, locator.runId);
+      assertExecutionRunMutable(run.checkpoint.runState);
+      const dispatch = dispatchedEvent(run, nodeId);
+      if (dispatch.taskId !== taskId) throw new ExecutionContractError("EXECUTION_REJECTION_INVALID", "execution result rejection task identity is invalid");
+      const reasonCode = resultRejectionReason(rejectionCode);
+      const rejected = commitRejectedExecutionResult(session, {
+        runId: locator.runId,
+        authority: authority(locator, run),
+        nodeId,
+        taskId,
+        threadRef: dispatch.threadRef,
         reasonCode,
-      },
-      rejectedRun.events.length + 1,
-      rejectedRun.checkpoint.lastEventHash,
-      new Date().toISOString(),
-    );
-    await appendRunEvent(rejectedRun.runDirectory, stopped);
-    write({ state: "STOPPED", nodeId: node.nodeId, code: reasonCode });
-    return 0;
+        recordedAt: new Date().toISOString(),
+      });
+      write({ state: rejected.checkpoint.runState, nodeId, code: reasonCode });
+      return 0;
+    });
   });
 }
 
 export async function runProposeExecutionRepair(argv: readonly string[], input: NodeJS.ReadableStream): Promise<number> {
   return runExecutionCommand(async () => {
-    const runDirectory = requiredSingleValue(argv, "--run");
-    if (runDirectory === null) return configurationFailure();
-    const run = await loadExecutionRun(runDirectory);
-    assertExecutionRunMutable(run.checkpoint.runState);
+    const locator = mutablePrefix(argv);
+    if (locator === null || locator.rest.length !== 0) return configurationFailure();
     const proposal = await readJsonInput(input) as GraphMutationProposal;
-    const acceptedEvidenceRefs = run.evidenceRefs.map((evidence) => evidence.evidenceId);
-    const nextGraph = applyExecutionGraphMutation(run.graph, proposal, run.envelope, acceptedEvidenceRefs);
-    const event = createExecutionEvent(
-      {
-        runId: run.envelope.runId,
-        eventType: "GRAPH_MUTATION_ACCEPTED",
-        nodeId: null,
-        beforeState: run.checkpoint.runState,
-        afterState: run.checkpoint.runState,
-        graphRevision: run.graph.graphRevision,
-        evidenceRefs: [...proposal.evidenceRefs],
-        taskId: null,
-        threadRef: null,
-        reasonCode: null,
-      },
-      run.events.length + 1,
-      run.checkpoint.lastEventHash,
-      new Date().toISOString(),
-    );
-    await appendRunEvent(run.runDirectory, event);
-    await saveGraphSnapshot(run.runDirectory, nextGraph);
-    write({ state: "READY", graphRevision: nextGraph.graphRevision });
-    return 0;
+    return withMutableRun(locator, (session) => {
+      const run = loadTransactionalExecutionRun(session, locator.runId);
+      assertExecutionRunMutable(run.checkpoint.runState);
+      const updated = commitExecutionGraphMutation(session, {
+        runId: locator.runId,
+        authority: authority(locator, run),
+        proposal,
+        recordedAt: new Date().toISOString(),
+      });
+      write({ state: updated.checkpoint.runState, graphRevision: updated.graph.graphRevision });
+      return 0;
+    });
   });
 }
 
 export async function runStopExecution(argv: readonly string[]): Promise<number> {
   return runExecutionCommand(async () => {
-    if (argv[0] !== "--run" || argv[1] === undefined || argv[2] !== "--code" || argv[3] === undefined || argv.length !== 4 || !stopCodes.includes(argv[3] as typeof stopCodes[number])) {
-      return configurationFailure();
-    }
-    const run = await loadExecutionRun(argv[1]);
-    assertExecutionRunMutable(run.checkpoint.runState);
-    throw new ExecutionContractError("OPERATOR_PROTOCOL_VIOLATION", "unverified single-phase stop recording is unsupported by execution contract v2");
+    const locator = mutablePrefix(argv);
+    if (
+      locator === null || locator.rest[0] !== "--code" || locator.rest[1] === undefined
+      || locator.rest.length !== 2 || !stopCodes.includes(locator.rest[1] as typeof stopCodes[number])
+    ) return configurationFailure();
+    return withMutableRun(locator, (session) => {
+      assertExecutionRunMutable(loadTransactionalExecutionRun(session, locator.runId).checkpoint.runState);
+      throw new ExecutionContractError("OPERATOR_PROTOCOL_VIOLATION", "unverified single-phase stop recording is unsupported by execution contract v2");
+    });
   });
 }
 
 export async function runCheckExecutionResume(argv: readonly string[]): Promise<number> {
   return runExecutionCommand(async () => {
-    if (argv[0] !== "--run" || argv[1] === undefined || argv[2] !== "--runtime" || argv[3] === undefined || argv.length !== 4) return configurationFailure();
-    const run = await loadExecutionRun(argv[1]);
-    const runtime = await readRuntime(argv[3]);
-    const decision = evaluateExecutionResume(run, runtime);
+    const locator = readPrefix(argv);
+    if (locator === null || locator.rest[0] !== "--runtime" || locator.rest[1] === undefined || locator.rest.length !== 2) return configurationFailure();
+    const run = withReadRun(locator, (session) => loadTransactionalExecutionRun(session, locator.runId));
+    const decision = evaluateExecutionResume(run, await readRuntime(locator.rest[1]));
     write(decision);
     return decision.decision === "RESUME" ? 0 : 2;
   });
@@ -223,25 +228,107 @@ export async function runCheckExecutionResume(argv: readonly string[]): Promise<
 
 export async function runFinalizeExecution(argv: readonly string[], input: NodeJS.ReadableStream): Promise<number> {
   return runExecutionCommand(async () => {
-    const runDirectory = requiredSingleValue(argv, "--run");
-    if (runDirectory === null) return configurationFailure();
-    const run = await loadExecutionRun(runDirectory);
-    assertExecutionRunMutable(run.checkpoint.runState);
-    const handoff = validateFinalExecutionHandoff(await readJsonInput(input), run);
-    const finalization = finalizeExecutionRun(run, handoff, new Date().toISOString());
-    await saveFinalExecutionHandoff(run.runDirectory, handoff, renderFinalExecutionHandoffMarkdown(handoff));
-    await appendRunEvent(run.runDirectory, finalization.event);
-    write({ state: finalization.state });
-    return finalization.state === "COMPLETE" || finalization.state === "COMPLETE_WITH_LIMIT" ? 0 : 2;
+    const locator = mutablePrefix(argv);
+    if (locator === null || locator.rest.length !== 0) return configurationFailure();
+    const handoffValue = await readJsonInput(input);
+    return withMutableRun(locator, (session) => {
+      const run = loadTransactionalExecutionRun(session, locator.runId);
+      assertExecutionRunMutable(run.checkpoint.runState);
+      const handoff = validateFinalExecutionHandoff(handoffValue, run);
+      const finalized = commitFinalExecutionHandoff(session, {
+        runId: locator.runId,
+        authority: authority(locator, run),
+        handoff,
+        recordedAt: new Date().toISOString(),
+      });
+      write({ state: finalized.checkpoint.runState });
+      return finalized.checkpoint.runState === "COMPLETE" || finalized.checkpoint.runState === "COMPLETE_WITH_LIMIT" ? 0 : 2;
+    });
   });
 }
 
 export async function runCompareExecutionRuns(argv: readonly string[]): Promise<number> {
   return runExecutionCommand(async () => {
-    if (argv[0] !== "--single" || argv[1] === undefined || argv[2] !== "--multi" || argv[3] === undefined || argv.length !== 4) return configurationFailure();
-    write(compareExecutionRuns(await loadExecutionRun(argv[1]), await loadExecutionRun(argv[3])));
+    if (
+      argv[0] !== "--single-database" || argv[1] === undefined
+      || argv[2] !== "--single-run" || argv[3] === undefined
+      || argv[4] !== "--multi-database" || argv[5] === undefined
+      || argv[6] !== "--multi-run" || argv[7] === undefined
+      || argv.length !== 8
+    ) return configurationFailure();
+    const singleDatabase = argv[1];
+    const singleRun = argv[3];
+    const multiDatabase = argv[5];
+    const multiRun = argv[7];
+    const single = withReadRun({ databasePath: singleDatabase, runId: singleRun, rest: [] }, (session) => loadTransactionalExecutionRun(session, singleRun));
+    const multi = withReadRun({ databasePath: multiDatabase, runId: multiRun, rest: [] }, (session) => loadTransactionalExecutionRun(session, multiRun));
+    write(compareExecutionRuns(single, multi));
     return 0;
   });
+}
+
+interface ReadLocator {
+  databasePath: string;
+  runId: string;
+  rest: readonly string[];
+}
+
+interface MutableLocator extends ReadLocator {
+  controllerId: string;
+  fencingToken: number;
+}
+
+function readPrefix(argv: readonly string[]): ReadLocator | null {
+  if (argv[0] !== "--database" || argv[1] === undefined || argv[2] !== "--run" || argv[3] === undefined) return null;
+  return { databasePath: argv[1], runId: argv[3], rest: argv.slice(4) };
+}
+
+function mutablePrefix(argv: readonly string[]): MutableLocator | null {
+  const read = readPrefix(argv);
+  if (
+    read === null || read.rest[0] !== "--controller-id" || read.rest[1] === undefined
+    || read.rest[2] !== "--fencing-token" || read.rest[3] === undefined
+    || !/^[1-9]\d*$/u.test(read.rest[3])
+  ) return null;
+  const fencingToken = Number(read.rest[3]);
+  if (!Number.isSafeInteger(fencingToken)) return null;
+  return { databasePath: read.databasePath, runId: read.runId, controllerId: read.rest[1], fencingToken, rest: read.rest.slice(4) };
+}
+
+function withReadRun<T>(locator: ReadLocator, operation: (session: ExecutionStoreSession) => T): T {
+  const session = openReadOnlyExecutionStoreSessionForRun({
+    databasePath: locator.databasePath,
+    runId: locator.runId,
+    runtime: currentExecutionProcessRuntimeObservation(),
+  });
+  try {
+    return operation(session);
+  } finally {
+    closeExecutionStoreSession(session);
+  }
+}
+
+function withMutableRun<T>(locator: MutableLocator, operation: (session: ExecutionStoreSession) => T): T {
+  const session = openMutableExecutionStoreSessionForRun({
+    databasePath: locator.databasePath,
+    runId: locator.runId,
+    runtime: currentExecutionProcessRuntimeObservation(),
+  });
+  try {
+    return operation(session);
+  } finally {
+    closeExecutionStoreSession(session);
+  }
+}
+
+function authority(locator: MutableLocator, run: LoadedExecutionRun): ExecutionMutationAuthority {
+  return {
+    controllerId: locator.controllerId,
+    fencingToken: locator.fencingToken,
+    runtimeReceiptId: run.runtimeReceiptId,
+    expectedLedgerHead: run.checkpoint.lastEventHash,
+    expectedGraphRevision: run.graph.graphRevision,
+  };
 }
 
 function prepareRequest(value: unknown): { envelope: import("./types.js").ExecutionEnvelopeInput; graph: ExecutionGraphDraft } {
@@ -264,32 +351,15 @@ function contextArtifactsForNode(run: LoadedExecutionRun, nodeId: string): reado
   });
 }
 
-function nextNodeEvent(
-  run: LoadedExecutionRun,
-  eventType: "NODE_RESULT_RECEIVED" | "NODE_RESULT_ACCEPTED" | "NODE_RESULT_REJECTED" | "NODE_STOPPED" | "NODE_UNKNOWN",
-  nodeId: string,
-  beforeState: "READY" | "RUNNING" | "RESULT_RECEIVED",
-  afterState: "RUNNING" | "RESULT_RECEIVED" | "SUCCEEDED" | "REJECTED" | "STOPPED" | "UNKNOWN",
-  taskId: string,
-  threadRef: string | null,
-  evidenceRefs: readonly string[],
-  reasonCode: ExecutionReasonCode | null,
-) {
-  return createExecutionEvent(
-    { runId: run.envelope.runId, eventType, nodeId, beforeState, afterState, graphRevision: run.graph.graphRevision, evidenceRefs, taskId, threadRef, reasonCode },
-    run.events.length + 1,
-    run.checkpoint.lastEventHash,
-    new Date().toISOString(),
-  );
-}
-
 function dispatchedThreadRef(run: LoadedExecutionRun, nodeId: string): string {
   return dispatchedEvent(run, nodeId).threadRef;
 }
 
 function dispatchedEvent(run: LoadedExecutionRun, nodeId: string): { taskId: string; threadRef: string } {
   const event = [...run.events].reverse().find((candidate) => candidate.eventType === "DISPATCH_CONFIRMED" && candidate.nodeId === nodeId);
-  if (event?.threadRef === null || event?.threadRef === undefined || event.taskId === null) throw new ExecutionContractError("EXECUTION_RESULT_STATE_INVALID", "execution result lacks a dispatch identity");
+  if (event?.threadRef === null || event?.threadRef === undefined || event.taskId === null) {
+    throw new ExecutionContractError("EXECUTION_RESULT_STATE_INVALID", "execution result lacks a dispatch identity");
+  }
   return { taskId: event.taskId, threadRef: event.threadRef };
 }
 
@@ -305,14 +375,6 @@ function resultRejectionReason(code: typeof resultRejectionCodes[number]): Execu
     EXECUTION_RESULT_CONTENT_FORBIDDEN: "CONTENT_FORBIDDEN",
   };
   return reasons[code];
-}
-
-function requiredSingleValue(argv: readonly string[], flag: string): string | null {
-  return argv[0] === flag && argv[1] !== undefined && argv.length === 2 ? argv[1] : null;
-}
-
-function requiredPair(argv: readonly string[], firstFlag: string, secondFlag: string): { first: string; second: string } | null {
-  return argv[0] === firstFlag && argv[1] !== undefined && argv[2] === secondFlag && argv[3] !== undefined && argv.length === 4 ? { first: argv[1], second: argv[3] } : null;
 }
 
 async function readJsonInput(input: NodeJS.ReadableStream): Promise<unknown> {

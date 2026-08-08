@@ -30,6 +30,8 @@ export const executionReasonCodes = [
   "LATE_RESULT",
   "DUPLICATE_RESULT",
   "RESULT_TOO_LARGE",
+  "ARTIFACT_TOO_LARGE",
+  "STORAGE_QUOTA_EXCEEDED",
   "RESULT_JSON_INVALID",
   "RESULT_FIELDS_INVALID",
   "RESULT_FOREIGN",
@@ -58,12 +60,20 @@ export const executionReasonCodes = [
   "INTERRUPT_OUTCOME_UNKNOWN",
   "LATE_RESULT_AFTER_CANCEL",
   "WRITER_CONFLICT",
+  "STALE_FENCING_TOKEN",
+  "CONTROLLER_OWNERSHIP_RECONCILIATION_REQUIRED",
   "PARTIAL_MUTATION",
   "LEDGER_CORRUPT",
   "SNAPSHOT_DIVERGED",
   "MANIFEST_DIVERGED",
   "PENDING_REPLACEMENT",
   "STORAGE_UNAVAILABLE",
+  "PROJECTION_REBUILD_REQUIRED",
+  "PENDING_EFFECT_RECONCILIATION_REQUIRED",
+  "STORAGE_CORRUPT",
+  "BACKUP_INVALID",
+  "MIGRATION_FAILED",
+  "LEGACY_IMPORT_INVALID",
   "PARTIAL_FINALIZATION",
   "TERMINAL_RUN",
   "ACTIVE_THREAD_MISSING",
@@ -176,6 +186,30 @@ function definitionFor(code: ExecutionReasonCode): ExecutionReasonDefinition {
     return definition(code, "DISPATCH", "HOST", knownAbsent ? "KNOWN_ABSENT" : "AMBIGUOUS", knownAbsent ? "STOP_KNOWN" : "MARK_UNKNOWN", knownAbsent ? "NEVER" : "RECONCILE_ONLY", knownAbsent ? "SELECT_NEW_RUN" : "RECONCILE", ["dispatchCorrelationId", "spawnOutcome"]);
   }
   if (dispatchCodes.has(code)) return dispatchDefinition(code);
+  if (code === "ARTIFACT_TOO_LARGE") {
+    return definition(
+      code,
+      "PERSISTENCE",
+      "COMMAND",
+      "KNOWN_ABSENT",
+      "REJECT_INPUT",
+      "CORRECT_AND_RESUBMIT",
+      "CORRECT_INPUT",
+      ["runId", "artifactId", "observedBytes", "limitBytes"],
+    );
+  }
+  if (code === "STORAGE_QUOTA_EXCEEDED") {
+    return definition(
+      code,
+      "PERSISTENCE",
+      "RUN",
+      "KNOWN_PRESENT",
+      "REJECT_INPUT",
+      "NEVER",
+      "INSPECT_STORAGE",
+      ["runId", "observedBytes", "limitBytes"],
+    );
+  }
   if (resultCodes.has(code)) return resultDefinition(code);
   if (evidenceCodes.has(code)) return definition(code, "EVIDENCE", "NODE", "KNOWN_PRESENT", "REJECT_NODE", "CORRECT_AND_RESUBMIT", "CORRECT_INPUT", ["evidenceId"]);
   if (deadlineCodes.has(code)) {
@@ -186,6 +220,48 @@ function definitionFor(code: ExecutionReasonCode): ExecutionReasonDefinition {
   if (cancellationCodes.has(code)) {
     const confirmed = code === "USER_CANCELLED_BEFORE_DISPATCH" || code === "INTERRUPT_CONFIRMED";
     return definition(code, "CANCELLATION", code === "USER_CANCEL_REQUESTED" ? "COMMAND" : "HOST", confirmed ? "KNOWN_ABSENT" : "AMBIGUOUS", confirmed ? "STOP_KNOWN" : "MARK_UNKNOWN", confirmed ? "NEVER" : "RECONCILE_ONLY", confirmed ? "NONE" : "RECONCILE", ["dispatchCorrelationId", "observedAt"]);
+  }
+  if (code === "STALE_FENCING_TOKEN") {
+    return definition(
+      code,
+      "PERSISTENCE",
+      "RUN",
+      "KNOWN_PRESENT",
+      "REJECT_INPUT",
+      "NEVER",
+      "RECONCILE",
+      ["runId", "controllerId", "expectedFencingToken", "observedFencingToken"],
+    );
+  }
+  if (code === "CONTROLLER_OWNERSHIP_RECONCILIATION_REQUIRED") {
+    return definition(
+      code,
+      "PERSISTENCE",
+      "RUN",
+      "KNOWN_PRESENT",
+      "REJECT_INPUT",
+      "RECONCILE_ONLY",
+      "RECONCILE",
+      ["runId", "controllerId", "fencingToken", "runtimeReceiptId"],
+    );
+  }
+  if (code === "PROJECTION_REBUILD_REQUIRED") {
+    return definition(code, "PERSISTENCE", "STORAGE", "KNOWN_PRESENT", "REJECT_INPUT", "RECONCILE_ONLY", "RECONCILE", ["auditId", "runId", "ledgerHead"]);
+  }
+  if (code === "PENDING_EFFECT_RECONCILIATION_REQUIRED") {
+    return definition(code, "PERSISTENCE", "RUN", "AMBIGUOUS", "MARK_UNKNOWN", "RECONCILE_ONLY", "RECONCILE", ["auditId", "runId", "operationId"]);
+  }
+  if (code === "STORAGE_CORRUPT") {
+    return definition(code, "PERSISTENCE", "STORAGE", "KNOWN_PRESENT", "MARK_UNKNOWN", "NEVER", "INSPECT_STORAGE", ["auditId", "databaseSha256"]);
+  }
+  if (code === "BACKUP_INVALID") {
+    return definition(code, "PERSISTENCE", "STORAGE", "KNOWN_PRESENT", "REJECT_INPUT", "NEVER", "INSPECT_STORAGE", ["backupId", "databaseSha256"]);
+  }
+  if (code === "MIGRATION_FAILED") {
+    return definition(code, "PERSISTENCE", "STORAGE", "KNOWN_PRESENT", "REJECT_INPUT", "NEVER", "INSPECT_STORAGE", ["migrationId", "fromVersion", "toVersion"]);
+  }
+  if (code === "LEGACY_IMPORT_INVALID") {
+    return definition(code, "PERSISTENCE", "STORAGE", "KNOWN_PRESENT", "REJECT_INPUT", "NEVER", "INSPECT_STORAGE", ["sourceIdentitySha256", "sourceRunId"]);
   }
   if (persistenceCodes.has(code)) return definition(code, "PERSISTENCE", "STORAGE", "AMBIGUOUS", "MARK_UNKNOWN", "RECONCILE_ONLY", "INSPECT_STORAGE", ["runId", "lastCommittedSequence"]);
   if (resumeCodes.has(code)) return resumeDefinition(code);

@@ -37,6 +37,8 @@ const expectedReasonCodes = [
   "LATE_RESULT",
   "DUPLICATE_RESULT",
   "RESULT_TOO_LARGE",
+  "ARTIFACT_TOO_LARGE",
+  "STORAGE_QUOTA_EXCEEDED",
   "RESULT_JSON_INVALID",
   "RESULT_FIELDS_INVALID",
   "RESULT_FOREIGN",
@@ -65,12 +67,20 @@ const expectedReasonCodes = [
   "INTERRUPT_OUTCOME_UNKNOWN",
   "LATE_RESULT_AFTER_CANCEL",
   "WRITER_CONFLICT",
+  "STALE_FENCING_TOKEN",
+  "CONTROLLER_OWNERSHIP_RECONCILIATION_REQUIRED",
   "PARTIAL_MUTATION",
   "LEDGER_CORRUPT",
   "SNAPSHOT_DIVERGED",
   "MANIFEST_DIVERGED",
   "PENDING_REPLACEMENT",
   "STORAGE_UNAVAILABLE",
+  "PROJECTION_REBUILD_REQUIRED",
+  "PENDING_EFFECT_RECONCILIATION_REQUIRED",
+  "STORAGE_CORRUPT",
+  "BACKUP_INVALID",
+  "MIGRATION_FAILED",
+  "LEGACY_IMPORT_INVALID",
   "PARTIAL_FINALIZATION",
   "TERMINAL_RUN",
   "ACTIVE_THREAD_MISSING",
@@ -120,5 +130,55 @@ test("execution reason registry is closed and every definition is actionable", (
   assert.equal(executionReason("RESULT_STATUS_STOPPED").disposition, "STOP_KNOWN");
   assert.equal(executionReason("RESULT_STATUS_UNKNOWN").disposition, "MARK_UNKNOWN");
   assert.equal(executionReason("COMMAND_ARGUMENTS_INVALID").disposition, "REJECT_INPUT");
+  assert.deepEqual(
+    {
+      phase: executionReason("STALE_FENCING_TOKEN").phase,
+      subject: executionReason("STALE_FENCING_TOKEN").subject,
+      determinacy: executionReason("STALE_FENCING_TOKEN").determinacy,
+      retryPolicy: executionReason("STALE_FENCING_TOKEN").retryPolicy,
+      operatorAction: executionReason("STALE_FENCING_TOKEN").operatorAction,
+      evidence: executionReason("STALE_FENCING_TOKEN").requiredEvidenceFields,
+    },
+    {
+      phase: "PERSISTENCE",
+      subject: "RUN",
+      determinacy: "KNOWN_PRESENT",
+      retryPolicy: "NEVER",
+      operatorAction: "RECONCILE",
+      evidence: ["runId", "controllerId", "expectedFencingToken", "observedFencingToken"],
+    },
+  );
+  assert.deepEqual(
+    {
+      artifact: executionReason("ARTIFACT_TOO_LARGE").phase,
+      quota: executionReason("STORAGE_QUOTA_EXCEEDED").phase,
+      artifactRetry: executionReason("ARTIFACT_TOO_LARGE").retryPolicy,
+      quotaAction: executionReason("STORAGE_QUOTA_EXCEEDED").operatorAction,
+    },
+    {
+      artifact: "PERSISTENCE",
+      quota: "PERSISTENCE",
+      artifactRetry: "CORRECT_AND_RESUBMIT",
+      quotaAction: "INSPECT_STORAGE",
+    },
+  );
+  assert.deepEqual(
+    {
+      phase: executionReason("CONTROLLER_OWNERSHIP_RECONCILIATION_REQUIRED").phase,
+      subject: executionReason("CONTROLLER_OWNERSHIP_RECONCILIATION_REQUIRED").subject,
+      determinacy: executionReason("CONTROLLER_OWNERSHIP_RECONCILIATION_REQUIRED").determinacy,
+      retryPolicy: executionReason("CONTROLLER_OWNERSHIP_RECONCILIATION_REQUIRED").retryPolicy,
+      operatorAction: executionReason("CONTROLLER_OWNERSHIP_RECONCILIATION_REQUIRED").operatorAction,
+      evidence: executionReason("CONTROLLER_OWNERSHIP_RECONCILIATION_REQUIRED").requiredEvidenceFields,
+    },
+    {
+      phase: "PERSISTENCE",
+      subject: "RUN",
+      determinacy: "KNOWN_PRESENT",
+      retryPolicy: "RECONCILE_ONLY",
+      operatorAction: "RECONCILE",
+      evidence: ["runId", "controllerId", "fencingToken", "runtimeReceiptId"],
+    },
+  );
   assert.throws(() => parseExecutionReasonCode("ARBITRARY_REASON"), /EXECUTION_REASON_CODE_INVALID/);
 });
