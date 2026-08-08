@@ -12,7 +12,7 @@ export function compareExecutionRuns(singleRun: LoadedExecutionRun, multiRun: Lo
     throw new ExecutionContractError(comparisonCode, "execution runs require validated final handoffs before comparison");
   }
   return {
-    comparisonVersion: "1.0",
+    comparisonVersion: "2.0",
     comparable: true,
     singleRunId: singleRun.envelope.runId,
     multiRunId: multiRun.envelope.runId,
@@ -55,7 +55,7 @@ function unknownCount(run: LoadedExecutionRun): number {
 }
 
 function agentDispatchCount(run: LoadedExecutionRun): number {
-  return run.events.filter((event) => event.eventType === "NODE_DISPATCHED" && event.nodeId !== null && run.graph.nodes.find((node) => node.nodeId === event.nodeId)?.type === "AGENT_TASK").length;
+  return run.events.filter((event) => event.eventType === "DISPATCH_CONFIRMED" && event.nodeId !== null && run.graph.nodes.find((node) => node.nodeId === event.nodeId)?.type === "AGENT_TASK").length;
 }
 
 function repairCount(run: LoadedExecutionRun): number {

@@ -20,14 +20,23 @@ test("execution resume resumes only a matching source and preserves an unknown a
     const envelope = createExecutionEnvelope(referenceEnvelopeInput);
     const graph = createExecutionGraph(referenceGraphDraft, envelope);
     const created = await createPersonalExecutionRun(root, envelope, graph, "2026-08-07T15:00:00.000Z");
-    const dispatched = createExecutionEvent(
-      { runId: envelope.runId, eventType: "NODE_DISPATCHED", nodeId: "audit-controller", beforeState: "READY", afterState: "RUNNING", graphRevision: graph.graphRevision, evidenceRefs: [], taskId: "task-controller", threadRef: "codex-agent:controller", reasonCode: null },
+    const intended = createExecutionEvent(
+      { runId: envelope.runId, eventType: "DISPATCH_INTENDED", nodeId: "audit-controller", beforeState: "READY", afterState: "DISPATCHING", graphRevision: graph.graphRevision, evidenceRefs: [], taskId: "task-controller", threadRef: null, reasonCode: null },
       3,
       created.lastEventHash,
       "2026-08-07T15:00:01.000Z",
     );
-    await appendRunEvent(created.runDirectory, dispatched);
-    await saveGraphSnapshot(created.runDirectory, transitionExecutionNode(graph, { nodeId: "audit-controller", from: "READY", to: "RUNNING" }, envelope));
+    await appendRunEvent(created.runDirectory, intended);
+    const dispatchingGraph = transitionExecutionNode(graph, { nodeId: "audit-controller", from: "READY", to: "DISPATCHING" }, envelope);
+    await saveGraphSnapshot(created.runDirectory, dispatchingGraph);
+    const confirmed = createExecutionEvent(
+      { runId: envelope.runId, eventType: "DISPATCH_CONFIRMED", nodeId: "audit-controller", beforeState: "DISPATCHING", afterState: "RUNNING", graphRevision: graph.graphRevision, evidenceRefs: [], taskId: "task-controller", threadRef: "codex-agent:controller", reasonCode: null },
+      4,
+      intended.eventHash,
+      "2026-08-07T15:00:02.000Z",
+    );
+    await appendRunEvent(created.runDirectory, confirmed);
+    await saveGraphSnapshot(created.runDirectory, transitionExecutionNode(dispatchingGraph, { nodeId: "audit-controller", from: "DISPATCHING", to: "RUNNING" }, envelope));
     const running = await loadExecutionRun(created.runDirectory);
 
     assert.equal(evaluateExecutionResume(running, runtimeFor(running, [])).decision, "UNKNOWN");
@@ -82,14 +91,23 @@ async function completeNode(
   const node = graph.nodes.find((entry) => entry.nodeId === nodeId);
   if (node === undefined || node.state !== "READY") throw new Error("test node must be ready");
   const packet = buildExecutionTaskPacket(envelope, graph, nodeId, contextRefs);
-  const dispatched = createExecutionEvent(
-    { runId: envelope.runId, eventType: "NODE_DISPATCHED", nodeId, beforeState: "READY", afterState: "RUNNING", graphRevision: graph.graphRevision, evidenceRefs: [], taskId: packet.taskId, threadRef: `codex-agent:${nodeId}`, reasonCode: null },
+  const intended = createExecutionEvent(
+    { runId: envelope.runId, eventType: "DISPATCH_INTENDED", nodeId, beforeState: "READY", afterState: "DISPATCHING", graphRevision: graph.graphRevision, evidenceRefs: [], taskId: packet.taskId, threadRef: null, reasonCode: null },
     (await loadExecutionRun(runDirectory)).events.length + 1,
     (await loadExecutionRun(runDirectory)).checkpoint.lastEventHash,
     recordedAt,
   );
-  await appendRunEvent(runDirectory, dispatched);
-  let nextGraph = transitionExecutionNode(graph, { nodeId, from: "READY", to: "RUNNING" }, envelope);
+  await appendRunEvent(runDirectory, intended);
+  let nextGraph = transitionExecutionNode(graph, { nodeId, from: "READY", to: "DISPATCHING" }, envelope);
+  await saveGraphSnapshot(runDirectory, nextGraph);
+  const confirmed = createExecutionEvent(
+    { runId: envelope.runId, eventType: "DISPATCH_CONFIRMED", nodeId, beforeState: "DISPATCHING", afterState: "RUNNING", graphRevision: graph.graphRevision, evidenceRefs: [], taskId: packet.taskId, threadRef: `codex-agent:${nodeId}`, reasonCode: null },
+    (await loadExecutionRun(runDirectory)).events.length + 1,
+    (await loadExecutionRun(runDirectory)).checkpoint.lastEventHash,
+    recordedAt,
+  );
+  await appendRunEvent(runDirectory, confirmed);
+  nextGraph = transitionExecutionNode(nextGraph, { nodeId, from: "DISPATCHING", to: "RUNNING" }, envelope);
   await saveGraphSnapshot(runDirectory, nextGraph);
 
   const received = createExecutionEvent(
@@ -121,13 +139,14 @@ function resultFor(packet: ReturnType<typeof buildExecutionTaskPacket>, envelope
   const evidenceRefs = node.acceptanceCriterionIds.map((criterionId) => ({ evidenceId: `evidence-${node.nodeId}-${criterionId.replace("criterion-", "")}`, kind: "REPOSITORY_FILE" as const, sourceId: "repo", sourceRevision: envelope.sourceRevision, locator: { path: node.scope[0] === undefined ? "src/controller/types.ts" : `${node.scope[0]}/types.ts`, lineStart: 1, lineEnd: 1 }, sha256: null }));
   return parseExecutionResult(
     {
-      resultVersion: "1.0",
+      resultVersion: "2.0",
       runId: packet.runId,
       taskId: packet.taskId,
       nodeId: packet.nodeId,
       envelopeHash: packet.envelopeHash,
       graphRevision: packet.graphRevision,
       status: "READY_FOR_VALIDATION",
+      reasonCode: null,
       summary: `Validated ${node.nodeId} evidence.`,
       claims,
       artifactRefs: [],
@@ -143,7 +162,7 @@ function resultFor(packet: ReturnType<typeof buildExecutionTaskPacket>, envelope
 
 function completeHandoff(run: LoadedExecutionRun): FinalExecutionHandoff {
   return {
-    handoffVersion: "1.0",
+    handoffVersion: "2.0",
     runId: run.envelope.runId,
     envelopeHash: run.envelope.envelopeHash,
     graphHash: run.graph.graphHash,

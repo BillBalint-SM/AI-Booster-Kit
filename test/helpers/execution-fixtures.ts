@@ -3,7 +3,7 @@ import type { ExecutionEnvelopeInput, ExecutionGraphDraft } from "../../src/exec
 const referenceRevision = "a".repeat(40);
 
 export const referenceEnvelopeInput: ExecutionEnvelopeInput = {
-  contractVersion: "1.0",
+  contractVersion: "2.0",
   runId: "run-codex-audit-multi",
   goal: "Audit current execution-readiness contracts from repository evidence.",
   scope: ["src/controller", "src/context", "contract/agent-library"],

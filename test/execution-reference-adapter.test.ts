@@ -27,6 +27,8 @@ test("reference adapter: creates comparable single and multi preparations", () =
   );
   assert.deepEqual(comparisonIdentity(singleEnvelope), comparisonIdentity(multiEnvelope));
   assert.deepEqual(singleEnvelope.authority, { repositoryWrite: "NONE", externalWrite: "NONE", agentExecution: "CODEX_NATIVE_ONLY" });
+  assert.equal(singleEnvelope.contractVersion, "2.0");
+  assert.equal(multiEnvelope.contractVersion, "2.0");
   assert.deepEqual(singleEnvelope.toolScope, ["FILESYSTEM_READ", "LOCAL_SHELL_READ"]);
   assert.equal(singleEnvelope.budget.maxDispatches, 0);
   assert.equal(multiEnvelope.budget.maxDispatches, 4);

@@ -19,6 +19,9 @@ test("execution graph rejects cycles, foreign dependencies, and illegal state tr
   const graph = createExecutionGraph(referenceGraphDraft, envelope);
 
   assert.throws(() => transitionExecutionNode(graph, { nodeId: "audit-controller", from: "PENDING", to: "RUNNING" }, envelope), /EXECUTION_NODE_TRANSITION_INVALID/);
+  assert.throws(() => transitionExecutionNode(graph, { nodeId: "audit-controller", from: "READY", to: "RUNNING" }, envelope), /EXECUTION_NODE_TRANSITION_INVALID/);
+  const dispatching = transitionExecutionNode(graph, { nodeId: "audit-controller", from: "READY", to: "DISPATCHING" }, envelope);
+  assert.equal(transitionExecutionNode(dispatching, { nodeId: "audit-controller", from: "DISPATCHING", to: "RUNNING" }, envelope).nodes.find((node) => node.nodeId === "audit-controller")?.state, "RUNNING");
   assert.throws(
     () => createExecutionGraph({ ...referenceGraphDraft, edges: [...referenceGraphDraft.edges, { fromNodeId: "synthesis", toNodeId: "audit-controller" }] }, envelope),
     /EXECUTION_GRAPH_CYCLE/,
@@ -43,13 +46,16 @@ test("execution graph admits one repair and holds synthesis until it succeeds", 
 });
 
 function completeThroughChecker(graph: ExecutionGraph, envelope: ReturnType<typeof createExecutionEnvelope>): ExecutionGraph {
-  const controllerRunning = transitionExecutionNode(graph, { nodeId: "audit-controller", from: "READY", to: "RUNNING" }, envelope);
+  const controllerDispatching = transitionExecutionNode(graph, { nodeId: "audit-controller", from: "READY", to: "DISPATCHING" }, envelope);
+  const controllerRunning = transitionExecutionNode(controllerDispatching, { nodeId: "audit-controller", from: "DISPATCHING", to: "RUNNING" }, envelope);
   const controllerReceived = transitionExecutionNode(controllerRunning, { nodeId: "audit-controller", from: "RUNNING", to: "RESULT_RECEIVED" }, envelope);
   const controllerSucceeded = transitionExecutionNode(controllerReceived, { nodeId: "audit-controller", from: "RESULT_RECEIVED", to: "SUCCEEDED" }, envelope);
-  const contextRunning = transitionExecutionNode(controllerSucceeded, { nodeId: "audit-context", from: "READY", to: "RUNNING" }, envelope);
+  const contextDispatching = transitionExecutionNode(controllerSucceeded, { nodeId: "audit-context", from: "READY", to: "DISPATCHING" }, envelope);
+  const contextRunning = transitionExecutionNode(contextDispatching, { nodeId: "audit-context", from: "DISPATCHING", to: "RUNNING" }, envelope);
   const contextReceived = transitionExecutionNode(contextRunning, { nodeId: "audit-context", from: "RUNNING", to: "RESULT_RECEIVED" }, envelope);
   const contextSucceeded = transitionExecutionNode(contextReceived, { nodeId: "audit-context", from: "RESULT_RECEIVED", to: "SUCCEEDED" }, envelope);
-  const checkerRunning = transitionExecutionNode(contextSucceeded, { nodeId: "checker", from: "READY", to: "RUNNING" }, envelope);
+  const checkerDispatching = transitionExecutionNode(contextSucceeded, { nodeId: "checker", from: "READY", to: "DISPATCHING" }, envelope);
+  const checkerRunning = transitionExecutionNode(checkerDispatching, { nodeId: "checker", from: "DISPATCHING", to: "RUNNING" }, envelope);
   const checkerReceived = transitionExecutionNode(checkerRunning, { nodeId: "checker", from: "RUNNING", to: "RESULT_RECEIVED" }, envelope);
   return transitionExecutionNode(checkerReceived, { nodeId: "checker", from: "RESULT_RECEIVED", to: "SUCCEEDED" }, envelope);
 }

@@ -15,7 +15,7 @@ test("execution handoff builds an exact ready-node task packet", () => {
   assert.equal(packet.runId, envelope.runId);
   assert.equal(packet.envelopeHash, envelope.envelopeHash);
   assert.equal(packet.graphRevision, graph.graphRevision);
-  assert.equal(packet.expectedOutput, "RESULT_ENVELOPE_V1");
+  assert.equal(packet.expectedOutput, "RESULT_ENVELOPE_V2");
   assert.deepEqual(packet.toolScope, ["FILESYSTEM_READ", "LOCAL_SHELL_READ"]);
 });
 
@@ -59,15 +59,44 @@ test("execution handoff rejects an evidence accessor before evaluating its value
   assert.equal(reads, 0);
 });
 
+test("execution handoff requires an exact reason for stopped and unknown worker statuses", () => {
+  const envelope = createExecutionEnvelope(referenceEnvelopeInput);
+  const graph = createExecutionGraph(referenceGraphDraft, envelope);
+  const packet = buildExecutionTaskPacket(envelope, graph, "audit-controller", []);
+  const result = validWorkerResult(packet, envelope.sourceRevision);
+
+  assert.throws(
+    () => parseExecutionResult({ ...result, status: "STOPPED", reasonCode: null }, envelope.budget.maxResultBytes),
+    /RESULT_STATUS_STOPPED/,
+  );
+  assert.throws(
+    () => parseExecutionResult({ ...result, status: "UNKNOWN", reasonCode: null }, envelope.budget.maxResultBytes),
+    /RESULT_STATUS_UNKNOWN/,
+  );
+  assert.equal(
+    parseExecutionResult({ ...result, status: "STOPPED", reasonCode: "RESULT_STATUS_STOPPED" }, envelope.budget.maxResultBytes).status,
+    "STOPPED",
+  );
+  assert.equal(
+    parseExecutionResult({ ...result, status: "UNKNOWN", reasonCode: "RESULT_STATUS_UNKNOWN" }, envelope.budget.maxResultBytes).status,
+    "UNKNOWN",
+  );
+  assert.throws(
+    () => parseExecutionResult({ ...result, reasonCode: "RESULT_STATUS_STOPPED" }, envelope.budget.maxResultBytes),
+    /READY_FOR_VALIDATION/,
+  );
+});
+
 function validWorkerResult(packet: ExecutionTaskPacket, sourceRevision: string): ExecutionResultEnvelope {
   return {
-    resultVersion: "1.0",
+    resultVersion: "2.0",
     runId: packet.runId,
     taskId: packet.taskId,
     nodeId: packet.nodeId,
     envelopeHash: packet.envelopeHash,
     graphRevision: packet.graphRevision,
     status: "READY_FOR_VALIDATION",
+    reasonCode: null,
     summary: "Controller contract evidence is available.",
     claims: [
       {

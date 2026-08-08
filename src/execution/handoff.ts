@@ -1,6 +1,9 @@
 import { canonicalExecutionJson, executionDigest } from "./identity.js";
 import { validateExecutionGraph } from "./graph.js";
+import { parseExecutionReasonCode } from "./reasons.js";
+import { decideExecutionTransition } from "./semantics.js";
 import { ExecutionContractError } from "./types.js";
+import type { ExecutionTransitionDecision } from "./semantics.js";
 import type {
   ExecutionArtifactRef,
   ExecutionClaim,
@@ -11,6 +14,8 @@ import type {
   ExecutionNode,
   ExecutionResultEnvelope,
   ExecutionTaskPacket,
+  ExecutionNodeState,
+  ExecutionRunState,
 } from "./types.js";
 
 const taskCode = "EXECUTION_TASK_INVALID";
@@ -40,7 +45,7 @@ export function buildExecutionTaskPacket(
   validateContextArtifacts(contextRefs, current, node);
 
   return {
-    packetVersion: "1.0",
+    packetVersion: "2.0",
     runId: envelope.runId,
     taskId: executionDigest({ runId: envelope.runId, nodeId, graphRevision: current.graphRevision }),
     nodeId,
@@ -52,7 +57,7 @@ export function buildExecutionTaskPacket(
     contextRefs: structuredClone(contextRefs),
     sourceIds: [...node.sourceIds],
     toolScope: [...node.toolScope],
-    expectedOutput: "RESULT_ENVELOPE_V1",
+    expectedOutput: "RESULT_ENVELOPE_V2",
     acceptanceCriterionIds: [...node.acceptanceCriterionIds],
     budget: structuredClone(envelope.budget),
     stopConditions: [...envelope.stopConditions],
@@ -61,13 +66,14 @@ export function buildExecutionTaskPacket(
 
 export function buildExecutionResultTemplate(packet: ExecutionTaskPacket): ExecutionResultEnvelope {
   return {
-    resultVersion: "1.0",
+    resultVersion: "2.0",
     runId: packet.runId,
     taskId: packet.taskId,
     nodeId: packet.nodeId,
     envelopeHash: packet.envelopeHash,
     graphRevision: packet.graphRevision,
     status: "READY_FOR_VALIDATION",
+    reasonCode: null,
     summary: "Replace this template text with a non-empty scoped summary.",
     claims: [],
     artifactRefs: [],
@@ -81,15 +87,17 @@ export function buildExecutionResultTemplate(packet: ExecutionTaskPacket): Execu
 
 export function parseExecutionResult(value: unknown, maxResultBytes: number): ExecutionResultEnvelope {
   const record = plainRecord(value, resultFieldsCode, "execution result must be a plain object");
-  exactKeys(record, ["resultVersion", "runId", "taskId", "nodeId", "envelopeHash", "graphRevision", "status", "summary", "claims", "artifactRefs", "evidenceRefs", "unknowns", "conflicts", "followupRequest", "observedLimits"], resultFieldsCode, "execution result fields are invalid");
+  exactKeys(record, ["resultVersion", "runId", "taskId", "nodeId", "envelopeHash", "graphRevision", "status", "reasonCode", "summary", "claims", "artifactRefs", "evidenceRefs", "unknowns", "conflicts", "followupRequest", "observedLimits"], resultFieldsCode, "execution result fields are invalid");
+  const status = literal(record.status, ["READY_FOR_VALIDATION", "STOPPED", "UNKNOWN"], resultFieldsCode, "execution result status is invalid");
   const parsed = {
-    resultVersion: literal(record.resultVersion, ["1.0"], resultFieldsCode, "execution result version is invalid"),
+    resultVersion: literal(record.resultVersion, ["2.0"], resultFieldsCode, "execution result version is invalid"),
     runId: identifierValue(record.runId, resultFieldsCode, "execution result run identifier is invalid"),
     taskId: hashValue(record.taskId, resultFieldsCode, "execution result task identity is invalid"),
     nodeId: identifierValue(record.nodeId, resultFieldsCode, "execution result node identifier is invalid"),
     envelopeHash: hashValue(record.envelopeHash, resultFieldsCode, "execution result envelope identity is invalid"),
     graphRevision: positiveInteger(record.graphRevision, resultFieldsCode, "execution result graph revision is invalid"),
-    status: literal(record.status, ["READY_FOR_VALIDATION", "STOPPED", "UNKNOWN"], resultFieldsCode, "execution result status is invalid"),
+    status,
+    reasonCode: resultReasonCode(status, record.reasonCode),
     summary: nonEmptyString(record.summary, resultFieldsCode, "execution result summary is invalid"),
     claims: claimsValue(record.claims),
     artifactRefs: artifactRefsValue(record.artifactRefs),
@@ -104,6 +112,38 @@ export function parseExecutionResult(value: unknown, maxResultBytes: number): Ex
   if (!Number.isSafeInteger(maxResultBytes) || maxResultBytes <= 0 || byteLength > maxResultBytes) {
     throw new ExecutionContractError(resultSizeCode, "execution result exceeds its byte budget");
   }
+  return parsed;
+}
+
+export function routeExecutionResultStatus(
+  status: ExecutionResultEnvelope["status"],
+  nodeRequired: boolean,
+  nodeState: ExecutionNodeState,
+  runState: ExecutionRunState,
+): ExecutionTransitionDecision {
+  if (status === "READY_FOR_VALIDATION") {
+    throw new ExecutionContractError("OPERATOR_PROTOCOL_VIOLATION", "ready-for-validation results use the evidence admission path");
+  }
+  return decideExecutionTransition({
+    reasonCode: status === "STOPPED" ? "RESULT_STATUS_STOPPED" : "RESULT_STATUS_UNKNOWN",
+    nodeRequired,
+    nodeState,
+    runState,
+  });
+}
+
+function resultReasonCode(
+  status: ExecutionResultEnvelope["status"],
+  value: unknown,
+): ExecutionResultEnvelope["reasonCode"] {
+  if (status === "READY_FOR_VALIDATION") {
+    if (value !== null) throw new ExecutionContractError(resultFieldsCode, "READY_FOR_VALIDATION execution result requires a null reason code");
+    return null;
+  }
+  const expected = status === "STOPPED" ? "RESULT_STATUS_STOPPED" : "RESULT_STATUS_UNKNOWN";
+  if (value === null) throw new ExecutionContractError(resultFieldsCode, `${expected} is required for the execution result status`);
+  const parsed = parseExecutionReasonCode(value);
+  if (parsed !== expected) throw new ExecutionContractError(resultFieldsCode, `${expected} is required for the execution result status`);
   return parsed;
 }
 

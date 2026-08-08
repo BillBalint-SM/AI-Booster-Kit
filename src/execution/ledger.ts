@@ -1,4 +1,6 @@
 import { canonicalExecutionJson, executionDigest } from "./identity.js";
+import { parseExecutionReasonCode } from "./reasons.js";
+import { assertExecutionNodeTransition } from "./semantics.js";
 import { assertSafeExecutionContent } from "./validation.js";
 import { ExecutionContractError } from "./types.js";
 import type {
@@ -20,20 +22,21 @@ const eventTypes = [
   "RUN_CREATED",
   "GRAPH_ACCEPTED",
   "NODE_READY",
-  "NODE_DISPATCHED",
+  "DISPATCH_INTENDED",
+  "DISPATCH_CONFIRMED",
   "NODE_RESULT_RECEIVED",
   "NODE_RESULT_ACCEPTED",
   "NODE_RESULT_REJECTED",
   "NODE_STOPPED",
+  "NODE_UNKNOWN",
   "GRAPH_MUTATION_ACCEPTED",
   "CHECKPOINT_WRITTEN",
   "RUN_FINALIZED",
   "RUN_STOPPED",
   "RUN_UNKNOWN",
 ] as const satisfies readonly ExecutionEventType[];
-const nodeStates = ["PENDING", "READY", "RUNNING", "RESULT_RECEIVED", "SUCCEEDED", "REJECTED", "STOPPED", "UNKNOWN"] as const satisfies readonly ExecutionNodeState[];
+const nodeStates = ["PENDING", "READY", "DISPATCHING", "RUNNING", "RESULT_RECEIVED", "SUCCEEDED", "REJECTED", "STOPPED", "UNKNOWN"] as const satisfies readonly ExecutionNodeState[];
 const runStates = ["PREPARED", "READY", "RUNNING", "WAITING_FOR_HUMAN", "COMPLETE", "COMPLETE_WITH_LIMIT", "STOPPED", "UNKNOWN"] as const satisfies readonly ExecutionRunState[];
-const reasonCodePattern = /^[A-Z][A-Z0-9_]{2,79}$/;
 const eventInputKeys = ["runId", "eventType", "nodeId", "beforeState", "afterState", "graphRevision", "evidenceRefs", "taskId", "threadRef", "reasonCode"] as const;
 const eventKeys = ["eventVersion", "sequence", "recordedAt", "previousEventHash", ...eventInputKeys, "eventHash"] as const;
 const checkpointKeys = [
@@ -59,7 +62,7 @@ export function createExecutionEvent(
 ): ExecutionEvent {
   const parsedInput = parseExecutionEventInput(input);
   const event = {
-    eventVersion: "1.0" as const,
+    eventVersion: "2.0" as const,
     sequence: positiveInteger(sequence, ledgerCode, "execution event sequence is invalid"),
     recordedAt: isoTimestamp(recordedAt, ledgerCode, "execution event timestamp is invalid"),
     previousEventHash: nullableHash(previousEventHash, ledgerCode, "execution event predecessor hash is invalid"),
@@ -108,8 +111,8 @@ export function replayExecutionLedger(events: readonly ExecutionEvent[], envelop
       throw new ExecutionContractError(ledgerCode, "execution ledger graph record is invalid");
     }
     if (index > 1) applyEvent(event, nodeStatesById, activeThreadRefs, acceptedEvidenceRefs);
-    if (isRunState(event.afterState)) runState = event.afterState;
-    if (event.eventType === "NODE_DISPATCHED") dispatchCount += 1;
+    if (event.nodeId === null && isRunState(event.afterState)) runState = event.afterState;
+    if (event.eventType === "DISPATCH_CONFIRMED") dispatchCount += 1;
     if (event.eventType === "GRAPH_MUTATION_ACCEPTED") repairCount += 1;
     previousHash = event.eventHash;
   }
@@ -120,7 +123,7 @@ export function replayExecutionLedger(events: readonly ExecutionEvent[], envelop
   if (lastEvent === undefined || previousHash === null) throw new ExecutionContractError(ledgerCode, "execution ledger is empty");
 
   return {
-    checkpointVersion: "1.0",
+    checkpointVersion: "2.0",
     runId: envelope.runId,
     envelopeHash: envelope.envelopeHash,
     graphHash: graph.graphHash,
@@ -157,7 +160,7 @@ export function parseExecutionCheckpoint(value: unknown): ExecutionCheckpoint {
   const record = plainRecord(value, checkpointCode, "execution checkpoint must be a plain object");
   exactKeys(record, checkpointKeys, checkpointCode, "execution checkpoint fields are invalid");
   return {
-    checkpointVersion: literal(record.checkpointVersion, ["1.0"], checkpointCode, "execution checkpoint version is invalid"),
+    checkpointVersion: literal(record.checkpointVersion, ["2.0"], checkpointCode, "execution checkpoint version is invalid"),
     runId: identifierValue(record.runId, checkpointCode, "execution checkpoint run identifier is invalid"),
     envelopeHash: hashValue(record.envelopeHash, checkpointCode, "execution checkpoint envelope hash is invalid"),
     graphHash: hashValue(record.graphHash, checkpointCode, "execution checkpoint graph hash is invalid"),
@@ -213,8 +216,8 @@ function applyEvent(
     }
     nodeStatesById.set(event.nodeId, event.afterState);
   }
-  if (event.eventType === "NODE_DISPATCHED" && event.threadRef !== null) activeThreadRefs.add(event.threadRef);
-  if (["NODE_RESULT_RECEIVED", "NODE_RESULT_ACCEPTED", "NODE_RESULT_REJECTED", "NODE_STOPPED"].includes(event.eventType) && event.threadRef !== null) {
+  if (event.eventType === "DISPATCH_CONFIRMED" && event.threadRef !== null) activeThreadRefs.add(event.threadRef);
+  if (["NODE_RESULT_RECEIVED", "NODE_RESULT_ACCEPTED", "NODE_RESULT_REJECTED", "NODE_STOPPED", "NODE_UNKNOWN"].includes(event.eventType) && event.threadRef !== null) {
     activeThreadRefs.delete(event.threadRef);
   }
   if (["NODE_RESULT_ACCEPTED", "GRAPH_MUTATION_ACCEPTED"].includes(event.eventType)) {
@@ -225,15 +228,22 @@ function applyEvent(
 function assertEventSemantics(event: ExecutionEventInput): void {
   const nodeTransitionTypes: Readonly<Record<string, readonly [ExecutionNodeState, ExecutionNodeState]>> = {
     NODE_READY: ["PENDING", "READY"],
-    NODE_DISPATCHED: ["READY", "RUNNING"],
+    DISPATCH_INTENDED: ["READY", "DISPATCHING"],
+    DISPATCH_CONFIRMED: ["DISPATCHING", "RUNNING"],
     NODE_RESULT_RECEIVED: ["RUNNING", "RESULT_RECEIVED"],
     NODE_RESULT_ACCEPTED: ["RESULT_RECEIVED", "SUCCEEDED"],
     NODE_RESULT_REJECTED: ["RUNNING", "REJECTED"],
     NODE_STOPPED: ["RUNNING", "STOPPED"],
+    NODE_UNKNOWN: ["RUNNING", "UNKNOWN"],
   };
   const expectedNodeTransition = nodeTransitionTypes[event.eventType];
   if (expectedNodeTransition !== undefined) {
     if (event.nodeId === null || event.beforeState !== expectedNodeTransition[0] || event.afterState !== expectedNodeTransition[1]) {
+      throw new ExecutionContractError(ledgerCode, "execution event node transition is invalid");
+    }
+    try {
+      assertExecutionNodeTransition(expectedNodeTransition[0], expectedNodeTransition[1]);
+    } catch {
       throw new ExecutionContractError(ledgerCode, "execution event node transition is invalid");
     }
     return;
@@ -287,10 +297,14 @@ function nullableIdentifier(value: unknown, code: string, message: string): stri
   return value === null ? null : identifierValue(value, code, message);
 }
 
-function nullableReasonCode(value: unknown, code: string, message: string): string | null {
+function nullableReasonCode(value: unknown, code: string, message: string): ExecutionEventInput["reasonCode"] {
   if (value === null) return null;
-  if (typeof value !== "string" || !reasonCodePattern.test(value)) throw new ExecutionContractError(code, message);
-  return value;
+  try {
+    return parseExecutionReasonCode(value);
+  } catch (error) {
+    if (error instanceof ExecutionContractError) throw error;
+    throw new ExecutionContractError(code, message);
+  }
 }
 
 function nullableString(value: unknown, code: string, message: string): string | null {

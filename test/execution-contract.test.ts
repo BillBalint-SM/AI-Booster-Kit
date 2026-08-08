@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import { test } from "node:test";
 
 import { createExecutionEnvelope, parseExecutionEnvelope } from "../src/execution/validation.js";
@@ -34,4 +35,13 @@ test("execution envelope rejects an accessor before evaluating nested untrusted 
 
   assert.throws(() => createExecutionEnvelope({ ...referenceEnvelopeInput, authority } as never));
   assert.equal(reads, 0);
+});
+
+test("execution envelope creation rejects the legacy v1 historical contract", () => {
+  const legacy = JSON.parse(readFileSync("test/fixtures/execution/legacy-v1-envelope.json", "utf8")) as unknown;
+
+  assert.throws(
+    () => createExecutionEnvelope(legacy as never),
+    /EXECUTION_LEGACY_CONTRACT_READ_ONLY/,
+  );
 });

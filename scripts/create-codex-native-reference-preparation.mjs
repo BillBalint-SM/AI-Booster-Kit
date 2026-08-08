@@ -34,7 +34,7 @@ function parseArguments(argv) {
 function createEnvelope(values) {
   const multiAgent = values.mode === "MULTI_AGENT";
   return {
-    contractVersion: "1.0",
+    contractVersion: "2.0",
     runId: values.runId,
     goal: "Audit current execution-readiness contracts from repository evidence.",
     scope: ["src/controller", "src/context", "contract/agent-library"],

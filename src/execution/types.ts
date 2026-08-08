@@ -1,6 +1,6 @@
 export type ExecutionRetention = "EPHEMERAL" | "PERSONAL" | "TEAM";
 export type ExecutionNodeType = "AGENT_TASK" | "DETERMINISTIC_CHECK" | "HUMAN_CHECKPOINT" | "SYNTHESIS";
-export type ExecutionNodeState = "PENDING" | "READY" | "RUNNING" | "RESULT_RECEIVED" | "SUCCEEDED" | "REJECTED" | "STOPPED" | "UNKNOWN";
+export type ExecutionNodeState = "PENDING" | "READY" | "DISPATCHING" | "RUNNING" | "RESULT_RECEIVED" | "SUCCEEDED" | "REJECTED" | "STOPPED" | "UNKNOWN";
 export type ExecutionRunState = "PREPARED" | "READY" | "RUNNING" | "WAITING_FOR_HUMAN" | "COMPLETE" | "COMPLETE_WITH_LIMIT" | "STOPPED" | "UNKNOWN";
 export type ExecutionFinalState = Extract<ExecutionRunState, "COMPLETE" | "COMPLETE_WITH_LIMIT" | "STOPPED" | "UNKNOWN">;
 export type ExecutionToolCapability = "FILESYSTEM_READ" | "LOCAL_SHELL_READ";
@@ -39,7 +39,7 @@ export interface ExecutionBudget {
 }
 
 export interface ExecutionEnvelopeInput {
-  contractVersion: "1.0";
+  contractVersion: "2.0";
   runId: string;
   goal: string;
   scope: readonly string[];
@@ -153,7 +153,7 @@ export interface ExecutionFollowupRequest {
 }
 
 export interface ExecutionTaskPacket {
-  packetVersion: "1.0";
+  packetVersion: "2.0";
   runId: string;
   taskId: string;
   nodeId: string;
@@ -165,7 +165,7 @@ export interface ExecutionTaskPacket {
   contextRefs: readonly ExecutionArtifactRef[];
   sourceIds: readonly string[];
   toolScope: readonly ExecutionToolCapability[];
-  expectedOutput: "RESULT_ENVELOPE_V1";
+  expectedOutput: "RESULT_ENVELOPE_V2";
   acceptanceCriterionIds: readonly string[];
   budget: ExecutionBudget;
   stopConditions: readonly string[];
@@ -183,13 +183,14 @@ export interface PreparedExecutionNode {
 }
 
 export interface ExecutionResultEnvelope {
-  resultVersion: "1.0";
+  resultVersion: "2.0";
   runId: string;
   taskId: string;
   nodeId: string;
   envelopeHash: string;
   graphRevision: number;
   status: "READY_FOR_VALIDATION" | "STOPPED" | "UNKNOWN";
+  reasonCode: import("./reasons.js").ExecutionReasonCode | null;
   summary: string;
   claims: readonly ExecutionClaim[];
   artifactRefs: readonly ExecutionArtifactRef[];
@@ -204,11 +205,13 @@ export type ExecutionEventType =
   | "RUN_CREATED"
   | "GRAPH_ACCEPTED"
   | "NODE_READY"
-  | "NODE_DISPATCHED"
+  | "DISPATCH_INTENDED"
+  | "DISPATCH_CONFIRMED"
   | "NODE_RESULT_RECEIVED"
   | "NODE_RESULT_ACCEPTED"
   | "NODE_RESULT_REJECTED"
   | "NODE_STOPPED"
+  | "NODE_UNKNOWN"
   | "GRAPH_MUTATION_ACCEPTED"
   | "CHECKPOINT_WRITTEN"
   | "RUN_FINALIZED"
@@ -225,11 +228,11 @@ export interface ExecutionEventInput {
   evidenceRefs: readonly string[];
   taskId: string | null;
   threadRef: string | null;
-  reasonCode: string | null;
+  reasonCode: import("./reasons.js").ExecutionReasonCode | null;
 }
 
 export interface ExecutionEvent extends ExecutionEventInput {
-  eventVersion: "1.0";
+  eventVersion: "2.0";
   sequence: number;
   recordedAt: string;
   previousEventHash: string | null;
@@ -237,7 +240,7 @@ export interface ExecutionEvent extends ExecutionEventInput {
 }
 
 export interface ExecutionCheckpoint {
-  checkpointVersion: "1.0";
+  checkpointVersion: "2.0";
   runId: string;
   envelopeHash: string;
   graphHash: string;
@@ -291,7 +294,7 @@ export interface ExecutionHostMetrics {
 }
 
 export interface FinalExecutionHandoff {
-  handoffVersion: "1.0";
+  handoffVersion: "2.0";
   runId: string;
   envelopeHash: string;
   graphHash: string;
@@ -306,7 +309,7 @@ export interface FinalExecutionHandoff {
 }
 
 export interface ExecutionComparisonReport {
-  comparisonVersion: "1.0";
+  comparisonVersion: "2.0";
   comparable: true;
   singleRunId: string;
   multiRunId: string;

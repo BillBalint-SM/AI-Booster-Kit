@@ -1,5 +1,6 @@
 import { executionDigest } from "./identity.js";
 import { ExecutionContractError } from "./types.js";
+import { assertMutableExecutionContractVersion, CURRENT_EXECUTION_CONTRACT_VERSION } from "./version.js";
 import type {
   AcceptanceCriterion,
   EvidenceKind,
@@ -102,6 +103,7 @@ function parseEnvelopeInput(value: unknown): ExecutionEnvelopeInput {
   const record = plainRecord(value, codes.fields, "execution envelope input must be a plain object");
   exactKeys(record, inputKeys, codes.fields, "execution envelope input fields are invalid");
   assertSafeExecutionContent(record);
+  assertMutableExecutionContractVersion(record.contractVersion);
 
   const sourceRevision = revisionValue(record.sourceRevision, codes.source, "source revision is invalid");
   const sources = sourcesValue(record.sources, sourceRevision);
@@ -110,7 +112,7 @@ function parseEnvelopeInput(value: unknown): ExecutionEnvelopeInput {
   const budget = budgetValue(record.budget, graphLimits);
 
   return {
-    contractVersion: literal(record.contractVersion, ["1.0"], codes.fields, "contract version is invalid"),
+    contractVersion: CURRENT_EXECUTION_CONTRACT_VERSION,
     runId: identifierValue(record.runId, codes.fields, "run identifier is invalid"),
     goal: nonEmptyString(record.goal, codes.fields, "goal is invalid"),
     scope: stringList(record.scope, codes.fields, "scope is invalid", true),

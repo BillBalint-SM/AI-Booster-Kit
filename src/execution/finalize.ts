@@ -14,7 +14,7 @@ export function validateFinalExecutionHandoff(value: unknown, run: LoadedExecuti
   const record = plainRecord(value, handoffCode, "final execution handoff must be a plain object");
   exactKeys(record, handoffKeys, handoffCode, "final execution handoff fields are invalid");
   const handoff = {
-    handoffVersion: literal(record.handoffVersion, ["1.0"], handoffCode, "final execution handoff version is invalid"),
+    handoffVersion: literal(record.handoffVersion, ["2.0"], handoffCode, "final execution handoff version is invalid"),
     runId: identifier(record.runId, handoffCode, "final execution handoff run identifier is invalid"),
     envelopeHash: hash(record.envelopeHash, handoffCode, "final execution handoff envelope identity is invalid"),
     graphHash: hash(record.graphHash, handoffCode, "final execution handoff graph identity is invalid"),

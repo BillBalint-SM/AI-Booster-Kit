@@ -39,17 +39,30 @@ async function completeNode(
   counter: number,
 ): Promise<ExecutionGraph> {
   const packet = buildExecutionTaskPacket(envelope, graph, node.nodeId, contextRefs);
-  const dispatchedAt = timestamp(counter, 1);
+  const dispatchIntendedAt = timestamp(counter, 0);
   await appendTransition(runDirectory, envelope, graph, {
-    eventType: "NODE_DISPATCHED",
+    eventType: "DISPATCH_INTENDED",
     nodeId: node.nodeId,
     beforeState: "READY",
+    afterState: "DISPATCHING",
+    taskId: packet.taskId,
+    threadRef: null,
+    evidenceRefs: [],
+  }, dispatchIntendedAt);
+  let nextGraph = transitionExecutionNode(graph, { nodeId: node.nodeId, from: "READY", to: "DISPATCHING" }, envelope);
+  await saveGraphSnapshot(runDirectory, nextGraph);
+
+  const dispatchConfirmedAt = timestamp(counter, 1);
+  await appendTransition(runDirectory, envelope, nextGraph, {
+    eventType: "DISPATCH_CONFIRMED",
+    nodeId: node.nodeId,
+    beforeState: "DISPATCHING",
     afterState: "RUNNING",
     taskId: packet.taskId,
     threadRef: `codex-agent:${node.nodeId}`,
     evidenceRefs: [],
-  }, dispatchedAt);
-  let nextGraph = transitionExecutionNode(graph, { nodeId: node.nodeId, from: "READY", to: "RUNNING" }, envelope);
+  }, dispatchConfirmedAt);
+  nextGraph = transitionExecutionNode(nextGraph, { nodeId: node.nodeId, from: "DISPATCHING", to: "RUNNING" }, envelope);
   await saveGraphSnapshot(runDirectory, nextGraph);
 
   const receivedAt = timestamp(counter, 2);
@@ -86,10 +99,10 @@ async function appendTransition(
   envelope: ExecutionEnvelope,
   graph: ExecutionGraph,
   input: {
-    eventType: "NODE_DISPATCHED" | "NODE_RESULT_RECEIVED" | "NODE_RESULT_ACCEPTED";
+    eventType: "DISPATCH_INTENDED" | "DISPATCH_CONFIRMED" | "NODE_RESULT_RECEIVED" | "NODE_RESULT_ACCEPTED";
     nodeId: string;
-    beforeState: "READY" | "RUNNING" | "RESULT_RECEIVED";
-    afterState: "RUNNING" | "RESULT_RECEIVED" | "SUCCEEDED";
+    beforeState: "READY" | "DISPATCHING" | "RUNNING" | "RESULT_RECEIVED";
+    afterState: "DISPATCHING" | "RUNNING" | "RESULT_RECEIVED" | "SUCCEEDED";
     taskId: string;
     threadRef: string | null;
     evidenceRefs: readonly string[];
@@ -137,13 +150,14 @@ function resultFor(packet: ReturnType<typeof buildExecutionTaskPacket>, envelope
   }));
   return parseExecutionResult(
     {
-      resultVersion: "1.0",
+      resultVersion: "2.0",
       runId: packet.runId,
       taskId: packet.taskId,
       nodeId: packet.nodeId,
       envelopeHash: packet.envelopeHash,
       graphRevision: packet.graphRevision,
       status: "READY_FOR_VALIDATION",
+      reasonCode: null,
       summary: `Validated ${node.nodeId} evidence.`,
       claims,
       artifactRefs: [],
@@ -159,7 +173,7 @@ function resultFor(packet: ReturnType<typeof buildExecutionTaskPacket>, envelope
 
 function completeHandoff(run: LoadedExecutionRun): FinalExecutionHandoff {
   return {
-    handoffVersion: "1.0",
+    handoffVersion: "2.0",
     runId: run.envelope.runId,
     envelopeHash: run.envelope.envelopeHash,
     graphHash: run.graph.graphHash,

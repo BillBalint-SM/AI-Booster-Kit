@@ -1,4 +1,5 @@
 import { executionDigest } from "./identity.js";
+import { assertExecutionNodeTransition } from "./semantics.js";
 import { ExecutionContractError } from "./types.js";
 import type {
   ExecutionEdge,
@@ -17,17 +18,6 @@ const limitCode = "EXECUTION_GRAPH_LIMIT_EXCEEDED";
 const mutationCode = "EXECUTION_GRAPH_MUTATION_INVALID";
 const transitionCode = "EXECUTION_NODE_TRANSITION_INVALID";
 const identifierPattern = /^[a-z0-9][a-z0-9-]{2,79}$/;
-
-const transitions: Readonly<Record<ExecutionNodeState, readonly ExecutionNodeState[]>> = {
-  PENDING: ["READY"],
-  READY: ["RUNNING"],
-  RUNNING: ["RESULT_RECEIVED", "REJECTED", "STOPPED", "UNKNOWN"],
-  RESULT_RECEIVED: ["SUCCEEDED", "REJECTED"],
-  SUCCEEDED: [],
-  REJECTED: [],
-  STOPPED: [],
-  UNKNOWN: [],
-};
 
 export function createExecutionGraph(draft: ExecutionGraphDraft, envelope: ExecutionEnvelope): ExecutionGraph {
   const parsed = parseGraphDraft(draft, envelope, true);
@@ -69,7 +59,12 @@ export function readyExecutionNodes(graph: ExecutionGraph): readonly ExecutionNo
 export function transitionExecutionNode(graph: ExecutionGraph, transition: NodeTransition, envelope: ExecutionEnvelope): ExecutionGraph {
   const current = validateExecutionGraph(graph, envelope);
   const node = current.nodes.find((entry) => entry.nodeId === transition.nodeId);
-  if (node === undefined || node.state !== transition.from || !transitions[transition.from].includes(transition.to)) {
+  if (node === undefined || node.state !== transition.from) {
+    throw new ExecutionContractError(transitionCode, "execution node transition is invalid");
+  }
+  try {
+    assertExecutionNodeTransition(transition.from, transition.to);
+  } catch {
     throw new ExecutionContractError(transitionCode, "execution node transition is invalid");
   }
   const nodes = current.nodes.map((entry) => entry.nodeId === transition.nodeId ? { ...entry, state: transition.to } : entry);
@@ -150,7 +145,7 @@ function nodesValue(value: unknown, envelope: ExecutionEnvelope, requirePendingN
     nodeIds.add(nodeId);
     const type = literal(record.type, ["AGENT_TASK", "DETERMINISTIC_CHECK", "HUMAN_CHECKPOINT", "SYNTHESIS"], graphCode, "execution node type is invalid");
     if (!envelope.allowedNodeTypes.includes(type)) throw new ExecutionContractError(graphCode, "execution node type is not allowed");
-    const state = literal(record.state, ["PENDING", "READY", "RUNNING", "RESULT_RECEIVED", "SUCCEEDED", "REJECTED", "STOPPED", "UNKNOWN"], graphCode, "execution node state is invalid");
+    const state = literal(record.state, ["PENDING", "READY", "DISPATCHING", "RUNNING", "RESULT_RECEIVED", "SUCCEEDED", "REJECTED", "STOPPED", "UNKNOWN"], graphCode, "execution node state is invalid");
     if (requirePendingNodes && state !== "PENDING") throw new ExecutionContractError(graphCode, "initial execution nodes must be pending");
     const scope = stringList(record.scope, graphCode, "execution node scope is invalid", true);
     if (scope.some((entryScope) => !envelope.scope.some((envelopeScope) => withinScope(entryScope, envelopeScope)))) {
@@ -227,7 +222,7 @@ function mutationNodes(value: unknown): readonly ExecutionNode[] {
       nodeId: identifierValue(record.nodeId, mutationCode, "repair node identifier is invalid"),
       type: literal(record.type, ["AGENT_TASK", "DETERMINISTIC_CHECK", "HUMAN_CHECKPOINT", "SYNTHESIS"], mutationCode, "repair node type is invalid"),
       required: booleanValue(record.required, mutationCode, "repair node required flag is invalid"),
-      state: literal(record.state, ["PENDING", "READY", "RUNNING", "RESULT_RECEIVED", "SUCCEEDED", "REJECTED", "STOPPED", "UNKNOWN"], mutationCode, "repair node state is invalid"),
+      state: literal(record.state, ["PENDING", "READY", "DISPATCHING", "RUNNING", "RESULT_RECEIVED", "SUCCEEDED", "REJECTED", "STOPPED", "UNKNOWN"], mutationCode, "repair node state is invalid"),
       objective: nonEmptyString(record.objective, mutationCode, "repair node objective is invalid"),
       role: nullableString(record.role, mutationCode, "repair node role is invalid"),
       repairOf: nullableIdentifier(record.repairOf, mutationCode, "repair node repair identity is invalid"),
