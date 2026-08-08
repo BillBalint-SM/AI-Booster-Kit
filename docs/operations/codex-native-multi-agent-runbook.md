@@ -1,117 +1,189 @@
-# Codex-native multi-agent reference run
+# Transactional execution and Codex-native reference run
 
-## Purpose and non-goals
+## Purpose and current boundary
 
-This runbook operates the first read-only, Personal-only comparison between a
-strong single-agent control and a Codex-native multi-agent pipeline. The
-[runtime design](../superpowers/specs/2026-08-07-codex-native-multi-agent-runtime-design.md),
-[Kernel plan](../superpowers/plans/2026-08-07-agent-agnostic-execution-contract-kernel.md),
-and [reference-run plan](../superpowers/plans/2026-08-07-codex-native-multi-agent-reference-run.md)
-are canonical for contracts, limits, and acceptance criteria.
+This runbook operates the local, model-free execution persistence layer and
+defines the stop gate before a Codex-native single-agent versus multi-agent
+reference run. The approved
+[transactional persistence design](../superpowers/specs/2026-08-08-transactional-persistence-runtime-binding-design.md),
+[implementation plan](../superpowers/plans/2026-08-08-transactional-persistence-runtime-binding.md),
+and [persistence policy](../../contract/execution/persistence-policy.json) are
+the canonical requirements.
 
-This is not a model API integration, host-security certification, cross-host
-comparison, write-capable workflow, or cross-session resume proof.
+The persistence layer does not dispatch an agent. `record-execution-dispatch`
+still rejects single-phase host evidence, and `stop-execution` still rejects an
+unverified stop. Native Dispatch and a new immutable-revision reference run
+remain stopped until the complete runtime matrix is green on the accepted
+revision.
 
-## Prerequisites and green checks
+## Practical operating contract
 
-The Kernel commands are `prepare-execution`, `prepare-execution-node`,
-`record-execution-dispatch`, `accept-execution-result`,
-`reject-execution-result`, `propose-execution-repair`, `stop-execution`,
-`check-execution-resume`, `finalize-execution`, and
-`compare-execution-runs`. The preparation command is:
+Future end users do not configure SQLite, create tables, choose journal modes,
+or manage schema versions. The platform creates and validates one database per
+normalized workspace identity. The transitional developer CLI still requires
+an explicit absolute workspace and local application-data root so that tests
+and host integrations cannot guess a target:
 
 ```powershell
-node scripts/create-codex-native-reference-preparation.mjs --mode MULTI_AGENT --run-id <run-id> --source-revision <sha> --repository-locator 'AI Booster Kit'
+node dist/cli.js prepare-execution `
+  --workspace <absolute-workspace> `
+  --app-data-root <absolute-local-data-root> `
+  --controller-id <controller-id>
 ```
 
-Before a live run, `npm run lint`, `npm run build`, `npm test`,
-`npm run check:docs`, and `git diff --check` must pass. The active Node
-runtime must report a stable semantic version.
+Preparation reads the envelope and graph from stdin and returns
+`workspaceId`, `databasePath`, `runId`, `controllerId`, `fencingToken`,
+`runtimeReceiptId`, and the observed runtime lane. Subsequent read commands use
+`--database <absolute-database> --run <run-id>`. Mutating commands add
+`--controller-id <id> --fencing-token <positive-integer>`.
 
-## Immutable source gate
+For the platform operator this slice introduces no database server, hosted
+service, model API, or per-run vendor charge. The material obligations are
+local disk capacity for databases, exports, and retained backups; CI time for
+the four operating-system/runtime entries; release support for forward-only
+migrations; and user support for explicit recovery or restore decisions. The
+kernel provides no cloud retention, centralized monitoring, or managed backup
+service.
 
-Both runs use the same committed source revision, scope, authority, criteria,
-and required evidence kinds. The audited source paths must be clean after that
-commit. A changed revision, dirty audited path, or ambiguous worktree stops the
-run; a working-tree hash is not a substitute for the committed revision.
+## Runtime and storage location
 
-## Personal-root gate
+Node 24 is the authoritative LTS lane from `24.18.0`. Node 26 is admitted from
+`26.7.0` for conformance evidence only. A Node 26 result cannot be relabelled
+authoritative. Runtime, native SQLite binding, policy, dependency lock, kernel
+revision, platform, and host session are bound into an immutable receipt before
+a run is created.
 
-Canonical artifacts are created only below the explicit user-local Personal
-root `%LOCALAPPDATA%\AI Booster Kit\execution-runs`. The Kernel validates path
-containment and non-symlink constraints. A pre-existing target run directory or
-missing authorized parent stops the run.
+The application-data root must be on a local filesystem. The database is
+stored below the platform-managed workspace identity directory as
+`execution-workspaces/<workspaceId>/execution.sqlite`; it is never created in
+the repository. UNC/network roots, symlink boundaries, relative targets, and
+workspace/application-data overlap are rejected.
 
-## Single-agent control sequence
+The database and its backups can contain plaintext accepted artifacts and
+operational evidence. This contract makes no at-rest encryption claim. Do not
+admit credentials, tokens, cookies, authorization headers, prompts,
+transcripts, hidden reasoning, raw connector payloads, environment dumps,
+arbitrary personal paths, or other unnecessary personal data. There is no Team
+or cloud synchronization in this layer.
 
-Prepare a `SINGLE_AGENT` run, prepare and dispatch its `synthesis` node with
-the thread reference `main`, and execute the bounded audit in the main Codex
-task. Admit the exact Result Envelope, finalize the run, then read back its
-checkpoint and final-handoff hashes. The control dispatches no subagents, and
-its substantive findings are not passed to the multi-agent workers.
+## Transactional behavior
 
-## Multi-agent pipeline sequence
+The append-only event ledger is semantic authority. A graph/checkpoint view,
+artifact, quota reservation, controller lease observation, and applicable
+receipt commit in the same short SQLite transaction. The controller ID,
+fencing token, runtime receipt, ledger head, and graph revision are reread in
+that transaction. A stale or competing writer fails without waiting, retrying,
+stealing a lock, or committing a partial representation.
 
-Prepare a `MULTI_AGENT` run, then prepare the independent `audit-controller`
-and `audit-context` nodes. The main task performs exactly two parallel native
-Codex dispatches, records their returned agent IDs, and admits each unchanged
-Result Envelope separately. Only accepted artifacts are supplied to the
-checker. The checker runs once. It may request at most one same-scope repair;
-the main task admits that repair through `propose-execution-repair` or records
-the stop/limit. Finally, the main task prepares, dispatches, admits, and
-finalizes the `synthesis` node from accepted context only.
+The byte, event, workspace, and backup ceilings are defined only in the
+[persistence policy](../../contract/execution/persistence-policy.json). An
+over-limit operation fails before a durable mutation or rolls back completely;
+the runbook does not duplicate those numeric limits.
 
-Codex collaboration operations are host actions performed by the main task,
-not repository functions. No worker may spawn another agent.
+## Developer CLI surface
 
-## Result Envelope-only rule
+Read-only task preparation:
 
-Every worker and checker response is one Result Envelope JSON object and no
-surrounding prose. The main task pipes it unchanged to
-`accept-execution-result`. If validation rejects that object, the main task
-must call `reject-execution-result` with the exact returned allowlisted error
-code and the dispatched node and task identity. The Kernel then records one
-`NODE_RESULT_REJECTED` event, transitions that node to `REJECTED`, records the
-matching terminal run event, and stores no raw response or result artifact. A
-malformed, foreign, stale, oversized, or rejected object stops the affected
-run; it is never edited into compliance.
+```powershell
+node dist/cli.js prepare-execution-node `
+  --database <database> --run <run-id> --node <node-id>
+```
 
-## Dispatch and spawn failures
+Result acceptance, rejection, repair, and finalization use the same locator and
+explicit authority prefix:
 
-If a native spawn fails, returns no agent ID, or its dispatch cannot be
-recorded, interrupt every known active worker and call `stop-execution` once
-with the exact allowlisted failure code. Do not spawn a replacement. A timeout
-or unknown thread identity is preserved as `UNKNOWN`; it is not retried or
-promoted to success.
+```text
+--database <database> --run <run-id>
+--controller-id <controller-id> --fencing-token <positive-integer>
+```
 
-## Resume decision boundary
+Each command calls one command-specific transactional function. A terminal
+`STOPPED` or `UNKNOWN` Result Envelope is stored as terminal evidence and
+cannot become success. A rejected malformed or unsafe result stores no raw
+response. Finalization writes the terminal event and canonical JSON/Markdown
+artifacts together.
 
-`check-execution-resume` reconstructs same-session state from the Personal
-ledger and supplied runtime references. Terminal runs are not active work.
-Cross-session resume remains `NOT_EXECUTED` and this runbook never treats a
-new Codex session as proof that prior threads are available.
+Comparison uses explicit locators:
 
-## Comparison procedure
+```powershell
+node dist/cli.js compare-execution-runs `
+  --single-database <database> --single-run <run-id> `
+  --multi-database <database> --multi-run <run-id>
+```
 
-Run `compare-execution-runs` only after both terminal runs use the same
-comparison identity. Report supported claims, conflicts, unknowns, unique
-accepted evidence, dispatches, repairs, and measured metrics only when both
-runs contain them. State one bounded conclusion for this run:
-`MULTI_AGENT_BETTER_FOR_THIS_RUN`, `NO_MATERIAL_GAIN`,
-`SINGLE_AGENT_BETTER_FOR_THIS_RUN`, or `INCONCLUSIVE`.
+## Backup, migration, and restore
 
-## TEAM-promotion allowlist
+A backup uses SQLite backup semantics while no write transaction is active. It
+becomes valid only after a separate connection verifies integrity, schema,
+workspace and policy identity, file digest, and size. The canonical sidecar is
+written and read back before the active database registers the backup receipt.
+A partial or invalid file remains unregistered evidence and cannot authorize a
+migration.
 
-Only a separately approved normalized receipt may enter repository history. It
-may include the committed source revision, normalized agent references, event
-and artifact hashes, accepted claim-to-evidence mappings, final states,
-comparison metrics, limits, and verification commands. It must exclude prompts,
-transcripts, hidden reasoning, raw collaboration messages, arbitrary Personal
-paths, credentials, account data, and external URLs.
+Migrations are forward-only, strictly ordered, digest-bound registry steps. A
+verified backup is mandatory. Accepted SQL, storage metadata, `user_version`,
+and the migration receipt commit in one exclusive transaction. Destructive
+steps require explicit approval. There is no downgrade command.
 
-## Limitations
+Restore creates and verifies a new staging database. It never overwrites,
+renames, deletes, or automatically activates the current database. Activation
+requires a separate future recovery design and explicit authority.
 
-This run uses no external model, no model API, no connector, no external read
-or write, no write-capable agent, and no cross-host claim. It does not prove
-Codex sandbox enforcement, cross-session conformance, or production workflow
-reliability.
+## Restart and recovery
+
+A recovery audit uses a separately opened inspection session and returns one
+closed disposition:
+
+- `HEALTHY`
+- `PROJECTION_REBUILD_REQUIRED`
+- `PENDING_EFFECT_RECONCILIATION_REQUIRED`
+- `CONTROLLER_OWNERSHIP_RECONCILIATION_REQUIRED`
+- `STORAGE_CORRUPT`
+- `UNSUPPORTED_SCHEMA_OR_RUNTIME`
+
+The audit does not insert a receipt, replay a host action, retry a pending
+effect, transfer ownership, or repair storage. Projection rebuild and ownership
+reconciliation are separate explicit transactions that consume the matching
+prior audit. A corrupt or unsupported database remains stopped.
+
+## Immutable legacy import
+
+Legacy file-backed runs are read only through `readLegacyExecutionRun` and
+imported only through `importLegacyExecutionRun`. Import validates the exact
+source file set, canonical documents, ledger, graph/checkpoint, artifacts,
+content policy, source identity, and destination quotas before one destination
+transaction. The receipt stores normalized identities and sorted file digests,
+not the raw source path. Success and failure leave every legacy source byte
+unchanged. There is no conversion, rename, annotation, or deletion command.
+
+## Verification and reference-run stop gate
+
+Local verification is:
+
+```powershell
+npm ci
+npm audit
+npm run lint
+npm run check:docs
+npm test
+git diff --check
+```
+
+CI must independently pass Node 24 authoritative and Node 26 conformance lanes
+on Ubuntu and Windows. The lane environment variable is only an expected value;
+the runtime test compares it with the independently observed and persisted
+receipt.
+
+Do not begin Native Dispatch or the immutable-revision Codex-native reference
+run unless both runtime lanes pass on both operating systems, the implementation
+revision is immutable, and crash, recovery, backup, migration, staging restore,
+legacy import, quota, forbidden-content, and no-legacy-write checks are green.
+Missing evidence remains `NOT EXECUTED`, `UNKNOWN`, `STOPPED`, or `PARTIAL`.
+
+The later reference run remains Personal-only, read-only with respect to the
+audited source, and entirely inside the Codex app. It uses no external model,
+model API, connector, external read/write, cross-session proof, Team sync, or
+host-security claim. Only a separately approved normalized receipt may enter
+repository history; prompts, transcripts, reasoning, raw collaboration
+messages, personal paths, credentials, account data, and arbitrary URLs remain
+excluded.

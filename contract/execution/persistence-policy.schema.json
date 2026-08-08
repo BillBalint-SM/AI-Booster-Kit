@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-booster-kit.local/contracts/execution/persistence-policy.schema.json",
+  "title": "Execution persistence policy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contractVersion", "runtimePolicy", "storagePolicy"],
+  "properties": {
+    "contractVersion": { "const": "1.0" },
+    "runtimePolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policyId", "authoritative", "conformanceOnly"],
+      "properties": {
+        "policyId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9.-]{2,63}$" },
+        "authoritative": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["lane", "nodeMajor", "minimumVersion", "requiresLts"],
+          "properties": {
+            "lane": { "const": "AUTHORITATIVE" },
+            "nodeMajor": { "type": "integer", "minimum": 1 },
+            "minimumVersion": { "type": "string", "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$" },
+            "requiresLts": { "const": true }
+          }
+        },
+        "conformanceOnly": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["lane", "nodeMajor", "minimumVersion"],
+            "properties": {
+              "lane": { "const": "CONFORMANCE_ONLY" },
+              "nodeMajor": { "type": "integer", "minimum": 1 },
+              "minimumVersion": { "type": "string", "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$" }
+            }
+          }
+        }
+      }
+    },
+    "storagePolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policyId", "limits"],
+      "properties": {
+        "policyId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9.-]{2,63}$" },
+        "limits": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "maxCommandInputBytes",
+            "maxResultEnvelopeBytes",
+            "maxArtifactBytes",
+            "maxTransactionPayloadBytes",
+            "maxRunArtifactBytes",
+            "maxLedgerBytes",
+            "maxEventsPerRun",
+            "maxWorkspaceBytes",
+            "maxBackupAggregateBytes",
+            "maxCanonicalTextBytes",
+            "maxCanonicalBlobBytes",
+            "maxPreparedSqlBytes"
+          ],
+          "properties": {
+            "maxCommandInputBytes": { "const": 1048576 },
+            "maxResultEnvelopeBytes": { "const": 131072 },
+            "maxArtifactBytes": { "const": 262144 },
+            "maxTransactionPayloadBytes": { "const": 1048576 },
+            "maxRunArtifactBytes": { "const": 16777216 },
+            "maxLedgerBytes": { "const": 16777216 },
+            "maxEventsPerRun": { "const": 10000 },
+            "maxWorkspaceBytes": { "const": 1073741824 },
+            "maxBackupAggregateBytes": { "const": 3221225472 },
+            "maxCanonicalTextBytes": { "const": 1048576 },
+            "maxCanonicalBlobBytes": { "const": 1048576 },
+            "maxPreparedSqlBytes": { "const": 262144 }
+          }
+        }
+      }
+    }
+  }
+}

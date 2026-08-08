@@ -1,10 +1,10 @@
 import { executionDigest } from "./identity.js";
 import { ExecutionContractError } from "./types.js";
-import type { ExecutionComparisonReport, ExecutionHostMetrics, LoadedExecutionRun } from "./types.js";
+import type { ExecutionComparisonReport, ExecutionHostMetrics, ExecutionRunView } from "./types.js";
 
 const comparisonCode = "EXECUTION_RUNS_NOT_COMPARABLE";
 
-export function compareExecutionRuns(singleRun: LoadedExecutionRun, multiRun: LoadedExecutionRun): ExecutionComparisonReport {
+export function compareExecutionRuns(singleRun: ExecutionRunView, multiRun: ExecutionRunView): ExecutionComparisonReport {
   if (comparisonIdentity(singleRun) !== comparisonIdentity(multiRun)) {
     throw new ExecutionContractError(comparisonCode, "execution runs do not share the same immutable comparison identity");
   }
@@ -29,7 +29,7 @@ export function compareExecutionRuns(singleRun: LoadedExecutionRun, multiRun: Lo
   };
 }
 
-function comparisonIdentity(run: LoadedExecutionRun): string {
+function comparisonIdentity(run: ExecutionRunView): string {
   return executionDigest({
     goal: run.envelope.goal,
     scope: run.envelope.scope,
@@ -42,23 +42,23 @@ function comparisonIdentity(run: LoadedExecutionRun): string {
   });
 }
 
-function supportedClaimCount(run: LoadedExecutionRun): number {
+function supportedClaimCount(run: ExecutionRunView): number {
   return run.finalHandoff?.claims.filter((claim) => claim.state === "SUPPORTED").length ?? 0;
 }
 
-function conflictCount(run: LoadedExecutionRun): number {
+function conflictCount(run: ExecutionRunView): number {
   return run.acceptedResults.flatMap((result) => result.claims).filter((claim) => claim.state === "CONFLICTED").length;
 }
 
-function unknownCount(run: LoadedExecutionRun): number {
+function unknownCount(run: ExecutionRunView): number {
   return (run.finalHandoff?.unknowns.length ?? 0) + run.acceptedResults.reduce((count, result) => count + result.unknowns.length, 0);
 }
 
-function agentDispatchCount(run: LoadedExecutionRun): number {
+function agentDispatchCount(run: ExecutionRunView): number {
   return run.events.filter((event) => event.eventType === "DISPATCH_CONFIRMED" && event.nodeId !== null && run.graph.nodes.find((node) => node.nodeId === event.nodeId)?.type === "AGENT_TASK").length;
 }
 
-function repairCount(run: LoadedExecutionRun): number {
+function repairCount(run: ExecutionRunView): number {
   return run.events.filter((event) => event.eventType === "GRAPH_MUTATION_ACCEPTED").length;
 }
 

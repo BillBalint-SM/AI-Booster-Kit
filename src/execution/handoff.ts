@@ -30,6 +30,16 @@ const identifierPattern = /^[a-z0-9][a-z0-9-]{2,79}$/;
 const hashPattern = /^[a-f0-9]{64}$/;
 const revisionPattern = /^[a-f0-9]{40}(?:[a-f0-9]{24})?$/;
 const forbiddenContentPattern = /(?:^|[\s:=])(?:transcript|prompt|secret|access[_-]?token|refresh[_-]?token|credential|cookie|password|api[_-]?key|authorization|reasoning|token)(?:$|[\s:=])/i;
+const forbiddenResultValuePatterns = [
+  forbiddenContentPattern,
+  /(?:^|\s)[A-Za-z]:[\\/]/u,
+  /(?:^|\s)\\\\[^\\\s]+\\/u,
+  /(?:^|\s)\/(?:Users|home|etc|var|tmp)\//u,
+  /(?:^|[;\s])(?:PATH|HOME|USERPROFILE|AWS_[A-Z0-9_]+|AZURE_[A-Z0-9_]+)=/u,
+  /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/iu,
+  /"(?:connector|headers|request|response|payload)"\s*:/iu,
+  /https?:\/\//iu,
+] as const;
 
 export function buildExecutionTaskPacket(
   envelope: ExecutionEnvelope,
@@ -338,7 +348,9 @@ function validateArtifactRef(value: ExecutionArtifactRef, code: string, message:
 function assertSafeResultContent(value: unknown): void {
   const visit = (current: unknown): void => {
     if (typeof current === "string") {
-      if (forbiddenContentPattern.test(current)) throw new ExecutionContractError(resultContentCode, "execution result contains forbidden content");
+      if (forbiddenResultValuePatterns.some((pattern) => pattern.test(current))) {
+        throw new ExecutionContractError(resultContentCode, "execution result contains forbidden content");
+      }
       return;
     }
     if (Array.isArray(current)) {

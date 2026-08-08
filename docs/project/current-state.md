@@ -10,6 +10,10 @@ Exact branch, HEAD, worktree, upstream, and pull-request state are verified by
 the work-state preflight at each delivery boundary; this routing file does not
 duplicate the detailed status history.
 
+The transactional-persistence slice is under review in draft pull request
+[#53](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/53). It is not part
+of the published `main` state until separately approved and merged.
+
 The next bounded slice must start from this synchronized `main` in a fresh,
 unique `dev-<scope>` branch and follow the lean reviewed-slice path to `main`.
 Historical or host-specific branches do not represent current canonical
@@ -49,20 +53,27 @@ authority, worker `STOPPED` and `UNKNOWN` results cannot become success, and
 rejected CLI operations prove zero mutation. The existing bounded DAG,
 Personal hash-chained run, evidence-shape, final handoff, and comparison
 behavior remains model-free and local.
+The review slice adds the local transactional persistence kernel: explicit
+runtime admission and receipts, normalized workspace storage, real SQLite
+transactions, controller fencing, atomic event/projection/result persistence,
+deterministic finalization, restart and crash audits, explicit recovery,
+verified backup and staging restore, forward migration admission, immutable
+legacy import, quotas, and a single CLI/Kernel cutover without dual-write.
 
 ## Validation
 
-The current local implementation evidence is 439 pass / 1 intentional
-platform-specific skip under Node v26.7.0. The deterministic Kernel and
-reference adapter have 38 focused execution tests; `npm run lint`, `npm test`,
-`npm run check:docs`, and `git diff --check` pass in the review worktree before
-publication.
+The current local implementation evidence under Node v26.7.0 is 554 pass / 1
+intentional platform-specific skip. The transactional persistence gate has
+111 focused passing tests. `npm run lint`, `npm test`, `npm run check:docs`,
+`npm audit --audit-level=low`, and `git diff --check` pass in the review
+worktree.
 Mapper freshness is recorded separately for the committed snapshot below; it
 is not a general documentation-change gate.
-The package declares Node 26.x. Local results establish compatibility with the
-current local Node 26 runtime, not CI or production proof. Controller, M1, M2,
-and M3 behavior is local and deterministic; external behavior is not
-established by this local evidence.
+GitHub CI against implementation revision
+`5c1ed21807b9a41aa0347c47f9fdefb48c10a572` passes on Ubuntu and Windows in
+both the Node 24 LTS `AUTHORITATIVE` lane and the Node 26
+`CONFORMANCE_ONLY` lane; the website and documentation jobs also pass. This is
+cross-platform CI evidence, not production-host or live-connector proof.
 
 The committed Graphify and Understand Anything snapshots identify the same
 stable source revision `20ed6dc401b31c3075c1c16933c404537fe075f2`; the
@@ -84,12 +95,14 @@ The Kernel proves a local, deterministic contract only. The first Personal-only
 Codex-native Multi-Agent Pipeline attempt stopped during Result Envelope
 admission and stored no result artifact; its repeated reference run, host
 evidence, and comparison outcome remain `NOT_EXECUTED`. The package declares
-Node 26.x, and this local evidence establishes compatibility with the current
-Node 26 runtime only, not CI or production proof. Transactional persistence,
-source/worktree and host binding, two-phase dispatch, verified cancellation,
-evidence resolution, and crash-safe resume remain unimplemented. The legacy
-single-phase dispatch and stop commands therefore reject without mutation under
-v2 instead of fabricating host evidence.
+Node 24 LTS as the authoritative persistence lane and Node 26 as
+conformance-only. Production-host behavior remains unproven. Active restore
+activation is intentionally absent: restore creates and verifies a staging
+database only. Source/worktree and host binding, two-phase dispatch, verified
+cancellation, evidence resolution, and the subsequent host-bound reference run
+remain unimplemented. The legacy single-phase dispatch and stop commands
+therefore reject without mutation under v2 instead of fabricating host
+evidence.
 Planning-Show has no complete Controller runtime yet, and Owner Identity is
 Windows-only. Canonical artifact authority is declared as owner-approved PR
 flow but is not locally enforced. Agent Profile, Role, and Formation catalogs
@@ -105,10 +118,12 @@ approval, bounded authority, and source-native read-back.
 
 ## Next bounded action
 
-Fix the transactional persistence invariant and stable Node runtime binding as
-the next bounded design and implementation dependency. Only after those
-contracts are reviewable may the Input/CLI, Source/Worktree, Host Evidence,
-two-phase Dispatch, and generated conformance slices proceed toward a repeated
-read-only Codex-native Multi-Agent Pipeline reference run. No external write,
-model API, or broader host capability is authorized by this routing decision.
+Review draft pull request
+[#53](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/53). Merge remains a
+separate consequential decision. After an accepted immutable revision, the
+next dependency-ordered slices are Source/Worktree and Host Evidence binding,
+then two-phase Dispatch and verified cancellation, before the repeated
+read-only Codex-native Multi-Agent Pipeline reference run. No external model
+API, cloud service, encryption claim, live connector write, or broader host
+capability is established by this slice.
 

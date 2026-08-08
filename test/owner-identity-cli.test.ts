@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
-import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import { mkdtemp, readFile, realpath, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { test } from "node:test";
@@ -179,7 +179,7 @@ test("built recommend-formation CLI: continues after EMPTY and reuses a saved pr
 async function withTemporaryDirectory<T>(run: (directory: string) => Promise<T>): Promise<T> {
   const directory = await mkdtemp(join(tmpdir(), "owner-identity-cli-red-"));
   try {
-    return await run(directory);
+    return await run(await realpath(directory));
   } finally {
     await rm(directory, { recursive: true, force: true });
   }

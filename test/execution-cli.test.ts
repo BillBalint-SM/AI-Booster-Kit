@@ -1,243 +1,186 @@
 import assert from "node:assert/strict";
-import { mkdtemp, readFile, rm } from "node:fs/promises";
+import { spawn } from "node:child_process";
+import { mkdir, mkdtemp, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { spawn } from "node:child_process";
 import { test } from "node:test";
 
-import { transitionExecutionNode } from "../src/execution/graph.js";
-import { createExecutionEvent } from "../src/execution/ledger.js";
-import { appendRunEvent, loadExecutionRun, saveGraphSnapshot } from "../src/execution/storage.js";
+import { commitExecutionGraphTransition } from "../src/execution/persistence/mutations.js";
+import type { ExecutionMutationAuthority } from "../src/execution/persistence/mutations.js";
+import {
+  closeExecutionStoreSession,
+  openMutableExecutionStoreSessionForRun,
+  openReadOnlyExecutionStoreSessionForRun,
+} from "../src/execution/persistence/session.js";
+import { loadTransactionalExecutionRun } from "../src/execution/persistence/store.js";
+import { currentExecutionProcessRuntimeObservation } from "../src/execution/runtime-receipt.js";
 import type { ExecutionReasonCode } from "../src/execution/reasons.js";
-import type { ExecutionResultEnvelope, ExecutionTaskPacket } from "../src/execution/types.js";
+import type { ExecutionResultEnvelope, ExecutionTaskPacket, LoadedExecutionRun } from "../src/execution/types.js";
 import { referenceEnvelopeInput, referenceGraphDraft } from "./helpers/execution-fixtures.js";
-import { createCompletedExecutionRun } from "./helpers/completed-execution-run.js";
 
-test("built execution CLI accepts one Personal read-only result from a synthetic running node", async () => {
+interface CliLocator {
+  databasePath: string;
+  runId: string;
+  workspaceId: string;
+  controllerId: string;
+  fencingToken: number;
+  runtimeReceiptId: string;
+  lane: "AUTHORITATIVE" | "CONFORMANCE_ONLY";
+}
+
+test("prepare-execution returns the transactional locator, controller fence, runtime receipt, and observed lane", async () => {
   await withTemporaryDirectory(async (root) => {
-    const { runDirectory, packet } = await prepareSyntheticRunningExecution(root);
-    assert.equal(packet.packetVersion, "2.0");
+    const prepared = await prepareExecution(root);
+    assert.equal(prepared.runId, referenceEnvelopeInput.runId);
+    assert.match(prepared.workspaceId, /^[a-f0-9]{32}$/u);
+    assert.match(prepared.runtimeReceiptId, /^[a-f0-9]{64}$/u);
+    assert.equal(prepared.controllerId, "cli-controller-001");
+    assert.equal(prepared.fencingToken, 1);
+    assert.ok(["AUTHORITATIVE", "CONFORMANCE_ONLY"].includes(prepared.lane));
+    assert.match(prepared.databasePath, /execution\.sqlite$/u);
 
-    const accepted = await runBuiltCli(
-      ["accept-execution-result", "--run", runDirectory],
-      JSON.stringify(readyWorkerResult(packet)),
-    );
-    assert.equal(accepted.code, 0);
-    assert.deepEqual(JSON.parse(accepted.stdout), { state: "SUCCEEDED", nodeId: "audit-controller" });
+    const packet = await prepareNode(prepared, "audit-controller");
+    assert.equal(packet.nodeId, "audit-controller");
   });
 });
 
-test("built execution CLI exposes a correlated Result Envelope template in every prepared node", async () => {
+test("accept-execution-result performs one transactional result commit and malformed input changes nothing", async () => {
   await withTemporaryDirectory(async (root) => {
-    const prepared = await runBuiltCli(["prepare-execution", "--personal-root", root], JSON.stringify({ envelope: referenceEnvelopeInput, graph: referenceGraphDraft }));
-    assert.equal(prepared.code, 0);
+    const { locator, packet } = await prepareSyntheticRunningExecution(root);
+    const before = readRun(locator);
+    const malformed = await runBuiltCli(["accept-execution-result", ...mutableFlags(locator)], JSON.stringify({ resultEnvelopeVersion: "2.0" }));
+    assert.equal(malformed.code, 3, `${malformed.stdout}${malformed.stderr}`);
+    assert.deepEqual(runIdentity(readRun(locator)), runIdentity(before));
 
-    const runDirectory = join(root, referenceEnvelopeInput.runId);
-    const response = await runBuiltCli(["prepare-execution-node", "--run", runDirectory, "--node", "audit-controller"], null);
-    assert.equal(response.code, 0);
-    const node = JSON.parse(response.stdout) as { taskPacket: ExecutionTaskPacket; resultTemplate: Record<string, unknown> };
+    const accepted = await runBuiltCli(["accept-execution-result", ...mutableFlags(locator)], JSON.stringify(readyWorkerResult(packet)));
+    assert.equal(accepted.code, 0, `${accepted.stdout}${accepted.stderr}`);
+    const state = readRun(locator);
+    assert.equal(state.graph.nodes.find((node) => node.nodeId === "audit-controller")?.state, "SUCCEEDED");
+    assert.equal(state.artifacts.length, 1);
+    assert.deepEqual(state.events.slice(-2).map((event) => event.eventType), ["NODE_RESULT_RECEIVED", "NODE_RESULT_ACCEPTED"]);
+  });
+});
 
-    assert.deepEqual(node.resultTemplate, {
-      resultVersion: "2.0",
-      runId: node.taskPacket.runId,
-      taskId: node.taskPacket.taskId,
-      nodeId: node.taskPacket.nodeId,
-      envelopeHash: node.taskPacket.envelopeHash,
-      graphRevision: node.taskPacket.graphRevision,
-      status: "READY_FOR_VALIDATION",
-      reasonCode: null,
-      summary: "Replace this template text with a non-empty scoped summary.",
-      claims: [],
-      artifactRefs: [],
-      evidenceRefs: [],
-      unknowns: [],
-      conflicts: [],
-      followupRequest: null,
-      observedLimits: [],
+test("reject-execution-result and terminal worker results each commit one complete terminal state", async (context) => {
+  await context.test("rejection", async () => {
+    await withTemporaryDirectory(async (root) => {
+      const { locator, packet } = await prepareSyntheticRunningExecution(root);
+      const response = await runBuiltCli([
+        "reject-execution-result", ...mutableFlags(locator),
+        "--node", "audit-controller", "--task", packet.taskId, "--code", "EXECUTION_RESULT_FIELDS_INVALID",
+      ], null);
+      assert.equal(response.code, 0, `${response.stdout}${response.stderr}`);
+      const run = readRun(locator);
+      assert.equal(run.checkpoint.runState, "STOPPED");
+      assert.deepEqual(run.events.slice(-2).map((event) => event.eventType), ["NODE_RESULT_REJECTED", "RUN_STOPPED"]);
+      assert.equal(run.artifacts.length, 0);
     });
   });
+  for (const terminal of [
+    { status: "STOPPED" as const, reason: "RESULT_STATUS_STOPPED" as const, code: 0 },
+    { status: "UNKNOWN" as const, reason: "RESULT_STATUS_UNKNOWN" as const, code: 2 },
+  ]) {
+    await context.test(terminal.status, async () => {
+      await withTemporaryDirectory(async (root) => {
+        const { locator, packet } = await prepareSyntheticRunningExecution(root);
+        const response = await runBuiltCli(
+          ["accept-execution-result", ...mutableFlags(locator)],
+          JSON.stringify(terminalWorkerResult(packet, terminal.status, terminal.reason)),
+        );
+        assert.equal(response.code, terminal.code, `${response.stdout}${response.stderr}`);
+        const run = readRun(locator);
+        assert.equal(run.checkpoint.runState, terminal.status);
+        assert.equal(run.artifacts.length, 1);
+        assert.deepEqual(run.events.slice(-2).map((event) => event.eventType), [terminal.status === "STOPPED" ? "NODE_STOPPED" : "NODE_UNKNOWN", terminal.status === "STOPPED" ? "RUN_STOPPED" : "RUN_UNKNOWN"]);
+      });
+    });
+  }
 });
 
-test("built execution CLI rejects a malformed worker result without mutating the run", async () => {
+test("single-phase dispatch and unverified stop remain protocol violations without mutation", async () => {
   await withTemporaryDirectory(async (root) => {
-    const { runDirectory, packet } = await prepareSyntheticRunningExecution(root);
-    const beforeMalformed = await mutableRunFiles(runDirectory);
-
-    const malformed = await runBuiltCli(["accept-execution-result", "--run", runDirectory], JSON.stringify({ resultEnvelopeVersion: "2.0" }));
-    assert.equal(malformed.code, 3);
-    assert.deepEqual(JSON.parse(malformed.stdout), { operation: "REJECTED", mutation: "NONE", error: { code: "RESULT_FIELDS_INVALID" } });
-    assert.deepEqual(await mutableRunFiles(runDirectory), beforeMalformed);
-
-    const rejected = await runBuiltCli(
-      ["reject-execution-result", "--run", runDirectory, "--node", "audit-controller", "--task", packet.taskId, "--code", "EXECUTION_RESULT_FIELDS_INVALID"],
-      null,
-    );
-    assert.equal(rejected.code, 0, `${rejected.stdout}${rejected.stderr}`);
-    assert.deepEqual(JSON.parse(rejected.stdout), { state: "STOPPED", nodeId: "audit-controller", code: "RESULT_FIELDS_INVALID" });
-
-    const graph = JSON.parse(await readFile(join(runDirectory, "graph.json"), "utf8")) as { nodes: readonly { nodeId: string; state: string }[] };
-    const checkpoint = JSON.parse(await readFile(join(runDirectory, "checkpoint.json"), "utf8")) as { runState: string; activeThreadRefs: readonly string[] };
-    const manifest = JSON.parse(await readFile(join(runDirectory, "artifacts", "manifest.json"), "utf8")) as { artifacts: readonly unknown[] };
-    const events = (await readFile(join(runDirectory, "events.jsonl"), "utf8")).trim().split("\n").map((line) => JSON.parse(line) as { eventType: string; reasonCode: string | null });
-
-    assert.equal(graph.nodes.find((node) => node.nodeId === "audit-controller")?.state, "REJECTED");
-    assert.equal(checkpoint.runState, "STOPPED");
-    assert.deepEqual(checkpoint.activeThreadRefs, []);
-    assert.deepEqual(manifest.artifacts, []);
-    assert.deepEqual(events.slice(-2).map((event) => ({
-      eventType: event.eventType,
-      reasonCode: event.reasonCode,
-    })), [
-      { eventType: "NODE_RESULT_REJECTED", reasonCode: "RESULT_FIELDS_INVALID" },
-      { eventType: "RUN_STOPPED", reasonCode: "RESULT_FIELDS_INVALID" },
-    ]);
+    const locator = await prepareExecution(root);
+    const packet = await prepareNode(locator, "audit-controller");
+    const before = runIdentity(readRun(locator));
+    const dispatch = await runBuiltCli([
+      "record-execution-dispatch", ...mutableFlags(locator),
+      "--node", "audit-controller", "--task", packet.taskId, "--thread-ref", "codex-agent:controller",
+    ], null);
+    assert.equal(dispatch.code, 3);
+    assert.equal(JSON.parse(dispatch.stdout).error.code, "OPERATOR_PROTOCOL_VIOLATION");
+    assert.deepEqual(runIdentity(readRun(locator)), before);
+    const stop = await runBuiltCli(["stop-execution", ...mutableFlags(locator), "--code", "USER_CANCELLED"], null);
+    assert.equal(stop.code, 3);
+    assert.deepEqual(runIdentity(readRun(locator)), before);
   });
 });
 
-test("built execution CLI rejects terminal-run mutation and preserves every mutable run file", async () => {
-  await withTemporaryDirectory(async (root) => {
-    const completed = await createCompletedExecutionRun(root, referenceEnvelopeInput, referenceGraphDraft);
-    if (completed.finalHandoff === null) throw new Error("test run requires a final handoff");
-    const finalized = createExecutionEvent(
-      {
-        runId: completed.envelope.runId,
-        eventType: "RUN_FINALIZED",
-        nodeId: null,
-        beforeState: completed.checkpoint.runState,
-        afterState: "COMPLETE",
-        graphRevision: completed.graph.graphRevision,
-        evidenceRefs: [],
-        taskId: null,
-        threadRef: null,
-        reasonCode: null,
-      },
-      completed.events.length + 1,
-      completed.checkpoint.lastEventHash,
-      "2026-08-08T10:30:00.000Z",
-    );
-    await appendRunEvent(completed.runDirectory, finalized);
-    const before = await mutableRunFiles(completed.runDirectory);
+async function prepareExecution(root: string): Promise<CliLocator> {
+  const workspace = join(root, "workspace");
+  const appData = join(root, "app-data");
+  await mkdir(workspace);
+  await mkdir(appData);
+  const response = await runBuiltCli([
+    "prepare-execution", "--workspace", workspace, "--app-data-root", appData, "--controller-id", "cli-controller-001",
+  ], JSON.stringify({ envelope: referenceEnvelopeInput, graph: referenceGraphDraft }));
+  assert.equal(response.code, 0, `${response.stdout}${response.stderr}`);
+  return JSON.parse(response.stdout) as CliLocator;
+}
 
-    const response = await runBuiltCli(
-      ["record-execution-dispatch", "--run", completed.runDirectory, "--node", "audit-controller", "--task", "a".repeat(64), "--thread-ref", "codex-agent:controller"],
-      null,
-    );
+async function prepareNode(locator: CliLocator, nodeId: string): Promise<ExecutionTaskPacket> {
+  const response = await runBuiltCli([
+    "prepare-execution-node", "--database", locator.databasePath, "--run", locator.runId, "--node", nodeId,
+  ], null);
+  assert.equal(response.code, 0, `${response.stdout}${response.stderr}`);
+  return (JSON.parse(response.stdout) as { taskPacket: ExecutionTaskPacket }).taskPacket;
+}
 
-    assert.equal(response.code, 3);
-    assert.deepEqual(JSON.parse(response.stdout), { operation: "REJECTED", mutation: "NONE", error: { code: "TERMINAL_RUN" } });
-    assert.deepEqual(await mutableRunFiles(completed.runDirectory), before);
+async function prepareSyntheticRunningExecution(root: string): Promise<{ locator: CliLocator; packet: ExecutionTaskPacket }> {
+  const locator = await prepareExecution(root);
+  const packet = await prepareNode(locator, "audit-controller");
+  const session = openMutableExecutionStoreSessionForRun({
+    databasePath: locator.databasePath, runId: locator.runId, runtime: currentExecutionProcessRuntimeObservation(),
   });
-});
+  try {
+    let run = loadTransactionalExecutionRun(session, locator.runId);
+    run = commitExecutionGraphTransition(session, {
+      runId: run.runId, authority: authority(run), transition: { nodeId: packet.nodeId, from: "READY", to: "DISPATCHING" },
+      evidenceRefs: [], taskId: packet.taskId, threadRef: null, reasonCode: null, recordedAt: "2026-08-08T21:00:00.000Z",
+    });
+    commitExecutionGraphTransition(session, {
+      runId: run.runId, authority: authority(run), transition: { nodeId: packet.nodeId, from: "DISPATCHING", to: "RUNNING" },
+      evidenceRefs: [], taskId: packet.taskId, threadRef: "codex-agent:controller", reasonCode: null, recordedAt: "2026-08-08T21:00:01.000Z",
+    });
+  } finally {
+    closeExecutionStoreSession(session);
+  }
+  return { locator, packet };
+}
 
-test("built execution CLI rejects the legacy unverified stop protocol without mutating an active run", async () => {
-  await withTemporaryDirectory(async (root) => {
-    const prepared = await runBuiltCli(["prepare-execution", "--personal-root", root], JSON.stringify({ envelope: referenceEnvelopeInput, graph: referenceGraphDraft }));
-    assert.equal(prepared.code, 0, `${prepared.stdout}${prepared.stderr}`);
-    const runDirectory = join(root, referenceEnvelopeInput.runId);
-    const before = await mutableRunFiles(runDirectory);
-
-    const response = await runBuiltCli(["stop-execution", "--run", runDirectory, "--code", "USER_CANCELLED"], null);
-
-    assert.equal(response.code, 3);
-    assert.deepEqual(JSON.parse(response.stdout), { operation: "REJECTED", mutation: "NONE", error: { code: "OPERATOR_PROTOCOL_VIOLATION" } });
-    assert.deepEqual(await mutableRunFiles(runDirectory), before);
+function readRun(locator: CliLocator): LoadedExecutionRun {
+  const session = openReadOnlyExecutionStoreSessionForRun({
+    databasePath: locator.databasePath, runId: locator.runId, runtime: currentExecutionProcessRuntimeObservation(),
   });
-});
+  try {
+    return loadTransactionalExecutionRun(session, locator.runId);
+  } finally {
+    closeExecutionStoreSession(session);
+  }
+}
 
-test("built execution CLI routes a required worker STOPPED result without creating a success artifact", async () => {
-  await withTemporaryDirectory(async (root) => {
-    const { runDirectory, packet } = await prepareSyntheticRunningExecution(root);
-    const response = await runBuiltCli(
-      ["accept-execution-result", "--run", runDirectory],
-      JSON.stringify(terminalWorkerResult(packet, "STOPPED", "RESULT_STATUS_STOPPED")),
-    );
+function authority(run: LoadedExecutionRun): ExecutionMutationAuthority {
+  return {
+    controllerId: run.controllerId, fencingToken: run.fencingToken, runtimeReceiptId: run.runtimeReceiptId,
+    expectedLedgerHead: run.checkpoint.lastEventHash, expectedGraphRevision: run.graph.graphRevision,
+  };
+}
 
-    assert.equal(response.code, 0, `${response.stdout}${response.stderr}`);
-    assert.notEqual(JSON.parse(response.stdout).state, "SUCCEEDED");
-    const state = await readExecutionState(runDirectory);
-    assert.equal(state.nodeState, "STOPPED");
-    assert.equal(state.runState, "STOPPED");
-    assert.deepEqual(state.artifacts, []);
-    assert.deepEqual(state.lastEvents, [
-      { eventType: "NODE_STOPPED", reasonCode: "RESULT_STATUS_STOPPED" },
-      { eventType: "RUN_STOPPED", reasonCode: "RESULT_STATUS_STOPPED" },
-    ]);
-    assert.equal(state.dependentState, "PENDING");
-  });
-});
+function mutableFlags(locator: CliLocator): readonly string[] {
+  return ["--database", locator.databasePath, "--run", locator.runId, "--controller-id", locator.controllerId, "--fencing-token", String(locator.fencingToken)];
+}
 
-test("built execution CLI routes a required worker UNKNOWN result without creating a success artifact", async () => {
-  await withTemporaryDirectory(async (root) => {
-    const { runDirectory, packet } = await prepareSyntheticRunningExecution(root);
-    const response = await runBuiltCli(
-      ["accept-execution-result", "--run", runDirectory],
-      JSON.stringify(terminalWorkerResult(packet, "UNKNOWN", "RESULT_STATUS_UNKNOWN")),
-    );
-
-    assert.equal(response.code, 2, `${response.stdout}${response.stderr}`);
-    assert.notEqual(JSON.parse(response.stdout).state, "SUCCEEDED");
-    const state = await readExecutionState(runDirectory);
-    assert.equal(state.nodeState, "UNKNOWN");
-    assert.equal(state.runState, "UNKNOWN");
-    assert.deepEqual(state.artifacts, []);
-    assert.deepEqual(state.lastEvents, [
-      { eventType: "NODE_UNKNOWN", reasonCode: "RESULT_STATUS_UNKNOWN" },
-      { eventType: "RUN_UNKNOWN", reasonCode: "RESULT_STATUS_UNKNOWN" },
-    ]);
-    assert.equal(state.dependentState, "PENDING");
-  });
-});
-
-async function prepareSyntheticRunningExecution(root: string): Promise<{ runDirectory: string; packet: ExecutionTaskPacket }> {
-  const prepared = await runBuiltCli(["prepare-execution", "--personal-root", root], JSON.stringify({ envelope: referenceEnvelopeInput, graph: referenceGraphDraft }));
-  assert.equal(prepared.code, 0, `${prepared.stdout}${prepared.stderr}`);
-  assert.deepEqual(JSON.parse(prepared.stdout), { state: "READY", runId: referenceEnvelopeInput.runId });
-  const runDirectory = join(root, referenceEnvelopeInput.runId);
-  const packetResponse = await runBuiltCli(["prepare-execution-node", "--run", runDirectory, "--node", "audit-controller"], null);
-  assert.equal(packetResponse.code, 0, `${packetResponse.stdout}${packetResponse.stderr}`);
-  const packet = (JSON.parse(packetResponse.stdout) as { taskPacket: ExecutionTaskPacket }).taskPacket;
-  const run = await loadExecutionRun(runDirectory);
-  const intended = createExecutionEvent(
-    {
-      runId: run.envelope.runId,
-      eventType: "DISPATCH_INTENDED",
-      nodeId: packet.nodeId,
-      beforeState: "READY",
-      afterState: "DISPATCHING",
-      graphRevision: run.graph.graphRevision,
-      evidenceRefs: [],
-      taskId: packet.taskId,
-      threadRef: null,
-      reasonCode: null,
-    },
-    run.events.length + 1,
-    run.checkpoint.lastEventHash,
-    "2026-08-08T10:00:00.000Z",
-  );
-  await appendRunEvent(runDirectory, intended);
-  const dispatchingGraph = transitionExecutionNode(run.graph, { nodeId: packet.nodeId, from: "READY", to: "DISPATCHING" }, run.envelope);
-  await saveGraphSnapshot(runDirectory, dispatchingGraph);
-  const dispatchingRun = await loadExecutionRun(runDirectory);
-  const confirmed = createExecutionEvent(
-    {
-      runId: run.envelope.runId,
-      eventType: "DISPATCH_CONFIRMED",
-      nodeId: packet.nodeId,
-      beforeState: "DISPATCHING",
-      afterState: "RUNNING",
-      graphRevision: run.graph.graphRevision,
-      evidenceRefs: [],
-      taskId: packet.taskId,
-      threadRef: "codex-agent:controller",
-      reasonCode: null,
-    },
-    dispatchingRun.events.length + 1,
-    dispatchingRun.checkpoint.lastEventHash,
-    "2026-08-08T10:00:01.000Z",
-  );
-  await appendRunEvent(runDirectory, confirmed);
-  await saveGraphSnapshot(runDirectory, transitionExecutionNode(dispatchingGraph, { nodeId: packet.nodeId, from: "DISPATCHING", to: "RUNNING" }, run.envelope));
-  return { runDirectory, packet };
+function runIdentity(run: LoadedExecutionRun) {
+  return { graph: run.graph.graphHash, checkpoint: run.checkpoint, events: run.events.map((event) => event.eventHash), artifacts: run.artifacts };
 }
 
 function readyWorkerResult(packet: ExecutionTaskPacket): ExecutionResultEnvelope {
@@ -254,42 +197,12 @@ function terminalWorkerResult(
   reasonCode: ExecutionReasonCode | null,
 ): ExecutionResultEnvelope {
   return {
-    resultVersion: "2.0",
-    runId: packet.runId,
-    taskId: packet.taskId,
-    nodeId: packet.nodeId,
-    envelopeHash: packet.envelopeHash,
-    graphRevision: packet.graphRevision,
-    status,
-    reasonCode,
-    summary: `Worker returned ${status}.`,
-    claims: [],
-    artifactRefs: [],
-    evidenceRefs: [],
+    resultVersion: "2.0", runId: packet.runId, taskId: packet.taskId, nodeId: packet.nodeId,
+    envelopeHash: packet.envelopeHash, graphRevision: packet.graphRevision, status, reasonCode,
+    summary: `Worker returned ${status}.`, claims: [], artifactRefs: [], evidenceRefs: [],
     unknowns: status === "UNKNOWN" ? ["Worker completion could not be determined."] : [],
-    conflicts: [],
-    followupRequest: null,
-    observedLimits: [],
+    conflicts: [], followupRequest: null, observedLimits: [],
   };
-}
-
-async function readExecutionState(runDirectory: string) {
-  const graph = JSON.parse(await readFile(join(runDirectory, "graph.json"), "utf8")) as { nodes: readonly { nodeId: string; state: string }[] };
-  const checkpoint = JSON.parse(await readFile(join(runDirectory, "checkpoint.json"), "utf8")) as { runState: string };
-  const manifest = JSON.parse(await readFile(join(runDirectory, "artifacts", "manifest.json"), "utf8")) as { artifacts: readonly unknown[] };
-  const events = (await readFile(join(runDirectory, "events.jsonl"), "utf8")).trim().split("\n").map((line) => JSON.parse(line) as { eventType: string; reasonCode: string | null });
-  return {
-    nodeState: graph.nodes.find((node) => node.nodeId === "audit-controller")?.state,
-    dependentState: graph.nodes.find((node) => node.nodeId === "checker")?.state,
-    runState: checkpoint.runState,
-    artifacts: manifest.artifacts,
-    lastEvents: events.slice(-2).map((event) => ({ eventType: event.eventType, reasonCode: event.reasonCode })),
-  };
-}
-
-async function mutableRunFiles(runDirectory: string): Promise<Readonly<Record<string, string>>> {
-  const paths = ["events.jsonl", "graph.json", "checkpoint.json", join("artifacts", "manifest.json")];
-  return Object.fromEntries(await Promise.all(paths.map(async (path) => [path, await readFile(join(runDirectory, path), "utf8")] as const)));
 }
 
 function runBuiltCli(argv: readonly string[], stdin: string | null): Promise<{ code: number | null; stdout: string; stderr: string }> {

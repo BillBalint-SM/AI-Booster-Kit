@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdtemp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import { mkdtemp, mkdir, readFile, realpath, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { spawn } from "node:child_process";
@@ -116,7 +116,7 @@ test("built M3 CLI: stops malformed, stale, and broadened input without echoing 
 async function withTemporaryDirectory<T>(run: (directory: string) => Promise<T>): Promise<T> {
   const directory = await mkdtemp(join(tmpdir(), "ai-booster-m3-"));
   try {
-    return await run(directory);
+    return await run(await realpath(directory));
   } finally {
     await rm(directory, { recursive: true, force: true });
   }

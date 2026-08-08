@@ -1,0 +1,36 @@
+{
+  "contractVersion": "1.0",
+  "runtimePolicy": {
+    "policyId": "execution-runtime-policy-1.0",
+    "authoritative": {
+      "lane": "AUTHORITATIVE",
+      "nodeMajor": 24,
+      "minimumVersion": "24.18.0",
+      "requiresLts": true
+    },
+    "conformanceOnly": [
+      {
+        "lane": "CONFORMANCE_ONLY",
+        "nodeMajor": 26,
+        "minimumVersion": "26.7.0"
+      }
+    ]
+  },
+  "storagePolicy": {
+    "policyId": "execution-storage-policy-1.0",
+    "limits": {
+      "maxCommandInputBytes": 1048576,
+      "maxResultEnvelopeBytes": 131072,
+      "maxArtifactBytes": 262144,
+      "maxTransactionPayloadBytes": 1048576,
+      "maxRunArtifactBytes": 16777216,
+      "maxLedgerBytes": 16777216,
+      "maxEventsPerRun": 10000,
+      "maxWorkspaceBytes": 1073741824,
+      "maxBackupAggregateBytes": 3221225472,
+      "maxCanonicalTextBytes": 1048576,
+      "maxCanonicalBlobBytes": 1048576,
+      "maxPreparedSqlBytes": 262144
+    }
+  }
+}

@@ -1,11 +1,11 @@
 import { readyExecutionNodes } from "./graph.js";
 import { ExecutionContractError } from "./types.js";
-import type { ExecutionResumeDecision, ExecutionResumeRuntime, LoadedExecutionRun } from "./types.js";
+import type { ExecutionResumeDecision, ExecutionResumeRuntime, ExecutionRunView } from "./types.js";
 
 const runtimeCode = "EXECUTION_RESUME_RUNTIME_INVALID";
 const revisionPattern = /^[a-f0-9]{40}(?:[a-f0-9]{24})?$/;
 
-export function evaluateExecutionResume(run: LoadedExecutionRun, runtime: ExecutionResumeRuntime): ExecutionResumeDecision {
+export function evaluateExecutionResume(run: ExecutionRunView, runtime: ExecutionResumeRuntime): ExecutionResumeDecision {
   const current = parseRuntime(runtime);
   if (current.sourceRevision !== run.envelope.sourceRevision) {
     return stopped(run.envelope.runId, "source revision does not match the immutable envelope");

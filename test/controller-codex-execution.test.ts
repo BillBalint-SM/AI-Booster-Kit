@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
-import { mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, realpath, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, relative, resolve } from "node:path";
 import { test } from "node:test";
@@ -261,7 +261,7 @@ async function assertExecutionError(run: () => Promise<unknown>, code: string): 
 async function withTemporaryDirectory<T>(run: (directory: string) => Promise<T>): Promise<T> {
   const directory = await mkdtemp(join(tmpdir(), "codex-execution-"));
   try {
-    return await run(directory);
+    return await run(await realpath(directory));
   } finally {
     await rm(directory, { recursive: true, force: true });
   }

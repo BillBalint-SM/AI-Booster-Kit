@@ -2,7 +2,7 @@ import { executionDigest } from "./identity.js";
 import { createExecutionEvent } from "./ledger.js";
 import { assertSafeExecutionContent } from "./validation.js";
 import { ExecutionContractError } from "./types.js";
-import type { ExecutionClaim, ExecutionEvent, ExecutionFinalState, FinalExecutionHandoff, LoadedExecutionRun } from "./types.js";
+import type { ExecutionClaim, ExecutionEvent, ExecutionFinalState, ExecutionRunView, FinalExecutionHandoff } from "./types.js";
 
 const handoffCode = "EXECUTION_FINAL_HANDOFF_INVALID";
 const acceptanceCode = "EXECUTION_ACCEPTANCE_INCOMPLETE";
@@ -10,7 +10,7 @@ const hashPattern = /^[a-f0-9]{64}$/;
 const identifierPattern = /^[a-z0-9][a-z0-9-]{2,79}$/;
 const handoffKeys = ["handoffVersion", "runId", "envelopeHash", "graphHash", "state", "summary", "claims", "evidenceRefs", "unknowns", "limits", "metrics", "nextAction"] as const;
 
-export function validateFinalExecutionHandoff(value: unknown, run: LoadedExecutionRun): FinalExecutionHandoff {
+export function validateFinalExecutionHandoff(value: unknown, run: ExecutionRunView): FinalExecutionHandoff {
   const record = plainRecord(value, handoffCode, "final execution handoff must be a plain object");
   exactKeys(record, handoffKeys, handoffCode, "final execution handoff fields are invalid");
   const handoff = {
@@ -83,7 +83,7 @@ export function renderFinalExecutionHandoffMarkdown(handoff: FinalExecutionHando
 }
 
 export function finalizeExecutionRun(
-  run: LoadedExecutionRun,
+  run: ExecutionRunView,
   handoff: FinalExecutionHandoff,
   recordedAt: string,
 ): { state: ExecutionFinalState; handoffHash: string; event: ExecutionEvent } {
@@ -109,7 +109,7 @@ export function finalizeExecutionRun(
   return { state: accepted.state, handoffHash: executionDigest(accepted), event };
 }
 
-function validateAcceptance(handoff: FinalExecutionHandoff, run: LoadedExecutionRun): void {
+function validateAcceptance(handoff: FinalExecutionHandoff, run: ExecutionRunView): void {
   const knownEvidence = new Set(run.evidenceRefs.map((evidence) => evidence.evidenceId));
   if (handoff.evidenceRefs.some((reference) => !knownEvidence.has(reference))) {
     throw new ExecutionContractError(acceptanceCode, "final execution handoff cites unaccepted evidence");
