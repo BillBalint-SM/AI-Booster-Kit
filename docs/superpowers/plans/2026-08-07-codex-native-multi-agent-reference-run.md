@@ -263,7 +263,7 @@ Do not push or merge.
 Run:
 
 ```powershell
-& 'C:\Users\littl\.agents\tools\work-state-preflight.ps1' -RepositoryPath (Get-Location).Path -OutputFormat Markdown
+& (Join-Path $env:USERPROFILE '.agents\tools\work-state-preflight.ps1') -RepositoryPath (Get-Location).Path -OutputFormat Markdown
 $sourceRevision = (git rev-parse HEAD).Trim()
 $nodeVersion = (& node --version).Trim()
 if ($nodeVersion -notmatch '^v\d+\.\d+\.\d+$') { throw "Reference run requires a detectable stable Node runtime" }
@@ -604,7 +604,7 @@ npm run check:docs
 git diff --check
 rg -n "api[_-]?key|access[_-]?token|refresh[_-]?token|authorization|secret|transcript|prompt|reasoning|cookie|password" docs/history/host-conformance docs/project/current-state.md
 git diff -- docs/history/host-conformance docs/project/current-state.md
-& 'C:\Users\littl\.agents\tools\work-state-preflight.ps1' -RepositoryPath (Get-Location).Path -OutputFormat Markdown
+& (Join-Path $env:USERPROFILE '.agents\tools\work-state-preflight.ps1') -RepositoryPath (Get-Location).Path -OutputFormat Markdown
 ```
 
 Expected: documentation checks pass, the diff contains only normalized promotion material, and work state is fresh.
