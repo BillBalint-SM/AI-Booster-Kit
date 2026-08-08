@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdtemp, mkdir, rm, symlink, writeFile } from "node:fs/promises";
+import { mkdtemp, mkdir, realpath, rm, symlink, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, relative } from "node:path";
 import { test } from "node:test";
@@ -7,7 +7,7 @@ import { test } from "node:test";
 import { resolveExecutionWorkspaceStorage } from "../src/execution/workspace-storage.js";
 
 test("workspace storage resolution is deterministic, contained, and read-only", async (context) => {
-  const root = await mkdtemp(join(tmpdir(), "execution-workspace-storage-"));
+  const root = await realpath(await mkdtemp(join(tmpdir(), "execution-workspace-storage-")));
   context.after(() => rm(root, { recursive: true, force: true }));
   const workspaceRoot = join(root, "Workspace");
   const appDataRoot = join(root, "LocalData");
@@ -35,7 +35,7 @@ test("workspace storage resolution is deterministic, contained, and read-only", 
 
 test("workspace identity normalizes equivalent Windows spelling", async (context) => {
   if (process.platform !== "win32") return;
-  const root = await mkdtemp(join(tmpdir(), "execution-workspace-case-"));
+  const root = await realpath(await mkdtemp(join(tmpdir(), "execution-workspace-case-")));
   context.after(() => rm(root, { recursive: true, force: true }));
   const workspaceRoot = join(root, "MixedCaseWorkspace");
   const appDataRoot = join(root, "LocalData");
@@ -54,7 +54,7 @@ test("workspace identity normalizes equivalent Windows spelling", async (context
 });
 
 test("workspace storage rejects relative, repository-contained, non-directory, and linked roots", async (context) => {
-  const root = await mkdtemp(join(tmpdir(), "execution-workspace-invalid-"));
+  const root = await realpath(await mkdtemp(join(tmpdir(), "execution-workspace-invalid-")));
   context.after(() => rm(root, { recursive: true, force: true }));
   const workspaceRoot = join(root, "workspace");
   const appDataRoot = join(root, "local-data");

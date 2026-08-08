@@ -5,7 +5,7 @@
     "authoritative": {
       "lane": "AUTHORITATIVE",
       "nodeMajor": 24,
-      "minimumVersion": "24.19.0",
+      "minimumVersion": "24.18.0",
       "requiresLts": true
     },
     "conformanceOnly": [

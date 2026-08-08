@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdtemp, mkdir, readFile, readdir, rm, symlink, writeFile } from "node:fs/promises";
+import { mkdtemp, mkdir, readFile, readdir, realpath, rm, symlink, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, win32 } from "node:path";
 import { test } from "node:test";
@@ -303,7 +303,7 @@ function createStorage(userLocalRoot: string) {
 async function withTemporaryDirectory<T>(run: (directory: string) => Promise<T>): Promise<T> {
   const directory = await mkdtemp(join(tmpdir(), "owner-identity-red-"));
   try {
-    return await run(directory);
+    return await run(await realpath(directory));
   } finally {
     await rm(directory, { recursive: true, force: true });
   }

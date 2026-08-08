@@ -12,7 +12,7 @@ test("persistence policy parses the exact versioned contract and produces stable
 
   assert.equal(parsed.contractVersion, "1.0");
   assert.equal(parsed.runtimePolicy.policyId, "execution-runtime-policy-1.0");
-  assert.equal(parsed.runtimePolicy.authoritative.minimumVersion, "24.19.0");
+  assert.equal(parsed.runtimePolicy.authoritative.minimumVersion, "24.18.0");
   assert.equal(parsed.runtimePolicy.authoritative.nodeMajor, 24);
   assert.equal(parsed.runtimePolicy.authoritative.requiresLts, true);
   assert.deepEqual(parsed.runtimePolicy.conformanceOnly, [
@@ -35,7 +35,7 @@ test("persistence policy rejects unknown fields and changed content receives a c
   );
 
   const changed = structuredClone(executionPersistencePolicy);
-  changed.runtimePolicy.authoritative.minimumVersion = "24.19.1";
+  changed.runtimePolicy.authoritative.minimumVersion = "24.18.1";
   const original = parseExecutionPersistencePolicy(executionPersistencePolicy);
   const updated = parseExecutionPersistencePolicy(changed);
   assert.notEqual(updated.runtimePolicy.policyDigest, original.runtimePolicy.policyDigest);
@@ -45,7 +45,7 @@ test("persistence policy rejects unknown fields and changed content receives a c
 test("runtime admission distinguishes authoritative and conformance-only lanes", () => {
   const policy = parseExecutionPersistencePolicy(executionPersistencePolicy).runtimePolicy;
 
-  assert.deepEqual(admitExecutionRuntime(policy, { nodeVersion: "24.19.0", ltsName: "Krypton" }), {
+  assert.deepEqual(admitExecutionRuntime(policy, { nodeVersion: "24.18.0", ltsName: "Krypton" }), {
     accepted: true,
     lane: "AUTHORITATIVE",
     policyId: policy.policyId,
@@ -68,12 +68,13 @@ test("runtime admission rejects unsupported, malformed, prerelease, and non-LTS 
   const rejected = [
     { nodeVersion: "22.22.3", ltsName: "Jod" },
     { nodeVersion: "23.11.1", ltsName: false },
-    { nodeVersion: "24.19.0", ltsName: false },
+    { nodeVersion: "24.17.9", ltsName: "Krypton" },
+    { nodeVersion: "24.18.0", ltsName: false },
     { nodeVersion: "25.9.0", ltsName: false },
     { nodeVersion: "27.0.0", ltsName: false },
-    { nodeVersion: "24.19.0-rc.1", ltsName: "Krypton" },
-    { nodeVersion: "v24.19.0", ltsName: "Krypton" },
-    { nodeVersion: "24.19", ltsName: "Krypton" },
+    { nodeVersion: "24.18.0-rc.1", ltsName: "Krypton" },
+    { nodeVersion: "v24.18.0", ltsName: "Krypton" },
+    { nodeVersion: "24.18", ltsName: "Krypton" },
     { nodeVersion: "not-a-version", ltsName: false },
   ] as const;
 

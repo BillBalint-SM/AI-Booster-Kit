@@ -47,7 +47,7 @@ service.
 
 ## Runtime and storage location
 
-Node 24 is the authoritative LTS lane from `24.19.0`. Node 26 is admitted from
+Node 24 is the authoritative LTS lane from `24.18.0`. Node 26 is admitted from
 `26.7.0` for conformance evidence only. A Node 26 result cannot be relabelled
 authoritative. Runtime, native SQLite binding, policy, dependency lock, kernel
 revision, platform, and host session are bound into an immutable receipt before

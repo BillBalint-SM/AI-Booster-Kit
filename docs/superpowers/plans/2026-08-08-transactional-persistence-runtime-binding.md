@@ -19,7 +19,7 @@
 - Do not add retry, wait, fallback, lock stealing, automatic replay, automatic repair, automatic restore activation, backup pruning, or legacy conversion.
 - Runtime and storage policy are canonical, versioned JSON under `contract/execution/`. TypeScript parses the policy; it does not duplicate its values in another source file.
 - The accepted runtime policy for this slice is:
-  - `AUTHORITATIVE`: Node `>=24.19.0 <25` with a non-false LTS marker;
+  - `AUTHORITATIVE`: Node `>=24.18.0 <25` with a non-false LTS marker;
   - `CONFORMANCE_ONLY`: Node `>=26.7.0 <27` with no authoritative evidence label;
   - everything else: `UNSUPPORTED_RUNTIME_VERSION` before directory creation or persistent database open.
 - The accepted exact dependency changes are `better-sqlite3@13.0.3`, `@types/better-sqlite3@9.6.0`, and `@types/node@24.13.3`. Keep TypeScript, Ajv, and YAML at their existing versions unless a demonstrated compatibility failure requires a separately reviewed change.
@@ -143,7 +143,7 @@ export function admitExecutionRuntime(
 ): ExecutionRuntimeAdmission;
 ```
 
-- [ ] Write `test/execution-runtime-policy.test.ts` first. Cover exact admission of `24.19.0` LTS, later Node 24 LTS patch admission, Node 26.7.0 conformance-only admission, Node 24 with a false LTS marker rejection, Node 26 never receiving `AUTHORITATIVE`, malformed versions, Node 22/23/25/27, prerelease versions, unknown policy fields, and a changed policy digest.
+- [ ] Write `test/execution-runtime-policy.test.ts` first. Cover exact admission of `24.18.0` LTS, later Node 24 LTS patch admission, Node 26.7.0 conformance-only admission, Node 24 with a false LTS marker rejection, Node 26 never receiving `AUTHORITATIVE`, malformed versions, Node 22/23/25/27, prerelease versions, unknown policy fields, and a changed policy digest.
 - [ ] Run the focused test and capture RED because the policy parser and admission functions do not exist:
 
   ```powershell
@@ -161,7 +161,7 @@ export function admitExecutionRuntime(
   npm install --save-dev --save-exact @types/better-sqlite3@9.6.0 @types/node@24.13.3
   ```
 
-- [ ] Change `package.json#engines.node` to `>=24.19.0 <25 || >=26.7.0 <27`. Confirm in tests and documentation that `engines` is an install compatibility range; the policy admission result is the evidence authority.
+- [ ] Change `package.json#engines.node` to `>=24.18.0 <25 || >=26.7.0 <27`. Confirm in tests and documentation that `engines` is an install compatibility range; the policy admission result is the evidence authority.
 - [ ] Inspect the complete `package-lock.json` diff, verify the driver integrity entry, confirm no unrelated version changed, and run:
 
   ```powershell
@@ -852,7 +852,7 @@ The environment value is a test expectation supplied by the CI matrix. It is not
   & $env:AI_BOOSTER_NODE24 --test dist/test/*.test.js dist/test/conformance/*.test.js dist/test/performance/*.test.js
   ```
 
-  Expected: exact Node 24 receipt and `AUTHORITATIVE`. If `AI_BOOSTER_NODE24` is absent or below `24.19.0`, stop the local authoritative claim and use approved CI evidence after publication authorization.
+  Expected: exact Node 24 receipt and `AUTHORITATIVE`. If `AI_BOOSTER_NODE24` is absent or below `24.18.0`, stop the local authoritative claim and use approved CI evidence after publication authorization.
 - [ ] Run a focused secret/path scan over changed code, tests, fixtures, policy, and docs. Inspect all error snapshots and receipt fixtures manually for raw paths, SQL, tokens, cookies, authorization values, prompts, transcripts, and environment dumps.
 - [ ] Review the complete diff for scope creep, line-ending churn, generated noise, native artifacts, database files, backup files, temporary crash files, and unintended workflow/permission changes. No `.sqlite`, journal, backup, native `.node`, or test temp artifact may be tracked.
 - [ ] Only after all required Node 24 authoritative and Node 26 conformance checks pass, update `docs/project/current-state.md` with the exact revision, validation evidence, known limits, any remaining `NOT EXECUTED` host evidence, and the next bounded action. Native Dispatch and the new reference run remain blocked until this gate is complete.
