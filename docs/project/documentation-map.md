@@ -1,80 +1,34 @@
-# Documentation map
+# Documentation Map
 
-This page is the repository’s thematic index. Start from the [root README](../../README.md), then use the [roadmap](roadmap.md) and [current state](current-state.md) before opening a detailed source.
-
-## Reading order
-
-1. **Direction:** [AI Booster Kit Platform Roadmap](roadmap.md)
-2. **Delivery now:** [Current delivery state](current-state.md)
-3. **How the team works:** [Team Delivery Loop](../../workflows/team-delivery-loop.md)
-4. **What is guaranteed:** [Team contract](../../contract/team-contract.md) and [capability matrix](../../contract/capability-matrix.md)
-5. **How to operate it:** [Operations](../operations/)
-6. **How to execute repeatable procedures:** [Runbooks](../runbooks/)
-7. **Why a design exists and how it is implemented:** [Specifications](../superpowers/specs/) and [plans](../superpowers/plans/)
-8. **How the product is positioned and represented:** [Marketing prototype](../../marketing/README.md)
-9. **What is historical context only:** [Archive](../history/README.md)
+Use this page to find the one current owner for a question. Start from the
+[root README](../../README.md) for human orientation; agents use
+[`AGENTS.md`](../../AGENTS.md) for task routing.
 
 ## Canonical source by question
 
-| Question | Canonical source | Keep out of this source |
-| --- | --- | --- |
-| What is the platform’s direction and next milestone? | [Roadmap](roadmap.md) | Current branch details, implementation transcripts, and duplicated task checklists. |
-| What is true right now? | [Current state](current-state.md) | Long-term vision, full history, and unverified assumptions. |
-| How should recurring team work run? | [`workflows/`](../../workflows/) | One-off session notes and host-specific instructions. |
-| What must an artifact or capability guarantee? | [`contract/`](../../contract/) | Runtime logs, historical reports, and connector payloads. |
-| How is a host or operation used? | [`docs/operations/`](../operations/) | Strategic decisions and duplicate workflow definitions. |
-| How is M2 activation prepared, saved, and invoked? | [M2 design](../superpowers/specs/2026-08-02-ai-booster-kit-m2-m3-activation-session-design.md), [M2 plan](../superpowers/plans/2026-08-02-ai-booster-kit-m2-activation-boundary.md), and the Controller CLI | See the named activation contract and its evidence boundary. |
-| How are M3 contexts and compact session state validated or resumed? | [M2/M3 design](../superpowers/specs/2026-08-02-ai-booster-kit-m2-m3-activation-session-design.md), [M3 plan](../superpowers/plans/2026-08-03-ai-booster-kit-m3-session-context.md), and the Context CLI | Context remains source Markdown; host execution, automatic Git operations, and transcripts are outside this boundary. |
-| How is a repeatable check performed? | [`docs/runbooks/`](../runbooks/) | Permanent product requirements and current-state claims. |
-| How is a bounded dev slice synchronized with main? | [Lean branching model](../runbooks/branching.md) | Unverified local cleanliness, stale branch assumptions, and implicit merge claims. |
-| Why was a design chosen? | [`docs/superpowers/specs/`](../superpowers/specs/) | Active runtime context and mutable delivery status. |
-| In what order is approved work implemented? | [`docs/superpowers/plans/`](../superpowers/plans/) | A second roadmap or a current-state substitute. |
-| How is the product positioned and visually represented? | [`marketing/`](../../marketing/) | Delivery status, legal clearance, and unverified product claims. |
-| What happened previously? | [`docs/history/`](../history/) | Default Agent instructions and current decisions. |
+| Question | Canonical source |
+| --- | --- |
+| What are the product vision, v1 gate, principles, and non-goals? | [Vision Contract](../../VISION.md) |
+| Who are the actors, what are the modules, and which invariants apply? | [Domain](../../DOMAIN.md) |
+| Which terms and conceptual relationships are preferred? | [Context](../../CONTEXT.md) |
+| How does an agent choose what to read and finish a task? | [`AGENTS.md`](../../AGENTS.md) |
+| What is true now and what is the next bounded action? | [Current delivery state](current-state.md) |
+| What is the ordered path to v1? | [Roadmap](roadmap.md) |
+| Why is the document topology arranged this way? | [ADR-0001](../adr/0001-canonical-agent-guidance-and-document-topology.md) |
+| How are GitHub Issues and triage labels consumed safely? | [Agent configuration](../agents/) |
+| How does the common operating model work? | [Common Agent Operating Model](../operations/agent-operating-model.md) |
+| What is historical evidence only? | [History](../history/) and the [Foundation Reset migration record](../history/foundation-reset/2026-08-10-document-migration-record.md) |
 
-## Active entry points
+## Reading order
 
-- [Project System Map v1](../operations/project-system-map-v1.md) — first-round
-  read-only system map, Source-of-Truth matrix, workflow/dependency map,
-  redundancy ledger, and prioritized cleanup backlog.
-- [Quick Task Clarifier and Validator](../../contract/agent-library/quick-task-clarifier-validator.md) — first bounded Agent capability contract.
-- [Agent Formation Library catalog](../../contract/agent-library/formation-catalog.md) — scenario inventory, readiness states, prerequisites, and recommendation boundaries.
-- [Agent Role Library catalog](../../contract/agent-library/role-catalog.md) — project Role definitions, clean context contracts, handoff contracts, and global Agent–Role assignments.
-- [User-facing Agent Profile Library](../../contract/agent-library/agent-profile-catalog.md) — selectable declarative profiles; recommendation-only and not native host activation. The read-only `list-agent-profiles` CLI command exposes this catalog.
-- [Owner Identity v1](../../contract/owner-identity.md) — Windows-only, user-local display-alias attribution; `owner-identity setup|reconfigure` and the non-blocking `recommend-formation` pre-session gate are the executable v1 surface.
-- [Bounded Validation recipe](../../contract/agent-library/bounded-validation.md) — READY validation profile and output contract.
-- [Bounded Refinement recipe](../../contract/agent-library/bounded-refinement.md) — READY refinement profile and output contract.
-- [Bounded Research recipe](../../contract/agent-library/bounded-research.md) — READY research profile, source boundary, and output contract.
-- [Bounded Implementation recipe](../../contract/agent-library/bounded-implementation.md) — READY implementation profile with verified-repository, accepted-plan, evidence, and rollback boundaries.
-- [Planning-show scenario contracts v1](../planning/ai-booster-kit/scenario-contracts/v1/index.md) — READY_WITH_LIMIT catalog for the approved User-facing planning, handoff, and read-only verification flows; runtime basis stays PARTIAL and end-to-end execution stays NOT_EXECUTED.
-- [M4 Codex execution design](../superpowers/specs/2026-08-05-codex-windows-execution-conformance-design.md), [execution plan](../superpowers/plans/2026-08-05-codex-activation-execution.md), and [Windows conformance plan](../superpowers/plans/2026-08-05-codex-windows-conformance.md) — bounded read-only/ephemeral Codex execution and separate Windows conformance diagnostic; neither proves host security or native process creation alone.
-- [Transactional execution design](../superpowers/specs/2026-08-08-transactional-persistence-runtime-binding-design.md), [implementation plan](../superpowers/plans/2026-08-08-transactional-persistence-runtime-binding.md), [persistence policy](../../contract/execution/persistence-policy.json), and [operating runbook](../operations/codex-native-multi-agent-runbook.md) — the canonical local SQLite, runtime-lane, recovery, backup, migration, immutable-import, and pre-reference-run boundary.
-- [Outcome-to-MVP Contract Brief v1](../operations/outcome-to-mvp-contract-brief-v1.md) — one evidence-gated local product hypothesis and vertical-slice decision packet; it is not market or production proof.
-- [Marketing prototype](../../marketing/README.md) — brand direction, naming screens, prototype design tokens, asset governance, and publication boundaries.
-- [Outcome & Operating Audit v1](../operations/outcome-operating-audit-v1.md) — source-backed product/market hypotheses, dependency map, rule audit, and the bounded MVP-slice candidate; it preserves `UNKNOWN` and does not replace the roadmap or current-state routing.
-- [Outcome & Operating Audit design](../superpowers/specs/2026-08-04-outcome-operating-audit-design.md) and [implementation plan](../superpowers/plans/2026-08-04-outcome-operating-audit.md) — reviewed intent and execution order for the current audit slice.
-- [Bounded Debugging recipe](../../contract/agent-library/bounded-debugging.md) — READY debugging profile with reproduction, root-cause, minimal-fix, regression-evidence, and fail-closed recovery boundaries.
-- The read-only `inspect-agent-library` CLI command joins the global Agent inventory, Role coverage matrix, and all Formation projections (with the first projection retained as a compatibility field).
-- [Lean branching model](../runbooks/branching.md) — main and short-lived dev-slice flow with direct reviewed promotion.
-- The Controller exposes the local `activate-quick-task --input <request.json> --choice <choice.json> --profile <profile>` command, which issues an ephemeral host-agnostic package only after fresh evaluation and `ACTIVATION_INTENT`; see the approved [design](../superpowers/specs/2026-08-01-ai-booster-kit-quick-task-activation-package-design.md) and [implementation plan](../superpowers/plans/2026-08-01-ai-booster-kit-quick-task-activation-package.md), which remain review artifacts rather than default runtime context.
-- M2 adds `prepare-activation` for a pure host-agnostic activation package and `save-activation` for explicit Personal/Team JSON persistence; see the approved [activation/session design](../superpowers/specs/2026-08-02-ai-booster-kit-m2-m3-activation-session-design.md) and [M2 implementation plan](../superpowers/plans/2026-08-02-ai-booster-kit-m2-activation-boundary.md).
-- M3 adds strict Milestone/Epic context Markdown and compact session state through `validate-context`, `save-context`, `save-session`, and `resume-session`; see the [M3 plan](../superpowers/plans/2026-08-03-ai-booster-kit-m3-session-context.md). Resume only evaluates caller-supplied evidence and never reconstructs a transcript or runs a host.
-- [Canonical artifact templates](../../contract/artifacts/canonical-work-artifact-template.md) — common artifact shape.
-- [Jira–Confluence–GitHub mapping contract](../../contract/mappings/jira-confluence-github.md) — future synchronization boundary.
-- [Host adapter contracts](../operations/host-adapters/) — host-specific projections of the shared model.
+1. Read `VISION.md` when the task can change product direction or the v1 gate.
+2. Read `DOMAIN.md`, then `CONTEXT.md`, when the task changes behavior, modules, boundaries, or terminology.
+3. Read `AGENTS.md` and the source it routes to for the task shape.
+4. Read `docs/project/current-state.md` only for status, handoff, milestone-dependent work, or external-target decisions.
+5. Read historical artifacts only when a bounded task needs their evidence.
 
-## Context rule
+## Default context rule
 
-The Controller reads the active canonical contract first. Decisions, evidence,
-unknowns, deviations, and progress attach to that contract. Briefs,
-checklists, reports, and session summaries are derived artifacts. Historical
-material is retained for investigation but is not automatically active Agent
-context.
-
-Historical evidence is not default agent context.
-
-There is deliberately no second roadmap, generic `vision.md`, or catch-all
-`important.md` here. If a topic has an independent owner and lifecycle, it may
-receive its own contract or artifact; otherwise it belongs in the canonical
-source above.
-
+Historical evidence is not default agent context. Historical documents, prior
+designs and plans, `NOTES.md`, and the terminology normalization table remain
+available through the migration record when a bounded investigation needs them.
