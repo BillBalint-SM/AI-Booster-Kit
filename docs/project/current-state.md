@@ -1,52 +1,43 @@
 # Current delivery state
 
-This is the sole operational routing source for the repository. It records
-the current Foundation Reset publication state, not a historical runtime
-delivery claim.
+This is the sole operational routing source for durable delivery facts and the
+next bounded action. It is not a live Git or pull-request state record.
 
-## Branch and pull request
+## Live Git and pull-request guard
 
-- Freshness: `2026-08-10T06:08:36.1361672Z`
-- Branch: `main`
-- HEAD: `9b84c0580d8566a76fe8ff8c5e1c0051e4a8dbc2`
-- Worktree: `clean` at observation.
-- Upstream: `origin/main`; pull-request state: `{"status":"none","evidence":"no pull request found for current branch"}`.
-- The Foundation Reset was fast-forwarded to `main` and pushed to GitHub after the owner's explicit approval. No pull request, Jira, Confluence, MCP, plugin, credential, global configuration, or runtime operation occurred in this slice.
+Before any branch, commit, push, pull request, merge, rebase, or external
+target decision, run the repository work-state preflight. A revision inside a
+proof artifact identifies historical evidence only; it never asserts the
+current `HEAD`.
 
-## Completed deliverable
+## Delivery evidence
 
-The published Foundation Reset creates `VISION.md`, `DOMAIN.md`, and `CONTEXT.md`; adds
-ADR-0001 and the `docs/agents/` configuration documents; replaces the shared
-repository guidance with a short `AGENTS.md` router; reduces `CLAUDE.md` to
-its Claude-specific context-integrity projection; and rewires the README,
-roadmap, and documentation map to the new canonical owners.
+| Roadmap slice | State | Evidence and boundary |
+| --- | --- | --- |
+| Foundation Reset | Published | [Foundation Reset migration record](../history/foundation-reset/2026-08-10-document-migration-record.md) and publication commit `7905035faef29fd1a2f2bd82a643ee4f735a303c`. |
+| Standalone Plan Proof | COMPLETE | [Planning-Show handoff](../planning/ai-booster-kit/standalone-plan-proof/roadmap-2/2026-08-10-planning-show-handoff.md), published in proof bundle `70c6ed7c324521c2cf14c00d7f79ff80bff3c4e7`. |
+| Standalone Review/Test Proof | COMPLETE — durable PASS result | [Plan Proof review handoff](../planning/ai-booster-kit/standalone-review-test-proof/roadmap-3/2026-08-11-plan-proof-review-handoff.md) preserves the exact claim, criterion-to-evidence map, executed checks, result, limits, and next action. The historical session result remains context only. |
+| Safe Stop Proof | STOPPED — intended proof result | [Delivery-state conflict handoff](../planning/ai-booster-kit/safe-stop-proof/roadmap-4/2026-08-10-delivery-state-conflict-handoff.md) records the reason, limits, and reconciliation boundary. |
+| End-to-End Change Proof | COMPLETE | [Current Delivery State Reconciliation handoff](../planning/ai-booster-kit/end-to-end-change-proof/roadmap-5/2026-08-11-current-delivery-state-reconciliation-handoff.md) records this local clarification, context, plan, implementation, verification, and handoff. |
+| V1 Completion Review | READY — V1 completion gate satisfied | [V1 Completion Review handoff](../planning/ai-booster-kit/v1-completion-review/roadmap-6/2026-08-11-v1-completion-review-handoff.md) independently maps all four required proofs, their limits, and the `READY` verdict. |
 
-The [Foundation Reset migration record](../history/foundation-reset/2026-08-10-document-migration-record.md)
-classifies retained, rewritten, and archived-in-place legacy documents. No
-legacy document was deleted or relocated.
+## Current routing decision
 
-## Validation
+The four V1 proof types were independently reviewed against `VISION.md` and
+the V1 Completion Gate is `READY`. This is an evidence-gate verdict only: it
+does not prove runtime, host security, connector behavior, external authority,
+or human final acceptance.
 
-- `npm test` passed on `main`: 598 passed, 0 failed, and 1 intentionally skipped.
-- `npm run check:docs` passed after the README, roadmap, and documentation-map rewrite.
-- `git diff --check` passed after the `AGENTS.md` and `CLAUDE.md` rewrite.
-- The router/projection check found no shared operating-loop copy in `CLAUDE.md` and no Claude context-integrity implementation in `AGENTS.md`.
-- The source-ownership audit found the vision statement and v1 gate only in active `VISION.md`; the only `NOTES.md` mention in an active entry point says it is not default context.
+## Limits
 
-## Known limit
-
-This documentation slice does not prove host security, instruction-loading
-behavior, tool availability, connector behavior, external authority, or v1
-completion. Passing local documentation checks are evidence for this review
-package, not proof of any live external behavior.
-
-## Open stop
-
-No real v1 proof has run yet: there is no standalone plan proof, review/test
-proof, safe-stop proof, or end-to-end change proof. The approved GitHub
-publication is a documentation-delivery action, not a product proof.
+This routing record does not prove runtime behavior, host security,
+instruction loading, connector behavior, external authority, production
+readiness, publication, or human final acceptance.
 
 ## Next bounded action
 
-Select and explicitly approve the `Standalone Plan Proof` slice from
-[the roadmap](roadmap.md). It must not start automatically.
+The User has explicitly authorized publication of this local V1 proof package
+through a review pull request targeting `main`. Publish the verified package
+from a short-lived delivery branch, then review the resulting pull request.
+Merge and release remain separate explicit decisions. Live branch and
+pull-request state always comes from a fresh work-state preflight or GitHub.

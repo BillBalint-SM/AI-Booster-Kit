@@ -17,9 +17,32 @@ test("documentation entry points: provide the approved routing contract", async 
 
   assert.match(readme, /docs\/project\/documentation-map\.md/);
   assert.match(readme, /routing-only/i);
-  for (const heading of ["Branch and pull request", "Completed deliverable", "Validation", "Known limit", "Open stop", "Next bounded action"]) {
+  for (const heading of [
+    "Live Git and pull-request guard",
+    "Delivery evidence",
+    "Current routing decision",
+    "Limits",
+    "Next bounded action",
+  ]) {
     assert.match(state, new RegExp("^## " + heading + "$", "m"));
   }
+  assert.match(state, /not a live Git or pull-request state record/i);
+  assert.match(state, /V1 Completion Review|Complete the approved routing-contract correction/);
+  assert.match(state, /short-lived delivery branch/i);
+  assert.match(state, /Merge and release remain separate explicit decisions/i);
+  assert.match(
+    state,
+    /\| V1 Completion Review \| READY — V1 completion gate satisfied \| \[V1 Completion Review handoff\]\(\.\.\/planning\/ai-booster-kit\/v1-completion-review\/roadmap-6\/2026-08-11-v1-completion-review-handoff\.md\)/,
+  );
+  assert.match(
+    state,
+    /\| Standalone Review\/Test Proof \| COMPLETE — durable PASS result \| \[Plan Proof review handoff\]\(\.\.\/planning\/ai-booster-kit\/standalone-review-test-proof\/roadmap-3\/2026-08-11-plan-proof-review-handoff\.md\)/,
+  );
+  assert.doesNotMatch(state, /^## Branch and pull request$/m);
+  assert.doesNotMatch(state, /No real v1 proof has run yet:/i);
+  assert.doesNotMatch(state, /Accepted historical session result/);
+  assert.doesNotMatch(state, /prior V1 Completion Review's `NOT READY` verdict is historical/i);
+  assert.doesNotMatch(state, /The User must decide whether to accept this local `READY` verdict/i);
   assert.match(map, /Historical evidence is not default agent context/i);
 });
 
