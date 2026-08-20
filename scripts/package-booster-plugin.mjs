@@ -25,7 +25,7 @@ if (unexpected.length > 0) {
       if (error?.code !== "ENOENT") throw error;
     }
 
-    if (actual === file.content) continue;
+    if (actual === file.content || (actual !== null && normalizeLineEndings(actual) === normalizeLineEndings(file.content))) continue;
     stale.push(file.label);
     if (!checkOnly) {
       await mkdir(dirname(file.destination), { recursive: true });
@@ -128,9 +128,14 @@ function removeClaudeOnlyFrontmatter(source) {
 
 function addClaudeOnlyFrontmatter(source) {
   if (/^disable-model-invocation:/mu.test(source)) return source;
-  const closing = source.indexOf("\n---\n", 4);
-  if (closing < 0) throw new Error("Skill source is missing closing frontmatter");
-  return `${source.slice(0, closing)}\ndisable-model-invocation: true${source.slice(closing)}`;
+  const closing = /\r?\n---\r?\n/u.exec(source);
+  if (closing?.index === undefined) throw new Error("Skill source is missing closing frontmatter");
+  const lineEnding = closing[0].startsWith("\r\n") ? "\r\n" : "\n";
+  return `${source.slice(0, closing.index)}${lineEnding}disable-model-invocation: true${source.slice(closing.index)}`;
+}
+
+function normalizeLineEndings(source) {
+  return source.replaceAll("\r\n", "\n");
 }
 
 function adaptClaudeSkill(source) {

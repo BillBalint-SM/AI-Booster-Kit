@@ -14,8 +14,8 @@
     "check:mappers": "node scripts/check-mapper-freshness.mjs",
     "package:booster": "node scripts/package-booster-plugin.mjs",
     "check:booster-package": "node scripts/package-booster-plugin.mjs --check",
-    "test": "npm run build && node --test dist/test/*.test.js dist/test/conformance/*.test.js dist/test/performance/*.test.js",
-    "test:execution-storage": "node --test dist/test/execution-runtime-lane.test.js dist/test/execution-sqlite-adapter.test.js dist/test/execution-transactional-store.test.js dist/test/execution-storage-concurrency.test.js dist/test/execution-storage-crash.test.js dist/test/execution-storage-results.test.js dist/test/execution-storage-finalization.test.js dist/test/execution-storage-recovery.test.js dist/test/execution-storage-backup.test.js dist/test/execution-storage-migrations.test.js dist/test/execution-storage-import.test.js dist/test/execution-storage.test.js dist/test/execution-cli.test.js",
+    "test": "npm run build && node --test --test-concurrency=1 dist/test/*.test.js dist/test/conformance/*.test.js dist/test/performance/*.test.js",
+    "test:execution-storage": "node --test --test-concurrency=1 dist/test/execution-runtime-lane.test.js dist/test/execution-sqlite-adapter.test.js dist/test/execution-transactional-store.test.js dist/test/execution-storage-concurrency.test.js dist/test/execution-storage-crash.test.js dist/test/execution-storage-results.test.js dist/test/execution-storage-finalization.test.js dist/test/execution-storage-recovery.test.js dist/test/execution-storage-backup.test.js dist/test/execution-storage-migrations.test.js dist/test/execution-storage-import.test.js dist/test/execution-storage.test.js dist/test/execution-cli.test.js",
     "cli": "node dist/cli.js"
   },
   "dependencies": {
