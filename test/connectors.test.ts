@@ -8,6 +8,9 @@ import { ConnectorFailure } from "../src/connectors/types.js";
 import { startConnectorFixture, type ConnectorFixture } from "./fixtures/connector-server.js";
 
 const credential = "local-fixture-credential";
+// Normal fixture calls need scheduler headroom; only the never-responding scenario tests the short abort boundary.
+const fixtureRequestTimeoutMs = 1_000;
+const intentionalTimeoutMs = 100;
 let fixture: ConnectorFixture;
 
 before(async () => {
@@ -28,7 +31,7 @@ test("connectors: Jira projects only allowlisted fields through the local fixtur
     target: "local-target",
     projectKey: "GDEAI",
     allowedFields: ["summary", "description", "parent", "status"],
-    timeoutMs: 100,
+    timeoutMs: fixtureRequestTimeoutMs,
   });
 
   const result = await gateway.applyProjection({
@@ -77,14 +80,24 @@ test("connectors: Jira maps local authorization, conflict, rate, timeout, partia
     ["target-mismatch", "TARGET_MISMATCH", null],
   ];
   for (const [scenario, code, status] of scenarios) {
-    const before = fixture.requests.length;
-    const gateway = jiraGateway(scenario);
-    await assert.rejects(
-      gateway.applyProjection(jiraIntent()),
-      (error: unknown) => error instanceof ConnectorFailure && error.code === code && error.status === status && !JSON.stringify(error).includes(credential),
-    );
-    const calls = fixture.requests.slice(before);
-    assert.equal(calls.length, ["stale", "target-mismatch"].includes(scenario) ? 2 : 1, `${scenario} must not retry an unsafe outcome`);
+    // A timed-out socket can reach the fixture after the caller rejects, so its request ledger must not leak into the next scenario.
+    const scenarioFixture = scenario === "timeout" ? await startConnectorFixture() : fixture;
+    try {
+      const before = scenarioFixture.requests.length;
+      const gateway = jiraGateway(scenario, scenarioFixture);
+      await assert.rejects(
+        gateway.applyProjection(jiraIntent()),
+        (error: unknown) => error instanceof ConnectorFailure && error.code === code && error.status === status && !JSON.stringify(error).includes(credential),
+      );
+      const calls = scenarioFixture.requests.slice(before);
+      if (scenario === "timeout") {
+        assert.ok(calls.length <= 1, "timeout must not retry an unsafe outcome");
+      } else {
+        assert.equal(calls.length, ["stale", "target-mismatch"].includes(scenario) ? 2 : 1, `${scenario} must not retry an unsafe outcome`);
+      }
+    } finally {
+      if (scenarioFixture !== fixture) await scenarioFixture.close();
+    }
   }
 });
 
@@ -277,27 +290,27 @@ test("connectors: GitHub reads evidence only from the named repository with one 
   );
 });
 
-function gatewayOptions(scenario: string) {
+function gatewayOptions(scenario: string, scenarioFixture: ConnectorFixture = fixture) {
   return {
-    baseUrl: fixture.baseUrl(scenario),
-    targetTenantUrl: fixtureOrigin(scenario),
+    baseUrl: scenarioFixture.baseUrl(scenario),
+    targetTenantUrl: fixtureOrigin(scenario, scenarioFixture),
     credentialProvider: () => credential,
     correlationId: "correlation-102",
     target: "local-target",
-    timeoutMs: 100,
+    timeoutMs: scenario === "timeout" ? intentionalTimeoutMs : fixtureRequestTimeoutMs,
   };
 }
 
-function fixtureOrigin(scenario: string): string {
-  return new URL(fixture.baseUrl(scenario)).origin;
+function fixtureOrigin(scenario: string, scenarioFixture: ConnectorFixture = fixture): string {
+  return new URL(scenarioFixture.baseUrl(scenario)).origin;
 }
 
-function jiraGateway(scenario: string): JiraGateway {
-  return new JiraGateway(jiraGatewayOptions(scenario));
+function jiraGateway(scenario: string, scenarioFixture: ConnectorFixture = fixture): JiraGateway {
+  return new JiraGateway(jiraGatewayOptions(scenario, scenarioFixture));
 }
 
-function jiraGatewayOptions(scenario: string) {
-  return { ...gatewayOptions(scenario), projectKey: "GDEAI", allowedFields: ["summary", "description", "parent", "status"] };
+function jiraGatewayOptions(scenario: string, scenarioFixture: ConnectorFixture = fixture) {
+  return { ...gatewayOptions(scenario, scenarioFixture), projectKey: "GDEAI", allowedFields: ["summary", "description", "parent", "status"] };
 }
 
 function confluenceIntent() {
