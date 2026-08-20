@@ -4,6 +4,11 @@
 **Boundary:** local repository and the read-only Codex global Agent inventory
 **Authority:** READY_WITH_LIMIT for the map and catalog projection; NEEDS_EVIDENCE for product/market readiness; no host activation, connector operation, UA/Graphify sync, or publication was performed.
 
+**Retirement note (2026-08-20):** Understand Anything, Graphify, their
+repository results, freshness command, and runbook were removed by explicit
+User decision. Mapper paths and check results below are retained only as dated
+audit facts; they are not active dependencies or gates.
+
 This is a decision-support artifact for the first formation round. It does not
 replace docs/project/current-state.md, the roadmap, a contract, or the user's
 authority as Vision Owner.

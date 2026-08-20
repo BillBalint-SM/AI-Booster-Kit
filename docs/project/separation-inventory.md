@@ -32,13 +32,15 @@ remain self-contained.
 | Surface | Classification | Reason |
 | --- | --- | --- |
 | `docs/history/` | Historical evidence | Its own README marks it immutable and outside default context. |
-| `.ua/` | Generated mapper evidence | The mapper runbook and freshness checker treat these files as a retained snapshot. |
-| `graphify-out/` | Generated mapper evidence | The mapper runbook and freshness checker require this published snapshot. |
 
-Generated mapper files are not ordinary source, but they are not unused. Use
-[`scripts/check-mapper-freshness.mjs`](../../scripts/check-mapper-freshness.mjs)
-and the [mapper snapshot runbook](../runbooks/mapper-snapshot.md) before any
-replacement decision.
+## Retired tooling
+
+Understand Anything and Graphify were removed by explicit User decision on
+2026-08-20. Their Skills, repository configuration, generated snapshots,
+caches, freshness command, and runbook are not part of the active product or
+the installable AI Booster Kit package. Historical audit records may still name
+the former tools as dated evidence; those mentions do not restore a dependency
+or release gate.
 
 ## Optional or prototype surfaces
 
@@ -63,7 +65,7 @@ replacement decision.
 1. Prove references and consumers with a fresh scan; absence from one scan is
    only a lead.
 2. Preserve a migration index when moving historical evidence.
-3. Run the affected build, tests, link check, and mapper freshness check.
+3. Run the affected build, tests, and link check.
 4. Keep optional product surfaces explicit instead of mixing them into the
    core usage path.
 5. Deletion requires a separate exact decision after the move and verification

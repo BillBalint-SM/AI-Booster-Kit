@@ -36,8 +36,8 @@ test("documentation entry points: provide the approved routing contract", async 
     /\| Booster Mode and dual-host plugin \| LOCAL — review-ready \|.*full local regression, package checks, both host validators, and two independent reviews passed/i,
   );
   assert.match(state, /present the[\s\S]*Delivery Kit[\s\S]*Module\/Flow kernel[\s\S]*for User acceptance/i);
-  assert.match(state, /MAPPER_FRESHNESS=NOT_READY/);
-  assert.match(state, /Branch,\s+commit, plugin installation, mapper publication, merge, and release\s+remain\s+separate exact decisions/i);
+  assert.doesNotMatch(state, /MAPPER_FRESHNESS|check:mappers|mapper publication/i);
+  assert.match(state, /Branch,\s+commit,\s+plugin\s+installation,\s+merge,\s+and\s+release\s+remain\s+separate exact decisions/i);
   assert.match(
     state,
     /\| V1 Completion Review \| READY — V1 completion gate satisfied \| \[V1 Completion Review handoff\]\(\.\.\/planning\/ai-booster-kit\/v1-completion-review\/roadmap-6\/2026-08-11-v1-completion-review-handoff\.md\)/,

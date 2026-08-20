@@ -31,17 +31,6 @@ npm run check:docs
 git diff --check
 ```
 
-Run mapper freshness separately:
-
-```powershell
-npm run check:mappers
-```
-
-Mapper freshness is a retained-snapshot check, not a substitute for TypeScript
-tests. A `MAPPER_FRESHNESS=NOT_READY` result must be reported as an explicit
-limit and repaired through the mapper runbook; it must not be hidden by other
-passing checks.
-
 ## Manual product smoke test
 
 ```powershell
@@ -140,9 +129,7 @@ When verification fails, keep the failing output and classify it:
 - public-interface regression: add/keep the failing test before the fix;
 - receipt/contract mismatch: return the stable blocker and correct the input;
 - flaky or unavailable evidence: preserve `UNKNOWN` and reacquire evidence;
-- unrelated dirty work: stop touching that surface and report the conflict;
-- mapper snapshot stale: follow the mapper runbook or report the explicit
-  `NOT_READY` limit.
+- unrelated dirty work: stop touching that surface and report the conflict.
 
 After recovery, rerun the failed check and all checks that depend on the changed
 surface. Do not claim the full suite passed from a focused rerun.

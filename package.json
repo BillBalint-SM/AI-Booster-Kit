@@ -11,7 +11,6 @@
     "build": "tsc",
     "lint": "tsc --noEmit",
     "check:docs": "node --experimental-strip-types scripts/check-doc-links.mjs",
-    "check:mappers": "node scripts/check-mapper-freshness.mjs",
     "package:booster": "node scripts/package-booster-plugin.mjs",
     "check:booster-package": "node scripts/package-booster-plugin.mjs --check",
     "test": "npm run build && node --test --test-concurrency=1 dist/test/*.test.js dist/test/conformance/*.test.js dist/test/performance/*.test.js",

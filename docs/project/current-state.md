@@ -40,14 +40,8 @@ identity, runtime behavior, host security, instruction loading, connector
 behavior, external authority, production readiness, publication, or human
 final acceptance.
 
-The retained mapper snapshots are currently stale relative to the working tree
-(`MAPPER_FRESHNESS=NOT_READY`). Refreshing and publishing those snapshots
-requires the separately governed stable-revision and publication procedure; the
-passing build, tests, lint, and documentation checks do not erase this limit.
-
 ## Next bounded action
 
-Present the Delivery Kit, Module/Flow kernel, full evidence, mapper-freshness
-limit, research provenance, and separation inventory for User acceptance.
-Branch, commit, plugin installation, mapper publication, merge, and release
-remain separate exact decisions.
+Present the Delivery Kit, Module/Flow kernel, full evidence, research
+provenance, and separation inventory for User acceptance. Branch, commit, plugin
+installation, merge, and release remain separate exact decisions.

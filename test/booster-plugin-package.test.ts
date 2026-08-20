@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
-import { cp, mkdtemp, readFile, writeFile } from "node:fs/promises";
+import { access, cp, mkdtemp, readFile, readdir, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { test } from "node:test";
@@ -81,6 +81,29 @@ test("installed plugin carries the repository MIT license unchanged", async () =
   assert.match(repositoryLicense, /^MIT License\r?$/mu);
   assert.match(repositoryLicense, /Copyright \(c\) 2026 AI Booster Kit contributors/u);
   assert.equal(await readFile(join(PLUGIN, "LICENSE"), "utf8"), repositoryLicense);
+});
+
+test("installable plugin excludes retired mapper tooling, skills, and results", async () => {
+  const expectedSkills = [...SKILLS].sort();
+  assert.deepEqual((await readdir(join(PLUGIN, "skills"))).sort(), expectedSkills);
+  assert.deepEqual((await readdir(join(PLUGIN, "claude-skills"))).sort(), expectedSkills);
+
+  for (const retiredPath of [
+    ".ua",
+    ".graphifyignore",
+    "graphify-out",
+    "scripts/check-mapper-freshness.mjs",
+  ]) {
+    await assert.rejects(
+      access(join(PLUGIN, ...retiredPath.split("/"))),
+      `${retiredPath} must not be distributed with AI Booster Kit`,
+    );
+  }
+
+  const repositoryPackage = await readJson(resolve("package.json"));
+  const ci = await readFile(resolve(".github/workflows/ci.yml"), "utf8");
+  assert.equal(Object.hasOwn(repositoryPackage.scripts, "check:mappers"), false);
+  assert.doesNotMatch(ci, /check:mappers|MAPPER_FRESHNESS|mapper-snapshot/u);
 });
 
 test("published install instructions name the canonical GitHub marketplace", async () => {
