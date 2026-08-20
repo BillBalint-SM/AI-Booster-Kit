@@ -1,0 +1,20 @@
+{
+  "name": "ai-booster-kit",
+  "interface": {
+    "displayName": "Ai Booster Kit"
+  },
+  "plugins": [
+    {
+      "name": "ai-booster-kit",
+      "source": {
+        "source": "local",
+        "path": "./plugins/ai-booster-kit"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

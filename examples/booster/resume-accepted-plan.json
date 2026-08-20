@@ -1,0 +1,21 @@
+{
+  "requestVersion": "1.0",
+  "mode": "RESUME",
+  "collaboration": "INDIVIDUAL",
+  "objective": "Deliver one bounded, reviewable software change.",
+  "preferredSkill": null,
+  "artifacts": [
+    { "type": "refined-scope", "reference": "docs:scope-v1", "state": "COMPLETE", "bindsTo": null },
+    { "type": "acceptance-criteria", "reference": "docs:acceptance-v1", "state": "COMPLETE", "bindsTo": null },
+    { "type": "decision-record", "reference": "docs:decisions-v1", "state": "COMPLETE", "bindsTo": null },
+    { "type": "plan-handoff", "reference": "docs:plan-v1", "state": "COMPLETE", "bindsTo": null },
+    { "type": "accepted-plan", "reference": "user-decision:accept-plan-v1", "state": "ACCEPTED", "bindsTo": "docs:plan-v1" },
+    { "type": "repository-verified", "reference": "git:working-tree-v1", "state": "VERIFIED", "bindsTo": null }
+  ],
+  "facts": ["The repository was read back after plan acceptance."],
+  "decisions": ["The User accepted docs:plan-v1 for implementation."],
+  "evidence": ["docs:plan-v1", "git:working-tree-v1"],
+  "unknowns": [],
+  "constraints": ["Keep changes local and uncommitted."],
+  "stopReasons": []
+}

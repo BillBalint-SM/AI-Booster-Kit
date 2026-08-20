@@ -1,0 +1,11 @@
+{
+  "requestVersion": "1.0",
+  "selection": { "kind": "module", "module": "plan" },
+  "objective": "Turn the requested local change into an accepted, testable plan.",
+  "inputs": {
+    "current-scope": "One bounded repository change.",
+    "constraints": ["Keep the result local, reversible, and reviewable."],
+    "open-questions": []
+  },
+  "unknowns": []
+}

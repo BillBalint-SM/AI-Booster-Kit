@@ -12,6 +12,9 @@ import { loadGithubReadOnlyCapability } from "./capabilities/manifest.js";
 import { type ReadinessAdapter, type ReadinessObservationBundle } from "./readiness/observations.js";
 import { writeReadinessCertificate } from "./readiness/output.js";
 import { runReadinessCertificate } from "./readiness/run.js";
+import { composeFlow, FlowCompositionError } from "./flow/compose.js";
+import { assessFlow, FlowAssuranceError } from "./flow/assurance.js";
+import { BoosterCompassError, projectDeliveryCompass } from "./booster/compass.js";
 import { createQuickTaskActivationPackage, parseActivationProfile } from "./controller/activation-package.js";
 import { evaluateQuickTask, ControllerEvaluationError } from "./controller/evaluate.js";
 import { FormationCatalogError, loadFormationCatalog } from "./controller/formation.js";
@@ -33,6 +36,14 @@ import {
   type CodexWindowsProbeProfile,
 } from "./controller/codex-windows-conformance.js";
 import { ControllerActivationPackageError } from "./controller/types.js";
+import {
+  ImplementationRecipeError,
+  RefinementRecipeError,
+  ValidationRecipeError,
+  loadImplementationRecipe,
+  loadRefinementRecipe,
+  loadValidationRecipe,
+} from "./controller/formation-recipe.js";
 import type { ActivationBoundaryPackage, ActivationContextKind, RetentionScope, TuningRequest } from "./controller/types.js";
 import type { CodexExecutionRequest } from "./controller/codex-execution.js";
 import { parseWorkContext } from "./context/markdown.js";
@@ -61,7 +72,7 @@ import {
   runStopExecution,
 } from "./execution/cli.js";
 
-const helpText = `Usage: npm run cli -- <command>
+const helpText = `Usage: node dist/cli.js <command>
 
 Commands:
   validate      Validate the canonical contract
@@ -69,6 +80,9 @@ Commands:
   sync          Validate local planned or local-result sync output
   conformance   Run cross-host conformance checks
   readiness     Generate a local G2AS Sandbox Readiness Certificate
+  compose-flow  Prepare one module or an explicit default change flow from --input <path>
+  assess-flow   Evaluate Flow receipts and recommend the next safe module from --input <path>
+  booster       Project Booster Mode's Delivery Compass from --input <path>
   quick-task    Recommend the local Quick Task recipe
   recommend-formation  Recommend a catalog formation without activation
   owner-identity setup|reconfigure  Configure the local attribution alias
@@ -126,6 +140,9 @@ async function dispatchCli(argv: readonly string[]): Promise<number> {
   if (command === "sync") return runSync(argv.slice(1));
   if (command === "conformance") return runConformance(argv.slice(1));
   if (command === "readiness") return runReadiness(argv.slice(1));
+  if (command === "compose-flow") return runComposeFlow(argv.slice(1));
+  if (command === "assess-flow") return runAssessFlow(argv.slice(1));
+  if (command === "booster") return runBooster(argv.slice(1));
   if (command === "quick-task") return runQuickTask(argv.slice(1));
   if (command === "recommend-formation") return runFormationRecommendationWithOwnerIdentity(argv);
   if (command === "owner-identity") return runOwnerIdentity(argv.slice(1));
@@ -155,6 +172,130 @@ async function dispatchCli(argv: readonly string[]): Promise<number> {
   if (command === "compare-execution-runs") return runCompareExecutionRuns(argv.slice(1));
 
   throw new CliError("CONFIGURATION_ERROR", 4);
+}
+
+async function runComposeFlow(argv: readonly string[]): Promise<number> {
+  if (argv[0] !== "--input" || argv[1] === undefined || argv.length !== 2) {
+    return stoppedController("COMMAND_CONFIGURATION_INVALID", "compose-flow requires exactly --input <path>", 4);
+  }
+  let source: string;
+  try {
+    source = await readFile(argv[1], "utf8");
+  } catch (error) {
+    if (isSystemError(error)) return stoppedController("FLOW_INPUT_PATH_UNREADABLE", "The explicit flow input path could not be read", 4);
+    throw error;
+  }
+  let input: unknown;
+  try {
+    input = JSON.parse(source) as unknown;
+  } catch (error) {
+    if (error instanceof SyntaxError) return stoppedController("FLOW_INPUT_JSON_INVALID", "The explicit flow input is not valid JSON", 3);
+    throw error;
+  }
+  try {
+    const [plan, implement, verify] = await Promise.all([
+      loadRefinementRecipe("contract/agent-library/bounded-refinement.md"),
+      loadImplementationRecipe("contract/agent-library/bounded-implementation.md"),
+      loadValidationRecipe("contract/agent-library/bounded-validation.md"),
+    ]);
+    const result = composeFlow(input, { plan, implement, verify });
+    process.stdout.write(`${JSON.stringify(result)}\n`);
+    return result.status === "READY" ? 0 : 2;
+  } catch (error) {
+    if (
+      error instanceof FlowCompositionError
+      || error instanceof RefinementRecipeError
+      || error instanceof ImplementationRecipeError
+      || error instanceof ValidationRecipeError
+    ) {
+      const code = error instanceof FlowCompositionError ? error.code : "FLOW_CONTRACT_INVALID";
+      return stoppedController(code, error.message, 3);
+    }
+    throw error;
+  }
+}
+
+async function runAssessFlow(argv: readonly string[]): Promise<number> {
+  if (argv[0] !== "--input" || argv[1] === undefined || argv.length !== 2) {
+    return stoppedController("COMMAND_CONFIGURATION_INVALID", "assess-flow requires exactly --input <path>", 4);
+  }
+  let source: string;
+  try {
+    source = await readFile(argv[1], "utf8");
+  } catch (error) {
+    if (isSystemError(error)) return stoppedController("FLOW_ASSURANCE_INPUT_PATH_UNREADABLE", "The explicit Flow assessment path could not be read", 4);
+    throw error;
+  }
+  let input: unknown;
+  try {
+    input = JSON.parse(source) as unknown;
+  } catch (error) {
+    if (error instanceof SyntaxError) return stoppedController("FLOW_ASSURANCE_INPUT_JSON_INVALID", "The explicit Flow assessment is not valid JSON", 3);
+    throw error;
+  }
+  try {
+    const [plan, implement, verify] = await Promise.all([
+      loadRefinementRecipe("contract/agent-library/bounded-refinement.md"),
+      loadImplementationRecipe("contract/agent-library/bounded-implementation.md"),
+      loadValidationRecipe("contract/agent-library/bounded-validation.md"),
+    ]);
+    const result = assessFlow(input, { plan, implement, verify });
+    process.stdout.write(`${JSON.stringify(result)}\n`);
+    return result.status === "READY" || result.status === "COMPLETE" || result.status === "COMPLETE_WITH_LIMIT" ? 0 : 2;
+  } catch (error) {
+    if (
+      error instanceof FlowAssuranceError
+      || error instanceof FlowCompositionError
+      || error instanceof RefinementRecipeError
+      || error instanceof ImplementationRecipeError
+      || error instanceof ValidationRecipeError
+    ) {
+      const code = error instanceof FlowAssuranceError || error instanceof FlowCompositionError
+        ? error.code
+        : "FLOW_CONTRACT_INVALID";
+      return stoppedController(code, error.message, 3);
+    }
+    throw error;
+  }
+}
+
+async function runBooster(argv: readonly string[]): Promise<number> {
+  if (argv[0] !== "--input" || argv[1] === undefined || argv.length !== 2) {
+    return stoppedController("COMMAND_CONFIGURATION_INVALID", "booster requires exactly --input <path>", 4);
+  }
+
+  let source: string;
+  try {
+    source = await readFile(argv[1], "utf8");
+  } catch (error) {
+    if (isSystemError(error)) return stoppedController("BOOSTER_INPUT_PATH_UNREADABLE", "The explicit Booster request path could not be read", 4);
+    throw error;
+  }
+  let input: unknown;
+  try {
+    input = JSON.parse(source) as unknown;
+  } catch (error) {
+    if (error instanceof SyntaxError) return stoppedController("BOOSTER_INPUT_JSON_INVALID", "The explicit Booster request is not valid JSON", 3);
+    throw error;
+  }
+
+  let registry: unknown;
+  try {
+    registry = JSON.parse(await readFile("contract/booster/skill-registry.json", "utf8")) as unknown;
+  } catch (error) {
+    if (error instanceof SyntaxError) return stoppedController("BOOSTER_REGISTRY_JSON_INVALID", "The canonical Skill Registry is not valid JSON", 3);
+    if (isSystemError(error)) return stoppedController("BOOSTER_REGISTRY_PATH_UNREADABLE", "The canonical Skill Registry could not be read", 4);
+    throw error;
+  }
+
+  try {
+    const result = projectDeliveryCompass(input, registry);
+    process.stdout.write(`${JSON.stringify(result)}\n`);
+    return result.status === "READY" || result.status === "COMPLETE" ? 0 : 2;
+  } catch (error) {
+    if (error instanceof BoosterCompassError) return stoppedController(error.code, error.message, 3);
+    throw error;
+  }
 }
 
 async function runFormationRecommendationWithOwnerIdentity(argv: readonly string[]): Promise<number> {

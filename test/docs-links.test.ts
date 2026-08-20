@@ -27,9 +27,17 @@ test("documentation entry points: provide the approved routing contract", async 
     assert.match(state, new RegExp("^## " + heading + "$", "m"));
   }
   assert.match(state, /not a live Git or pull-request state record/i);
-  assert.match(state, /V1 Completion Review|Complete the approved routing-contract correction/);
-  assert.match(state, /short-lived delivery branch/i);
-  assert.match(state, /Merge and release remain separate explicit decisions/i);
+  assert.match(state, /Module and Flow Composition/);
+  assert.match(state, /Flow Assurance/);
+  assert.match(state, /Booster Mode and dual-host plugin/);
+  assert.match(state, /\| Flow Assurance \| LOCAL — review-ready \|.*Full local verification and independent review passed/i);
+  assert.match(
+    state,
+    /\| Booster Mode and dual-host plugin \| LOCAL — review-ready \|.*full local regression, package checks, both host validators, and two independent reviews passed/i,
+  );
+  assert.match(state, /present the[\s\S]*Delivery Kit[\s\S]*Module\/Flow kernel[\s\S]*for User acceptance/i);
+  assert.doesNotMatch(state, /MAPPER_FRESHNESS|check:mappers|mapper publication/i);
+  assert.match(state, /Branch,\s+commit,\s+plugin\s+installation,\s+merge,\s+and\s+release\s+remain\s+separate exact decisions/i);
   assert.match(
     state,
     /\| V1 Completion Review \| READY — V1 completion gate satisfied \| \[V1 Completion Review handoff\]\(\.\.\/planning\/ai-booster-kit\/v1-completion-review\/roadmap-6\/2026-08-11-v1-completion-review-handoff\.md\)/,
@@ -38,12 +46,26 @@ test("documentation entry points: provide the approved routing contract", async 
     state,
     /\| Standalone Review\/Test Proof \| COMPLETE — durable PASS result \| \[Plan Proof review handoff\]\(\.\.\/planning\/ai-booster-kit\/standalone-review-test-proof\/roadmap-3\/2026-08-11-plan-proof-review-handoff\.md\)/,
   );
+  assert.match(
+    state,
+    /\| Module and Flow Composition \| LOCAL — review-ready \|.*\[operator handbook\]\(\.\.\/handbook\/README\.md\).*\[interface reference\]\(\.\.\/handbook\/module-flow-reference\.md\)/,
+  );
   assert.doesNotMatch(state, /^## Branch and pull request$/m);
   assert.doesNotMatch(state, /No real v1 proof has run yet:/i);
   assert.doesNotMatch(state, /Accepted historical session result/);
   assert.doesNotMatch(state, /prior V1 Completion Review's `NOT READY` verdict is historical/i);
   assert.doesNotMatch(state, /The User must decide whether to accept this local `READY` verdict/i);
   assert.match(map, /Historical evidence is not default agent context/i);
+  assert.match(map, /Operator handbook/);
+  assert.match(map, /Flow Assurance/);
+  assert.match(map, /Booster Mode/);
+  assert.match(map, /Plugin installation/);
+  assert.match(map, /Skill Registry/);
+  assert.match(map, /Architecture/);
+  assert.match(map, /CLI reference/);
+  assert.match(map, /Persistence and local data/);
+  assert.match(map, /Verification and Handoff/);
+  assert.match(map, /Separation inventory/);
 });
 
 test("GitHub metadata: provides the approved read-only review contract", async () => {

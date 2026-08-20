@@ -1,0 +1,12 @@
+{
+  "requestVersion": "1.0",
+  "selection": { "kind": "module", "module": "test" },
+  "objective": "Verify the observable behavior of one local change.",
+  "inputs": {
+    "claim": "The implementation satisfies its accepted behavior.",
+    "acceptance-criteria": ["The behavior is proven through the public interface."],
+    "evidence-sources": ["focused test output", "full regression output"],
+    "known-limits": []
+  },
+  "unknowns": []
+}

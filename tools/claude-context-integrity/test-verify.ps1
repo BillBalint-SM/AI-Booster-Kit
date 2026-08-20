@@ -86,8 +86,8 @@ try {
     $sourcePath = Join-Path $testRoot "CLAUDE.md"
     $matchingCapturePath = Join-Path $testRoot "matching-payload.txt"
     $mismatchingCapturePath = Join-Path $testRoot "mismatching-payload.txt"
-    $sourceBytes = [Text.Encoding]::UTF8.GetBytes("# graphify`r`n")
-    $mismatchBytes = [Text.Encoding]::UTF8.GetBytes("# graphify`r`n# userEmail`r`n# currentDate`r`n")
+    $sourceBytes = [Text.Encoding]::UTF8.GetBytes("# sample-skill`r`n")
+    $mismatchBytes = [Text.Encoding]::UTF8.GetBytes("# sample-skill`r`n# userEmail`r`n# currentDate`r`n")
 
     [IO.File]::WriteAllBytes($sourcePath, $sourceBytes)
     [IO.File]::WriteAllBytes($matchingCapturePath, $sourceBytes)

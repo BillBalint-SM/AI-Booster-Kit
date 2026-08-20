@@ -6,7 +6,7 @@
 
 **Scope:** This workflow coordinates planning, refinement, research, implementation, validation, review, handoff, closure, resume, and evolution. It extends the [common agent operating model](../docs/operations/agent-operating-model.md) and preserves the [canonical lifecycle](../contract/lifecycle.md). It does not authorize connector activation, external reads or writes, OAuth, permissions, Jira–GitHub–Confluence synchronization, commits, merges, or publication.
 
-**Vocabulary:** Terms have the meanings in [AI Booster Kit Vocabulary](../NOTES.md).
+**Vocabulary:** Terms have the meanings in the canonical [AI Booster Kit Context](../CONTEXT.md).
 
 ## 1. Trigger and entry
 
@@ -132,6 +132,14 @@ recommendation -> User choice -> setup snapshot -> prerequisite check
 An activation begins as a session instance. The User may explicitly save a validated variant to a Personal or Team library. Base recipes are immutable; tuning creates a versioned variant or overlay. Library states are `DRAFT`, `VALIDATED`, `READY`, `ACTIVE`, `EVOLVING`, and `DEPRECATED`. A deprecated recipe is retained for audit and rollback but is not recommended for new work.
 
 ## 8. Status, evidence, scope, and stop conditions
+
+For the product-level `plan`, `implement`, `test`, and `review` Modules, the
+pure `composeFlow` interface prepares the declared package and the pure
+`assessFlow` interface validates caller-owned Stage/Checkpoint receipts. The
+default change composition is used only when explicitly selected. Assessment
+may recommend the next Module, but it never invokes it, persists a run, or
+converts this broader workflow into a mandatory automatic loop. The complete
+receipt contract is in the [Flow Assurance handbook](../docs/handbook/flow-assurance.md).
 
 The workflow preserves these distinct states: `READY`, `READY_WITH_LIMIT`, `NOT READY`, `STOPPED`, `BLOCKED`, `UNKNOWN`, `NOT EXECUTED`, `PARTIAL`, and `COMPLETE_WITH_LIMIT`. A run is `COMPLETE` only when its defined DoD, AC, required evidence, and final acceptance are present.
 

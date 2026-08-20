@@ -1,0 +1,7 @@
+interface:
+  display_name: "Booster Implement"
+  short_description: "Implement an accepted bounded change"
+  default_prompt: "Use $booster-implement to implement this accepted bounded change with tests and reviewable evidence."
+
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,20 @@
+{
+  "assessmentVersion": "1.0",
+  "request": {
+    "requestVersion": "1.0",
+    "selection": { "kind": "flow", "flow": "default-change" },
+    "objective": "Deliver one bounded local change with reviewable evidence.",
+    "inputs": {
+      "current-scope": "One accepted repository change.",
+      "constraints": ["No hidden external action or automatic publication."],
+      "open-questions": [],
+      "repository": "AI Booster Kit",
+      "repository-state": "VERIFIED",
+      "test-strategy": ["Run focused tests and the full local regression suite."],
+      "rollback-boundary": "Keep the work local, reversible, and uncommitted.",
+      "known-limits": []
+    },
+    "unknowns": []
+  },
+  "receipts": []
+}

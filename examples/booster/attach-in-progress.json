@@ -1,0 +1,21 @@
+{
+  "requestVersion": "1.0",
+  "mode": "AUTO",
+  "collaboration": "INDIVIDUAL",
+  "objective": "Bring the current implementation under a reviewable delivery contract.",
+  "preferredSkill": null,
+  "artifacts": [
+    {
+      "type": "reviewable-diff",
+      "reference": "git:working-tree",
+      "state": "DECLARED",
+      "bindsTo": null
+    }
+  ],
+  "facts": ["A working-tree change already exists."],
+  "decisions": [],
+  "evidence": ["git:working-tree"],
+  "unknowns": ["The acceptance contract has not been reconstructed yet."],
+  "constraints": ["Preserve the current working tree while recovering the missing contract."],
+  "stopReasons": []
+}

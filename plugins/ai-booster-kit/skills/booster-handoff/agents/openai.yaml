@@ -1,0 +1,7 @@
+interface:
+  display_name: "Booster Handoff"
+  short_description: "Create a reviewable delivery handoff"
+  default_prompt: "Use $booster-handoff to create a complete evidence-backed handoff for this delivery result."
+
+policy:
+  allow_implicit_invocation: false

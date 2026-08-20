@@ -1,0 +1,145 @@
+{
+  "assessmentVersion": "1.0",
+  "request": {
+    "requestVersion": "1.0",
+    "selection": { "kind": "flow", "flow": "default-change" },
+    "objective": "Deliver one bounded local change with reviewable evidence.",
+    "inputs": {
+      "current-scope": "One accepted repository change.",
+      "constraints": ["No hidden external action or automatic publication."],
+      "open-questions": [],
+      "repository": "AI Booster Kit",
+      "repository-state": "VERIFIED",
+      "test-strategy": ["Run focused tests and the full local regression suite."],
+      "rollback-boundary": "Keep the work local, reversible, and uncommitted.",
+      "known-limits": []
+    },
+    "unknowns": []
+  },
+  "receipts": [
+    {
+      "receiptVersion": "1.0",
+      "receiptKind": "STAGE",
+      "packageId": "sha256:d1ba3856c6e80f80fab42df7017413a0a038b3370df4cdc7f2939acc85d5182c",
+      "stageId": "plan-1",
+      "module": "plan",
+      "outcome": "COMPLETE",
+      "artifacts": [
+        { "section": "refined-scope", "reference": "example://plan-1/refined-scope", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" },
+        { "section": "acceptance-criteria", "reference": "example://plan-1/acceptance-criteria", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" },
+        { "section": "decision-record", "reference": "example://plan-1/decision-record", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" }
+      ],
+      "evidence": [
+        { "requirement": "before-scope", "reference": "example://evidence/before-scope", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" },
+        { "requirement": "after-scope", "reference": "example://evidence/after-scope", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" },
+        { "requirement": "decision-record", "reference": "example://evidence/decision-record", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" }
+      ],
+      "decisions": [],
+      "unknowns": [],
+      "limits": [],
+      "stopReasons": [],
+      "nextAction": "REQUEST_PLAN_ACCEPTANCE",
+      "readback": {
+        "state": "VERIFIED",
+        "revision": "example:plan-1-revision",
+        "observedAt": "2026-08-20T12:00:00.000Z"
+      }
+    },
+    {
+      "receiptVersion": "1.0",
+      "receiptKind": "CHECKPOINT",
+      "packageId": "sha256:d1ba3856c6e80f80fab42df7017413a0a038b3370df4cdc7f2939acc85d5182c",
+      "checkpoint": "USER_ACCEPTS_PLAN",
+      "afterStage": "plan-1",
+      "beforeStage": "implement-2",
+      "subjectReceiptId": "sha256:7586e48f6f413865d80055cd574f365728e05a49e21d32d4e58bfe0361b48596",
+      "decision": "ACCEPTED",
+      "decisionReference": "example://decision/accepted-plan",
+      "decidedAt": "2026-08-20T12:05:00.000Z"
+    },
+    {
+      "receiptVersion": "1.0",
+      "receiptKind": "STAGE",
+      "packageId": "sha256:d1ba3856c6e80f80fab42df7017413a0a038b3370df4cdc7f2939acc85d5182c",
+      "stageId": "implement-2",
+      "module": "implement",
+      "outcome": "COMPLETE",
+      "artifacts": [
+        { "section": "reviewable-diff", "reference": "example://implement-2/reviewable-diff", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" },
+        { "section": "test-evidence", "reference": "example://implement-2/test-evidence", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" },
+        { "section": "residual-risk-record", "reference": "example://implement-2/residual-risk-record", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" }
+      ],
+      "evidence": [
+        { "requirement": "git-diff", "reference": "example://evidence/implement-2/git-diff", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" },
+        { "requirement": "test-output", "reference": "example://evidence/implement-2/test-output", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" },
+        { "requirement": "review-record", "reference": "example://evidence/implement-2/review-record", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" }
+      ],
+      "decisions": [],
+      "unknowns": [],
+      "limits": [],
+      "stopReasons": [],
+      "nextAction": "RUN_MODULE:test",
+      "readback": {
+        "state": "VERIFIED",
+        "revision": "example:implement-2-revision",
+        "observedAt": "2026-08-20T12:10:00.000Z"
+      }
+    },
+    {
+      "receiptVersion": "1.0",
+      "receiptKind": "STAGE",
+      "packageId": "sha256:d1ba3856c6e80f80fab42df7017413a0a038b3370df4cdc7f2939acc85d5182c",
+      "stageId": "test-3",
+      "module": "test",
+      "outcome": "COMPLETE",
+      "artifacts": [
+        { "section": "validation-result", "reference": "example://test-3/validation-result", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" },
+        { "section": "evidence-map", "reference": "example://test-3/evidence-map", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" },
+        { "section": "explicit-stop-or-pass", "reference": "example://test-3/explicit-stop-or-pass", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" }
+      ],
+      "evidence": [
+        { "requirement": "validation-log", "reference": "example://evidence/test-3/validation-log", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" },
+        { "requirement": "source-read-back", "reference": "example://evidence/test-3/source-read-back", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" },
+        { "requirement": "residual-risk-record", "reference": "example://evidence/test-3/residual-risk-record", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" }
+      ],
+      "decisions": [],
+      "unknowns": [],
+      "limits": [],
+      "stopReasons": [],
+      "nextAction": "RUN_MODULE:review",
+      "readback": {
+        "state": "VERIFIED",
+        "revision": "example:test-3-revision",
+        "observedAt": "2026-08-20T12:15:00.000Z"
+      }
+    },
+    {
+      "receiptVersion": "1.0",
+      "receiptKind": "STAGE",
+      "packageId": "sha256:d1ba3856c6e80f80fab42df7017413a0a038b3370df4cdc7f2939acc85d5182c",
+      "stageId": "review-4",
+      "module": "review",
+      "outcome": "COMPLETE",
+      "artifacts": [
+        { "section": "validation-result", "reference": "example://review-4/validation-result", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" },
+        { "section": "evidence-map", "reference": "example://review-4/evidence-map", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" },
+        { "section": "explicit-stop-or-pass", "reference": "example://review-4/explicit-stop-or-pass", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" }
+      ],
+      "evidence": [
+        { "requirement": "validation-log", "reference": "example://evidence/review-4/validation-log", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" },
+        { "requirement": "source-read-back", "reference": "example://evidence/review-4/source-read-back", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" },
+        { "requirement": "residual-risk-record", "reference": "example://evidence/review-4/residual-risk-record", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" }
+      ],
+      "decisions": [],
+      "unknowns": [],
+      "limits": [],
+      "stopReasons": [],
+      "nextAction": "PRESENT_HANDOFF_FOR_USER_ACCEPTANCE",
+      "readback": {
+        "state": "VERIFIED",
+        "revision": "example:review-4-revision",
+        "observedAt": "2026-08-20T12:20:00.000Z"
+      }
+    }
+  ]
+}
