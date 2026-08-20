@@ -1,0 +1,7 @@
+interface:
+  display_name: "Booster Review"
+  short_description: "Review scope, code, and evidence"
+  default_prompt: "Use $booster-review to independently review this bounded delivery result and its evidence."
+
+policy:
+  allow_implicit_invocation: false

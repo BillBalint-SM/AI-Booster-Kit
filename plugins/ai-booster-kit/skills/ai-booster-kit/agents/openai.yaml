@@ -1,0 +1,7 @@
+interface:
+  display_name: "AI Booster Kit"
+  short_description: "Activate narrated delivery guidance"
+  default_prompt: "Use $ai-booster-kit to activate Booster Mode and project the next reviewable delivery action."
+
+policy:
+  allow_implicit_invocation: false

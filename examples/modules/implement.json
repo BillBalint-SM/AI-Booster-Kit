@@ -1,0 +1,14 @@
+{
+  "requestVersion": "1.0",
+  "selection": { "kind": "module", "module": "implement" },
+  "objective": "Implement one accepted local change.",
+  "inputs": {
+    "repository": "AI Booster Kit",
+    "repository-state": "VERIFIED",
+    "acceptance-criteria": ["The public behavior matches the accepted plan."],
+    "test-strategy": ["Run focused tests and the full local regression suite."],
+    "accepted-plan": "ACCEPTED",
+    "rollback-boundary": "Preserve prior state and stop before external actions."
+  },
+  "unknowns": []
+}

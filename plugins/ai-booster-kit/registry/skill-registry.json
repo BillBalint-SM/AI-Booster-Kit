@@ -1,0 +1,119 @@
+{
+  "registryVersion": "1.0",
+  "kit": "ai-booster-kit",
+  "skills": [
+    {
+      "id": "planning-show",
+      "version": "1.0",
+      "module": "plan",
+      "purpose": "Refine the delivery objective into a decision-ready scope, acceptance contract, and explicit plan checkpoint.",
+      "modes": ["INDIVIDUAL", "TEAM"],
+      "consumes": [],
+      "teamConsumes": [],
+      "gates": [],
+      "produces": ["objective", "refined-scope", "acceptance-criteria", "decision-record", "plan-handoff"],
+      "suggests": ["booster-team-align", "booster-implement"],
+      "stops": ["The design frontier remains open.", "A material scope or authority decision is unresolved."],
+      "invocation": {
+        "codex": "$planning-show",
+        "claudeCode": "/ai-booster-kit:planning-show"
+      }
+    },
+    {
+      "id": "booster-team-align",
+      "version": "1.0",
+      "module": "align",
+      "purpose": "Bind team ownership, review gates, and handoff responsibilities before implementation begins.",
+      "modes": ["TEAM"],
+      "consumes": ["objective", "refined-scope", "acceptance-criteria", "decision-record", "plan-handoff"],
+      "teamConsumes": [],
+      "gates": [],
+      "produces": ["delivery-roles", "ownership-map", "review-gates"],
+      "suggests": ["booster-implement"],
+      "stops": ["A required owner or review boundary is unresolved.", "Parallel work lacks safe isolation or a lead owner."],
+      "invocation": {
+        "codex": "$booster-team-align",
+        "claudeCode": "/ai-booster-kit:booster-team-align"
+      }
+    },
+    {
+      "id": "booster-implement",
+      "version": "1.0",
+      "module": "implement",
+      "purpose": "Implement one accepted, bounded change and return reviewable code plus proportionate evidence.",
+      "modes": ["INDIVIDUAL", "TEAM"],
+      "consumes": ["objective", "refined-scope", "acceptance-criteria", "decision-record", "plan-handoff"],
+      "teamConsumes": ["delivery-roles", "ownership-map", "review-gates"],
+      "gates": [
+        {
+          "type": "accepted-plan",
+          "states": ["ACCEPTED"],
+          "bindsTo": "plan-handoff"
+        },
+        {
+          "type": "repository-verified",
+          "states": ["VERIFIED"],
+          "bindsTo": null
+        }
+      ],
+      "produces": ["reviewable-diff", "implementation-evidence", "residual-risk-record"],
+      "suggests": ["booster-test", "booster-review"],
+      "stops": ["The accepted plan no longer matches the repository state.", "Required authority, context, or verification is unavailable."],
+      "invocation": {
+        "codex": "$booster-implement",
+        "claudeCode": "/ai-booster-kit:booster-implement"
+      }
+    },
+    {
+      "id": "booster-test",
+      "version": "1.0",
+      "module": "test",
+      "purpose": "Verify a bounded result against acceptance criteria and produce reproducible evidence without hiding failures.",
+      "modes": ["INDIVIDUAL", "TEAM"],
+      "consumes": ["acceptance-criteria", "reviewable-diff", "implementation-evidence"],
+      "teamConsumes": [],
+      "gates": [],
+      "produces": ["validation-result", "test-evidence", "evidence-map"],
+      "suggests": ["booster-review", "booster-handoff"],
+      "stops": ["The target or acceptance criterion is ambiguous.", "Required evidence cannot be reproduced or read back."],
+      "invocation": {
+        "codex": "$booster-test",
+        "claudeCode": "/ai-booster-kit:booster-test"
+      }
+    },
+    {
+      "id": "booster-review",
+      "version": "1.0",
+      "module": "review",
+      "purpose": "Independently review scope, implementation, and validation evidence and preserve actionable findings or limits.",
+      "modes": ["INDIVIDUAL", "TEAM"],
+      "consumes": ["acceptance-criteria", "reviewable-diff", "validation-result", "test-evidence"],
+      "teamConsumes": [],
+      "gates": [],
+      "produces": ["review-result", "review-evidence", "review-limit-record"],
+      "suggests": ["booster-implement", "booster-test", "booster-handoff"],
+      "stops": ["The review baseline or acceptance contract is missing.", "Evidence is contradictory or cannot be independently checked."],
+      "invocation": {
+        "codex": "$booster-review",
+        "claudeCode": "/ai-booster-kit:booster-review"
+      }
+    },
+    {
+      "id": "booster-handoff",
+      "version": "1.0",
+      "module": "handoff",
+      "purpose": "Package status, artifacts, evidence, decisions, limits, and the next bounded action for human acceptance or continuation.",
+      "modes": ["INDIVIDUAL", "TEAM"],
+      "consumes": ["objective", "refined-scope", "decision-record", "plan-handoff", "review-result", "review-evidence"],
+      "teamConsumes": [],
+      "gates": [],
+      "produces": ["delivery-handoff"],
+      "suggests": [],
+      "stops": ["A material result, limit, unknown, or next action is missing from the handoff."],
+      "invocation": {
+        "codex": "$booster-handoff",
+        "claudeCode": "/ai-booster-kit:booster-handoff"
+      }
+    }
+  ]
+}

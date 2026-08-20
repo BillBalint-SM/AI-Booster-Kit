@@ -1,0 +1,18 @@
+{
+  "requestVersion": "1.0",
+  "mode": "ATTACH",
+  "collaboration": "INDIVIDUAL",
+  "objective": "Independently validate the declared change.",
+  "preferredSkill": "booster-test",
+  "artifacts": [
+    { "type": "acceptance-criteria", "reference": "docs:test-acceptance-v1", "state": "COMPLETE", "bindsTo": null },
+    { "type": "reviewable-diff", "reference": "git:working-tree", "state": "COMPLETE", "bindsTo": null },
+    { "type": "implementation-evidence", "reference": "local:implementation-evidence-v1", "state": "COMPLETE", "bindsTo": null }
+  ],
+  "facts": ["A bounded implementation and acceptance criteria are available."],
+  "decisions": ["Run validation independently of the default recipe."],
+  "evidence": ["git:working-tree", "local:implementation-evidence-v1"],
+  "unknowns": [],
+  "constraints": ["Do not edit product code during validation."],
+  "stopReasons": []
+}

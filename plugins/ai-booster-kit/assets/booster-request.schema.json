@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-booster-kit.local/contracts/booster-request.schema.json",
+  "title": "AI Booster Kit Delivery Compass request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "requestVersion",
+    "mode",
+    "collaboration",
+    "objective",
+    "preferredSkill",
+    "artifacts",
+    "facts",
+    "decisions",
+    "evidence",
+    "unknowns",
+    "constraints",
+    "stopReasons"
+  ],
+  "properties": {
+    "requestVersion": { "const": "1.0" },
+    "mode": { "enum": ["AUTO", "NEW", "ATTACH", "RESUME"] },
+    "collaboration": { "enum": ["INDIVIDUAL", "TEAM"] },
+    "objective": {
+      "oneOf": [
+        { "type": "null" },
+        { "type": "string", "minLength": 1, "maxLength": 8192 }
+      ]
+    },
+    "preferredSkill": {
+      "oneOf": [
+        { "type": "null" },
+        { "type": "string", "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$", "maxLength": 8192 }
+      ]
+    },
+    "artifacts": {
+      "type": "array",
+      "maxItems": 256,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["type", "reference", "state", "bindsTo"],
+        "properties": {
+          "type": { "type": "string", "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$", "maxLength": 8192 },
+          "reference": { "type": "string", "minLength": 1, "maxLength": 8192 },
+          "state": {
+            "enum": ["DECLARED", "VERIFIED", "ACCEPTED", "COMPLETE", "COMPLETE_WITH_LIMIT", "STOPPED", "UNKNOWN"]
+          },
+          "bindsTo": {
+            "oneOf": [
+              { "type": "null" },
+              { "type": "string", "minLength": 1, "maxLength": 8192 }
+            ]
+          }
+        }
+      }
+    },
+    "facts": { "$ref": "#/$defs/stringList" },
+    "decisions": { "$ref": "#/$defs/stringList" },
+    "evidence": { "$ref": "#/$defs/stringList" },
+    "unknowns": { "$ref": "#/$defs/stringList" },
+    "constraints": { "$ref": "#/$defs/stringList" },
+    "stopReasons": { "$ref": "#/$defs/stringList" }
+  },
+  "$defs": {
+    "stringList": {
+      "type": "array",
+      "maxItems": 256,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1, "maxLength": 8192 }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "requestVersion": "1.0",
+  "selection": { "kind": "module", "module": "review" },
+  "objective": "Independently review one local change and its evidence.",
+  "inputs": {
+    "claim": "The change is scoped, evidenced, documented, and ready for handoff.",
+    "acceptance-criteria": ["The diff matches the accepted scope and preserves the authority boundary."],
+    "evidence-sources": ["local diff", "test output", "source read-back"],
+    "known-limits": []
+  },
+  "unknowns": []
+}

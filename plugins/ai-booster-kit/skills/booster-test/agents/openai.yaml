@@ -1,0 +1,7 @@
+interface:
+  display_name: "Booster Test"
+  short_description: "Verify criteria with reproducible evidence"
+  default_prompt: "Use $booster-test to validate this bounded result against its acceptance criteria and preserve reproducible evidence."
+
+policy:
+  allow_implicit_invocation: false

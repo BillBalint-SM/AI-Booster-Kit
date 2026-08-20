@@ -20,7 +20,7 @@ controller:
 
 **Authority boundary:** This recipe creates no external write, does not activate another recipe, does not widen scope, and does not replace a User-selected skill or tool. Its owner is the User or team; it is never the final outcome owner.
 
-**Workflow contract:** Follow [Team Delivery Loop](../../workflows/team-delivery-loop.md) and use terms from [AI Booster Kit Vocabulary](../../NOTES.md).
+**Workflow contract:** Follow [Team Delivery Loop](../../workflows/team-delivery-loop.md) and use terms from the canonical [AI Booster Kit Context](../../CONTEXT.md).
 
 ## Fit profile
 

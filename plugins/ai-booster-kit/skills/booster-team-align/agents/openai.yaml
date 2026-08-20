@@ -1,0 +1,7 @@
+interface:
+  display_name: "Booster Team Align"
+  short_description: "Bind team roles and review gates"
+  default_prompt: "Use $booster-team-align to define ownership, isolation, and review gates for this accepted delivery plan."
+
+policy:
+  allow_implicit_invocation: false
