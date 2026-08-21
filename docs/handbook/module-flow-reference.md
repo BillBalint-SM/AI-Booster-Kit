@@ -8,7 +8,8 @@ progress seam is the pure
 `assessFlow({ assessmentVersion, request, receipts })` interface in
 [`src/flow/assurance.ts`](../../src/flow/assurance.ts). Both CLIs are thin local
 adapters: they read one JSON file, call the same interface used by tests, and
-write one JSON result to standard output.
+write one result to standard output. JSON is the default; `assess-flow` may
+render its assessed report with the explicit `--format markdown` option.
 
 ```text
 JSON request

@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
-import { assessFlow, FlowAssuranceError } from "../src/flow/assurance.js";
+import { assessFlow, FlowAssuranceError, renderFlowAssuranceMarkdown } from "../src/flow/assurance.js";
 import type { FlowModulePacket } from "../src/flow/compose.js";
 
 const digest = "a".repeat(64);
@@ -65,6 +65,29 @@ test("flow assurance: identifies a canonical package and recommends only the fir
     assessFlow(assessmentInput(changedConstraint, [])).packageId,
     result.packageId,
   );
+});
+
+test("flow assurance: renders deterministic Markdown and escapes receipt text", () => {
+  const initial = assessFlow(assessmentInput(defaultRequest, []));
+  const unsafeText = "Review <unsafe> & continue\n- injected";
+  const receipt = completeStageReceipt(initial.packageId, initial.package.modules[0]!, {
+    outcome: "UNKNOWN",
+    artifacts: [],
+    evidence: [],
+    unknowns: [unsafeText],
+    nextAction: unsafeText,
+    readback: { state: "UNAVAILABLE", revision: null, observedAt },
+  });
+  const report = assessFlow(assessmentInput(defaultRequest, [receipt]));
+  const first = renderFlowAssuranceMarkdown(report);
+
+  assert.equal(first, renderFlowAssuranceMarkdown(report));
+  assert.match(first, /^# AI Booster Flow Assessment$/mu);
+  assert.match(first, /INFORMATIONAL — HUMAN DECISION REQUIRED/u);
+  assert.match(first, /Status: <code>UNKNOWN<\/code>/u);
+  assert.match(first, /Handoff ready: <code>true<\/code>/u);
+  assert.equal(first.includes(unsafeText), false);
+  assert.match(first, /Review &lt;unsafe&gt; &amp; continue&#10;- injected/u);
 });
 
 test("flow assurance: requires the exact human checkpoint after a completed plan", () => {
