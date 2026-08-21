@@ -212,6 +212,65 @@ export function assessFlow(value: unknown): FlowAssuranceReport {
   return report(flowPackage, packageId, status, stages, checkpoint.value, runnableStages, blockers, nextAction, handoff);
 }
 
+export function renderFlowAssuranceMarkdown(report: FlowAssuranceReport): string {
+  const stages = report.stages.length === 0
+    ? ["- None."]
+    : report.stages.map((stage) => `- ${summaryCode(stage.stageId)} (${summaryCode(stage.module)}): ${summaryCode(stage.state)}; receipt: ${stage.receiptId === null ? "none" : summaryCode(stage.receiptId)}`);
+  const checkpoints = report.checkpoints.length === 0
+    ? ["- None."]
+    : report.checkpoints.map((checkpoint) => `- ${summaryCode(checkpoint.checkpoint)}: ${summaryCode(checkpoint.state)}; ${summaryCode(checkpoint.afterStage)} → ${summaryCode(checkpoint.beforeStage)}`);
+  const blockers = report.blockers.length === 0
+    ? ["- None."]
+    : report.blockers.map((entry) => `- ${summaryCode(entry.code)}; stage: ${entry.stageId === null ? "none" : summaryCode(entry.stageId)}; ${summaryCode(entry.message)}`);
+
+  return [
+    "# AI Booster Flow Assessment",
+    "",
+    "> **INFORMATIONAL — HUMAN DECISION REQUIRED**",
+    "",
+    `- Status: ${summaryCode(report.status)}`,
+    `- Package Identity: ${summaryCode(report.packageId)}`,
+    `- Authority: ${summaryCode(report.authority)}`,
+    `- Execution performed: ${summaryCode(report.executionPerformed)}`,
+    "",
+    "## Stages",
+    "",
+    ...stages,
+    "",
+    "## Checkpoints",
+    "",
+    ...checkpoints,
+    "",
+    "## Blockers",
+    "",
+    ...blockers,
+    "",
+    "## Handoff",
+    "",
+    `- Handoff ready: ${summaryCode(report.handoff.ready)}`,
+    `- Handoff status: ${report.handoff.status === null ? "none" : summaryCode(report.handoff.status)}`,
+    `- Artifacts: ${summaryCode(report.handoff.artifacts.length)}`,
+    `- Evidence: ${summaryCode(report.handoff.evidence.length)}`,
+    "",
+    "### Unknowns",
+    "",
+    ...summaryList("Unknown", report.handoff.unknowns),
+    "",
+    "### Limits",
+    "",
+    ...summaryList("Limit", report.handoff.limits),
+    "",
+    "### Stop reasons",
+    "",
+    ...summaryList("Stop reason", report.handoff.stopReasons),
+    "",
+    "## Next action",
+    "",
+    `- ${summaryAction(report)}`,
+    "",
+  ].join("\n");
+}
+
 function normalizeAssessment(value: unknown): NormalizedAssessment {
   const record = plainRecord(value, "FLOW_ASSURANCE_INPUT_INVALID", "flow assessment");
   exactKeys(record, ["assessmentVersion", "request", "receipts"], "FLOW_ASSURANCE_INPUT_INVALID", "flow assessment");
@@ -658,6 +717,31 @@ function duplicate(values: readonly string[]): string | null {
     seen.add(value);
   }
   return null;
+}
+
+function summaryCode(value: string | number | boolean): string {
+  return `<code>${String(value).replace(/[&<>\r\n\u2028\u2029]/gu, (character) => {
+    if (character === "&") return "&amp;";
+    if (character === "<") return "&lt;";
+    if (character === ">") return "&gt;";
+    if (character === "\r") return "&#13;";
+    if (character === "\n") return "&#10;";
+    if (character === "\u2028") return "&#8232;";
+    return "&#8233;";
+  })}</code>`;
+}
+
+function summaryAction(report: FlowAssuranceReport): string {
+  const receiptDerived = (report.status === "STOPPED" || report.status === "UNKNOWN")
+    && report.handoff.ready
+    && !report.checkpoints.some((checkpoint) => checkpoint.state === "REJECTED");
+  return summaryCode(receiptDerived ? "REVIEW_REDACTED_NEXT_ACTION_LOCALLY" : report.nextAction);
+}
+
+function summaryList(label: "Unknown" | "Limit" | "Stop reason", values: readonly string[]): readonly string[] {
+  return values.length === 0
+    ? ["- None."]
+    : values.map((_, index) => `- ${label} ${summaryCode(index + 1)}: content omitted from informational summary.`);
 }
 
 function plainRecord(value: unknown, code: FlowAssuranceErrorCode, label: string): Record<string, unknown> {

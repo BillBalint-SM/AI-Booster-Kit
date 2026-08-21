@@ -14,7 +14,7 @@ root in their interface.
 | `booster` / `projectDeliveryCompass` | None. Reads one request and canonical Registry; writes JSON only to stdout/return value. Artifact references remain caller-owned. |
 | Plugin `scripts/booster.mjs` | None. Reads a file or stdin plus its packaged Registry; writes JSON to stdout. It resolves no global session store. |
 | `compose-flow` | None. Reads one request and canonical repository contracts; writes JSON only to stdout. |
-| `assess-flow` | None. Reads one assessment and canonical repository contracts; writes JSON only to stdout. Receipts remain caller-owned. |
+| `assess-flow` | None. Reads one assessment and canonical repository contracts; writes default JSON or explicit Markdown only to stdout. Receipts remain caller-owned. |
 | Flow examples | Repository fixtures under `examples/`; they are not live run state. |
 | Owner identity | On supported Windows hosts: `%LOCALAPPDATA%\AI Booster Kit\owner-identity.json`. Written only by explicit setup/reconfigure. |
 | Activation packages | `save-activation --input ... --target ...` writes the explicit target; Team retention also requires `--repository-root`. |

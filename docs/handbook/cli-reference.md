@@ -12,8 +12,9 @@ node dist/cli.js <command> [...arguments]
 
 Use the direct Node form in automation. It avoids npm argument-forwarding
 differences and is the form covered by built-CLI tests. The CLI writes machine
-results to stdout as JSON except for top-level `--help`; expected validation
-outcomes do not require stderr parsing.
+results to stdout as JSON except for top-level `--help` and the explicit
+`assess-flow --format markdown` projection; expected validation outcomes do not
+require stderr parsing.
 
 ## Primary product commands
 
@@ -67,12 +68,15 @@ node dist/cli.js compose-flow --input examples/flow/default-change.json
 
 ```powershell
 node dist/cli.js assess-flow --input <assessment.json>
+node dist/cli.js assess-flow --input <assessment.json> --format markdown
 ```
 
 Calls `assessFlow`. It recomposes the package, binds the complete
 request/package identity, validates supplied receipts, and returns the next
 safe Module, required checkpoint, blocker, or Handoff. It is stateless and
-performs no dispatch.
+performs no dispatch. JSON is the default output. `--format markdown` emits a
+deterministic, informational summary from the assessed report without changing
+the status exit code.
 
 Examples:
 
@@ -81,10 +85,13 @@ node dist/cli.js assess-flow --input examples/flow/assess-default-change.json
 node dist/cli.js assess-flow --input examples/flow/assess-after-plan.json
 node dist/cli.js assess-flow --input examples/flow/assess-after-plan-accepted.json
 node dist/cli.js assess-flow --input examples/flow/assess-complete.json
+node dist/cli.js assess-flow --input examples/flow/assess-complete.json --format markdown
+node dist/cli.js assess-flow --input examples/flow/assess-foreign-receipt.json --format markdown
 ```
 
 The four fixtures demonstrate initial Plan readiness, the human checkpoint,
-accepted Implement readiness, and a terminal receipt-backed Handoff. See
+accepted Implement readiness, and a terminal receipt-backed Handoff. The
+foreign-receipt fixture demonstrates a visible Package Identity mismatch. See
 [Flow Assurance](flow-assurance.md) for receipt fields and progression.
 
 ## Flow exit codes
@@ -100,8 +107,8 @@ accepted Implement readiness, and a terminal receipt-backed Handoff. See
 `WAITING_FOR_DECISION`, `NEEDS_INPUT`, `STOPPED`, or `UNKNOWN` projection, `3`
 for malformed request/Registry data, and `4` for command/path configuration.
 
-The exit code is a routing signal; the JSON body is the authoritative reason
-and next action.
+The exit code is a routing signal. The default JSON body is the authoritative
+reason and next action; Markdown is its informational projection.
 
 ## Command index
 

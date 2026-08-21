@@ -13,7 +13,7 @@ import { type ReadinessAdapter, type ReadinessObservationBundle } from "./readin
 import { writeReadinessCertificate } from "./readiness/output.js";
 import { runReadinessCertificate } from "./readiness/run.js";
 import { composeFlow, FlowCompositionError } from "./flow/compose.js";
-import { assessFlow, FlowAssuranceError } from "./flow/assurance.js";
+import { assessFlow, FlowAssuranceError, renderFlowAssuranceMarkdown } from "./flow/assurance.js";
 import { BoosterCompassError, projectDeliveryCompass } from "./booster/compass.js";
 import { createQuickTaskActivationPackage, parseActivationProfile } from "./controller/activation-package.js";
 import { evaluateQuickTask, ControllerEvaluationError } from "./controller/evaluate.js";
@@ -73,7 +73,7 @@ Commands:
   conformance   Run cross-host conformance checks
   readiness     Generate a local G2AS Sandbox Readiness Certificate
   compose-flow  Prepare one module or an explicit default change flow from --input <path>
-  assess-flow   Evaluate Flow receipts and recommend the next safe module from --input <path>
+  assess-flow   Evaluate Flow receipts from --input <path> [--format markdown]
   booster       Project Booster Mode's Delivery Compass from --input <path>
   quick-task    Recommend the local Quick Task recipe
   recommend-formation  Recommend a catalog formation without activation
@@ -186,8 +186,9 @@ async function runComposeFlow(argv: readonly string[]): Promise<number> {
 }
 
 async function runAssessFlow(argv: readonly string[]): Promise<number> {
-  if (argv[0] !== "--input" || argv[1] === undefined || argv.length !== 2) {
-    return stoppedController("COMMAND_CONFIGURATION_INVALID", "assess-flow requires exactly --input <path>", 4);
+  const format = argv.length === 2 ? "json" : argv.length === 4 && argv[2] === "--format" && argv[3] === "markdown" ? "markdown" : null;
+  if (argv[0] !== "--input" || argv[1] === undefined || format === null) {
+    return stoppedController("COMMAND_CONFIGURATION_INVALID", "assess-flow requires --input <path> with optional --format markdown", 4);
   }
   try {
     const input = await readJsonInput(argv[1], {
@@ -195,7 +196,7 @@ async function runAssessFlow(argv: readonly string[]): Promise<number> {
       invalid: ["FLOW_ASSURANCE_INPUT_JSON_INVALID", "The explicit Flow assessment is not valid JSON"],
     });
     const result = assessFlow(input);
-    process.stdout.write(`${JSON.stringify(result)}\n`);
+    process.stdout.write(format === "markdown" ? renderFlowAssuranceMarkdown(result) : `${JSON.stringify(result)}\n`);
     return result.status === "READY" || result.status === "COMPLETE" || result.status === "COMPLETE_WITH_LIMIT" ? 0 : 2;
   } catch (error) {
     if (error instanceof JsonInputError) return stoppedController(error.code, error.message, error.exitCode);

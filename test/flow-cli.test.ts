@@ -150,6 +150,52 @@ test("built flow CLI: keeps the documented assessment examples executable and id
   assert.equal(complete.executionPerformed, false);
 });
 
+test("built flow CLI: renders deterministic Markdown for complete, waiting, and foreign receipts", async () => {
+  const cases = [
+    [
+      "examples/flow/assess-complete.json",
+      0,
+      ["Status: <code>COMPLETE</code>", "Evidence: <code>12</code>", "PRESENT_HANDOFF_FOR_USER_ACCEPTANCE"],
+    ],
+    [
+      "examples/flow/assess-after-plan.json",
+      2,
+      ["Status: <code>WAITING_FOR_APPROVAL</code>", "USER_ACCEPTS_PLAN", "PENDING", "RECORD_CHECKPOINT:USER_ACCEPTS_PLAN"],
+    ],
+    [
+      "examples/flow/assess-foreign-receipt.json",
+      2,
+      ["Status: <code>STOPPED</code>", "RECEIPT_PACKAGE_MISMATCH", "RECOMPOSE_AND_REISSUE_RECEIPT"],
+    ],
+  ] as const;
+
+  for (const [input, expectedCode, expectedText] of cases) {
+    const first = await runBuiltCli(["assess-flow", "--input", input, "--format", "markdown"]);
+    const second = await runBuiltCli(["assess-flow", "--input", input, "--format", "markdown"]);
+
+    assert.equal(first.code, expectedCode);
+    assert.equal(first.stderr, "");
+    assert.equal(first.stdout, second.stdout);
+    assert.match(first.stdout, /INFORMATIONAL — HUMAN DECISION REQUIRED/u);
+    for (const text of expectedText) assert.ok(first.stdout.includes(text), `${input} is missing ${text}`);
+  }
+});
+
+test("built flow CLI: rejects an unsupported assessment output format", async () => {
+  const result = await runBuiltCli([
+    "assess-flow",
+    "--input",
+    "examples/flow/assess-complete.json",
+    "--format",
+    "html",
+  ]);
+  const value = JSON.parse(result.stdout);
+
+  assert.equal(result.code, 4);
+  assert.equal(result.stderr, "");
+  assert.equal(value.error.code, "COMMAND_CONFIGURATION_INVALID");
+});
+
 function runBuiltCli(args: readonly string[]): Promise<{ code: number | null; stdout: string; stderr: string }> {
   return new Promise((resolveResult, reject) => {
     const child = spawn(process.execPath, [resolve("dist/cli.js"), ...args], {

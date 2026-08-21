@@ -81,7 +81,7 @@ This keeps the authority and recipe contract local to one interface.
 ### CLI Adapter
 
 `booster`, `compose-flow`, and `assess-flow` are thin adapters. Their only extra
-behavior is file read/JSON parsing, JSON stdout, and process exit codes. A
+behavior is file read/JSON parsing, stdout rendering, and process exit codes. A
 future UI, MCP server, CI step, or other host should call the same pure
 interfaces rather than reimplementing their rules.
 

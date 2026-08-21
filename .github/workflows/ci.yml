@@ -41,6 +41,26 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm run build
+      - name: Append reference Flow Assessment summaries
+        if: matrix.os == 'ubuntu-latest' && matrix.node == 24
+        shell: bash
+        run: |
+          printf '## Reference case: complete\n\n' >> "$GITHUB_STEP_SUMMARY"
+          node dist/cli.js assess-flow --input examples/flow/assess-complete.json --format markdown >> "$GITHUB_STEP_SUMMARY"
+
+          printf '\n## Reference case: waiting\n\n' >> "$GITHUB_STEP_SUMMARY"
+          node dist/cli.js assess-flow --input examples/flow/assess-after-plan.json --format markdown >> "$GITHUB_STEP_SUMMARY" && waiting_exit=0 || waiting_exit=$?
+          if [ "$waiting_exit" -ne 2 ]; then
+            echo "Expected exit 2 for waiting, got $waiting_exit." >&2
+            exit 1
+          fi
+
+          printf '\n## Reference case: foreign receipt\n\n' >> "$GITHUB_STEP_SUMMARY"
+          node dist/cli.js assess-flow --input examples/flow/assess-foreign-receipt.json --format markdown >> "$GITHUB_STEP_SUMMARY" && foreign_exit=0 || foreign_exit=$?
+          if [ "$foreign_exit" -ne 2 ]; then
+            echo "Expected exit 2 for foreign receipt, got $foreign_exit." >&2
+            exit 1
+          fi
       - name: Observe packaged SQLite dependency and native binding
         run: node --input-type=module -e "const { observeExecutionSqliteDriver } = await import('./dist/src/execution/persistence/sqlite-adapter.js'); console.log(JSON.stringify(await observeExecutionSqliteDriver()));"
       - run: npm run test:execution-storage

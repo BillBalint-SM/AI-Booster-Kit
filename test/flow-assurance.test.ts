@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
-import { assessFlow, FlowAssuranceError } from "../src/flow/assurance.js";
+import { assessFlow, FlowAssuranceError, renderFlowAssuranceMarkdown } from "../src/flow/assurance.js";
 import type { FlowModulePacket } from "../src/flow/compose.js";
 
 const digest = "a".repeat(64);
@@ -65,6 +65,42 @@ test("flow assurance: identifies a canonical package and recommends only the fir
     assessFlow(assessmentInput(changedConstraint, [])).packageId,
     result.packageId,
   );
+});
+
+test("flow assurance: renders deterministic Markdown without raw receipt text", () => {
+  const initial = assessFlow(assessmentInput(defaultRequest, []));
+  const unsafeText = "Review <unsafe> & continue at C:\\Users\\person\\private-prompt.txt";
+  const unsafeAction = "REVIEW_SECRET:ALPHA123";
+  const receipt = completeStageReceipt(initial.packageId, initial.package.modules[0]!, {
+    outcome: "UNKNOWN",
+    artifacts: [],
+    evidence: [],
+    unknowns: [unsafeText],
+    nextAction: unsafeAction,
+    readback: { state: "UNAVAILABLE", revision: null, observedAt },
+  });
+  const report = assessFlow(assessmentInput(defaultRequest, [receipt]));
+  const renderedReport = {
+    ...report,
+    blockers: [{ code: "PACKAGE_UNKNOWN", stageId: null, message: "Review <unsafe> & continue\n- injected" }],
+    handoff: { ...report.handoff, limits: [unsafeText], stopReasons: [unsafeText] },
+  } as const;
+  const first = renderFlowAssuranceMarkdown(renderedReport);
+
+  assert.equal(first, renderFlowAssuranceMarkdown(renderedReport));
+  assert.match(first, /^# AI Booster Flow Assessment$/mu);
+  assert.match(first, /INFORMATIONAL — HUMAN DECISION REQUIRED/u);
+  assert.match(first, /Status: <code>UNKNOWN<\/code>/u);
+  assert.match(first, /Handoff ready: <code>true<\/code>/u);
+  assert.equal(first.includes(unsafeText), false);
+  assert.equal(first.includes(unsafeAction), false);
+  assert.equal(first.includes("private-prompt.txt"), false);
+  assert.match(first, /Review &lt;unsafe&gt; &amp; continue&#10;- injected/u);
+  assert.match(first, /Unknown <code>1<\/code>: content omitted from informational summary\./u);
+  assert.match(first, /Limit <code>1<\/code>: content omitted from informational summary\./u);
+  assert.match(first, /Stop reason <code>1<\/code>: content omitted from informational summary\./u);
+  assert.match(first, /Next action[\s\S]*REVIEW_REDACTED_NEXT_ACTION_LOCALLY/u);
+  assert.match(renderFlowAssuranceMarkdown(initial), /Next action[\s\S]*RUN_MODULE:plan/u);
 });
 
 test("flow assurance: requires the exact human checkpoint after a completed plan", () => {
