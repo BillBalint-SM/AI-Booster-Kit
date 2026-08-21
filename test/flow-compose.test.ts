@@ -1,18 +1,12 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
-import { composeFlow, FlowCompositionError } from "../src/flow/compose.js";
 import {
   loadImplementationRecipe,
   loadRefinementRecipe,
   loadValidationRecipe,
 } from "../src/controller/formation-recipe.js";
-
-const recipes = await Promise.all([
-  loadRefinementRecipe("contract/agent-library/bounded-refinement.md"),
-  loadImplementationRecipe("contract/agent-library/bounded-implementation.md"),
-  loadValidationRecipe("contract/agent-library/bounded-validation.md"),
-]).then(([plan, implement, verify]) => ({ plan, implement, verify }));
+import { composeFlow, FlowCompositionError } from "../src/flow/compose.js";
 
 const planInputs = {
   "current-scope": "Add a reviewable module and flow composition interface.",
@@ -51,7 +45,7 @@ test("flow composer: exposes plan, implement, test, and review as independent mo
       objective: `Run the ${candidate.module} module.`,
       inputs: candidate.inputs,
       unknowns: [],
-    }, recipes);
+    });
 
     assert.equal(result.status, "READY");
     assert.equal(result.packageKind, "MODULE");
@@ -63,6 +57,52 @@ test("flow composer: exposes plan, implement, test, and review as independent mo
     assert.equal(result.executionPerformed, false);
     assert.equal(result.authority, "RECOMMENDATION_ONLY");
     assert.equal(result.executionBoundary, "LOCAL_ONLY");
+  }
+});
+
+test("flow composer: keeps its owned contracts aligned with the canonical recipe documents", async () => {
+  const [plan, implement, verify] = await Promise.all([
+    loadRefinementRecipe("contract/agent-library/bounded-refinement.md"),
+    loadImplementationRecipe("contract/agent-library/bounded-implementation.md"),
+    loadValidationRecipe("contract/agent-library/bounded-validation.md"),
+  ]);
+  const cases = [
+    { module: "plan", inputs: planInputs, recipe: plan },
+    { module: "implement", inputs: implementationInputs, recipe: implement },
+    { module: "test", inputs: validationInputs, recipe: verify },
+  ] as const;
+
+  for (const candidate of cases) {
+    const packet = composeFlow({
+      requestVersion: "1.0",
+      selection: { kind: "module", module: candidate.module },
+      objective: `Run the ${candidate.module} module.`,
+      inputs: candidate.inputs,
+      unknowns: [],
+    }).modules[0]!;
+    assert.deepEqual({
+      recipeId: packet.recipeId,
+      recipeVersion: packet.recipeVersion,
+      requiredInput: packet.requiredInput,
+      expectedOutput: packet.expectedOutput,
+      acceptanceCriteria: packet.acceptanceCriteria,
+      evidenceRequirements: packet.evidenceRequirements,
+      stopConditions: packet.stopConditions,
+      unknownPolicy: packet.unknownPolicy,
+      executionBoundary: packet.executionBoundary,
+      authority: packet.authority,
+    }, {
+      recipeId: candidate.recipe.recipeId,
+      recipeVersion: candidate.recipe.recipeVersion,
+      requiredInput: candidate.recipe.controller.requiredInput,
+      expectedOutput: candidate.recipe.outputContract.requiredSections,
+      acceptanceCriteria: candidate.recipe.acceptance.criteria,
+      evidenceRequirements: candidate.recipe.evidenceRequirements,
+      stopConditions: candidate.recipe.recovery.stopConditions,
+      unknownPolicy: candidate.recipe.outputContract.unknownPolicy,
+      executionBoundary: candidate.recipe.controller.executionBoundary,
+      authority: candidate.recipe.controller.authority,
+    });
   }
 });
 
@@ -80,7 +120,7 @@ test("flow composer: creates the explicit default change flow without executing 
       "known-limits": [],
     },
     unknowns: [],
-  }, recipes);
+  });
 
   assert.equal(result.status, "READY");
   assert.equal(result.packageKind, "FLOW");
@@ -105,7 +145,7 @@ test("flow composer: never infers the default flow for a single module", () => {
     objective: "Create only a plan.",
     inputs: planInputs,
     unknowns: [],
-  }, recipes);
+  });
 
   assert.equal(result.modules.length, 1);
   assert.deepEqual(result.modules[0]?.suggestedContinuation, ["implement"]);
@@ -121,7 +161,7 @@ test("flow composer: stops visibly when a required input is missing", () => {
       "repository-state": "VERIFIED",
     },
     unknowns: [],
-  }, recipes);
+  });
 
   assert.equal(result.status, "STOPPED");
   assert.equal(result.modules[0]?.state, "STOPPED");
@@ -145,7 +185,7 @@ test("flow composer: preserves an explicit required-input unknown", () => {
       "evidence-sources": ["local diff"],
     },
     unknowns: ["known-limits"],
-  }, recipes);
+  });
 
   assert.equal(result.status, "UNKNOWN");
   assert.equal(result.modules[0]?.state, "UNKNOWN");
@@ -160,7 +200,7 @@ test("flow composer: rejects foreign fields instead of guessing", () => {
     objective: "Create a plan.",
     inputs: { ...planInputs, typo: true },
     unknowns: [],
-  }, recipes), (error: unknown) => {
+  }), (error: unknown) => {
     assert.ok(error instanceof FlowCompositionError);
     assert.equal(error.code, "FLOW_INPUT_INVALID");
     return true;
@@ -187,7 +227,7 @@ test("flow composer: rejects accessor and sparse input data without invoking it"
     objective: "Create a plan.",
     inputs: accessorInputs,
     unknowns: [],
-  }, recipes), (error: unknown) => error instanceof FlowCompositionError && error.code === "FLOW_INPUT_INVALID");
+  }), (error: unknown) => error instanceof FlowCompositionError && error.code === "FLOW_INPUT_INVALID");
   assert.equal(invoked, false);
 
   assert.throws(() => composeFlow({
@@ -196,29 +236,7 @@ test("flow composer: rejects accessor and sparse input data without invoking it"
     objective: "Create a plan.",
     inputs: { ...planInputs, constraints: Array(1) },
     unknowns: [],
-  }, recipes), (error: unknown) => error instanceof FlowCompositionError && error.code === "FLOW_INPUT_INVALID");
-});
-
-test("flow composer: rejects a recipe set that widens the authority boundary", () => {
-  const unsafeRecipes = {
-    ...recipes,
-    verify: {
-      ...recipes.verify,
-      controller: { ...recipes.verify.controller, authority: "EXTERNAL_WRITE" },
-    },
-  } as unknown as typeof recipes;
-
-  assert.throws(() => composeFlow({
-    requestVersion: "1.0",
-    selection: { kind: "module", module: "test" },
-    objective: "Test a bounded change.",
-    inputs: validationInputs,
-    unknowns: [],
-  }, unsafeRecipes), (error: unknown) => {
-    assert.ok(error instanceof FlowCompositionError);
-    assert.equal(error.code, "FLOW_CONTRACT_INVALID");
-    return true;
-  });
+  }), (error: unknown) => error instanceof FlowCompositionError && error.code === "FLOW_INPUT_INVALID");
 });
 
 test("flow composer: stops noncanonical implementation authority states", () => {
@@ -232,7 +250,7 @@ test("flow composer: stops noncanonical implementation authority states", () => 
       "accepted-plan": "DRAFT",
     },
     unknowns: [],
-  }, recipes);
+  });
 
   assert.equal(result.status, "STOPPED");
   assert.equal(result.modules[0]?.state, "STOPPED");
@@ -241,29 +259,4 @@ test("flow composer: stops noncanonical implementation authority states", () => 
     "INVALID_INPUT:accepted-plan",
   ]);
   assert.equal(result.nextAction, "CORRECT_INVALID_INPUTS");
-});
-
-test("flow composer: rejects a canonical recipe with a weakened required-input contract", () => {
-  const weakenedRecipes = {
-    ...recipes,
-    implement: {
-      ...recipes.implement,
-      controller: {
-        ...recipes.implement.controller,
-        requiredInput: recipes.implement.controller.requiredInput.filter((field) => field !== "accepted-plan"),
-      },
-    },
-  } as unknown as typeof recipes;
-
-  assert.throws(() => composeFlow({
-    requestVersion: "1.0",
-    selection: { kind: "module", module: "implement" },
-    objective: "Implement a bounded change.",
-    inputs: implementationInputs,
-    unknowns: [],
-  }, weakenedRecipes), (error: unknown) => {
-    assert.ok(error instanceof FlowCompositionError);
-    assert.equal(error.code, "FLOW_CONTRACT_INVALID");
-    return true;
-  });
 });

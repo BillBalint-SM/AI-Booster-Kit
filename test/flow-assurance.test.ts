@@ -3,17 +3,6 @@ import { test } from "node:test";
 
 import { assessFlow, FlowAssuranceError } from "../src/flow/assurance.js";
 import type { FlowModulePacket } from "../src/flow/compose.js";
-import {
-  loadImplementationRecipe,
-  loadRefinementRecipe,
-  loadValidationRecipe,
-} from "../src/controller/formation-recipe.js";
-
-const recipes = await Promise.all([
-  loadRefinementRecipe("contract/agent-library/bounded-refinement.md"),
-  loadImplementationRecipe("contract/agent-library/bounded-implementation.md"),
-  loadValidationRecipe("contract/agent-library/bounded-validation.md"),
-]).then(([plan, implement, verify]) => ({ plan, implement, verify }));
 
 const digest = "a".repeat(64);
 const observedAt = "2026-08-20T12:00:00.000Z";
@@ -38,7 +27,7 @@ const defaultRequest = {
 test("flow assurance: identifies a canonical package and recommends only the first runnable module", () => {
   const input = assessmentInput(defaultRequest, []);
   const before = structuredClone(input);
-  const result = assessFlow(input, recipes);
+  const result = assessFlow(input);
 
   assert.match(result.packageId, /^sha256:[a-f0-9]{64}$/u);
   assert.equal(result.status, "READY");
@@ -63,7 +52,7 @@ test("flow assurance: identifies a canonical package and recommends only the fir
       requestVersion: "1.0",
     },
   };
-  assert.equal(assessFlow(reordered, recipes).packageId, result.packageId);
+  assert.equal(assessFlow(reordered).packageId, result.packageId);
 
   const changedConstraint = {
     ...defaultRequest,
@@ -73,15 +62,15 @@ test("flow assurance: identifies a canonical package and recommends only the fir
     },
   };
   assert.notEqual(
-    assessFlow(assessmentInput(changedConstraint, []), recipes).packageId,
+    assessFlow(assessmentInput(changedConstraint, [])).packageId,
     result.packageId,
   );
 });
 
 test("flow assurance: requires the exact human checkpoint after a completed plan", () => {
-  const initial = assessFlow(assessmentInput(defaultRequest, []), recipes);
+  const initial = assessFlow(assessmentInput(defaultRequest, []));
   const plan = completeStageReceipt(initial.packageId, initial.package.modules[0]!);
-  const waiting = assessFlow(assessmentInput(defaultRequest, [plan]), recipes);
+  const waiting = assessFlow(assessmentInput(defaultRequest, [plan]));
   const planState = waiting.stages[0]!;
 
   assert.equal(waiting.status, "WAITING_FOR_APPROVAL");
@@ -99,7 +88,7 @@ test("flow assurance: requires the exact human checkpoint after a completed plan
   assert.equal(waiting.nextAction, "RECORD_CHECKPOINT:USER_ACCEPTS_PLAN");
 
   const accepted = checkpointReceipt(initial.packageId, planState.receiptId!);
-  const ready = assessFlow(assessmentInput(defaultRequest, [accepted, plan]), recipes);
+  const ready = assessFlow(assessmentInput(defaultRequest, [accepted, plan]));
 
   assert.equal(ready.status, "READY");
   assert.deepEqual(ready.runnableStages, ["implement-2"]);
@@ -108,7 +97,7 @@ test("flow assurance: requires the exact human checkpoint after a completed plan
   assert.equal(ready.nextAction, "RUN_MODULE:implement");
 
   const rejectedCheckpoint = { ...accepted, decision: "REJECTED" };
-  const rejected = assessFlow(assessmentInput(defaultRequest, [plan, rejectedCheckpoint]), recipes);
+  const rejected = assessFlow(assessmentInput(defaultRequest, [plan, rejectedCheckpoint]));
   assert.equal(rejected.status, "STOPPED");
   assert.equal(rejected.checkpoints[0]?.state, "REJECTED");
   assert.equal(rejected.blockers[0]?.code, "CHECKPOINT_REJECTED");
@@ -116,21 +105,21 @@ test("flow assurance: requires the exact human checkpoint after a completed plan
   assert.equal(rejected.nextAction, "REVISE_PLAN_OR_END_FLOW");
 
   const staleCheckpoint = { ...accepted, decidedAt: "2026-08-20T11:59:59.000Z" };
-  const stale = assessFlow(assessmentInput(defaultRequest, [plan, staleCheckpoint]), recipes);
+  const stale = assessFlow(assessmentInput(defaultRequest, [plan, staleCheckpoint]));
   assert.equal(stale.status, "STOPPED");
   assert.equal(stale.blockers[0]?.code, "CHECKPOINT_DECISION_STALE");
 });
 
 test("flow assurance: reaches a review-ready handoff only after every stage contract is evidenced", () => {
-  const initial = assessFlow(assessmentInput(defaultRequest, []), recipes);
+  const initial = assessFlow(assessmentInput(defaultRequest, []));
   const plan = completeStageReceipt(initial.packageId, initial.package.modules[0]!);
-  const afterPlan = assessFlow(assessmentInput(defaultRequest, [plan]), recipes);
+  const afterPlan = assessFlow(assessmentInput(defaultRequest, [plan]));
   const checkpoint = checkpointReceipt(initial.packageId, afterPlan.stages[0]!.receiptId!);
   const implement = completeStageReceipt(initial.packageId, initial.package.modules[1]!);
   const verify = completeStageReceipt(initial.packageId, initial.package.modules[2]!);
   const review = completeStageReceipt(initial.packageId, initial.package.modules[3]!);
 
-  const result = assessFlow(assessmentInput(defaultRequest, [review, checkpoint, implement, plan, verify]), recipes);
+  const result = assessFlow(assessmentInput(defaultRequest, [review, checkpoint, implement, plan, verify]));
 
   assert.equal(result.status, "COMPLETE");
   assert.deepEqual(result.runnableStages, []);
@@ -147,9 +136,9 @@ test("flow assurance: reaches a review-ready handoff only after every stage cont
 });
 
 test("flow assurance: preserves a successful limited result without upgrading it to complete", () => {
-  const initial = assessFlow(assessmentInput(defaultRequest, []), recipes);
+  const initial = assessFlow(assessmentInput(defaultRequest, []));
   const plan = completeStageReceipt(initial.packageId, initial.package.modules[0]!);
-  const afterPlan = assessFlow(assessmentInput(defaultRequest, [plan]), recipes);
+  const afterPlan = assessFlow(assessmentInput(defaultRequest, [plan]));
   const receipts = [
     plan,
     checkpointReceipt(initial.packageId, afterPlan.stages[0]!.receiptId!),
@@ -161,7 +150,7 @@ test("flow assurance: preserves a successful limited result without upgrading it
     }),
   ];
 
-  const result = assessFlow(assessmentInput(defaultRequest, receipts), recipes);
+  const result = assessFlow(assessmentInput(defaultRequest, receipts));
 
   assert.equal(result.status, "COMPLETE_WITH_LIMIT");
   assert.equal(result.stages[3]?.state, "COMPLETE_WITH_LIMIT");
@@ -171,11 +160,11 @@ test("flow assurance: preserves a successful limited result without upgrading it
 });
 
 test("flow assurance: fails closed when a claimed success lacks required evidence", () => {
-  const initial = assessFlow(assessmentInput(defaultRequest, []), recipes);
+  const initial = assessFlow(assessmentInput(defaultRequest, []));
   const plan = completeStageReceipt(initial.packageId, initial.package.modules[0]!);
   plan.evidence = plan.evidence.slice(1);
 
-  const result = assessFlow(assessmentInput(defaultRequest, [plan]), recipes);
+  const result = assessFlow(assessmentInput(defaultRequest, [plan]));
 
   assert.equal(result.status, "STOPPED");
   assert.equal(result.stages[0]?.state, "STOPPED");
@@ -185,26 +174,26 @@ test("flow assurance: fails closed when a claimed success lacks required evidenc
 });
 
 test("flow assurance: rejects foreign, out-of-order, and mismatched approval receipts visibly", () => {
-  const initial = assessFlow(assessmentInput(defaultRequest, []), recipes);
+  const initial = assessFlow(assessmentInput(defaultRequest, []));
   const foreignPlan = completeStageReceipt(`sha256:${"b".repeat(64)}`, initial.package.modules[0]!);
-  const foreign = assessFlow(assessmentInput(defaultRequest, [foreignPlan]), recipes);
+  const foreign = assessFlow(assessmentInput(defaultRequest, [foreignPlan]));
   assert.equal(foreign.status, "STOPPED");
   assert.equal(foreign.blockers[0]?.code, "RECEIPT_PACKAGE_MISMATCH");
 
   const implement = completeStageReceipt(initial.packageId, initial.package.modules[1]!);
-  const outOfOrder = assessFlow(assessmentInput(defaultRequest, [implement]), recipes);
+  const outOfOrder = assessFlow(assessmentInput(defaultRequest, [implement]));
   assert.equal(outOfOrder.status, "STOPPED");
   assert.equal(outOfOrder.blockers[0]?.code, "RECEIPT_OUT_OF_ORDER");
 
   const plan = completeStageReceipt(initial.packageId, initial.package.modules[0]!);
   const wrongCheckpoint = checkpointReceipt(initial.packageId, `sha256:${"c".repeat(64)}`);
-  const mismatched = assessFlow(assessmentInput(defaultRequest, [plan, wrongCheckpoint]), recipes);
+  const mismatched = assessFlow(assessmentInput(defaultRequest, [plan, wrongCheckpoint]));
   assert.equal(mismatched.status, "STOPPED");
   assert.equal(mismatched.blockers[0]?.code, "CHECKPOINT_SUBJECT_MISMATCH");
 });
 
 test("flow assurance: keeps explicit STOPPED and UNKNOWN stage outcomes terminal and reviewable", () => {
-  const initial = assessFlow(assessmentInput(defaultRequest, []), recipes);
+  const initial = assessFlow(assessmentInput(defaultRequest, []));
   const stoppedReceipt = completeStageReceipt(initial.packageId, initial.package.modules[0]!, {
     outcome: "STOPPED",
     artifacts: [],
@@ -212,7 +201,7 @@ test("flow assurance: keeps explicit STOPPED and UNKNOWN stage outcomes terminal
     stopReasons: ["The accepted scope conflicts with a binding constraint."],
     nextAction: "RECONCILE_SCOPE_CONFLICT",
   });
-  const stopped = assessFlow(assessmentInput(defaultRequest, [stoppedReceipt]), recipes);
+  const stopped = assessFlow(assessmentInput(defaultRequest, [stoppedReceipt]));
   assert.equal(stopped.status, "STOPPED");
   assert.equal(stopped.nextAction, "RECONCILE_SCOPE_CONFLICT");
   assert.equal(stopped.handoff.ready, true);
@@ -226,7 +215,7 @@ test("flow assurance: keeps explicit STOPPED and UNKNOWN stage outcomes terminal
     nextAction: "RETRY_READBACK_OR_STOP",
     readback: { state: "UNAVAILABLE", revision: null, observedAt },
   });
-  const unknown = assessFlow(assessmentInput(defaultRequest, [unknownReceipt]), recipes);
+  const unknown = assessFlow(assessmentInput(defaultRequest, [unknownReceipt]));
   assert.equal(unknown.status, "UNKNOWN");
   assert.equal(unknown.nextAction, "RETRY_READBACK_OR_STOP");
   assert.equal(unknown.handoff.ready, true);
@@ -245,7 +234,7 @@ test("flow assurance: propagates composition uncertainty and rejects malformed i
     },
     unknowns: ["known-limits"],
   };
-  const unknown = assessFlow(assessmentInput(unknownRequest, []), recipes);
+  const unknown = assessFlow(assessmentInput(unknownRequest, []));
   assert.equal(unknown.status, "UNKNOWN");
   assert.deepEqual(unknown.runnableStages, []);
   assert.equal(unknown.nextAction, "RESOLVE_UNKNOWN_INPUTS");
@@ -255,7 +244,7 @@ test("flow assurance: propagates composition uncertainty and rejects malformed i
     request: defaultRequest,
     receipts: [],
     foreign: true,
-  }, recipes), (error: unknown) => {
+  }), (error: unknown) => {
     assert.ok(error instanceof FlowAssuranceError);
     assert.equal(error.code, "FLOW_ASSURANCE_INPUT_INVALID");
     return true;
@@ -265,7 +254,7 @@ test("flow assurance: propagates composition uncertainty and rejects malformed i
     assessmentVersion: "1.0",
     request: defaultRequest,
     receipts: Array(1),
-  }, recipes), (error: unknown) => {
+  }), (error: unknown) => {
     assert.ok(error instanceof FlowAssuranceError);
     assert.equal(error.code, "FLOW_ASSURANCE_INPUT_INVALID");
     return true;
