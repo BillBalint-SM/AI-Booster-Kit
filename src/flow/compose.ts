@@ -1,20 +1,6 @@
-import { isDeepStrictEqual } from "node:util";
-
-import type {
-  ImplementationRecipe,
-  RefinementRecipe,
-  ValidationRecipe,
-} from "../controller/types.js";
-
 export type FlowModule = "plan" | "implement" | "test" | "review";
 export type FlowPackageStatus = "READY" | "STOPPED" | "UNKNOWN";
 export type FlowModuleState = FlowPackageStatus | "PENDING";
-
-export interface FlowRecipes {
-  plan: RefinementRecipe;
-  implement: ImplementationRecipe;
-  verify: ValidationRecipe;
-}
 
 export interface FlowModulePacket {
   stageId: string;
@@ -71,8 +57,7 @@ export interface FlowPackage {
 export type FlowCompositionErrorCode =
   | "FLOW_REQUEST_INVALID"
   | "FLOW_SELECTION_INVALID"
-  | "FLOW_INPUT_INVALID"
-  | "FLOW_CONTRACT_INVALID";
+  | "FLOW_INPUT_INVALID";
 
 export class FlowCompositionError extends Error {
   public constructor(readonly code: FlowCompositionErrorCode, message: string) {
@@ -142,99 +127,44 @@ const defaultFlowExternalInputs = [
   "known-limits",
 ] as const;
 
-const canonicalRecipes: FlowRecipes = {
+const recipes = {
   plan: {
     recipeId: "bounded-refinement",
     recipeVersion: "0.1.0",
-    status: "READY",
-    formationId: "bounded-refinement",
-    scenario: "refinement",
-    weight: "light",
-    coordination: "sequential",
-    controller: {
-      version: 1,
-      eligibleComplexities: ["LOW"],
-      requiredInput: ["goal", "current-scope", "constraints", "open-questions"],
-      executionBoundary: "LOCAL_ONLY",
-      authority: "RECOMMENDATION_ONLY",
-    },
-    outputContract: {
-      requiredSections: ["refined-scope", "acceptance-criteria", "decision-record"],
-      unknownPolicy: "PRESERVE_AS_UNKNOWN",
-      resultState: "NOT_STARTED",
-    },
-    acceptance: { criteria: ["scope-preserved", "assumptions-visible", "acceptance-testable"] },
+    requiredInput: ["goal", "current-scope", "constraints", "open-questions"],
+    expectedOutput: ["refined-scope", "acceptance-criteria", "decision-record"],
+    acceptanceCriteria: ["scope-preserved", "assumptions-visible", "acceptance-testable"],
     evidenceRequirements: ["before-scope", "after-scope", "decision-record"],
-    relations: [{ kind: "related_to", target: "quick-task-clarifier-validator" }],
-    recovery: {
-      preserve: ["original-scope", "rejected-interpretations"],
-      stopConditions: ["unaccepted-scope-change", "unresolved-conflict"],
-    },
+    stopConditions: ["unaccepted-scope-change", "unresolved-conflict"],
+    unknownPolicy: "PRESERVE_AS_UNKNOWN",
   },
   implement: {
     recipeId: "bounded-implementation",
     recipeVersion: "0.1.0",
-    status: "READY",
-    formationId: "bounded-implementation",
-    scenario: "development",
-    weight: "heavy",
-    coordination: "sequential",
-    controller: {
-      version: 1,
-      eligibleComplexities: ["MEDIUM"],
-      requiredInput: ["goal", "repository", "repository-state", "acceptance-criteria", "test-strategy", "accepted-plan", "rollback-boundary"],
-      executionBoundary: "LOCAL_ONLY",
-      authority: "RECOMMENDATION_ONLY",
-    },
-    outputContract: {
-      requiredSections: ["reviewable-diff", "test-evidence", "residual-risk-record"],
-      unknownPolicy: "PRESERVE_AS_UNKNOWN",
-      resultState: "NOT_STARTED",
-    },
-    acceptance: { criteria: ["scope-matched-diff", "relevant-tests-pass", "rollback-boundary-preserved"] },
+    requiredInput: ["goal", "repository", "repository-state", "acceptance-criteria", "test-strategy", "accepted-plan", "rollback-boundary"],
+    expectedOutput: ["reviewable-diff", "test-evidence", "residual-risk-record"],
+    acceptanceCriteria: ["scope-matched-diff", "relevant-tests-pass", "rollback-boundary-preserved"],
     evidenceRequirements: ["git-diff", "test-output", "review-record"],
-    relations: [{ kind: "depends_on", target: "bounded-refinement" }],
-    recovery: {
-      preserve: ["prior-setup", "failing-evidence"],
-      stopConditions: ["dirty-state-conflict", "unsafe-change", "failed-read-back"],
-    },
+    stopConditions: ["dirty-state-conflict", "unsafe-change", "failed-read-back"],
+    unknownPolicy: "PRESERVE_AS_UNKNOWN",
   },
   verify: {
     recipeId: "bounded-validation",
     recipeVersion: "0.1.0",
-    status: "READY",
-    formationId: "bounded-validation",
-    scenario: "validation",
-    weight: "medium",
-    coordination: "sequential",
-    controller: {
-      version: 1,
-      eligibleComplexities: ["LOW", "MEDIUM"],
-      requiredInput: ["claim", "acceptance-criteria", "evidence-sources", "known-limits"],
-      executionBoundary: "LOCAL_ONLY",
-      authority: "RECOMMENDATION_ONLY",
-    },
-    outputContract: {
-      requiredSections: ["validation-result", "evidence-map", "explicit-stop-or-pass"],
-      unknownPolicy: "PRESERVE_AS_UNKNOWN",
-      resultState: "NOT_STARTED",
-    },
-    acceptance: { criteria: ["claim-traced-to-evidence", "negative-paths-checked", "limits-visible"] },
+    requiredInput: ["claim", "acceptance-criteria", "evidence-sources", "known-limits"],
+    expectedOutput: ["validation-result", "evidence-map", "explicit-stop-or-pass"],
+    acceptanceCriteria: ["claim-traced-to-evidence", "negative-paths-checked", "limits-visible"],
     evidenceRequirements: ["validation-log", "source-read-back", "residual-risk-record"],
-    relations: [{ kind: "validates", target: "controller" }],
-    recovery: {
-      preserve: ["pre-validation-claim", "failed-checks"],
-      stopConditions: ["missing-evidence", "source-mismatch", "unknown-capability"],
-    },
+    stopConditions: ["missing-evidence", "source-mismatch", "unknown-capability"],
+    unknownPolicy: "PRESERVE_AS_UNKNOWN",
   },
-};
+} as const satisfies Readonly<Record<"plan" | "implement" | "verify", NormalizedRecipe>>;
 
-export function composeFlow(value: unknown, recipes: FlowRecipes): FlowPackage {
-  assertCanonicalRecipes(recipes);
-  const request = normalizeRequest(value, recipes);
+export function composeFlow(value: unknown): FlowPackage {
+  const request = normalizeRequest(value);
   const stages = request.packageKind === "MODULE"
-    ? [singleStage(request.selection as FlowModule, recipes)]
-    : defaultChangeStages(recipes);
+    ? [singleStage(request.selection as FlowModule)]
+    : defaultChangeStages();
   const missing = missingInputs(request, stages);
   const unknowns = unknownInputs(request, stages);
   const invalid = invalidInputs(request, stages);
@@ -277,19 +207,7 @@ export function composeFlow(value: unknown, recipes: FlowRecipes): FlowPackage {
   };
 }
 
-function assertCanonicalRecipes(recipes: FlowRecipes): void {
-  assertCanonicalRecipe(recipes.plan, canonicalRecipes.plan);
-  assertCanonicalRecipe(recipes.implement, canonicalRecipes.implement);
-  assertCanonicalRecipe(recipes.verify, canonicalRecipes.verify);
-}
-
-function assertCanonicalRecipe(recipeValue: unknown, expected: RefinementRecipe | ImplementationRecipe | ValidationRecipe): void {
-  if (!isDeepStrictEqual(recipeValue, expected)) {
-    throw new FlowCompositionError("FLOW_CONTRACT_INVALID", `recipe ${expected.recipeId} does not match the pinned canonical contract`);
-  }
-}
-
-function normalizeRequest(value: unknown, recipes: FlowRecipes): NormalizedRequest {
+function normalizeRequest(value: unknown): NormalizedRequest {
   const request = plainRecord(value, "FLOW_REQUEST_INVALID", "flow request");
   requireExactKeys(request, ["requestVersion", "selection", "objective", "inputs", "unknowns"], "FLOW_REQUEST_INVALID", "flow request");
   if (request.requestVersion !== "1.0") throw new FlowCompositionError("FLOW_REQUEST_INVALID", "flow request version must be 1.0");
@@ -303,7 +221,7 @@ function normalizeRequest(value: unknown, recipes: FlowRecipes): NormalizedReque
   const inputs = Object.fromEntries(inputEntries);
   const unknowns = stringList(request.unknowns, "FLOW_INPUT_INVALID", "flow unknowns");
   const allowedInputs = selection.packageKind === "MODULE"
-    ? externalInputsForModule(selection.selection as FlowModule, recipes)
+    ? externalInputsForModule(selection.selection as FlowModule)
     : defaultFlowExternalInputs;
   const allowed = new Set(allowedInputs);
 
@@ -339,8 +257,8 @@ function normalizeSelection(value: unknown): Pick<NormalizedRequest, "selection"
   throw new FlowCompositionError("FLOW_SELECTION_INVALID", "selection kind must be module or flow");
 }
 
-function singleStage(module: FlowModule, recipes: FlowRecipes): StageDefinition {
-  const recipe = recipeForModule(module, recipes);
+function singleStage(module: FlowModule): StageDefinition {
+  const recipe = recipeForModule(module);
   const externalInputs = recipe.requiredInput.filter((field) => field !== "goal");
   return {
     module,
@@ -351,10 +269,8 @@ function singleStage(module: FlowModule, recipes: FlowRecipes): StageDefinition 
   };
 }
 
-function defaultChangeStages(recipes: FlowRecipes): readonly StageDefinition[] {
-  const plan = normalizeRecipe(recipes.plan);
-  const implement = normalizeRecipe(recipes.implement);
-  const verify = normalizeRecipe(recipes.verify);
+function defaultChangeStages(): readonly StageDefinition[] {
+  const { plan, implement, verify } = recipes;
   return [
     {
       module: "plan",
@@ -479,27 +395,14 @@ function uniqueExternalInputs(stages: readonly StageDefinition[]): readonly stri
   return result;
 }
 
-function externalInputsForModule(module: FlowModule, recipes: FlowRecipes): readonly string[] {
-  return recipeForModule(module, recipes).requiredInput.filter((field) => field !== "goal");
+function externalInputsForModule(module: FlowModule): readonly string[] {
+  return recipeForModule(module).requiredInput.filter((field) => field !== "goal");
 }
 
-function recipeForModule(module: FlowModule, recipes: FlowRecipes): NormalizedRecipe {
-  if (module === "plan") return normalizeRecipe(recipes.plan);
-  if (module === "implement") return normalizeRecipe(recipes.implement);
-  return normalizeRecipe(recipes.verify);
-}
-
-function normalizeRecipe(recipe: RefinementRecipe | ImplementationRecipe | ValidationRecipe): NormalizedRecipe {
-  return {
-    recipeId: recipe.recipeId,
-    recipeVersion: recipe.recipeVersion,
-    requiredInput: recipe.controller.requiredInput,
-    expectedOutput: recipe.outputContract.requiredSections,
-    acceptanceCriteria: recipe.acceptance.criteria,
-    evidenceRequirements: recipe.evidenceRequirements,
-    stopConditions: recipe.recovery.stopConditions,
-    unknownPolicy: recipe.outputContract.unknownPolicy,
-  };
+function recipeForModule(module: FlowModule): NormalizedRecipe {
+  if (module === "plan") return recipes.plan;
+  if (module === "implement") return recipes.implement;
+  return recipes.verify;
 }
 
 function plainRecord(value: unknown, code: FlowCompositionErrorCode, label: string): Record<string, unknown> {

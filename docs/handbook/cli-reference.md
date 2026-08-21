@@ -48,9 +48,10 @@ status, and recommendation contracts.
 node dist/cli.js compose-flow --input <request.json>
 ```
 
-Loads the three canonical recipe contracts and calls `composeFlow`. Use it for
-an independent `plan`, `implement`, `test`, or `review` Module, or the explicitly
-selected `default-change` Flow. It creates no file and invokes no Agent.
+Calls `composeFlow`, which owns its canonical normalized contracts. Use it for
+an independent `plan`, `implement`, `test`, or `review` Module, or the
+explicitly selected `default-change` Flow. It creates no file and invokes no
+Agent.
 
 Examples:
 
@@ -68,10 +69,10 @@ node dist/cli.js compose-flow --input examples/flow/default-change.json
 node dist/cli.js assess-flow --input <assessment.json>
 ```
 
-Loads the canonical recipes and calls `assessFlow`. It recomposes the package,
-binds the complete request/package identity, validates supplied receipts, and
-returns the next safe Module, required checkpoint, blocker, or Handoff. It is
-stateless and performs no dispatch.
+Calls `assessFlow`. It recomposes the package, binds the complete
+request/package identity, validates supplied receipts, and returns the next
+safe Module, required checkpoint, blocker, or Handoff. It is stateless and
+performs no dispatch.
 
 Examples:
 
@@ -92,7 +93,7 @@ accepted Implement readiness, and a terminal receipt-backed Handoff. See
 | ---: | --- |
 | `0` | Valid ready or successful result: `READY`, `COMPLETE`, or `COMPLETE_WITH_LIMIT`. |
 | `2` | Valid but not runnable/successful: `WAITING_FOR_APPROVAL`, `STOPPED`, or `UNKNOWN`. |
-| `3` | Malformed JSON contract, receipt, request, or canonical recipe. |
+| `3` | Malformed JSON contract, receipt, or request. |
 | `4` | Invalid arguments or unreadable explicit input path. |
 
 `booster` also exits `0` for `READY`/`COMPLETE`, `2` for a valid

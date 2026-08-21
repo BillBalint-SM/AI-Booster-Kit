@@ -36,14 +36,6 @@ import {
   type CodexWindowsProbeProfile,
 } from "./controller/codex-windows-conformance.js";
 import { ControllerActivationPackageError } from "./controller/types.js";
-import {
-  ImplementationRecipeError,
-  RefinementRecipeError,
-  ValidationRecipeError,
-  loadImplementationRecipe,
-  loadRefinementRecipe,
-  loadValidationRecipe,
-} from "./controller/formation-recipe.js";
 import type { ActivationBoundaryPackage, ActivationContextKind, RetentionScope, TuningRequest } from "./controller/types.js";
 import type { CodexExecutionRequest } from "./controller/codex-execution.js";
 import { parseWorkContext } from "./context/markdown.js";
@@ -178,39 +170,17 @@ async function runComposeFlow(argv: readonly string[]): Promise<number> {
   if (argv[0] !== "--input" || argv[1] === undefined || argv.length !== 2) {
     return stoppedController("COMMAND_CONFIGURATION_INVALID", "compose-flow requires exactly --input <path>", 4);
   }
-  let source: string;
   try {
-    source = await readFile(argv[1], "utf8");
-  } catch (error) {
-    if (isSystemError(error)) return stoppedController("FLOW_INPUT_PATH_UNREADABLE", "The explicit flow input path could not be read", 4);
-    throw error;
-  }
-  let input: unknown;
-  try {
-    input = JSON.parse(source) as unknown;
-  } catch (error) {
-    if (error instanceof SyntaxError) return stoppedController("FLOW_INPUT_JSON_INVALID", "The explicit flow input is not valid JSON", 3);
-    throw error;
-  }
-  try {
-    const [plan, implement, verify] = await Promise.all([
-      loadRefinementRecipe("contract/agent-library/bounded-refinement.md"),
-      loadImplementationRecipe("contract/agent-library/bounded-implementation.md"),
-      loadValidationRecipe("contract/agent-library/bounded-validation.md"),
-    ]);
-    const result = composeFlow(input, { plan, implement, verify });
+    const input = await readJsonInput(argv[1], {
+      unreadable: ["FLOW_INPUT_PATH_UNREADABLE", "The explicit flow input path could not be read"],
+      invalid: ["FLOW_INPUT_JSON_INVALID", "The explicit flow input is not valid JSON"],
+    });
+    const result = composeFlow(input);
     process.stdout.write(`${JSON.stringify(result)}\n`);
     return result.status === "READY" ? 0 : 2;
   } catch (error) {
-    if (
-      error instanceof FlowCompositionError
-      || error instanceof RefinementRecipeError
-      || error instanceof ImplementationRecipeError
-      || error instanceof ValidationRecipeError
-    ) {
-      const code = error instanceof FlowCompositionError ? error.code : "FLOW_CONTRACT_INVALID";
-      return stoppedController(code, error.message, 3);
-    }
+    if (error instanceof JsonInputError) return stoppedController(error.code, error.message, error.exitCode);
+    if (error instanceof FlowCompositionError) return stoppedController(error.code, error.message, 3);
     throw error;
   }
 }
@@ -219,41 +189,18 @@ async function runAssessFlow(argv: readonly string[]): Promise<number> {
   if (argv[0] !== "--input" || argv[1] === undefined || argv.length !== 2) {
     return stoppedController("COMMAND_CONFIGURATION_INVALID", "assess-flow requires exactly --input <path>", 4);
   }
-  let source: string;
   try {
-    source = await readFile(argv[1], "utf8");
-  } catch (error) {
-    if (isSystemError(error)) return stoppedController("FLOW_ASSURANCE_INPUT_PATH_UNREADABLE", "The explicit Flow assessment path could not be read", 4);
-    throw error;
-  }
-  let input: unknown;
-  try {
-    input = JSON.parse(source) as unknown;
-  } catch (error) {
-    if (error instanceof SyntaxError) return stoppedController("FLOW_ASSURANCE_INPUT_JSON_INVALID", "The explicit Flow assessment is not valid JSON", 3);
-    throw error;
-  }
-  try {
-    const [plan, implement, verify] = await Promise.all([
-      loadRefinementRecipe("contract/agent-library/bounded-refinement.md"),
-      loadImplementationRecipe("contract/agent-library/bounded-implementation.md"),
-      loadValidationRecipe("contract/agent-library/bounded-validation.md"),
-    ]);
-    const result = assessFlow(input, { plan, implement, verify });
+    const input = await readJsonInput(argv[1], {
+      unreadable: ["FLOW_ASSURANCE_INPUT_PATH_UNREADABLE", "The explicit Flow assessment path could not be read"],
+      invalid: ["FLOW_ASSURANCE_INPUT_JSON_INVALID", "The explicit Flow assessment is not valid JSON"],
+    });
+    const result = assessFlow(input);
     process.stdout.write(`${JSON.stringify(result)}\n`);
     return result.status === "READY" || result.status === "COMPLETE" || result.status === "COMPLETE_WITH_LIMIT" ? 0 : 2;
   } catch (error) {
-    if (
-      error instanceof FlowAssuranceError
-      || error instanceof FlowCompositionError
-      || error instanceof RefinementRecipeError
-      || error instanceof ImplementationRecipeError
-      || error instanceof ValidationRecipeError
-    ) {
-      const code = error instanceof FlowAssuranceError || error instanceof FlowCompositionError
-        ? error.code
-        : "FLOW_CONTRACT_INVALID";
-      return stoppedController(code, error.message, 3);
+    if (error instanceof JsonInputError) return stoppedController(error.code, error.message, error.exitCode);
+    if (error instanceof FlowAssuranceError || error instanceof FlowCompositionError) {
+      return stoppedController(error.code, error.message, 3);
     }
     throw error;
   }
@@ -263,36 +210,20 @@ async function runBooster(argv: readonly string[]): Promise<number> {
   if (argv[0] !== "--input" || argv[1] === undefined || argv.length !== 2) {
     return stoppedController("COMMAND_CONFIGURATION_INVALID", "booster requires exactly --input <path>", 4);
   }
-
-  let source: string;
   try {
-    source = await readFile(argv[1], "utf8");
-  } catch (error) {
-    if (isSystemError(error)) return stoppedController("BOOSTER_INPUT_PATH_UNREADABLE", "The explicit Booster request path could not be read", 4);
-    throw error;
-  }
-  let input: unknown;
-  try {
-    input = JSON.parse(source) as unknown;
-  } catch (error) {
-    if (error instanceof SyntaxError) return stoppedController("BOOSTER_INPUT_JSON_INVALID", "The explicit Booster request is not valid JSON", 3);
-    throw error;
-  }
-
-  let registry: unknown;
-  try {
-    registry = JSON.parse(await readFile("contract/booster/skill-registry.json", "utf8")) as unknown;
-  } catch (error) {
-    if (error instanceof SyntaxError) return stoppedController("BOOSTER_REGISTRY_JSON_INVALID", "The canonical Skill Registry is not valid JSON", 3);
-    if (isSystemError(error)) return stoppedController("BOOSTER_REGISTRY_PATH_UNREADABLE", "The canonical Skill Registry could not be read", 4);
-    throw error;
-  }
-
-  try {
+    const input = await readJsonInput(argv[1], {
+      unreadable: ["BOOSTER_INPUT_PATH_UNREADABLE", "The explicit Booster request path could not be read"],
+      invalid: ["BOOSTER_INPUT_JSON_INVALID", "The explicit Booster request is not valid JSON"],
+    });
+    const registry = await readJsonInput("contract/booster/skill-registry.json", {
+      unreadable: ["BOOSTER_REGISTRY_PATH_UNREADABLE", "The canonical Skill Registry could not be read"],
+      invalid: ["BOOSTER_REGISTRY_JSON_INVALID", "The canonical Skill Registry is not valid JSON"],
+    });
     const result = projectDeliveryCompass(input, registry);
     process.stdout.write(`${JSON.stringify(result)}\n`);
     return result.status === "READY" || result.status === "COMPLETE" ? 0 : 2;
   } catch (error) {
+    if (error instanceof JsonInputError) return stoppedController(error.code, error.message, error.exitCode);
     if (error instanceof BoosterCompassError) return stoppedController(error.code, error.message, 3);
     throw error;
   }
@@ -914,6 +845,29 @@ function activationErrorCode(error: Error): string {
   return "CONTROLLER_VALIDATION_FAILED";
 }
 
+type JsonInputFailure = readonly [code: string, message: string];
+
+interface JsonInputErrors {
+  unreadable: JsonInputFailure;
+  invalid: JsonInputFailure;
+}
+
+async function readJsonInput(path: string, errors: JsonInputErrors): Promise<unknown> {
+  let source: string;
+  try {
+    source = await readFile(path, "utf8");
+  } catch (error) {
+    if (isSystemError(error)) throw new JsonInputError(...errors.unreadable, 4);
+    throw error;
+  }
+  try {
+    return JSON.parse(source) as unknown;
+  } catch (error) {
+    if (error instanceof SyntaxError) throw new JsonInputError(...errors.invalid, 3);
+    throw error;
+  }
+}
+
 function stoppedController(code: string, message: string, exitCode: 3 | 4): 3 | 4 {
   process.stdout.write(`${JSON.stringify({ decision: "STOPPED", impact: "UNKNOWN", requiresAcknowledgement: false, error: { code, message } })}\n`);
   return exitCode;
@@ -1050,6 +1004,10 @@ class ActivationCliError extends Error {
 
 class ContextCliError extends Error {
   public constructor(readonly code: string, readonly exitCode: 3 | 4) { super(code); }
+}
+
+class JsonInputError extends Error {
+  public constructor(readonly code: string, message: string, readonly exitCode: 3 | 4) { super(message); }
 }
 
 function isSystemError(error: unknown): error is NodeJS.ErrnoException { return typeof error === "object" && error !== null && "code" in error; }

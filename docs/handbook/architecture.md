@@ -40,7 +40,7 @@ connector, a database, or a host session.
 | Controller loaders | `src/controller/formation-recipe.ts` | Parse and validate canonical recipe documents. | Product-flow progression. |
 | Flow composition | `src/flow/compose.ts` | Build one independent Module package or explicit default Flow. | Execution and progress state. |
 | Flow assurance | `src/flow/assurance.ts` | Bind request/package identity, validate receipts/checkpoints, project the next safe stage and Handoff. | I/O, persistence, authentication, or execution. |
-| CLI adapter | `src/cli.ts` | Read explicit JSON, load recipes, call the public seam, serialize one result and exit code. | Business-rule duplication. |
+| CLI adapter | `src/cli.ts` | Read explicit JSON, call the public seam, serialize one result and exit code. | Business-rule duplication. |
 | Execution subsystem | `src/execution/` | Existing separately invoked transactional execution contracts and evidence storage. | Implicit Flow authority; Flow Assurance never calls it. |
 | Tests | `test/flow-*.test.ts` | Exercise the same public seams and built CLI used by callers. | Hidden test-only control paths. |
 
@@ -60,16 +60,17 @@ always denies execution and persistence.
 
 ### `composeFlow`
 
-`composeFlow(request, recipes): FlowPackage` hides canonical recipe comparison,
-request normalization, input binding, default stage ordering, missing/unknown
-classification, and the human plan checkpoint behind one pure call.
+`composeFlow(request): FlowPackage` owns the canonical normalized recipe
+contracts and hides request normalization, input binding, default stage
+ordering, missing/unknown classification, and the human plan checkpoint behind
+one pure call. Callers cannot inject, weaken, or widen those contracts.
 
 Its output is a recommendation package. `READY` means its input contract is
 ready; it does not mean an Agent has run.
 
 ### `assessFlow`
 
-`assessFlow({ assessmentVersion, request, receipts }, recipes): FlowAssuranceReport`
+`assessFlow({ assessmentVersion, request, receipts }): FlowAssuranceReport`
 hides canonical identity, receipt parsing, evidence/output coverage, dependency
 ordering, plan-decision binding, terminal-state precedence, and Handoff
 aggregation.
@@ -80,9 +81,9 @@ This keeps the authority and recipe contract local to one interface.
 ### CLI Adapter
 
 `booster`, `compose-flow`, and `assess-flow` are thin adapters. Their only extra
-behavior is file read/JSON parsing, canonical contract loading, JSON stdout,
-and process exit codes. A future UI, MCP server, CI step, or other host should
-call the same pure interfaces rather than reimplementing their rules.
+behavior is file read/JSON parsing, JSON stdout, and process exit codes. A
+future UI, MCP server, CI step, or other host should call the same pure
+interfaces rather than reimplementing their rules.
 
 ### Generated plugin runtime
 
@@ -135,7 +136,7 @@ productization.
 | `FlowPackage` | Pure derived value; not stored by the Flow module. |
 | Stage/Checkpoint receipts | Caller-owned immutable records; storage policy belongs to the caller/host. |
 | `FlowAssuranceReport` | Pure derived projection; safe to regenerate from the same request and receipts. |
-| Recipe documents | Repository-owned canonical contracts. |
+| Recipe documents | Repository-owned canonical contracts; a test compares every Flow-owned projected field with these documents. |
 | Execution database | Owned only by the explicit execution subsystem and its commands. |
 | Context/identity state | Owned by their named storage modules, not Flow Assurance. |
 
@@ -187,7 +188,7 @@ own contract and acceptance evidence.
 | Claim | Executable evidence |
 | --- | --- |
 | All Modules and explicit default Flow compose | `test/flow-compose.test.ts` |
-| Canonical contracts cannot be weakened/widened | `test/flow-compose.test.ts` |
+| Flow-owned contracts match the canonical documents and cannot be caller-widened | `test/flow-compose.test.ts` |
 | Request/package identity and receipt progression are deterministic | `test/flow-assurance.test.ts` |
 | Plan acceptance cannot be skipped or reused for another plan | `test/flow-assurance.test.ts` |
 | Evidence gaps and foreign/out-of-order receipts fail closed | `test/flow-assurance.test.ts` |

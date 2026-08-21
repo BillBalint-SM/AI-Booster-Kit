@@ -2,26 +2,24 @@
 
 ## Product interface
 
-The public composition seam is the pure `composeFlow(request, recipes)`
+The public composition seam is the pure `composeFlow(request)`
 interface in [`src/flow/compose.ts`](../../src/flow/compose.ts). The companion
 progress seam is the pure
-`assessFlow({ assessmentVersion, request, receipts }, recipes)` interface in
+`assessFlow({ assessmentVersion, request, receipts })` interface in
 [`src/flow/assurance.ts`](../../src/flow/assurance.ts). Both CLIs are thin local
-adapters: they read one JSON file, load the canonical recipe contracts, call
-the same interface used by tests, and write one JSON result to standard output.
+adapters: they read one JSON file, call the same interface used by tests, and
+write one JSON result to standard output.
 
 ```text
 JSON request
   → CLI adapter
-    → canonical recipe loaders
-      → composeFlow
-        → reviewable Module or Flow package
+    → composeFlow (owns canonical normalized contracts)
+      → reviewable Module or Flow package
 
 request + receipts
   → CLI adapter
-    → canonical recipe loaders
-      → assessFlow (re-composes through composeFlow)
-        → next safe stage or receipt-backed Handoff
+    → assessFlow (re-composes through composeFlow)
+      → next safe stage or receipt-backed Handoff
 ```
 
 Neither interface dispatches a process, invokes a connector, mutates execution
@@ -107,10 +105,11 @@ conditions. `inputBindings` identify the request, objective, predecessor
 artifact, or checkpoint that supplies each input without copying arbitrary
 input values into the package.
 
-Before composing, the public interface compares each complete recipe contract
-with its pinned canonical shape, including required input, outputs, evidence,
-recovery, local authority, and unknown policy. A weakened, widened, or foreign
-recipe contract is rejected.
+The public interface owns the normalized recipe contracts, including required
+input, outputs, evidence, recovery, local authority, and unknown policy. A
+caller cannot supply a weakened, widened, or foreign recipe. The verification
+suite loads the authoritative recipe documents and compares every projected
+contract field with the module-owned values, so drift fails visibly.
 
 The package declares that a terminal Handoff must contain objective/status,
 artifacts/evidence, decisions/unknowns, and limits/next action. It permits

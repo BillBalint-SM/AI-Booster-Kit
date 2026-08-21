@@ -7,9 +7,10 @@ into one deterministic answer: which stage may be invoked next, whether a human
 decision is required, or whether the work has reached a reviewable terminal
 Handoff. It never invokes the stage itself.
 
-The public seam is the pure `assessFlow(value, recipes)` function in
+The public seam is the pure `assessFlow(value)` function in
 [`src/flow/assurance.ts`](../../src/flow/assurance.ts). The `assess-flow` CLI
-loads the same canonical recipes and calls that same function.
+calls that same function; canonical normalized contracts remain owned by the
+Flow module rather than caller configuration.
 
 ```text
 request + immutable receipts

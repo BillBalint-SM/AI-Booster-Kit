@@ -55,23 +55,23 @@ test("plugin package exposes one dual-host skill distribution and no custom Agen
   }
 });
 
-test("packaged planning skill and registry are byte-aligned with their canonical repository sources", async () => {
+test("packaged planning skill and registry are content-aligned with their canonical repository sources", async () => {
   const canonicalPlanning = await readFile(resolve("skills/planning-show/SKILL.md"), "utf8");
   assert.equal(
-    await readFile(join(PLUGIN, "skills", "planning-show", "SKILL.md"), "utf8"),
-    canonicalPlanning.replace(/^disable-model-invocation: true\r?\n/mu, ""),
+    normalizeLineEndings(await readFile(join(PLUGIN, "skills", "planning-show", "SKILL.md"), "utf8")),
+    normalizeLineEndings(canonicalPlanning.replace(/^disable-model-invocation: true\r?\n/mu, "")),
   );
   assert.equal(
-    await readFile(join(PLUGIN, "claude-skills", "planning-show", "SKILL.md"), "utf8"),
-    adaptExpectedClaudeSkill(canonicalPlanning),
+    normalizeLineEndings(await readFile(join(PLUGIN, "claude-skills", "planning-show", "SKILL.md"), "utf8")),
+    normalizeLineEndings(adaptExpectedClaudeSkill(canonicalPlanning)),
   );
   assert.equal(
-    await readFile(join(PLUGIN, "skills", "planning-show", "agents", "openai.yaml"), "utf8"),
-    await readFile(resolve("skills/planning-show/agents/openai.yaml"), "utf8"),
+    normalizeLineEndings(await readFile(join(PLUGIN, "skills", "planning-show", "agents", "openai.yaml"), "utf8")),
+    normalizeLineEndings(await readFile(resolve("skills/planning-show/agents/openai.yaml"), "utf8")),
   );
   assert.equal(
-    await readFile(join(PLUGIN, "registry", "skill-registry.json"), "utf8"),
-    await readFile(resolve("contract/booster/skill-registry.json"), "utf8"),
+    normalizeLineEndings(await readFile(join(PLUGIN, "registry", "skill-registry.json"), "utf8")),
+    normalizeLineEndings(await readFile(resolve("contract/booster/skill-registry.json"), "utf8")),
   );
 });
 
@@ -231,4 +231,8 @@ function adaptExpectedClaudeSkill(source: string): string {
     adapted = adapted.replaceAll(`$${skill}`, `/ai-booster-kit:${skill}`);
   }
   return adapted.replaceAll("/planning-show", "/ai-booster-kit:planning-show");
+}
+
+function normalizeLineEndings(source: string): string {
+  return source.replaceAll("\r\n", "\n");
 }

@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 
 import { composeFlow } from "./compose.js";
-import type { FlowModule, FlowModulePacket, FlowPackage, FlowRecipes } from "./compose.js";
+import type { FlowModule, FlowModulePacket, FlowPackage } from "./compose.js";
 
 export type FlowAssuranceStatus =
   | "READY"
@@ -157,9 +157,9 @@ const packageIdPattern = /^sha256:[a-f0-9]{64}$/u;
 const sha256Pattern = /^[a-f0-9]{64}$/u;
 const identifierPattern = /^[a-z][a-z0-9-]*$/u;
 
-export function assessFlow(value: unknown, recipes: FlowRecipes): FlowAssuranceReport {
+export function assessFlow(value: unknown): FlowAssuranceReport {
   const assessment = normalizeAssessment(value);
-  const flowPackage = composeFlow(assessment.request, recipes);
+  const flowPackage = composeFlow(assessment.request);
   const packageId = flowIdentity({ request: assessment.request, package: flowPackage });
 
   if (flowPackage.status !== "READY") {
