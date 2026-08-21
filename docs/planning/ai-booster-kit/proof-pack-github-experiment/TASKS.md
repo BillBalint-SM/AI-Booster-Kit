@@ -1,16 +1,20 @@
 # Minimal GitHub Flow Summary — task queue
 
-Status: `PP-03_DONE`; `PP-04_READY_FOR_USER_DECISION`
+Status: `PP-04_DONE_PROMOTE`
 
 User acceptance of this queue: `RECORDED_2026-08-21`
 
-Implementation authority: `PP-01_LOCAL_COMPLETED`; `PP-02_LOCAL_COMPLETED`; `PP-03_GITHUB_RUN_AND_TWO_SUB_AGENT_REVIEWERS_GRANTED_2026-08-21`
+Implementation authority: `PP-01_LOCAL_COMPLETED`; `PP-02_LOCAL_COMPLETED`; `PP-03_GITHUB_RUN_AND_TWO_SUB_AGENT_REVIEWERS_GRANTED_2026-08-21`; `PP-04_PROMOTE_ACCEPTED_2026-08-21`
 
 External GitHub run or reviewer coordination: `GRANTED_2026-08-21` for branch
 `codex/flow-summary-experiment`, two atomic commits over the declared 13 files,
 push, one `main`-targeted draft pull request, CI observation, and two independent
 sub-agent reviewers. The `business-decision-technical-handoff` directory is
 explicitly excluded.
+
+A later exact User grant added one atomic two-file security-fix commit and its
+fast-forward push. It did not grant merge, release, publication, or a PR state
+change.
 
 ## Initial planning task — completed historical boundary
 
@@ -290,12 +294,19 @@ policy.
 
 ## PP-04 — Decide: `STOP`, `ITERATE`, or `PROMOTE`
 
-State: `READY_FOR_USER_DECISION`
+State: `DONE — PROMOTE`
 
 Depends on: PP-03 terminal evidence.
 
 Outcome: record one decision in this file with the supporting PP-03 evidence
 and one next bounded action.
+
+Decision: `PROMOTE`, explicitly accepted by the User on 2026-08-21.
+
+Promoted object: only the same-repository, read-only Flow Assessment Markdown
+projection in a native GitHub Job Summary as a reference pattern for later
+bounded product work. This is not a `GO` decision for the wider Proof Pack
+brief.
 
 - `PROMOTE` only if output is deterministic, both reviewers correctly read all
   three cases, and the GitHub path needs no added authority.
@@ -306,11 +317,43 @@ and one next bounded action.
 
 Acceptance:
 
-- [ ] Decision, evidence, limits, and next action are recorded.
-- [ ] A promotion remains a User decision and does not imply publication,
+- [x] Decision, evidence, limits, and next action are recorded.
+- [x] A promotion remains a User decision and does not imply publication,
   release, Marketplace, required-check, or external repository authority.
 
-Evidence: `PENDING`
+Evidence:
+
+- Draft PR [#58](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/58)
+  remained open and draft at final head
+  `2fe4ad1481caff3d2d0f7724961689b115e6357d`; all six final-head checks passed.
+- The complete, waiting, and foreign-receipt summaries remained deterministic
+  with exits `0/2/2` and combined SHA-256
+  `febf25b8dd1b6cb8850e539523929ac212ce35490356d047e681dfbb775f69ca`.
+- Both independent reviewers correctly answered all three questions for all
+  three cases: 18/18 correct answers and zero approval or execution-authority
+  confusion.
+- The final security review found and closed one raw receipt-text exposure.
+  Unknown, limit, and stop-reason prose is omitted from Markdown, and
+  receipt-derived terminal next actions are redacted. The full local regression
+  passed with 651 tests passed, one declared skip, and zero failures; both
+  independent targeted re-reviews returned no findings.
+- The workflow retained `contents: read`, used no secret or external write, and
+  added no third-party Action, artifact upload, required check, PR comment, or
+  merge behavior.
+
+The shared wording suggestion is non-blocking evidence, not an observed
+misread: both reviewers distinguished plan acceptance from final Handoff
+acceptance correctly. It remains parked until a real user error supplies the
+trigger for one bounded wording task.
+
+Limits: the decision covers three synthetic cases in one same-repository draft
+PR. It does not prove customer demand, baseline review-time improvement, fork
+behavior, public Action reuse, downloadable artifacts, Marketplace behavior,
+release readiness, or merge policy.
+
+Next bounded action: separately decide whether this one-file PP-04 decision
+record should be committed and pushed to draft PR #58. That decision must not
+change the PR from draft or imply merge, release, or publication authority.
 
 ## Parked triggers — not tasks
 
