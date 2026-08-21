@@ -254,19 +254,19 @@ export function renderFlowAssuranceMarkdown(report: FlowAssuranceReport): string
     "",
     "### Unknowns",
     "",
-    ...summaryList(report.handoff.unknowns),
+    ...summaryList("Unknown", report.handoff.unknowns),
     "",
     "### Limits",
     "",
-    ...summaryList(report.handoff.limits),
+    ...summaryList("Limit", report.handoff.limits),
     "",
     "### Stop reasons",
     "",
-    ...summaryList(report.handoff.stopReasons),
+    ...summaryList("Stop reason", report.handoff.stopReasons),
     "",
     "## Next action",
     "",
-    `- ${summaryCode(report.nextAction)}`,
+    `- ${summaryAction(report)}`,
     "",
   ].join("\n");
 }
@@ -731,8 +731,17 @@ function summaryCode(value: string | number | boolean): string {
   })}</code>`;
 }
 
-function summaryList(values: readonly string[]): readonly string[] {
-  return values.length === 0 ? ["- None."] : values.map((value) => `- ${summaryCode(value)}`);
+function summaryAction(report: FlowAssuranceReport): string {
+  const receiptDerived = (report.status === "STOPPED" || report.status === "UNKNOWN")
+    && report.handoff.ready
+    && !report.checkpoints.some((checkpoint) => checkpoint.state === "REJECTED");
+  return summaryCode(receiptDerived ? "REVIEW_REDACTED_NEXT_ACTION_LOCALLY" : report.nextAction);
+}
+
+function summaryList(label: "Unknown" | "Limit" | "Stop reason", values: readonly string[]): readonly string[] {
+  return values.length === 0
+    ? ["- None."]
+    : values.map((_, index) => `- ${label} ${summaryCode(index + 1)}: content omitted from informational summary.`);
 }
 
 function plainRecord(value: unknown, code: FlowAssuranceErrorCode, label: string): Record<string, unknown> {
