@@ -1,6 +1,0 @@
-{
-  "choice": "REQUEST_ALTERNATIVE",
-  "expectedRequestFingerprint": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-  "expectedRecipeSignature": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
-  "rationale": "Use a research-oriented recipe."
-}

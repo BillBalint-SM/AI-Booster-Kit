@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "ai-booster-kit",
-  "description": "Methodology-as-code delivery guidance for existing Codex and Claude Code agents.",
+  "description": "Explicit Skills for bounded software delivery in Codex and Claude Code.",
   "version": "0.1.0",
   "skills": "./claude-skills/",
   "author": {

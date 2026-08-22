@@ -20,8 +20,8 @@ Proceed only when all are explicit and current:
 - in team mode, `delivery-roles`, `ownership-map`, and `review-gates`.
 
 If the plan no longer matches the repository, return `STOPPED` and recommend
-planning or a new acceptance checkpoint. Never reinterpret a draft or stale
-plan as accepted.
+`$booster-plan` or a new acceptance checkpoint. Never reinterpret a draft or
+stale plan as accepted.
 
 ## Procedure
 

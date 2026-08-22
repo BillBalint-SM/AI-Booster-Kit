@@ -1,7 +1,0 @@
-interface:
-  display_name: "Planning-Show"
-  short_description: "Sharpen a plan through interview"
-  default_prompt: "Use $planning-show to sharpen a plan or design into a shared-understanding handoff."
-
-policy:
-  allow_implicit_invocation: false

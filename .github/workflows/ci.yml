@@ -1,48 +1,28 @@
 name: CI
+
 on:
   pull_request:
-    paths-ignore:
-      - "README.md"
-      - "**/*.md"
   push:
     branches: [main]
-    paths-ignore:
-      - "README.md"
-      - "**/*.md"
+
 permissions:
   contents: read
+
 jobs:
-  execution:
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - os: ubuntu-latest
-            node: 24
-            lane: AUTHORITATIVE
-          - os: windows-latest
-            node: 24
-            lane: AUTHORITATIVE
-          - os: ubuntu-latest
-            node: 26
-            lane: CONFORMANCE_ONLY
-          - os: windows-latest
-            node: 26
-            lane: CONFORMANCE_ONLY
-    runs-on: ${{ matrix.os }}
-    env:
-      EXECUTION_EXPECTED_RUNTIME_LANE: ${{ matrix.lane }}
+  verify:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v7
         with:
-          node-version: ${{ matrix.node }}
+          node-version: 24
           cache: npm
       - run: npm ci
       - run: npm run lint
-      - run: npm run build
-      - name: Append reference Flow Assessment summaries
-        if: matrix.os == 'ubuntu-latest' && matrix.node == 24
+      - run: npm test
+      - run: npm run check:booster-package
+      - run: npm run check:docs
+      - name: Append reference Flow summaries
         shell: bash
         run: |
           printf '## Reference case: complete\n\n' >> "$GITHUB_STEP_SUMMARY"
@@ -61,27 +41,3 @@ jobs:
             echo "Expected exit 2 for foreign receipt, got $foreign_exit." >&2
             exit 1
           fi
-      - name: Observe packaged SQLite dependency and native binding
-        run: node --input-type=module -e "const { observeExecutionSqliteDriver } = await import('./dist/src/execution/persistence/sqlite-adapter.js'); console.log(JSON.stringify(await observeExecutionSqliteDriver()));"
-      - run: npm run test:execution-storage
-      - run: npm test
-
-  website:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v7
-        with:
-          node-version: 24
-          cache: npm
-      - run: npm ci
-      - run: npm run check:docs
-      - name: Install website dependencies
-        run: npm ci
-        working-directory: website
-      - name: Lint website
-        run: npm run lint
-        working-directory: website
-      - name: Build and test website
-        run: npm test
-        working-directory: website

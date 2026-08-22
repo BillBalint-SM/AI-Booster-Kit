@@ -1,6 +1,5 @@
 .worktrees/
-
-# This repository's reviewed operating contract is publishable.
-!AGENTS.md
+.tmp-*
 dist/
 node_modules/
+/website/
