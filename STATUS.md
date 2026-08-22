@@ -4,22 +4,22 @@ Status date: 2026-08-22.
 
 ## Verdict
 
-**LOCAL — REVIEW-READY, NOT PUBLISHED.**
+**REVIEWED — LOCAL EVIDENCE COMPLETE; HOST PROOF PENDING.**
 
-The current worktree implements the narrowed product contract:
+The repository state implements the narrowed product contract:
 
 - `src/flow/compose.ts` and `src/flow/assurance.ts` are the complete verifier
   kernel;
 - the CLI exposes only `compose-flow` and `assess-flow`;
 - the Booster package contains seven explicit Skills and no runtime, registry,
   schema, or verifier;
-- one Node 24 CI job covers type checking, build/test, plugin package freshness,
-  documentation links, and deterministic Flow summaries;
-- current product documentation is limited to the entry point, product
+- one Node 24 CI job is defined for type checking, build/test, plugin package
+  freshness, documentation links, and deterministic Flow summaries;
+- top-level product documentation is limited to the entry point, product
   contract, status, Flow contract, and plugin contract.
 
-The cleanup is local and uncommitted. It has not been pushed and has no pull
-request. Re-read Git state before any publication action.
+Git publication state is intentionally not asserted here. Re-read Git and
+GitHub before any branch, pull request, merge, release, or publication claim.
 
 ## Current evidence
 
@@ -27,18 +27,12 @@ request. Re-read Git state before any publication action.
 - `npm test`: 31/31 tests pass after a clean build.
 - all seven Codex Skill packages pass `quick_validate.py`.
 - the Codex plugin manifest and bundled Skills pass `validate_plugin.py`.
+- the Claude Code plugin manifest passes strict host validation.
 - package freshness and all 22 current documentation files pass their checks;
 - the complete, waiting, and foreign-receipt Flow summaries return the required
   `0`, `2`, and `2` exits.
 - one independent final review passed after its three documentation/metadata
   findings were resolved and rechecked.
-
-The earlier published baseline is merge commit
-`34d3e2c98de86f4f9ec31899d09198b770d55f49` from
-[PR #58](https://github.com/BillBalint-SM/AI-Booster-Kit/pull/58). Its
-[CI run](https://github.com/BillBalint-SM/AI-Booster-Kit/actions/runs/32536576797)
-and [documentation run](https://github.com/BillBalint-SM/AI-Booster-Kit/actions/runs/32536576866)
-prove that historical baseline only, not the current local bytes.
 
 ## Evidence limits
 
@@ -54,6 +48,6 @@ prove that historical baseline only, not the current local bytes.
 
 ## Next bounded action
 
-Complete the local checks and independent review, inspect the final diff, and
-present it for acceptance. Commit, push, and pull request remain separate
-decisions.
+Validate one clean installation on each declared host. Acceptance requires the
+plugin to be discovered, all seven explicit Skills to load, and no bundled
+runtime, credential implementation, or automatic Skill invocation to appear.
