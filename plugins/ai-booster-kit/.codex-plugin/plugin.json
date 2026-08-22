@@ -1,18 +1,20 @@
 {
   "name": "ai-booster-kit",
   "version": "0.1.0",
-  "description": "Methodology-as-code delivery guidance for existing Codex and Claude Code agents.",
+  "description": "Explicit Skills for bounded software delivery in Codex and Claude Code.",
   "author": {
     "name": "AI Booster Kit contributors"
   },
   "skills": "./skills/",
   "interface": {
     "displayName": "AI Booster Kit",
-    "shortDescription": "Guide software delivery with reviewable evidence.",
-    "longDescription": "Activate Booster Mode to narrate delivery state, route independent skills through explicit contracts, and preserve human checkpoints, evidence, unknowns, and handoffs.",
+    "shortDescription": "Guide delivery with explicit Skills.",
+    "longDescription": "Seven explicit Skills cover planning, team alignment, implementation, testing, review, and handoff without adding a runtime or external authority.",
     "developerName": "AI Booster Kit contributors",
     "category": "Productivity",
     "capabilities": [],
-    "defaultPrompt": "Use $ai-booster-kit to activate Booster Mode for this software delivery task."
+    "defaultPrompt": [
+      "Use $ai-booster-kit to recommend the next delivery Skill."
+    ]
   }
 }

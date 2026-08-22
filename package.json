@@ -1,33 +1,23 @@
 {
-  "name": "agent-agnostic-sync-orchestrator",
+  "name": "ai-booster-kit",
   "version": "0.1.0",
   "private": true,
   "license": "MIT",
   "type": "module",
   "engines": {
-    "node": ">=24.18.0 <25 || >=26.7.0 <27"
+    "node": ">=24"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "node --input-type=module -e \"import { rmSync } from 'node:fs'; rmSync('dist', { recursive: true, force: true });\" && tsc",
     "lint": "tsc --noEmit",
-    "check:docs": "node --experimental-strip-types scripts/check-doc-links.mjs",
+    "test": "npm run build && node --test --test-concurrency=1 dist/test/*.test.js",
+    "check:docs": "node scripts/check-doc-links.mjs",
     "package:booster": "node scripts/package-booster-plugin.mjs",
     "check:booster-package": "node scripts/package-booster-plugin.mjs --check",
-    "test": "npm run build && node --test --test-concurrency=1 dist/test/*.test.js dist/test/conformance/*.test.js dist/test/performance/*.test.js",
-    "test:execution-storage": "node --test --test-concurrency=1 dist/test/execution-runtime-lane.test.js dist/test/execution-sqlite-adapter.test.js dist/test/execution-transactional-store.test.js dist/test/execution-storage-concurrency.test.js dist/test/execution-storage-crash.test.js dist/test/execution-storage-results.test.js dist/test/execution-storage-finalization.test.js dist/test/execution-storage-recovery.test.js dist/test/execution-storage-backup.test.js dist/test/execution-storage-migrations.test.js dist/test/execution-storage-import.test.js dist/test/execution-storage.test.js dist/test/execution-cli.test.js",
     "cli": "node dist/cli.js"
   },
-  "dependencies": {
-    "ajv": "8.20.0",
-    "better-sqlite3": "13.0.3",
-    "yaml": "2.9.0"
-  },
   "devDependencies": {
-    "@types/better-sqlite3": "9.6.0",
     "@types/node": "24.13.3",
     "typescript": "5.9.2"
-  },
-  "allowScripts": {
-    "better-sqlite3": false
   }
 }

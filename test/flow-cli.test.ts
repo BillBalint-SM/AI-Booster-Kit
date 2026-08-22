@@ -196,6 +196,18 @@ test("built flow CLI: rejects an unsupported assessment output format", async ()
   assert.equal(value.error.code, "COMMAND_CONFIGURATION_INVALID");
 });
 
+test("built flow CLI: rejects unknown commands and unreadable inputs as configuration errors", async () => {
+  const unknown = await runBuiltCli(["booster"]);
+  const unreadable = await runBuiltCli(["compose-flow", "--input", "missing-flow-input.json"]);
+
+  assert.equal(unknown.code, 4);
+  assert.equal(JSON.parse(unknown.stdout).error.code, "COMMAND_CONFIGURATION_INVALID");
+  assert.equal(unreadable.code, 4);
+  assert.equal(JSON.parse(unreadable.stdout).error.code, "FLOW_INPUT_PATH_UNREADABLE");
+  assert.equal(unknown.stderr, "");
+  assert.equal(unreadable.stderr, "");
+});
+
 function runBuiltCli(args: readonly string[]): Promise<{ code: number | null; stdout: string; stderr: string }> {
   return new Promise((resolveResult, reject) => {
     const child = spawn(process.execPath, [resolve("dist/cli.js"), ...args], {

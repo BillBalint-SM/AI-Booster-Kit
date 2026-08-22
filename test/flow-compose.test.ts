@@ -1,11 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
-import {
-  loadImplementationRecipe,
-  loadRefinementRecipe,
-  loadValidationRecipe,
-} from "../src/controller/formation-recipe.js";
 import { composeFlow, FlowCompositionError } from "../src/flow/compose.js";
 
 const planInputs = {
@@ -57,52 +52,6 @@ test("flow composer: exposes plan, implement, test, and review as independent mo
     assert.equal(result.executionPerformed, false);
     assert.equal(result.authority, "RECOMMENDATION_ONLY");
     assert.equal(result.executionBoundary, "LOCAL_ONLY");
-  }
-});
-
-test("flow composer: keeps its owned contracts aligned with the canonical recipe documents", async () => {
-  const [plan, implement, verify] = await Promise.all([
-    loadRefinementRecipe("contract/agent-library/bounded-refinement.md"),
-    loadImplementationRecipe("contract/agent-library/bounded-implementation.md"),
-    loadValidationRecipe("contract/agent-library/bounded-validation.md"),
-  ]);
-  const cases = [
-    { module: "plan", inputs: planInputs, recipe: plan },
-    { module: "implement", inputs: implementationInputs, recipe: implement },
-    { module: "test", inputs: validationInputs, recipe: verify },
-  ] as const;
-
-  for (const candidate of cases) {
-    const packet = composeFlow({
-      requestVersion: "1.0",
-      selection: { kind: "module", module: candidate.module },
-      objective: `Run the ${candidate.module} module.`,
-      inputs: candidate.inputs,
-      unknowns: [],
-    }).modules[0]!;
-    assert.deepEqual({
-      recipeId: packet.recipeId,
-      recipeVersion: packet.recipeVersion,
-      requiredInput: packet.requiredInput,
-      expectedOutput: packet.expectedOutput,
-      acceptanceCriteria: packet.acceptanceCriteria,
-      evidenceRequirements: packet.evidenceRequirements,
-      stopConditions: packet.stopConditions,
-      unknownPolicy: packet.unknownPolicy,
-      executionBoundary: packet.executionBoundary,
-      authority: packet.authority,
-    }, {
-      recipeId: candidate.recipe.recipeId,
-      recipeVersion: candidate.recipe.recipeVersion,
-      requiredInput: candidate.recipe.controller.requiredInput,
-      expectedOutput: candidate.recipe.outputContract.requiredSections,
-      acceptanceCriteria: candidate.recipe.acceptance.criteria,
-      evidenceRequirements: candidate.recipe.evidenceRequirements,
-      stopConditions: candidate.recipe.recovery.stopConditions,
-      unknownPolicy: candidate.recipe.outputContract.unknownPolicy,
-      executionBoundary: candidate.recipe.controller.executionBoundary,
-      authority: candidate.recipe.controller.authority,
-    });
   }
 });
 

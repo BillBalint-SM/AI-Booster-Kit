@@ -13,7 +13,7 @@ dispatch work.
 ## Required inputs
 
 - `objective`, `refined-scope`, `acceptance-criteria`, `decision-record`, and
-  the Planning-Show output referenced as `plan-handoff`;
+  the `/ai-booster-kit:booster-plan` output referenced as `plan-handoff`;
 - the active workspace's Agent instructions and authority boundary;
 - known contributors, capabilities, shared resources, and review needs.
 
@@ -45,6 +45,5 @@ Return `COMPLETE`, `PARTIAL`, `STOPPED`, or `UNKNOWN`, plus:
 - `review-gates`: required evidence, reviewer independence, and checkpoints;
 - facts, User decisions, unknowns, conflicts, limits, and next action.
 
-Use stable artifact references so the Delivery Compass can ingest those three
-artifact types. Recommend `/ai-booster-kit:booster-implement` only after the contract is
-reviewable. Never start it automatically.
+Use stable artifact references. Recommend `/ai-booster-kit:booster-implement` only after the
+contract is reviewable. Never start it automatically.

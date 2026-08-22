@@ -1,0 +1,7 @@
+interface:
+  display_name: "Booster Plan"
+  short_description: "Create an implementation-ready plan"
+  default_prompt: "Use $booster-plan to turn this request into a bounded implementation-ready plan for my acceptance."
+
+policy:
+  allow_implicit_invocation: false

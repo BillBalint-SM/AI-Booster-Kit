@@ -1,6 +1,6 @@
 {
   "name": "ai-booster-kit",
-  "description": "Installable AI Booster Kit delivery Skills and deterministic guidance for software teams.",
+  "description": "Installable explicit delivery Skills for software teams.",
   "owner": {
     "name": "AI Booster Kit contributors"
   },
@@ -8,7 +8,7 @@
     {
       "name": "ai-booster-kit",
       "source": "./plugins/ai-booster-kit",
-      "description": "Methodology-as-code delivery guidance for existing Codex and Claude Code agents.",
+      "description": "Explicit Skills for bounded software delivery in Codex and Claude Code.",
       "version": "0.1.0",
       "category": "development",
       "tags": ["software-delivery", "skills", "planning", "testing", "review"]
